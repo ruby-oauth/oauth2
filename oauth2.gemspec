@@ -38,8 +38,8 @@ Gem::Specification.new do |spec|
   gl_homepage = "https://gitlab.com/ruby-oauth/#{spec.name}"
   gh_mirror = "https://github.com/ruby-oauth/#{spec.name}"
 
-  spec.summary = "OAuth 2.0 Core Ruby implementation"
-  spec.description = "Ruby wrapper for the OAuth 2.0 protocol"
+  spec.summary = "🔐 OAuth 2.0 & OIDC"
+  spec.description = "🔐 Ruby wrapper for the OAuth 2.0 protocol, including OIDC"
   spec.homepage = gh_mirror
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.2.0"
