@@ -143,15 +143,8 @@ Thanks, |7eter l-|. l3oling
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   spec.add_development_dependency("addressable", "~> 2.8", ">= 2.8.7")  # ruby >= 2.2
-  spec.add_development_dependency("appraisal2", "~> 3.0")               # ruby >= 1.8.7
   spec.add_development_dependency("backports", "~> 3.25", ">= 3.25.1")  # ruby >= 0
+  spec.add_development_dependency("kettle-dev", "~> 1.0", ">= 1.0.18")  # ruby >= 2.3
   spec.add_development_dependency("nkf", "~> 0.2")                      # ruby >= 2.3
-  spec.add_development_dependency("rake", "~> 13.0")                    # ruby >= 2.2
   spec.add_development_dependency("rexml", "~> 3.2", ">= 3.2.5")        # ruby >= 0
-  spec.add_development_dependency("rspec", "~> 3.13")                   # ruby >= 0
-  spec.add_development_dependency("rspec-block_is_expected", "~> 1.0", ">= 1.0.6")  # ruby >= 1.8.7
-  spec.add_development_dependency("rspec-pending_for", "~> 0.1", ">= 0.1.17")       # ruby >= 1.8.7
-  spec.add_development_dependency("rspec-stubbed_env", "~> 1.0", ">= 1.0.2")        # ruby >= 1.8.7
-  spec.add_development_dependency("silent_stream", "~> 1.0", ">= 1.0.11")           # ruby >= 2.3
-  spec.add_development_dependency("stone_checksums", "~> 1.0")                      # ruby >= 2.2
 end
