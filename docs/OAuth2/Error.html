@@ -101,7 +101,20 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Represents an OAuth2 error condition.</p>
 
+<p>Wraps details from an OAuth2::Response or Hash payload returned by an<br />
+authorization server, exposing error code and description per RFC 6749.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -111,7 +124,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#body-instance_method" title="#body (instance method)">#<strong>body</strong>  &#x21d2; Object </a>
+      <a href="#body-instance_method" title="#body (instance method)">#<strong>body</strong>  &#x21d2; OAuth2::Response, ... </a>
     
 
     
@@ -130,7 +143,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute body.</p>
+    <span class="summary_desc"><div class='inline'>
 </div></span>
   
 </li>
@@ -139,7 +152,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#code-instance_method" title="#code (instance method)">#<strong>code</strong>  &#x21d2; Object </a>
+      <a href="#code-instance_method" title="#code (instance method)">#<strong>code</strong>  &#x21d2; OAuth2::Response, ... </a>
     
 
     
@@ -158,7 +171,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute code.</p>
+    <span class="summary_desc"><div class='inline'>
 </div></span>
   
 </li>
@@ -167,7 +180,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#description-instance_method" title="#description (instance method)">#<strong>description</strong>  &#x21d2; Object </a>
+      <a href="#description-instance_method" title="#description (instance method)">#<strong>description</strong>  &#x21d2; OAuth2::Response, ... </a>
     
 
     
@@ -186,7 +199,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute description.</p>
+    <span class="summary_desc"><div class='inline'>
 </div></span>
   
 </li>
@@ -195,7 +208,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#response-instance_method" title="#response (instance method)">#<strong>response</strong>  &#x21d2; Object </a>
+      <a href="#response-instance_method" title="#response (instance method)">#<strong>response</strong>  &#x21d2; OAuth2::Response, ... </a>
     
 
     
@@ -214,7 +227,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute response.</p>
+    <span class="summary_desc"><div class='inline'>
 </div></span>
   
 </li>
@@ -252,7 +265,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>standard error codes include: ‘invalid_request’, ‘invalid_client’, ‘invalid_token’, ‘invalid_grant’, ‘unsupported_grant_type’, ‘invalid_scope’ response might be a Response object, or the response.parsed hash.</p>
+    <span class="summary_desc"><div class='inline'><p>Create a new OAuth2::Error.</p>
 </div></span>
   
 </li>
@@ -276,15 +289,32 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>standard error codes include:<br />
-‘invalid_request’, ‘invalid_client’, ‘invalid_token’, ‘invalid_grant’, ‘unsupported_grant_type’, ‘invalid_scope’<br />
-response might be a Response object, or the response.parsed hash</p>
+    <p>Create a new OAuth2::Error</p>
 
 
   </div>
 </div>
 <div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
   
+    <li>
+      
+        <span class='name'>response</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, <tt>Hash</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A Response or error payload</p>
+</div>
+      
+    </li>
+  
+</ul>
+
 
 </div><table class="source_code">
   <tr>
@@ -292,14 +322,6 @@ response might be a Response object, or the response.parsed hash</p>
       <pre class="lines">
 
 
-10
-11
-12
-13
-14
-15
-16
-17
 18
 19
 20
@@ -310,10 +332,18 @@ response might be a Response object, or the response.parsed hash</p>
 25
 26
 27
-28</pre>
+28
+29
+30
+31
+32
+33
+34
+35
+36</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 10</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 18</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='rparen'>)</span>
   <span class='ivar'>@response</span> <span class='op'>=</span> <span class='id identifier rubyid_response'>response</span>
@@ -349,7 +379,7 @@ response might be a Response object, or the response.parsed hash</p>
       <div class="method_details first">
   <h3 class="signature first" id="body-instance_method">
   
-    #<strong>body</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>body</strong>  &#x21d2; <tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, ...  <span class="extras">(readonly)</span>
   
 
   
@@ -357,13 +387,69 @@ response might be a Response object, or the response.parsed hash</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute body.</p>
+    
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, <tt>Hash</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Original response or payload used to build the error</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Raw body content (if available)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Error code (e.g., ‘invalid_grant’)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Human-readable description for the error</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -371,12 +457,12 @@ response might be a Response object, or the response.parsed hash</p>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='ivar'>@body</span>
@@ -391,7 +477,7 @@ response might be a Response object, or the response.parsed hash</p>
       <div class="method_details ">
   <h3 class="signature " id="code-instance_method">
   
-    #<strong>code</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>code</strong>  &#x21d2; <tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, ...  <span class="extras">(readonly)</span>
   
 
   
@@ -399,13 +485,69 @@ response might be a Response object, or the response.parsed hash</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute code.</p>
+    
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, <tt>Hash</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Original response or payload used to build the error</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Raw body content (if available)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Error code (e.g., ‘invalid_grant’)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Human-readable description for the error</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -413,12 +555,12 @@ response might be a Response object, or the response.parsed hash</p>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_code'>code</span>
   <span class='ivar'>@code</span>
@@ -433,7 +575,7 @@ response might be a Response object, or the response.parsed hash</p>
       <div class="method_details ">
   <h3 class="signature " id="description-instance_method">
   
-    #<strong>description</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>description</strong>  &#x21d2; <tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, ...  <span class="extras">(readonly)</span>
   
 
   
@@ -441,13 +583,69 @@ response might be a Response object, or the response.parsed hash</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute description.</p>
+    
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, <tt>Hash</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Original response or payload used to build the error</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Raw body content (if available)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Error code (e.g., ‘invalid_grant’)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Human-readable description for the error</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -455,12 +653,12 @@ response might be a Response object, or the response.parsed hash</p>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_description'>description</span>
   <span class='ivar'>@description</span>
@@ -475,7 +673,7 @@ response might be a Response object, or the response.parsed hash</p>
       <div class="method_details ">
   <h3 class="signature " id="response-instance_method">
   
-    #<strong>response</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    #<strong>response</strong>  &#x21d2; <tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, ...  <span class="extras">(readonly)</span>
   
 
   
@@ -483,13 +681,69 @@ response might be a Response object, or the response.parsed hash</p>
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute response.</p>
+    
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Response.html" title="OAuth2::Response (class)">OAuth2::Response</a></span></tt>, <tt>Hash</tt>, <tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Original response or payload used to build the error</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Raw body content (if available)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Error code (e.g., ‘invalid_grant’)</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>String</tt>, <tt>nil</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>Human-readable description for the error</p>
+</div>
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -497,12 +751,12 @@ response might be a Response object, or the response.parsed hash</p>
       <pre class="lines">
 
 
-5
-6
-7</pre>
+13
+14
+15</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 5</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/error.rb', line 13</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_response'>response</span>
   <span class='ivar'>@response</span>
@@ -518,7 +772,7 @@ response might be a Response object, or the response.parsed hash</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Aug  7 13:57:43 2025 by
+  Generated on Sat Aug 30 16:15:06 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

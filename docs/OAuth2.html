@@ -117,12 +117,78 @@
     <dl class="constants">
       
         <dt id="OAUTH_DEBUG-constant" class="">OAUTH_DEBUG =
-          
+          <div class="docstring">
+  <div class="discussion">
+    <p>When true, enables verbose HTTP logging via Faraday’s logger middleware.<br />
+Controlled by the OAUTH_DEBUG environment variable. Any case-insensitive<br />
+value equal to “true” will enable debugging.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div>
         </dt>
         <dd><pre class="code"><span class='const'>ENV</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OAUTH_DEBUG</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>false</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_casecmp'>casecmp</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>true</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_zero?'>zero?</span></pre></dd>
       
         <dt id="DEFAULT_CONFIG-constant" class="">DEFAULT_CONFIG =
-          
+          <div class="docstring">
+  <div class="discussion">
+    <p>Default configuration values for the oauth2 library.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+  <div class="examples">
+    <h4 class="tag_title">Examples:</h4>
+    
+      
+        <h5 class="example_title"><div class='inline'><p>Toggle warnings</p>
+</div></h5>
+      
+      <pre class="example code"><code><span class='const'><span class='object_link'><a href="" title="OAuth2 (module)">OAuth2</a></span></span><span class='period'>.</span><span class='id identifier rubyid_configure'><span class='object_link'><a href="#configure-class_method" title="OAuth2.configure (method)">configure</a></span></span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_config'>config</span><span class='op'>|</span>
+  <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:silence_extra_tokens_warning</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>false</span>
+  <span class='id identifier rubyid_config'>config</span><span class='lbracket'>[</span><span class='symbol'>:silence_no_tokens_warning</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='kw'>false</span>
+<span class='kw'>end</span></code></pre>
+    
+  </div>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>SnakyHash::SymbolKeyed</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>A mutable Hash-like config with symbol keys</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div>
         </dt>
         <dd><pre class="code"><span class='const'>SnakyHash</span><span class='op'>::</span><span class='const'>SymbolKeyed</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span>
   <span class='label'>silence_extra_tokens_warning:</span> <span class='kw'>true</span><span class='comma'>,</span>
@@ -151,7 +217,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#config-class_method" title="config (class method)">.<strong>config</strong>  &#x21d2; Object </a>
+      <a href="#config-class_method" title="config (class method)">.<strong>config</strong>  &#x21d2; SnakyHash::SymbolKeyed </a>
     
 
     
@@ -170,7 +236,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the value of attribute config.</p>
+    <span class="summary_desc"><div class='inline'><p>Access the current configuration.</p>
 </div></span>
   
 </li>
@@ -192,7 +258,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#configure-class_method" title="configure (class method)">.<strong>configure</strong> {|@config| ... } &#x21d2; Object </a>
+      <a href="#configure-class_method" title="configure (class method)">.<strong>configure</strong> {|config| ... } &#x21d2; void </a>
     
 
     
@@ -206,7 +272,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Configure global library behavior.</p>
 </div></span>
   
 </li>
@@ -224,7 +290,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="config-class_method">
   
-    .<strong>config</strong>  &#x21d2; <tt>Object</tt>  <span class="extras">(readonly)</span>
+    .<strong>config</strong>  &#x21d2; <tt>SnakyHash::SymbolKeyed</tt>  <span class="extras">(readonly)</span>
   
 
   
@@ -232,13 +298,28 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the value of attribute config.</p>
+    <p>Access the current configuration.</p>
+
+<p>Prefer using <span class='object_link'><a href="#configure-class_method" title="OAuth2.configure (method)">configure</a></span> to mutate configuration.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>SnakyHash::SymbolKeyed</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
 
 </div><table class="source_code">
   <tr>
@@ -246,12 +327,12 @@
       <pre class="lines">
 
 
-35
-36
-37</pre>
+63
+64
+65</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2.rb', line 63</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config'>config</span>
   <span class='ivar'>@config</span>
@@ -271,7 +352,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="configure-class_method">
   
-    .<strong>configure</strong> {|@config| ... } &#x21d2; <tt>Object</tt> 
+    .<strong>configure</strong> {|config| ... } &#x21d2; <tt>void</tt> 
   
 
   
@@ -279,22 +360,30 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    
+    <p class="note returns_void">This method returns an undefined value.</p><p>Configure global library behavior.</p>
+
+<p>Yields the mutable configuration object so callers can update settings.</p>
 
 
   </div>
 </div>
 <div class="tags">
   
-<p class="tag_title">Yields:</p>
-<ul class="yield">
+<p class="tag_title">Yield Parameters:</p>
+<ul class="yieldparam">
   
     <li>
       
+        <span class='name'>config</span>
       
-        <span class='type'>(<tt>@<span class='object_link'><a href="#config-class_method" title="OAuth2.config (method)">config</a></span></tt>)</span>
+      
+        <span class='type'>(<tt>SnakyHash::SymbolKeyed</tt>)</span>
       
       
+      
+        &mdash;
+        <div class='inline'><p>the configuration object</p>
+</div>
       
     </li>
   
@@ -306,12 +395,12 @@
       <pre class="lines">
 
 
-37
-38
-39</pre>
+72
+73
+74</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2.rb', line 72</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span>
   <span class='kw'>yield</span> <span class='ivar'>@config</span>
@@ -326,7 +415,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Aug  7 13:57:43 2025 by
+  Generated on Sat Aug 30 16:15:06 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

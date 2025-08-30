@@ -83,7 +83,17 @@
   
 </div>
 
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>Class-level helpers for configuring filtered attributes.</p>
 
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
 
 
 
@@ -101,7 +111,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#filtered_attribute_names-instance_method" title="#filtered_attribute_names (instance method)">#<strong>filtered_attribute_names</strong>  &#x21d2; Object </a>
+      <a href="#filtered_attribute_names-instance_method" title="#filtered_attribute_names (instance method)">#<strong>filtered_attribute_names</strong>  &#x21d2; Array&lt;Symbol&gt; </a>
     
 
     
@@ -115,7 +125,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>The configured attribute names to filter.</p>
 </div></span>
   
 </li>
@@ -124,7 +134,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#filtered_attributes-instance_method" title="#filtered_attributes (instance method)">#<strong>filtered_attributes</strong>(*attributes)  &#x21d2; Object </a>
+      <a href="#filtered_attributes-instance_method" title="#filtered_attributes (instance method)">#<strong>filtered_attributes</strong>(*attributes)  &#x21d2; void </a>
     
 
     
@@ -138,7 +148,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'>
+    <span class="summary_desc"><div class='inline'><p>Declare attributes that should be redacted in inspect output.</p>
 </div></span>
   
 </li>
@@ -156,24 +166,47 @@
       <div class="method_details first">
   <h3 class="signature first" id="filtered_attribute_names-instance_method">
   
-    #<strong>filtered_attribute_names</strong>  &#x21d2; <tt>Object</tt> 
+    #<strong>filtered_attribute_names</strong>  &#x21d2; <tt>Array&lt;Symbol&gt;</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>The configured attribute names to filter.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol&gt;</tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-12
-13
-14</pre>
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/filtered_attributes.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/filtered_attributes.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_filtered_attribute_names'>filtered_attribute_names</span>
   <span class='ivar'>@filtered_attribute_names</span> <span class='op'>||</span> <span class='lbracket'>[</span><span class='rbracket'>]</span>
@@ -186,24 +219,53 @@
       <div class="method_details ">
   <h3 class="signature " id="filtered_attributes-instance_method">
   
-    #<strong>filtered_attributes</strong>(*attributes)  &#x21d2; <tt>Object</tt> 
+    #<strong>filtered_attributes</strong>(*attributes)  &#x21d2; <tt>void</tt> 
   
 
   
 
   
-</h3><table class="source_code">
+</h3><div class="docstring">
+  <div class="discussion">
+    <p class="note returns_void">This method returns an undefined value.</p><p>Declare attributes that should be redacted in inspect output.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>attributes</span>
+      
+      
+        <span class='type'>(<tt>Array&lt;Symbol, String&gt;</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>One or more attribute names</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
   <tr>
     <td>
       <pre class="lines">
 
 
-8
-9
-10</pre>
+23
+24
+25</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/filtered_attributes.rb', line 8</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/filtered_attributes.rb', line 23</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_filtered_attributes'>filtered_attributes</span><span class='lparen'>(</span><span class='op'>*</span><span class='id identifier rubyid_attributes'>attributes</span><span class='rparen'>)</span>
   <span class='ivar'>@filtered_attribute_names</span> <span class='op'>=</span> <span class='id identifier rubyid_attributes'>attributes</span><span class='period'>.</span><span class='id identifier rubyid_map'>map</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:to_sym</span><span class='rparen'>)</span>
@@ -218,7 +280,7 @@
 </div>
 
       <div id="footer">
-  Generated on Thu Aug  7 13:57:43 2025 by
+  Generated on Sat Aug 30 16:15:06 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
