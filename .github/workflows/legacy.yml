@@ -27,8 +27,8 @@ concurrency:
 
 jobs:
   test:
-    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
@@ -37,14 +37,6 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Ruby 3.1
-          - ruby: "ruby-3.1"
-            appraisal: "ruby-3-1"
-            exec_cmd: "rake test"
-            gemfile: "Appraisal.root"
-            rubygems: latest
-            bundler: latest
-
           # Ruby 3.0
           - ruby: "ruby-3.0"
             appraisal: "ruby-3-0"
@@ -52,6 +44,14 @@ jobs:
             gemfile: "Appraisal.root"
             rubygems: '3.5.23'
             bundler: '2.5.23'
+
+          # Ruby 3.1
+          - ruby: "ruby-3.1"
+            appraisal: "ruby-3-1"
+            exec_cmd: "rake test"
+            gemfile: "Appraisal.root"
+            rubygems: latest
+            bundler: latest
 
     steps:
       - name: Checkout

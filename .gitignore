@@ -15,6 +15,7 @@ Appraisal.*.gemfile.lock
 .rspec_status
 /coverage/
 /spec/reports/
+/results/
 
 # Documentation
 /.yardoc/
@@ -42,3 +43,6 @@ Appraisal.*.gemfile.lock
 
 # Editors
 *~
+
+# Sentinels
+.floss_funding.*.lock

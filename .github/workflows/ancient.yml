@@ -1,4 +1,4 @@
-name: MRI 2.4, 2.5 (EOL)
+name: MRI 2.3, 2.4, 2.5 (EOL)
 
 permissions:
   contents: read
@@ -24,8 +24,8 @@ concurrency:
 
 jobs:
   test:
-    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Specs ${{ matrix.ruby }} ${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
@@ -34,6 +34,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
+          # Ruby 2.3
+          - ruby: "ruby-2.3"
+            appraisal: "ruby-2-3"
+            exec_cmd: "rake test"
+            gemfile: "Appraisal.root"
+            rubygems: "3.3.27"
+            bundler: "2.3.27"
+
           # Ruby 2.4
           - ruby: "ruby-2.4"
             appraisal: "ruby-2-4"

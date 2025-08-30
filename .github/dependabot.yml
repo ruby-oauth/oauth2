@@ -3,12 +3,11 @@ updates:
   - package-ecosystem: bundler
     directory: "/"
     schedule:
-      interval: daily
-      time: "04:28"
-    open-pull-requests-limit: 10
+      interval: "weekly"
+    open-pull-requests-limit: 5
     ignore:
       - dependency-name: "rubocop-lts"
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "daily"
+      interval: "weekly"

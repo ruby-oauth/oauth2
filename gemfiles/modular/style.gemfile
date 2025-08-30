@@ -3,13 +3,14 @@
 # We run rubocop on the latest version of Ruby,
 #   but in support of the oldest supported version of Ruby
 
-gem "reek", "~> 6.4"
-gem "rubocop", "~> 1.73", ">= 1.73.2"
-gem "rubocop-packaging", "~> 0.5", ">= 0.5.2"
-gem "standard", "~> 1.47"
+gem "reek", "~> 6.5"
+# gem "rubocop", "~> 1.73", ">= 1.73.2" # constrained by standard
+gem "rubocop-packaging", "~> 0.6", ">= 0.6.0"
+gem "standard", ">= 1.50"
+gem "rubocop-on-rbs", "~> 1.8"                    # ruby >= 3.1.0
 
 # Std Lib extractions
-gem "benchmark", "~> 0.4" # Removed from Std Lib in Ruby 3.5
+gem "benchmark", "~> 0.4", ">= 0.4.1" # Removed from Std Lib in Ruby 3.5
 
 if ENV.fetch("RUBOCOP_LTS_LOCAL", "false").casecmp("true").zero?
   home = ENV["HOME"]
@@ -18,6 +19,7 @@ if ENV.fetch("RUBOCOP_LTS_LOCAL", "false").casecmp("true").zero?
   gem "rubocop-ruby2_2", path: "#{home}/src/rubocop-lts/rubocop-ruby2_2"
   gem "standard-rubocop-lts", path: "#{home}/src/rubocop-lts/standard-rubocop-lts"
 else
-  gem "rubocop-lts", "~> 8.1", ">= 8.1.1" # Linting for Ruby >= 2.2
-  gem "rubocop-rspec", "~> 3.2"
+  gem "rubocop-lts", "~> 8.0"
+  gem "rubocop-ruby2_2"
+  gem "rubocop-rspec", "~> 3.6"
 end

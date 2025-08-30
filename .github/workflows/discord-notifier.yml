@@ -1,0 +1,39 @@
+name: Discord Notify
+
+on:
+  check_run:
+    types: [completed]
+  discussion:
+    types: [ created ]
+  discussion_comment:
+    types: [ created ]
+  fork:
+  gollum:
+  issues:
+    types: [ opened ]
+  issue_comment:
+    types: [ created ]
+  pull_request:
+    types: [ opened, reopened, closed ]
+  release:
+    types: [ published ]
+  watch:
+    types: [ started ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  notify:
+    if: false
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - name: Actions Status Discord
+        uses: sarisia/actions-status-discord@v1
+        if: always()
+        with:
+          webhook: ${{ secrets.DISCORD_WEBHOOK }}
+          status: ${{ job.status }}
+          username: GitHub Actions

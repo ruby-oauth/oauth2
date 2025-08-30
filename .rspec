@@ -1,4 +1,9 @@
---format documentation
+--format progress
 --color
---require spec_helper
 --order random
+--require spec_helper
+--warnings
+--format html
+--out results/test_results.html
+--format RspecJunitFormatter
+--out results/test_results.xml

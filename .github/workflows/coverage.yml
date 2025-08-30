@@ -9,7 +9,7 @@ env:
   K_SOUP_COV_MIN_BRANCH: 100
   K_SOUP_COV_MIN_LINE: 100
   K_SOUP_COV_MIN_HARD: true
-  K_SOUP_COV_FORMATTERS: "html,xml,rcov,lcov,tty"
+  K_SOUP_COV_FORMATTERS: "xml,rcov,lcov,tty"
   K_SOUP_COV_DO: true
   K_SOUP_COV_MULTI_FORMATTERS: true
   K_SOUP_COV_COMMAND_NAME: "Test Coverage"
@@ -35,8 +35,8 @@ concurrency:
 
 jobs:
   coverage:
-    name: Code Coverage on ${{ matrix.ruby }}@current
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Code Coverage on ${{ matrix.ruby }}@current
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
@@ -67,7 +67,7 @@ jobs:
 
       # Raw `bundle` will use the BUNDLE_GEMFILE set to matrix.gemfile (i.e. Appraisal.root)
       # We need to do this first to get appraisal installed.
-      # NOTE: This does not use the main Gemfile at all.
+      # NOTE: This does not use the primary Gemfile at all.
       - name: Install Root Appraisal
         run: bundle
       - name: Appraisal for ${{ matrix.appraisal }}
@@ -85,21 +85,22 @@ jobs:
 
       - name: Upload coverage to QLTY
         if: ${{ !env.ACT }}
-        uses: qltysh/qlty-action/coverage@v2
+        uses: qltysh/qlty-action/coverage@main
         with:
           token: ${{secrets.QLTY_COVERAGE_TOKEN}}
           files: coverage/.resultset.json
         continue-on-error: ${{ matrix.experimental != 'false' }}
 
-#      # Build will fail here if coverage upload fails
-#      #   which will hopefully be noticed for the lack of code coverage comments
-#      - name: Upload coverage to CodeCov
-#        uses: codecov/codecov-action@v5
-#        with:
-#          use_oidc: true
-#          fail_ci_if_error: true # optional (default = false)
-#          files: coverage/lcov.info,coverage/coverage.xml
-#          verbose: true # optional (default = false)
+      # Build will fail here if coverage upload fails
+      #   which will hopefully be noticed for the lack of code coverage comments
+      - name: Upload coverage to CodeCov
+        if: ${{ !env.ACT }}
+        uses: codecov/codecov-action@v5
+        with:
+          use_oidc: true
+          fail_ci_if_error: false # optional (default = false)
+          files: coverage/lcov.info,coverage/coverage.xml
+          verbose: true # optional (default = false)
 
       # Then PR comments
       - name: Code Coverage Summary Report

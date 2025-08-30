@@ -1,8 +1,13 @@
 inherit_gem:
-  rubocop-lts: rubocop-lts.yml
+  rubocop-lts: config/rubygem_rspec.yml
 
 inherit_from:
   - .rubocop_rspec.yml
+
+plugins: rubocop-on-rbs
+
+RBS:
+  Enabled: true
 
 AllCops:
   DisplayCopNames: true # Display the name of the failing cops
@@ -10,6 +15,9 @@ AllCops:
     - 'gemfiles/vendor/**/*'
     - 'vendor/**/*'
     - '**/.irbrc'
+
+Layout/IndentationConsistency:
+  Exclude: ['*.md']
 
 Metrics/BlockLength:
   Enabled: false

@@ -1,11 +1,12 @@
-# encoding: utf-8
+# coding: utf-8
 # frozen_string_literal: true
 
 gem_version =
-  if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.1")
+  if RUBY_VERSION >= "3.1" # rubocop:disable Gemspec/RubyVersionGlobalsUsage
     # Loading Version into an anonymous module allows version.rb to get code coverage from SimpleCov!
     # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
-    Module.new.tap { |mod| Kernel.load("lib/oauth2/version.rb", mod) }::OAuth2::Version::VERSION
+    # See: https://github.com/panorama-ed/memo_wise/pull/397
+    Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/oauth2/version.rb", mod) }::OAuth2::Version::VERSION
   else
     require_relative "lib/oauth2/version"
     OAuth2::Version::VERSION
@@ -16,6 +17,12 @@ Gem::Specification.new do |spec|
   spec.version = gem_version
   spec.authors = ["Peter Boling", "Erik Michaels-Ober", "Michael Bleigh"]
   spec.email = ["floss@galtzo.com"]
+
+  spec.summary = "🔐 OAuth 2.0, 2.1 & OIDC Core Ruby implementation"
+  spec.description = "🔐 A Ruby wrapper for the OAuth 2.0 Authorization Framework, including the OAuth 2.1 draft spec, and OpenID Connect (OIDC)"
+  spec.homepage = "https://github.com/ruby-oauth/oauth2"
+  spec.licenses = ["MIT"]
+  spec.required_ruby_version = ">= 2.2.0"
 
   # Linux distros often package gems and securely certify them independent
   #   of the official RubyGem certification process. Allowed via ENV["SKIP_GEM_SIGNING"]
@@ -36,13 +43,7 @@ Gem::Specification.new do |spec|
   end
 
   gl_homepage = "https://gitlab.com/ruby-oauth/#{spec.name}"
-  gh_mirror = "https://github.com/ruby-oauth/#{spec.name}"
-
-  spec.summary = "🔐 OAuth 2.0 & OIDC"
-  spec.description = "🔐 Ruby wrapper for the OAuth 2.0 protocol, including OIDC"
-  spec.homepage = gh_mirror
-  spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.2.0"
+  gh_mirror = spec.homepage
 
   spec.post_install_message = %{
 ---+++ oauth2 v#{gem_version} +++---
@@ -75,10 +76,10 @@ Please report issues, and star the project!
 Thanks, |7eter l-|. l3oling
 }
 
-  spec.metadata["homepage_uri"] = "https://#{spec.name}.galtzo.com/"
-  spec.metadata["source_code_uri"] = "#{gh_mirror}/releases/tag//v#{spec.version}"
-  spec.metadata["changelog_uri"] = "#{gl_homepage}/-/blob/v#{spec.version}/CHANGELOG.md"
-  spec.metadata["bug_tracker_uri"] = "#{gl_homepage}/-/issues"
+  spec.metadata["homepage_uri"] = "https://#{spec.name.tr("_", "-")}.galtzo.com/"
+  spec.metadata["source_code_uri"] = "#{gh_mirror}/tree/v#{spec.version}"
+  spec.metadata["changelog_uri"] = "#{gh_mirror}/blob/v#{spec.version}/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"] = "#{gh_mirror}/issues"
   spec.metadata["documentation_uri"] = "https://www.rubydoc.info/gems/#{spec.name}/#{spec.version}"
   spec.metadata["mailing_list_uri"] = "https://groups.google.com/g/oauth-ruby"
   spec.metadata["funding_uri"] = "https://github.com/sponsors/pboling"
@@ -87,53 +88,61 @@ Thanks, |7eter l-|. l3oling
   spec.metadata["discord_uri"] = "https://discord.gg/3qme4XHNKN"
   spec.metadata["rubygems_mfa_required"] = "true"
 
-  # Specify which files should be added to the gem when it is released.
+  # Specify which files are part of the released package.
   spec.files = Dir[
-    # Splats (alphabetical)
-    "lib/**/*",
+    # Executables and tasks
+    "exe/*",
+    "lib/**/*.rb",
+    "lib/**/*.rake",
+    # Signatures
+    "sig/**/*.rbs",
   ]
+
   # Automatically included with gem package, no need to list again in files.
   spec.extra_rdoc_files = Dir[
     # Files (alphabetical)
     "CHANGELOG.md",
+    "CITATION.cff",
     "CODE_OF_CONDUCT.md",
     "CONTRIBUTING.md",
+    "FUNDING.md",
     "LICENSE.txt",
     "README.md",
+    "REEK",
+    "RUBOCOP.md",
     "SECURITY.md",
   ]
   spec.rdoc_options += [
     "--title",
     "#{spec.name} - #{spec.summary}",
     "--main",
-    "CHANGELOG.md",
-    "CODE_OF_CONDUCT.md",
-    "CONTRIBUTING.md",
-    "LICENSE.txt",
     "README.md",
-    "SECURITY.md",
+    "--exclude",
+    "^sig/",
     "--line-numbers",
     "--inline-source",
     "--quiet",
   ]
   spec.require_paths = ["lib"]
   spec.bindir = "exe"
+  # files listed are relative paths from bindir above.
   spec.executables = []
 
-  spec.add_dependency("faraday", [">= 0.17.3", "< 4.0"])  # Ruby >= 1.9
-  spec.add_dependency("jwt", [">= 1.0", "< 4.0"])         # Ruby >= 0
-  spec.add_dependency("logger", "~> 1.2")                 # Ruby >= 0
-  spec.add_dependency("multi_xml", "~> 0.5")              # Ruby >= 0
-  spec.add_dependency("rack", [">= 1.2", "< 4"])          # Ruby >= 0
-  spec.add_dependency("snaky_hash", "~> 2.0", ">= 2.0.3") # Ruby >= 2.2
-  spec.add_dependency("version_gem", ">= 1.1.8", "< 3")   # Ruby >= 2.2
+  # Utilities
+  spec.add_dependency("faraday", [">= 0.17.3", "< 4.0"])    # ruby >= 1.9
+  spec.add_dependency("jwt", [">= 1.0", "< 4.0"])           # ruby >= 0
+  spec.add_dependency("logger", "~> 1.2")                   # ruby >= 0
+  spec.add_dependency("multi_xml", "~> 0.5")                # ruby >= 0
+  spec.add_dependency("rack", [">= 1.2", "< 4"])            # ruby >= 0
+  spec.add_dependency("snaky_hash", "~> 2.0", ">= 2.0.3")   # ruby >= 2.2
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.8")  # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability on RubyGems.org.
   #       However, development dependencies in gemspec will install on
   #       all versions of Ruby that will run in CI.
-  #       This gem, and its runtime dependencies, will install on Ruby down to 2.2.
-  #       This gem, and its development dependencies, will install on Ruby down to 2.3.
+  #       This gem, and its gemspec runtime dependencies, will install on Ruby down to 2.2.x.
+  #       This gem, and its gemspec development dependencies, will install on Ruby down to 2.3.x.
   #       This is because in CI easy installation of Ruby, via setup-ruby, is for >= 2.3.
   #       Thus, dev dependencies in gemspec must have
   #
@@ -142,6 +151,7 @@ Thanks, |7eter l-|. l3oling
   #       Development dependencies that require strictly newer Ruby versions should be in a "gemfile",
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
+  # Dev, Test, & Release Tasks
   spec.add_development_dependency("addressable", "~> 2.8", ">= 2.8.7")  # ruby >= 2.2
   spec.add_development_dependency("backports", "~> 3.25", ">= 3.25.1")  # ruby >= 0
   spec.add_development_dependency("kettle-dev", "~> 1.0", ">= 1.0.23")  # ruby >= 2.3

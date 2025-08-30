@@ -19,6 +19,7 @@ exclude_patterns = [
   "**/deps/**",
   "**/dist/**",
   "**/doc/**",
+  "**/docs/**",
   "**/extern/**",
   "**/external/**",
   "**/generated/**",

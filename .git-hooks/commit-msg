@@ -1,0 +1,41 @@
+#!/usr/bin/env ruby
+# vim: set syntax=ruby
+
+ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
+
+require "rubygems"
+require "bundler/setup"
+
+# External gems
+require "gitmoji/regex"
+
+full_text = File.read(ARGV[0])
+# Is the first character a GitMoji?
+gitmoji_index = full_text =~ Gitmoji::Regex::REGEX
+if gitmoji_index == 0
+  exit 0
+else
+  denied = <<EOM
+Oh snap, think again...
+
+ ______    _______      ___  _______  _______  _______  _______  ______   __
+|    _ |  |       |    |   ||       ||       ||       ||       ||      | |  |
+|   | ||  |    ___|    |   ||    ___||       ||_     _||    ___||  _    ||  |
+|   |_||_ |   |___     |   ||   |___ |       |  |   |  |   |___ | | |   ||  |
+|    __  ||    ___| ___|   ||    ___||      _|  |   |  |    ___|| |_|   ||__|
+|   |  | ||   |___ |       ||   |___ |     |_   |   |  |   |___ |       | __
+|___|  |_||_______||_______||_______||_______|  |___|  |_______||______| |__|
+
+
+Did you forget to add a relevant gitmoji? (see https://gitmoji.dev/ for tools)
+In this project, a Gitmoji must be the first grapheme of the commit message.
+What's a grapheme?
+A symbol rendered to be visually identifiable as a single character, but which may be composed of multiple Unicode code points)
+Must match: #{Gitmoji::Regex::REGEX.to_s}
+#{gitmoji_index ? "Found a gitmoji at character index #{gitmoji_index}... not good enough.\n" : ""}
+Example: git commit -m "✨ My excellent new feature"
+
+EOM
+  puts denied
+  exit 1
+end

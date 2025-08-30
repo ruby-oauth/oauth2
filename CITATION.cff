@@ -10,9 +10,6 @@ authors:
     email: peter@railsbling.com
     affiliation: railsbling.com
     orcid: 'https://orcid.org/0009-0008-8519-441X'
-  - given-names: Aboling0
-    email: aboling@railsbling.com
-    affiliation: railsbling.com
 identifiers:
   - type: url
     value: 'https://github.com/ruby-oauth/oauth2'
