@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 ## [Unreleased]
 ### Added
 - Inline yard documentation
+- Complete RBS types documentation
 ### Changed
 - Upgrade Code of Conduct to Contributor Covenant 2.1 by @pboling
 ### Deprecated
