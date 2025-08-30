@@ -1,10 +1,10 @@
-[![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang] [![oauth2 Logo by Aboling0, CC BY-SA 4.0][🖼️oauth2-i]][🖼️oauth2]
+[![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang] [![oauth2 Logo by Chris Messina, CC BY-SA 3.0][🖼️oauth2-i]][🖼️oauth2]
 
 [🖼️galtzo-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
 [🖼️galtzo-discord]: https://discord.gg/3qme4XHNKN
 [🖼️ruby-lang-i]: https://logos.galtzo.com/assets/images/ruby-lang/avatar-192px.svg
 [🖼️ruby-lang]: https://www.ruby-lang.org/
-[🖼️oauth2-i]: https://logos.galtzo.com/assets/images/ruby-oauth/oauth2/avatar-192px.svg
+[🖼️oauth2-i]: https://logos.galtzo.com/assets/images/oauth/oauth2/avatar-192px.svg
 [🖼️oauth2]: https://github.com/ruby-oauth/oauth2
 
 # 🔐 OAuth 2.0 Authorization Framework
@@ -272,7 +272,7 @@ For more see [SECURITY.md][🔐security].
 - Support IETF rfc7523 JWT Bearer Tokens (since v2.0.0)
 - Support IETF rfc7231 Relative Location in Redirect (since v2.0.0)
 - Support IETF rfc6749 Don't set oauth params when nil (since v2.0.0)
-- Support IETF rfc7009 Token Revocation (since v2.0.10, updated in v2.0.13)
+- Support IETF rfc7009 Token Revocation (since v2.0.10, updated in v2.0.13 to support revocation via URL-encoded parameters)
 - Support [OIDC 1.0 Private Key JWT](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication); based on the OAuth JWT assertion specification [(RFC 7523)](https://tools.ietf.org/html/rfc7523)
 - Support new formats, including from [jsonapi.org](http://jsonapi.org/format/): `application/vdn.api+json`, `application/vnd.collection+json`, `application/hal+json`, `application/problem+json`
 - Adds option to `OAuth2::Client#get_token`:
