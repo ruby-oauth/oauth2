@@ -12,6 +12,7 @@
       <excludeFolder url="file://$MODULE_DIR$/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/pkg" />
       <excludeFolder url="file://$MODULE_DIR$/docs" />
+      <excludeFolder url="file://$MODULE_DIR$/results" />
     </content>
     <orderEntry type="jdk" jdkName="mise: 3.4.5" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
