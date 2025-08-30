@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 - [gh656][gh656] - Support revocation with URL-encoded parameters
 - [gh660][gh660] - Inline yard documentation by @pboling
 - [gh660][gh660] - Complete RBS types documentation by @pboling
+- [gh660][gh660]- (more) Comprehensive documentation / examples by @pboling
 - [gh657][gh657] - Updated documentation for org-rename by @pboling
 - More funding links by @Aboling0
 ### Changed

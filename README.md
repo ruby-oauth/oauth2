@@ -631,6 +631,206 @@ access = client.auth_code.get_token("code_value", redirect_uri: "http://localhos
 You can always use the `#request` method on the `OAuth2::Client` instance to make
 requests for tokens for any Authentication grant type.
 
+## 📘 Comprehensive Usage
+
+### Common Flows (end-to-end)
+
+- Authorization Code (server-side web app):
+
+```ruby
+require "oauth2"
+client = OAuth2::Client.new(
+  ENV["CLIENT_ID"],
+  ENV["CLIENT_SECRET"],
+  site: "https://provider.example.com",
+  redirect_uri: "https://my.app.example.com/oauth/callback",
+)
+
+# Step 1: redirect user to consent
+state = SecureRandom.hex(16)
+auth_url = client.auth_code.authorize_url(scope: "openid profile email", state: state)
+# redirect_to auth_url
+
+# Step 2: handle the callback
+# params[:code], params[:state]
+raise "state mismatch" unless params[:state] == state
+access = client.auth_code.get_token(params[:code])
+
+# Step 3: call APIs
+profile = access.get("/api/v1/me").parsed
+```
+
+- Client Credentials (machine-to-machine):
+
+```ruby
+client = OAuth2::Client.new(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"], site: "https://provider.example.com")
+access = client.client_credentials.get_token(audience: "https://api.example.com")
+resp = access.get("/v1/things")
+```
+
+- Resource Owner Password (legacy; avoid when possible):
+
+```ruby
+access = client.password.get_token("jdoe", "s3cret", scope: "read")
+```
+
+### Refresh Tokens
+
+When the server issues a refresh_token, you can refresh manually or implement an auto-refresh wrapper.
+
+- Manual refresh:
+
+```ruby
+if access.expired?
+  access = access.refresh
+end
+```
+
+- Auto-refresh wrapper pattern:
+
+```ruby
+class AutoRefreshingToken
+  def initialize(token_provider, store: nil)
+    @token = token_provider
+    @store = store # e.g., something that responds to read/write for token data
+  end
+
+  def with(&blk)
+    tok = ensure_fresh!
+    blk ? blk.call(tok) : tok
+  rescue OAuth2::Error => e
+    # If a 401 suggests token invalidation, try one refresh and retry once
+    if e.response && e.response.status == 401 && @token.refresh_token
+      @token = @token.refresh
+      @store.write(@token.to_hash) if @store
+      retry
+    end
+    raise
+  end
+
+private
+
+  def ensure_fresh!
+    if @token.expired? && @token.refresh_token
+      @token = @token.refresh
+      @store.write(@token.to_hash) if @store
+    end
+    @token
+  end
+end
+
+# usage
+keeper = AutoRefreshingToken.new(access)
+keeper.with { |tok| tok.get("/v1/protected") }
+```
+
+Persist the token across processes using `AccessToken#to_hash` and `AccessToken.from_hash(client, hash)`.
+
+### Token Revocation (RFC 7009)
+
+You can revoke either the access token or the refresh token.
+
+```ruby
+# Revoke the current access token
+access.revoke(token_type_hint: :access_token)
+
+# Or explicitly revoke the refresh token (often also invalidates associated access tokens)
+access.revoke(token_type_hint: :refresh_token)
+```
+
+### Client Configuration Tips
+
+- Authentication schemes for the token request:
+
+```ruby
+OAuth2::Client.new(
+  id,
+  secret,
+  site: "https://provider.example.com",
+  auth_scheme: :basic_auth, # default. Alternatives: :request_body, :tls_client_auth, :private_key_jwt
+)
+```
+
+- Faraday connection, timeouts, proxy, custom adapter/middleware:
+
+```ruby
+client = OAuth2::Client.new(
+  id,
+  secret,
+  site: "https://provider.example.com",
+  connection_opts: {
+    request: {open_timeout: 5, timeout: 15},
+    proxy: ENV["HTTPS_PROXY"],
+    ssl: {verify: true},
+  },
+) do |faraday|
+  faraday.request(:url_encoded)
+  # faraday.response :logger, Logger.new($stdout) # see OAUTH_DEBUG below
+  faraday.adapter(:net_http_persistent) # or any Faraday adapter you need
+end
+```
+
+- Redirection: The library follows up to `max_redirects` (default 5). You can override per-client via `options[:max_redirects]`.
+
+### Handling Responses and Errors
+
+- Parsing:
+
+```ruby
+resp = access.get("/v1/thing")
+resp.status     # Integer
+resp.headers    # Hash
+resp.body       # String
+resp.parsed     # SnakyHash::StringKeyed or Array when JSON array
+```
+
+- Error handling:
+
+```ruby
+begin
+  access.get("/v1/forbidden")
+rescue OAuth2::Error => e
+  e.code         # OAuth2 error code (when present)
+  e.description  # OAuth2 error description (when present)
+  e.response     # OAuth2::Response (full access to status/headers/body)
+end
+```
+
+- Disable raising on 4xx/5xx to inspect the response yourself:
+
+```ruby
+client = OAuth2::Client.new(id, secret, site: site, raise_errors: false)
+res = client.request(:get, "/v1/maybe-errors")
+if res.status == 429
+  sleep res.headers["retry-after"].to_i
+end
+```
+
+### Making Raw Token Requests
+
+If a provider requires non-standard parameters or headers, you can call `client.get_token` directly:
+
+```ruby
+access = client.get_token({
+  grant_type: "client_credentials",
+  audience: "https://api.example.com",
+  headers: {"X-Custom" => "value"},
+  parse: :json, # override parsing
+})
+```
+
+### OpenID Connect (OIDC) Notes
+
+- If the token response includes an `id_token` (a JWT), this gem surfaces it but does not validate the signature. Use a JWT library and your provider's JWKs to verify it.
+- For private_key_jwt client authentication, provide `auth_scheme: :private_key_jwt` and ensure your key configuration matches the provider requirements.
+
+### Debugging
+
+- Set environment variable `OAUTH_DEBUG=true` to enable verbose Faraday logging (uses the client-provided logger).
+- To mirror a working curl request, ensure you set the same auth scheme, params, and content type. The Quick Example at the top shows a curl-to-ruby translation.
+
+---
+
 ## 🦷 FLOSS Funding
 
 While ruby-oauth tools are free software and will always be, the project would benefit immensely from some funding.
