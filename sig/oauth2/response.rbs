@@ -4,7 +4,7 @@ module OAuth2
 
     def self.register_parser: (Symbol key, (Array[String] | String) mime_types) { (String) -> untyped } -> void
 
-    def initialize: (untyped response, parse: Symbol?, snaky: bool?, snaky_hash_klass: untyped? **untyped) -> void
+    def initialize: (untyped response, parse: Symbol?, snaky: bool?, snaky_hash_klass: untyped?, options: Hash[Symbol, untyped]?) -> void
     def headers: () -> Hash[untyped, untyped]
     def status: () -> Integer
     def body: () -> String

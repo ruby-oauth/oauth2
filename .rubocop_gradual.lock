@@ -3,20 +3,20 @@
     [66, 5, 20, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2485198147],
     [78, 5, 74, "Style/InvertibleUnlessCondition: Prefer `if Gem.rubygems_version >= Gem::Version.new(\"2.7.0\")` over `unless Gem.rubygems_version < Gem::Version.new(\"2.7.0\")`.", 2453573257]
   ],
-  "lib/oauth2.rb:65351186": [
-    [38, 11, 7, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 651502127]
+  "lib/oauth2.rb:2435263975": [
+    [73, 11, 7, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 651502127]
   ],
   "lib/oauth2/access_token.rb:558937598": [
     [64, 13, 5, "Style/IdenticalConditionalBranches: Move `t_key` out of the conditional.", 183811513],
     [70, 13, 5, "Style/IdenticalConditionalBranches: Move `t_key` out of the conditional.", 183811513]
   ],
-  "lib/oauth2/authenticator.rb:63639854": [
-    [42, 5, 113, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 734523108]
+  "lib/oauth2/authenticator.rb:158201238": [
+    [59, 5, 113, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 734523108]
   ],
-  "lib/oauth2/filtered_attributes.rb:1202323815": [
-    [3, 5, 63, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2901108034],
-    [9, 9, 25, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2012823020],
-    [13, 9, 25, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2012823020]
+  "lib/oauth2/filtered_attributes.rb:321265140": [
+    [13, 5, 63, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 2901108034],
+    [24, 9, 25, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2012823020],
+    [31, 9, 25, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2012823020]
   ],
   "lib/oauth2/response.rb:2054901929": [
     [53, 5, 204, "Style/ClassMethodsDefinitions: Use `class << self` to define a class method.", 996912427]
