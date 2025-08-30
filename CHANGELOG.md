@@ -6,17 +6,23 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [Unreleased]
 ### Added
-- Inline yard documentation by @pboling
-- Complete RBS types documentation by @pboling
+- [gh656][gh656] - Support revocation with URL-encoded parameters
+- [gh660][gh660] - Inline yard documentation by @pboling
+- [gh660][gh660] - Complete RBS types documentation by @pboling
+- [gh657][gh657] - Updated documentation for org-rename by @pboling
 - More funding links by @Aboling0
 ### Changed
 - Upgrade Code of Conduct to Contributor Covenant 2.1 by @pboling
-- Shrink post-install message by 4 lines by @pboling
+- [gh660][gh660] - Shrink post-install message by 4 lines by @pboling
 ### Deprecated
 ### Removed
 ### Fixed
-- Links in README (including link to HEAD documentation) by @pboling
+- [gh660][gh660] - Links in README (including link to HEAD documentation) by @pboling
 ### Security
+
+[gh660]: https://github.com/ruby-oauth/oauth2/pull/660
+[gh657]: https://github.com/ruby-oauth/oauth2/pull/657
+[gh656]: https://github.com/ruby-oauth/oauth2/pull/656
 
 ## [2.0.12] - 2025-05-31
 - TAG: [v2.0.12][2.0.12t]
