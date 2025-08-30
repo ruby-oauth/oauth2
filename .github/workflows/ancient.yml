@@ -1,4 +1,4 @@
-name: MRI 2.3, 2.4, 2.5 (EOL)
+name: MRI 2.4, 2.5 (EOL)
 
 permissions:
   contents: read
@@ -34,13 +34,14 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          # Ruby 2.3
-          - ruby: "ruby-2.3"
-            appraisal: "ruby-2-3"
-            exec_cmd: "rake test"
-            gemfile: "Appraisal.root"
-            rubygems: "3.3.27"
-            bundler: "2.3.27"
+# Ruby 2.3 is tested heavily by caboose.yml
+#          # Ruby 2.3
+#          - ruby: "ruby-2.3"
+#            appraisal: "ruby-2-3"
+#            exec_cmd: "rake test"
+#            gemfile: "Appraisal.root"
+#            rubygems: "3.3.27"
+#            bundler: "2.3.27"
 
           # Ruby 2.4
           - ruby: "ruby-2.4"
