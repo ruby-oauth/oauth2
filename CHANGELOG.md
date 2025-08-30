@@ -6,14 +6,16 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [Unreleased]
 ### Added
-- Inline yard documentation
-- Complete RBS types documentation
+- Inline yard documentation by @pboling
+- Complete RBS types documentation by @pboling
+- More funding links by @Aboling0
 ### Changed
 - Upgrade Code of Conduct to Contributor Covenant 2.1 by @pboling
+- Shrink post-install message by 4 lines by @pboling
 ### Deprecated
 ### Removed
 ### Fixed
-- Links in README (including link to HEAD documentation)
+- Links in README (including link to HEAD documentation) by @pboling
 ### Security
 
 ## [2.0.12] - 2025-05-31

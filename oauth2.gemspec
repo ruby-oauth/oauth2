@@ -46,34 +46,30 @@ Gem::Specification.new do |spec|
   gh_mirror = spec.homepage
 
   spec.post_install_message = %{
----+++ oauth2 v#{gem_version} +++---
+---+++--- oauth2 v#{gem_version} ---+++---
 
-There are BREAKING CHANGES when upgrading from < v2
-Most will not encounter them, and updating your code should be easy!
-Please see:
-• #{gl_homepage}/-/blob/main/SECURITY.md
-• #{gl_homepage}/-/blob/v#{spec.version}/CHANGELOG.md#200-2022-06-21-tag
-• Summary of most important breaking changes: #{gl_homepage}#what-is-new-for-v20
+(minor) ⚠️ BREAKING CHANGES ⚠️ when upgrading from < v2
+• Summary of breaking changes: #{gl_homepage}#what-is-new-for-v20
+• Changes in this patch: #{gl_homepage}/-/blob/v#{spec.version}/CHANGELOG.md#200-2022-06-21-tag
 
 News:
 1. New documentation website: https://oauth2.galtzo.com
-2. Discord for discussion and support: https://discord.gg/3qme4XHNKN
-3. Non-commercial support for the 2.x series will end by April, 2026. Please make a plan to upgrade to the next version prior to that date.
+2. New official Discord for discussion and support: https://discord.gg/3qme4XHNKN
+3. New org name "ruby-oauth" on Open Source Collective, GitHub, GitLab, Codeberg (update git remotes!)
+4. Non-commercial support for the 2.x series will end by April, 2026. Please make a plan to upgrade to the next version prior to that date.
 Support will be dropped for Ruby 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 3.0, 3.1 and any other Ruby versions which will also have reached EOL by then.
-4. Gem releases are now cryptographically signed with a 20-year cert, with checksums by stone_checksums.
-5. Please consider supporting this project, and my other open source work, with one of the following methods:
-• https://liberapay.com/pboling
-• https://ko-fi.com/pboling
-• https://www.buymeacoffee.com/pboling
-• https://github.com/sponsors/pboling
-
-If you are a corporation, please consider supporting this project, and open source work generally, with a TideLift subscription.
-• https://tidelift.com/funding/github/rubygems/oauth
-• Or hire me. I am looking for a job!
-
-Please report issues, and star the project!
-
-Thanks, |7eter l-|. l3oling
+5. Gem releases are cryptographically signed with a 20-year cert, with checksums by stone_checksums.
+6. Please consider supporting this project:
+   • https://opencollective.com/ruby-oauth (new!)
+   • https://liberapay.com/pboling
+   • https://github.com/sponsors/pboling
+   • https://www.paypal.com/paypalme/peterboling
+   • https://ko-fi.com/pboling
+   • https://www.buymeacoffee.com/pboling
+   • https://tidelift.com/funding/github/rubygems/oauth
+   • Hire me - I can build anything
+   • Report issues, and star the project
+Thanks, @pboling / @galtzo
 }
 
   spec.metadata["homepage_uri"] = "https://#{spec.name.tr("_", "-")}.galtzo.com/"
