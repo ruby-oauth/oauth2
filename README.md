@@ -798,6 +798,55 @@ resp = access.get("/v1/things")
 access = client.password.get_token("jdoe", "s3cret", scope: "read")
 ```
 
+#### Examples
+
+<details>
+<summary>JHipster UAA (Spring Cloud) password grant example (legacy; avoid when possible)</summary>
+
+```ruby
+# This converts a Postman/Net::HTTP multipart token request to oauth2 gem usage.
+# JHipster UAA typically exposes the token endpoint at /uaa/oauth/token.
+# The original snippet included:
+# - Basic Authorization header for the client (web_app:changeit)
+# - X-XSRF-TOKEN header from a cookie (some deployments require it)
+# - grant_type=password with username/password and client_id
+# Using oauth2 gem, you don't need to build multipart bodies; the gem sends
+# application/x-www-form-urlencoded as required by RFC 6749.
+
+require "oauth2"
+
+client = OAuth2::Client.new(
+  "web_app",            # client_id
+  "changeit",           # client_secret
+  site: "http://localhost:8080/uaa",
+  token_url: "/oauth/token",      # absolute under site (or "oauth/token" relative)
+  auth_scheme: :basic_auth,         # sends HTTP Basic Authorization header
+)
+
+# If your UAA requires an XSRF header for the token call, provide it as a header.
+# Often this is not required for token endpoints, but if your gateway enforces it,
+# obtain the value from the XSRF-TOKEN cookie and pass it here.
+xsrf_token = ENV["X_XSRF_TOKEN"] # e.g., pulled from a prior set-cookie value
+
+access = client.password.get_token(
+  "admin",                 # username
+  "admin",                 # password
+  headers: xsrf_token ? {"X-XSRF-TOKEN" => xsrf_token} : {},
+  # JHipster commonly also accepts/needs the client_id in the body; include if required:
+  # client_id: "web_app",
+)
+
+puts access.token
+puts access.to_hash # full token response
+```
+
+Notes:
+- Resource Owner Password Credentials (ROPC) is deprecated in OAuth 2.1 and discouraged. Prefer Authorization Code + PKCE.
+- If your deployment strictly demands the X-XSRF-TOKEN header, first fetch it from an endpoint that sets the XSRF-TOKEN cookie (often "/" or a login page) and pass it to headers.
+- For Basic auth, auth_scheme: :basic_auth handles the Authorization header; you do not need to base64-encode manually.
+
+</details>
+
 ### Refresh Tokens
 
 When the server issues a refresh_token, you can refresh manually or implement an auto-refresh wrapper.
