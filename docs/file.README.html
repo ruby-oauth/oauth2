@@ -207,38 +207,6 @@ NOTE: `header` - The content type specified in the `curl` is already the default
 
 <h3 id="compatibility">Compatibility</h3>
 
-<h4 id="upgrading-runtime-gem-dependencies">Upgrading Runtime Gem Dependencies</h4>
-
-<p>This project sits underneath a large portion of the authorization systems on the internet.<br>
-According to GitHub’s project tracking, which I believe only reports on public projects,<br>
-<a href="https://github.com/ruby-oauth/oauth2/network/dependents">100,000+ projects</a>, and<br>
-<a href="https://github.com/ruby-oauth/oauth2/network/dependents?dependent_type=PACKAGE">500+ packages</a> depend on this project.</p>
-
-<p>That means it is painful for the Ruby community when this gem forces updates to its runtime dependencies.</p>
-
-<p>As a result, great care, and a lot of time, have been invested to ensure this gem is working with all the<br>
-leading versions per each minor version of Ruby of all the runtime dependencies it can install with.</p>
-
-<p>What does that mean specifically for the runtime dependencies?</p>
-
-<p>We have 100% test coverage of lines and branches, and this test suite runs across a large matrix<br>
-covering the latest patch for each of the following minor versions:</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>🚚 <em>Amazing</em> test matrix was brought to you by</th>
-      <th>🔎 appraisal2 🔎</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>👟 Check it out!</td>
-      <td>✨ <a href="https://github.com/appraisal-rb/appraisal2">github.com/appraisal-rb/appraisal2</a> ✨</td>
-    </tr>
-  </tbody>
-</table>
-
 <ul>
   <li>Operating Systems: Linux, MacOS, Windows</li>
   <li>MRI Ruby @ v2.3, v2.4, v2.5, v2.6, v2.7, v3.0, v3.1, v3.2, v3.3, v3.4, HEAD
@@ -273,6 +241,38 @@ and are developed in tight collaboration with this gem.</p>
   <li>gem <code>hashie</code> @ v0, v1, v2, v3, v4, v5, HEAD ⏩️ <a href="https://github.com/hashie/hashie">hashie/hashie</a>
 </li>
 </ul>
+
+<h4 id="upgrading-runtime-gem-dependencies">Upgrading Runtime Gem Dependencies</h4>
+
+<p>This project sits underneath a large portion of the authorization systems on the internet.<br>
+According to GitHub’s project tracking, which I believe only reports on public projects,<br>
+<a href="https://github.com/ruby-oauth/oauth2/network/dependents">100,000+ projects</a>, and<br>
+<a href="https://github.com/ruby-oauth/oauth2/network/dependents?dependent_type=PACKAGE">500+ packages</a> depend on this project.</p>
+
+<p>That means it is painful for the Ruby community when this gem forces updates to its runtime dependencies.</p>
+
+<p>As a result, great care, and a lot of time, have been invested to ensure this gem is working with all the<br>
+leading versions per each minor version of Ruby of all the runtime dependencies it can install with.</p>
+
+<p>What does that mean specifically for the runtime dependencies?</p>
+
+<p>We have 100% test coverage of lines and branches, and this test suite runs across a large matrix<br>
+covering the latest patch for each of the following minor versions:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>🚚 <em>Amazing</em> test matrix was brought to you by</th>
+      <th>🔎 appraisal2 🔎</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>👟 Check it out!</td>
+      <td>✨ <a href="https://github.com/appraisal-rb/appraisal2">github.com/appraisal-rb/appraisal2</a> ✨</td>
+    </tr>
+  </tbody>
+</table>
 
 <h4 id="you-should-upgrade-this-gem-with-confidence">You should upgrade this gem with confidence*.</h4>
 
@@ -458,13 +458,6 @@ bundle config set --global trust-policy MediumSecurity
 NOTE: Be prepared to track down certs for signed gems and add them the same way you added mine.
 
 </details>
-
-<h2 id="security-contact-information">Security contact information</h2>
-
-<p>To report a security vulnerability, please use the <a href="https://tidelift.com/security">Tidelift security contact</a>.<br>
-Tidelift will coordinate the fix and disclosure.</p>
-
-<p>For more see <a href="file.SECURITY.html" title="SECURITY.md">SECURITY.md</a>.</p>
 
 <h2 id="what-is-new-for-v20">What is new for v2.0?</h2>
 
@@ -1159,7 +1152,10 @@ and <a href="https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=ru
 
 <h2 id="-security">🔐 Security</h2>
 
-<p>See <a href="file.SECURITY.html" title="SECURITY.md">SECURITY.md</a>.</p>
+<p>To report a security vulnerability, please use the <a href="https://tidelift.com/security">Tidelift security contact</a>.<br>
+Tidelift will coordinate the fix and disclosure.</p>
+
+<p>For more see <a href="file.SECURITY.html" title="SECURITY.md">SECURITY.md</a>.</p>
 
 <h2 id="-contributing">🤝 Contributing</h2>
 
@@ -1310,7 +1306,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug 30 18:32:33 2025 by
+  Generated on Sat Aug 30 20:09:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

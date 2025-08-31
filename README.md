@@ -89,6 +89,26 @@ If it seems like you are in the wrong place, you might try one of these:
 
 ### Compatibility
 
+* Operating Systems: Linux, MacOS, Windows
+* MRI Ruby @ v2.3, v2.4, v2.5, v2.6, v2.7, v3.0, v3.1, v3.2, v3.3, v3.4, HEAD
+    * NOTE: This gem will still install on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV.
+* JRuby @ v9.2, v9.3, v9.4, v10.0, HEAD
+* TruffleRuby @ v23.1, v24.1, HEAD
+* gem `faraday` @ v0, v1, v2, HEAD ⏩️ [lostisland/faraday](https://github.com/lostisland/faraday)
+* gem `jwt` @ v1, v2, v3, HEAD ⏩️ [jwt/ruby-jwt](https://github.com/jwt/ruby-jwt)
+* gem `logger` @ v1.2, v1.5, v1.7, HEAD ⏩️ [ruby/logger](https://github.com/ruby/logger)
+* gem `multi_xml` @ v0.5, v0.6, v0.7, HEAD ⏩️ [sferik/multi_xml](https://github.com/sferik/multi_xml)
+* gem `rack` @ v1.2, v1.6, v2, v3, HEAD ⏩️ [rack/rack](https://github.com/rack/rack)
+* gem `snaky_hash` @ v2, HEAD ⏩️ [ruby-oauth/snaky_hash](https://gitlab.com/ruby-oauth/snaky_hash)
+* gem `version_gem` @ v1, HEAD ⏩️ [ruby-oauth/version_gem](https://gitlab.com/ruby-oauth/version_gem)
+
+The last two were extracted from this gem. They are part of the `ruby-oauth` org,
+and are developed in tight collaboration with this gem.
+
+Also, where reasonable, tested against the runtime dependencies of those dependencies:
+
+* gem `hashie` @ v0, v1, v2, v3, v4, v5, HEAD ⏩️ [hashie/hashie](https://github.com/hashie/hashie)
+
 #### Upgrading Runtime Gem Dependencies
 
 This project sits underneath a large portion of the authorization systems on the internet.
@@ -109,26 +129,6 @@ covering the latest patch for each of the following minor versions:
 | 🚚 _Amazing_ test matrix was brought to you by | 🔎 appraisal2 🔎                                                                     |
 |------------------------------------------------|--------------------------------------------------------------------------------------|
 | 👟 Check it out!                               | ✨ [github.com/appraisal-rb/appraisal2](https://github.com/appraisal-rb/appraisal2) ✨ |
-
-* Operating Systems: Linux, MacOS, Windows
-* MRI Ruby @ v2.3, v2.4, v2.5, v2.6, v2.7, v3.0, v3.1, v3.2, v3.3, v3.4, HEAD
-    * NOTE: This gem will still install on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV.
-* JRuby @ v9.2, v9.3, v9.4, v10.0, HEAD
-* TruffleRuby @ v23.1, v24.1, HEAD
-* gem `faraday` @ v0, v1, v2, HEAD ⏩️ [lostisland/faraday](https://github.com/lostisland/faraday)
-* gem `jwt` @ v1, v2, v3, HEAD ⏩️ [jwt/ruby-jwt](https://github.com/jwt/ruby-jwt)
-* gem `logger` @ v1.2, v1.5, v1.7, HEAD ⏩️ [ruby/logger](https://github.com/ruby/logger)
-* gem `multi_xml` @ v0.5, v0.6, v0.7, HEAD ⏩️ [sferik/multi_xml](https://github.com/sferik/multi_xml)
-* gem `rack` @ v1.2, v1.6, v2, v3, HEAD ⏩️ [rack/rack](https://github.com/rack/rack)
-* gem `snaky_hash` @ v2, HEAD ⏩️ [ruby-oauth/snaky_hash](https://gitlab.com/ruby-oauth/snaky_hash)
-* gem `version_gem` @ v1, HEAD ⏩️ [ruby-oauth/version_gem](https://gitlab.com/ruby-oauth/version_gem)
-
-The last two were extracted from this gem. They are part of the `ruby-oauth` org,
-and are developed in tight collaboration with this gem.
-
-Also, where reasonable, tested against the runtime dependencies of those dependencies:
-
-* gem `hashie` @ v0, v1, v2, v3, v4, v5, HEAD ⏩️ [hashie/hashie](https://github.com/hashie/hashie)
 
 #### You should upgrade this gem with confidence\*.
 
@@ -370,13 +370,6 @@ bundle config set --global trust-policy MediumSecurity
 NOTE: Be prepared to track down certs for signed gems and add them the same way you added mine.
 
 </details>
-
-## Security contact information
-
-To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security).
-Tidelift will coordinate the fix and disclosure.
-
-For more see [SECURITY.md][🔐security].
 
 ## What is new for v2.0?
 
@@ -1002,7 +995,10 @@ I’m developing a new library, [floss_funding][🖇floss-funding-gem], designed
 
 ## 🔐 Security
 
-See [SECURITY.md][🔐security].
+To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security).
+Tidelift will coordinate the fix and disclosure.
+
+For more see [SECURITY.md][🔐security].
 
 ## 🤝 Contributing
 
