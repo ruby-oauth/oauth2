@@ -23,6 +23,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Deprecated
 ### Removed
 ### Fixed
+- point badge to the correct workflow for Ruby 2.3 (caboose.yml)
 ### Security
 
 ## [2.0.14] - 2025-08-31
