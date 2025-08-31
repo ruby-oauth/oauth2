@@ -5,6 +5,7 @@ This project should be a safe, welcoming space for collaboration, so contributor
 the [code of conduct][🤝conduct].
 
 To submit a patch, please fork the project, create a patch with tests, and send a pull request.
+Post a message to the [google group][⛳mail-list] if you want to.
 
 Remember to [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] if you make changes.
 
@@ -175,6 +176,7 @@ Run `bundle exec kettle-release`.
 13. Run `bundle exec rake release` which will create a git tag for the version,
     push git commits and tags, and push the `.gem` file to [rubygems.org][💎rubygems]
 
+[⛳mail-list]: http://groups.google.com/group/oauth-ruby
 [📜src-gl]: https://gitlab.com/ruby-oauth/oauth2/
 [📜src-cb]: https://codeberg.org/ruby-oauth/oauth2
 [📜src-gh]: https://github.com/ruby-oauth/oauth2
