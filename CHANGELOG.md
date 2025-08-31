@@ -18,6 +18,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
+- .env.local.example for contributor happiness
 ### Changed
 ### Deprecated
 ### Removed
