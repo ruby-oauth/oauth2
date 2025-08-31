@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Added
 - improved documentation by @pboling
+- Document Mutual TLS (mTLS) usage with example in README (connection_opts.ssl client_cert/client_key and auth_scheme: :tls_client_auth)
 - documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as:
   - PKCE required for auth code,
   - exact redirect URI match,

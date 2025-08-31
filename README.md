@@ -913,7 +913,55 @@ access.revoke(token_type_hint: :refresh_token)
 
 ### Client Configuration Tips
 
-- Authentication schemes for the token request:
+#### Mutual TLS (mTLS) client authentication
+
+Some providers require OAuth requests (including the token request and subsequent API calls) to be sender‑constrained using mutual TLS (mTLS). With this gem, you enable mTLS by providing a client certificate/private key to Faraday via connection_opts.ssl and, if your provider requires it for client authentication, selecting the tls_client_auth auth_scheme.
+
+Example using PEM files (certificate and key):
+
+```ruby
+require "oauth2"
+require "openssl"
+
+client = OAuth2::Client.new(
+  ENV.fetch("CLIENT_ID"),
+  ENV.fetch("CLIENT_SECRET"),
+  site: "https://example.com",
+  authorize_url: "/oauth/authorize/",
+  token_url: "/oauth/token/",
+  auth_scheme: :tls_client_auth, # if your AS requires mTLS-based client authentication
+  connection_opts: {
+    ssl: {
+      client_cert: OpenSSL::X509::Certificate.new(File.read("localhost.pem")),
+      client_key: OpenSSL::PKey::RSA.new(File.read("localhost-key.pem")),
+      # Optional extras, uncomment as needed:
+      # ca_file: "/path/to/ca-bundle.pem",   # custom CA(s)
+      # verify: true                           # enable server cert verification (recommended)
+    },
+  },
+)
+
+# Example token request (any grant type can be used). The mTLS handshake
+# will occur automatically on HTTPS calls using the configured cert/key.
+access = client.client_credentials.get_token
+
+# Subsequent resource requests will also use mTLS on HTTPS endpoints of `site`:
+resp = access.get("/v1/protected")
+```
+
+Notes:
+- Files must contain the appropriate PEMs. The private key may be encrypted; if so, pass a password to OpenSSL::PKey::RSA.new(File.read(path), ENV["KEY_PASSWORD"]).
+- If your certificate and key are in a PKCS#12/PFX bundle, you can load them like:
+  - p12 = OpenSSL::PKCS12.new(File.read("client.p12"), ENV["P12_PASSWORD"])
+  - client_cert = p12.certificate; client_key = p12.key
+- Server trust:
+  - If your environment does not have system CAs, specify ca_file or ca_path inside the ssl: hash.
+  - Keep verify: true in production. Set verify: false only for local testing.
+- Faraday adapter: Any adapter that supports Ruby’s OpenSSL should work. net_http (default) and net_http_persistent are common choices.
+- Scope of mTLS: The SSL client cert is applied to any HTTPS request made by this client (token and resource requests) to the configured site base URL (and absolute URLs you call with the same client).
+- OIDC tie-in: Some OPs require tls_client_auth at the token endpoint per OIDC/OAuth specifications. That is enabled via auth_scheme: :tls_client_auth as shown above.
+
+#### Authentication schemes for the token request
 
 ```ruby
 OAuth2::Client.new(
@@ -924,7 +972,7 @@ OAuth2::Client.new(
 )
 ```
 
-- Faraday connection, timeouts, proxy, custom adapter/middleware:
+#### Faraday connection, timeouts, proxy, custom adapter/middleware:
 
 ```ruby
 client = OAuth2::Client.new(
@@ -943,7 +991,10 @@ client = OAuth2::Client.new(
 end
 ```
 
-- Redirection: The library follows up to `max_redirects` (default 5). You can override per-client via `options[:max_redirects]`.
+#### Redirection
+
+The library follows up to `max_redirects` (default 5).
+You can override per-client via `options[:max_redirects]`.
 
 ### Handling Responses and Errors
 
