@@ -947,6 +947,7 @@ access = client.get_token({
 
 - If the token response includes an `id_token` (a JWT), this gem surfaces it but does not validate the signature. Use a JWT library and your provider's JWKs to verify it.
 - For private_key_jwt client authentication, provide `auth_scheme: :private_key_jwt` and ensure your key configuration matches the provider requirements.
+- See [OIDC.md](OIDC.md) for a more complete OIDC overview, example, and links to the relevant specifications.
 
 ### Debugging
 

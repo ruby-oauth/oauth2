@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - avoid bearer tokens in query,
   - refresh token guidance for public clients,
   - simplified client definitions)
+- document how to implement an OIDC client with this gem in OIDC.md
 ### Changed
 ### Deprecated
 ### Removed
@@ -32,6 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - [gh660][gh660]- (more) Comprehensive documentation / examples by @pboling
 - [gh657][gh657] - Updated documentation for org-rename by @pboling
 - More funding links by @Aboling0
+- Documentation: Added docs/OIDC.md with OIDC 1.0 overview, example, and references
 ### Changed
 - Upgrade Code of Conduct to Contributor Covenant 2.1 by @pboling
 - [gh660][gh660] - Shrink post-install message by 4 lines by @pboling

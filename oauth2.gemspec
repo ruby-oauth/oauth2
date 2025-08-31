@@ -53,7 +53,7 @@ Gem::Specification.new do |spec|
 • Changes in this patch: #{gl_homepage}/-/blob/v#{spec.version}/CHANGELOG.md#200-2022-06-21-tag
 
 News:
-1. New documentation website: https://oauth2.galtzo.com
+1. New documentation website, including for OAuth 2.1 and OIDC: https://oauth2.galtzo.com
 2. New official Discord for discussion and support: https://discord.gg/3qme4XHNKN
 3. New org name "ruby-oauth" on Open Source Collective, GitHub, GitLab, Codeberg (update git remotes!)
 4. Non-commercial support for the 2.x series will end by April, 2026. Please make a plan to upgrade to the next version prior to that date.
@@ -103,6 +103,7 @@ Thanks, @pboling / @galtzo
     "CONTRIBUTING.md",
     "FUNDING.md",
     "LICENSE.txt",
+    "OIDC.md",
     "README.md",
     "REEK",
     "RUBOCOP.md",
