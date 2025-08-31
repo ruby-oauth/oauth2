@@ -58,14 +58,34 @@
       </div>
 
       <div id="content"><div id='filecontents'><h1 id="changelog">Changelog</h1>
+
+<p><a href="https://semver.org/spec/v2.0.0.html"><img src="https://img.shields.io/badge/semver-2.0.0-FFDD67.svg?style=flat" alt="SemVer 2.0.0"></a> <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat" alt="Keep-A-Changelog 1.0.0"></a></p>
+
 <p>All notable changes to this project will be documented in this file.</p>
 
-<p>The format (since v2) is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a><br>
-and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
+<p>The format is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a>,<br>
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>,<br>
+and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
+Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://gitlab.com/ruby-oauth/oauth2/-/compare/v2.0.12...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.14...HEAD">Unreleased</a></h2>
 <h3 id="added">Added</h3>
+<h3 id="changed">Changed</h3>
+<h3 id="deprecated">Deprecated</h3>
+<h3 id="removed">Removed</h3>
+<h3 id="fixed">Fixed</h3>
+<h3 id="security">Security</h3>
+
+<h2 id="2014---2025-08-31">
+<a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.13...v2.0.14">2.0.14</a> - 2025-08-31</h2>
 <ul>
+  <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.14">v2.0.14</a>
+</li>
+  <li>COVERAGE: 100.00% – 519/519 lines in 14 files</li>
+  <li>BRANCH COVERAGE: 100.00% – 174/174 branches in 14 files</li>
+  <li>90.48% documented
+    <h3 id="added-1">Added</h3>
+  </li>
   <li>improved documentation by @pboling</li>
   <li>Document Mutual TLS (mTLS) usage with example in README (connection_opts.ssl client_cert/client_key and auth_scheme: :tls_client_auth)</li>
   <li>Document usage of flat query params using Faraday::FlatParamsEncoder, with example URI, in README</li>
@@ -85,13 +105,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
       <li>also, list libraries built on top of the oauth2 gem that implement OIDC</li>
     </ul>
   </li>
-  <li>README: Add example for JHipster UAA (Spring Cloud) password grant, converted from Postman/Net::HTTP
-    <h3 id="changed">Changed</h3>
-    <h3 id="deprecated">Deprecated</h3>
-    <h3 id="removed">Removed</h3>
-    <h3 id="fixed">Fixed</h3>
-    <h3 id="security">Security</h3>
-  </li>
+  <li>README: Add example for JHipster UAA (Spring Cloud) password grant, converted from Postman/Net::HTTP</li>
 </ul>
 
 <h2 id="2013---2025-08-30">
@@ -102,7 +116,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
   <li>COVERAGE: 100.00% – 519/519 lines in 14 files</li>
   <li>BRANCH COVERAGE: 100.00% – 174/174 branches in 14 files</li>
   <li>90.48% documented
-    <h3 id="added-1">Added</h3>
+    <h3 id="added-2">Added</h3>
   </li>
   <li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/656">gh656</a> - Support revocation with URL-encoded parameters</li>
@@ -137,7 +151,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
   <li>Line Coverage: 100.0% (520 / 520)</li>
   <li>Branch Coverage: 100.0% (174 / 174)</li>
   <li>80.00% documented
-    <h3 id="added-2">Added</h3>
+    <h3 id="added-3">Added</h3>
   </li>
   <li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/652">gh652</a> - Support IETF rfc7515 JSON Web Signature - JWS by @mridang
@@ -172,7 +186,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
   <li>COVERAGE: 100.00% – 518/518 lines in 14 files</li>
   <li>BRANCH COVERAGE: 100.00% – 172/172 branches in 14 files</li>
   <li>80.00% documented
-    <h3 id="added-3">Added</h3>
+    <h3 id="added-4">Added</h3>
   </li>
   <li>
 <a href="https://github.com/oauth-xx/oauth2/pull/651">gh651</a> - <code>:snaky_hash_klass</code> option (@pboling)</li>
@@ -234,7 +248,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
   <li>COVERAGE: 100.00% – 518/518 lines in 14 files</li>
   <li>BRANCH COVERAGE: 100.00% – 170/170 branches in 14 files</li>
   <li>79.05% documented
-    <h3 id="added-4">Added</h3>
+    <h3 id="added-5">Added</h3>
   </li>
   <li>
 <a href="https://github.com/oauth-xx/oauth2/pull/632">gh!632</a> - Added <code>funding.yml</code> (@Aboling0)</li>
@@ -377,7 +391,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/compare/v2.0.8...v2.0.9">2.0.9</a> - 2022-09-16</h2>
 <ul>
   <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.9">v2.0.9</a>
-    <h3 id="added-5">Added</h3>
+    <h3 id="added-6">Added</h3>
   </li>
   <li>More specs (@pboling)
     <h3 id="changed-5">Changed</h3>
@@ -396,7 +410,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <a href="https://gitlab.com/oauth-xx/oauth2/-/merge_requests/630">!630</a> - Extract snaky_hash to external dependency (@pboling)</li>
   <li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/630">!630</a> - Extract snaky_hash to external dependency (@pboling)
-    <h3 id="added-6">Added</h3>
+    <h3 id="added-7">Added</h3>
   </li>
   <li>
 <a href="https://gitlab.com/oauth-xx/oauth2/-/merge_requests/631">!631</a> - New global configuration option OAuth2.config.silence_extra_tokens_warning (default: false) fixes <a href="https://gitlab.com/oauth-xx/oauth2/-/issues/628">#628</a>
@@ -410,7 +424,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/compare/v2.0.6...v2.0.7">2.0.7</a> - 2022-08-22</h2>
 <ul>
   <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.7">v2.0.7</a>
-    <h3 id="added-7">Added</h3>
+    <h3 id="added-8">Added</h3>
   </li>
   <li>
 <a href="https://gitlab.com/oauth-xx/oauth2/-/merge_requests/629">!629</a> - Allow POST of JSON to get token (@pboling, @terracatta)</li>
@@ -489,7 +503,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/compare/v2.0.2...v2.0.3">2.0.3</a> - 2022-06-28</h2>
 <ul>
   <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.3">v2.0.3</a>
-    <h3 id="added-8">Added</h3>
+    <h3 id="added-9">Added</h3>
   </li>
   <li>
 <a href="https://gitlab.com/oauth-xx/oauth2/-/merge_requests/611">!611</a> - Proper deprecation warnings for <code>extract_access_token</code> argument (@pboling)</li>
@@ -535,7 +549,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/compare/v2.0.0...v2.0.1">2.0.1</a> - 2022-06-22</h2>
 <ul>
   <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.1">v2.0.1</a>
-    <h3 id="added-9">Added</h3>
+    <h3 id="added-10">Added</h3>
   </li>
   <li>Documentation improvements (@pboling)</li>
   <li>Increased test coverage to 99% (@pboling)</li>
@@ -545,7 +559,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/compare/v1.4.11...v2.0.0">2.0.0</a> - 2022-06-21</h2>
 <ul>
   <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.0">v2.0.0</a>
-    <h3 id="added-10">Added</h3>
+    <h3 id="added-11">Added</h3>
   </li>
   <li>
 <a href="https://gitlab.com/oauth-xx/oauth2/-/merge_requests/158">!158</a>, <a href="https://gitlab.com/oauth-xx/oauth2/-/merge_requests/344">!344</a> - Optionally pass raw response to parsers (@niels)</li>
@@ -1086,7 +1100,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/compare/v0.9.4...v1.0.0">1.0.0</a> - 2014-07-09</h2>
 <ul>
   <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v1.0.0">v1.0.0</a>
-    <h3 id="added-11">Added</h3>
+    <h3 id="added-12">Added</h3>
   </li>
   <li>Add an implementation of the MAC token spec.
     <h3 id="fixed-12">Fixed</h3>
@@ -1248,7 +1262,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 31 04:57:43 2025 by
+  Generated on Sun Aug 31 05:27:13 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
