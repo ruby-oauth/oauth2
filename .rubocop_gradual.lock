@@ -34,7 +34,7 @@
     [69, 15, 38, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1480816240],
     [79, 13, 23, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2314399065]
   ],
-  "spec/oauth2/client_spec.rb:292714281": [
+  "spec/oauth2/client_spec.rb:2143306493": [
     [6, 1, 29, "RSpec/SpecFilePathFormat: Spec path should end with `o_auth2/client*_spec.rb`.", 439549885],
     [175, 7, 492, "RSpec/NoExpectationExample: No expectation found in this example.", 1272021224],
     [194, 7, 592, "RSpec/NoExpectationExample: No expectation found in this example.", 3428877205],
