@@ -70,11 +70,24 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.14...HEAD">Unreleased</a></h2>
 <h3 id="added">Added</h3>
-<h3 id="changed">Changed</h3>
-<h3 id="deprecated">Deprecated</h3>
-<h3 id="removed">Removed</h3>
-<h3 id="fixed">Fixed</h3>
-<h3 id="security">Security</h3>
+<ul>
+  <li>.env.local.example for contributor happiness</li>
+  <li>note lack of builds for JRuby 9.2, 9.3 &amp; Truffleruby 23.0, 23.1
+    <ul>
+      <li><a href="https://github.com/actions/runner/issues/2347">actions/runner - issues/2347</a></li>
+      <li>
+<a href="https://github.com/orgs/community/discussions/15452">community/discussions/15452</a>
+        <h3 id="changed">Changed</h3>
+        <h3 id="deprecated">Deprecated</h3>
+        <h3 id="removed">Removed</h3>
+        <h3 id="fixed">Fixed</h3>
+      </li>
+    </ul>
+  </li>
+  <li>point badge to the correct workflow for Ruby 2.3 (caboose.yml)
+    <h3 id="security">Security</h3>
+  </li>
+</ul>
 
 <h2 id="2014---2025-08-31">
 <a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.13...v2.0.14">2.0.14</a> - 2025-08-31</h2>
@@ -96,14 +109,14 @@ Please file a bug if you notice a violation of semantic versioning.</p>
     </ul>
   </li>
   <li>
-<a href="https://github.com/ruby-oauth/oauth2/pull/662">gh662</a> - documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as: by @pboling
+<a href="https://github.com/ruby-oauth/oauth2/pull/662">gh662</a> - documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, by @pboling
     <ul>
       <li>PKCE required for auth code,</li>
       <li>exact redirect URI match,</li>
       <li>implicit/password grants omitted,</li>
       <li>avoid bearer tokens in query,</li>
       <li>refresh token guidance for public clients,</li>
-      <li>simplified client definitions)</li>
+      <li>simplified client definitions</li>
     </ul>
   </li>
   <li>
@@ -1270,7 +1283,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 31 05:31:59 2025 by
+  Generated on Sun Aug 31 15:12:50 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

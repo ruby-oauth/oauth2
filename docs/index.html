@@ -156,7 +156,7 @@ NOTE: `header` - The content type specified in the `curl` is already the default
     <tr>
       <td>Works with MRI Ruby 2</td>
       <td>
-<img src="https://img.shields.io/badge/Ruby-2.2_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.2 Compat"> <br> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml"><img src="https://img.shields.io/badge/Ruby-2.3-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.3 Compat"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml"><img src="https://img.shields.io/badge/Ruby-2.4-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.4 Compat"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml"><img src="https://img.shields.io/badge/Ruby-2.5-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.5 Compat"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml"><img src="https://img.shields.io/badge/Ruby-2.6-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.6 Compat"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml"><img src="https://img.shields.io/badge/Ruby-2.7-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.7 Compat"></a>
+<img src="https://img.shields.io/badge/Ruby-2.2_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.2 Compat"> <br> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/caboose.yml"><img src="https://img.shields.io/badge/Ruby-2.3-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.3 Compat"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml"><img src="https://img.shields.io/badge/Ruby-2.4-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.4 Compat"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml"><img src="https://img.shields.io/badge/Ruby-2.5-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.5 Compat"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml"><img src="https://img.shields.io/badge/Ruby-2.6-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.6 Compat"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml"><img src="https://img.shields.io/badge/Ruby-2.7-DF00CA?style=for-the-badge&amp;logo=ruby&amp;logoColor=white" alt="Ruby 2.7 Compat"></a>
 </td>
     </tr>
     <tr>
@@ -211,11 +211,19 @@ NOTE: `header` - The content type specified in the `curl` is already the default
   <li>Operating Systems: Linux, MacOS, Windows</li>
   <li>MRI Ruby @ v2.3, v2.4, v2.5, v2.6, v2.7, v3.0, v3.1, v3.2, v3.3, v3.4, HEAD
     <ul>
-      <li>NOTE: This gem will still install on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV.</li>
+      <li>NOTE: This gem may still <em>install</em> and <em>run</em> on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV. Accept patches so long as they don’t break the platforms that do run in CI.</li>
     </ul>
   </li>
-  <li>JRuby @ v9.2, v9.3, v9.4, v10.0, HEAD</li>
-  <li>TruffleRuby @ v23.1, v24.1, HEAD</li>
+  <li>JRuby @ v9.4, v10.0, HEAD
+    <ul>
+      <li>NOTE: This gem may still <em>install</em> and <em>run</em> on JRuby v9.2 and v9.3, but they are EOL, builds are flaky, and GitHub Actions <a href="https://github.com/actions/runner/issues/2347#issuecomment-2653479732">doesn’t have</a> a proper <a href="https://github.com/orgs/community/discussions/15452"><code>allow-failures</code> feature</a>, and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don’t break the platforms that do run in CI.</li>
+    </ul>
+  </li>
+  <li>TruffleRuby @ v24.1, HEAD
+    <ul>
+      <li>NOTE: This gem may still <em>install</em> and <em>run</em> on Truffleruby v23.0 and v23.1, but they are EOL, builds are flaky, and GitHub Actions <a href="https://github.com/actions/runner/issues/2347#issuecomment-2653479732">doesn’t have</a> a proper <a href="https://github.com/orgs/community/discussions/15452"><code>allow-failures</code> feature</a>, and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don’t break the platforms that do run in CI.</li>
+    </ul>
+  </li>
   <li>gem <code>faraday</code> @ v0, v1, v2, HEAD ⏩️ <a href="https://github.com/lostisland/faraday">lostisland/faraday</a>
 </li>
   <li>gem <code>jwt</code> @ v1, v2, v3, HEAD ⏩️ <a href="https://github.com/jwt/ruby-jwt">jwt/ruby-jwt</a>
@@ -1322,7 +1330,7 @@ Tidelift will coordinate the fix and disclosure.</p>
 <h2 id="-contributing">🤝 Contributing</h2>
 
 <p>If you need some ideas of where to help, you could work on adding more code coverage,<br>
-or if it is already 💯 (see <a href="#code-coverage">below</a>) check <a href="REEK">reek</a>, <a href="https://github.com/ruby-oauth/oauth2/issues">issues</a>, or <a href="https://github.com/ruby-oauth/oauth2/pulls">PRs</a>,<br>
+or if it is already 💯 (see <a href="#code-coverage">below</a>) check <a href="file.REEK.html" title="reek">reek</a>, <a href="https://github.com/ruby-oauth/oauth2/issues">issues</a>, or <a href="https://github.com/ruby-oauth/oauth2/pulls">PRs</a>,<br>
 or use the gem and think about how it could be better.</p>
 
 <p>We <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat" alt="Keep A Changelog"></a> so if you make changes, remember to update it.</p>
@@ -1468,7 +1476,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 31 05:31:59 2025 by
+  Generated on Sun Aug 31 15:12:50 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

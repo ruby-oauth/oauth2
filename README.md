@@ -78,7 +78,7 @@ If it seems like you are in the wrong place, you might try one of these:
 | Works with JRuby        | ![JRuby 9.1 Compat][💎jruby-9.1i] ![JRuby 9.2 Compat][💎jruby-9.2i] ![JRuby 9.3 Compat][💎jruby-9.3i] <br/> [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎10-j-wf] [![JRuby 10.0 Compat][💎jruby-c-i]][🚎11-c-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]                                                     |
 | Works with Truffle Ruby | ![Truffle Ruby 22.3 Compat][💎truby-22.3i] ![Truffle Ruby 23.0 Compat][💎truby-23.0i] <br/> [![Truffle Ruby 23.1 Compat][💎truby-23.1i]][🚎9-t-wf] [![Truffle Ruby 24.1 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                       |
 | Works with MRI Ruby 3   | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎4-lg-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎6-s-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎6-s-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎6-s-wf] [![Ruby 3.4 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                    |
-| Works with MRI Ruby 2   | ![Ruby 2.2 Compat][💎ruby-2.2i] <br/> [![Ruby 2.3 Compat][💎ruby-2.3i]][🚎1-an-wf] [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎1-an-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎1-an-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎7-us-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎7-us-wf]                                         |
+| Works with MRI Ruby 2   | ![Ruby 2.2 Compat][💎ruby-2.2i] <br/> [![Ruby 2.3 Compat][💎ruby-2.3i]][🚎13-cbs-wf] [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎1-an-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎1-an-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎7-us-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎7-us-wf]                                       |
 | Source                  | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc]                                                                                                    |
 | Documentation           | [![Discussion][⛳gg-discussions-img]][⛳gg-discussions] [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![Maintainer Blog][🚂maint-blog-img]][🚂maint-blog] [![Wiki][📜wiki-img]][📜wiki]                                       |
 | Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver]                                                               |
@@ -91,9 +91,11 @@ If it seems like you are in the wrong place, you might try one of these:
 
 * Operating Systems: Linux, MacOS, Windows
 * MRI Ruby @ v2.3, v2.4, v2.5, v2.6, v2.7, v3.0, v3.1, v3.2, v3.3, v3.4, HEAD
-    * NOTE: This gem will still install on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV.
-* JRuby @ v9.2, v9.3, v9.4, v10.0, HEAD
-* TruffleRuby @ v23.1, v24.1, HEAD
+    * NOTE: This gem may still _install_ and _run_ on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
+* JRuby @ v9.4, v10.0, HEAD
+    * NOTE: This gem may still _install_ and _run_ on JRuby v9.2 and v9.3, but they are EOL, builds are flaky, and GitHub Actions [doesn't have][GHA-continue-on-error-ui] a proper [`allow-failures` feature][GHA-allow-failure], and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
+* TruffleRuby @ v24.1, HEAD
+    * NOTE: This gem may still _install_ and _run_ on Truffleruby v23.0 and v23.1, but they are EOL, builds are flaky, and GitHub Actions [doesn't have][GHA-continue-on-error-ui] a proper [`allow-failures` feature][GHA-allow-failure], and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
 * gem `faraday` @ v0, v1, v2, HEAD ⏩️ [lostisland/faraday](https://github.com/lostisland/faraday)
 * gem `jwt` @ v1, v2, v3, HEAD ⏩️ [jwt/ruby-jwt](https://github.com/jwt/ruby-jwt)
 * gem `logger` @ v1.2, v1.5, v1.7, HEAD ⏩️ [ruby/logger](https://github.com/ruby/logger)
@@ -108,6 +110,9 @@ and are developed in tight collaboration with this gem.
 Also, where reasonable, tested against the runtime dependencies of those dependencies:
 
 * gem `hashie` @ v0, v1, v2, v3, v4, v5, HEAD ⏩️ [hashie/hashie](https://github.com/hashie/hashie)
+
+[GHA-continue-on-error-ui]: https://github.com/actions/runner/issues/2347#issuecomment-2653479732
+[GHA-allow-failure]: https://github.com/orgs/community/discussions/15452
 
 #### Upgrading Runtime Gem Dependencies
 
