@@ -100,7 +100,7 @@ GEM
     json (2.13.2)
     jwt (3.1.2)
       base64
-    kettle-dev (1.0.23)
+    kettle-dev (1.0.24)
       appraisal2 (~> 3.0)
       bundler-audit (~> 0.9.2)
       gitmoji-regex (~> 1.0, >= 1.0.3)
@@ -334,7 +334,7 @@ DEPENDENCIES
   benchmark (~> 0.4, >= 0.4.1)
   debug (>= 1.0.0)
   gem_bench (~> 2.0, >= 2.0.5)
-  kettle-dev (~> 1.0, >= 1.0.23)
+  kettle-dev (~> 1.0, >= 1.0.24)
   kettle-soup-cover (~> 1.0, >= 1.0.10)
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)

@@ -51,7 +51,7 @@
     <orderEntry type="library" scope="PROVIDED" name="irb (v1.15.2, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="json (v2.13.2, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jwt (v3.1.2, mise: 3.4.5) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="kettle-dev (v1.0.23, mise: 3.4.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="kettle-dev (v1.0.24, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kettle-soup-cover (v1.0.10, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kettle-test (v1.0.3, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="kramdown (v2.5.1, mise: 3.4.5) [gem]" level="application" />
