@@ -34,13 +34,13 @@ Please file a bug if you notice a violation of semantic versioning.
 - [gh665][gh665] - Document Mutual TLS (mTLS) usage with example in README (connection_opts.ssl client_cert/client_key and auth_scheme: :tls_client_auth) by @pboling
 - [gh666][gh666] - Document usage of flat query params using Faraday::FlatParamsEncoder, with example URI, in README by @pboling
   - Spec: verify flat params are preserved with Faraday::FlatParamsEncoder (skips on Faraday without FlatParamsEncoder)
-- [gh662][gh662] - documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as: by @pboling
+- [gh662][gh662] - documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, by @pboling
   - PKCE required for auth code,
   - exact redirect URI match,
   - implicit/password grants omitted,
   - avoid bearer tokens in query,
   - refresh token guidance for public clients,
-  - simplified client definitions)
+  - simplified client definitions
 - [gh663][gh663] - document how to implement an OIDC client with this gem in OIDC.md by @pboling
   - also, list libraries built on top of the oauth2 gem that implement OIDC
 - [gh664][gh664] - README: Add example for JHipster UAA (Spring Cloud) password grant, converted from Postman/Net::HTTP by @pboling
