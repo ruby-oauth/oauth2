@@ -1,6 +1,19 @@
 # OpenID Connect (OIDC) with ruby-oauth/oauth2
 
-This document complements the OAuth 2.1 notes already present in the repository by focusing on OpenID Connect (OIDC) 1.0 usage patterns when using this gem as an OAuth 2.0 client library.
+## OIDC Libraries
+
+Libraries built on top of the oauth2 gem that implement OIDC.
+
+- [gamora](https://github.com/amco/gamora-rb) - OpenID Connect Relying Party for Rails apps
+- [omniauth-doximity-oauth2](https://github.com/doximity/omniauth-doximity-oauth2) - OmniAuth strategy for Doximity, supporting OIDC, and using PKCE
+- [omniauth-himari](https://github.com/sorah/himari) - OmniAuth strategy to act as OIDC RP and use [Himari](https://github.com/sorah/himari) for OP
+- [omniauth-mit-oauth2](https://github.com/MITLibraries/omniauth-mit-oauth2) - OmniAuth strategy for MIT OIDC
+
+If any other libraries would like to be added to this list, please open an issue or pull request.
+
+## Raw OIDC with ruby-oauth/oauth2
+
+This document complements the inline documentation by focusing on OpenID Connect (OIDC) 1.0 usage patterns when using this gem as an OAuth 2.0 client library.
 
 Scope of this document
 - Audience: Developers building an OAuth 2.0/OIDC Relying Party (RP, aka client) in Ruby.

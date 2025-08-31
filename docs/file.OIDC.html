@@ -59,7 +59,26 @@
 
       <div id="content"><div id='filecontents'><h1 id="openid-connect-oidc-with-ruby-oauthoauth2">OpenID Connect (OIDC) with ruby-oauth/oauth2</h1>
 
-<p>This document complements the OAuth 2.1 notes already present in the repository by focusing on OpenID Connect (OIDC) 1.0 usage patterns when using this gem as an OAuth 2.0 client library.</p>
+<h2 id="oidc-libraries">OIDC Libraries</h2>
+
+<p>Libraries built on top of the oauth2 gem that implement OIDC.</p>
+
+<ul>
+  <li>
+<a href="https://github.com/amco/gamora-rb">gamora</a> - OpenID Connect Relying Party for Rails apps</li>
+  <li>
+<a href="https://github.com/doximity/omniauth-doximity-oauth2">omniauth-doximity-oauth2</a> - OmniAuth strategy for Doximity, supporting OIDC, and using PKCE</li>
+  <li>
+<a href="https://github.com/sorah/himari">omniauth-himari</a> - OmniAuth strategy to act as OIDC RP and use <a href="https://github.com/sorah/himari">Himari</a> for OP</li>
+  <li>
+<a href="https://github.com/MITLibraries/omniauth-mit-oauth2">omniauth-mit-oauth2</a> - OmniAuth strategy for MIT OIDC</li>
+</ul>
+
+<p>If any other libraries would like to be added to this list, please open an issue or pull request.</p>
+
+<h2 id="raw-oidc-with-ruby-oauthoauth2">Raw OIDC with ruby-oauth/oauth2</h2>
+
+<p>This document complements the inline documentation by focusing on OpenID Connect (OIDC) 1.0 usage patterns when using this gem as an OAuth 2.0 client library.</p>
 
 <p>Scope of this document</p>
 <ul>
@@ -228,7 +247,7 @@ userinfo = token.get(&quot;/userinfo&quot;).parsed
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 31 03:59:47 2025 by
+  Generated on Sun Aug 31 04:15:42 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

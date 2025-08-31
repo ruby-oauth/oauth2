@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - refresh token guidance for public clients,
   - simplified client definitions)
 - document how to implement an OIDC client with this gem in OIDC.md
+  - also, list libraries built on top of the oauth2 gem that implement OIDC
 ### Changed
 ### Deprecated
 ### Removed
