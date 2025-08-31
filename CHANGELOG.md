@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.
 
 ## [Unreleased]
 ### Added
+- improved documentation by @pboling
 ### Changed
 ### Deprecated
 ### Removed
