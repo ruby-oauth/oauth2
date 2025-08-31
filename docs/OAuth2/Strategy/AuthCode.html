@@ -105,6 +105,20 @@
   <div class="discussion">
     <p>The Authorization Code Strategy</p>
 
+<p>OAuth 2.1 notes:</p>
+<ul>
+  <li>PKCE is required for all OAuth clients using the authorization code flow (especially public clients).<br />
+This library does not enforce PKCE generation/verification; implement PKCE in your application when required.</li>
+  <li>Redirect URIs must be compared using exact string matching by the Authorization Server.<br />
+This client forwards redirect_uri but does not perform server-side validation.</li>
+</ul>
+
+<p>References:</p>
+<ul>
+  <li>OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13</li>
+  <li>OAuth for native apps (RFC 8252) and PKCE (RFC 7636)</li>
+</ul>
+
 
   </div>
 </div>
@@ -274,12 +288,12 @@
       <pre class="lines">
 
 
-12
-13
-14</pre>
+22
+23
+24</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/strategy/auth_code.rb', line 12</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/strategy/auth_code.rb', line 22</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authorize_params'>authorize_params</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>response_type</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>code</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>client_id</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='ivar'>@client</span><span class='period'>.</span><span class='id identifier rubyid_id'>id</span><span class='rparen'>)</span>
@@ -335,13 +349,13 @@
       <pre class="lines">
 
 
-19
-20
-21
-22</pre>
+29
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/strategy/auth_code.rb', line 19</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/strategy/auth_code.rb', line 29</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authorize_url'>authorize_url</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_assert_valid_params'>assert_valid_params</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -437,18 +451,18 @@
       <pre class="lines">
 
 
-30
-31
-32
-33
-34
-35
-36
-37
-38</pre>
+40
+41
+42
+43
+44
+45
+46
+47
+48</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/strategy/auth_code.rb', line 30</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/strategy/auth_code.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='id identifier rubyid_code'>code</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_opts'>opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>grant_type</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>authorization_code</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>code</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_code'>code</span><span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='ivar'>@client</span><span class='period'>.</span><span class='id identifier rubyid_redirection_params'>redirection_params</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span>
@@ -469,7 +483,7 @@
 </div>
 
       <div id="footer">
-  Generated on Sat Aug 30 20:09:59 2025 by
+  Generated on Sun Aug 31 03:36:08 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

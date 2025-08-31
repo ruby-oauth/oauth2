@@ -826,6 +826,26 @@ Response instance will contain the <code>OAuth2::Error</code> instance.</p>
 
 <h3 id="authorization-grants">Authorization Grants</h3>
 
+<p>Note on OAuth 2.1 (draft):</p>
+<ul>
+  <li>PKCE is required for all OAuth clients using the authorization code flow (especially public clients). Implement PKCE in your app when required by your provider. See RFC 7636 and RFC 8252.</li>
+  <li>Redirect URIs must be compared using exact string matching by the Authorization Server.</li>
+  <li>The Implicit grant (response_type=token) and the Resource Owner Password Credentials grant are omitted from OAuth 2.1; they remain here for OAuth 2.0 compatibility but should be avoided for new apps.</li>
+  <li>Bearer tokens in the query string are omitted due to security risks; prefer Authorization header usage.</li>
+  <li>Refresh tokens for public clients must either be sender-constrained (e.g., DPoP/MTLS) or one-time use.</li>
+  <li>The definitions of public and confidential clients are simplified to refer only to whether the client has credentials.</li>
+</ul>
+
+<p>References:</p>
+<ul>
+  <li>OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13</li>
+  <li>Aaron Parecki: https://aaronparecki.com/2019/12/12/21/its-time-for-oauth-2-dot-1</li>
+  <li>FusionAuth: https://fusionauth.io/blog/2020/04/15/whats-new-in-oauth-2-1</li>
+  <li>Okta: https://developer.okta.com/blog/2019/12/13/oauth-2-1-how-many-rfcs</li>
+  <li>Video: https://www.youtube.com/watch?v=g_aVPdwBTfw</li>
+  <li>Differences overview: https://fusionauth.io/learn/expert-advice/oauth/differences-between-oauth-2-oauth-2-1/</li>
+</ul>
+
 <p>Currently, the Authorization Code, Implicit, Resource Owner Password Credentials, Client Credentials, and Assertion<br>
 authentication grant types have helper strategy classes that simplify client<br>
 use. They are available via the <a href="https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/auth_code.rb"><code>#auth_code</code></a>,<br>
@@ -1160,7 +1180,7 @@ Tidelift will coordinate the fix and disclosure.</p>
 <h2 id="-contributing">🤝 Contributing</h2>
 
 <p>If you need some ideas of where to help, you could work on adding more code coverage,<br>
-or if it is already 💯 (see <a href="#code-coverage">below</a>) check <a href="REEK">reek</a>, <a href="https://github.com/ruby-oauth/oauth2/issues">issues</a>, or <a href="https://github.com/ruby-oauth/oauth2/pulls">PRs</a>,<br>
+or if it is already 💯 (see <a href="#code-coverage">below</a>) check <a href="file.REEK.html" title="reek">reek</a>, <a href="https://github.com/ruby-oauth/oauth2/issues">issues</a>, or <a href="https://github.com/ruby-oauth/oauth2/pulls">PRs</a>,<br>
 or use the gem and think about how it could be better.</p>
 
 <p>We <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat" alt="Keep A Changelog"></a> so if you make changes, remember to update it.</p>
@@ -1306,7 +1326,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug 30 20:09:59 2025 by
+  Generated on Sun Aug 31 03:36:07 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

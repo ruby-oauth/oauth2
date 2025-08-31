@@ -4,6 +4,16 @@ module OAuth2
   module Strategy
     # The Authorization Code Strategy
     #
+    # OAuth 2.1 notes:
+    # - PKCE is required for all OAuth clients using the authorization code flow (especially public clients).
+    #   This library does not enforce PKCE generation/verification; implement PKCE in your application when required.
+    # - Redirect URIs must be compared using exact string matching by the Authorization Server.
+    #   This client forwards redirect_uri but does not perform server-side validation.
+    #
+    # References:
+    # - OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13
+    # - OAuth for native apps (RFC 8252) and PKCE (RFC 7636)
+    #
     # @see http://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-15#section-4.1
     class AuthCode < Base
       # The required query parameters for the authorize URL

@@ -60,18 +60,28 @@
       <div id="content"><div id='filecontents'><h1 id="changelog">Changelog</h1>
 <p>All notable changes to this project will be documented in this file.</p>
 
-<p>The format (since v2) is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog v1</a>,<br>
-and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning v2</a>.</p>
+<p>The format (since v2) is based on <a href="https://keepachangelog.com/en/1.0.0/">Keep a Changelog</a><br>
+and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semantic Versioning</a>.</p>
 
 <h2 id="unreleased"><a href="https://gitlab.com/ruby-oauth/oauth2/-/compare/v2.0.12...HEAD">Unreleased</a></h2>
 <h3 id="added">Added</h3>
 <ul>
-  <li>improved documentation by @pboling
-    <h3 id="changed">Changed</h3>
-    <h3 id="deprecated">Deprecated</h3>
-    <h3 id="removed">Removed</h3>
-    <h3 id="fixed">Fixed</h3>
-    <h3 id="security">Security</h3>
+  <li>improved documentation by @pboling</li>
+  <li>documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as:
+    <ul>
+      <li>PKCE required for auth code,</li>
+      <li>exact redirect URI match,</li>
+      <li>implicit/password grants omitted,</li>
+      <li>avoid bearer tokens in query,</li>
+      <li>refresh token guidance for public clients,</li>
+      <li>simplified client definitions)
+        <h3 id="changed">Changed</h3>
+        <h3 id="deprecated">Deprecated</h3>
+        <h3 id="removed">Removed</h3>
+        <h3 id="fixed">Fixed</h3>
+        <h3 id="security">Security</h3>
+      </li>
+    </ul>
   </li>
 </ul>
 
@@ -1228,7 +1238,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 </div></div>
 
       <div id="footer">
-  Generated on Sat Aug 30 20:09:59 2025 by
+  Generated on Sun Aug 31 03:36:08 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

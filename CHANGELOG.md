@@ -1,12 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-The format (since v2) is based on [Keep a Changelog v1](https://keepachangelog.com/en/1.0.0/),
-and this project adheres to [Semantic Versioning v2](https://semver.org/spec/v2.0.0.html).
+The format (since v2) is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/)
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 ### Added
 - improved documentation by @pboling
+- documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as:
+  - PKCE required for auth code,
+  - exact redirect URI match,
+  - implicit/password grants omitted,
+  - avoid bearer tokens in query,
+  - refresh token guidance for public clients,
+  - simplified client definitions)
 ### Changed
 ### Deprecated
 ### Removed
