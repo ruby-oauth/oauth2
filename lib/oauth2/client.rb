@@ -321,6 +321,9 @@ module OAuth2
     # requesting authorization. If it is provided at authorization time it MUST
     # also be provided with the token exchange request.
     #
+    # OAuth 2.1 note: Authorization Servers must compare redirect URIs using exact string matching.
+    # This client simply forwards the configured redirect_uri; the exact-match validation happens server-side.
+    #
     # Providing :redirect_uri to the OAuth2::Client instantiation will take
     # care of managing this.
     #
@@ -330,6 +333,7 @@ module OAuth2
     # @see https://datatracker.ietf.org/doc/html/rfc6749#section-4.1.3
     # @see https://datatracker.ietf.org/doc/html/rfc6749#section-4.2.1
     # @see https://datatracker.ietf.org/doc/html/rfc6749#section-10.6
+    # @see https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13
     #
     # @return [Hash] the params to add to a request or URL
     def redirection_params

@@ -4,6 +4,14 @@ module OAuth2
   module Strategy
     # The Implicit Strategy
     #
+    # IMPORTANT (OAuth 2.1): The Implicit grant (response_type=token) is omitted from the OAuth 2.1 draft specification.
+    # It remains here for backward compatibility with OAuth 2.0 providers. Prefer the Authorization Code flow with PKCE.
+    #
+    # References:
+    # - OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13
+    # - Why drop implicit: https://aaronparecki.com/2019/12/12/21/its-time-for-oauth-2-dot-1
+    # - Background: https://fusionauth.io/learn/expert-advice/oauth/differences-between-oauth-2-oauth-2-1/
+    #
     # @see http://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-26#section-4.2
     class Implicit < Base
       # The required query parameters for the authorize URL

@@ -692,6 +692,22 @@ Response instance will contain the `OAuth2::Error` instance.
 
 ### Authorization Grants
 
+Note on OAuth 2.1 (draft):
+- PKCE is required for all OAuth clients using the authorization code flow (especially public clients). Implement PKCE in your app when required by your provider. See RFC 7636 and RFC 8252.
+- Redirect URIs must be compared using exact string matching by the Authorization Server.
+- The Implicit grant (response_type=token) and the Resource Owner Password Credentials grant are omitted from OAuth 2.1; they remain here for OAuth 2.0 compatibility but should be avoided for new apps.
+- Bearer tokens in the query string are omitted due to security risks; prefer Authorization header usage.
+- Refresh tokens for public clients must either be sender-constrained (e.g., DPoP/MTLS) or one-time use.
+- The definitions of public and confidential clients are simplified to refer only to whether the client has credentials.
+
+References:
+- OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13
+- Aaron Parecki: https://aaronparecki.com/2019/12/12/21/its-time-for-oauth-2-dot-1
+- FusionAuth: https://fusionauth.io/blog/2020/04/15/whats-new-in-oauth-2-1
+- Okta: https://developer.okta.com/blog/2019/12/13/oauth-2-1-how-many-rfcs
+- Video: https://www.youtube.com/watch?v=g_aVPdwBTfw
+- Differences overview: https://fusionauth.io/learn/expert-advice/oauth/differences-between-oauth-2-oauth-2-1/
+
 Currently, the Authorization Code, Implicit, Resource Owner Password Credentials, Client Credentials, and Assertion
 authentication grant types have helper strategy classes that simplify client
 use. They are available via the [`#auth_code`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/auth_code.rb),

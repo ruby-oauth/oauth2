@@ -1843,6 +1843,9 @@ and raise_errors is false</p>
 requesting authorization. If it is provided at authorization time it MUST<br />
 also be provided with the token exchange request.</p>
 
+<p>OAuth 2.1 note: Authorization Servers must compare redirect URIs using exact string matching.<br />
+This client simply forwards the configured redirect_uri; the exact-match validation happens server-side.</p>
+
 <p>Providing :redirect_uri to the OAuth2::Client instantiation will take<br />
 care of managing this.</p>
 
@@ -1880,6 +1883,8 @@ care of managing this.</p>
     
       <li><a href="https://datatracker.ietf.org/doc/html/rfc6749#section-10.6" target="_parent" title="https://datatracker.ietf.org/doc/html/rfc6749#section-10.6">https://datatracker.ietf.org/doc/html/rfc6749#section-10.6</a></li>
     
+      <li><a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13" target="_parent" title="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13">https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13</a></li>
+    
   </ul>
 
 </div><table class="source_code">
@@ -1888,16 +1893,16 @@ care of managing this.</p>
       <pre class="lines">
 
 
-335
-336
-337
-338
 339
 340
-341</pre>
+341
+342
+343
+344
+345</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 335</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 339</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_redirection_params'>redirection_params</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:redirect_uri</span><span class='rbracket'>]</span>
@@ -2651,7 +2656,7 @@ requesting client.</p>
 </div>
 
       <div id="footer">
-  Generated on Sat Aug 30 20:09:59 2025 by
+  Generated on Sun Aug 31 03:36:08 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

@@ -4,6 +4,14 @@ module OAuth2
   module Strategy
     # The Resource Owner Password Credentials Authorization Strategy
     #
+    # IMPORTANT (OAuth 2.1): The Resource Owner Password Credentials grant is omitted in OAuth 2.1.
+    # It remains here for backward compatibility with OAuth 2.0 providers. Prefer Authorization Code + PKCE.
+    #
+    # References:
+    # - OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13
+    # - Okta explainer: https://developer.okta.com/blog/2019/12/13/oauth-2-1-how-many-rfcs
+    # - FusionAuth blog: https://fusionauth.io/blog/2020/04/15/whats-new-in-oauth-2-1
+    #
     # @see http://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-15#section-4.3
     class Password < Base
       # Not used for this strategy

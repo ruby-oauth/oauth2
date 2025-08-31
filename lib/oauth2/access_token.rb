@@ -376,6 +376,8 @@ You may need to set `snaky: false`. See inline documentation for more info.
         opts[:headers] ||= {}
         opts[:headers].merge!(headers)
       when :query
+        # OAuth 2.1 note: Bearer tokens in the query string are omitted from the spec due to security risks.
+        # Prefer the default :header mode whenever possible.
         opts[:params] ||= {}
         opts[:params][options[:param_name]] = token
       when :body
