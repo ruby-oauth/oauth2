@@ -94,8 +94,8 @@ If it seems like you are in the wrong place, you might try one of these:
     * NOTE: This gem may still _install_ and _run_ on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
 * JRuby @ v9.4, v10.0, HEAD
     * NOTE: This gem may still _install_ and _run_ on JRuby v9.2 and v9.3, but they are EOL, builds are flaky, and GitHub Actions [doesn't have][GHA-continue-on-error-ui] a proper [`allow-failures` feature][GHA-allow-failure], and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
-* TruffleRuby @ v24.1, HEAD
-    * NOTE: This gem may still _install_ and _run_ on Truffleruby v23.0 and v23.1, but they are EOL, builds are flaky, and GitHub Actions [doesn't have][GHA-continue-on-error-ui] a proper [`allow-failures` feature][GHA-allow-failure], and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
+* TruffleRuby @ v23.1, v24.1, HEAD
+    * NOTE: This gem may still _install_ and _run_ on Truffleruby v22.3 and v23.0, but they are EOL, builds are flaky, and GitHub Actions [doesn't have][GHA-continue-on-error-ui] a proper [`allow-failures` feature][GHA-allow-failure], and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
 * gem `faraday` @ v0, v1, v2, HEAD ⏩️ [lostisland/faraday](https://github.com/lostisland/faraday)
 * gem `jwt` @ v1, v2, v3, HEAD ⏩️ [jwt/ruby-jwt](https://github.com/jwt/ruby-jwt)
 * gem `logger` @ v1.2, v1.5, v1.7, HEAD ⏩️ [ruby/logger](https://github.com/ruby/logger)

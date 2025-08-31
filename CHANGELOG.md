@@ -19,7 +19,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ## [Unreleased]
 ### Added
 - .env.local.example for contributor happiness
-- note lack of builds for JRuby 9.2, 9.3 & Truffleruby 23.0, 23.1
+- note lack of builds for JRuby 9.2, 9.3 & Truffleruby 22.3, 23.0
   - [actions/runner - issues/2347][GHA-continue-on-error-ui]
   - [community/discussions/15452][GHA-allow-failure]
 ### Changed
