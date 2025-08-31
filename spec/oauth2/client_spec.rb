@@ -1339,6 +1339,37 @@ RSpec.describe OAuth2::Client do
     end
   end
 
+  context "when using Faraday::FlatParamsEncoder" do
+    before do
+      skip("Faraday::FlatParamsEncoder not available in this Faraday version") unless defined?(Faraday::FlatParamsEncoder)
+    end
+
+    it "does not discard repeated params and encodes them as flat keys" do
+      client = stubbed_client(connection_opts: {request: {params_encoder: Faraday::FlatParamsEncoder}}) do |stub|
+        stub.get("/v1/orders") do |env|
+          # Query string should contain two repeated filter keys with encoded operators
+          qs = env.url.query.to_s
+          expect(qs).to include("filter=order.clientCreatedTime%3E1445006997000")
+          expect(qs).to include("filter=order.clientCreatedTime%3C1445611797000")
+          # Ensure both occurrences exist (not collapsed)
+          expect(qs.scan(/\bfilter=/).size).to be >= 2
+          [200, {"Content-Type" => "application/json"}, JSON.dump({ok: true})]
+        end
+      end
+
+      token = OAuth2::AccessToken.new(client, "token123")
+      token.get(
+        "/v1/orders",
+        params: {
+          filter: [
+            "order.clientCreatedTime>1445006997000",
+            "order.clientCreatedTime<1445611797000",
+          ],
+        },
+      )
+    end
+  end
+
   def stubbed_client(params = {}, &stubs)
     params = {site: "https://api.example.com"}.merge(params)
     OAuth2::Client.new("abc", "def", params) do |builder|

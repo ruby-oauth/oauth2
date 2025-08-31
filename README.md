@@ -991,6 +991,48 @@ client = OAuth2::Client.new(
 end
 ```
 
+##### Using flat query params (Faraday::FlatParamsEncoder)
+
+Some APIs expect repeated key parameters to be sent as flat params rather than arrays. Faraday provides FlatParamsEncoder for this purpose. You can configure the oauth2 client to use it when building requests.
+
+```ruby
+require "faraday"
+
+client = OAuth2::Client.new(
+  id,
+  secret,
+  site: "https://api.example.com",
+  # Pass Faraday connection options to make FlatParamsEncoder the default
+  connection_opts: {
+    request: {params_encoder: Faraday::FlatParamsEncoder},
+  },
+) do |faraday|
+  faraday.request(:url_encoded)
+  faraday.adapter(:net_http)
+end
+
+access = client.client_credentials.get_token
+
+# Example of a GET with two flat filter params (not an array):
+# Results in: ?filter=order.clientCreatedTime%3E1445006997000&filter=order.clientCreatedTime%3C1445611797000
+resp = access.get(
+  "/v1/orders",
+  params: {
+    # Provide the values as an array; FlatParamsEncoder expands them as repeated keys
+    filter: [
+      "order.clientCreatedTime>1445006997000",
+      "order.clientCreatedTime<1445611797000",
+    ],
+  },
+)
+```
+
+If you instead need to build a raw Faraday connection yourself, the equivalent configuration is:
+
+```ruby
+conn = Faraday.new("https://api.example.com", request: {params_encoder: Faraday::FlatParamsEncoder})
+```
+
 #### Redirection
 
 The library follows up to `max_redirects` (default 5).

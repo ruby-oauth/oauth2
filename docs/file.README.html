@@ -1053,9 +1053,62 @@ access.revoke(token_type_hint: :refresh_token)
 
 <h3 id="client-configuration-tips">Client Configuration Tips</h3>
 
+<h4 id="mutual-tls-mtls-client-authentication">Mutual TLS (mTLS) client authentication</h4>
+
+<p>Some providers require OAuth requests (including the token request and subsequent API calls) to be sender‑constrained using mutual TLS (mTLS). With this gem, you enable mTLS by providing a client certificate/private key to Faraday via connection_opts.ssl and, if your provider requires it for client authentication, selecting the tls_client_auth auth_scheme.</p>
+
+<p>Example using PEM files (certificate and key):</p>
+
+<pre class="code language-ruby"><code class="language-ruby">require &quot;oauth2&quot;
+require &quot;openssl&quot;
+
+client = OAuth2::Client.new(
+  ENV.fetch(&quot;CLIENT_ID&quot;),
+  ENV.fetch(&quot;CLIENT_SECRET&quot;),
+  site: &quot;https://example.com&quot;,
+  authorize_url: &quot;/oauth/authorize/&quot;,
+  token_url: &quot;/oauth/token/&quot;,
+  auth_scheme: :tls_client_auth, # if your AS requires mTLS-based client authentication
+  connection_opts: {
+    ssl: {
+      client_cert: OpenSSL::X509::Certificate.new(File.read(&quot;localhost.pem&quot;)),
+      client_key: OpenSSL::PKey::RSA.new(File.read(&quot;localhost-key.pem&quot;)),
+      # Optional extras, uncomment as needed:
+      # ca_file: &quot;/path/to/ca-bundle.pem&quot;,   # custom CA(s)
+      # verify: true                           # enable server cert verification (recommended)
+    },
+  },
+)
+
+# Example token request (any grant type can be used). The mTLS handshake
+# will occur automatically on HTTPS calls using the configured cert/key.
+access = client.client_credentials.get_token
+
+# Subsequent resource requests will also use mTLS on HTTPS endpoints of `site`:
+resp = access.get(&quot;/v1/protected&quot;)
+</code></pre>
+
+<p>Notes:</p>
 <ul>
-  <li>Authentication schemes for the token request:</li>
+  <li>Files must contain the appropriate PEMs. The private key may be encrypted; if so, pass a password to OpenSSL::PKey::RSA.new(File.read(path), ENV[“KEY_PASSWORD”]).</li>
+  <li>If your certificate and key are in a PKCS#12/PFX bundle, you can load them like:
+    <ul>
+      <li>p12 = OpenSSL::PKCS12.new(File.read(“client.p12”), ENV[“P12_PASSWORD”])</li>
+      <li>client_cert = p12.certificate; client_key = p12.key</li>
+    </ul>
+  </li>
+  <li>Server trust:
+    <ul>
+      <li>If your environment does not have system CAs, specify ca_file or ca_path inside the ssl: hash.</li>
+      <li>Keep verify: true in production. Set verify: false only for local testing.</li>
+    </ul>
+  </li>
+  <li>Faraday adapter: Any adapter that supports Ruby’s OpenSSL should work. net_http (default) and net_http_persistent are common choices.</li>
+  <li>Scope of mTLS: The SSL client cert is applied to any HTTPS request made by this client (token and resource requests) to the configured site base URL (and absolute URLs you call with the same client).</li>
+  <li>OIDC tie-in: Some OPs require tls_client_auth at the token endpoint per OIDC/OAuth specifications. That is enabled via auth_scheme: :tls_client_auth as shown above.</li>
 </ul>
+
+<h4 id="authentication-schemes-for-the-token-request">Authentication schemes for the token request</h4>
 
 <pre class="code language-ruby"><code class="language-ruby">OAuth2::Client.new(
   id,
@@ -1065,9 +1118,7 @@ access.revoke(token_type_hint: :refresh_token)
 )
 </code></pre>
 
-<ul>
-  <li>Faraday connection, timeouts, proxy, custom adapter/middleware:</li>
-</ul>
+<h4 id="faraday-connection-timeouts-proxy-custom-adaptermiddleware">Faraday connection, timeouts, proxy, custom adapter/middleware:</h4>
 
 <pre class="code language-ruby"><code class="language-ruby">client = OAuth2::Client.new(
   id,
@@ -1085,9 +1136,50 @@ access.revoke(token_type_hint: :refresh_token)
 end
 </code></pre>
 
-<ul>
-  <li>Redirection: The library follows up to <code>max_redirects</code> (default 5). You can override per-client via <code>options[:max_redirects]</code>.</li>
-</ul>
+<h5 id="using-flat-query-params-faradayflatparamsencoder">Using flat query params (Faraday::FlatParamsEncoder)</h5>
+
+<p>Some APIs expect repeated key parameters to be sent as flat params rather than arrays. Faraday provides FlatParamsEncoder for this purpose. You can configure the oauth2 client to use it when building requests.</p>
+
+<pre class="code language-ruby"><code class="language-ruby">require &quot;faraday&quot;
+
+client = OAuth2::Client.new(
+  id,
+  secret,
+  site: &quot;https://api.example.com&quot;,
+  # Pass Faraday connection options to make FlatParamsEncoder the default
+  connection_opts: {
+    request: {params_encoder: Faraday::FlatParamsEncoder},
+  },
+) do |faraday|
+  faraday.request(:url_encoded)
+  faraday.adapter(:net_http)
+end
+
+access = client.client_credentials.get_token
+
+# Example of a GET with two flat filter params (not an array):
+# Results in: ?filter=order.clientCreatedTime%3E1445006997000&amp;filter=order.clientCreatedTime%3C1445611797000
+resp = access.get(
+  &quot;/v1/orders&quot;,
+  params: {
+    # Provide the values as an array; FlatParamsEncoder expands them as repeated keys
+    filter: [
+      &quot;order.clientCreatedTime&gt;1445006997000&quot;,
+      &quot;order.clientCreatedTime&lt;1445611797000&quot;,
+    ],
+  },
+)
+</code></pre>
+
+<p>If you instead need to build a raw Faraday connection yourself, the equivalent configuration is:</p>
+
+<pre class="code language-ruby"><code class="language-ruby">conn = Faraday.new(&quot;https://api.example.com&quot;, request: {params_encoder: Faraday::FlatParamsEncoder})
+</code></pre>
+
+<h4 id="redirection">Redirection</h4>
+
+<p>The library follows up to <code>max_redirects</code> (default 5).<br>
+You can override per-client via <code>options[:max_redirects]</code>.</p>
 
 <h3 id="handling-responses-and-errors">Handling Responses and Errors</h3>
 
@@ -1376,7 +1468,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 31 04:29:07 2025 by
+  Generated on Sun Aug 31 04:57:43 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
