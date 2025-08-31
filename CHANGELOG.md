@@ -19,12 +19,18 @@ Please file a bug if you notice a violation of semantic versioning.
 ## [Unreleased]
 ### Added
 - .env.local.example for contributor happiness
+- note lack of builds for JRuby 9.2, 9.3 & Truffleruby 23.0, 23.1
+  - [actions/runner - issues/2347][GHA-continue-on-error-ui]
+  - [community/discussions/15452][GHA-allow-failure]
 ### Changed
 ### Deprecated
 ### Removed
 ### Fixed
 - point badge to the correct workflow for Ruby 2.3 (caboose.yml)
 ### Security
+
+[GHA-continue-on-error-ui]: https://github.com/actions/runner/issues/2347
+[GHA-allow-failure]: https://github.com/orgs/community/discussions/15452
 
 ## [2.0.14] - 2025-08-31
 - TAG: [v2.0.14][2.0.14t]
