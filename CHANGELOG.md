@@ -31,19 +31,25 @@ Please file a bug if you notice a violation of semantic versioning.
 - 90.48% documented
 ### Added
 - improved documentation by @pboling
-- Document Mutual TLS (mTLS) usage with example in README (connection_opts.ssl client_cert/client_key and auth_scheme: :tls_client_auth) by @pboling
-- Document usage of flat query params using Faraday::FlatParamsEncoder, with example URI, in README by @pboling
-- Spec: verify flat params are preserved with Faraday::FlatParamsEncoder (skips on Faraday without FlatParamsEncoder) by @pboling
-- documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as: by @pboling
+- [gh665][gh665] - Document Mutual TLS (mTLS) usage with example in README (connection_opts.ssl client_cert/client_key and auth_scheme: :tls_client_auth) by @pboling
+- [gh666][gh666] - Document usage of flat query params using Faraday::FlatParamsEncoder, with example URI, in README by @pboling
+  - Spec: verify flat params are preserved with Faraday::FlatParamsEncoder (skips on Faraday without FlatParamsEncoder)
+- [gh662][gh662] - documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as: by @pboling
   - PKCE required for auth code,
   - exact redirect URI match,
   - implicit/password grants omitted,
   - avoid bearer tokens in query,
   - refresh token guidance for public clients,
   - simplified client definitions)
-- document how to implement an OIDC client with this gem in OIDC.md by @pboling
+- [gh663][gh663] - document how to implement an OIDC client with this gem in OIDC.md by @pboling
   - also, list libraries built on top of the oauth2 gem that implement OIDC
-- README: Add example for JHipster UAA (Spring Cloud) password grant, converted from Postman/Net::HTTP by @pboling
+- [gh664][gh664] - README: Add example for JHipster UAA (Spring Cloud) password grant, converted from Postman/Net::HTTP by @pboling
+
+[gh662]: https://github.com/ruby-oauth/oauth2/pull/662
+[gh663]: https://github.com/ruby-oauth/oauth2/pull/663
+[gh664]: https://github.com/ruby-oauth/oauth2/pull/664
+[gh665]: https://github.com/ruby-oauth/oauth2/pull/665
+[gh666]: https://github.com/ruby-oauth/oauth2/pull/666
 
 ## [2.0.13] - 2025-08-30
 - TAG: [v2.0.13][2.0.13t]

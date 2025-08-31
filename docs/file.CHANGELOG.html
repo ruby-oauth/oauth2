@@ -87,10 +87,16 @@ Please file a bug if you notice a violation of semantic versioning.</p>
     <h3 id="added-1">Added</h3>
   </li>
   <li>improved documentation by @pboling</li>
-  <li>Document Mutual TLS (mTLS) usage with example in README (connection_opts.ssl client_cert/client_key and auth_scheme: :tls_client_auth)</li>
-  <li>Document usage of flat query params using Faraday::FlatParamsEncoder, with example URI, in README</li>
-  <li>Spec: verify flat params are preserved with Faraday::FlatParamsEncoder (skips on Faraday without FlatParamsEncoder)</li>
-  <li>documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as:
+  <li>
+<a href="https://github.com/ruby-oauth/oauth2/pull/665">gh665</a> - Document Mutual TLS (mTLS) usage with example in README (connection_opts.ssl client_cert/client_key and auth_scheme: :tls_client_auth) by @pboling</li>
+  <li>
+<a href="https://github.com/ruby-oauth/oauth2/pull/666">gh666</a> - Document usage of flat query params using Faraday::FlatParamsEncoder, with example URI, in README by @pboling
+    <ul>
+      <li>Spec: verify flat params are preserved with Faraday::FlatParamsEncoder (skips on Faraday without FlatParamsEncoder)</li>
+    </ul>
+  </li>
+  <li>
+<a href="https://github.com/ruby-oauth/oauth2/pull/662">gh662</a> - documentation notes in code comments and README highlighting OAuth 2.1 differences, with references, such as: by @pboling
     <ul>
       <li>PKCE required for auth code,</li>
       <li>exact redirect URI match,</li>
@@ -100,12 +106,14 @@ Please file a bug if you notice a violation of semantic versioning.</p>
       <li>simplified client definitions)</li>
     </ul>
   </li>
-  <li>document how to implement an OIDC client with this gem in OIDC.md
+  <li>
+<a href="https://github.com/ruby-oauth/oauth2/pull/663">gh663</a> - document how to implement an OIDC client with this gem in OIDC.md by @pboling
     <ul>
       <li>also, list libraries built on top of the oauth2 gem that implement OIDC</li>
     </ul>
   </li>
-  <li>README: Add example for JHipster UAA (Spring Cloud) password grant, converted from Postman/Net::HTTP</li>
+  <li>
+<a href="https://github.com/ruby-oauth/oauth2/pull/664">gh664</a> - README: Add example for JHipster UAA (Spring Cloud) password grant, converted from Postman/Net::HTTP by @pboling</li>
 </ul>
 
 <h2 id="2013---2025-08-30">
@@ -1262,7 +1270,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 31 05:27:13 2025 by
+  Generated on Sun Aug 31 05:31:59 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
