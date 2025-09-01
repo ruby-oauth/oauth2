@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.name = "oauth2"
   spec.version = gem_version
   spec.authors = ["Peter Boling", "Erik Michaels-Ober", "Michael Bleigh"]
-  spec.email = ["floss@galtzo.com"]
+  spec.email = ["floss@galtzo.com", "oauth-ruby@googlegroups.com"]
 
   spec.summary = "🔐 OAuth 2.0, 2.1 & OIDC Core Ruby implementation"
   spec.description = "🔐 A Ruby wrapper for the OAuth 2.0 Authorization Framework, including the OAuth 2.1 draft spec, and OpenID Connect (OIDC)"
