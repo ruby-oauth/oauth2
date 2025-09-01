@@ -12,7 +12,7 @@ This document captures project-specific knowledge to streamline setup, testing, 
     - See .env.local.example for an example of what to put in .env.local.
     - See CONTRIBUTING.md for details on how to set up your local environment.
 - Ruby and Bundler
-  - Runtime supports very old Rubies (>= 1.9.2) but development tooling targets >= 2.3 because of CI/setup-ruby and dev dependencies.
+  - Runtime supports very old Rubies (>= 2.2), but development tooling targets >= 2.3 because of CI/setup-ruby and dev dependencies.
   - Use a recent Ruby (>= 3.1 recommended) for fastest setup and to exercise modern coverage behavior.
   - Install dependencies via Bundler in project root:
     - bundle install
