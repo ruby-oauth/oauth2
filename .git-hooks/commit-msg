@@ -1,21 +1,24 @@
 #!/usr/bin/env ruby
 # vim: set syntax=ruby
 
-ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../Gemfile", __dir__)
+# Do not rely on Bundler; allow running outside a Bundler context
+begin
+  require "rubygems"
+rescue LoadError
+  # continue
+end
 
-require "rubygems"
-require "bundler/setup"
+begin
+  # External gems
+  require "gitmoji/regex"
 
-# External gems
-require "gitmoji/regex"
-
-full_text = File.read(ARGV[0])
-# Is the first character a GitMoji?
-gitmoji_index = full_text =~ Gitmoji::Regex::REGEX
-if gitmoji_index == 0
-  exit 0
-else
-  denied = <<EOM
+  full_text = File.read(ARGV[0])
+  # Is the first character a GitMoji?
+  gitmoji_index = full_text =~ Gitmoji::Regex::REGEX
+  if gitmoji_index == 0
+    exit 0
+  else
+    denied = <<EOM
 Oh snap, think again...
 
  ______    _______      ___  _______  _______  _______  _______  ______   __
@@ -36,6 +39,10 @@ Must match: #{Gitmoji::Regex::REGEX.to_s}
 Example: git commit -m "✨ My excellent new feature"
 
 EOM
-  puts denied
-  exit 1
+    puts denied
+    exit 1
+  end
+rescue LoadError => e
+  warn("gitmoji-regex gem not found: #{e.class}: #{e.message}.\n\tSkipping gitmoji check and allowing commit to proceed.\n\tRecommendation: add 'gitmoji-regex' to your development dependencies to enable this check.")
+  exit 0
 end

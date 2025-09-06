@@ -151,7 +151,7 @@ Thanks, @pboling / @galtzo
   # Dev, Test, & Release Tasks
   spec.add_development_dependency("addressable", "~> 2.8", ">= 2.8.7")  # ruby >= 2.2
   spec.add_development_dependency("backports", "~> 3.25", ">= 3.25.1")  # ruby >= 0
-  spec.add_development_dependency("kettle-dev", "~> 1.0", ">= 1.0.24")  # ruby >= 2.3
+  spec.add_development_dependency("kettle-dev", "~> 1.1", ">= 1.1.7")   # ruby >= 2.3
   spec.add_development_dependency("nkf", "~> 0.2")                      # ruby >= 2.3
   spec.add_development_dependency("rexml", "~> 3.2", ">= 3.2.5")        # ruby >= 0
 end
