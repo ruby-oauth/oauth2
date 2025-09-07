@@ -16,6 +16,7 @@ Appraisal.*.gemfile.lock
 /coverage/
 /spec/reports/
 /results/
+.output.txt
 
 # Documentation
 /.yardoc/

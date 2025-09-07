@@ -11,8 +11,7 @@ PROJECT_ROOT="$(CDPATH= cd -- "$(dirname -- "$0")"/.. && pwd)"
 # One of the things .envrc needs to do is add $PROJECT_ROOT/bin/ to the path.
 # You should have this line at the top of .envrc
 #   PATH_add bin
-# NOTE: this project needs to also add exe as well,
-#       but other libraries won't generally need to do that.
+# NOTE: If this project ships exe scripts it should also add that.
 if command -v direnv >/dev/null 2>&1; then
   exec direnv exec "$PROJECT_ROOT" "kettle-commit-msg" "$@"
 else

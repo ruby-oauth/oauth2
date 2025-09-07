@@ -1,16 +1,31 @@
+# You can override the included template(s) by including variable overrides
+# SAST customization: https://docs.gitlab.com/ee/user/application_security/sast/#customizing-the-sast-settings
+# Secret Detection customization: https://docs.gitlab.com/ee/user/application_security/secret_detection/#customizing-settings
+# Dependency Scanning customization: https://docs.gitlab.com/ee/user/application_security/dependency_scanning/#customizing-the-dependency-scanning-settings
+# Container Scanning customization: https://docs.gitlab.com/ee/user/application_security/container_scanning/#customizing-the-container-scanning-settings
+# Note that environment variables can be set in several places
+# See https://docs.gitlab.com/ee/ci/variables/#cicd-variable-precedence
+#stages:
+#  - test
+#sast:
+#  stage: test
+#include:
+#  - template: Security/SAST.gitlab-ci.yml
+
 default:
-  image: ruby:3.2
+  image: ruby
 
 variables:
   BUNDLE_INSTALL_FLAGS: "--quiet --jobs=$(nproc) --retry=3"
   BUNDLE_FROZEN: "false" # No lockfile!
+  BUNDLE_GEMFILE: Appraisal.root.gemfile
   K_SOUP_COV_DEBUG: true
   K_SOUP_COV_DO: true
   K_SOUP_COV_HARD: true
   K_SOUP_COV_MIN_BRANCH: 100
   K_SOUP_COV_MIN_LINE: 100
   K_SOUP_COV_VERBOSE: true
-  K_SOUP_COV_FORMATTERS: "html,xml,rcov,lcov,json,tty"
+  K_SOUP_COV_FORMATTERS: "tty"
   K_SOUP_COV_MULTI_FORMATTERS: true
   K_SOUP_COV_COMMAND_NAME: "RSpec Coverage"
 
@@ -18,7 +33,7 @@ workflow:
   rules:
     # For merge requests, create a pipeline.
     - if: '$CI_MERGE_REQUEST_IID'
-    # For default branch, create a pipeline (this includes on schedules, pushes, merges, etc.).
+    # For the ` main ` branch, create a pipeline (this includes on schedules, pushes, merges, etc.).
     - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
     # For tags, create a pipeline.
     - if: '$CI_COMMIT_TAG'
@@ -27,10 +42,25 @@ workflow:
   image: ruby:${RUBY_VERSION}
   stage: test
   script:
-    - gem update --silent --system
-    - bundle config --local path vendor
+    # || true so we don't fail here, because it'll probably work even if the gem update fails
+    - gem update --silent --system > /dev/null 2>&1 || true
+    - mkdir -p vendor/bundle
+    - bundle config set path 'vendor/bundle'
+    - chmod +t -R vendor/bundle
+    - chmod o-w -R vendor/bundle
+    # Setup appraisal2
     - bundle install
-    - bundle exec rake
+    # Bundle a specific appraisal
+    - bundle exec appraisal unlocked_deps bundle install
+    # Light smoke test
+    - bundle exec appraisal unlocked_deps bin/rake --tasks
+    # Run tests, skipping those that won't work in CI
+    - >
+      bundle exec appraisal unlocked_deps \
+        bin/rspec spec \
+          --tag \~ci_skip \
+          --format progress \
+          --format RspecJunitFormatter
   cache:
     key: ${CI_JOB_IMAGE}
     paths:
@@ -40,13 +70,28 @@ workflow:
   image: ruby:${RUBY_VERSION}
   stage: test
   script:
-    # Because we support EOL Ruby still...
-    - gem install rubygems-update -v ${RUBYGEMS_VERSION}
+    # RUBYGEMS_VERSION because we support EOL Ruby still...
+    # || true so we don't fail here, because it'll probably work even if the gem update fails
+    - gem install rubygems-update -v ${RUBYGEMS_VERSION} || true
     # Actually updates both RubyGems and Bundler!
     - update_rubygems
-    - bundle config --local path vendor
+    - mkdir -p vendor/bundle
+    - bundle config set path 'vendor/bundle'
+    - chmod +t -R vendor/bundle
+    - chmod o-w -R vendor/bundle
+    # Setup appraisal2
     - bundle install
-    - bundle exec rake test
+    # Bundle a specific appraisal
+    - bundle exec appraisal ${APPRAISAL} bundle install
+    # Light smoke test
+    - bundle exec appraisal ${APPRAISAL} bin/rake --tasks
+    # Run tests, skipping those that won't work in CI
+    - >
+      bundle exec appraisal unlocked_deps \
+        bin/rspec spec \
+          --tag \~ci_skip \
+          --format progress \
+          --format RspecJunitFormatter
   cache:
     key: ${CI_JOB_IMAGE}
     paths:
@@ -54,7 +99,6 @@ workflow:
 
 ruby-current:
   variables:
-    BUNDLE_GEMFILE: gemfiles/omnibus.gemfile
     K_SOUP_COV_DO: true
   <<: *test_definition-current
   parallel:
@@ -64,7 +108,7 @@ ruby-current:
 ruby-ruby3_1:
   variables:
     RUBYGEMS_VERSION: "3.6.9"
-    BUNDLE_GEMFILE: gemfiles/vanilla.gemfile
+    APPRAISAL: ruby_3_1
     K_SOUP_COV_DO: false
   <<: *test_definition-legacy
   parallel:
@@ -74,7 +118,7 @@ ruby-ruby3_1:
 ruby-ruby3_0:
   variables:
     RUBYGEMS_VERSION: "3.5.23"
-    BUNDLE_GEMFILE: gemfiles/vanilla.gemfile
+    APPRAISAL: ruby_3_0
     K_SOUP_COV_DO: false
   <<: *test_definition-legacy
   parallel:
@@ -84,7 +128,7 @@ ruby-ruby3_0:
 ruby-ruby2_7:
   variables:
     RUBYGEMS_VERSION: "3.4.22"
-    BUNDLE_GEMFILE: gemfiles/vanilla.gemfile
+    APPRAISAL: ruby_2_7
     K_SOUP_COV_DO: false
   <<: *test_definition-legacy
   parallel:

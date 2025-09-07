@@ -1,0 +1,2 @@
+### Std Lib Extracted Gems
+eval_gemfile "x_std_libs/r3/libs.gemfile"

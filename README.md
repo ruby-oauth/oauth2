@@ -1,17 +1,17 @@
 [![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang] [![oauth2 Logo by Chris Messina, CC BY-SA 3.0][🖼️oauth2-i]][🖼️oauth2]
 
-[🖼️oauth2-i]: https://logos.galtzo.com/assets/images/oauth/oauth2/avatar-192px.svg
-[🖼️oauth2]: https://github.com/ruby-oauth/oauth2
-[🖼️ruby-lang-i]: https://logos.galtzo.com/assets/images/ruby-lang/avatar-192px.svg
-[🖼️ruby-lang]: https://www.ruby-lang.org/
 [🖼️galtzo-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
 [🖼️galtzo-discord]: https://discord.gg/3qme4XHNKN
+[🖼️ruby-lang-i]: https://logos.galtzo.com/assets/images/ruby-lang/avatar-192px.svg
+[🖼️ruby-lang]: https://www.ruby-lang.org/
+[🖼️oauth2-i]: https://logos.galtzo.com/assets/images/oauth/oauth2/avatar-192px.svg
+[🖼️oauth2]: https://github.com/ruby-oauth/oauth2
 
 # 🔐 OAuth 2.0 Authorization Framework
 
 ⭐️ including OAuth 2.1 draft spec & OpenID Connect (OIDC)
 
-[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Caboose is an absolute WAGON][🚎13-cbs-wfi]][🚎13-cbs-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL]
+[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🔑codecovi]][🔑codecov] [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls] [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov] [![QLTY Maintainability][🔑qlty-mnti]][🔑qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL]
 
 If ☝️ `ci_badges.map(&:color).detect { it != "green"}`  [let me know][🖼️galtzo-discord], as I may have missed the [discord notification][🖼️galtzo-discord].
 
@@ -131,9 +131,9 @@ What does that mean specifically for the runtime dependencies?
 We have 100% test coverage of lines and branches, and this test suite runs across a large matrix
 covering the latest patch for each of the following minor versions:
 
-| 🚚 _Amazing_ test matrix was brought to you by | 🔎 appraisal2 🔎                                                                     |
-|------------------------------------------------|--------------------------------------------------------------------------------------|
-| 👟 Check it out!                               | ✨ [github.com/appraisal-rb/appraisal2](https://github.com/appraisal-rb/appraisal2) ✨ |
+| 🚚 _Amazing_ test matrix was brought to you by | 🔎 appraisal2 🔎                                       |
+|------------------------------------------------|--------------------------------------------------------|
+| 👟 Check it out!                               | ✨ [github.com/appraisal-rb/appraisal2][💎appraisal2] ✨ |
 
 #### You should upgrade this gem with confidence\*.
 
@@ -1180,6 +1180,8 @@ See [CONTRIBUTING.md][🤝contributing].
 
 ### Code Coverage
 
+[![Coverage Graph][🔑codecov-g]][🔑codecov]
+
 [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls]
 
 [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov]
@@ -1311,11 +1313,11 @@ Thanks for RTFM. ☺️
 [🖇sponsor]: https://github.com/sponsors/pboling
 [🖇polar-img]: https://img.shields.io/badge/polar-donate-a51611.svg?style=flat
 [🖇polar]: https://polar.sh/pboling
-[🖇kofi-img]: https://img.shields.io/badge/ko--fi-✓-a51611.svg?style=flat
+[🖇kofi-img]: https://img.shields.io/badge/ko--fi-%E2%9C%93-a51611.svg?style=flat
 [🖇kofi]: https://ko-fi.com/O5O86SNP4
 [🖇patreon-img]: https://img.shields.io/badge/patreon-donate-a51611.svg?style=flat
 [🖇patreon]: https://patreon.com/galtzo
-[🖇buyme-small-img]: https://img.shields.io/badge/buy_me_a_coffee-✓-a51611.svg?style=flat
+[🖇buyme-small-img]: https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-a51611.svg?style=flat
 [🖇buyme-img]: https://img.buymeacoffee.com/button-api/?text=Buy%20me%20a%20latte&emoji=&slug=pboling&button_colour=FFDD00&font_colour=000000&font_family=Cookie&outline_colour=000000&coffee_colour=ffffff
 [🖇buyme]: https://www.buymeacoffee.com/pboling
 [🖇paypal-img]: https://img.shields.io/badge/donate-paypal-a51611.svg?style=flat&logo=paypal
@@ -1347,7 +1349,7 @@ Thanks for RTFM. ☺️
 [💖💲crunchbase]: https://www.crunchbase.com/person/peter-boling
 [💖💲crunchbase-img]: https://img.shields.io/badge/peter--boling-purple?style=flat&logo=crunchbase
 [💖🐘ruby-mast]: https://ruby.social/@galtzo
-[💖🐘ruby-mast-img]: https://img.shields.io/mastodon/follow/109447111526622197?domain=https%3A%2F%2Fruby.social&style=flat&logo=mastodon&label=Ruby%20%40galtzo
+[💖🐘ruby-mast-img]: https://img.shields.io/mastodon/follow/109447111526622197?domain=https://ruby.social&style=flat&logo=mastodon&label=Ruby%20@galtzo
 [💖🦋bluesky]: https://bsky.app/profile/galtzo.com
 [💖🦋bluesky-img]: https://img.shields.io/badge/@galtzo.com-0285FF?style=flat&logo=bluesky&logoColor=white
 [💖🌳linktree]: https://linktr.ee/galtzo
@@ -1417,8 +1419,8 @@ Thanks for RTFM. ☺️
 [🚎10-j-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml/badge.svg
 [🚎11-c-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml
 [🚎11-c-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml/badge.svg
-[🚎12-crh-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/current-runtime-heads.yml
-[🚎12-crh-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/current-runtime-heads.yml/badge.svg
+[🚎12-crh-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/dep-heads.yml
+[🚎12-crh-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/dep-heads.yml/badge.svg
 [🚎13-cbs-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/caboose.yml
 [🚎13-cbs-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/caboose.yml/badge.svg
 [🚎13-🔒️-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/locked_deps.yml
@@ -1472,7 +1474,7 @@ Thanks for RTFM. ☺️
 [📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat
 [📌gitmoji]:https://gitmoji.dev
-[📌gitmoji-img]:https://img.shields.io/badge/gitmoji_commits-%20😜%20😍-34495e.svg?style=flat-square
+[📌gitmoji-img]:https://img.shields.io/badge/gitmoji_commits-%20%F0%9F%98%9C%20%F0%9F%98%8D-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
 [🧮kloc-img]: https://img.shields.io/badge/KLOC-0.519-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
 [🔐security]: SECURITY.md
@@ -1488,7 +1490,7 @@ Thanks for RTFM. ☺️
 [💎stone_checksums]: https://github.com/galtzo-floss/stone_checksums
 [💎SHA_checksums]: https://gitlab.com/ruby-oauth/oauth2/-/tree/main/checksums
 [💎rlts]: https://github.com/rubocop-lts/rubocop-lts
-[💎rlts-img]: https://img.shields.io/badge/code_style_%26_linting-rubocop--lts-34495e.svg?plastic&logo=ruby&logoColor=white
+[💎rlts-img]: https://img.shields.io/badge/code_style_&_linting-rubocop--lts-34495e.svg?plastic&logo=ruby&logoColor=white
 [💎appraisal2]: https://github.com/appraisal-rb/appraisal2
 [💎appraisal2-img]: https://img.shields.io/badge/appraised_by-appraisal2-34495e.svg?plastic&logo=ruby&logoColor=white
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
@@ -1498,8 +1500,8 @@ Thanks for RTFM. ☺️
     rel="me" Social Proofs
   </summary>
 
-<a rel="me" alt="Follow me on Ruby.social" href="https://ruby.social/@galtzo"><img src="https://img.shields.io/mastodon/follow/109447111526622197?domain=https%3A%2F%2Fruby.social&style=social&label=Follow%20%40galtzo%20on%20Ruby.social"></a>
-<a rel="me" alt="Follow me on FLOSS.social" href="https://floss.social/@galtzo"><img src="https://img.shields.io/mastodon/follow/110304921404405715?domain=https%3A%2F%2Ffloss.social&style=social&label=Follow%20%40galtzo%20on%20Floss.social"></a>
+<a rel="me" alt="Follow me on Ruby.social" href="https://ruby.social/@galtzo"><img src="https://img.shields.io/mastodon/follow/109447111526622197?domain=https://ruby.social&style=social&label=Follow%20@galtzo%20on%20Ruby.social"></a>
+<a rel="me" alt="Follow me on FLOSS.social" href="https://floss.social/@galtzo"><img src="https://img.shields.io/mastodon/follow/110304921404405715?domain=https://floss.social&style=social&label=Follow%20@galtzo%20on%20Floss.social"></a>
 
 </details>
 

@@ -1,0 +1,3 @@
+eval_gemfile "../../erb/r3.1/v4.0.gemfile"
+eval_gemfile "../../mutex_m/r3/v0.3.gemfile"
+eval_gemfile "../../stringio/r3/v3.0.gemfile"

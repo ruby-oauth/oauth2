@@ -2,9 +2,8 @@
 
 source "https://rubygems.org"
 
-gem "mutex_m", "~> 0.2"
-gem "stringio", "~> 3.0"
-
 gemspec path: "../"
 
 eval_gemfile("modular/style.gemfile")
+
+eval_gemfile("modular/x_std_libs/r3/libs.gemfile")

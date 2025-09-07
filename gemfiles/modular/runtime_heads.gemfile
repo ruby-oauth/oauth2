@@ -25,3 +25,5 @@ gem "version_gem", github: "ruby-oauth/version_gem", branch: "main"
 
 # Ruby >= 2.2
 gem "snaky_hash", github: "ruby-oauth/snaky_hash", branch: "main"
+
+eval_gemfile("x_std_libs/vHEAD.gemfile")
