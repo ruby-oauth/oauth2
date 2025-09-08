@@ -132,8 +132,9 @@ You may need to set `snaky: false`. See inline documentation for more info.
     # @option opts [FixNum, String] :expires_in (nil) the number of seconds in which the AccessToken will expire
     # @option opts [FixNum, String] :expires_at (nil) the epoch time in seconds in which AccessToken will expire
     # @option opts [FixNum, String] :expires_latency (nil) the number of seconds by which AccessToken validity will be reduced to offset latency, @version 2.0+
-    # @option opts [Symbol] :mode (:header) the transmission mode of the Access Token parameter value
-    #    one of :header, :body or :query
+    # @option opts [Symbol or callable] :mode (:header) the transmission mode of the Access Token parameter value:
+    #    either one of :header, :body or :query, or a callable that accepts a request-verb parameter
+    #    and returns one of these three symbols.
     # @option opts [String] :header_format ('Bearer %s') the string format to use for the Authorization header
     # @option opts [String] :param_name ('access_token') the parameter name to use for transmission of the
     #    Access Token value in :body or :query transmission mode
@@ -324,7 +325,7 @@ You may need to set `snaky: false`. See inline documentation for more info.
     #
     # @see OAuth2::Client#request
     def request(verb, path, opts = {}, &block)
-      configure_authentication!(opts)
+      configure_authentication!(opts, verb)
       @client.request(verb, path, opts, &block)
     end
 
@@ -370,8 +371,9 @@ You may need to set `snaky: false`. See inline documentation for more info.
 
   private
 
-    def configure_authentication!(opts)
-      case options[:mode]
+    def configure_authentication!(opts, verb)
+      mode = options[:mode].respond_to?(:call) ? options[:mode].call(verb) : options[:mode]
+      case mode
       when :header
         opts[:headers] ||= {}
         opts[:headers].merge!(headers)
@@ -389,7 +391,7 @@ You may need to set `snaky: false`. See inline documentation for more info.
         end
         # @todo support for multi-part (file uploads)
       else
-        raise("invalid :mode option of #{options[:mode]}")
+        raise("invalid :mode option of #{mode}")
       end
     end
 
