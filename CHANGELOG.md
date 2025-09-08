@@ -22,6 +22,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - note lack of builds for JRuby 9.2, 9.3 & Truffleruby 22.3, 23.0
   - [actions/runner - issues/2347][GHA-continue-on-error-ui]
   - [community/discussions/15452][GHA-allow-failure]
+- [gh!670][gh!670] - AccessToken: verb-dependent token transmission mode by @mrj
+  - e.g., Instagram GET=:query, POST/DELETE=:header
 ### Changed
 - [gh!669][gh!669] - Upgrade to kettle-dev v1.1.9
 ### Deprecated
@@ -32,6 +34,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Security
 
 [gh!669]: https://github.com/ruby-oauth/oauth2/pull/669
+[gh!670]: https://github.com/ruby-oauth/oauth2/pull/670
 [GHA-continue-on-error-ui]: https://github.com/actions/runner/issues/2347
 [GHA-allow-failure]: https://github.com/orgs/community/discussions/15452
 
