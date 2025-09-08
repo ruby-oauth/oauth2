@@ -411,6 +411,26 @@ RSpec.describe OAuth2::AccessToken do
         end
       end
 
+      context "with verb-dependent mode" do
+        let(:mode) do
+          lambda do |verb|
+            case verb
+            when :get then :query
+            when :post, :delete then :header
+            when :put, :patch then :body
+            end
+          end
+        end
+
+        let(:options) { {mode:} }
+
+        VERBS.each do |verb|
+          it "correctly handles a #{verb.to_s.upcase}" do
+            expect(subject.__send__(verb, "/token/#{mode.call(verb)}").body).to include(token)
+          end
+        end
+      end
+
       context "with client.options[:raise_errors] = false" do
         let(:options) { {raise_errors: false} }
 
