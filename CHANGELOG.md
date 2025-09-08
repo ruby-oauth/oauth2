@@ -18,6 +18,18 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.0.15] - 2025-09-08
+- TAG: [v2.0.15][2.0.15t]
+- COVERAGE: 100.00% -- 519/519 lines in 14 files
+- BRANCH COVERAGE: 100.00% -- 174/174 branches in 14 files
+- 90.48% documented
+### Added
 - [gh!671][gh!671] - Complete documentation example for Instagram by @pboling
 - .env.local.example for contributor happiness
 - note lack of builds for JRuby 9.2, 9.3 & Truffleruby 22.3, 23.0
@@ -27,8 +39,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - e.g., Instagram GET=:query, POST/DELETE=:header
 ### Changed
 - [gh!669][gh!669] - Upgrade to kettle-dev v1.1.9 by @pboling
-### Deprecated
-### Removed
 ### Fixed
 - Remove accidentally duplicated lines, and fix typos in CHANGELOG.md
 - point badge to the correct workflow for Ruby 2.3 (caboose.yml)
@@ -520,7 +530,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.14...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.15...HEAD
+[2.0.15]: https://github.com/ruby-oauth/oauth2/compare/v2.0.14...v2.0.15
+[2.0.15t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.15
 [2.0.14]: https://github.com/ruby-oauth/oauth2/compare/v2.0.13...v2.0.14
 [2.0.14t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.14
 [2.0.13]: https://github.com/ruby-oauth/oauth2/compare/v2.0.12...v2.0.13

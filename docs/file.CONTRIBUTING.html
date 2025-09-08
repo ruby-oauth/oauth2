@@ -63,8 +63,7 @@
 This project should be a safe, welcoming space for collaboration, so contributors agree to adhere to<br>
 the <a href="https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 
-<p>To submit a patch, please fork the project, create a patch with tests, and send a pull request.<br>
-Post a message to the <a href="http://groups.google.com/group/oauth-ruby">google group</a> if you want to.</p>
+<p>To submit a patch, please fork the project, create a patch with tests, and send a pull request.</p>
 
 <p>Remember to <a href="https://keepachangelog.com/en/1.0.0/"><img src="https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat" alt="Keep A Changelog"></a> if you make changes.</p>
 
@@ -83,6 +82,35 @@ Post a message to the <a href="http://groups.google.com/group/oauth-ruby">google
   <li>Make sure to add tests for it. This is important, so it doesn’t break in a future release.</li>
   <li>Create new Pull Request.</li>
 </ol>
+
+<h2 id="executables-vs-rake-tasks">Executables vs Rake tasks</h2>
+
+<p>Executables shipped by oauth2 can be used with or without generating the binstubs.<br>
+They will work when oauth2 is installed globally (i.e., <code>gem install oauth2</code>) and do not require that oauth2 be in your bundle.</p>
+
+<ul>
+  <li>kettle-changelog</li>
+  <li>kettle-commit-msg</li>
+  <li>oauth2-setup</li>
+  <li>kettle-dvcs</li>
+  <li>kettle-pre-release</li>
+  <li>kettle-readme-backers</li>
+  <li>kettle-release</li>
+</ul>
+
+<p>However, the rake tasks provided by oauth2 do require oauth2 to be added as a development dependency and loaded in your Rakefile.<br>
+See the full list of rake tasks in head of Rakefile</p>
+
+<p><strong>Gemfile</strong></p>
+<pre class="code language-ruby"><code class="language-ruby">group :development do
+  gem &quot;oauth2&quot;, require: false
+end
+</code></pre>
+
+<p><strong>Rakefile</strong></p>
+<pre class="code language-ruby"><code class="language-ruby"># Rakefile
+require &quot;oauth2&quot;
+</code></pre>
 
 <h2 id="environment-variables-for-local-development">Environment Variables for Local Development</h2>
 
@@ -159,9 +187,10 @@ They are created and updated with the commands:</p>
 <h3 id="spec-organization-required">Spec organization (required)</h3>
 
 <ul>
-  <li>For each class or module under <code>lib/</code>, keep all of its unit tests in a single spec file under <code>spec/</code> that mirrors the path and file name (e.g., specs for <code>lib/oauth2/release_cli.rb</code> live in <code>spec/oauth2/release_cli_spec.rb</code>).</li>
-  <li>Do not create ad-hoc “_more” or split spec files for the same class/module. Consolidate all unit tests into the main spec file for that class/module.</li>
-  <li>Only integration scenarios that intentionally span multiple classes belong in <code>spec/integration/</code>.</li>
+  <li>One spec file per class/module. For each class or module under <code>lib/</code>, keep all of its unit tests in a single spec file under <code>spec/</code> that mirrors the path and file name exactly: <code>lib/oauth2/release_cli.rb</code> -&gt; <code>spec/oauth2/release_cli_spec.rb</code>.</li>
+  <li>Never add a second spec file for the same class/module. Examples of disallowed names: <code>*_more_spec.rb</code>, <code>*_extra_spec.rb</code>, <code>*_status_spec.rb</code>, or any other suffix that still targets the same class. If you find yourself wanting a second file, merge those examples into the canonical spec file for that class/module.</li>
+  <li>Exception: Integration specs that intentionally span multiple classes. Place these under <code>spec/integration/</code> (or a clearly named integration folder), and do not directly mirror a single class. Name them after the scenario, not a class.</li>
+  <li>Migration note: If a duplicate spec file exists, move all examples into the canonical file and delete the duplicate. Do not leave stubs or empty files behind.</li>
 </ul>
 
 <h2 id="lint-it">Lint It</h2>
@@ -222,7 +251,11 @@ See: <a href="https://guides.rubygems.org/security/#building-gems">RubyGems Secu
 
 <h4 id="automated-process">Automated process</h4>
 
-<p>Run <code>bundle exec kettle-release</code>.</p>
+<ol>
+  <li>Update version.rb to contian the correct version-to-be-released.</li>
+  <li>Run <code>bundle exec kettle-changelog</code>.</li>
+  <li>Run <code>bundle exec kettle-release</code>.</li>
+</ol>
 
 <h4 id="manual-process">Manual process</h4>
 
@@ -275,7 +308,7 @@ push git commits and tags, and push the <code>.gem</code> file to <a href="https
 </div></div>
 
       <div id="footer">
-  Generated on Sun Aug 31 16:35:45 2025 by
+  Generated on Mon Sep  8 02:24:41 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>
