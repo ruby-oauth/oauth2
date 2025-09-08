@@ -1,0 +1,6 @@
+# Ruby >= 2.3.0 (claimed, but not true, minimum support is Ruby 2.4)
+# Last version supporting Ruby <= 2.6
+gem "erb", "~> 2.2.2"
+
+# Pin CGI to a version compatible with Ruby 2.4.
+gem "cgi", "~> 0.1.1"
