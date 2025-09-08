@@ -1262,8 +1262,6 @@ See [CONTRIBUTING.md][🤝contributing].
 
 ### Code Coverage
 
-[![Coverage Graph][🔑codecov-g]][🔑codecov]
-
 [![Coveralls Test Coverage][🔑coveralls-img]][🔑coveralls]
 
 [![QLTY Test Coverage][🔑qlty-covi]][🔑qlty-cov]
