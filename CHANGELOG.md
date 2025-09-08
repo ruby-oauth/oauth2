@@ -18,6 +18,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
+- [gh!671][gh!671] - Complete documentation example for Instagram by @pboling
 - .env.local.example for contributor happiness
 - note lack of builds for JRuby 9.2, 9.3 & Truffleruby 22.3, 23.0
   - [actions/runner - issues/2347][GHA-continue-on-error-ui]
@@ -25,7 +26,7 @@ Please file a bug if you notice a violation of semantic versioning.
 - [gh!670][gh!670] - AccessToken: verb-dependent token transmission mode by @mrj
   - e.g., Instagram GET=:query, POST/DELETE=:header
 ### Changed
-- [gh!669][gh!669] - Upgrade to kettle-dev v1.1.9
+- [gh!669][gh!669] - Upgrade to kettle-dev v1.1.9 by @pboling
 ### Deprecated
 ### Removed
 ### Fixed
@@ -35,6 +36,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gh!669]: https://github.com/ruby-oauth/oauth2/pull/669
 [gh!670]: https://github.com/ruby-oauth/oauth2/pull/670
+[gh!671]: https://github.com/ruby-oauth/oauth2/pull/671
 [GHA-continue-on-error-ui]: https://github.com/actions/runner/issues/2347
 [GHA-allow-failure]: https://github.com/orgs/community/discussions/15452
 
