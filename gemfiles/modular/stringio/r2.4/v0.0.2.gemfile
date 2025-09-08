@@ -1,0 +1,4 @@
+# !!WARNING!!
+#   NOT SEMVER
+# Last version to support Ruby <= 2.5
+gem "stringio", ">= 0.0.2"

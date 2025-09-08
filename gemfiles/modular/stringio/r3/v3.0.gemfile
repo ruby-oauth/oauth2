@@ -1,0 +1,5 @@
+# !!WARNING!!
+#   NOT SEMVER
+# Version 3.0.7 dropped support for Ruby <= 2.7
+# Version 3.0.0 dropped support for Ruby <= 2.4
+gem "stringio", ">= 3.0"

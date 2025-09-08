@@ -1,0 +1,2 @@
+# Ruby >= 3.2 (dependency of kettle-dev)
+gem "erb", github: "ruby/erb", branch: "master"

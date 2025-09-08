@@ -46,9 +46,11 @@ jobs:
 
     steps:
       - name: Checkout
+        if: ${{ !env.ACT }}
         uses: actions/checkout@v5
 
       - name: Setup Ruby & RubyGems
+        if: ${{ !env.ACT }}
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
@@ -60,8 +62,11 @@ jobs:
       # We need to do this first to get appraisal installed.
       # NOTE: This does not use the primary Gemfile at all.
       - name: Install Root Appraisal
+        if: ${{ !env.ACT }}
         run: bundle
       - name: Appraisal for ${{ matrix.appraisal }}
+        if: ${{ !env.ACT }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
+        if: ${{ !env.ACT }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

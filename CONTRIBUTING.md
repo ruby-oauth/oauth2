@@ -5,7 +5,6 @@ This project should be a safe, welcoming space for collaboration, so contributor
 the [code of conduct][🤝conduct].
 
 To submit a patch, please fork the project, create a patch with tests, and send a pull request.
-Post a message to the [google group][⛳mail-list] if you want to.
 
 Remember to [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] if you make changes.
 
@@ -22,6 +21,35 @@ Follow these instructions:
 5. Push to the branch (`git push origin my-new-feature`)
 6. Make sure to add tests for it. This is important, so it doesn't break in a future release.
 7. Create new Pull Request.
+
+## Executables vs Rake tasks
+
+Executables shipped by oauth2 can be used with or without generating the binstubs.
+They will work when oauth2 is installed globally (i.e., `gem install oauth2`) and do not require that oauth2 be in your bundle.
+
+- kettle-changelog
+- kettle-commit-msg
+- oauth2-setup
+- kettle-dvcs
+- kettle-pre-release
+- kettle-readme-backers
+- kettle-release
+
+However, the rake tasks provided by oauth2 do require oauth2 to be added as a development dependency and loaded in your Rakefile.
+See the full list of rake tasks in head of Rakefile
+
+**Gemfile**
+```ruby
+group :development do
+  gem "oauth2", require: false
+end
+```
+
+**Rakefile**
+```ruby
+# Rakefile
+require "oauth2"
+```
 
 ## Environment Variables for Local Development
 
@@ -90,9 +118,10 @@ bundle exec rake test
 
 ### Spec organization (required)
 
-- For each class or module under `lib/`, keep all of its unit tests in a single spec file under `spec/` that mirrors the path and file name (e.g., specs for `lib/oauth2/release_cli.rb` live in `spec/oauth2/release_cli_spec.rb`).
-- Do not create ad-hoc "_more" or split spec files for the same class/module. Consolidate all unit tests into the main spec file for that class/module.
-- Only integration scenarios that intentionally span multiple classes belong in `spec/integration/`.
+- One spec file per class/module. For each class or module under `lib/`, keep all of its unit tests in a single spec file under `spec/` that mirrors the path and file name exactly: `lib/oauth2/release_cli.rb` -> `spec/oauth2/release_cli_spec.rb`.
+- Never add a second spec file for the same class/module. Examples of disallowed names: `*_more_spec.rb`, `*_extra_spec.rb`, `*_status_spec.rb`, or any other suffix that still targets the same class. If you find yourself wanting a second file, merge those examples into the canonical spec file for that class/module.
+- Exception: Integration specs that intentionally span multiple classes. Place these under `spec/integration/` (or a clearly named integration folder), and do not directly mirror a single class. Name them after the scenario, not a class.
+- Migration note: If a duplicate spec file exists, move all examples into the canonical file and delete the duplicate. Do not leave stubs or empty files behind.
 
 ## Lint It
 
@@ -147,7 +176,9 @@ NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in th
 
 #### Automated process
 
-Run `bundle exec kettle-release`.
+1. Update version.rb to contian the correct version-to-be-released.
+2. Run `bundle exec kettle-changelog`.
+3. Run `bundle exec kettle-release`.
 
 #### Manual process
 
@@ -176,7 +207,6 @@ Run `bundle exec kettle-release`.
 13. Run `bundle exec rake release` which will create a git tag for the version,
     push git commits and tags, and push the `.gem` file to [rubygems.org][💎rubygems]
 
-[⛳mail-list]: http://groups.google.com/group/oauth-ruby
 [📜src-gl]: https://gitlab.com/ruby-oauth/oauth2/
 [📜src-cb]: https://codeberg.org/ruby-oauth/oauth2
 [📜src-gh]: https://github.com/ruby-oauth/oauth2
