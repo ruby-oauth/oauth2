@@ -143,7 +143,7 @@ covering the latest patch for each of the following minor versions:
 - You should upgrade the dependencies of this gem with confidence\*.
 - Please do upgrade, and then, when it goes smooth as butter [please sponsor me][🖇sponsor].  Thanks!
 
-[sv-pub-api]: #-is-platform-support-part-of-the-public-api
+[sv-pub-api]: #-versioning
 
 \* MIT license; The only guarantees I make are for [enterprise support](#enterprise-support).
 
