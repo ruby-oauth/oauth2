@@ -165,7 +165,7 @@ If you use a gem version of a core Ruby library it should work fine!
 ### Federated DVCS
 
 <details>
-  <summary>Find this repo on other forges (Coming soon!)</summary>
+  <summary>Find this repo on other forges</summary>
 
 | Federated [DVCS][💎d-in-dvcs] Repository      | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
 |-----------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
@@ -683,6 +683,18 @@ using various class methods including the standard new, `from_hash` (if you have
 a hash of the values), or `from_kvform` (if you have an
 `application/x-www-form-urlencoded` encoded string of the values).
 
+Options (since v2.0.x unless noted):
+- expires_latency (Integer | nil): Seconds to subtract from expires_in when computing #expired? to offset latency.
+- token_name (String | Symbol | nil): When multiple token-like fields exist in responses, select the field name to use as the access token (since v2.0.10).
+- mode (Symbol | Proc | Hash): Controls how the token is transmitted on requests made via this AccessToken instance.
+  - :header — Send as Authorization: Bearer <token> header (default and preferred by OAuth 2.1 draft guidance).
+  - :query — Send as access_token query parameter (discouraged in general, but required by some providers).
+  - Verb-dependent (since v2.0.15): Provide either:
+    - a Proc taking |verb| and returning :header or :query, or
+    - a Hash with verb symbols as keys, for example: {get: :query, post: :header, delete: :header}.
+
+Note: Verb-dependent mode was added in v2.0.15 to support providers like Instagram that require query mode for GET and header mode for POST/DELETE.
+
 ### OAuth2::Error
 
 On 400+ status code responses, an `OAuth2::Error` will be raised.  If it is a
@@ -851,6 +863,76 @@ Notes:
 - For Basic auth, auth_scheme: :basic_auth handles the Authorization header; you do not need to base64-encode manually.
 
 </details>
+
+### Instagram API (verb‑dependent token mode)
+
+Providers like Instagram require the access token to be sent differently depending on the HTTP verb:
+- GET requests: token must be in the query string (?access_token=...)
+- POST/DELETE requests: token must be in the Authorization header (Bearer ...)
+
+Since v2.0.15, you can configure an AccessToken with a verb‑dependent mode. The gem will choose how to send the token based on the request method.
+
+Example: exchanging and refreshing long‑lived Instagram tokens, and making API calls
+
+```ruby
+require "oauth2"
+
+# NOTE: Users authenticate via Facebook Login to obtain a short‑lived user token (not shown here).
+# See Facebook Login docs for obtaining the initial short‑lived token.
+
+client = OAuth2::Client.new(nil, nil, site: "https://graph.instagram.com")
+
+# Start with a short‑lived token you already obtained via Facebook Login
+short_lived = OAuth2::AccessToken.new(
+  client,
+  ENV["IG_SHORT_LIVED_TOKEN"],
+  # Key part: verb‑dependent mode
+  mode: {get: :query, post: :header, delete: :header},
+)
+
+# 1) Exchange for a long‑lived token (Instagram requires GET with access_token in query)
+#    Endpoint: GET https://graph.instagram.com/access_token
+#    Params: grant_type=ig_exchange_token, client_secret=APP_SECRET
+exchange = short_lived.get(
+  "/access_token",
+  params: {
+    grant_type: "ig_exchange_token",
+    client_secret: ENV["IG_APP_SECRET"],
+    # access_token param will be added automatically by the AccessToken (mode => :query for GET)
+  },
+)
+long_lived_token_value = exchange.parsed["access_token"]
+
+long_lived = OAuth2::AccessToken.new(
+  client,
+  long_lived_token_value,
+  mode: {get: :query, post: :header, delete: :header},
+)
+
+# 2) Refresh the long‑lived token (Instagram uses GET with token in query)
+#    Endpoint: GET https://graph.instagram.com/refresh_access_token
+refresh_resp = long_lived.get(
+  "/refresh_access_token",
+  params: {grant_type: "ig_refresh_token"},
+)
+long_lived = OAuth2::AccessToken.new(
+  client,
+  refresh_resp.parsed["access_token"],
+  mode: {get: :query, post: :header, delete: :header},
+)
+
+# 3) Typical API GET request (token in query automatically)
+me = long_lived.get("/me", params: {fields: "id,username"}).parsed
+
+# 4) Example POST (token sent via Bearer header automatically)
+# Note: Replace the path/params with a real Instagram Graph API POST you need,
+# such as publishing media via the Graph API endpoints.
+# long_lived.post("/me/media", body: {image_url: "https://...", caption: "hello"})
+```
+
+Tips:
+- Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for GET.
+- If you need a custom rule, you can pass a Proc for mode, e.g. mode: ->(verb) { verb == :get ? :query : :header }.
 
 ### Refresh Tokens
 

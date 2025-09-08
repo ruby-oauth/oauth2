@@ -423,7 +423,7 @@ RSpec.describe OAuth2::AccessToken do
         end
 
         let(:options) { {mode: mode} }
-        
+
         VERBS.each do |verb|
           it "correctly handles a #{verb.to_s.upcase}" do
             expect(subject.__send__(verb, "/token/#{mode.call(verb)}").body).to include(token)
