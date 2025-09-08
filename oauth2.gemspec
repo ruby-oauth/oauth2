@@ -50,7 +50,7 @@ Gem::Specification.new do |spec|
 
 (minor) ⚠️ BREAKING CHANGES ⚠️ when upgrading from < v2
 • Summary of breaking changes: #{gl_homepage}#what-is-new-for-v20
-• Changes in this patch: #{gl_homepage}/-/blob/v#{spec.version}/CHANGELOG.md#200-2022-06-21-tag
+• Changes in this patch: #{gl_homepage}/-/blob/v#{gem_version}/CHANGELOG.md#2015-2025-09-08
 
 News:
 1. New documentation website, including for OAuth 2.1 and OIDC: https://oauth2.galtzo.com
@@ -58,7 +58,7 @@ News:
 3. New org name "ruby-oauth" on Open Source Collective, GitHub, GitLab, Codeberg (update git remotes!)
 4. Non-commercial support for the 2.x series will end by April, 2026. Please make a plan to upgrade to the next version prior to that date.
 Support will be dropped for Ruby 2.2, 2.3, 2.4, 2.5, 2.6, 2.7, 3.0, 3.1 and any other Ruby versions which will also have reached EOL by then.
-5. Gem releases are cryptographically signed with a 20-year cert, with checksums by stone_checksums.
+5. Gem releases are cryptographically signed with a 20-year cert; SHA-256 & SHA-512 checksums by stone_checksums.
 6. Please consider supporting this project:
    • https://opencollective.com/ruby-oauth (new!)
    • https://liberapay.com/pboling
