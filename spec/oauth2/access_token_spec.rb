@@ -429,6 +429,21 @@ RSpec.describe OAuth2::AccessToken do
             expect(subject.__send__(verb, "/token/#{mode.call(verb)}").body).to include(token)
           end
         end
+
+        context "when invalid" do
+          subject(:invalid_target) { target.__send__(http_verb, "/token/#{mode.call(http_verb)}") }
+
+          let(:http_verb) { :get }
+          let(:mode) do
+            lambda do |_verb|
+              "foobar"
+            end
+          end
+
+          it "correctly handles an invalid mode by raising an error" do
+            block_is_expected.to raise_error("invalid :mode option of foobar")
+          end
+        end
       end
 
       context "with client.options[:raise_errors] = false" do
