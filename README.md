@@ -165,7 +165,7 @@ If you use a gem version of a core Ruby library it should work fine!
 ### Federated DVCS
 
 <details>
-  <summary>Find this repo on other forges (Coming soon!)</summary>
+  <summary>Find this repo on other forges</summary>
 
 | Federated [DVCS][💎d-in-dvcs] Repository      | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
 |-----------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
