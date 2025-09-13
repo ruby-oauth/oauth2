@@ -3,15 +3,15 @@
 # ensure test env
 ENV["RACK_ENV"] = "test"
 
-# Third Party Libraries
+# Global Extensions
+require_relative "ext/backports"
+
+# External libraries
 require "addressable/uri"
 require "rspec/pending_for"
 
 # Family libraries
 require "kettle/test/rspec"
-
-# Extensions
-require_relative "ext/backports"
 
 # Library Configs
 require_relative "config/debug"

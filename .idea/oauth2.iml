@@ -27,6 +27,7 @@
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.7.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler-audit (v0.9.2, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.3.5, mise: 3.4.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="crack (v1.0.0, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="date (v3.4.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.11.0, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="delegate (v0.4.0, mise: 3.4.5) [gem]" level="application" />
@@ -45,6 +46,7 @@
     <orderEntry type="library" scope="PROVIDED" name="faraday-net_http (v3.4.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gem_bench (v2.0.5, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="gitmoji-regex (v1.0.3, mise: 3.4.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="hashdiff (v1.2.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="hashie (v5.0.0, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="io-console (v0.8.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="irb (v1.15.2, mise: 3.4.5) [gem]" level="application" />
@@ -129,7 +131,9 @@
     <orderEntry type="library" scope="PROVIDED" name="unicode-display_width (v3.1.5, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="unicode-emoji (v4.0.4, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="uri (v1.0.3, mise: 3.4.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="vcr (v6.3.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="version_gem (v1.1.9, mise: 3.4.5) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="webmock (v3.25.1, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="yard (v0.9.37, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="yard-junk (v0.0.10@54cceb, mise: 3.4.5) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="yard-relative_markdown_links (v0.5.0, mise: 3.4.5) [gem]" level="application" />
