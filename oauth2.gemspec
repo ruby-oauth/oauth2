@@ -198,6 +198,9 @@ Thanks, @pboling / @galtzo
   # | # ./spec/spec_helper.rb:8:in `<top (required)>'
   # So that's why we need backports.
   spec.add_development_dependency("backports", "~> 3.25", ">= 3.25.1")  # ruby >= 0
-  spec.add_development_dependency("vcr", ">= 4")                      # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
-  spec.add_development_dependency("webmock", ">= 3")                  # Last version to support ruby >= 2.3
+  # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head
+  # This is done in the "head" appraisal.
+  # See: https://github.com/vcr/vcr/issues/1057
+  spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
+  spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
 end
