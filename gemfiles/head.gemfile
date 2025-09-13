@@ -2,6 +2,7 @@
 
 source "https://rubygems.org"
 
+gem "cgi", ">= 0.5"
 gem "benchmark", "~> 0.4", ">= 0.4.1"
 
 gemspec path: "../"

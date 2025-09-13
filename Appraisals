@@ -30,6 +30,8 @@ end
 # Used for head (nightly) releases of ruby, truffleruby, and jruby.
 # Split into discrete appraisals if one of them needs a dependency locked discretely.
 appraise "head" do
+  # Why is gem "cgi" here? See: https://github.com/vcr/vcr/issues/1057
+  gem "cgi", ">= 0.5"
   gem "benchmark", "~> 0.4", ">= 0.4.1"
   eval_gemfile "modular/runtime_heads.gemfile"
 end
