@@ -20,6 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Added
 - Apache SkyWalking Eyes dependency license check
 ### Changed
+- Many improvements to make CI more resilient (past/future proof)
 ### Deprecated
 ### Removed
 ### Fixed
