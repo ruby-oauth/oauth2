@@ -1,0 +1,40 @@
+name: Apache SkyWalking Eyes
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches:
+      - 'main'
+      - '*-stable'
+    tags:
+      - '!*' # Do not execute on tags
+  pull_request:
+    branches:
+      - '*'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  license-check:
+    if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Check Dependencies' License
+        uses: apache/skywalking-eyes/dependency@main
+        with:
+          config: .licenserc.yaml
+          # Ruby packages declared as dependencies in gemspecs or Gemfiles are
+          #   typically consumed as binaries; enable weak-compatibility
+          #   so permissive and weak-copyleft combinations are treated as compatible.
+          flags: --weak-compatible

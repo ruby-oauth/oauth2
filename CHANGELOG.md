@@ -18,6 +18,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
+- Apache SkyWalking Eyes dependency license check
 ### Changed
 ### Deprecated
 ### Removed
