@@ -18,4 +18,4 @@ eval_gemfile("modular/multi_xml_v0_7.gemfile")
 
 eval_gemfile("modular/rack_v3.gemfile")
 
-eval_gemfile("modular/x_std_libs/r3/libs.gemfile")
+eval_gemfile("modular/x_std_libs.gemfile")
