@@ -30,7 +30,7 @@ Please file a bug if you notice a violation of semantic versioning.
 - BRANCH COVERAGE: 86.49% -- 64/74 branches in 14 files
 - 90.48% documented
 ### Added
-- [gh!680—][gh!680]E2E example using mock test server added in v2.0.11 by @pboling
+- [gh!680][gh!680] - E2E example using mock test server added in v2.0.11 by @pboling
   - mock-oauth2-server upgraded to v2.3.0
     - https://github.com/navikt/mock-oauth2-server
   - `docker compose -f docker-compose-ssl.yml up -d --wait`
@@ -43,6 +43,7 @@ Please file a bug if you notice a violation of semantic versioning.
 - [gh!678][gh!678] - Many improvements to make CI more resilient (past/future proof) by @pboling
 - [gh!681][gh!681] - Upgrade to kettle-dev v1.1.19
 ### Security
+
 [gh!676]: https://github.com/ruby-oauth/oauth2/pull/676
 [gh!678]: https://github.com/ruby-oauth/oauth2/pull/678
 [gh!679]: https://github.com/ruby-oauth/oauth2/pull/679
