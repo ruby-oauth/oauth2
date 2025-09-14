@@ -1,7 +1,21 @@
 {
   "interactiveLogin": true,
   "httpServer": {
-    "type": "NettyWrapper",
-    "ssl": {}
-  }
+    "type": "NettyWrapper"
+  },
+  "tokenCallbacks": [
+    {
+      "issuerId": "default",
+      "requestMappings": [
+        {
+          "requestParam": "grant_type",
+          "match": "client_credentials",
+          "claims": {
+            "sub": "demo-sub",
+            "aud": ["demo-aud"]
+          }
+        }
+      ]
+    }
+  ]
 }

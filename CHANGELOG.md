@@ -18,12 +18,21 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
+- E2E example using mock test server added in v2.0.11
+  - mock-oauth2-server upgraded to v2.3.0
+    - https://github.com/navikt/mock-oauth2-server
+  - `docker compose -f docker-compose-ssl.yml up -d --wait`
+  - `ruby examples/e2e.rb`
+  - `docker compose -f docker-compose-ssl.yml down`
+  - mock server readiness wait is 90s
+  - override via E2E_WAIT_TIMEOUT
 - Apache SkyWalking Eyes dependency license check
 ### Changed
 - Many improvements to make CI more resilient (past/future proof)
 ### Deprecated
 ### Removed
 ### Fixed
+
 ### Security
 
 ## [2.0.15] - 2025-09-08

@@ -28,7 +28,7 @@ OAuth 2.0 focuses on client developer simplicity while providing specific author
     desktop applications, mobile phones, and living room devices.
 This is a RubyGem for implementing OAuth 2.0 clients (not servers) in Ruby applications.
 
-### Quick Example
+### Quick Examples
 
 <details>
   <summary>Convert the following `curl` command into a token request using this gem...</summary>
@@ -58,6 +58,61 @@ OAuth2::Client.new(
 ```
 
 NOTE: `header` - The content type specified in the `curl` is already the default!
+
+</details>
+
+<details>
+<summary>Complete E2E single file script against [navikt/mock-oauth2-server](https://github.com/navikt/mock-oauth2-server)</summary>
+
+- E2E example using the mock test server added in v2.0.11
+
+```console
+docker compose -f docker-compose-ssl.yml up -d --wait
+ruby examples/e2e.rb
+# If your machine is slow or Docker pulls are cold, increase the wait:
+E2E_WAIT_TIMEOUT=120 ruby examples/e2e.rb
+# The mock server serves HTTP on 8080; the example points to http://localhost:8080 by default.
+```
+
+The output should be something like this:
+
+```console
+➜  ruby examples/e2e.rb
+Access token (truncated): eyJraWQiOiJkZWZhdWx0...
+userinfo status: 200
+userinfo body: {"sub" => "demo-sub", "aud" => ["demo-aud"], "nbf" => 1757816758000, "iss" => "http://localhost:8080/default", "exp" => 1757820358000, "iat" => 1757816758000, "jti" => "d63b97a7-ebe5-4dea-93e6-d542caba6104"}
+E2E complete
+```
+
+Make sure to shut down the mock server when you are done:
+
+```console
+docker compose -f docker-compose-ssl.yml down
+```
+
+Troubleshooting: validate connectivity to the mock server
+
+- Check container status and port mapping:
+    - docker compose -f docker-compose-ssl.yml ps
+- From the host, try the discovery URL directly (this is what the example uses by default):
+    - curl -v http://localhost:8080/default/.well-known/openid-configuration
+    - If that fails immediately, also try: curl -v --connect-timeout 2 http://127.0.0.1:8080/default/.well-known/openid-configuration
+- From inside the container (to distinguish container vs host networking):
+    - docker exec -it oauth2-mock-oauth2-server-1 curl -v http://127.0.0.1:8080/default/.well-known/openid-configuration
+- Simple TCP probe from the host:
+    - nc -vz localhost 8080  # or: ruby -rsocket -e 'TCPSocket.new("localhost",8080).close; puts "tcp ok"'
+- Inspect which host port 8080 is bound to (should be 8080):
+    - docker inspect -f '{{ (index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort }}' oauth2-mock-oauth2-server-1
+- Look at server logs for readiness/errors:
+    - docker logs -n 200 oauth2-mock-oauth2-server-1
+- On Linux, ensure nothing else is bound to 8080 and that firewall/SELinux aren’t blocking:
+    - ss -ltnp | grep :8080
+
+Notes
+- Discovery URL pattern is: http://localhost:8080/<realm>/.well-known/openid-configuration, where <realm> defaults to "default".
+- You can change these with env vars when running the example:
+    - E2E_ISSUER_BASE (default: http://localhost:8080)
+    - E2E_REALM (default: default)
 
 </details>
 
