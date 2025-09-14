@@ -196,7 +196,7 @@ appraise "audit" do
   eval_gemfile "modular/logger_v1_7.gemfile"
   eval_gemfile "modular/multi_xml_v0_7.gemfile"
   eval_gemfile "modular/rack_v3.gemfile"
-  eval_gemfile "modular/x_std_libs/r3/libs.gemfile"
+  eval_gemfile "modular/x_std_libs.gemfile"
 end
 
 # Only run coverage on the latest version of Ruby
@@ -209,11 +209,11 @@ appraise "coverage" do
   eval_gemfile "modular/multi_xml_v0_7.gemfile"
   eval_gemfile "modular/optional.gemfile"
   eval_gemfile "modular/rack_v3.gemfile"
-  eval_gemfile "modular/x_std_libs/r3/libs.gemfile"
+  eval_gemfile "modular/x_std_libs.gemfile"
 end
 
 # Only run linter on the latest version of Ruby (but, in support of oldest supported Ruby version)
 appraise "style" do
   eval_gemfile "modular/style.gemfile"
-  eval_gemfile "modular/x_std_libs/r3/libs.gemfile"
+  eval_gemfile "modular/x_std_libs.gemfile"
 end

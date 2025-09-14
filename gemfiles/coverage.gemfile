@@ -20,4 +20,4 @@ eval_gemfile("modular/optional.gemfile")
 
 eval_gemfile("modular/rack_v3.gemfile")
 
-eval_gemfile("modular/x_std_libs/r3/libs.gemfile")
+eval_gemfile("modular/x_std_libs.gemfile")
