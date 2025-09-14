@@ -42,7 +42,6 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 - [gh!678][gh!678] - Many improvements to make CI more resilient (past/future proof) by @pboling
 - [gh!681][gh!681] - Upgrade to kettle-dev v1.1.19
-### Security
 
 [gh!676]: https://github.com/ruby-oauth/oauth2/pull/676
 [gh!678]: https://github.com/ruby-oauth/oauth2/pull/678
@@ -68,7 +67,6 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 - Remove accidentally duplicated lines, and fix typos in CHANGELOG.md
 - point badge to the correct workflow for Ruby 2.3 (caboose.yml)
-### Security
 
 [gh!669]: https://github.com/ruby-oauth/oauth2/pull/669
 [gh!670]: https://github.com/ruby-oauth/oauth2/pull/670
