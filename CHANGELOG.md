@@ -18,7 +18,19 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
-- E2E example using mock test server added in v2.0.11
+### Changed
+### Deprecated
+### Removed
+### Fixed
+### Security
+
+## [2.0.16] - 2025-09-14
+- TAG: [v2.0.16][2.0.16t]
+- COVERAGE: 96.33% -- 394/409 lines in 14 files
+- BRANCH COVERAGE: 86.49% -- 64/74 branches in 14 files
+- 90.48% documented
+### Added
+- [gh!680—][gh!680]E2E example using mock test server added in v2.0.11 by @pboling
   - mock-oauth2-server upgraded to v2.3.0
     - https://github.com/navikt/mock-oauth2-server
   - `docker compose -f docker-compose-ssl.yml up -d --wait`
@@ -26,13 +38,16 @@ Please file a bug if you notice a violation of semantic versioning.
   - `docker compose -f docker-compose-ssl.yml down`
   - mock server readiness wait is 90s
   - override via E2E_WAIT_TIMEOUT
-- Apache SkyWalking Eyes dependency license check
+- [gh!676][gh!676], [gh!679][gh!679] - Apache SkyWalking Eyes dependency license check by @pboling
 ### Changed
-- Many improvements to make CI more resilient (past/future proof)
-### Deprecated
-### Removed
-### Fixed
+- [gh!678][gh!678] - Many improvements to make CI more resilient (past/future proof) by @pboling
+- [gh!681][gh!681] - Upgrade to kettle-dev v1.1.19
 ### Security
+[gh!676]: https://github.com/ruby-oauth/oauth2/pull/676
+[gh!678]: https://github.com/ruby-oauth/oauth2/pull/678
+[gh!679]: https://github.com/ruby-oauth/oauth2/pull/679
+[gh!680]: https://github.com/ruby-oauth/oauth2/pull/680
+[gh!681]: https://github.com/ruby-oauth/oauth2/pull/681
 
 ## [2.0.15] - 2025-09-08
 - TAG: [v2.0.15][2.0.15t]
@@ -540,7 +555,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.15...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.16...HEAD
+[2.0.16]: https://github.com/ruby-oauth/oauth2/compare/v2.0.15...v2.0.16
+[2.0.16t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.16
 [2.0.15]: https://github.com/ruby-oauth/oauth2/compare/v2.0.14...v2.0.15
 [2.0.15t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.15
 [2.0.14]: https://github.com/ruby-oauth/oauth2/compare/v2.0.13...v2.0.14
