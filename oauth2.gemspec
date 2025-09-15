@@ -132,7 +132,7 @@ Thanks, @pboling / @galtzo
   spec.add_dependency("multi_xml", "~> 0.5")                # ruby >= 0
   spec.add_dependency("rack", [">= 1.2", "< 4"])            # ruby >= 0
   spec.add_dependency("snaky_hash", "~> 2.0", ">= 2.0.3")   # ruby >= 2.2
-  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.8")  # ruby >= 2.2.0
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")  # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability on RubyGems.org.

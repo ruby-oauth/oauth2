@@ -17,20 +17,30 @@ Please file a bug if you notice a violation of semantic versioning.
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
 
 ## [Unreleased]
+
 ### Added
+
 - [gh!682][gh!682] - AccessToken: support Hash-based verb-dependent token transmission mode (e.g., {get: :query, post: :header})
+
 ### Changed
+
 ### Deprecated
+
 ### Removed
+
 ### Fixed
+
 ### Security
 
 ## [2.0.16] - 2025-09-14
+
 - TAG: [v2.0.16][2.0.16t]
 - COVERAGE: 100.00% -- 520/520 lines in 14 files
 - BRANCH COVERAGE: 100.00% -- 176/176 branches in 14 files
 - 90.48% documented
+
 ### Added
+
 - [gh!680][gh!680] - E2E example using mock test server added in v2.0.11 by @pboling
   - mock-oauth2-server upgraded to v2.3.0
     - https://github.com/navikt/mock-oauth2-server
@@ -40,7 +50,9 @@ Please file a bug if you notice a violation of semantic versioning.
   - mock server readiness wait is 90s
   - override via E2E_WAIT_TIMEOUT
 - [gh!676][gh!676], [gh!679][gh!679] - Apache SkyWalking Eyes dependency license check by @pboling
+
 ### Changed
+
 - [gh!678][gh!678] - Many improvements to make CI more resilient (past/future proof) by @pboling
 - [gh!681][gh!681] - Upgrade to kettle-dev v1.1.19
 
@@ -51,11 +63,14 @@ Please file a bug if you notice a violation of semantic versioning.
 [gh!681]: https://github.com/ruby-oauth/oauth2/pull/681
 
 ## [2.0.15] - 2025-09-08
+
 - TAG: [v2.0.15][2.0.15t]
 - COVERAGE: 100.00% -- 519/519 lines in 14 files
 - BRANCH COVERAGE: 100.00% -- 174/174 branches in 14 files
 - 90.48% documented
+
 ### Added
+
 - [gh!671][gh!671] - Complete documentation example for Instagram by @pboling
 - .env.local.example for contributor happiness
 - note lack of builds for JRuby 9.2, 9.3 & Truffleruby 22.3, 23.0
@@ -63,9 +78,13 @@ Please file a bug if you notice a violation of semantic versioning.
   - [community/discussions/15452][GHA-allow-failure]
 - [gh!670][gh!670] - AccessToken: verb-dependent token transmission mode by @mrj
   - e.g., Instagram GET=:query, POST/DELETE=:header
+
 ### Changed
+
 - [gh!669][gh!669] - Upgrade to kettle-dev v1.1.9 by @pboling
+
 ### Fixed
+
 - Remove accidentally duplicated lines, and fix typos in CHANGELOG.md
 - point badge to the correct workflow for Ruby 2.3 (caboose.yml)
 
@@ -76,11 +95,14 @@ Please file a bug if you notice a violation of semantic versioning.
 [GHA-allow-failure]: https://github.com/orgs/community/discussions/15452
 
 ## [2.0.14] - 2025-08-31
+
 - TAG: [v2.0.14][2.0.14t]
 - COVERAGE: 100.00% -- 519/519 lines in 14 files
 - BRANCH COVERAGE: 100.00% -- 174/174 branches in 14 files
 - 90.48% documented
+
 ### Added
+
 - improved documentation by @pboling
 - [gh!665][gh!665] - Document Mutual TLS (mTLS) usage with example in README (connection_opts.ssl client_cert/client_key and auth_scheme: :tls_client_auth) by @pboling
 - [gh!666][gh!666] - Document usage of flat query params using Faraday::FlatParamsEncoder, with example URI, in README by @pboling
@@ -103,11 +125,14 @@ Please file a bug if you notice a violation of semantic versioning.
 [gh!666]: https://github.com/ruby-oauth/oauth2/pull/666
 
 ## [2.0.13] - 2025-08-30
+
 - TAG: [v2.0.13][2.0.13t]
 - COVERAGE: 100.00% -- 519/519 lines in 14 files
 - BRANCH COVERAGE: 100.00% -- 174/174 branches in 14 files
 - 90.48% documented
+
 ### Added
+
 - [gh!656][gh!656] - Support revocation with URL-encoded parameters
 - [gh!660][gh!660] - Inline yard documentation by @pboling
 - [gh!660][gh!660] - Complete RBS types documentation by @pboling
@@ -115,11 +140,16 @@ Please file a bug if you notice a violation of semantic versioning.
 - [gh!657][gh!657] - Updated documentation for org-rename by @pboling
 - More funding links by @Aboling0
 - Documentation: Added docs/OIDC.md with OIDC 1.0 overview, example, and references
+
 ### Changed
+
 - Upgrade Code of Conduct to Contributor Covenant 2.1 by @pboling
 - [gh!660][gh!660] - Shrink post-install message by 4 lines by @pboling
+
 ### Fixed
+
 - [gh!660][gh!660] - Links in README (including link to HEAD documentation) by @pboling
+
 ### Security
 
 [gh!660]: https://github.com/ruby-oauth/oauth2/pull/660
@@ -127,31 +157,40 @@ Please file a bug if you notice a violation of semantic versioning.
 [gh!656]: https://github.com/ruby-oauth/oauth2/pull/656
 
 ## [2.0.12] - 2025-05-31
+
 - TAG: [v2.0.12][2.0.12t]
 - Line Coverage: 100.0% (520 / 520)
 - Branch Coverage: 100.0% (174 / 174)
 - 80.00% documented
+
 ### Added
+
 - [gh!652][gh!652] - Support IETF rfc7515 JSON Web Signature - JWS by @mridang
     - Support JWT `kid` for key discovery and management
 - More Documentation by @pboling
     - Documented Serialization Extensions
     - Added Gatzo.com FLOSS logo by @Aboling0, CC BY-SA 4.0
 - Documentation site @ https://oauth2.galtzo.com now complete
-### Changed
-- Updates to gemspec (email, funding url, post install message)
-### Fixed
-- Documentation Typos by @pboling
 
+### Changed
+
+- Updates to gemspec (email, funding url, post install message)
+
+### Fixed
+
+- Documentation Typos by @pboling
 
 [gh!652]: https://github.com/ruby-oauth/oauth2/pull/652
 
 ## [2.0.11] - 2025-05-23
+
 - TAG: [v2.0.11][2.0.11t]
 - COVERAGE: 100.00% -- 518/518 lines in 14 files
 - BRANCH COVERAGE: 100.00% -- 172/172 branches in 14 files
 - 80.00% documented
+
 ### Added
+
 - [gh!651](https://github.com/ruby-oauth/oauth2/pull/651) - `:snaky_hash_klass` option (@pboling)
 - More documentation
 - Codeberg as ethical mirror (@pboling)
@@ -165,20 +204,27 @@ Please file a bug if you notice a violation of semantic versioning.
 - [!649](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/649) - Test compatibility with all key minor versions of Hashie v0, v1, v2, v3, v4, v5, HEAD (@pboling)
 - [gh!651](https://github.com/ruby-oauth/oauth2/pull/651) - Mock OAuth2 server for testing (@pboling)
     - https://github.com/navikt/mock-oauth2-server
+
 ### Changed
+
 - [gh!651](https://github.com/ruby-oauth/oauth2/pull/651) - Upgraded to snaky_hash v2.0.3 (@pboling)
     - Provides solution for serialization issues
 - Updated `spec.homepage_uri` in gemspec to GitHub Pages YARD documentation site (@pboling)
+
 ### Fixed
+
 - [gh!650](https://github.com/ruby-oauth/oauth2/pull/650) - Regression in return type of `OAuth2::Response#parsed` (@pboling)
 - Incorrect documentation related to silencing warnings (@pboling)
 
 ## [2.0.10] - 2025-05-17
+
 - TAG: [v2.0.10][2.0.10t]
 - COVERAGE: 100.00% -- 518/518 lines in 14 files
 - BRANCH COVERAGE: 100.00% -- 170/170 branches in 14 files
 - 79.05% documented
+
 ### Added
+
 - [gh!632](https://github.com/ruby-oauth/oauth2/pull/632) - Added `funding.yml` (@Aboling0)
 - [!635](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/635) - Added `.gitlab-ci.yml` (@jessieay)
 - [#638](https://gitlab.com/ruby-oauth/oauth2/-/issues/638) - Documentation of support for **ILO Fundamental Principles of Rights at Work** (@pboling)
@@ -198,14 +244,18 @@ Please file a bug if you notice a violation of semantic versioning.
     - See: https://datatracker.ietf.org/doc/html/rfc7009
 - [gh!644](https://github.com/ruby-oauth/oauth2/pull/644), [gh!645](https://github.com/ruby-oauth/oauth2/pull/645) - Added CITATION.cff (@Aboling0)
 - [!648](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/648) - Improved documentation (@pboling)
+
 ### Changed
+
 - Default value of `OAuth2.config.silence_extra_tokens_warning` was `false`, now `true` (@pboling)
 - Gem releases are now cryptographically signed, with a 20-year cert (@pboling)
     - Allow linux distros to build release without signing, as their package managers sign independently
 - [!647](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/647) - `OAuth2::AccessToken#refresh` now supports block param pass through (@pboling)
 - [!647](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/647) - `OAuth2.config` is no longer writable (@pboling)
 - [!647](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/647) - Errors raised by `OAuth2::AccessToken` are now always `OAuth2::Error` and have better metadata (@pboling)
+
 ### Fixed
+
 - [#95](https://gitlab.com/ruby-oauth/oauth2/-/issues/95) - restoring an access token via `AccessToken#from_hash` (@pboling)
     - This was a 13 year old bug report. 😘
 - [#619](https://gitlab.com/ruby-oauth/oauth2/-/issues/619) - Internal options (like `snaky`, `raise_errors`, and `parse`) are no longer included in request (@pboling)
@@ -221,37 +271,58 @@ Please file a bug if you notice a violation of semantic versioning.
 - [gh!646](https://github.com/ruby-oauth/oauth2/pull/646) - Change `require` to `require_relative` (improve performance) (@Aboling0)
 
 ## [2.0.9] - 2022-09-16
+
 - TAG: [v2.0.9][2.0.9t]
+
 ### Added
+
 - More specs (@pboling)
+
 ### Changed
+
 - Complete migration to main branch as default (@pboling)
 - Complete migration to Gitlab, updating all links, and references in VCS-managed files (@pboling)
 
 ## [2.0.8] - 2022-09-01
+
 - TAG: [v2.0.8][2.0.8t]
+
 ### Changed
+
 - [!630](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/630) - Extract snaky_hash to external dependency (@pboling)
+
 ### Added
+
 - [!631](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/631) - New global configuration option OAuth2.config.silence_extra_tokens_warning (default: false) fixes [#628](https://gitlab.com/ruby-oauth/oauth2/-/issues/628)
 
 ## [2.0.7] - 2022-08-22
+
 - TAG: [v2.0.7][2.0.7t]
+
 ### Added
+
 - [!629](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/629) - Allow POST of JSON to get token (@pboling, @terracatta)
+
 ### Fixed
+
 - [!626](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/626) - Fixes a regression in 2.0.6. Will now prefer the key order from the lookup, not the hash keys (@rickselby)
     - Note: This fixes compatibility with `omniauth-oauth2` and AWS
 - [!625](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/625) - Fixes the printed version in the post install message (@hasghari)
 
 ## [2.0.6] - 2022-07-13
+
 - TAG: [v2.0.6][2.0.6t]
+
 ### Fixed
+
 - [!624](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/624) - Fixes a [regression](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/623) in v2.0.5, where an error would be raised in refresh_token flows due to (legitimate) lack of access_token (@pboling)
 
 ## [2.0.5] - 2022-07-07
+
 - TAG: [v2.0.5][2.0.5t]
+
 ### Fixed
+
 - [!620](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/620) - Documentation improvements, to help with upgrading (@swanson)
 - [!621](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/621) - Fixed [#528](https://gitlab.com/ruby-oauth/oauth2/-/issues/528) and [#619](https://gitlab.com/ruby-oauth/oauth2/-/issues/619) (@pboling)
     - All data in responses is now returned, with the access token removed and set as `token`
@@ -261,35 +332,52 @@ Please file a bug if you notice a violation of semantic versioning.
     - There is now 100% test coverage, for lines _and_ branches, and it will stay that way.
 
 ## [2.0.4] - 2022-07-01
+
 - TAG: [v2.0.4][2.0.4t]
+
 ### Fixed
+
 - [!618](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/618) - In some scenarios the `snaky` option default value was not applied (@pboling)
 
 ## [2.0.3] - 2022-06-28
+
 - TAG: [v2.0.3][2.0.3t]
+
 ### Added
+
 - [!611](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/611) - Proper deprecation warnings for `extract_access_token` argument (@pboling)
 - [!612](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/612) - Add `snaky: false` option to skip conversion to `OAuth2::SnakyHash` (default: true) (@pboling)
+
 ### Fixed
+
 - [!608](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/608) - Wrap `Faraday::TimeoutError` in `OAuth2::TimeoutError` (@nbibler)
 - [!615](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/615) - Fix support for requests with blocks, see `Faraday::Connection#run_request` (@pboling)
 
 ## [2.0.2] - 2022-06-24
+
 - TAG: [v2.0.2][2.0.2t]
+
 ### Fixed
+
 - [!604](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/604) - Wrap `Faraday::TimeoutError` in `OAuth2::TimeoutError` (@stanhu)
 - [!606](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/606) - Ruby 2.7 deprecation warning fix: Move `access_token_class` parameter into `Client` constructor (@stanhu)
 - [!607](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/607) - CHANGELOG correction, reference to `OAuth2::ConnectionError` (@zavan)
 
 ## [2.0.1] - 2022-06-22
+
 - TAG: [v2.0.1][2.0.1t]
+
 ### Added
+
 - Documentation improvements (@pboling)
 - Increased test coverage to 99% (@pboling)
 
 ## [2.0.0] - 2022-06-21
+
 - TAG: [v2.0.0][2.0.0t]
+
 ### Added
+
 - [!158](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/158), [!344](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/344) - Optionally pass raw response to parsers (@niels)
 - [!190](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/190), [!332](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/332), [!334](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/334), [!335](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/335), [!360](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/360), [!426](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/426), [!427](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/427), [!461](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/461) - Documentation (@josephpage, @pboling, @meganemura, @joshRpowell, @elliotcm)
 - [!220](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/220) - Support IETF rfc7523 JWT Bearer Tokens Draft 04+ (@jhmoore)
@@ -316,7 +404,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - [!571](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/571) - Support Ruby 3.1 (@pboling)
 - [!575](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/575) - Support IETF rfc7231, section 7.1.2 - relative location in redirect (@pboling)
 - [!581](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/581) - _Documentation_: of breaking changes (@pboling)
+
 ### Changed
+
 - [!191](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/191) - **BREAKING**: Token is expired if `expired_at` time is `now` (@davestevens)
 - [!312](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/312) - **BREAKING**: Set `:basic_auth` as default for `:auth_scheme` instead of `:request_body`. This was default behavior before 1.3.0. (@tetsuya, @wy193777)
 - [!317](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/317) - _Dependency_: Upgrade `jwt` to 2.x.x (@travisofthenorth)
@@ -332,7 +422,9 @@ Please file a bug if you notice a violation of semantic versioning.
     - As of version 2.0.4 you can turn key transformation off with the `snaky: false` option.
 - [!576](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/576) - **BREAKING**: Stop rescuing parsing errors (@pboling)
 - [!591](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/576) - _DEPRECATION_: `OAuth2::Client` - `:extract_access_token` option is deprecated
+
 ### Fixed
+
 - [!158](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/158), [!344](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/344) - Handling of errors when using `omniauth-facebook` (@niels)
 - [!294](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/294) - Fix: "Unexpected middleware set" issue with Faraday when `OAUTH_DEBUG=true` (@spectator, @gafrom)
 - [!300](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/300) - _Documentation_: `Oauth2::Error` - Error codes are strings, not symbols (@NobodysNightmare)
@@ -351,7 +443,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - [!595](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/595) - Graceful handling of empty responses from `Client#get_token`, respecting `:raise_errors` config (@stanhu)
 - [!596](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/596) - Consistency between `AccessToken#refresh` and `Client#get_token` named arguments (@stanhu)
 - [!598](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/598) - Fix unparseable data not raised as error in `Client#get_token`, respecting `:raise_errors` config (@stanhu)
+
 ### Removed
+
 - [!341](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/341) - Remove Rdoc & Jeweler related files (@josephpage)
 - [!342](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/342) - **BREAKING**: Dropped support for Ruby 1.8 (@josephpage)
 - [!539](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/539) - Remove reliance on globally included OAuth2 in tests, analog of [!538](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/538) for 1-4-stable (@anderscarling)
@@ -360,15 +454,18 @@ Please file a bug if you notice a violation of semantic versioning.
 - [!590](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/590) - _Dependency_: Removed `multi_json` (@stanhu)
 
 ## [1.4.11] - 2022-09-16
+
 - TAG: [v1.4.11][1.4.11t]
 - Complete migration to main branch as default (@pboling)
 - Complete migration to Gitlab, updating all links, and references in VCS-managed files (@pboling)
 
 ## [1.4.10] - 2022-07-01
+
 - TAG: [v1.4.10][1.4.10t]
 - FIPS Compatibility [!587](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/587) (@akostadinov)
 
 ## [1.4.9] - 2022-02-20
+
 - TAG: [v1.4.9][1.4.9t]
 - Fixes compatibility with Faraday v2 [572](https://gitlab.com/ruby-oauth/oauth2/-/issues/572)
 - Includes supported versions of Faraday in test matrix:
@@ -378,6 +475,7 @@ Please file a bug if you notice a violation of semantic versioning.
 - Add Windows and MacOS to test matrix
 
 ## [1.4.8] - 2022-02-18
+
 - TAG: [v1.4.8][1.4.8t]
 - MFA is now required to push new gem versions (@pboling)
 - README overhaul w/ new Ruby Version and Engine compatibility policies (@pboling)
@@ -388,16 +486,19 @@ Please file a bug if you notice a violation of semantic versioning.
 - [!543](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/543) - Support for more modern Open SSL libraries (@pboling)
 
 ## [1.4.7] - 2021-03-19
+
 - TAG: [v1.4.7][1.4.7t]
 - [!541](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/541) - Backport fix to expires_at handling [!533](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/533) to 1-4-stable branch. (@dobon)
 
 ## [1.4.6] - 2021-03-19
+
 - TAG: [v1.4.6][1.4.6t]
 - [!540](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/540) - Add VERSION constant (@pboling)
 - [!537](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/537) - Fix crash in OAuth2::Client#get_token (@anderscarling)
 - [!538](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/538) - Remove reliance on globally included OAuth2 in tests, analogous to [!539](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/539) on main branch (@anderscarling)
 
 ## [1.4.5] - 2021-03-18
+
 - TAG: [v1.4.5][1.4.5t]
 - [!535](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/535) - Compatibility with range of supported Ruby OpenSSL versions, Rubocop updates, Github Actions, analogous to [!536](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/536) on main branch (@pboling)
 - [!518](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/518) - Add extract_access_token option to OAuth2::Client (@jonspalmer)
@@ -405,10 +506,12 @@ Please file a bug if you notice a violation of semantic versioning.
 - [!500](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/500) - Fix YARD documentation formatting (@olleolleolle)
 
 ## [1.4.4] - 2020-02-12
+
 - TAG: [v1.4.4][1.4.4t]
 - [!408](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/408) - Fixed expires_at for formatted time (@Lomey)
 
 ## [1.4.3] - 2020-01-29
+
 - TAG: [v1.4.3][1.4.3t]
 - [!483](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/483) - add project metadata to gemspec (@orien)
 - [!495](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/495) - support additional types of access token requests (@SteveyblamFreeagent, @thomcorley, @dgholz)
@@ -416,11 +519,13 @@ Please file a bug if you notice a violation of semantic versioning.
 - [!433](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/433) - allow field names with square brackets and numbers in params (@asm256)
 
 ## [1.4.2] - 2019-10-01
+
 - TAG: [v1.4.2][1.4.2t]
 - [!478](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/478) - support latest version of faraday & fix build (@pboling)
     - Officially support Ruby 2.6 and truffleruby
 
 ## [1.4.1] - 2018-10-13
+
 - TAG: [v1.4.1][1.4.1t]
 - [!417](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/417) - update jwt dependency (@thewoolleyman)
 - [!419](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/419) - remove rubocop dependency (temporary, added back in [!423](https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/423)) (@pboling)
@@ -448,6 +553,7 @@ Please file a bug if you notice a violation of semantic versioning.
 [jruby-9.2]: https://www.jruby.org/2018/05/24/jruby-9-2-0-0.html
 
 ## [1.4.0] - 2017-06-09
+
 - TAG: [v1.4.0][1.4.0t]
 - Drop Ruby 1.8.7 support (@sferik)
 - Fix some RuboCop offenses (@sferik)
@@ -455,11 +561,13 @@ Please file a bug if you notice a violation of semantic versioning.
 - _Dependency_: Upgrade Faraday to 0.12 (@sferik)
 
 ## [1.3.1] - 2017-03-03
+
 - TAG: [v1.3.1][1.3.1t]
 - Add support for Ruby 2.4.0 (@pschambacher)
 - _Dependency_: Upgrade Faraday to Faraday 0.11 (@mcfiredrill, @rhymes, @pschambacher)
 
 ## [1.3.0] - 2016-12-28
+
 - TAG: [v1.3.0][1.3.0t]
 - Add support for header-based authentication to the `Client` so it can be used across the library (@bjeanes)
 - Default to header-based authentication when getting a token from an authorisation code (@maletor)
@@ -470,26 +578,36 @@ Please file a bug if you notice a violation of semantic versioning.
 - Add support for Faraday 0.10 (@rhymes)
 
 ## [1.2.0] - 2016-07-01
+
 - TAG: [v1.2.0][1.2.0t]
 - Properly handle encoding of error responses (so we don't blow up, for example, when Google's response includes a ∞) (@Motoshi-Nishihira)
 - Make a copy of the options hash in `AccessToken#from_hash` to avoid accidental mutations (@Linuus)
 - Use `raise` rather than `fail` to throw exceptions (@sferik)
 
 ## [1.1.0] - 2016-01-30
+
 - TAG: [v1.1.0][1.1.0t]
 - Various refactors (eliminating `Hash#merge!` usage in `AccessToken#refresh!`, use `yield` instead of `#call`, freezing mutable objects in constants, replacing constants with class variables) (@sferik)
 - Add support for Rack 2, and bump various other dependencies (@sferik)
 
 ## [1.0.0] - 2014-07-09
+
 - TAG: [v1.0.0][1.0.0t]
+
 ### Added
+
 - Add an implementation of the MAC token spec.
+
 ### Fixed
+
 - Fix Base64.strict_encode64 incompatibility with Ruby 1.8.7.
 
 ## [0.5.0] - 2011-07-29
+
 - TAG: [v0.5.0][0.5.0t]
+
 ### Changed
+
 - *breaking* `oauth_token` renamed to `oauth_bearer`.
 - *breaking* `authorize_path` Client option renamed to `authorize_url`.
 - *breaking* `access_token_path` Client option renamed to `token_url`.
@@ -497,60 +615,79 @@ Please file a bug if you notice a violation of semantic versioning.
 - *breaking* `web_server` renamed to `auth_code`.
 
 ## [0.4.1] - 2011-04-20
+
 - TAG: [v0.4.1][0.4.1t]
 
 ## [0.4.0] - 2011-04-20
+
 - TAG: [v0.4.0][0.4.0t]
 
 ## [0.3.0] - 2011-04-08
+
 - TAG: [v0.3.0][0.3.0t]
 
 ## [0.2.0] - 2011-04-01
+
 - TAG: [v0.2.0][0.2.0t]
 
 ## [0.1.1] - 2011-01-12
+
 - TAG: [v0.1.1][0.1.1t]
 
 ## [0.1.0] - 2010-10-13
+
 - TAG: [v0.1.0][0.1.0t]
 
 ## [0.0.13] - 2010-08-17
+
 - TAG: [v0.0.13][0.0.13t]
 
 ## [0.0.12] - 2010-08-17
+
 - TAG: [v0.0.12][0.0.12t]
 
 ## [0.0.11] - 2010-08-17
+
 - TAG: [v0.0.11][0.0.11t]
 
 ## [0.0.10] - 2010-06-19
+
 - TAG: [v0.0.10][0.0.10t]
 
 ## [0.0.9] - 2010-06-18
+
 - TAG: [v0.0.9][0.0.9t]
 
 ## [0.0.8] - 2010-04-27
+
 - TAG: [v0.0.8][0.0.8t]
 
 ## [0.0.7] - 2010-04-27
+
 - TAG: [v0.0.7][0.0.7t]
 
 ## [0.0.6] - 2010-04-25
+
 - TAG: [v0.0.6][0.0.6t]
 
 ## [0.0.5] - 2010-04-23
+
 - TAG: [v0.0.5][0.0.5t]
 
 ## [0.0.4] - 2010-04-22
+
 - TAG: [v0.0.4][0.0.4t]
 
 ## [0.0.3] - 2010-04-22
+
 - TAG: [v0.0.3][0.0.3t]
 
 ## [0.0.2] - 2010-04-22
+
 - TAG: [v0.0.2][0.0.2t]
 
 ## [0.0.1] - 2010-04-22
+
 - TAG: [v0.0.1][0.0.1t]
 
 [gemfiles/readme]: gemfiles/README.md

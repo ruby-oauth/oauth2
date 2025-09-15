@@ -90,10 +90,13 @@ This document captures project-specific knowledge to streamline setup, testing, 
   - If your code relies on environment variables that drive activation (see "Activation env vars" below), prefer using rspec-stubbed_env:
     - it does not support stubbing with blocks, but it does automatically clean up after itself.
     - outside the example:
+      ```ruby
       include_context 'with stubbed env'
+      ```
     - in a before hook, or in an example:
+      ```ruby
       stub_env("FLOSS_FUNDING_MY_NS" => "Free-as-in-beer")
-      # example code continues
+      ```
   - If your spec needs to assert on console output, tag it with :check_output. By default, STDOUT is silenced.
   - Use Timecop for deterministic time-sensitive behavior as needed (require config/timecop is already done by spec_helper).
 
