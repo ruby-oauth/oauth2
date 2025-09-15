@@ -18,6 +18,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 ### Added
+- [gh!682][gh!682] - AccessToken: support Hash-based verb-dependent token transmission mode (e.g., {get: :query, post: :header})
 ### Changed
 ### Deprecated
 ### Removed

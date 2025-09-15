@@ -2,7 +2,7 @@
 #       visibility and discoverability on RubyGems.org.
 #       However, this gem sits underneath all my other gems, and also "depends on" many of them.
 #       So instead of depending on them directly it injects them into the other gem's gemspec on install.
-#       This gem its injected dev dependencies, will install on Ruby down to 2.3.x.
+#       This gem, and its injected dev dependencies, will install on Ruby down to 2.3.x.
 #       This gem does not inject runtime dependencies.
 #       Thus, dev dependencies injected into gemspecs must have
 #

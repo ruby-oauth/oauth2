@@ -446,6 +446,36 @@ RSpec.describe OAuth2::AccessToken do
         end
       end
 
+      context "with verb-dependent Hash mode" do
+        let(:mode_hash) do
+          {get: :query, post: :header, delete: :header, put: :body, patch: :body}
+        end
+        let(:options) { {mode: mode_hash} }
+
+        VERBS.each do |verb|
+          it "correctly handles a #{verb.to_s.upcase} via Hash" do
+            expected = mode_hash[verb] || :header
+            expect(subject.__send__(verb, "/token/#{expected}").body).to include(token)
+          end
+        end
+
+        context "with fallback to :header for missing key" do
+          let(:mode_hash) { {get: :query} }
+
+          it "defaults POST to header when not specified" do
+            expect(subject.post("/token/header").body).to include(token)
+          end
+        end
+
+        context "when invalid value" do
+          let(:mode_hash) { {get: "foobar"} }
+
+          it "raises an error for invalid mapping" do
+            expect { subject.get("/token/foobar") }.to raise_error("invalid :mode option of foobar")
+          end
+        end
+      end
+
       context "with client.options[:raise_errors] = false" do
         let(:options) { {raise_errors: false} }
 
