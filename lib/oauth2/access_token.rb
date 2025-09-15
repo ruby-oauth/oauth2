@@ -132,10 +132,15 @@ You may need to set `snaky: false`. See inline documentation for more info.
     # @option opts [FixNum, String] :expires_in (nil) the number of seconds in which the AccessToken will expire
     # @option opts [FixNum, String] :expires_at (nil) the epoch time in seconds in which AccessToken will expire
     # @option opts [FixNum, String] :expires_latency (nil) the number of seconds by which AccessToken validity will be reduced to offset latency, @version 2.0+
-    # @option opts [Symbol or callable] :mode (:header) the transmission mode of the Access Token parameter value:
-    #    either one of :header, :body or :query, or a callable that accepts a request-verb parameter
+    # @option opts [Symbol, Hash, or callable] :mode (:header) the transmission mode of the Access Token parameter value:
+    #    either one of :header, :body or :query; or a Hash with verb symbols as keys mapping to one of these symbols
+    #    (e.g., {get: :query, post: :header, delete: :header}); or a callable that accepts a request-verb parameter
     #    and returns one of these three symbols.
     # @option opts [String] :header_format ('Bearer %s') the string format to use for the Authorization header
+    #
+    # @example Verb-dependent Hash mode
+    #   # Send token in query for GET, in header for POST/DELETE, in body for PUT/PATCH
+    #   OAuth2::AccessToken.new(client, token, mode: {get: :query, post: :header, delete: :header, put: :body, patch: :body})
     # @option opts [String] :param_name ('access_token') the parameter name to use for transmission of the
     #    Access Token value in :body or :query transmission mode
     # @option opts [String] :token_name (nil) the name of the response parameter that identifies the access token
@@ -372,7 +377,18 @@ You may need to set `snaky: false`. See inline documentation for more info.
   private
 
     def configure_authentication!(opts, verb)
-      mode = options[:mode].respond_to?(:call) ? options[:mode].call(verb) : options[:mode]
+      mode_opt = options[:mode]
+      mode =
+        if mode_opt.respond_to?(:call)
+          mode_opt.call(verb)
+        elsif mode_opt.is_a?(Hash)
+          key = verb.to_sym
+          # Try symbol key first, then string key; default to :header when missing
+          mode_opt[key] || mode_opt[key.to_s] || :header
+        else
+          mode_opt
+        end
+
       case mode
       when :header
         opts[:headers] ||= {}

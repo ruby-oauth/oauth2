@@ -68,26 +68,30 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.16...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.17...HEAD">Unreleased</a></h2>
 <h3 id="added">Added</h3>
-<h3 id="changed">Changed</h3>
-<h3 id="deprecated">Deprecated</h3>
-<h3 id="removed">Removed</h3>
-<h3 id="fixed">Fixed</h3>
-<h3 id="security">Security</h3>
+<ul>
+  <li>[gh!682][gh!682] - AccessToken: support Hash-based verb-dependent token transmission mode (e.g., :query, post: :header)
+    <h3 id="changed">Changed</h3>
+    <h3 id="deprecated">Deprecated</h3>
+    <h3 id="removed">Removed</h3>
+    <h3 id="fixed">Fixed</h3>
+    <h3 id="security">Security</h3>
+  </li>
+</ul>
 
 <h2 id="2016---2025-09-14">
 <a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.15...v2.0.16">2.0.16</a> - 2025-09-14</h2>
 <ul>
   <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.16">v2.0.16</a>
 </li>
-  <li>COVERAGE: 96.33% – 394/409 lines in 14 files</li>
-  <li>BRANCH COVERAGE: 86.49% – 64/74 branches in 14 files</li>
+  <li>COVERAGE: 100.00% – 520/520 lines in 14 files</li>
+  <li>BRANCH COVERAGE: 100.00% – 176/176 branches in 14 files</li>
   <li>90.48% documented
     <h3 id="added-1">Added</h3>
   </li>
   <li>
-<a href="https://github.com/ruby-oauth/oauth2/pull/680">gh!680—</a>E2E example using mock test server added in v2.0.11 by @pboling
+<a href="https://github.com/ruby-oauth/oauth2/pull/680">gh!680</a> - E2E example using mock test server added in v2.0.11 by @pboling
     <ul>
       <li>mock-oauth2-server upgraded to v2.3.0
         <ul>
@@ -108,9 +112,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/678">gh!678</a> - Many improvements to make CI more resilient (past/future proof) by @pboling</li>
   <li>
-<a href="https://github.com/ruby-oauth/oauth2/pull/681">gh!681</a> - Upgrade to kettle-dev v1.1.19
-    <h3 id="security-1">Security</h3>
-  </li>
+<a href="https://github.com/ruby-oauth/oauth2/pull/681">gh!681</a> - Upgrade to kettle-dev v1.1.19</li>
 </ul>
 
 <h2 id="2015---2025-09-08">
@@ -145,9 +147,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
     <h3 id="fixed-1">Fixed</h3>
   </li>
   <li>Remove accidentally duplicated lines, and fix typos in CHANGELOG.md</li>
-  <li>point badge to the correct workflow for Ruby 2.3 (caboose.yml)
-    <h3 id="security-2">Security</h3>
-  </li>
+  <li>point badge to the correct workflow for Ruby 2.3 (caboose.yml)</li>
 </ul>
 
 <h2 id="2014---2025-08-31">
@@ -221,7 +221,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   </li>
   <li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/660">gh!660</a> - Links in README (including link to HEAD documentation) by @pboling
-    <h3 id="security-3">Security</h3>
+    <h3 id="security-1">Security</h3>
   </li>
 </ul>
 
@@ -1075,7 +1075,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Sep 14 15:09:40 2025 by
+  Generated on Mon Sep 15 06:27:47 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.5).
 </div>

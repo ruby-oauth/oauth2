@@ -17,7 +17,7 @@ module OAuth2
     def patch: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
     def delete: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
     def headers: () -> Hash[String, String]
-    def configure_authentication!: (Hash[Symbol, untyped]) -> void
+    def configure_authentication!: (Hash[Symbol, untyped], Symbol) -> void
     def convert_expires_at: (untyped) -> (Time | Integer | nil)
 
     attr_accessor response: OAuth2::Response

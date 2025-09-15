@@ -153,7 +153,7 @@ Thanks, @pboling / @galtzo
   spec.add_development_dependency("rexml", "~> 3.2", ">= 3.2.5")        # ruby >= 0
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 1.1", ">= 1.1.9")   # ruby >= 2.3
+  spec.add_development_dependency("kettle-dev", "~> 1.1", ">= 1.1.20")              # ruby >= 2.3.0
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.2")                      # ruby >= 2.0.0
