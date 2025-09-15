@@ -26,8 +26,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [2.0.16] - 2025-09-14
 - TAG: [v2.0.16][2.0.16t]
-- COVERAGE: 96.33% -- 394/409 lines in 14 files
-- BRANCH COVERAGE: 86.49% -- 64/74 branches in 14 files
+- COVERAGE: 100.00% -- 520/520 lines in 14 files
+- BRANCH COVERAGE: 100.00% -- 176/176 branches in 14 files
 - 90.48% documented
 ### Added
 - [gh!680][gh!680] - E2E example using mock test server added in v2.0.11 by @pboling
@@ -554,7 +554,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.16...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.17...HEAD
+[2.0.17]: https://github.com/ruby-oauth/oauth2/compare/v2.0.16...v2.0.17
+[2.0.17t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.17
 [2.0.16]: https://github.com/ruby-oauth/oauth2/compare/v2.0.15...v2.0.16
 [2.0.16t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.16
 [2.0.15]: https://github.com/ruby-oauth/oauth2/compare/v2.0.14...v2.0.15
