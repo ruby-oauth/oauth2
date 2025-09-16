@@ -145,7 +145,7 @@ If it seems like you are in the wrong place, you might try one of these:
 
 ### Compatibility
 
-* Operating Systems: Linux, MacOS, Windows
+* Operating Systems: Linux, macOS, Windows
 * MRI Ruby @ v2.3, v2.4, v2.5, v2.6, v2.7, v3.0, v3.1, v3.2, v3.3, v3.4, HEAD
     * NOTE: This gem may still _install_ and _run_ on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
 * JRuby @ v9.4, v10.0, HEAD
@@ -214,7 +214,7 @@ The various versions of each are tested via the Ruby test matrix, along with wha
 * time
 * logger (removed from stdlib in Ruby 3.5 so added as runtime dependency in v2.0.10)
 
-If you use a gem version of a core Ruby library it should work fine!
+If you use a gem version of a core Ruby library, it should work fine!
 
 </details>
 
@@ -414,11 +414,11 @@ gem install oauth2
 <details>
   <summary>For Medium or High Security Installations</summary>
 
-This gem is cryptographically signed, and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
+This gem is cryptographically signed and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
 [stone_checksums][💎stone_checksums]. Be sure the gem you install hasn’t been tampered with
 by following the instructions below.
 
-Add my public key (if you haven’t already, expires 2045-04-29) as a trusted certificate:
+Add my public key (if you haven’t already; will expire 2045-04-29) as a trusted certificate:
 
 ```console
 gem cert --add <(curl -Ls https://raw.github.com/galtzo-floss/certs/main/pboling.pem)
@@ -493,7 +493,7 @@ see [gemfiles/README.md](gemfiles/README.md), then submit a PR to the correct ma
 If something doesn't work on one of these interpreters, it's a bug.
 
 This library may inadvertently work (or seem to work) on other Ruby
-implementations, however support will only be provided for the versions listed
+implementations; however, support will only be provided for the versions listed
 above.
 
 If you would like this library to support another Ruby version, you may
@@ -532,13 +532,13 @@ Some OAuth 2.0 standards legitimately have multiple tokens.
 You may need to subclass `OAuth2::AccessToken`, or write your own custom alternative to it, and pass it in.
 Specify your custom class with the `access_token_class` option.
 
-If you only need one token you can, as of v2.0.10,
+If you only need one token, you can, as of v2.0.10,
 specify the exact token name you want to extract via the `OAuth2::AccessToken` using
 the `token_name` option.
 
 You'll likely need to do some source diving.
 This gem has 100% test coverage for lines and branches, so the specs are a great place to look for ideas.
-If you have time and energy please contribute to the documentation!
+If you have time and energy, please contribute to the documentation!
 
 ## 🔧 Basic Usage
 
@@ -559,7 +559,7 @@ response.class.name
 
 ### Relative `authorize_url` and `token_url` (Not on site root, Just Works!)
 
-In above example, the default Authorization URL is `oauth/authorize` and default Access Token URL is `oauth/token`, and, as they are missing a leading `/`, both are relative.
+In the above example, the default Authorization URL is `oauth/authorize` and default Access Token URL is `oauth/token`, and, as they are missing a leading `/`, both are relative.
 
 ```ruby
 client = OAuth2::Client.new("client_id", "client_secret", site: "https://example.org/nested/directory/on/your/server")
@@ -752,16 +752,18 @@ a hash of the values), or `from_kvform` (if you have an
 `application/x-www-form-urlencoded` encoded string of the values).
 
 Options (since v2.0.x unless noted):
-- expires_latency (Integer | nil): Seconds to subtract from expires_in when computing #expired? to offset latency.
-- token_name (String | Symbol | nil): When multiple token-like fields exist in responses, select the field name to use as the access token (since v2.0.10).
-- mode (Symbol | Proc | Hash): Controls how the token is transmitted on requests made via this AccessToken instance.
-  - :header — Send as Authorization: Bearer <token> header (default and preferred by OAuth 2.1 draft guidance).
-  - :query — Send as access_token query parameter (discouraged in general, but required by some providers).
+- `expires_latency` (Integer | nil): Seconds to subtract from expires_in when computing #expired? to offset latency.
+- `token_name` (String | Symbol | nil): When multiple token-like fields exist in responses, select the field name to use as the access token (since v2.0.10).
+- `mode` (Symbol | Proc | Hash): Controls how the token is transmitted on requests made via this AccessToken instance.
+  - `:header` — Send as Authorization: Bearer <token> header (default and preferred by OAuth 2.1 draft guidance).
+  - `:query` — Send as access_token query parameter (discouraged in general, but required by some providers).
   - Verb-dependent (since v2.0.15): Provide either:
-    - a Proc taking |verb| and returning :header or :query, or
-    - a Hash with verb symbols as keys, for example: {get: :query, post: :header, delete: :header}.
+    - a `Proc` taking `|verb|` and returning `:header` or `:query`, or
+    - a `Hash` with verb symbols as keys, for example `{get: :query, post: :header, delete: :header}`.
 
-Note: Verb-dependent mode was added in v2.0.15 to support providers like Instagram that require query mode for GET and header mode for POST/DELETE.
+Note: Verb-dependent mode supports providers like Instagram that require query mode for `GET` and header mode for `POST`/`DELETE`
+- Verb-dependent mode via `Proc` was added in v2.0.15
+- Verb-dependent mode via `Hash` was added in v2.0.16
 
 ### OAuth2::Error
 
