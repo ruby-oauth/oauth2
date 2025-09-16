@@ -266,6 +266,10 @@ Alternatively:
 
 | Version | Release Date | CHANGELOG                             | README                          |
 |---------|--------------|---------------------------------------|---------------------------------|
+| 2.0.17  | 2025-09-15   | [v2.0.17 CHANGELOG][2.0.17-changelog] | [v2.0.17 README][2.0.17-readme] |
+| 2.0.16  | 2025-09-14   | [v2.0.16 CHANGELOG][2.0.16-changelog] | [v2.0.16 README][2.0.16-readme] |
+| 2.0.15  | 2025-09-08   | [v2.0.15 CHANGELOG][2.0.15-changelog] | [v2.0.15 README][2.0.15-readme] |
+| 2.0.14  | 2025-08-31   | [v2.0.14 CHANGELOG][2.0.14-changelog] | [v2.0.14 README][2.0.14-readme] |
 | 2.0.13  | 2025-08-30   | [v2.0.13 CHANGELOG][2.0.13-changelog] | [v2.0.13 README][2.0.13-readme] |
 | 2.0.12  | 2025-05-31   | [v2.0.12 CHANGELOG][2.0.12-changelog] | [v2.0.12 README][2.0.12-readme] |
 | 2.0.11  | 2025-05-23   | [v2.0.11 CHANGELOG][2.0.11-changelog] | [v2.0.11 README][2.0.11-readme] |
@@ -283,6 +287,10 @@ Alternatively:
 
 </details>
 
+[2.0.17-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2017---2025-09-15
+[2.0.16-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2016---2025-09-14
+[2.0.15-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2015---2025-09-08
+[2.0.14-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2014---2025-08-31
 [2.0.13-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2013---2025-08-30
 [2.0.12-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2012---2025-05-31
 [2.0.11-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2011---2025-05-23
@@ -298,6 +306,10 @@ Alternatively:
 [2.0.1-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#201---2022-06-22
 [2.0.0-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#200---2022-06-21
 
+[2.0.17-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.17/README.md
+[2.0.16-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.16/README.md
+[2.0.15-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.15/README.md
+[2.0.14-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.14/README.md
 [2.0.13-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.13/README.md
 [2.0.12-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.12/README.md
 [2.0.11-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.11/README.md
@@ -1617,7 +1629,7 @@ Thanks for RTFM. ☺️
 [📌gitmoji]:https://gitmoji.dev
 [📌gitmoji-img]:https://img.shields.io/badge/gitmoji_commits-%20%F0%9F%98%9C%20%F0%9F%98%8D-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.409-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
+[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.526-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
 [🔐security]: SECURITY.md
 [🔐security-img]: https://img.shields.io/badge/security-policy-259D6C.svg?style=flat
 [📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year

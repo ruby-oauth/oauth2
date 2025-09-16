@@ -20,8 +20,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- [gh!682][gh!682] - AccessToken: support Hash-based verb-dependent token transmission mode (e.g., {get: :query, post: :header})
-
 ### Changed
 
 ### Deprecated
@@ -31,6 +29,17 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+## [2.0.17] - 2025-09-15
+
+- TAG: [v2.0.17][2.0.17t]
+- COVERAGE: 100.00% -- 526/526 lines in 14 files
+- BRANCH COVERAGE: 100.00% -- 178/178 branches in 14 files
+- 90.48% documented
+
+### Added
+
+- [gh!682][gh!682] - AccessToken: support Hash-based verb-dependent token transmission mode (e.g., {get: :query, post: :header})
 
 ## [2.0.16] - 2025-09-14
 
