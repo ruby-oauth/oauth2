@@ -20,6 +20,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- [gh!683][gh!683] Improve documentation by @pboling
+
 ### Changed
 
 ### Deprecated
@@ -29,6 +31,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+[gh!683]: https://github.com/ruby-oauth/oauth2/pull/683
 
 ## [2.0.17] - 2025-09-15
 
@@ -40,6 +44,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Added
 
 - [gh!682][gh!682] - AccessToken: support Hash-based verb-dependent token transmission mode (e.g., {get: :query, post: :header})
+
+[gh!682]: https://github.com/ruby-oauth/oauth2/pull/682
 
 ## [2.0.16] - 2025-09-14
 

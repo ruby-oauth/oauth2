@@ -62,9 +62,10 @@ NOTE: `header` - The content type specified in the `curl` is already the default
 </details>
 
 <details>
-<summary>Complete E2E single file script against [navikt/mock-oauth2-server](https://github.com/navikt/mock-oauth2-server)</summary>
+<summary>Complete E2E single file script against mock-oauth2-server</summary>
 
-- E2E example using the mock test server added in v2.0.11
+- E2E example uses [navikt/mock-oauth2-server](https://github.com/navikt/mock-oauth2-server), which was added in v2.0.11
+- E2E example does not ship with the released gem, so clone the source to play with it.
 
 ```console
 docker compose -f docker-compose-ssl.yml up -d --wait
