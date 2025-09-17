@@ -45,9 +45,7 @@ jobs:
             rubygems: latest
             bundler: latest
 
-          # truffleruby-24.1
-          #   (according to documentation: targets Ruby 3.3 compatibility)
-          #   (according to runtime: targets Ruby 3.2 compatibility)
+          # truffleruby-24.1 (targets Ruby 3.3 compatibility)
           - ruby: "truffleruby"
             appraisal: "current"
             exec_cmd: "rake test"
