@@ -144,7 +144,7 @@ appraise "ruby-2-7" do
   eval_gemfile "modular/logger_v1_7.gemfile"
   eval_gemfile "modular/multi_xml_v0_6.gemfile"
   eval_gemfile "modular/rack_v3.gemfile"
-  eval_gemfile "modular/x_std_libs/r3.1/libs.gemfile"
+  eval_gemfile "modular/x_std_libs/r2/libs.gemfile"
 end
 
 appraise "ruby-3-0" do
