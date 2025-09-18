@@ -20,9 +20,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- [gh!683][gh!683] Improve documentation by @pboling
+- [gh!683][gh!683], [gh!684][gh!684] - Improve documentation by @pboling
 
 ### Changed
+
+- [gh!685][gh!685] - upgrade kettle-dev v1.1.24 by pboling
 
 ### Deprecated
 
@@ -33,6 +35,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Security
 
 [gh!683]: https://github.com/ruby-oauth/oauth2/pull/683
+[gh!684]: https://github.com/ruby-oauth/oauth2/pull/684
+[gh!685]: https://github.com/ruby-oauth/oauth2/pull/685
 
 ## [2.0.17] - 2025-09-15
 
