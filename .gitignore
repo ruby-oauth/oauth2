@@ -23,6 +23,7 @@ Appraisal.*.gemfile.lock
 /_yardoc/
 /rdoc/
 /doc/
+/blogs/
 
 # Ruby Version Managers (RVM, rbenv, etc)
 # Ignored because we currently use .tool-versions
