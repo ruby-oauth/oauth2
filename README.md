@@ -1290,6 +1290,10 @@ Support us with a monthly donation and help us continue our activities. [[Become
 
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:START -->
 No sponsors yet. Be the first!
+
+### Open Collective for Donors
+
+Watch this space!
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:END -->
 
 Become a sponsor and get your logo on our README on GitHub with a link to your site. [[Become a sponsor](https://opencollective.com/ruby-oauth#sponsor)]
