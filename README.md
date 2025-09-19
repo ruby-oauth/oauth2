@@ -1280,23 +1280,30 @@ and [Tidelift][🏙️entsup-tidelift].
 
 ### Open Collective for Individuals
 
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/kettle-rb#backer)]
+
+NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
+
 <!-- OPENCOLLECTIVE-INDIVIDUALS:START -->
 No backers yet. Be the first!
 <!-- OPENCOLLECTIVE-INDIVIDUALS:END -->
 
-Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/ruby-oauth#backer)]
-
 ### Open Collective for Organizations
+
+Become a sponsor and get your logo on our README on GitHub with a link to your site. [[Become a sponsor](https://opencollective.com/kettle-rb#sponsor)]
+
+NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
 
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:START -->
 No sponsors yet. Be the first!
 
 ### Open Collective for Donors
 
-Watch this space!
+<a href="https://opencollective.com/ruby-oauth/backer/0/website" target="_blank"><img src="https://opencollective.com/ruby-oauth/backer/0/avatar.svg"></a>
+
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:END -->
 
-Become a sponsor and get your logo on our README on GitHub with a link to your site. [[Become a sponsor](https://opencollective.com/ruby-oauth#sponsor)]
+[kettle-readme-backers]: https://github.com/kettle-rb/kettle-dev/blob/main/exe/kettle-readme-backers
 
 ### Another way to support open-source
 
