@@ -25,6 +25,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 
 - [gh!685][gh!685] - upgrade kettle-dev v1.1.24 by pboling
+- upgrade kettle-dev v1.1.26 by pboling
+  - Add open collective donors to README
 
 ### Deprecated
 
