@@ -103,7 +103,7 @@ GEM
     json (2.13.2)
     jwt (3.1.2)
       base64
-    kettle-dev (1.1.25)
+    kettle-dev (1.1.26)
     kettle-soup-cover (1.0.10)
       simplecov (~> 0.22)
       simplecov-cobertura (~> 3.0)
