@@ -103,6 +103,7 @@ Thanks, @pboling / @galtzo
     "CONTRIBUTING.md",
     "FUNDING.md",
     "LICENSE.txt",
+    "IRP.md",
     "OIDC.md",
     "README.md",
     "REEK",
