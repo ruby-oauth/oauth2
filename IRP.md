@@ -98,8 +98,7 @@ After an incident, perform a brief post-incident review covering:
 ## References
 - See `SECURITY.md` for the project's official disclosure channel (Tidelift).
 
-Appendix: Example checklist for an incident
-------------------------------------------
+## Appendix: Example checklist for an incident
 - [ ] Acknowledge report to reporter (24-72 hours)
 - [ ] Reproduce and classify severity
 - [ ] Prepare and test a fix in a branch
