@@ -2,30 +2,29 @@
 
 Status: Draft
 
-Purpose
--------
+## Purpose
+
 This Incident Response Plan (IRP) defines the steps the project maintainer(s) will follow when handling security incidents related to the `oauth2` gem. It is written for a small project with a single primary maintainer and is intended to be practical, concise, and actionable.
 
-Scope
------
+## Scope
+
 Applies to security incidents that affect the `oauth2` codebase, releases (gems), CI/CD infrastructure related to building and publishing the gem, repository credentials, or any compromise of project infrastructure that could impact users.
 
-Key assumptions
+## Key assumptions
 - This project is maintained primarily by a single maintainer.
 - Public vulnerability disclosure is handled via Tidelift (see `SECURITY.md`).
 - The maintainer will act as incident commander unless otherwise delegated.
 
-Contact & Roles
----------------
+## Contact & Roles
+
 - Incident Commander: Primary maintainer (repo owner). Responsible for coordinating triage, remediation, and communications.
 - Secondary Contact: (optional) A trusted collaborator or organization contact if available.
 
-If you are an external reporter
+### If you are an external reporter
 - Do not publicly disclose details of an active vulnerability before coordination via Tidelift.
 - See `SECURITY.md` for Tidelift disclosure instructions. If the reporter has questions and cannot use Tidelift, they may open a direct encrypted report as described in `SECURITY.md` (if available) or email the maintainer contact listed in the repository.
 
-Incident Handling Workflow (high level)
----------------------------------------
+## Incident Handling Workflow (high level)
 1. Identification & Reporting
    - Reports may arrive via Tidelift, issue tracker, direct email, or third-party advisories.
    - Immediately acknowledge receipt (within 24-72 hours) via the reporting channel.
