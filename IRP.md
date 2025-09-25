@@ -83,8 +83,7 @@ Runbook: Quick steps for a maintainer to patch and release
 7. Build and push the gem: `gem build oauth2.gemspec && gem push pkg/...` (coordinate with Tidelift before public push if disclosure is coordinated).
 8. Publish a release on GitHub and ensure the Tidelift advisory is posted.
 
-Operational notes
------------------
+## Operational notes
 - Secrets: Use local encrypted storage for any sensitive reporter data. If repository or CI secrets may be compromised, rotate them immediately and update dependent services.
 - Access control: Limit who can publish gems and who has admin access to the repo. Keep an up-to-date list of collaborators in a secure place.
 
