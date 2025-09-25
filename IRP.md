@@ -88,8 +88,7 @@ Operational notes
 - Secrets: Use local encrypted storage for any sensitive reporter data. If repository or CI secrets may be compromised, rotate them immediately and update dependent services.
 - Access control: Limit who can publish gems and who has admin access to the repo. Keep an up-to-date list of collaborators in a secure place.
 
-Legal & regulatory
-------------------
+## Legal & regulatory
 - If the incident involves user data or has legal implications, consult legal counsel or the maintainers' employer as appropriate. The maintainer should document the timeline and all communications.
 
 ## Retrospective & continuous improvement
