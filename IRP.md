@@ -64,8 +64,7 @@ Preservation of evidence
 - Preserve all reporter-provided data, logs, and reproducer code in a secure location (local encrypted storage or private branch) for the investigation.
 - Do not publish evidence that would enable exploitation before coordinated disclosure.
 
-Communication templates
------------------------
+## Communication templates
 Acknowledgement (to reporter)
 
 "Thank you for reporting this issue. I've received your report and will triage it within 72 hours. If you can, please provide reproduction steps, affected versions, and any exploit PoC. I will coordinate disclosure through Tidelift per the project's security policy."
