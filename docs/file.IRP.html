@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: IRP
+  
+    &mdash; Documentation by YARD 0.9.37
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css" />
+
+  <link rel="stylesheet" href="css/common.css" type="text/css" />
+
+<script type="text/javascript">
+  pathId = "IRP";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: IRP</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="incident-response-plan-irp">Incident Response Plan (IRP)</h1>
+
+<p>Status: Draft</p>
+
+<h2 id="purpose">Purpose</h2>
+<p>This Incident Response Plan (IRP) defines the steps the project maintainer(s) will follow when handling security incidents related to the <code>oauth2</code> gem. It is written for a small project with a single primary maintainer and is intended to be practical, concise, and actionable.</p>
+
+<h2 id="scope">Scope</h2>
+<p>Applies to security incidents that affect the <code>oauth2</code> codebase, releases (gems), CI/CD infrastructure related to building and publishing the gem, repository credentials, or any compromise of project infrastructure that could impact users.</p>
+
+<p>Key assumptions</p>
+<ul>
+  <li>This project is maintained primarily by a single maintainer.</li>
+  <li>Public vulnerability disclosure is handled via Tidelift (see <code>SECURITY.md</code>).</li>
+  <li>The maintainer will act as incident commander unless otherwise delegated.</li>
+</ul>
+
+<h2 id="contact--roles">Contact &amp; Roles</h2>
+<ul>
+  <li>Incident Commander: Primary maintainer (repo owner). Responsible for coordinating triage, remediation, and communications.</li>
+  <li>Secondary Contact: (optional) A trusted collaborator or organization contact if available.</li>
+</ul>
+
+<p>If you are an external reporter</p>
+<ul>
+  <li>Do not publicly disclose details of an active vulnerability before coordination via Tidelift.</li>
+  <li>See <code>SECURITY.md</code> for Tidelift disclosure instructions. If the reporter has questions and cannot use Tidelift, they may open a direct encrypted report as described in <code>SECURITY.md</code> (if available) or email the maintainer contact listed in the repository.</li>
+</ul>
+
+<h2 id="incident-handling-workflow-high-level">Incident Handling Workflow (high level)</h2>
+<ol>
+  <li>Identification &amp; Reporting
+    <ul>
+      <li>Reports may arrive via Tidelift, issue tracker, direct email, or third-party advisories.</li>
+      <li>Immediately acknowledge receipt (within 24-72 hours) via the reporting channel.</li>
+    </ul>
+  </li>
+  <li>Triage &amp; Initial Assessment (first 72 hours)
+    <ul>
+      <li>Confirm the report is not duplicative and gather: reproducer, affected versions, attack surface, exploitability, and CVSS-like severity estimate.</li>
+      <li>Verify the issue against the codebase and reproduce locally if possible.</li>
+      <li>Determine scope: which versions are affected, whether the issue is in code paths executed in common setups, and whether a workaround exists.</li>
+    </ul>
+  </li>
+  <li>Containment &amp; Mitigation
+    <ul>
+      <li>If a simple mitigation or workaround (configuration change, safe default, or recommended upgrade) exists, document it clearly in the issue/Tidelift advisory.</li>
+      <li>If immediate removal of a release is required (rare), consult Tidelift for coordinated takedown and notify package hosts if applicable.</li>
+    </ul>
+  </li>
+  <li>Remediation &amp; Patch
+    <ul>
+      <li>Prepare a fix in a branch with tests and changelog entries. Prefer minimal, well-tested changes.</li>
+      <li>Include tests that reproduce the faulty behavior and demonstrate the fix.</li>
+      <li>Hardening: add fuzz tests, input validation, or additional checks as appropriate.</li>
+    </ul>
+  </li>
+  <li>Release &amp; Disclosure
+    <ul>
+      <li>Coordinate disclosure through Tidelift per <code>SECURITY.md</code> timelines. Aim for a coordinated disclosure and patch release to minimize risk to users.</li>
+      <li>Publish a patch release (increment gem version) and an advisory via Tidelift.</li>
+      <li>Update <code>CHANGELOG.md</code> and repository release notes with non-sensitive details.</li>
+    </ul>
+  </li>
+  <li>Post-Incident
+    <ul>
+      <li>Produce a short postmortem: timeline, root cause, actions taken, and follow-ups.</li>
+      <li>Add/adjust tests and CI checks to prevent regressions.</li>
+      <li>If credentials or infrastructure were compromised, rotate secrets and audit access.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="severity-classification-guidance">Severity classification (guidance)</h2>
+<ul>
+  <li>High/Critical: Remote code execution, data exfiltration, or any vulnerability that can be exploited without user interaction. Immediate action and prioritized patching.</li>
+  <li>Medium: Privilege escalation, sensitive information leaks that require specific conditions. Patch in the next release cycle with advisory.</li>
+  <li>Low: Minor information leaks, UI issues, or non-exploitable bugs. Fix normally and include in the next scheduled release.</li>
+</ul>
+
+<h2 id="preservation-of-evidence">Preservation of evidence</h2>
+<ul>
+  <li>Preserve all reporter-provided data, logs, and reproducer code in a secure location (local encrypted storage or private branch) for the investigation.</li>
+  <li>Do not publish evidence that would enable exploitation before coordinated disclosure.</li>
+</ul>
+
+<h2 id="communication-templates">Communication templates</h2>
+<p>Acknowledgement (to reporter)</p>
+
+<p>“Thank you for reporting this issue. I’ve received your report and will triage it within 72 hours. If you can, please provide reproduction steps, affected versions, and any exploit PoC. I will coordinate disclosure through Tidelift per the project’s security policy.”</p>
+
+<p>Public advisory (after patch is ready)</p>
+
+<p>“A security advisory for oauth2 (versions X.Y.Z) has been published via Tidelift. Please upgrade to version A.B.C which patches [brief description]. See the advisory for details and recommended mitigations.”</p>
+
+<h2 id="runbook-quick-steps-for-a-maintainer-to-patch-and-release">Runbook: Quick steps for a maintainer to patch and release</h2>
+<ol>
+  <li>Create a branch: <code>git checkout -b fix/security-brief-description</code>
+</li>
+  <li>Reproduce the issue locally and add a regression spec in <code>spec/</code>.</li>
+  <li>Implement the fix and run the test suite: <code>bundle exec rspec</code> (or the project’s preferred test command).</li>
+  <li>Bump version in <code>lib/oauth2/version.rb</code> following semantic versioning.</li>
+  <li>Update <code>CHANGELOG.md</code> with an entry describing the fix (avoid exploit details).</li>
+  <li>Commit and push the branch, open a PR, and merge after approvals.</li>
+  <li>Build and push the gem: <code>gem build oauth2.gemspec &amp;&amp; gem push pkg/...</code> (coordinate with Tidelift before public push if disclosure is coordinated).</li>
+  <li>Publish a release on GitHub and ensure the Tidelift advisory is posted.</li>
+</ol>
+
+<h2 id="operational-notes">Operational notes</h2>
+<ul>
+  <li>Secrets: Use local encrypted storage for any sensitive reporter data. If repository or CI secrets may be compromised, rotate them immediately and update dependent services.</li>
+  <li>Access control: Limit who can publish gems and who has admin access to the repo. Keep an up-to-date list of collaborators in a secure place.</li>
+</ul>
+
+<h2 id="legal--regulatory">Legal &amp; regulatory</h2>
+<ul>
+  <li>If the incident involves user data or has legal implications, consult legal counsel or the maintainers’ employer as appropriate. The maintainer should document the timeline and all communications.</li>
+</ul>
+
+<h2 id="retrospective--continuous-improvement">Retrospective &amp; continuous improvement</h2>
+<p>After an incident, perform a brief post-incident review covering:</p>
+<ul>
+  <li>What happened and why</li>
+  <li>What was done to contain and remediate</li>
+  <li>What tests or process changes will prevent recurrence</li>
+  <li>Assign owners and deadlines for follow-up tasks</li>
+</ul>
+
+<h2 id="references">References</h2>
+<ul>
+  <li>See <code>SECURITY.md</code> for the project’s official disclosure channel (Tidelift).</li>
+</ul>
+
+<h2 id="appendix-example-checklist-for-an-incident">Appendix: Example checklist for an incident</h2>
+<ul class="task-list">
+  <li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>Acknowledge report to reporter (24-72 hours)</li>
+  <li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>Reproduce and classify severity</li>
+  <li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>Prepare and test a fix in a branch</li>
+  <li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>Coordinate disclosure via Tidelift</li>
+  <li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>Publish patch release and advisory</li>
+  <li class="task-list-item">
+<input type="checkbox" class="task-list-item-checkbox" disabled>Postmortem and follow-up actions</li>
+</ul>
+</div></div>
+
+      <div id="footer">
+  Generated on Thu Sep 25 08:47:26 2025 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.37 (ruby-3.4.5).
+</div>
+
+    </div>
+  </body>
+</html>
