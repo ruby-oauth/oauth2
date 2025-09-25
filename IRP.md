@@ -59,8 +59,7 @@ Severity classification (guidance)
 - Medium: Privilege escalation, sensitive information leaks that require specific conditions. Patch in the next release cycle with advisory.
 - Low: Minor information leaks, UI issues, or non-exploitable bugs. Fix normally and include in the next scheduled release.
 
-Preservation of evidence
-------------------------
+## Preservation of evidence
 - Preserve all reporter-provided data, logs, and reproducer code in a secure location (local encrypted storage or private branch) for the investigation.
 - Do not publish evidence that would enable exploitation before coordinated disclosure.
 
