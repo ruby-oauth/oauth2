@@ -92,8 +92,7 @@ Legal & regulatory
 ------------------
 - If the incident involves user data or has legal implications, consult legal counsel or the maintainers' employer as appropriate. The maintainer should document the timeline and all communications.
 
-Retrospective & continuous improvement
--------------------------------------
+## Retrospective & continuous improvement
 After an incident, perform a brief post-incident review covering:
 - What happened and why
 - What was done to contain and remediate
