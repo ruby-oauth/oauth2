@@ -72,8 +72,7 @@ Public advisory (after patch is ready)
 
 "A security advisory for oauth2 (versions X.Y.Z) has been published via Tidelift. Please upgrade to version A.B.C which patches [brief description]. See the advisory for details and recommended mitigations."
 
-Runbook: Quick steps for a maintainer to patch and release
----------------------------------------------------------
+## Runbook: Quick steps for a maintainer to patch and release
 1. Create a branch: `git checkout -b fix/security-brief-description`
 2. Reproduce the issue locally and add a regression spec in `spec/`.
 3. Implement the fix and run the test suite: `bundle exec rspec` (or the project's preferred test command).
