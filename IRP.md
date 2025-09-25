@@ -53,8 +53,7 @@ Applies to security incidents that affect the `oauth2` codebase, releases (gems)
    - Add/adjust tests and CI checks to prevent regressions.
    - If credentials or infrastructure were compromised, rotate secrets and audit access.
 
-Severity classification (guidance)
----------------------------------
+## Severity classification (guidance)
 - High/Critical: Remote code execution, data exfiltration, or any vulnerability that can be exploited without user interaction. Immediate action and prioritized patching.
 - Medium: Privilege escalation, sensitive information leaks that require specific conditions. Patch in the next release cycle with advisory.
 - Low: Minor information leaks, UI issues, or non-exploitable bugs. Fix normally and include in the next scheduled release.
