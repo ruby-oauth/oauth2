@@ -100,8 +100,7 @@ After an incident, perform a brief post-incident review covering:
 - What tests or process changes will prevent recurrence
 - Assign owners and deadlines for follow-up tasks
 
-References
-----------
+## References
 - See `SECURITY.md` for the project's official disclosure channel (Tidelift).
 
 Appendix: Example checklist for an incident
