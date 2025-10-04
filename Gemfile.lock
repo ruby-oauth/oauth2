@@ -33,7 +33,7 @@ GEM
       rake (>= 10)
       thor (>= 0.14)
     ast (2.4.3)
-    backports (3.25.1)
+    backports (3.25.2)
     base64 (0.3.0)
     benchmark (0.4.1)
     bigdecimal (3.2.3)
@@ -82,7 +82,7 @@ GEM
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
     erb (5.0.2)
-    faraday (2.13.4)
+    faraday (2.14.0)
       faraday-net_http (>= 2.0, < 3.5)
       json
       logger
@@ -100,7 +100,7 @@ GEM
       pp (>= 0.6.0)
       rdoc (>= 4.0.0)
       reline (>= 0.4.2)
-    json (2.13.2)
+    json (2.15.0)
     jwt (3.1.2)
       base64
     kettle-dev (1.1.31)
@@ -204,7 +204,7 @@ GEM
       rubocop-ast (>= 1.46.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 2.4.0, < 4.0)
-    rubocop-ast (1.46.0)
+    rubocop-ast (1.47.1)
       parser (>= 3.3.7.2)
       prism (~> 1.4)
     rubocop-gradual (0.3.6)
