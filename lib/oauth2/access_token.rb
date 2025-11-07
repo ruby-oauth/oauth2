@@ -134,7 +134,7 @@ You may need to set `snaky: false`. See inline documentation for more info.
     # @option opts [FixNum, String] :expires_latency (nil) the number of seconds by which AccessToken validity will be reduced to offset latency, @version 2.0+
     # @option opts [Symbol, Hash, or callable] :mode (:header) the transmission mode of the Access Token parameter value:
     #    either one of :header, :body or :query; or a Hash with verb symbols as keys mapping to one of these symbols
-    #    (e.g., {get: :query, post: :header, delete: :header}); or a callable that accepts a request-verb parameter
+    #    (e.g., `{get: :query, post: :header, delete: :header}`); or a callable that accepts a request-verb parameter
     #    and returns one of these three symbols.
     # @option opts [String] :header_format ('Bearer %s') the string format to use for the Authorization header
     #

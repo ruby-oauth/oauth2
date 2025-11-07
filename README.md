@@ -1107,16 +1107,16 @@ resp = access.get("/v1/protected")
 ```
 
 Notes:
-- Files must contain the appropriate PEMs. The private key may be encrypted; if so, pass a password to OpenSSL::PKey::RSA.new(File.read(path), ENV["KEY_PASSWORD"]).
+- Files must contain the appropriate PEMs. The private key may be encrypted; if so, pass a password to `OpenSSL::PKey::RSA.new(File.read(path), ENV["KEY_PASSWORD"])`.
 - If your certificate and key are in a PKCS#12/PFX bundle, you can load them like:
-  - p12 = OpenSSL::PKCS12.new(File.read("client.p12"), ENV["P12_PASSWORD"])
-  - client_cert = p12.certificate; client_key = p12.key
+  - `p12 = OpenSSL::PKCS12.new(File.read("client.p12"), ENV["P12_PASSWORD"])`
+  - `client_cert = p12.certificate; client_key = p12.key`
 - Server trust:
-  - If your environment does not have system CAs, specify ca_file or ca_path inside the ssl: hash.
-  - Keep verify: true in production. Set verify: false only for local testing.
-- Faraday adapter: Any adapter that supports Ruby’s OpenSSL should work. net_http (default) and net_http_persistent are common choices.
+  - If your environment does not have system CAs, specify `ca_file` or `ca_path` inside the `ssl:` hash.
+  - Keep `verify: true` in production. Set `verify: false` only for local testing.
+- Faraday adapter: Any adapter that supports Ruby’s OpenSSL should work. `net_http` (default) and `net_http_persistent` are common choices.
 - Scope of mTLS: The SSL client cert is applied to any HTTPS request made by this client (token and resource requests) to the configured site base URL (and absolute URLs you call with the same client).
-- OIDC tie-in: Some OPs require tls_client_auth at the token endpoint per OIDC/OAuth specifications. That is enabled via auth_scheme: :tls_client_auth as shown above.
+- OIDC tie-in: Some OPs require tls_client_auth at the token endpoint per OIDC/OAuth specifications. That is enabled via `auth_scheme: :tls_client_auth` as shown above.
 
 #### Authentication schemes for the token request
 
