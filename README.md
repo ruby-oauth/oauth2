@@ -90,7 +90,7 @@ NOTE: `header` - The content type specified in the `curl` is already the default
 
 </details>
 
-<details markdown="1>
+<details markdown="1">
 <summary>Complete E2E single file script against mock-oauth2-server</summary>
 
 - E2E example uses [navikt/mock-oauth2-server](https://github.com/navikt/mock-oauth2-server), which was added in v2.0.11
@@ -304,7 +304,7 @@ Compatibility is further distinguished as "Best Effort Support" or "Incidental S
 This gem will install on Ruby versions >= v2.2 for 2.x releases.
 See `1-4-stable` branch for older rubies.
 
-<details markdown="1>
+<details markdown="1">
   <summary>Ruby Engine Compatibility Policy</summary>
 
 This gem is tested against MRI, JRuby, and Truffleruby.
@@ -315,7 +315,7 @@ see [gemfiles/README.md](gemfiles/README.md), then submit a PR to the correct ma
 
 </details>
 
-<details markdown="1>
+<details markdown="1">
   <summary>Ruby Version Compatibility Policy</summary>
 
 If something doesn't work on one of these interpreters, it's a bug.
@@ -470,7 +470,7 @@ They are likely not needed if you are on a newer Ruby.
 Expand the examples below, or the [ruby-oauth/snaky_hash](https://gitlab.com/ruby-oauth/snaky_hash) gem,
 or [response_spec.rb](https://github.com/ruby-oauth/oauth2/blob/main/spec/oauth2/response_spec.rb), for more ideas, especially if you need to study the hacks for older Rubies.
 
-<details markdown="1>
+<details markdown="1">
 <summary>See Examples</summary>
 
 ```ruby
