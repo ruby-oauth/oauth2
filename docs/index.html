@@ -153,15 +153,15 @@ OAuth2::Client.new(
 
 </details>
 
-<p>&lt;details markdown=”1&gt;</p>
-<summary>Complete E2E single file script against mock-oauth2-server</summary>
+<details>
+  <summary>Complete E2E single file script against mock-oauth2-server</summary>
 
-<ul>
-  <li>E2E example uses <a href="https://github.com/navikt/mock-oauth2-server">navikt/mock-oauth2-server</a>, which was added in v2.0.11</li>
-  <li>E2E example does not ship with the released gem, so clone the source to play with it.</li>
-</ul>
+  <ul>
+    <li>E2E example uses <a href="https://github.com/navikt/mock-oauth2-server">navikt/mock-oauth2-server</a>, which was added in v2.0.11</li>
+    <li>E2E example does not ship with the released gem, so clone the source to play with it.</li>
+  </ul>
 
-<p><code>console
+  <p><code>console
 docker compose -f docker-compose-ssl.yml up -d --wait
 ruby examples/e2e.rb
 # If your machine is slow or Docker pulls are cold, increase the wait:
@@ -169,9 +169,9 @@ E2E_WAIT_TIMEOUT=120 ruby examples/e2e.rb
 # The mock server serves HTTP on 8080; the example points to http://localhost:8080 by default.
 </code></p>
 
-<p>The output should be something like this:</p>
+  <p>The output should be something like this:</p>
 
-<p><code>console
+  <p><code>console
 ➜  ruby examples/e2e.rb
 Access token (truncated): eyJraWQiOiJkZWZhdWx0...
 userinfo status: 200
@@ -179,69 +179,69 @@ userinfo body: {"sub" =&gt; "demo-sub", "aud" =&gt; ["demo-aud"], "nbf" =&gt; 17
 E2E complete
 </code></p>
 
-<p>Make sure to shut down the mock server when you are done:</p>
+  <p>Make sure to shut down the mock server when you are done:</p>
 
-<p><code>console
+  <p><code>console
 docker compose -f docker-compose-ssl.yml down
 </code></p>
 
-<p>Troubleshooting: validate connectivity to the mock server</p>
+  <p>Troubleshooting: validate connectivity to the mock server</p>
 
-<ul>
-  <li>Check container status and port mapping:
-    <ul>
-      <li><code>docker compose -f docker-compose-ssl.yml ps</code></li>
-    </ul>
-  </li>
-  <li>From the host, try the discovery URL directly (this is what the example uses by default):
-    <ul>
-      <li><code>curl -v http://localhost:8080/default/.well-known/openid-configuration</code></li>
-      <li>If that fails immediately, also try: <code>curl -v --connect-timeout 2 http://127.0.0.1:8080/default/.well-known/openid-configuration</code>
+  <ul>
+    <li>Check container status and port mapping:
+      <ul>
+        <li><code>docker compose -f docker-compose-ssl.yml ps</code></li>
+      </ul>
+    </li>
+    <li>From the host, try the discovery URL directly (this is what the example uses by default):
+      <ul>
+        <li><code>curl -v http://localhost:8080/default/.well-known/openid-configuration</code></li>
+        <li>If that fails immediately, also try: <code>curl -v --connect-timeout 2 http://127.0.0.1:8080/default/.well-known/openid-configuration</code>
 </li>
-    </ul>
-  </li>
-  <li>From inside the container (to distinguish container vs. host networking):
-    <ul>
-      <li><code>docker exec -it oauth2-mock-oauth2-server-1 curl -v http://127.0.0.1:8080/default/.well-known/openid-configuration</code></li>
-    </ul>
-  </li>
-  <li>Simple TCP probe from the host:
-    <ul>
-      <li><code>nc -vz localhost 8080  # or: ruby -rsocket -e 'TCPSocket.new("localhost",8080).close; puts "tcp ok"'</code></li>
-    </ul>
-  </li>
-  <li>Inspect which host port 8080 is bound to (should be 8080):
-    <ul>
-      <li><code>docker inspect -f '{{ (index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort }}' oauth2-mock-oauth2-server-1</code></li>
-    </ul>
-  </li>
-  <li>Look at server logs for readiness/errors:
-    <ul>
-      <li><code>docker logs -n 200 oauth2-mock-oauth2-server-1</code></li>
-    </ul>
-  </li>
-  <li>On Linux, ensure nothing else is bound to 8080 and that firewall/SELinux aren’t blocking:
-    <ul>
-      <li><code>ss -ltnp | grep :8080</code></li>
-    </ul>
-  </li>
-</ul>
+      </ul>
+    </li>
+    <li>From inside the container (to distinguish container vs. host networking):
+      <ul>
+        <li><code>docker exec -it oauth2-mock-oauth2-server-1 curl -v http://127.0.0.1:8080/default/.well-known/openid-configuration</code></li>
+      </ul>
+    </li>
+    <li>Simple TCP probe from the host:
+      <ul>
+        <li><code>nc -vz localhost 8080  # or: ruby -rsocket -e 'TCPSocket.new("localhost",8080).close; puts "tcp ok"'</code></li>
+      </ul>
+    </li>
+    <li>Inspect which host port 8080 is bound to (should be 8080):
+      <ul>
+        <li><code>docker inspect -f '{{ (index (index .NetworkSettings.Ports "8080/tcp") 0).HostPort }}' oauth2-mock-oauth2-server-1</code></li>
+      </ul>
+    </li>
+    <li>Look at server logs for readiness/errors:
+      <ul>
+        <li><code>docker logs -n 200 oauth2-mock-oauth2-server-1</code></li>
+      </ul>
+    </li>
+    <li>On Linux, ensure nothing else is bound to 8080 and that firewall/SELinux aren’t blocking:
+      <ul>
+        <li><code>ss -ltnp | grep :8080</code></li>
+      </ul>
+    </li>
+  </ul>
 
-<p>Notes</p>
+  <p>Notes</p>
 
-<ul>
-  <li>Discovery URL pattern is: <code>http://localhost:8080/&lt;realm&gt;/.well-known/openid-configuration</code>, where <code>&lt;realm&gt;</code> defaults to <code>default</code>.</li>
-  <li>You can change these with env vars when running the example:
-    <ul>
-      <li>
+  <ul>
+    <li>Discovery URL pattern is: <code>http://localhost:8080/&lt;realm&gt;/.well-known/openid-configuration</code>, where <code>&lt;realm&gt;</code> defaults to <code>default</code>.</li>
+    <li>You can change these with env vars when running the example:
+      <ul>
+        <li>
 <code>E2E_ISSUER_BASE</code> (default: http://localhost:8080)</li>
-      <li>
+        <li>
 <code>E2E_REALM</code> (default: default)</li>
-    </ul>
-  </li>
-</ul>
+      </ul>
+    </li>
+  </ul>
 
-<p>&lt;/details&gt;</p>
+</details>
 
 <p>If it seems like you are in the wrong place, you might try one of these:</p>
 
@@ -550,34 +550,34 @@ Compatibility is further distinguished as “Best Effort Support” or “Incide
 This gem will install on Ruby versions &gt;= v2.2 for 2.x releases.
 See <code>1-4-stable</code> branch for older rubies.</p>
 
-<p>&lt;details markdown=”1&gt;</p>
-<summary>Ruby Engine Compatibility Policy</summary>
+<details>
+  <summary>Ruby Engine Compatibility Policy</summary>
 
-<p>This gem is tested against MRI, JRuby, and Truffleruby.
+  <p>This gem is tested against MRI, JRuby, and Truffleruby.
 Each of those has varying versions that target a specific version of MRI Ruby.
 This gem should work in the just-listed Ruby engines according to the targeted MRI compatibility in the table below.
 If you would like to add support for additional engines,
 see <a href="gemfiles/README.md">gemfiles/README.md</a>, then submit a PR to the correct maintenance branch as according to the table below.</p>
 
-<p>&lt;/details&gt;</p>
+</details>
 
-<p>&lt;details markdown=”1&gt;</p>
-<summary>Ruby Version Compatibility Policy</summary>
+<details>
+  <summary>Ruby Version Compatibility Policy</summary>
 
-<p>If something doesn’t work on one of these interpreters, it’s a bug.</p>
+  <p>If something doesn’t work on one of these interpreters, it’s a bug.</p>
 
-<p>This library may inadvertently work (or seem to work) on other Ruby
+  <p>This library may inadvertently work (or seem to work) on other Ruby
 implementations; however, support will only be provided for the versions listed
 above.</p>
 
-<p>If you would like this library to support another Ruby version, you may
+  <p>If you would like this library to support another Ruby version, you may
 volunteer to be a maintainer. Being a maintainer entails making sure all tests
 run and pass on that implementation. When something breaks on your
 implementation, you will be responsible for providing patches in a timely
 fashion. If critical issues for a particular implementation exist at the time
 of a major release, support for that Ruby version may be dropped.</p>
 
-<p>&lt;/details&gt;</p>
+</details>
 
 <table>
   <thead>
@@ -751,15 +751,15 @@ They are likely not needed if you are on a newer Ruby.
 Expand the examples below, or the <a href="https://gitlab.com/ruby-oauth/snaky_hash">ruby-oauth/snaky_hash</a> gem,
 or <a href="https://github.com/ruby-oauth/oauth2/blob/main/spec/oauth2/response_spec.rb">response_spec.rb</a>, for more ideas, especially if you need to study the hacks for older Rubies.</p>
 
-<p>&lt;details markdown=”1&gt;</p>
-<summary>See Examples</summary>
+<details>
+  <summary>See Examples</summary>
 
-<p>```ruby
+  <p>```ruby
 class MySnakyHash &lt; SnakyHash::StringKeyed
   # Give this hash class <code>dump</code> and <code>load</code> abilities!
   extend SnakyHash::Serializer</p>
 
-<p>#### Serialization Extentions
+  <p>#### Serialization Extentions
   #
   # Act on the non-hash values (including the values of hashes) as they are dumped to JSON
   # In other words, this retains nested hashes, and only the deepest leaf nodes become bananas.
@@ -768,14 +768,14 @@ class MySnakyHash &lt; SnakyHash::StringKeyed
     “banana” # =&gt; Make values “banana” on dump
   end</p>
 
-<p># Act on the non-hash values (including the values of hashes) as they are loaded from the JSON dump
+  <p># Act on the non-hash values (including the values of hashes) as they are loaded from the JSON dump
   # In other words, this retains nested hashes, and only the deepest leaf nodes become <strong><em>.
   # WARNING: This is a silly example!
   load_value_extensions.add(:to_stars) do |value|
     “</em></strong>” # Turn dumped bananas into *** when they are loaded
   end</p>
 
-<p># Act on the entire hash as it is prepared for dumping to JSON
+  <p># Act on the entire hash as it is prepared for dumping to JSON
   # WARNING: This is a silly example!
   dump_hash_extensions.add(:to_cheese) do |value|
     if value.is_a?(Hash)
@@ -789,7 +789,7 @@ class MySnakyHash &lt; SnakyHash::StringKeyed
     end
   end</p>
 
-<p># Act on the entire hash as it is loaded from the JSON dump
+  <p># Act on the entire hash as it is loaded from the JSON dump
   # WARNING: This is a silly example!
   load_hash_extensions.add(:to_pizza) do |value|
     if value.is_a?(Hash)
@@ -808,7 +808,7 @@ class MySnakyHash &lt; SnakyHash::StringKeyed
 end
 ```</p>
 
-<p>&lt;/details&gt;</p>
+</details>
 
 <h4 id="prefer-camelcase-over-snakecase--snaky-false">Prefer camelCase over snake_case? =&gt; snaky: false</h4>
 
@@ -1677,7 +1677,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Fri Nov  7 20:38:13 2025 by
+  Generated on Fri Nov  7 21:14:33 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.7).
 </div>
