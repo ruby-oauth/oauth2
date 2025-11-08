@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.18] - 2025-11-08
+
+- TAG: [v2.0.18][2.0.18t]
+- COVERAGE: 100.00% -- 526/526 lines in 14 files
+- BRANCH COVERAGE: 100.00% -- 178/178 branches in 14 files
+- 90.48% documented
+
+### Added
+
 - [gh!683][gh!683], [gh!684][gh!684] - Improve documentation by @pboling
 - [gh!686][gh!686]- Add Incident Response Plan by @pboling
 - [gh!687][gh!687]- Add Threat Model by @pboling
@@ -29,10 +48,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - [gh!685][gh!685] - upgrade kettle-dev v1.1.24 by @pboling
 - upgrade kettle-dev v1.1.52 by @pboling
   - Add open collective donors to README
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -723,7 +738,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.17...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.18...HEAD
+[2.0.18]: https://github.com/ruby-oauth/oauth2/compare/v2.0.17...v2.0.18
+[2.0.18t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.18
 [2.0.17]: https://github.com/ruby-oauth/oauth2/compare/v2.0.16...v2.0.17
 [2.0.17t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.17
 [2.0.16]: https://github.com/ruby-oauth/oauth2/compare/v2.0.15...v2.0.16
