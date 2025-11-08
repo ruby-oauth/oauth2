@@ -47,9 +47,7 @@ jobs:
             rubygems: latest
             bundler: latest
 
-          # truffleruby-24.1
-          #   (according to documentation: targets Ruby 3.3 compatibility)
-          #   (according to runtime: targets Ruby 3.2 compatibility)
+          # truffleruby-24.1 (targets Ruby 3.3 compatibility)
           - ruby: "truffleruby"
             appraisal: "dep-heads"
             exec_cmd: "rake test"
@@ -67,11 +65,11 @@ jobs:
 
     steps:
       - name: Checkout
-        if: ${{ !(env.ACT && startsWith(matrix.ruby, 'jruby')) }}
+        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
         uses: actions/checkout@v5
 
       - name: Setup Ruby & RubyGems
-        if: ${{ !(env.ACT && startsWith(matrix.ruby, 'jruby')) }}
+        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
         uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
@@ -82,24 +80,38 @@ jobs:
       # Raw `bundle` will use the BUNDLE_GEMFILE set to matrix.gemfile (i.e. Appraisal.root)
       # We need to do this first to get appraisal installed.
       # NOTE: This does not use the primary Gemfile at all.
-      - name: "Install Root Appraisal"
-        if: ${{ !(env.ACT && startsWith(matrix.ruby, 'jruby')) }}
+      - name: Install Root Appraisal
+        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
+        run: bundle
+
+      - name: "[Attempt 1] Install Root Appraisal"
+        id: bundleAttempt1
+        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
+        run: bundle
+        # Continue to the next step on failure
+        continue-on-error: true
+
+      # Effectively an automatic retry of the previous step.
+      - name: "[Attempt 2] Install Root Appraisal"
+        id: bundleAttempt2
+        # If bundleAttempt1 failed, try again here; Otherwise skip.
+        if: ${{ steps.bundleAttempt1.outcome == 'failure' && (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
         run: bundle
 
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
-        if: ${{ !(env.ACT && startsWith(matrix.ruby, 'jruby')) }}
-        id: bundleAttempt1
+        id: bundleAppraisalAttempt1
+        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle
         # Continue to the next step on failure
         continue-on-error: true
 
       # Effectively an automatic retry of the previous step.
       - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
-        # If bundleAttempt1 failed, try again here; Otherwise skip.
-        if: ${{ steps.bundleAttempt1.outcome == 'failure' && !(env.ACT && startsWith(matrix.ruby, 'jruby')) }}
-        id: bundleAttempt2
+        id: bundleAppraisalAttempt2
+        # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
+        if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' && (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle
 
-      - name: Tests for ${{ matrix.ruby }}@${{ matrix.appraisal }} via ${{ matrix.exec_cmd }}
-        if: ${{ !(env.ACT && startsWith(matrix.ruby, 'jruby')) }}
+      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
+        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

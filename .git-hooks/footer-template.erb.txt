@@ -1,5 +1,5 @@
 ⚡️ A message from a fellow meat-based-AI ⚡️
-- [❤️] Finely-crafted open-source tools like <%= @gem_name %> (& many more) are a full-time endeavor.
+- [❤️] Finely-crafted open-source tools like <%= @gem_name %> (& many more) require time and effort.
 - [❤️] Though I adore my work, it lacks financial sustainability.
 - [❤️] Please, help me continue enhancing your tools by becoming a sponsor:
   - [💲] https://liberapay.com/pboling/donate

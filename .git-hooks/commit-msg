@@ -16,33 +16,39 @@ begin
   # Is the first character a GitMoji?
   gitmoji_index = full_text =~ Gitmoji::Regex::REGEX
   if gitmoji_index == 0
-    exit 0
+    exit(0)
   else
-    denied = <<EOM
-Oh snap, think again...
-
- ______    _______      ___  _______  _______  _______  _______  ______   __
-|    _ |  |       |    |   ||       ||       ||       ||       ||      | |  |
-|   | ||  |    ___|    |   ||    ___||       ||_     _||    ___||  _    ||  |
-|   |_||_ |   |___     |   ||   |___ |       |  |   |  |   |___ | | |   ||  |
-|    __  ||    ___| ___|   ||    ___||      _|  |   |  |    ___|| |_|   ||__|
-|   |  | ||   |___ |       ||   |___ |     |_   |   |  |   |___ |       | __
-|___|  |_||_______||_______||_______||_______|  |___|  |_______||______| |__|
-
-
-Did you forget to add a relevant gitmoji? (see https://gitmoji.dev/ for tools)
-In this project, a Gitmoji must be the first grapheme of the commit message.
-What's a grapheme?
-A symbol rendered to be visually identifiable as a single character, but which may be composed of multiple Unicode code points)
-Must match: #{Gitmoji::Regex::REGEX.to_s}
-#{gitmoji_index ? "Found a gitmoji at character index #{gitmoji_index}... not good enough.\n" : ""}
-Example: git commit -m "✨ My excellent new feature"
-
-EOM
+    denied = <<~EOM
+      Oh snap, think again...
+      
+       ______    _______      ___  _______  _______  _______  _______  ______   __
+      |    _ |  |       |    |   ||       ||       ||       ||       ||      | |  |
+      |   | ||  |    ___|    |   ||    ___||       ||_     _||    ___||  _    ||  |
+      |   |_||_ |   |___     |   ||   |___ |       |  |   |  |   |___ | | |   ||  |
+      |    __  ||    ___| ___|   ||    ___||      _|  |   |  |    ___|| |_|   ||__|
+      |   |  | ||   |___ |       ||   |___ |     |_   |   |  |   |___ |       | __
+      |___|  |_||_______||_______||_______||_______|  |___|  |_______||______| |__|
+      
+      
+      Did you forget to add a relevant gitmoji? (see https://gitmoji.dev/ for tools)
+      In this project, a Gitmoji must be the first grapheme of the commit message.
+      What's a grapheme?
+      A symbol rendered to be visually identifiable as a single character, but which may be composed of multiple Unicode code points)
+      Must match: #{Gitmoji::Regex::REGEX}
+      #{"Found a gitmoji at character index #{gitmoji_index}... not good enough.\n" if gitmoji_index}
+      Example: git commit -m "✨ My excellent new feature"
+      
+    EOM
     puts denied
-    exit 1
+    exit(1)
   end
 rescue LoadError => e
-  warn("gitmoji-regex gem not found: #{e.class}: #{e.message}.\n\tSkipping gitmoji check and allowing commit to proceed.\n\tRecommendation: add 'gitmoji-regex' to your development dependencies to enable this check.")
-  exit 0
+  failure = <<~EOM
+    gitmoji-regex gem not found: #{e.class}: #{e.message}.
+      Skipping gitmoji check and allowing commit to proceed.
+      Recommendation: add 'gitmoji-regex' to your development dependencies to enable this check.
+    
+  EOM
+  warn(failure)
+  exit(0)
 end

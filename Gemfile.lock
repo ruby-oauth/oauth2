@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/pboling/yard-junk
+  remote: https://github.com/pboling/yard-junk.git
   revision: 54ccebabbfa9a9cd44d0b991687ebbfd22c32b55
   branch: next
   specs:
@@ -23,7 +23,7 @@ PATH
       version_gem (~> 1.1, >= 1.1.9)
 
 GEM
-  remote: https://rubygems.org/
+  remote: https://gem.coop/
   specs:
     addressable (2.8.7)
       public_suffix (>= 2.0.2, < 7.0)
@@ -41,9 +41,6 @@ GEM
       bundler (>= 1.2.0, < 3)
       thor (~> 1.0)
     concurrent-ruby (1.3.5)
-    crack (1.0.1)
-      bigdecimal
-      rexml
     date (3.5.0)
     debug (1.11.0)
       irb (~> 1.10)
@@ -93,7 +90,6 @@ GEM
       version_gem (~> 1.1, >= 1.1.4)
     gitmoji-regex (1.0.3)
       version_gem (~> 1.1, >= 1.1.8)
-    hashdiff (1.2.1)
     hashie (5.0.0)
     io-console (0.8.1)
     irb (1.15.3)
@@ -313,14 +309,12 @@ GEM
       unicode-emoji (~> 4.1)
     unicode-emoji (4.1.0)
     uri (1.1.1)
-    vcr (6.3.1)
-      base64
     version_gem (1.1.9)
-    webmock (3.26.1)
-      addressable (>= 2.8.0)
-      crack (>= 0.3.2)
-      hashdiff (>= 0.4.0, < 2.0.0)
     yard (0.9.37)
+    yard-fence (0.4.0)
+      rdoc (~> 6.11)
+      version_gem (~> 1.1, >= 1.1.9)
+      yard (~> 0.9, >= 0.9.37)
     yard-relative_markdown_links (0.5.0)
       nokogiri (>= 1.14.3, < 2)
     zeitwerk (2.7.3)
@@ -330,7 +324,7 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  addressable (~> 2.8, >= 2.8.7)
+  addressable (~> 2.8, >= 2.8.7, >= 2.8, < 3)
   appraisal2 (~> 3.0)
   backports (~> 3.25, >= 3.25.1)
   benchmark (~> 0.4, >= 0.4.1)
@@ -342,7 +336,7 @@ DEPENDENCIES
   irb (~> 1.15, >= 1.15.2)
   kettle-dev (~> 1.1)
   kettle-soup-cover (~> 1.0, >= 1.0.10)
-  kettle-test (~> 1.0)
+  kettle-test (~> 1.0, >= 1.0.6)
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)
   mutex_m (~> 0.2)
@@ -353,7 +347,6 @@ DEPENDENCIES
   reek (~> 6.5)
   require_bench (~> 1.0, >= 1.0.4)
   rexml (~> 3.2, >= 3.2.5)
-  rspec-pending_for (~> 0.0, >= 0.0.17)
   rubocop-lts (~> 8.0)
   rubocop-on-rbs (~> 1.8)
   rubocop-packaging (~> 0.6, >= 0.6.0)
@@ -363,9 +356,8 @@ DEPENDENCIES
   standard (>= 1.50)
   stone_checksums (~> 1.0, >= 1.0.2)
   stringio (>= 3.0)
-  vcr (>= 4)
-  webmock (>= 3)
   yard (~> 0.9, >= 0.9.37)
+  yard-fence (~> 0.4)
   yard-junk (~> 0.0, >= 0.0.10)!
   yard-relative_markdown_links (~> 0.5.0)
 

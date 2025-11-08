@@ -24,9 +24,10 @@ Follow these instructions:
 
 ## Executables vs Rake tasks
 
-Executables shipped by oauth2 can be used with or without generating the binstubs.
-They will work when oauth2 is installed globally (i.e., `gem install oauth2`) and do not require that oauth2 be in your bundle.
+Executables shipped by dependencies, such as kettle-dev, and stone_checksums, are available
+after running `bin/setup`. These include:
 
+- gem_checksums
 - kettle-changelog
 - kettle-commit-msg
 - oauth2-setup
@@ -35,20 +36,10 @@ They will work when oauth2 is installed globally (i.e., `gem install oauth2`) an
 - kettle-readme-backers
 - kettle-release
 
-However, the rake tasks provided by oauth2 do require oauth2 to be added as a development dependency and loaded in your Rakefile.
-See the full list of rake tasks in head of Rakefile
+There are many Rake tasks available as well. You can see them by running:
 
-**Gemfile**
-```ruby
-group :development do
-  gem "oauth2", require: false
-end
-```
-
-**Rakefile**
-```ruby
-# Rakefile
-require "oauth2"
+```shell
+bin/rake -T
 ```
 
 ## Environment Variables for Local Development
@@ -118,10 +109,8 @@ bundle exec rake test
 
 ### Spec organization (required)
 
-- One spec file per class/module. For each class or module under `lib/`, keep all of its unit tests in a single spec file under `spec/` that mirrors the path and file name exactly: `lib/oauth2/release_cli.rb` -> `spec/oauth2/release_cli_spec.rb`.
-- Never add a second spec file for the same class/module. Examples of disallowed names: `*_more_spec.rb`, `*_extra_spec.rb`, `*_status_spec.rb`, or any other suffix that still targets the same class. If you find yourself wanting a second file, merge those examples into the canonical spec file for that class/module.
+- One spec file per class/module. For each class or module under `lib/`, keep all of its unit tests in a single spec file under `spec/` that mirrors the path and file name exactly: `lib/oauth2/my_class.rb` -> `spec/oauth2/my_class_spec.rb`.
 - Exception: Integration specs that intentionally span multiple classes. Place these under `spec/integration/` (or a clearly named integration folder), and do not directly mirror a single class. Name them after the scenario, not a class.
-- Migration note: If a duplicate spec file exists, move all examples into the canonical file and delete the duplicate. Do not leave stubs or empty files behind.
 
 ## Lint It
 
@@ -144,7 +133,7 @@ For more detailed information about using RuboCop in this project, please see th
 Never add `# rubocop:disable ...` / `# rubocop:enable ...` comments to code or specs (except when following the few existing `rubocop:disable` patterns for a rule already being disabled elsewhere in the code). Instead:
 
 - Prefer configuration-based exclusions when a rule should not apply to certain paths or files (e.g., via `.rubocop.yml`).
-- When a violation is temporary and you plan to fix it later, record it in `.rubocop_gradual.lock` using the gradual workflow:
+- When a violation is temporary, and you plan to fix it later, record it in `.rubocop_gradual.lock` using the gradual workflow:
   - `bundle exec rake rubocop_gradual:autocorrect` (preferred)
   - `bundle exec rake rubocop_gradual:force_update` (only when you cannot fix the violations immediately)
 
@@ -167,7 +156,7 @@ Also see GitLab Contributors: [https://gitlab.com/ruby-oauth/oauth2/-/graphs/mai
 **IMPORTANT**: To sign a build,
 a public key for signing gems will need to be picked up by the line in the
 `gemspec` defining the `spec.cert_chain` (check the relevant ENV variables there).
-All releases to RubyGems.org are signed releases.
+All releases are signed releases.
 See: [RubyGems Security Guide][🔒️rubygems-security-guide]
 
 NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in the environment.
@@ -176,7 +165,7 @@ NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in th
 
 #### Automated process
 
-1. Update version.rb to contian the correct version-to-be-released.
+1. Update version.rb to contain the correct version-to-be-released.
 2. Run `bundle exec kettle-changelog`.
 3. Run `bundle exec kettle-release`.
 
@@ -205,7 +194,7 @@ NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in th
 12. Sanity check the SHA256, comparing with the output from the `bin/gem_checksums` command:
     - `sha256sum pkg/<gem name>-<version>.gem`
 13. Run `bundle exec rake release` which will create a git tag for the version,
-    push git commits and tags, and push the `.gem` file to [rubygems.org][💎rubygems]
+    push git commits and tags, and push the `.gem` file to the gem host configured in the gemspec.
 
 [📜src-gl]: https://gitlab.com/ruby-oauth/oauth2/
 [📜src-cb]: https://codeberg.org/ruby-oauth/oauth2
@@ -216,7 +205,7 @@ NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in th
 [🖐contributors]: https://github.com/ruby-oauth/oauth2/graphs/contributors
 [🚎contributors-gl]: https://gitlab.com/ruby-oauth/oauth2/-/graphs/main
 [🖐contributors-img]: https://contrib.rocks/image?repo=ruby-oauth/oauth2
-[💎rubygems]: https://rubygems.org
+[💎gem-coop]: https://gem.coop
 [🔒️rubygems-security-guide]: https://guides.rubygems.org/security/#building-gems
 [🔒️rubygems-checksums-pr]: https://github.com/rubygems/rubygems/pull/6022
 [🔒️rubygems-guides-pr]: https://github.com/rubygems/guides/pull/325
