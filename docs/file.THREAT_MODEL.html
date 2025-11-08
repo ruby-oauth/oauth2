@@ -59,10 +59,10 @@
 
       <div id="content"><div id='filecontents'><h1 id="threat-model-outline-for-oauth2-ruby-gem">Threat Model Outline for oauth2 Ruby Gem</h1>
 
-<h2 id="1-overview">1. Overview</h2>
+<h2 id="overview">1. Overview</h2>
 <p>This document outlines the threat model for the <code>oauth2</code> Ruby gem, which implements OAuth 2.0, 2.1, and OIDC Core protocols. The gem is used to facilitate secure authorization and authentication in Ruby applications.</p>
 
-<h2 id="2-assets-to-protect">2. Assets to Protect</h2>
+<h2 id="assets-to-protect">2. Assets to Protect</h2>
 <ul>
   <li>OAuth access tokens, refresh tokens, and ID tokens</li>
   <li>User credentials (if handled)</li>
@@ -71,7 +71,7 @@
   <li>Private keys and certificates (for signing/verifying tokens)</li>
 </ul>
 
-<h2 id="3-potential-threat-actors">3. Potential Threat Actors</h2>
+<h2 id="potential-threat-actors">3. Potential Threat Actors</h2>
 <ul>
   <li>External attackers (internet-based)</li>
   <li>Malicious OAuth clients or resource servers</li>
@@ -79,7 +79,7 @@
   <li>Compromised dependencies</li>
 </ul>
 
-<h2 id="4-attack-surfaces">4. Attack Surfaces</h2>
+<h2 id="attack-surfaces">4. Attack Surfaces</h2>
 <ul>
   <li>OAuth endpoints (authorization, token, revocation, introspection)</li>
   <li>HTTP request/response handling</li>
@@ -88,9 +88,9 @@
   <li>Dependency supply chain</li>
 </ul>
 
-<h2 id="5-threats-and-mitigations">5. Threats and Mitigations</h2>
+<h2 id="threats-and-mitigations">5. Threats and Mitigations</h2>
 
-<h3 id="51-token-leakage">5.1 Token Leakage</h3>
+<h3 id="token-leakage">5.1 Token Leakage</h3>
 <ul>
   <li>
 <strong>Threat:</strong> Tokens exposed via logs, URLs, or insecure storage</li>
@@ -104,7 +104,7 @@
   </li>
 </ul>
 
-<h3 id="52-token-replay-and-forgery">5.2 Token Replay and Forgery</h3>
+<h3 id="token-replay-and-forgery">5.2 Token Replay and Forgery</h3>
 <ul>
   <li>
 <strong>Threat:</strong> Attackers reuse or forge tokens</li>
@@ -118,7 +118,7 @@
   </li>
 </ul>
 
-<h3 id="53-insecure-communication">5.3 Insecure Communication</h3>
+<h3 id="insecure-communication">5.3 Insecure Communication</h3>
 <ul>
   <li>
 <strong>Threat:</strong> Data intercepted via MITM attacks</li>
@@ -131,7 +131,7 @@
   </li>
 </ul>
 
-<h3 id="54-client-secret-exposure">5.4 Client Secret Exposure</h3>
+<h3 id="client-secret-exposure">5.4 Client Secret Exposure</h3>
 <ul>
   <li>
 <strong>Threat:</strong> Client secrets leaked in code or version control</li>
@@ -144,7 +144,7 @@
   </li>
 </ul>
 
-<h3 id="55-dependency-vulnerabilities">5.5 Dependency Vulnerabilities</h3>
+<h3 id="dependency-vulnerabilities">5.5 Dependency Vulnerabilities</h3>
 <ul>
   <li>
 <strong>Threat:</strong> Vulnerabilities in third-party libraries</li>
@@ -157,7 +157,7 @@
   </li>
 </ul>
 
-<h3 id="56-improper-input-validation">5.6 Improper Input Validation</h3>
+<h3 id="improper-input-validation">5.6 Improper Input Validation</h3>
 <ul>
   <li>
 <strong>Threat:</strong> Injection attacks via untrusted input</li>
@@ -170,7 +170,7 @@
   </li>
 </ul>
 
-<h3 id="57-insufficient-logging-and-monitoring">5.7 Insufficient Logging and Monitoring</h3>
+<h3 id="insufficient-logging-and-monitoring">5.7 Insufficient Logging and Monitoring</h3>
 <ul>
   <li>
 <strong>Threat:</strong> Attacks go undetected</li>
@@ -183,19 +183,19 @@
   </li>
 </ul>
 
-<h2 id="6-assumptions">6. Assumptions</h2>
+<h2 id="assumptions">6. Assumptions</h2>
 <ul>
   <li>The gem is used in a secure environment with up-to-date Ruby and dependencies</li>
   <li>End-users are responsible for secure configuration and deployment</li>
 </ul>
 
-<h2 id="7-out-of-scope">7. Out of Scope</h2>
+<h2 id="out-of-scope">7. Out of Scope</h2>
 <ul>
   <li>Security of external OAuth providers</li>
   <li>Application-level business logic</li>
 </ul>
 
-<h2 id="8-references">8. References</h2>
+<h2 id="references">8. References</h2>
 <ul>
   <li><a href="https://tools.ietf.org/html/rfc6819">OAuth 2.0 Threat Model and Security Considerations (RFC 6819)</a></li>
   <li><a href="https://owasp.org/www-project-top-ten/">OWASP Top Ten</a></li>
@@ -206,9 +206,9 @@
 </div></div>
 
       <div id="footer">
-  Generated on Thu Sep 25 11:50:27 2025 by
+  Generated on Fri Nov  7 19:06:17 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.37 (ruby-3.4.7).
 </div>
 
     </div>

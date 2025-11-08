@@ -826,13 +826,13 @@
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If no token is provided, the AccessToken will be considered invalid.<br />
-This is to prevent the possibility of a token being accidentally<br />
-created with no token value.<br />
-If you want to create an AccessToken with no token value,<br />
-you can pass in an empty string or nil for the token value.<br />
-If you want to create an AccessToken with no token value and<br />
-no refresh token, you can pass in an empty string or nil for the<br />
+    <div class='inline'><p>If no token is provided, the AccessToken will be considered invalid.
+This is to prevent the possibility of a token being accidentally
+created with no token value.
+If you want to create an AccessToken with no token value,
+you can pass in an empty string or nil for the token value.
+If you want to create an AccessToken with no token value and
+no refresh token, you can pass in an empty string or nil for the
 token value and nil for the refresh token, and <code>raise_errors: false</code>.</p>
 </div>
   </div>
@@ -987,9 +987,9 @@ token value and nil for the refresh token, and <code>raise_errors: false</code>.
             
           </span>
           
-            &mdash; <div class='inline'><p>the transmission mode of the Access Token parameter value:<br />
-either one of :header, :body or :query; or a Hash with verb symbols as keys mapping to one of these symbols<br />
-(e.g., :query, post: :header, delete: :header); or a callable that accepts a request-verb parameter<br />
+            &mdash; <div class='inline'><p>the transmission mode of the Access Token parameter value:
+either one of :header, :body or :query; or a Hash with verb symbols as keys mapping to one of these symbols
+(e.g., <code>{get: :query, post: :header, delete: :header}</code>); or a callable that accepts a request-verb parameter
 and returns one of these three symbols.</p>
 </div>
           
@@ -1020,7 +1020,7 @@ and returns one of these three symbols.</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>the parameter name to use for transmission of the<br />
+            &mdash; <div class='inline'><p>the parameter name to use for transmission of the
 Access Token value in :body or :query transmission mode</p>
 </div>
           
@@ -1036,7 +1036,7 @@ Access Token value in :body or :query transmission mode</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>the name of the response parameter that identifies the access token<br />
+            &mdash; <div class='inline'><p>the name of the response parameter that identifies the access token
 When nil one of TOKEN_KEY_LOOKUP will be used</p>
 </div>
           
@@ -1533,21 +1533,21 @@ When nil one of TOKEN_KEY_LOOKUP will be used</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>The method will use the first found token key in the following order:<br />
+    <div class='inline'><p>The method will use the first found token key in the following order:
 ‘access_token’, ‘id_token’, ‘token’ (or their symbolic versions)</p>
 </div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If multiple token keys are present, a warning will be issued unless<br />
+    <div class='inline'><p>If multiple token keys are present, a warning will be issued unless
 OAuth2.config.silence_extra_tokens_warning is true</p>
 </div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If no token keys are present, a warning will be issued unless<br />
+    <div class='inline'><p>If no token keys are present, a warning will be issued unless
 OAuth2.config.silence_no_tokens_warning is true</p>
 </div>
   </div>
@@ -2746,28 +2746,28 @@ OAuth2.config.silence_no_tokens_warning is true</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the token passed to the request<br />
-is an access token, the server MAY revoke the respective refresh<br />
+    <div class='inline'><p>If the token passed to the request
+is an access token, the server MAY revoke the respective refresh
 token as well.</p>
 </div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the token passed to the request<br />
-is a refresh token and the authorization server supports the<br />
-revocation of access tokens, then the authorization server SHOULD<br />
-also invalidate all access tokens based on the same authorization<br />
+    <div class='inline'><p>If the token passed to the request
+is a refresh token and the authorization server supports the
+revocation of access tokens, then the authorization server SHOULD
+also invalidate all access tokens based on the same authorization
 grant</p>
 </div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the server responds with HTTP status code 503, your code must<br />
-assume the token still exists and may retry after a reasonable delay.<br />
-The server may include a “Retry-After” header in the response to<br />
-indicate how long the service is expected to be unavailable to the<br />
+    <div class='inline'><p>If the server responds with HTTP status code 503, your code must
+assume the token still exists and may retry after a reasonable delay.
+The server may include a “Retry-After” header in the response to
+indicate how long the service is expected to be unavailable to the
 requesting client.</p>
 </div>
   </div>
@@ -3083,9 +3083,9 @@ requesting client.</p>
 </div>
 
       <div id="footer">
-  Generated on Thu Sep 25 11:50:27 2025 by
+  Generated on Fri Nov  7 19:06:18 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.37 (ruby-3.4.7).
 </div>
 
     </div>

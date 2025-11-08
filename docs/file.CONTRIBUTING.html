@@ -59,8 +59,8 @@
 
       <div id="content"><div id='filecontents'><h1 id="contributing">Contributing</h1>
 
-<p>Bug reports and pull requests are welcome on <a href="https://codeberg.org/ruby-oauth/oauth2">CodeBerg</a>, <a href="https://gitlab.com/ruby-oauth/oauth2/">GitLab</a>, or <a href="https://github.com/ruby-oauth/oauth2">GitHub</a>.<br>
-This project should be a safe, welcoming space for collaboration, so contributors agree to adhere to<br>
+<p>Bug reports and pull requests are welcome on <a href="https://codeberg.org/ruby-oauth/oauth2">CodeBerg</a>, <a href="https://gitlab.com/ruby-oauth/oauth2/">GitLab</a>, or <a href="https://github.com/ruby-oauth/oauth2">GitHub</a>.
+This project should be a safe, welcoming space for collaboration, so contributors agree to adhere to
 the <a href="https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CODE_OF_CONDUCT.md">code of conduct</a>.</p>
 
 <p>To submit a patch, please fork the project, create a patch with tests, and send a pull request.</p>
@@ -85,86 +85,72 @@ the <a href="https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CODE_OF_CONDUCT.md
 
 <h2 id="executables-vs-rake-tasks">Executables vs Rake tasks</h2>
 
-<p>Executables shipped by oauth2 can be used with or without generating the binstubs.<br>
-They will work when oauth2 is installed globally (i.e., <code>gem install oauth2</code>) and do not require that oauth2 be in your bundle.</p>
+<p>Executables shipped by dependencies, such as kettle-dev, and stone_checksums, are available
+after running <code>bin/setup</code>. These include:</p>
 
 <ul>
+  <li>gem_checksums</li>
   <li>kettle-changelog</li>
   <li>kettle-commit-msg</li>
-  <li>oauth2-setup</li>
+  <li>kettle-dev-setup</li>
   <li>kettle-dvcs</li>
   <li>kettle-pre-release</li>
   <li>kettle-readme-backers</li>
   <li>kettle-release</li>
 </ul>
 
-<p>However, the rake tasks provided by oauth2 do require oauth2 to be added as a development dependency and loaded in your Rakefile.<br>
-See the full list of rake tasks in head of Rakefile</p>
+<p>There are many Rake tasks available as well. You can see them by running:</p>
 
-<p><strong>Gemfile</strong></p>
-<pre class="code language-ruby"><code class="language-ruby">group :development do
-  gem &quot;oauth2&quot;, require: false
-end
-</code></pre>
-
-<p><strong>Rakefile</strong></p>
-<pre class="code language-ruby"><code class="language-ruby"># Rakefile
-require &quot;oauth2&quot;
-</code></pre>
+<p><code>shell
+bin/rake -T
+</code></p>
 
 <h2 id="environment-variables-for-local-development">Environment Variables for Local Development</h2>
 
 <p>Below are the primary environment variables recognized by stone_checksums (and its integrated tools). Unless otherwise noted, set boolean values to the string “true” to enable.</p>
 
-<p>General/runtime</p>
-<ul>
-  <li>DEBUG: Enable extra internal logging for this library (default: false)</li>
-  <li>REQUIRE_BENCH: Enable <code>require_bench</code> to profile requires (default: false)</li>
-  <li>CI: When set to true, adjusts default rake tasks toward CI behavior</li>
-</ul>
+<p>General/runtime
+- DEBUG: Enable extra internal logging for this library (default: false)
+- REQUIRE_BENCH: Enable <code>require_bench</code> to profile requires (default: false)
+- CI: When set to true, adjusts default rake tasks toward CI behavior</p>
 
-<p>Coverage (kettle-soup-cover / SimpleCov)</p>
-<ul>
-  <li>K_SOUP_COV_DO: Enable coverage collection (default: true in .envrc)</li>
-  <li>K_SOUP_COV_FORMATTERS: Comma-separated list of formatters (html, xml, rcov, lcov, json, tty)</li>
-  <li>K_SOUP_COV_MIN_LINE: Minimum line coverage threshold (integer, e.g., 100)</li>
-  <li>K_SOUP_COV_MIN_BRANCH: Minimum branch coverage threshold (integer, e.g., 100)</li>
-  <li>K_SOUP_COV_MIN_HARD: Fail the run if thresholds are not met (true/false)</li>
-  <li>K_SOUP_COV_MULTI_FORMATTERS: Enable multiple formatters at once (true/false)</li>
-  <li>K_SOUP_COV_OPEN_BIN: Path to browser opener for HTML (empty disables auto-open)</li>
-  <li>MAX_ROWS: Limit console output rows for simplecov-console (e.g., 1)<br>
-Tip: When running a single spec file locally, you may want <code>K_SOUP_COV_MIN_HARD=false</code> to avoid failing thresholds for a partial run.</li>
-</ul>
+<p>Coverage (kettle-soup-cover / SimpleCov)
+- K_SOUP_COV_DO: Enable coverage collection (default: true in .envrc)
+- K_SOUP_COV_FORMATTERS: Comma-separated list of formatters (html, xml, rcov, lcov, json, tty)
+- K_SOUP_COV_MIN_LINE: Minimum line coverage threshold (integer, e.g., 100)
+- K_SOUP_COV_MIN_BRANCH: Minimum branch coverage threshold (integer, e.g., 100)
+- K_SOUP_COV_MIN_HARD: Fail the run if thresholds are not met (true/false)
+- K_SOUP_COV_MULTI_FORMATTERS: Enable multiple formatters at once (true/false)
+- K_SOUP_COV_OPEN_BIN: Path to browser opener for HTML (empty disables auto-open)
+- MAX_ROWS: Limit console output rows for simplecov-console (e.g., 1)
+  Tip: When running a single spec file locally, you may want <code>K_SOUP_COV_MIN_HARD=false</code> to avoid failing thresholds for a partial run.</p>
 
-<p>GitHub API and CI helpers</p>
-<ul>
-  <li>GITHUB_TOKEN or GH_TOKEN: Token used by <code>ci:act</code> and release workflow checks to query GitHub Actions status at higher rate limits</li>
-</ul>
+<p>GitHub API and CI helpers
+- GITHUB_TOKEN or GH_TOKEN: Token used by <code>ci:act</code> and release workflow checks to query GitHub Actions status at higher rate limits</p>
 
-<p>Releasing and signing</p>
-<ul>
-  <li>SKIP_GEM_SIGNING: If set, skip gem signing during build/release</li>
-  <li>GEM_CERT_USER: Username for selecting your public cert in <code>certs/&lt;USER&gt;.pem</code> (defaults to $USER)</li>
-  <li>SOURCE_DATE_EPOCH: Reproducible build timestamp. <code>kettle-release</code> will set this automatically for the session.</li>
-</ul>
+<p>Releasing and signing
+- SKIP_GEM_SIGNING: If set, skip gem signing during build/release
+- GEM_CERT_USER: Username for selecting your public cert in <code>certs/&lt;USER&gt;.pem</code> (defaults to $USER)
+- SOURCE_DATE_EPOCH: Reproducible build timestamp.
+  - <code>kettle-release</code> will set this automatically for the session.
+  - Not needed on bundler &gt;= 2.7.0, as reproducible builds have become the default.</p>
 
-<p>Git hooks and commit message helpers (exe/kettle-commit-msg)</p>
-<ul>
-  <li>GIT_HOOK_BRANCH_VALIDATE: Branch name validation mode (e.g., <code>jira</code>) or <code>false</code> to disable</li>
-  <li>GIT_HOOK_FOOTER_APPEND: Append a footer to commit messages when goalie allows (true/false)</li>
-  <li>GIT_HOOK_FOOTER_SENTINEL: Required when footer append is enabled — a unique first-line sentinel to prevent duplicates</li>
-  <li>GIT_HOOK_FOOTER_APPEND_DEBUG: Extra debug output in the footer template (true/false)</li>
-</ul>
+<p>Git hooks and commit message helpers (exe/kettle-commit-msg)
+- GIT_HOOK_BRANCH_VALIDATE: Branch name validation mode (e.g., <code>jira</code>) or <code>false</code> to disable
+- GIT_HOOK_FOOTER_APPEND: Append a footer to commit messages when goalie allows (true/false)
+- GIT_HOOK_FOOTER_SENTINEL: Required when footer append is enabled — a unique first-line sentinel to prevent duplicates
+- GIT_HOOK_FOOTER_APPEND_DEBUG: Extra debug output in the footer template (true/false)</p>
 
 <p>For a quick starting point, this repository’s <code>.envrc</code> shows sane defaults, and <code>.env.local</code> can override them locally.</p>
 
 <h2 id="appraisals">Appraisals</h2>
 
-<p>From time to time the <a href="https://github.com/appraisal-rb/appraisal2">appraisal2</a> gemfiles in <code>gemfiles/</code> will need to be updated.<br>
+<p>From time to time the <a href="https://github.com/appraisal-rb/appraisal2">appraisal2</a> gemfiles in <code>gemfiles/</code> will need to be updated.
 They are created and updated with the commands:</p>
 
-<pre class="code language-console"><code class="language-console">bin/rake appraisal:update
-</code></pre>
+<p><code>console
+bin/rake appraisal:update
+</code></p>
 
 <p>When adding an appraisal to CI, check the <a href="https://github.com/ruby/ruby-builder/releases/tag/toolcache">runner tool cache</a> to see which runner to use.</p>
 
@@ -174,38 +160,40 @@ They are created and updated with the commands:</p>
 
 <p>To refresh the <code>reek</code> list:</p>
 
-<pre class="code language-console"><code class="language-console">bundle exec reek &gt; REEK
-</code></pre>
+<p><code>console
+bundle exec reek &gt; REEK
+</code></p>
 
 <h2 id="run-tests">Run Tests</h2>
 
 <p>To run all tests</p>
 
-<pre class="code language-console"><code class="language-console">bundle exec rake test
-</code></pre>
+<p><code>console
+bundle exec rake test
+</code></p>
 
 <h3 id="spec-organization-required">Spec organization (required)</h3>
 
 <ul>
-  <li>One spec file per class/module. For each class or module under <code>lib/</code>, keep all of its unit tests in a single spec file under <code>spec/</code> that mirrors the path and file name exactly: <code>lib/oauth2/release_cli.rb</code> -&gt; <code>spec/oauth2/release_cli_spec.rb</code>.</li>
-  <li>Never add a second spec file for the same class/module. Examples of disallowed names: <code>*_more_spec.rb</code>, <code>*_extra_spec.rb</code>, <code>*_status_spec.rb</code>, or any other suffix that still targets the same class. If you find yourself wanting a second file, merge those examples into the canonical spec file for that class/module.</li>
+  <li>One spec file per class/module. For each class or module under <code>lib/</code>, keep all of its unit tests in a single spec file under <code>spec/</code> that mirrors the path and file name exactly: <code>lib/oauth2/my_class.rb</code> -&gt; <code>spec/oauth2/my_class_spec.rb</code>.</li>
   <li>Exception: Integration specs that intentionally span multiple classes. Place these under <code>spec/integration/</code> (or a clearly named integration folder), and do not directly mirror a single class. Name them after the scenario, not a class.</li>
-  <li>Migration note: If a duplicate spec file exists, move all examples into the canonical file and delete the duplicate. Do not leave stubs or empty files behind.</li>
 </ul>
 
 <h2 id="lint-it">Lint It</h2>
 
 <p>Run all the default tasks, which includes running the gradually autocorrecting linter, <code>rubocop-gradual</code>.</p>
 
-<pre class="code language-console"><code class="language-console">bundle exec rake
-</code></pre>
+<p><code>console
+bundle exec rake
+</code></p>
 
 <p>Or just run the linter.</p>
 
-<pre class="code language-console"><code class="language-console">bundle exec rake rubocop_gradual:autocorrect
-</code></pre>
+<p><code>console
+bundle exec rake rubocop_gradual:autocorrect
+</code></p>
 
-<p>For more detailed information about using RuboCop in this project, please see the <a href="file.RUBOCOP.html" title="RUBOCOP.md">RUBOCOP.md</a> guide. This project uses <code>rubocop_gradual</code> instead of vanilla RuboCop, which requires specific commands for checking violations.</p>
+<p>For more detailed information about using RuboCop in this project, please see the <a href="RUBOCOP.md">RUBOCOP.md</a> guide. This project uses <code>rubocop_gradual</code> instead of vanilla RuboCop, which requires specific commands for checking violations.</p>
 
 <h3 id="important-do-not-add-inline-rubocop-disables">Important: Do not add inline RuboCop disables</h3>
 
@@ -213,7 +201,7 @@ They are created and updated with the commands:</p>
 
 <ul>
   <li>Prefer configuration-based exclusions when a rule should not apply to certain paths or files (e.g., via <code>.rubocop.yml</code>).</li>
-  <li>When a violation is temporary and you plan to fix it later, record it in <code>.rubocop_gradual.lock</code> using the gradual workflow:
+  <li>When a violation is temporary, and you plan to fix it later, record it in <code>.rubocop_gradual.lock</code> using the gradual workflow:
     <ul>
       <li>
 <code>bundle exec rake rubocop_gradual:autocorrect</code> (preferred)</li>
@@ -239,10 +227,10 @@ They are created and updated with the commands:</p>
 
 <h3 id="one-time-per-maintainer-setup">One-time, Per-maintainer, Setup</h3>
 
-<p><strong>IMPORTANT</strong>: To sign a build,<br>
-a public key for signing gems will need to be picked up by the line in the<br>
-<code>gemspec</code> defining the <code>spec.cert_chain</code> (check the relevant ENV variables there).<br>
-All releases to RubyGems.org are signed releases.<br>
+<p><strong>IMPORTANT</strong>: To sign a build,
+a public key for signing gems will need to be picked up by the line in the
+<code>gemspec</code> defining the <code>spec.cert_chain</code> (check the relevant ENV variables there).
+All releases are signed releases.
 See: <a href="https://guides.rubygems.org/security/#building-gems">RubyGems Security Guide</a></p>
 
 <p>NOTE: To build without signing the gem set <code>SKIP_GEM_SIGNING</code> to any value in the environment.</p>
@@ -252,9 +240,10 @@ See: <a href="https://guides.rubygems.org/security/#building-gems">RubyGems Secu
 <h4 id="automated-process">Automated process</h4>
 
 <ol>
-  <li>Update version.rb to contian the correct version-to-be-released.</li>
+  <li>Update version.rb to contain the correct version-to-be-released.</li>
   <li>Run <code>bundle exec kettle-changelog</code>.</li>
   <li>Run <code>bundle exec kettle-release</code>.</li>
+  <li>Stay awake and monitor the release process for any errors, and answer any prompts.</li>
 </ol>
 
 <h4 id="manual-process">Manual process</h4>
@@ -288,8 +277,8 @@ See: <a href="https://guides.rubygems.org/security/#building-gems">RubyGems Secu
   </li>
   <li>Run <code>bundle exec rake build</code>
 </li>
-  <li>Run <code>bin/gem_checksums</code> (more context <a href="https://github.com/rubygems/rubygems/pull/6022">1</a>, <a href="https://github.com/rubygems/guides/pull/325">2</a>)<br>
-to create SHA-256 and SHA-512 checksums. This functionality is provided by the <code>stone_checksums</code><br>
+  <li>Run <code>bin/gem_checksums</code> (more context <a href="https://github.com/rubygems/rubygems/pull/6022">1</a>, <a href="https://github.com/rubygems/guides/pull/325">2</a>)
+to create SHA-256 and SHA-512 checksums. This functionality is provided by the <code>stone_checksums</code>
 <a href="https://github.com/galtzo-floss/stone_checksums">gem</a>.
     <ul>
       <li>The script automatically commits but does not push the checksums</li>
@@ -300,17 +289,16 @@ to create SHA-256 and SHA-512 checksums. This functionality is provided by the <
       <li><code>sha256sum pkg/&lt;gem name&gt;-&lt;version&gt;.gem</code></li>
     </ul>
   </li>
-  <li>Run <code>bundle exec rake release</code> which will create a git tag for the version,<br>
-push git commits and tags, and push the <code>.gem</code> file to <a href="https://rubygems.org">rubygems.org</a>
-</li>
+  <li>Run <code>bundle exec rake release</code> which will create a git tag for the version,
+push git commits and tags, and push the <code>.gem</code> file to the gem host configured in the gemspec.</li>
 </ol>
 
 </div></div>
 
       <div id="footer">
-  Generated on Thu Sep 25 11:50:27 2025 by
+  Generated on Fri Nov  7 19:06:17 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.37 (ruby-3.4.7).
 </div>
 
     </div>

@@ -105,25 +105,25 @@
   <div class="discussion">
     <p>The Client Assertion Strategy</p>
 
-<p>Sample usage:<br />
-  client = OAuth2::Client.new(client_id, client_secret,<br />
-                              :site =&gt; ‘http://localhost:8080’,<br />
+<p>Sample usage:
+  client = OAuth2::Client.new(client_id, client_secret,
+                              :site =&gt; ‘http://localhost:8080’,
                               :auth_scheme =&gt; :request_body)</p>
 
-<p>claim_set = {<br />
-    :iss =&gt; “http://localhost:3001”,<br />
-    :aud =&gt; “http://localhost:8080/oauth2/token”,<br />
-    :sub =&gt; “me@example.com”,<br />
-    :exp =&gt; Time.now.utc.to_i + 3600,<br />
+<p>claim_set = {
+    :iss =&gt; “http://localhost:3001”,
+    :aud =&gt; “http://localhost:8080/oauth2/token”,
+    :sub =&gt; “me@example.com”,
+    :exp =&gt; Time.now.utc.to_i + 3600,
   }</p>
 
-<p>encoding = {<br />
-    :algorithm =&gt; ‘HS256’,<br />
-    :key =&gt; ‘secret_key’,<br />
+<p>encoding = {
+    :algorithm =&gt; ‘HS256’,
+    :key =&gt; ‘secret_key’,
   }</p>
 
-<p>access = client.assertion.get_token(claim_set, encoding)<br />
-  access.token                 # actual access_token string<br />
+<p>access = client.assertion.get_token(claim_set, encoding)
+  access.token                 # actual access_token string
   access.get(“/api/stuff”)     # making api calls with access token in header</p>
 
 
@@ -292,29 +292,29 @@
   <div class="discussion">
     <p>Retrieve an access token given the specified client.</p>
 
-<p>For reading on JWT and claim keys:<br />
-  @see https://github.com/jwt/ruby-jwt<br />
-  @see https://datatracker.ietf.org/doc/html/rfc7519#section-4.1<br />
-  @see https://datatracker.ietf.org/doc/html/rfc7523#section-3<br />
+<p>For reading on JWT and claim keys:
+  @see https://github.com/jwt/ruby-jwt
+  @see https://datatracker.ietf.org/doc/html/rfc7519#section-4.1
+  @see https://datatracker.ietf.org/doc/html/rfc7523#section-3
   @see https://www.iana.org/assignments/jwt/jwt.xhtml</p>
 
-<p>There are many possible claim keys, and applications may ask for their own custom keys.<br />
-Some typically required ones:<br />
-  :iss (issuer)<br />
-  :aud (audience)<br />
-  :sub (subject) – formerly :prn https://datatracker.ietf.org/doc/html/draft-ietf-oauth-json-web-token-06#appendix-F<br />
+<p>There are many possible claim keys, and applications may ask for their own custom keys.
+Some typically required ones:
+  :iss (issuer)
+  :aud (audience)
+  :sub (subject) – formerly :prn https://datatracker.ietf.org/doc/html/draft-ietf-oauth-json-web-token-06#appendix-F
   :exp, (expiration time) – in seconds, e.g. Time.now.utc.to_i + 3600</p>
 
-<p>Note that this method does <em>not</em> validate presence of those four claim keys indicated as required by RFC 7523.<br />
+<p>Note that this method does <em>not</em> validate presence of those four claim keys indicated as required by RFC 7523.
 There are endpoints that may not conform with this RFC, and this gem should still work for those use cases.</p>
 
-<p>These two options are passed directly to <code>JWT.encode</code>.  For supported encoding arguments:<br />
-  @see https://github.com/jwt/ruby-jwt#algorithms-and-usage<br />
+<p>These two options are passed directly to <code>JWT.encode</code>.  For supported encoding arguments:
+  @see https://github.com/jwt/ruby-jwt#algorithms-and-usage
   @see https://datatracker.ietf.org/doc/html/rfc7518#section-3.1</p>
 
-<p>The object type of <code>:key</code> may depend on the value of <code>:algorithm</code>.  Sample arguments:<br />
-  get_token(claim_set, =&gt; ‘HS256’, :key =&gt; ‘secret_key’)<br />
-  get_token(claim_set, =&gt; ‘RS256’, :key =&gt; OpenSSL::PKCS12.new(File.read(‘my_key.p12’), ‘not_secret’))</p>
+<p>The object type of <code>:key</code> may depend on the value of <code>:algorithm</code>.  Sample arguments:
+  <code>get_token(claim_set, {:algorithm =&gt; 'HS256', :key =&gt; 'secret_key'})</code>
+  <code>get_token(claim_set, {:algorithm =&gt; 'RS256', :key =&gt; OpenSSL::PKCS12.new(File.read('my_key.p12'), 'not_secret')})</code></p>
 
 
   </div>
@@ -382,7 +382,7 @@ There are endpoints that may not conform with this RFC, and this gem should stil
       
       
         &mdash;
-        <div class='inline'><p>this will be merged with the token response to create the AccessToken object<br />
+        <div class='inline'><p>this will be merged with the token response to create the AccessToken object
 @see the access_token_opts argument to Client#get_token</p>
 </div>
       
@@ -437,7 +437,7 @@ There are endpoints that may not conform with this RFC, and this gem should stil
             
           </span>
           
-            &mdash; <div class='inline'><p>the url parameter <code>scope</code> that may be required by some endpoints<br />
+            &mdash; <div class='inline'><p>the url parameter <code>scope</code> that may be required by some endpoints
 @see https://datatracker.ietf.org/doc/html/rfc7521#section-4.1</p>
 </div>
           
@@ -481,9 +481,9 @@ There are endpoints that may not conform with this RFC, and this gem should stil
 </div>
 
       <div id="footer">
-  Generated on Thu Sep 25 11:50:27 2025 by
+  Generated on Fri Nov  7 19:06:18 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.37 (ruby-3.4.7).
 </div>
 
     </div>

@@ -69,21 +69,20 @@
 
 <h3 id="rubocop-lts">RuboCop LTS</h3>
 
-<p>This project uses <code>rubocop-lts</code> to ensure, on a best-effort basis, compatibility with Ruby &gt;= 1.9.2.<br>
+<p>This project uses <code>rubocop-lts</code> to ensure, on a best-effort basis, compatibility with Ruby &gt;= 1.9.2.
 RuboCop rules are meticulously configured by the <code>rubocop-lts</code> family of gems to ensure that a project is compatible with a specific version of Ruby. See: https://rubocop-lts.gitlab.io for more.</p>
 
 <h2 id="checking-rubocop-violations">Checking RuboCop Violations</h2>
 
 <p>To check for RuboCop violations in this project, always use:</p>
 
-<pre class="code language-bash"><code class="language-bash">bundle exec rake rubocop_gradual:check
-</code></pre>
+<p><code>bash
+bundle exec rake rubocop_gradual:check
+</code></p>
 
-<p><strong>Do not use</strong> the standard RuboCop commands like:</p>
-<ul>
-  <li><code>bundle exec rubocop</code></li>
-  <li><code>rubocop</code></li>
-</ul>
+<p><strong>Do not use</strong> the standard RuboCop commands like:
+- <code>bundle exec rubocop</code>
+- <code>rubocop</code></p>
 
 <h2 id="understanding-the-lock-file">Understanding the Lock File</h2>
 
@@ -122,7 +121,7 @@ RuboCop rules are meticulously configured by the <code>rubocop-lts</code> family
 <h2 id="workflow">Workflow</h2>
 
 <ol>
-  <li>Before submitting a PR, run <code>bundle exec rake rubocop_gradual:autocorrect</code><br>
+  <li>Before submitting a PR, run <code>bundle exec rake rubocop_gradual:autocorrect</code>
 a. or just the default <code>bundle exec rake</code>, as autocorrection is a pre-requisite of the default task.</li>
   <li>If there are new violations, either:
     <ul>
@@ -150,7 +149,7 @@ a. or just the default <code>bundle exec rake</code>, as autocorrection is a pre
 
 <p>In general, treat the rules as guidance to follow; fix violations rather than ignore them. For example, RSpec conventions in this project expect <code>described_class</code> to be used in specs that target a specific class under test.</p>
 
-<h2 id="benefits-of-rubocop_gradual">Benefits of rubocop_gradual</h2>
+<h2 id="benefits-of-rubocopgradual">Benefits of rubocop_gradual</h2>
 
 <ul>
   <li>Allows incremental adoption of code style rules</li>
@@ -161,9 +160,9 @@ a. or just the default <code>bundle exec rake</code>, as autocorrection is a pre
 </div></div>
 
       <div id="footer">
-  Generated on Thu Sep 25 11:50:27 2025 by
+  Generated on Fri Nov  7 19:06:17 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.37 (ruby-3.4.5).
+  0.9.37 (ruby-3.4.7).
 </div>
 
     </div>
