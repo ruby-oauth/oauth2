@@ -47,7 +47,6 @@ appraise "dep-heads" do
   eval_gemfile "modular/runtime_heads.gemfile"
 end
 
-
 appraise "ruby-2-4" do
   eval_gemfile "modular/faraday_v1.gemfile"
   eval_gemfile "modular/hashie_v1.gemfile"
