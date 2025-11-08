@@ -21,11 +21,13 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Added
 
 - [gh!683][gh!683], [gh!684][gh!684] - Improve documentation by @pboling
+- [gh!686][gh!686]- Add Incident Response Plan by @pboling
+- [gh!687][gh!687]- Add Threat Model by @pboling
 
 ### Changed
 
-- [gh!685][gh!685] - upgrade kettle-dev v1.1.24 by pboling
-- upgrade kettle-dev v1.1.26 by pboling
+- [gh!685][gh!685] - upgrade kettle-dev v1.1.24 by @pboling
+- upgrade kettle-dev v1.1.51 by @pboling
   - Add open collective donors to README
 
 ### Deprecated
@@ -34,11 +36,16 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- [gh!690][gh!690] - Add yard-fence to handle braces within code fences in markdown properly by @pboling
+
 ### Security
 
 [gh!683]: https://github.com/ruby-oauth/oauth2/pull/683
 [gh!684]: https://github.com/ruby-oauth/oauth2/pull/684
 [gh!685]: https://github.com/ruby-oauth/oauth2/pull/685
+[gh!686]: https://github.com/ruby-oauth/oauth2/pull/686
+[gh!687]: https://github.com/ruby-oauth/oauth2/pull/687
+[gh!690]: https://github.com/ruby-oauth/oauth2/pull/690
 
 ## [2.0.17] - 2025-09-15
 
@@ -49,7 +56,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- [gh!682][gh!682] - AccessToken: support Hash-based verb-dependent token transmission mode (e.g., {get: :query, post: :header})
+- [gh!682][gh!682] - AccessToken: support Hash-based verb-dependent token transmission mode (e.g., `{get: :query, post: :header}`)
 
 [gh!682]: https://github.com/ruby-oauth/oauth2/pull/682
 

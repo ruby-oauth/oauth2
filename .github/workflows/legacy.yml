@@ -50,8 +50,8 @@ jobs:
             appraisal: "ruby-3-1"
             exec_cmd: "rake test"
             gemfile: "Appraisal.root"
-            rubygems: latest
-            bundler: latest
+            rubygems: '3.6.9'
+            bundler: '2.6.9'
 
     steps:
       - name: Checkout

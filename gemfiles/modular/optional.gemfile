@@ -1,1 +1,2 @@
 # Optional dependencies are not depended on directly, but may be used if present.
+gem "addressable", ">= 2.8", "< 3" # ruby >= 2.2

@@ -43,7 +43,6 @@ Gem::Specification.new do |spec|
   end
 
   gl_homepage = "https://gitlab.com/ruby-oauth/#{spec.name}"
-  gh_mirror = spec.homepage
 
   spec.post_install_message = %{
 ---+++--- oauth2 v#{gem_version} ---+++---
@@ -73,9 +72,9 @@ Thanks, @pboling / @galtzo
 }
 
   spec.metadata["homepage_uri"] = "https://#{spec.name.tr("_", "-")}.galtzo.com/"
-  spec.metadata["source_code_uri"] = "#{gh_mirror}/tree/v#{spec.version}"
-  spec.metadata["changelog_uri"] = "#{gh_mirror}/blob/v#{spec.version}/CHANGELOG.md"
-  spec.metadata["bug_tracker_uri"] = "#{gh_mirror}/issues"
+  spec.metadata["source_code_uri"] = "#{spec.homepage}/tree/v#{spec.version}"
+  spec.metadata["changelog_uri"] = "#{spec.homepage}/blob/v#{spec.version}/CHANGELOG.md"
+  spec.metadata["bug_tracker_uri"] = "#{spec.homepage}/issues"
   spec.metadata["documentation_uri"] = "https://www.rubydoc.info/gems/#{spec.name}/#{spec.version}"
   spec.metadata["mailing_list_uri"] = "https://groups.google.com/g/oauth-ruby"
   spec.metadata["funding_uri"] = "https://github.com/sponsors/pboling"
@@ -86,8 +85,7 @@ Thanks, @pboling / @galtzo
 
   # Specify which files are part of the released package.
   spec.files = Dir[
-    # Executables and tasks
-    "exe/*",
+    # Code / tasks / data (NOTE: exe/ is specified via spec.bindir and spec.executables below)
     "lib/**/*.rb",
     "lib/**/*.rake",
     # Signatures
@@ -109,6 +107,7 @@ Thanks, @pboling / @galtzo
     "REEK",
     "RUBOCOP.md",
     "SECURITY.md",
+    "THREAT_MODEL.md",
   ]
   spec.rdoc_options += [
     "--title",
@@ -136,7 +135,7 @@ Thanks, @pboling / @galtzo
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")  # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
-  #       visibility and discoverability on RubyGems.org.
+  #       visibility and discoverability.
   #       However, development dependencies in gemspec will install on
   #       all versions of Ruby that will run in CI.
   #       This gem, and its gemspec runtime dependencies, will install on Ruby down to 2.2.0.
@@ -153,7 +152,7 @@ Thanks, @pboling / @galtzo
   spec.add_development_dependency("rexml", "~> 3.2", ">= 3.2.5")        # ruby >= 0
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 1.1")                     # ruby >= 2.3.0
+  spec.add_development_dependency("kettle-dev", "~> 1.1")                           # ruby >= 2.3.0
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.2")                      # ruby >= 2.0.0
@@ -166,8 +165,7 @@ Thanks, @pboling / @galtzo
 
   # Testing
   spec.add_development_dependency("appraisal2", "~> 3.0")                           # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  spec.add_development_dependency("kettle-test", "~> 1.0")                          # ruby >= 2.3
-  spec.add_development_dependency("rspec-pending_for", "~> 0.0", ">= 0.0.17")       # ruby >= 2.3, used to skip specs on incompatible Rubies
+  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.6")              # ruby >= 2.3
 
   # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
@@ -179,7 +177,7 @@ Thanks, @pboling / @galtzo
   # spec.add_dependency("git", ">= 1.19.1")                               # ruby >= 2.3
 
   # Development tasks
-  # The cake is a lie. erb v2.2, the oldest release on RubyGems.org, was never compatible with Ruby 2.3.
+  # The cake is a lie. erb v2.2, the oldest release, was never compatible with Ruby 2.3.
   # This means we have no choice but to use the erb that shipped with Ruby 2.3
   # /opt/hostedtoolcache/Ruby/2.3.8/x64/lib/ruby/gems/2.3.0/gems/erb-2.2.2/lib/erb.rb:670:in `prepare_trim_mode': undefined method `match?' for "-":String (NoMethodError)
   # spec.add_development_dependency("erb", ">= 2.2")                                  # ruby >= 2.3.0, not SemVer, old rubies get dropped in a patch.
@@ -201,6 +199,6 @@ Thanks, @pboling / @galtzo
   # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head
   # This is done in the "head" appraisal.
   # See: https://github.com/vcr/vcr/issues/1057
-  spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
-  spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
+  # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
+  # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
 end

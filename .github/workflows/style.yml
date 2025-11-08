@@ -63,3 +63,5 @@ jobs:
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle
       - name: Run ${{ matrix.appraisal }} checks via ${{ matrix.exec_cmd }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
+      - name: Validate RBS Types
+        run: bundle exec appraisal ${{ matrix.appraisal }} bin/rbs validate

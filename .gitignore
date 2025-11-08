@@ -4,6 +4,7 @@
 *.gem
 
 # Bundler
+/vendor/bundle/
 /.bundle/
 /gemfiles/*.lock
 /gemfiles/.bundle/

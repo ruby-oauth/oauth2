@@ -1,3 +1,32 @@
+| 📍 NOTE                                                                                                                                                           |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| RubyGems (the [GitHub org][rubygems-org], not the website) [suffered][draper-security] a [hostile takeover][ellen-takeover] in September 2025.                    |
+| Ultimately [4 maintainers][simi-removed] were [hard removed][martin-removed] and a reason has been given for only 1 of those, while 2 others resigned in protest. |
+| It is a [complicated story][draper-takeover] which is difficult to [parse quickly][draper-lies].                                                                  |
+| I'm adding notes like this to gems because I [don't condone theft][draper-theft] of repositories or gems from their rightful owners.                              |
+| If a similar theft happened with my repos/gems, I'd hope some would stand up for me.                                                                              |
+| Disenfranchised former-maintainers have started [gem.coop][gem-coop].                                                                                             |
+| Once available I will publish there exclusively; unless RubyCentral makes amends with the community.                                                              |
+| The ["Technology for Humans: Joel Draper"][reinteractive-podcast] podcast episode by [reinteractive][reinteractive] is the most cogent summary I'm aware of.      |
+| See [here][gem-naming], [here][gem-coop] and [here][martin-ann] for more info on what comes next.                                                                 |
+| What I'm doing: A (WIP) proposal for [bundler/gem scopes][gem-scopes], and a (WIP) proposal for a federated [gem server][gem-server].                             |
+
+[rubygems-org]: https://github.com/rubygems/
+[draper-security]: https://joel.drapper.me/p/ruby-central-security-measures/
+[draper-takeover]: https://joel.drapper.me/p/ruby-central-takeover/
+[ellen-takeover]: https://pup-e.com/blog/goodbye-rubygems/
+[simi-removed]: https://www.reddit.com/r/ruby/s/gOk42POCaV
+[martin-removed]: https://bsky.app/profile/martinemde.com/post/3m3occezxxs2q
+[draper-lies]: https://joel.drapper.me/p/ruby-central-fact-check/
+[draper-theft]: https://joel.drapper.me/p/ruby-central/
+[reinteractive]: https://reinteractive.com/ruby-on-rails
+[gem-coop]: https://gem.coop
+[gem-naming]: https://github.com/gem-coop/gem.coop/issues/12
+[martin-ann]: https://martinemde.com/2025/10/05/announcing-gem-coop.html
+[gem-scopes]: https://github.com/galtzo-floss/bundle-namespace
+[gem-server]: https://github.com/galtzo-floss/gem-server
+[reinteractive-podcast]: https://youtu.be/_H4qbtC5qzU?si=BvuBU90R2wAqD2E6
+
 [![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang] [![oauth2 Logo by Chris Messina, CC BY-SA 3.0][🖼️oauth2-i]][🖼️oauth2]
 
 [🖼️galtzo-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
@@ -30,7 +59,7 @@ This is a RubyGem for implementing OAuth 2.0 clients (not servers) in Ruby appli
 
 ### Quick Examples
 
-<details>
+<details markdown="1">
   <summary>Convert the following `curl` command into a token request using this gem...</summary>
 
 ```shell
@@ -61,7 +90,7 @@ NOTE: `header` - The content type specified in the `curl` is already the default
 
 </details>
 
-<details>
+<details markdown="1>
 <summary>Complete E2E single file script against mock-oauth2-server</summary>
 
 - E2E example uses [navikt/mock-oauth2-server](https://github.com/navikt/mock-oauth2-server), which was added in v2.0.11
@@ -110,6 +139,7 @@ Troubleshooting: validate connectivity to the mock server
     - `ss -ltnp | grep :8080`
 
 Notes
+
 - Discovery URL pattern is: `http://localhost:8080/<realm>/.well-known/openid-configuration`, where `<realm>` defaults to `default`.
 - You can change these with env vars when running the example:
     - `E2E_ISSUER_BASE` (default: http://localhost:8080)
@@ -129,107 +159,39 @@ If it seems like you are in the wrong place, you might try one of these:
 
 ## 💡 Info you can shake a stick at
 
-| Tokens to Remember      | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace]                                                                                                                                                                                                                                                                                                                                                                               |
-|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Works with JRuby        | ![JRuby 9.1 Compat][💎jruby-9.1i] ![JRuby 9.2 Compat][💎jruby-9.2i] ![JRuby 9.3 Compat][💎jruby-9.3i] <br/> [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎10-j-wf] [![JRuby 10.0 Compat][💎jruby-c-i]][🚎11-c-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]                                                                                                                                                                                                               |
-| Works with Truffle Ruby | ![Truffle Ruby 22.3 Compat][💎truby-22.3i] ![Truffle Ruby 23.0 Compat][💎truby-23.0i] <br/> [![Truffle Ruby 23.1 Compat][💎truby-23.1i]][🚎9-t-wf] [![Truffle Ruby 24.1 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                                                                                                                                                                                 |
-| Works with MRI Ruby 3   | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎4-lg-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎6-s-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎6-s-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎6-s-wf] [![Ruby 3.4 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                                                                                                                                                                              |
-| Works with MRI Ruby 2   | ![Ruby 2.2 Compat][💎ruby-2.2i] <br/> [![Ruby 2.3 Compat][💎ruby-2.3i]][🚎1-an-wf] [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎1-an-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎1-an-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎7-us-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎7-us-wf]                                                                                                                                                                                                   |
-| Support & Community     | [![Join Me on Daily.dev's RubyFriends][✉️ruby-friends-img]][✉️ruby-friends] [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]                                                                                                                                            |
-| Source                  | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc]                                                                                                                                                                                                                                                              |
-| Documentation           | [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![Maintainer Blog][🚂maint-blog-img]][🚂maint-blog] [![GitLab Wiki][📜gl-wiki-img]][📜gl-wiki] [![GitHub Wiki][📜gh-wiki-img]][📜gh-wiki]                                                                                                                                                                                               |
-| Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![Compatible with Apache Software Projects: Verified by SkyWalking Eyes][📄license-compat-img]][📄license-compat] [![📄ilo-declaration-img]][📄ilo-declaration] [![Incident Response Plan][🔐irp-img]][🔐irp] [![Security Policy][🔐security-img]][🔐security] [![Threat Model][🔐threat-model-img]][🔐threat-model]  [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver] |
-| Style                   | [![Enforced Code Style Linter][💎rlts-img]][💎rlts] [![Keep-A-Changelog 1.0.0][📗keep-changelog-img]][📗keep-changelog] [![Gitmoji Commits][📌gitmoji-img]][📌gitmoji] [![Compatibility appraised by: appraisal2][💎appraisal2-img]][💎appraisal2]                                                                                                                                                                                                                       |
-| Maintainer 🎖️          | [![Follow Me on LinkedIn][💖🖇linkedin-img]][💖🖇linkedin] [![Follow Me on Ruby.Social][💖🐘ruby-mast-img]][💖🐘ruby-mast] [![Follow Me on Bluesky][💖🦋bluesky-img]][💖🦋bluesky] [![Contact Maintainer][🚂maint-contact-img]][🚂maint-contact] [![My technical writing][💖💁🏼‍♂️devto-img]][💖💁🏼‍♂️devto]                                                                                                                                                           |
-| `...` 💖                | [![Find Me on WellFound:][💖✌️wellfound-img]][💖✌️wellfound] [![Find Me on CrunchBase][💖💲crunchbase-img]][💖💲crunchbase] [![My LinkTree][💖🌳linktree-img]][💖🌳linktree] [![More About Me][💖💁🏼‍♂️aboutme-img]][💖💁🏼‍♂️aboutme] [🧊][💖🧊berg] [🐙][💖🐙hub]  [🛖][💖🛖hut] [🧪][💖🧪lab]                                                                                                                                                                        |
+| Tokens to Remember      | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace]                                                                                                                                                                                                                                                                          |
+|-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Works with JRuby        | ![JRuby 9.1 Compat][💎jruby-9.1i] ![JRuby 9.2 Compat][💎jruby-9.2i] ![JRuby 9.3 Compat][💎jruby-9.3i] <br/> [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎10-j-wf] [![JRuby 10.0 Compat][💎jruby-c-i]][🚎11-c-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]                                                                                                          |
+| Works with Truffle Ruby | ![Truffle Ruby 22.3 Compat][💎truby-22.3i] ![Truffle Ruby 23.0 Compat][💎truby-23.0i] ![Truffle Ruby 23.1 Compat][💎truby-23.1i] <br/> [![Truffle Ruby 24.1 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                                                                                        |
+| Works with MRI Ruby 3   | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎4-lg-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎6-s-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎6-s-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎6-s-wf] [![Ruby 3.4 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                                                                         |
+| Works with MRI Ruby 2   | ![Ruby 2.2 Compat][💎ruby-2.2i] <br/> [![Ruby 2.3 Compat][💎ruby-2.3i]][🚎1-an-wf] [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎1-an-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎1-an-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎7-us-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎7-us-wf]                                                                                              |
+| Support & Community     | [![Join Me on Daily.dev's RubyFriends][✉️ruby-friends-img]][✉️ruby-friends] [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]                                       |
+| Source                  | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc]                                                                                                                                                         |
+| Documentation           | [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![Maintainer Blog][🚂maint-blog-img]][🚂maint-blog] [![GitLab Wiki][📜gl-wiki-img]][📜gl-wiki] [![GitHub Wiki][📜gh-wiki-img]][📜gh-wiki]                                                                                          |
+| Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![Compatible with Apache Software Projects: Verified by SkyWalking Eyes][📄license-compat-img]][📄license-compat] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver] |
+| Style                   | [![Enforced Code Style Linter][💎rlts-img]][💎rlts] [![Keep-A-Changelog 1.0.0][📗keep-changelog-img]][📗keep-changelog] [![Gitmoji Commits][📌gitmoji-img]][📌gitmoji] [![Compatibility appraised by: appraisal2][💎appraisal2-img]][💎appraisal2]                                                                                                                  |
+| Maintainer 🎖️          | [![Follow Me on LinkedIn][💖🖇linkedin-img]][💖🖇linkedin] [![Follow Me on Ruby.Social][💖🐘ruby-mast-img]][💖🐘ruby-mast] [![Follow Me on Bluesky][💖🦋bluesky-img]][💖🦋bluesky] [![Contact Maintainer][🚂maint-contact-img]][🚂maint-contact] [![My technical writing][💖💁🏼‍♂️devto-img]][💖💁🏼‍♂️devto]                                                      |
+| `...` 💖                | [![Find Me on WellFound:][💖✌️wellfound-img]][💖✌️wellfound] [![Find Me on CrunchBase][💖💲crunchbase-img]][💖💲crunchbase] [![My LinkTree][💖🌳linktree-img]][💖🌳linktree] [![More About Me][💖💁🏼‍♂️aboutme-img]][💖💁🏼‍♂️aboutme] [🧊][💖🧊berg] [🐙][💖🐙hub]  [🛖][💖🛖hut] [🧪][💖🧪lab]                                                                   |
 
 ### Compatibility
 
-* Operating Systems: Linux, macOS, Windows
-* MRI Ruby @ v2.3, v2.4, v2.5, v2.6, v2.7, v3.0, v3.1, v3.2, v3.3, v3.4, HEAD
-    * NOTE: This gem may still _install_ and _run_ on ruby v2.2, but vanilla GitHub Actions no longer supports testing against it, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
-* JRuby @ v9.4, v10.0, HEAD
-    * NOTE: This gem may still _install_ and _run_ on JRuby v9.2 and v9.3, but they are EOL, builds are flaky, and GitHub Actions [doesn't have][GHA-continue-on-error-ui] a proper [`allow-failures` feature][GHA-allow-failure], and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
-* TruffleRuby @ v23.1, v24.1, HEAD
-    * NOTE: This gem may still _install_ and _run_ on Truffleruby v22.3 and v23.0, but they are EOL, builds are flaky, and GitHub Actions [doesn't have][GHA-continue-on-error-ui] a proper [`allow-failures` feature][GHA-allow-failure], and until they do flaky EOL-platform builds get dropped, so YMMV. Accept patches so long as they don't break the platforms that do run in CI.
-* gem `faraday` @ v0, v1, v2, HEAD ⏩️ [lostisland/faraday](https://github.com/lostisland/faraday)
-* gem `jwt` @ v1, v2, v3, HEAD ⏩️ [jwt/ruby-jwt](https://github.com/jwt/ruby-jwt)
-* gem `logger` @ v1.2, v1.5, v1.7, HEAD ⏩️ [ruby/logger](https://github.com/ruby/logger)
-* gem `multi_xml` @ v0.5, v0.6, v0.7, HEAD ⏩️ [sferik/multi_xml](https://github.com/sferik/multi_xml)
-* gem `rack` @ v1.2, v1.6, v2, v3, HEAD ⏩️ [rack/rack](https://github.com/rack/rack)
-* gem `snaky_hash` @ v2, HEAD ⏩️ [ruby-oauth/snaky_hash](https://gitlab.com/ruby-oauth/snaky_hash)
-* gem `version_gem` @ v1, HEAD ⏩️ [ruby-oauth/version_gem](https://gitlab.com/ruby-oauth/version_gem)
-
-The last two were extracted from this gem. They are part of the `ruby-oauth` org,
-and are developed in tight collaboration with this gem.
-
-Also, where reasonable, tested against the runtime dependencies of those dependencies:
-
-* gem `hashie` @ v0, v1, v2, v3, v4, v5, HEAD ⏩️ [hashie/hashie](https://github.com/hashie/hashie)
-
-[GHA-continue-on-error-ui]: https://github.com/actions/runner/issues/2347#issuecomment-2653479732
-[GHA-allow-failure]: https://github.com/orgs/community/discussions/15452
-
-#### Upgrading Runtime Gem Dependencies
-
-This project sits underneath a large portion of the authorization systems on the internet.
-According to GitHub's project tracking, which I believe only reports on public projects,
-[100,000+ projects](https://github.com/ruby-oauth/oauth2/network/dependents), and
-[500+ packages](https://github.com/ruby-oauth/oauth2/network/dependents?dependent_type=PACKAGE) depend on this project.
-
-That means it is painful for the Ruby community when this gem forces updates to its runtime dependencies.
-
-As a result, great care, and a lot of time, have been invested to ensure this gem is working with all the
-leading versions per each minor version of Ruby of all the runtime dependencies it can install with.
-
-What does that mean specifically for the runtime dependencies?
-
-We have 100% test coverage of lines and branches, and this test suite runs across a very large matrix.
-It wouldn't be possible without appraisal2.
+Compatible with MRI Ruby 2.2.0+, and concordant releases of JRuby, and TruffleRuby.
 
 | 🚚 _Amazing_ test matrix was brought to you by | 🔎 appraisal2 🔎 and the color 💚 green 💚             |
 |------------------------------------------------|--------------------------------------------------------|
 | 👟 Check it out!                               | ✨ [github.com/appraisal-rb/appraisal2][💎appraisal2] ✨ |
 
-#### You should upgrade this gem with confidence\*.
-
-- This gem follows a _strict & correct_ (according to the maintainer of SemVer; [more info][sv-pub-api]) interpretation of SemVer.
-    - Dropping support for **any** of the runtime dependency versions above will be a major version bump.
-    - If you aren't on one of the minor versions above, make getting there a priority.
-- You should upgrade the dependencies of this gem with confidence\*.
-- Please do upgrade, and then, when it goes smooth as butter [please sponsor me][🖇sponsor].  Thanks!
-
-[sv-pub-api]: #-versioning
-
-\* MIT license; The only guarantees I make are for [enterprise support](#enterprise-support).
-
-<details>
-  <summary>Standard Library Dependencies</summary>
-
-The various versions of each are tested via the Ruby test matrix, along with whatever Ruby includes them.
-
-* base64
-* cgi
-* json
-* time
-* logger (removed from stdlib in Ruby 3.5 so added as runtime dependency in v2.0.10)
-
-If you use a gem version of a core Ruby library, it should work fine!
-
-</details>
-
 ### Federated DVCS
 
-<details>
-  <summary>Find this repo on federated forges</summary>
+<details markdown="1">
+  <summary>Find this repo on federated forges (Coming soon!)</summary>
 
-| Federated [DVCS][💎d-in-dvcs] Repository      | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
-|-----------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
-| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl]    | The Truth                                                             | [💚][🤝gl-issues]         | [💚][🤝gl-pulls]         | [💚][📜gl-wiki]           | 🐭 Tiny Matrix           | ➖                            |
-| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb]  | An Ethical Mirror ([Donate][🤝cb-donate])                             | [💚][🤝cb-issues]         | [💚][🤝cb-pulls]         | ➖                         | ⭕️ No Matrix             | ➖                            |
-| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh]    | Another Mirror                                                        | [💚][🤝gh-issues]         | [💚][🤝gh-pulls]         | [💚][📜gh-wiki]           | 💯 Full Matrix           | [💚][gh-discussions]         |
-| 🤼 [OAuth Ruby Google Group][⛳gg-discussions] | "Active"                                                              | ➖                         | ➖                        | ➖                         | ➖                        | [💚][⛳gg-discussions]        |
-| 🎮️ [Discord Server][✉️discord-invite]        | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
+| Federated [DVCS][💎d-in-dvcs] Repository        | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
+|-------------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
+| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl]   | The Truth                                                             | [💚][🤝gl-issues]         | [💚][🤝gl-pulls]         | [💚][📜gl-wiki]           | 🐭 Tiny Matrix           | ➖                            |
+| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate])                             | [💚][🤝cb-issues]         | [💚][🤝cb-pulls]         | ➖                         | ⭕️ No Matrix             | ➖                            |
+| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh]   | Another Mirror                                                        | [💚][🤝gh-issues]         | [💚][🤝gh-pulls]         | [💚][📜gh-wiki]           | 💯 Full Matrix           | [💚][gh-discussions]         |
+| 🎮️ [Discord Server][✉️discord-invite]          | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
 
 </details>
 
@@ -239,7 +201,7 @@ If you use a gem version of a core Ruby library, it should work fine!
 
 Available as part of the Tidelift Subscription.
 
-<details>
+<details markdown="1">
   <summary>Need enterprise-level guarantees?</summary>
 
 The maintainers of this and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source packages you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact packages you use.
@@ -255,143 +217,6 @@ Alternatively:
 - [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
 - [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork]
 - [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]
-
-</details>
-
-## 🚀 Release Documentation
-
-### Version 2.0.x
-
-<details>
-  <summary>2.0.x CHANGELOG and README</summary>
-
-| Version | Release Date | CHANGELOG                             | README                          |
-|---------|--------------|---------------------------------------|---------------------------------|
-| 2.0.17  | 2025-09-15   | [v2.0.17 CHANGELOG][2.0.17-changelog] | [v2.0.17 README][2.0.17-readme] |
-| 2.0.16  | 2025-09-14   | [v2.0.16 CHANGELOG][2.0.16-changelog] | [v2.0.16 README][2.0.16-readme] |
-| 2.0.15  | 2025-09-08   | [v2.0.15 CHANGELOG][2.0.15-changelog] | [v2.0.15 README][2.0.15-readme] |
-| 2.0.14  | 2025-08-31   | [v2.0.14 CHANGELOG][2.0.14-changelog] | [v2.0.14 README][2.0.14-readme] |
-| 2.0.13  | 2025-08-30   | [v2.0.13 CHANGELOG][2.0.13-changelog] | [v2.0.13 README][2.0.13-readme] |
-| 2.0.12  | 2025-05-31   | [v2.0.12 CHANGELOG][2.0.12-changelog] | [v2.0.12 README][2.0.12-readme] |
-| 2.0.11  | 2025-05-23   | [v2.0.11 CHANGELOG][2.0.11-changelog] | [v2.0.11 README][2.0.11-readme] |
-| 2.0.10  | 2025-05-17   | [v2.0.10 CHANGELOG][2.0.10-changelog] | [v2.0.10 README][2.0.10-readme] |
-| 2.0.9   | 2022-09-16   | [v2.0.9 CHANGELOG][2.0.9-changelog]   | [v2.0.9 README][2.0.9-readme]   |
-| 2.0.8   | 2022-09-01   | [v2.0.8 CHANGELOG][2.0.8-changelog]   | [v2.0.8 README][2.0.8-readme]   |
-| 2.0.7   | 2022-08-22   | [v2.0.7 CHANGELOG][2.0.7-changelog]   | [v2.0.7 README][2.0.7-readme]   |
-| 2.0.6   | 2022-07-13   | [v2.0.6 CHANGELOG][2.0.6-changelog]   | [v2.0.6 README][2.0.6-readme]   |
-| 2.0.5   | 2022-07-07   | [v2.0.5 CHANGELOG][2.0.5-changelog]   | [v2.0.5 README][2.0.5-readme]   |
-| 2.0.4   | 2022-07-01   | [v2.0.4 CHANGELOG][2.0.4-changelog]   | [v2.0.4 README][2.0.4-readme]   |
-| 2.0.3   | 2022-06-28   | [v2.0.3 CHANGELOG][2.0.3-changelog]   | [v2.0.3 README][2.0.3-readme]   |
-| 2.0.2   | 2022-06-24   | [v2.0.2 CHANGELOG][2.0.2-changelog]   | [v2.0.2 README][2.0.2-readme]   |
-| 2.0.1   | 2022-06-22   | [v2.0.1 CHANGELOG][2.0.1-changelog]   | [v2.0.1 README][2.0.1-readme]   |
-| 2.0.0   | 2022-06-21   | [v2.0.0 CHANGELOG][2.0.0-changelog]   | [v2.0.0 README][2.0.0-readme]   |
-
-</details>
-
-[2.0.17-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2017---2025-09-15
-[2.0.16-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2016---2025-09-14
-[2.0.15-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2015---2025-09-08
-[2.0.14-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2014---2025-08-31
-[2.0.13-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2013---2025-08-30
-[2.0.12-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2012---2025-05-31
-[2.0.11-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2011---2025-05-23
-[2.0.10-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#2010---2025-05-17
-[2.0.9-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#209---2022-09-16
-[2.0.8-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#208---2022-09-01
-[2.0.7-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#207---2022-08-22
-[2.0.6-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#206---2022-07-13
-[2.0.5-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#205---2022-07-07
-[2.0.4-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#204---2022-07-01
-[2.0.3-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#203---2022-06-28
-[2.0.2-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#202---2022-06-24
-[2.0.1-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#201---2022-06-22
-[2.0.0-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#200---2022-06-21
-
-[2.0.17-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.17/README.md
-[2.0.16-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.16/README.md
-[2.0.15-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.15/README.md
-[2.0.14-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.14/README.md
-[2.0.13-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.13/README.md
-[2.0.12-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.12/README.md
-[2.0.11-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.11/README.md
-[2.0.10-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.10/README.md
-[2.0.9-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.9/README.md
-[2.0.8-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.8/README.md
-[2.0.7-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.7/README.md
-[2.0.6-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.6/README.md
-[2.0.5-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.5/README.md
-[2.0.4-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.4/README.md
-[2.0.3-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.3/README.md
-[2.0.2-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.2/README.md
-[2.0.1-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.1/README.md
-[2.0.0-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v2.0.0/README.md
-
-### Older Releases
-
-<details>
-  <summary>1.4.x CHANGELOGs and READMEs</summary>
-
-| Version | Release Date | CHANGELOG                             | README                          |
-|---------|--------------|---------------------------------------|---------------------------------|
-| 1.4.11  | Sep 16, 2022 | [v1.4.11 CHANGELOG][1.4.11-changelog] | [v1.4.11 README][1.4.11-readme] |
-| 1.4.10  | Jul 1, 2022  | [v1.4.10 CHANGELOG][1.4.10-changelog] | [v1.4.10 README][1.4.10-readme] |
-| 1.4.9   | Feb 20, 2022 | [v1.4.9 CHANGELOG][1.4.9-changelog]   | [v1.4.9 README][1.4.9-readme]   |
-| 1.4.8   | Feb 18, 2022 | [v1.4.8 CHANGELOG][1.4.8-changelog]   | [v1.4.8 README][1.4.8-readme]   |
-| 1.4.7   | Mar 19, 2021 | [v1.4.7 CHANGELOG][1.4.7-changelog]   | [v1.4.7 README][1.4.7-readme]   |
-| 1.4.6   | Mar 19, 2021 | [v1.4.6 CHANGELOG][1.4.6-changelog]   | [v1.4.6 README][1.4.6-readme]   |
-| 1.4.5   | Mar 18, 2021 | [v1.4.5 CHANGELOG][1.4.5-changelog]   | [v1.4.5 README][1.4.5-readme]   |
-| 1.4.4   | Feb 12, 2020 | [v1.4.4 CHANGELOG][1.4.4-changelog]   | [v1.4.4 README][1.4.4-readme]   |
-| 1.4.3   | Jan 29, 2020 | [v1.4.3 CHANGELOG][1.4.3-changelog]   | [v1.4.3 README][1.4.3-readme]   |
-| 1.4.2   | Oct 1, 2019  | [v1.4.2 CHANGELOG][1.4.2-changelog]   | [v1.4.2 README][1.4.2-readme]   |
-| 1.4.1   | Oct 13, 2018 | [v1.4.1 CHANGELOG][1.4.1-changelog]   | [v1.4.1 README][1.4.1-readme]   |
-| 1.4.0   | Jun 9, 2017  | [v1.4.0 CHANGELOG][1.4.0-changelog]   | [v1.4.0 README][1.4.0-readme]   |
-</details>
-
-[1.4.11-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#1411---2022-09-16
-[1.4.10-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#1410---2022-07-01
-[1.4.9-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#149---2022-02-20
-[1.4.8-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#148---2022-02-18
-[1.4.7-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#147---2021-03-19
-[1.4.6-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#146---2021-03-19
-[1.4.5-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#145---2021-03-18
-[1.4.4-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#144---2020-02-12
-[1.4.3-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#143---2020-01-29
-[1.4.2-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#142---2019-10-01
-[1.4.1-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#141---2018-10-13
-[1.4.0-changelog]: https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md?ref_type=heads#140---2017-06-09
-
-[1.4.11-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.11/README.md
-[1.4.10-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.10/README.md
-[1.4.9-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.9/README.md
-[1.4.8-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.8/README.md
-[1.4.7-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.7/README.md
-[1.4.6-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.6/README.md
-[1.4.5-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.5/README.md
-[1.4.4-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.4/README.md
-[1.4.3-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.3/README.md
-[1.4.2-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.2/README.md
-[1.4.1-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.1/README.md
-[1.4.0-readme]: https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.4.0/README.md
-
-<details>
-  <summary>1.3.x Readmes</summary>
-
-| Version | Release Date | Readme                                                       |
-|---------|--------------|--------------------------------------------------------------|
-| 1.3.1   | Mar 3, 2017  | https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.3.1/README.md |
-| 1.3.0   | Dec 27, 2016 | https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.3.0/README.md |
-
-</details>
-
-<details>
-  <summary>&le;= 1.2.x Readmes (2016 and before)</summary>
-
-| Version | Release Date | Readme                                                       |
-|---------|--------------|--------------------------------------------------------------|
-| 1.2.0   | Jun 30, 2016 | https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.2.0/README.md |
-| 1.1.0   | Jan 30, 2016 | https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.1.0/README.md |
-| 1.0.0   | May 23, 2014 | https://gitlab.com/ruby-oauth/oauth2/-/blob/v1.0.0/README.md |
-| < 1.0.0 | Find here    | https://gitlab.com/ruby-oauth/oauth2/-/tags                  |
 
 </details>
 
@@ -411,14 +236,14 @@ gem install oauth2
 
 ### 🔒 Secure Installation
 
-<details>
+<details markdown="1">
   <summary>For Medium or High Security Installations</summary>
 
-This gem is cryptographically signed and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
+This gem is cryptographically signed, and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
 [stone_checksums][💎stone_checksums]. Be sure the gem you install hasn’t been tampered with
 by following the instructions below.
 
-Add my public key (if you haven’t already; will expire 2045-04-29) as a trusted certificate:
+Add my public key (if you haven’t already, expires 2045-04-29) as a trusted certificate:
 
 ```console
 gem cert --add <(curl -Ls https://raw.github.com/galtzo-floss/certs/main/pboling.pem)
@@ -439,6 +264,8 @@ If you want to up your security game full-time:
 ```console
 bundle config set --global trust-policy MediumSecurity
 ```
+
+`MediumSecurity` instead of `HighSecurity` is necessary if not all the gems you use are signed.
 
 NOTE: Be prepared to track down certs for signed gems and add them the same way you added mine.
 
@@ -477,7 +304,7 @@ Compatibility is further distinguished as "Best Effort Support" or "Incidental S
 This gem will install on Ruby versions >= v2.2 for 2.x releases.
 See `1-4-stable` branch for older rubies.
 
-<details>
+<details markdown="1>
   <summary>Ruby Engine Compatibility Policy</summary>
 
 This gem is tested against MRI, JRuby, and Truffleruby.
@@ -485,9 +312,10 @@ Each of those has varying versions that target a specific version of MRI Ruby.
 This gem should work in the just-listed Ruby engines according to the targeted MRI compatibility in the table below.
 If you would like to add support for additional engines,
 see [gemfiles/README.md](gemfiles/README.md), then submit a PR to the correct maintenance branch as according to the table below.
+
 </details>
 
-<details>
+<details markdown="1>
   <summary>Ruby Version Compatibility Policy</summary>
 
 If something doesn't work on one of these interpreters, it's a bug.
@@ -502,6 +330,7 @@ run and pass on that implementation. When something breaks on your
 implementation, you will be responsible for providing patches in a timely
 fashion. If critical issues for a particular implementation exist at the time
 of a major release, support for that Ruby version may be dropped.
+
 </details>
 
 |     | Ruby OAuth2 Version | Maintenance Branch | Targeted Support     | Best Effort Support     | Incidental Support           |
@@ -638,7 +467,11 @@ These extensions work regardless of whether you used the global or discrete conf
 
 There are a few hacks you may need in your class to support Ruby < 2.4.2 or < 2.6.
 They are likely not needed if you are on a newer Ruby.
-See [response_spec.rb](https://github.com/ruby-oauth/oauth2/blob/main/spec/oauth2/response_spec.rb) if you need to study the hacks for older Rubies.
+Expand the examples below, or the [ruby-oauth/snaky_hash](https://gitlab.com/ruby-oauth/snaky_hash) gem,
+or [response_spec.rb](https://github.com/ruby-oauth/oauth2/blob/main/spec/oauth2/response_spec.rb), for more ideas, especially if you need to study the hacks for older Rubies.
+
+<details markdown="1>
+<summary>See Examples</summary>
 
 ```ruby
 class MySnakyHash < SnakyHash::StringKeyed
@@ -694,7 +527,7 @@ class MySnakyHash < SnakyHash::StringKeyed
 end
 ```
 
-See [response_spec.rb](https://github.com/ruby-oauth/oauth2/blob/main/spec/oauth2/response_spec.rb), or the [ruby-oauth/snaky_hash](https://gitlab.com/ruby-oauth/snaky_hash) gem for more ideas.
+</details>
 
 #### Prefer camelCase over snake_case? => snaky: false
 
@@ -707,7 +540,7 @@ response.parsed["additionalData"] # => "additional"
 response.parsed.class.name        # => Hash (just, regular old Hash)
 ```
 
-<details>
+<details markdown="1">
   <summary>Debugging & Logging</summary>
 
 Set an environment variable as per usual (e.g. with [dotenv](https://github.com/bkeepers/dotenv)).
@@ -729,6 +562,7 @@ client = OAuth2::Client.new(
   logger: Logger.new("example.log", "weekly"),
 )
 ```
+
 </details>
 
 ### OAuth2::Response
@@ -752,6 +586,7 @@ a hash of the values), or `from_kvform` (if you have an
 `application/x-www-form-urlencoded` encoded string of the values).
 
 Options (since v2.0.x unless noted):
+
 - `expires_latency` (Integer | nil): Seconds to subtract from expires_in when computing #expired? to offset latency.
 - `token_name` (String | Symbol | nil): When multiple token-like fields exist in responses, select the field name to use as the access token (since v2.0.10).
 - `mode` (Symbol | Proc | Hash): Controls how the token is transmitted on requests made via this AccessToken instance.
@@ -762,6 +597,7 @@ Options (since v2.0.x unless noted):
     - a `Hash` with verb symbols as keys, for example `{get: :query, post: :header, delete: :header}`.
 
 Note: Verb-dependent mode supports providers like Instagram that require query mode for `GET` and header mode for `POST`/`DELETE`
+
 - Verb-dependent mode via `Proc` was added in v2.0.15
 - Verb-dependent mode via `Hash` was added in v2.0.16
 
@@ -780,6 +616,7 @@ Response instance will contain the `OAuth2::Error` instance.
 ### Authorization Grants
 
 Note on OAuth 2.1 (draft):
+
 - PKCE is required for all OAuth clients using the authorization code flow (especially public clients). Implement PKCE in your app when required by your provider. See RFC 7636 and RFC 8252.
 - Redirect URIs must be compared using exact string matching by the Authorization Server.
 - The Implicit grant (response_type=token) and the Resource Owner Password Credentials grant are omitted from OAuth 2.1; they remain here for OAuth 2.0 compatibility but should be avoided for new apps.
@@ -788,6 +625,7 @@ Note on OAuth 2.1 (draft):
 - The definitions of public and confidential clients are simplified to refer only to whether the client has credentials.
 
 References:
+
 - OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13
 - Aaron Parecki: https://aaronparecki.com/2019/12/12/21/its-time-for-oauth-2-dot-1
 - FusionAuth: https://fusionauth.io/blog/2020/04/15/whats-new-in-oauth-2-1
@@ -804,6 +642,7 @@ use. They are available via the [`#auth_code`](https://gitlab.com/ruby-oauth/oau
 [`#assertion`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/assertion.rb) methods respectively.
 
 These aren't full examples, but demonstrative of the differences between usage for each strategy.
+
 ```ruby
 auth_url = client.auth_code.authorize_url(redirect_uri: "http://localhost:8080/oauth/callback")
 access = client.auth_code.get_token("code_value", redirect_uri: "http://localhost:8080/oauth/callback")
@@ -887,7 +726,7 @@ access = client.password.get_token("jdoe", "s3cret", scope: "read")
 
 #### Examples
 
-<details>
+<details markdown="1">
 <summary>JHipster UAA (Spring Cloud) password grant example (legacy; avoid when possible)</summary>
 
 ```ruby
@@ -928,6 +767,7 @@ puts access.to_hash # full token response
 ```
 
 Notes:
+
 - Resource Owner Password Credentials (ROPC) is deprecated in OAuth 2.1 and discouraged. Prefer Authorization Code + PKCE.
 - If your deployment strictly demands the X-XSRF-TOKEN header, first fetch it from an endpoint that sets the XSRF-TOKEN cookie (often "/" or a login page) and pass it to headers.
 - For Basic auth, auth_scheme: :basic_auth handles the Authorization header; you do not need to base64-encode manually.
@@ -937,6 +777,7 @@ Notes:
 ### Instagram API (verb‑dependent token mode)
 
 Providers like Instagram require the access token to be sent differently depending on the HTTP verb:
+
 - GET requests: token must be in the query string (?access_token=...)
 - POST/DELETE requests: token must be in the Authorization header (Bearer ...)
 
@@ -1001,8 +842,9 @@ me = long_lived.get("/me", params: {fields: "id,username"}).parsed
 ```
 
 Tips:
-- Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for GET.
-- If you need a custom rule, you can pass a Proc for mode, e.g. mode: ->(verb) { verb == :get ? :query : :header }.
+
+- Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for `GET` requests.
+- If you need a custom rule, you can pass a `Proc` for `mode`, e.g. `mode: ->(verb) { verb == :get ? :query : :header }`.
 
 ### Refresh Tokens
 
@@ -1107,16 +949,17 @@ resp = access.get("/v1/protected")
 ```
 
 Notes:
-- Files must contain the appropriate PEMs. The private key may be encrypted; if so, pass a password to OpenSSL::PKey::RSA.new(File.read(path), ENV["KEY_PASSWORD"]).
+
+- Files must contain the appropriate PEMs. The private key may be encrypted; if so, pass a password to `OpenSSL::PKey::RSA.new(File.read(path), ENV["KEY_PASSWORD"])`.
 - If your certificate and key are in a PKCS#12/PFX bundle, you can load them like:
-  - p12 = OpenSSL::PKCS12.new(File.read("client.p12"), ENV["P12_PASSWORD"])
-  - client_cert = p12.certificate; client_key = p12.key
+  - `p12 = OpenSSL::PKCS12.new(File.read("client.p12"), ENV["P12_PASSWORD"])`
+  - `client_cert = p12.certificate; client_key = p12.key`
 - Server trust:
-  - If your environment does not have system CAs, specify ca_file or ca_path inside the ssl: hash.
-  - Keep verify: true in production. Set verify: false only for local testing.
-- Faraday adapter: Any adapter that supports Ruby’s OpenSSL should work. net_http (default) and net_http_persistent are common choices.
+  - If your environment does not have system CAs, specify `ca_file` or `ca_path` inside the `ssl:` hash.
+  - Keep `verify: true` in production. Set `verify: false` only for local testing.
+- Faraday adapter: Any adapter that supports Ruby’s OpenSSL should work. `net_http` (default) and `net_http_persistent` are common choices.
 - Scope of mTLS: The SSL client cert is applied to any HTTPS request made by this client (token and resource requests) to the configured site base URL (and absolute URLs you call with the same client).
-- OIDC tie-in: Some OPs require tls_client_auth at the token endpoint per OIDC/OAuth specifications. That is enabled via auth_scheme: :tls_client_auth as shown above.
+- OIDC tie-in: Some OPs require tls_client_auth at the token endpoint per OIDC/OAuth specifications. That is enabled via `auth_scheme: :tls_client_auth` as shown above.
 
 #### Authentication schemes for the token request
 
@@ -1148,9 +991,9 @@ client = OAuth2::Client.new(
 end
 ```
 
-##### Using flat query params (Faraday::FlatParamsEncoder)
+##### Using flat query params (`Faraday::FlatParamsEncoder`)
 
-Some APIs expect repeated key parameters to be sent as flat params rather than arrays. Faraday provides FlatParamsEncoder for this purpose. You can configure the oauth2 client to use it when building requests.
+Some APIs expect repeated key parameters to be sent as flat params rather than arrays. Faraday provides `FlatParamsEncoder` for this purpose. You can configure the oauth2 client to use it when building requests.
 
 ```ruby
 require "faraday"
@@ -1280,7 +1123,7 @@ and [Tidelift][🏙️entsup-tidelift].
 
 ### Open Collective for Individuals
 
-Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/kettle-rb#backer)]
+Support us with a monthly donation and help us continue our activities. [[Become a backer](https://opencollective.com/ruby-oauth#backer)]
 
 NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
 
@@ -1290,27 +1133,19 @@ No backers yet. Be the first!
 
 ### Open Collective for Organizations
 
-Become a sponsor and get your logo on our README on GitHub with a link to your site. [[Become a sponsor](https://opencollective.com/kettle-rb#sponsor)]
+Become a sponsor and get your logo on our README on GitHub with a link to your site. [[Become a sponsor](https://opencollective.com/ruby-oauth#sponsor)]
 
 NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day, automatically.
 
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:START -->
 No sponsors yet. Be the first!
-
-### Open Collective for Donors
-
-<a href="https://opencollective.com/ruby-oauth/backer/0/website" target="_blank"><img src="https://opencollective.com/ruby-oauth/backer/0/avatar.svg"></a>
-
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:END -->
 
-[kettle-readme-backers]: https://github.com/kettle-rb/kettle-dev/blob/main/exe/kettle-readme-backers
+[kettle-readme-backers]: https://github.com/ruby-oauth/oauth2/blob/main/exe/kettle-readme-backers
 
 ### Another way to support open-source
 
-> How wonderful it is that nobody need wait a single moment before starting to improve the world.<br/>
->—Anne Frank
-
-I’m driven by a passion to foster a thriving open-source community – a space where people can tackle complex problems, no matter how small.  Revitalizing libraries that have fallen into disrepair, and building new libraries focused on solving real-world challenges, are my passions — totaling 79 hours of FLOSS coding over just the past seven days, a pretty regular week for me.  I was recently affected by layoffs, and the tech jobs market is unwelcoming. I’m reaching out here because your support would significantly aid my efforts to provide for my family, and my farm (11 🐔 chickens, 2 🐶 dogs, 3 🐰 rabbits, 8 🐈‍ cats).
+I’m driven by a passion to foster a thriving open-source community – a space where people can tackle complex problems, no matter how small.  Revitalizing libraries that have fallen into disrepair, and building new libraries focused on solving real-world challenges, are my passions.  I was recently affected by layoffs, and the tech jobs market is unwelcoming. I’m reaching out here because your support would significantly aid my efforts to provide for my family, and my farm (11 🐔 chickens, 2 🐶 dogs, 3 🐰 rabbits, 8 🐈‍ cats).
 
 If you work at a company that uses my work, please encourage them to support me as a corporate sponsor. My work on gems you use might show up in `bundle fund`.
 
@@ -1318,7 +1153,7 @@ I’m developing a new library, [floss_funding][🖇floss-funding-gem], designed
 
 **[Floss-Funding.dev][🖇floss-funding.dev]: 👉️ No network calls. 👉️ No tracking. 👉️ No oversight. 👉️ Minimal crypto hashing. 💡 Easily disabled nags**
 
-[![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS or refugee efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS or refugee efforts using Patreon][🖇patreon-img]][🖇patreon]
+[![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate to my FLOSS efforts at ko-fi.com][🖇kofi-img]][🖇kofi] [![Donate to my FLOSS efforts using Patreon][🖇patreon-img]][🖇patreon]
 
 ## 🔐 Security
 
@@ -1397,12 +1232,11 @@ For example:
 spec.add_dependency("oauth2", "~> 2.0")
 ```
 
-<details>
+<details markdown="1">
 <summary>📌 Is "Platform Support" part of the public API? More details inside.</summary>
 
 SemVer should, IMO, but doesn't explicitly, say that dropping support for specific Platforms
-is a *breaking change* to an API.
-It is obvious to many, but not all, and since the spec is silent, the bike shedding is endless.
+is a *breaking change* to an API, and for that reason the bike shedding is endless.
 
 To get a better understanding of how SemVer is intended to work over a project's lifetime,
 read this article from the creator of SemVer:
@@ -1423,7 +1257,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
 
 <ul>
     <li>
-        Copyright (c) 2017–2025 Peter H. Boling, of
+        Copyright (c) 2017 – 2025 Peter H. Boling, of
         <a href="https://discord.gg/3qme4XHNKN">
             Galtzo.com
             <picture>
@@ -1432,15 +1266,15 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
         </a>, and oauth2 contributors.
     </li>
     <li>
-        Copyright (c) 2011-2013 Michael Bleigh and Intridea, Inc.
+        Copyright (c) 2011 - 2013 Michael Bleigh and Intridea, Inc.
     </li>
 </ul>
 
 ## 🤑 A request for help
 
 Maintainers have teeth and need to pay their dentists.
-After getting laid off in an RIF in March and filled with many dozens of rejections,
-I'm now spending ~60+ hours a week building open source tools.
+After getting laid off in an RIF in March, and encountering difficulty finding a new one,
+I began spending most of my time building open source tools.
 I'm hoping to be able to pay for my kids' health insurance this month,
 so if you value the work I am doing, I need your support.
 Please consider sponsoring me or the project.
@@ -1451,7 +1285,7 @@ To join the community or get help 👇️ Join the Discord.
 
 To say "thanks!" ☝️ Join the Discord or 👇️ send money.
 
-[![Sponsor ruby-oauth/oauth2 on Open Source Collective][🖇osc-all-bottom-img]][🖇osc] 💌 [![Sponsor me on GitHub Sponsors][🖇sponsor-bottom-img]][🖇sponsor] 💌 [![Sponsor me on Liberapay][⛳liberapay-bottom-img]][⛳liberapay-img] 💌 [![Donate on PayPal][🖇paypal-bottom-img]][🖇paypal-img]
+[![Sponsor ruby-oauth/oauth2 on Open Source Collective][🖇osc-all-bottom-img]][🖇osc] 💌 [![Sponsor me on GitHub Sponsors][🖇sponsor-bottom-img]][🖇sponsor] 💌 [![Sponsor me on Liberapay][⛳liberapay-bottom-img]][⛳liberapay] 💌 [![Donate on PayPal][🖇paypal-bottom-img]][🖇paypal]
 
 ### Please give the project a star ⭐ ♥.
 
@@ -1499,7 +1333,7 @@ Thanks for RTFM. ☺️
 [✇bundle-group-pattern]: https://gist.github.com/pboling/4564780
 [⛳️gem-namespace]: https://github.com/ruby-oauth/oauth2
 [⛳️namespace-img]: https://img.shields.io/badge/namespace-OAuth2-3C2D2D.svg?style=square&logo=ruby&logoColor=white
-[⛳️gem-name]: https://rubygems.org/gems/oauth2
+[⛳️gem-name]: https://bestgems.org/gems/oauth2
 [⛳️name-img]: https://img.shields.io/badge/name-oauth2-3C2D2D.svg?style=square&logo=rubygems&logoColor=red
 [⛳️tag-img]: https://img.shields.io/github/tag/ruby-oauth/oauth2.svg
 [⛳️tag]: http://github.com/ruby-oauth/oauth2/releases
@@ -1548,11 +1382,11 @@ Thanks for RTFM. ☺️
 [📜gh-wiki]: https://github.com/ruby-oauth/oauth2/wiki
 [📜gl-wiki-img]: https://img.shields.io/badge/wiki-examples-943CD2.svg?style=for-the-badge&logo=gitlab&logoColor=white
 [📜gh-wiki-img]: https://img.shields.io/badge/wiki-examples-943CD2.svg?style=for-the-badge&logo=github&logoColor=white
-[👽dl-rank]: https://rubygems.org/gems/oauth2
+[👽dl-rank]: https://bestgems.org/gems/oauth2
 [👽dl-ranki]: https://img.shields.io/gem/rd/oauth2.svg
 [👽oss-help]: https://www.codetriage.com/ruby-oauth/oauth2
 [👽oss-helpi]: https://www.codetriage.com/ruby-oauth/oauth2/badges/users.svg
-[👽version]: https://rubygems.org/gems/oauth2
+[👽version]: https://bestgems.org/gems/oauth2
 [👽versioni]: https://img.shields.io/gem/v/oauth2.svg
 [🏀qlty-mnt]: https://qlty.sh/gh/ruby-oauth/projects/oauth2
 [🏀qlty-mnti]: https://qlty.sh/gh/ruby-oauth/projects/oauth2/maintainability.svg
@@ -1580,8 +1414,6 @@ Thanks for RTFM. ☺️
 [🚎7-us-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml/badge.svg
 [🚎8-ho-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/hoary.yml
 [🚎8-ho-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/hoary.yml/badge.svg
-[🚎9-t-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffle.yml
-[🚎9-t-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffle.yml/badge.svg
 [🚎10-j-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml
 [🚎10-j-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml/badge.svg
 [🚎11-c-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml
@@ -1610,7 +1442,7 @@ Thanks for RTFM. ☺️
 [💎ruby-headi]: https://img.shields.io/badge/Ruby-HEAD-CC342D?style=for-the-badge&logo=ruby&logoColor=blue
 [💎truby-22.3i]: https://img.shields.io/badge/Truffle_Ruby-22.3_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-23.0i]: https://img.shields.io/badge/Truffle_Ruby-23.0_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
-[💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-c-i]: https://img.shields.io/badge/Truffle_Ruby-current-34BCB1?style=for-the-badge&logo=ruby&logoColor=green
 [💎truby-headi]: https://img.shields.io/badge/Truffle_Ruby-HEAD-34BCB1?style=for-the-badge&logo=ruby&logoColor=blue
 [💎jruby-9.1i]: https://img.shields.io/badge/JRuby-9.1_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=red
@@ -1642,8 +1474,8 @@ Thanks for RTFM. ☺️
 [📌changelog]: CHANGELOG.md
 [📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat
-[📌gitmoji]:https://gitmoji.dev
-[📌gitmoji-img]:https://img.shields.io/badge/gitmoji_commits-%20%F0%9F%98%9C%20%F0%9F%98%8D-34495e.svg?style=flat-square
+[📌gitmoji]: https://gitmoji.dev
+[📌gitmoji-img]: https://img.shields.io/badge/gitmoji_commits-%20%F0%9F%98%9C%20%F0%9F%98%8D-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
 [🧮kloc-img]: https://img.shields.io/badge/KLOC-0.526-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
 [🔐security]: SECURITY.md

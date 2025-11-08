@@ -47,66 +47,6 @@ appraise "dep-heads" do
   eval_gemfile "modular/runtime_heads.gemfile"
 end
 
-appraise "ruby-2-3-hashie_v0" do
-  eval_gemfile "modular/faraday_v0.gemfile"
-  eval_gemfile "modular/hashie_v0.gemfile"
-  eval_gemfile "modular/jwt_v1.gemfile"
-  eval_gemfile "modular/logger_v1_2.gemfile"
-  eval_gemfile "modular/multi_xml_v0_5.gemfile"
-  eval_gemfile "modular/rack_v1_2.gemfile"
-  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
-end
-
-appraise "ruby-2-3-hashie_v1" do
-  eval_gemfile "modular/faraday_v0.gemfile"
-  eval_gemfile "modular/hashie_v1.gemfile"
-  eval_gemfile "modular/jwt_v1.gemfile"
-  eval_gemfile "modular/logger_v1_2.gemfile"
-  eval_gemfile "modular/multi_xml_v0_5.gemfile"
-  eval_gemfile "modular/rack_v1_2.gemfile"
-  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
-end
-
-appraise "ruby-2-3-hashie_v2" do
-  eval_gemfile "modular/faraday_v0.gemfile"
-  eval_gemfile "modular/hashie_v2.gemfile"
-  eval_gemfile "modular/jwt_v1.gemfile"
-  eval_gemfile "modular/logger_v1_2.gemfile"
-  eval_gemfile "modular/multi_xml_v0_5.gemfile"
-  eval_gemfile "modular/rack_v1_2.gemfile"
-  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
-end
-
-appraise "ruby-2-3-hashie_v3" do
-  eval_gemfile "modular/faraday_v0.gemfile"
-  eval_gemfile "modular/hashie_v3.gemfile"
-  eval_gemfile "modular/jwt_v1.gemfile"
-  eval_gemfile "modular/logger_v1_2.gemfile"
-  eval_gemfile "modular/multi_xml_v0_5.gemfile"
-  eval_gemfile "modular/rack_v1_2.gemfile"
-  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
-end
-
-appraise "ruby-2-3-hashie_v4" do
-  eval_gemfile "modular/faraday_v0.gemfile"
-  eval_gemfile "modular/hashie_v4.gemfile"
-  eval_gemfile "modular/jwt_v1.gemfile"
-  eval_gemfile "modular/logger_v1_2.gemfile"
-  eval_gemfile "modular/multi_xml_v0_5.gemfile"
-  eval_gemfile "modular/rack_v1_2.gemfile"
-  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
-end
-
-appraise "ruby-2-3-hashie_v5" do
-  eval_gemfile "modular/faraday_v0.gemfile"
-  eval_gemfile "modular/hashie_v5.gemfile"
-  eval_gemfile "modular/jwt_v1.gemfile"
-  eval_gemfile "modular/logger_v1_2.gemfile"
-  eval_gemfile "modular/multi_xml_v0_5.gemfile"
-  eval_gemfile "modular/rack_v1_2.gemfile"
-  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
-end
-
 appraise "ruby-2-4" do
   eval_gemfile "modular/faraday_v1.gemfile"
   eval_gemfile "modular/hashie_v1.gemfile"
@@ -216,4 +156,64 @@ end
 appraise "style" do
   eval_gemfile "modular/style.gemfile"
   eval_gemfile "modular/x_std_libs.gemfile"
+end
+
+appraise "ruby-2-3-hashie_v0" do
+  eval_gemfile "modular/faraday_v0.gemfile"
+  eval_gemfile "modular/hashie_v0.gemfile"
+  eval_gemfile "modular/jwt_v1.gemfile"
+  eval_gemfile "modular/logger_v1_2.gemfile"
+  eval_gemfile "modular/multi_xml_v0_5.gemfile"
+  eval_gemfile "modular/rack_v1_2.gemfile"
+  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
+end
+
+appraise "ruby-2-3-hashie_v1" do
+  eval_gemfile "modular/faraday_v0.gemfile"
+  eval_gemfile "modular/hashie_v1.gemfile"
+  eval_gemfile "modular/jwt_v1.gemfile"
+  eval_gemfile "modular/logger_v1_2.gemfile"
+  eval_gemfile "modular/multi_xml_v0_5.gemfile"
+  eval_gemfile "modular/rack_v1_2.gemfile"
+  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
+end
+
+appraise "ruby-2-3-hashie_v2" do
+  eval_gemfile "modular/faraday_v0.gemfile"
+  eval_gemfile "modular/hashie_v2.gemfile"
+  eval_gemfile "modular/jwt_v1.gemfile"
+  eval_gemfile "modular/logger_v1_2.gemfile"
+  eval_gemfile "modular/multi_xml_v0_5.gemfile"
+  eval_gemfile "modular/rack_v1_2.gemfile"
+  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
+end
+
+appraise "ruby-2-3-hashie_v3" do
+  eval_gemfile "modular/faraday_v0.gemfile"
+  eval_gemfile "modular/hashie_v3.gemfile"
+  eval_gemfile "modular/jwt_v1.gemfile"
+  eval_gemfile "modular/logger_v1_2.gemfile"
+  eval_gemfile "modular/multi_xml_v0_5.gemfile"
+  eval_gemfile "modular/rack_v1_2.gemfile"
+  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
+end
+
+appraise "ruby-2-3-hashie_v4" do
+  eval_gemfile "modular/faraday_v0.gemfile"
+  eval_gemfile "modular/hashie_v4.gemfile"
+  eval_gemfile "modular/jwt_v1.gemfile"
+  eval_gemfile "modular/logger_v1_2.gemfile"
+  eval_gemfile "modular/multi_xml_v0_5.gemfile"
+  eval_gemfile "modular/rack_v1_2.gemfile"
+  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
+end
+
+appraise "ruby-2-3-hashie_v5" do
+  eval_gemfile "modular/faraday_v0.gemfile"
+  eval_gemfile "modular/hashie_v5.gemfile"
+  eval_gemfile "modular/jwt_v1.gemfile"
+  eval_gemfile "modular/logger_v1_2.gemfile"
+  eval_gemfile "modular/multi_xml_v0_5.gemfile"
+  eval_gemfile "modular/rack_v1_2.gemfile"
+  eval_gemfile "modular/x_std_libs/r2.3/libs.gemfile"
 end

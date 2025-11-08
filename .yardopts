@@ -1,11 +1,12 @@
+--plugin fence
+-e yard/fence/hoist.rb
 --plugin junk
 --plugin relative_markdown_links
---readme README.md
+--readme tmp/yard-fence/README.md
 --charset utf-8
 --markup markdown
 --output docs
---load .yard_gfm_support.rb
 'lib/**/*.rb'
 -
-'*.md'
-'*.txt'
+'tmp/yard-fence/*.md'
+'tmp/yard-fence/*.txt'

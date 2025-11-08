@@ -16,11 +16,13 @@ If any other libraries would like to be added to this list, please open an issue
 This document complements the inline documentation by focusing on OpenID Connect (OIDC) 1.0 usage patterns when using this gem as an OAuth 2.0 client library.
 
 Scope of this document
+
 - Audience: Developers building an OAuth 2.0/OIDC Relying Party (RP, aka client) in Ruby.
 - Non-goals: This gem does not implement an OIDC Provider (OP, aka Authorization Server); for OP/server see other projects (e.g., doorkeeper + oidc extensions).
 - Status: Informational documentation with links to normative specs. The gem intentionally remains protocol-agnostic beyond OAuth 2.0; OIDC specifics (like ID Token validation) must be handled by your application.
 
 Key concepts refresher
+
 - OAuth 2.0 delegates authorization; it does not define authentication of the end-user.
 - OIDC layers an identity layer on top of OAuth 2.0, introducing:
   - ID Token: a JWT carrying claims about the authenticated end-user and the authentication event.
@@ -29,6 +31,7 @@ Key concepts refresher
   - Discovery and Dynamic Client Registration (optional for providers/clients that support them).
 
 What this gem provides for OIDC
+
 - All OAuth 2.0 client capabilities required for OIDC flows: building authorization requests, exchanging authorization codes, refreshing tokens, and making authenticated resource requests.
 - Transport and parsing conveniences (snaky hash, Faraday integration, error handling, etc.).
 - Optional client authentication schemes useful with OIDC deployments:
@@ -38,6 +41,7 @@ What this gem provides for OIDC
   - private_key_jwt (OIDC-compliant when configured per OP requirements)
 
 What you must add in your app for OIDC
+
 - ID Token validation: This gem surfaces id_token values but does not verify them. Your app should:
   1) Parse the JWT (header, payload, signature)
   2) Fetch the OP JSON Web Key Set (JWKS) from discovery (or configure statically)
@@ -124,10 +128,12 @@ userinfo = token.get("/userinfo").parsed
 ```
 
 Notes on discovery and registration
-- Discovery: Most OPs publish configuration at {issuer}/.well-known/openid-configuration (OIDC Discovery 1.0). From there, resolve authorization_endpoint, token_endpoint, jwks_uri, userinfo_endpoint, etc.
+
+- Discovery: Most OPs publish configuration at `{issuer}/.well-known/openid-configuration` (OIDC Discovery 1.0). From there, resolve authorization_endpoint, token_endpoint, jwks_uri, userinfo_endpoint, etc.
 - Dynamic Client Registration: Some OPs allow registering clients programmatically (OIDC Dynamic Client Registration 1.0). This gem does not implement registration; use a plain HTTP client or Faraday and store credentials securely.
 
 Common pitfalls and tips
+
 - Always request the openid scope when you expect an ID Token. Without it, the OP may behave as vanilla OAuth 2.0.
 - Validate ID Token signature and claims before trusting any identity data. Do not rely solely on the presence of an id_token field.
 - Prefer Authorization Code + PKCE. Avoid Implicit; it is discouraged in modern guidance and may be disabled by providers.
@@ -136,6 +142,7 @@ Common pitfalls and tips
 - When using private_key_jwt, ensure the "aud" (or token_url) and "iss/sub" claims are set per the OP’s rules, and include kid in the JWT header when required so the OP can select the right key.
 
 Relevant specifications and references
+
 - OpenID Connect Core 1.0: https://openid.net/specs/openid-connect-core-1_0.html
 - OIDC Core (final): https://openid.net/specs/openid-connect-core-1_0-final.html
 - How OIDC works: https://openid.net/developers/how-connect-works/
@@ -150,9 +157,11 @@ Relevant specifications and references
 - Spring Authorization Server’s list of OAuth2/OIDC specs: https://github.com/spring-projects/spring-authorization-server/wiki/OAuth2-and-OIDC-Specifications
 
 See also
+
 - README sections on OAuth 2.1 notes and OIDC notes
 - Strategy classes under lib/oauth2/strategy for flow helpers
 - Specs under spec/oauth2 for concrete usage patterns
 
 Contributions welcome
+
 - If you discover provider-specific nuances, consider contributing examples or clarifications (without embedding provider-specific hacks into the library).
