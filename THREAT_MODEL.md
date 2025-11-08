@@ -83,4 +83,3 @@ This document outlines the threat model for the `oauth2` Ruby gem, which impleme
 
 ---
 This outline should be reviewed and updated regularly as the project evolves.
-

@@ -27,7 +27,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 
 - [gh!685][gh!685] - upgrade kettle-dev v1.1.24 by @pboling
-- upgrade kettle-dev v1.1.51 by @pboling
+- upgrade kettle-dev v1.1.52 by @pboling
   - Add open collective donors to README
 
 ### Deprecated
@@ -36,7 +36,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- [gh!690][gh!690] - Add yard-fence to handle braces within code fences in markdown properly by @pboling
+- [gh!690][gh!690], [gh!691][gh!691], [gh!692][gh!692] - Add yard-fence
+  - handle braces within code fences in markdown properly by @pboling
 
 ### Security
 
@@ -46,6 +47,8 @@ Please file a bug if you notice a violation of semantic versioning.
 [gh!686]: https://github.com/ruby-oauth/oauth2/pull/686
 [gh!687]: https://github.com/ruby-oauth/oauth2/pull/687
 [gh!690]: https://github.com/ruby-oauth/oauth2/pull/690
+[gh!691]: https://github.com/ruby-oauth/oauth2/pull/691
+[gh!692]: https://github.com/ruby-oauth/oauth2/pull/692
 
 ## [2.0.17] - 2025-09-15
 
