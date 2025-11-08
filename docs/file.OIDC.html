@@ -120,11 +120,11 @@
 <p>What you must add in your app for OIDC</p>
 
 <ul>
-  <li>ID Token validation: This gem surfaces id_token values but does not verify them. Your app should:
-1) Parse the JWT (header, payload, signature)
-2) Fetch the OP JSON Web Key Set (JWKS) from discovery (or configure statically)
-3) Select the correct key by kid (when present) and verify the signature and algorithm
-4) Validate standard claims (iss, aud, exp, iat, nbf, azp, nonce when used, at_hash/c_hash when applicable)
+  <li>ID Token validation: This gem surfaces id_token values but does not verify them. Your app should:<br>
+1) Parse the JWT (header, payload, signature)<br>
+2) Fetch the OP JSON Web Key Set (JWKS) from discovery (or configure statically)<br>
+3) Select the correct key by kid (when present) and verify the signature and algorithm<br>
+4) Validate standard claims (iss, aud, exp, iat, nbf, azp, nonce when used, at_hash/c_hash when applicable)<br>
 5) Enforce expected client_id, issuer, and clock skew policies</li>
   <li>Nonce handling for Authorization Code flow with OIDC: generate a cryptographically-random nonce, bind it to the user session before redirect, include it in authorize request, and verify it in the ID Token on return.</li>
   <li>PKCE is best practice and often required by OPs: generate/verifier, send challenge in authorize, send verifier in token request.</li>
@@ -133,78 +133,77 @@
 
 <p>Minimal OIDC Authorization Code example</p>
 
-<p>```ruby
-require “oauth2”
-require “jwt”         # jwt/ruby-jwt
-require “net/http”
-require “json”</p>
+<pre class="code language-ruby"><code class="language-ruby">require &quot;oauth2&quot;
+require &quot;jwt&quot;         # jwt/ruby-jwt
+require &quot;net/http&quot;
+require &quot;json&quot;
 
-<p>client = OAuth2::Client.new(
-  ENV.fetch(“OIDC_CLIENT_ID”),
-  ENV.fetch(“OIDC_CLIENT_SECRET”),
-  site: ENV.fetch(“OIDC_ISSUER”),              # e.g. https://accounts.example.com
-  authorize_url: “/authorize”,                 # or discovered
-  token_url: “/token”,                         # or discovered
-)</p>
+client = OAuth2::Client.new(
+  ENV.fetch(&quot;OIDC_CLIENT_ID&quot;),
+  ENV.fetch(&quot;OIDC_CLIENT_SECRET&quot;),
+  site: ENV.fetch(&quot;OIDC_ISSUER&quot;),              # e.g. https://accounts.example.com
+  authorize_url: &quot;/authorize&quot;,                 # or discovered
+  token_url: &quot;/token&quot;,                         # or discovered
+)
 
-<h1 id="step-1-redirect-to-op-for-consentauth">Step 1: Redirect to OP for consent/auth</h1>
-<p>state = SecureRandom.hex(16)
+# Step 1: Redirect to OP for consent/auth
+state = SecureRandom.hex(16)
 nonce = SecureRandom.hex(16)
 pkce_verifier = SecureRandom.urlsafe_base64(64)
-pkce_challenge = Base64.urlsafe_encode64(Digest::SHA256.digest(pkce_verifier)).delete(“=”)</p>
+pkce_challenge = Base64.urlsafe_encode64(Digest::SHA256.digest(pkce_verifier)).delete(&quot;=&quot;)
 
-<p>authz_url = client.auth_code.authorize_url(
-  scope: “openid profile email”,
+authz_url = client.auth_code.authorize_url(
+  scope: &quot;openid profile email&quot;,
   state: state,
   nonce: nonce,
   code_challenge: pkce_challenge,
-  code_challenge_method: “S256”,
-  redirect_uri: ENV.fetch(“OIDC_REDIRECT_URI”),
+  code_challenge_method: &quot;S256&quot;,
+  redirect_uri: ENV.fetch(&quot;OIDC_REDIRECT_URI&quot;),
 )
-# redirect_to authz_url</p>
+# redirect_to authz_url
 
-<h1 id="step-2-handle-callback">Step 2: Handle callback</h1>
-<p># params[:code], params[:state]
-raise “state mismatch” unless params[:state] == state</p>
+# Step 2: Handle callback
+# params[:code], params[:state]
+raise &quot;state mismatch&quot; unless params[:state] == state
 
-<p>token = client.auth_code.get_token(
+token = client.auth_code.get_token(
   params[:code],
-  redirect_uri: ENV.fetch(“OIDC_REDIRECT_URI”),
+  redirect_uri: ENV.fetch(&quot;OIDC_REDIRECT_URI&quot;),
   code_verifier: pkce_verifier,
-)</p>
+)
 
-<h1 id="the-token-may-include-accesstoken-idtoken-refreshtoken-etc">The token may include: access_token, id_token, refresh_token, etc.</h1>
-<p>id_token = token.params[“id_token”] || token.params[:id_token]</p>
+# The token may include: access_token, id_token, refresh_token, etc.
+id_token = token.params[&quot;id_token&quot;] || token.params[:id_token]
 
-<h1 id="step-3-validate-the-id-token-simplified--add-your-own-checks">Step 3: Validate the ID Token (simplified – add your own checks!)</h1>
-<p># Discover keys (example using .well-known)
-issuer = ENV.fetch(“OIDC_ISSUER”)
-jwks_uri = JSON.parse(Net::HTTP.get(URI.join(issuer, “/.well-known/openid-configuration”))).
-  fetch(“jwks_uri”)
+# Step 3: Validate the ID Token (simplified – add your own checks!)
+# Discover keys (example using .well-known)
+issuer = ENV.fetch(&quot;OIDC_ISSUER&quot;)
+jwks_uri = JSON.parse(Net::HTTP.get(URI.join(issuer, &quot;/.well-known/openid-configuration&quot;))).
+  fetch(&quot;jwks_uri&quot;)
 jwks = JSON.parse(Net::HTTP.get(URI(jwks_uri)))
-keys = jwks.fetch(“keys”)</p>
+keys = jwks.fetch(&quot;keys&quot;)
 
-<h1 id="use-ruby-jwt-jwk-loader">Use ruby-jwt JWK loader</h1>
-<p>jwk_set = JWT::JWK::Set.new(keys.map { |k| JWT::JWK.import(k) })</p>
+# Use ruby-jwt JWK loader
+jwk_set = JWT::JWK::Set.new(keys.map { |k| JWT::JWK.import(k) })
 
-<p>decoded, headers = JWT.decode(
+decoded, headers = JWT.decode(
   id_token,
   nil,
   true,
-  algorithms: [“RS256”, “ES256”, “PS256”],
+  algorithms: [&quot;RS256&quot;, &quot;ES256&quot;, &quot;PS256&quot;],
   jwks: jwk_set,
   verify_iss: true,
   iss: issuer,
   verify_aud: true,
-  aud: ENV.fetch(“OIDC_CLIENT_ID”),
-)</p>
+  aud: ENV.fetch(&quot;OIDC_CLIENT_ID&quot;),
+)
 
-<h1 id="verify-nonce">Verify nonce</h1>
-<p>raise “nonce mismatch” unless decoded[“nonce”] == nonce</p>
+# Verify nonce
+raise &quot;nonce mismatch&quot; unless decoded[&quot;nonce&quot;] == nonce
 
-<h1 id="optionally-call-userinfo">Optionally: call UserInfo</h1>
-<p>userinfo = token.get(“/userinfo”).parsed
-```</p>
+# Optionally: call UserInfo
+userinfo = token.get(&quot;/userinfo&quot;).parsed
+</code></pre>
 
 <p>Notes on discovery and registration</p>
 
@@ -257,7 +256,7 @@ keys = jwks.fetch(“keys”)</p>
 </div></div>
 
       <div id="footer">
-  Generated on Fri Nov  7 21:14:33 2025 by
+  Generated on Sat Nov  8 00:26:50 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.7).
 </div>
