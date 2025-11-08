@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>
-  File: LICENSE
+  File: authenticator
   
     &mdash; Documentation by YARD 0.9.37
   
@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/common.css" type="text/css" />
 
 <script type="text/javascript">
-  pathId = "LICENSE";
+  pathId = "authenticator";
   relpath = '';
 </script>
 
@@ -37,7 +37,7 @@
         <div id="menu">
   
     <a href="_index.html">Index</a> &raquo; 
-    <span class="title">File: LICENSE</span>
+    <span class="title">File: authenticator</span>
   
 </div>
 
@@ -57,10 +57,31 @@
         <div class="clear"></div>
       </div>
 
-      <div id="content"><div id='filecontents'>MIT License<br><br>Copyright (c) 2017-2025 Peter H. Boling, of Galtzo.com, and oauth2 contributors<br>Copyright (c) 2011-2013 Michael Bleigh and Intridea, Inc.<br><br>Permission is hereby granted, free of charge, to any person obtaining a copy<br>of this software and associated documentation files (the "Software"), to deal<br>in the Software without restriction, including without limitation the rights<br>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell<br>copies of the Software, and to permit persons to whom the Software is<br>furnished to do so, subject to the following conditions:<br><br>The above copyright notice and this permission notice shall be included in all<br>copies or substantial portions of the Software.<br><br>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR<br>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,<br>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE<br>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER<br>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,<br>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE<br>SOFTWARE.</div></div>
+      <div id="content"><div id='filecontents'><p>module OAuth2
+  class Authenticator
+    include OAuth2::FilteredAttributes</p>
+
+<pre class="code ruby"><code class="ruby">attr_reader mode: (Symbol | String)
+attr_reader id: String?
+attr_reader secret: String?
+
+def initialize: (String? id, String? secret, (Symbol | String) mode) -&gt; void
+
+def apply: (Hash[untyped, untyped]) -&gt; Hash[untyped, untyped]
+
+def self.encode_basic_auth: (String, String) -&gt; String
+
+private
+
+def apply_params_auth: (Hash[untyped, untyped]) -&gt; Hash[untyped, untyped]
+def apply_client_id: (Hash[untyped, untyped]) -&gt; Hash[untyped, untyped]
+def apply_basic_auth: (Hash[untyped, untyped]) -&gt; Hash[untyped, untyped]
+def basic_auth_header: () -&gt; Hash[String, String]   end end
+</code></pre>
+</div></div>
 
       <div id="footer">
-  Generated on Fri Nov  7 20:38:14 2025 by
+  Generated on Fri Nov  7 19:50:09 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.7).
 </div>

@@ -843,8 +843,8 @@ me = long_lived.get("/me", params: {fields: "id,username"}).parsed
 
 Tips:
 
-- Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for GET.
-- If you need a custom rule, you can pass a Proc for mode, e.g. mode: ->(verb) { verb == :get ? :query : :header }.
+- Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for `GET` requests.
+- If you need a custom rule, you can pass a `Proc` for `mode`, e.g. `mode: ->(verb) { verb == :get ? :query : :header }`.
 
 ### Refresh Tokens
 
@@ -991,9 +991,9 @@ client = OAuth2::Client.new(
 end
 ```
 
-##### Using flat query params (Faraday::FlatParamsEncoder)
+##### Using flat query params (`Faraday::FlatParamsEncoder`)
 
-Some APIs expect repeated key parameters to be sent as flat params rather than arrays. Faraday provides FlatParamsEncoder for this purpose. You can configure the oauth2 client to use it when building requests.
+Some APIs expect repeated key parameters to be sent as flat params rather than arrays. Faraday provides `FlatParamsEncoder` for this purpose. You can configure the oauth2 client to use it when building requests.
 
 ```ruby
 require "faraday"
