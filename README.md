@@ -471,7 +471,7 @@ Expand the examples below, or the [ruby-oauth/snaky_hash](https://gitlab.com/rub
 or [response_spec.rb](https://github.com/ruby-oauth/oauth2/blob/main/spec/oauth2/response_spec.rb), for more ideas, especially if you need to study the hacks for older Rubies.
 
 <details markdown="1">
-<summary>See Examples</summary>
+  <summary>See Examples</summary>
 
 ```ruby
 class MySnakyHash < SnakyHash::StringKeyed

@@ -1243,7 +1243,7 @@
   <div class="discussion">
     <p>The Assertion strategy</p>
 
-<p>This allows for assertion-based authentication where an identity provider
+<p>This allows for assertion-based authentication where an identity provider<br />
 asserts the identity of the user or client application seeking access.</p>
 
 
@@ -1487,7 +1487,7 @@ asserts the identity of the user or client application seeking access.</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>The extract_access_token parameter is deprecated and will be removed in oauth2 v3.
+    <div class='inline'><p>The extract_access_token parameter is deprecated and will be removed in oauth2 v3.<br />
 Use access_token_class on initialization instead.</p>
 </div>
   </div>
@@ -1523,10 +1523,12 @@ Use access_token_class on initialization instead.</p>
       
       
         &mdash;
-        <div class='inline'><p>a Hash of params for the token endpoint
-* params can include a ‘headers’ key with a Hash of request headers
-* params can include a ‘parse’ key with the Symbol name of response parsing strategy (default: :automatic)
-* params can include a ‘snaky’ key to control snake_case conversion (default: false)</p>
+        <div class='inline'><p>a Hash of params for the token endpoint</p>
+<ul>
+  <li>params can include a ‘headers’ key with a Hash of request headers</li>
+  <li>params can include a ‘parse’ key with the Symbol name of response parsing strategy (default: :automatic)</li>
+  <li>params can include a ‘snaky’ key to control snake_case conversion (default: false)</li>
+</ul>
 </div>
       
     </li>
@@ -1614,7 +1616,7 @@ Use access_token_class on initialization instead.</p>
       
       
         &mdash;
-        <div class='inline'><p>the initialized AccessToken instance, or nil if token extraction fails
+        <div class='inline'><p>the initialized AccessToken instance, or nil if token extraction fails<br />
 and raise_errors is false</p>
 </div>
       
@@ -1837,14 +1839,14 @@ and raise_errors is false</p>
   <div class="discussion">
     <p>The redirect_uri parameters, if configured</p>
 
-<p>The redirect_uri query parameter is OPTIONAL (though encouraged) when
-requesting authorization. If it is provided at authorization time it MUST
+<p>The redirect_uri query parameter is OPTIONAL (though encouraged) when<br />
+requesting authorization. If it is provided at authorization time it MUST<br />
 also be provided with the token exchange request.</p>
 
-<p>OAuth 2.1 note: Authorization Servers must compare redirect URIs using exact string matching.
+<p>OAuth 2.1 note: Authorization Servers must compare redirect URIs using exact string matching.<br />
 This client simply forwards the configured redirect_uri; the exact-match validation happens server-side.</p>
 
-<p>Providing :redirect_uri to the OAuth2::Client instantiation will take
+<p>Providing :redirect_uri to the OAuth2::Client instantiation will take<br />
 care of managing this.</p>
 
 
@@ -1927,7 +1929,7 @@ care of managing this.</p>
   <div class="discussion">
     <p>Makes a request relative to the specified site root.</p>
 
-<p>Updated HTTP 1.1 specification (IETF RFC 7231) relaxed the original constraint (IETF RFC 2616),
+<p>Updated HTTP 1.1 specification (IETF RFC 7231) relaxed the original constraint (IETF RFC 2616),<br />
   allowing the use of relative URLs in Location headers.</p>
 
 
@@ -2039,7 +2041,7 @@ care of managing this.</p>
             
           </span>
           
-            &mdash; <div class='inline'><p>whether to raise an OAuth2::Error on 400+ status
+            &mdash; <div class='inline'><p>whether to raise an OAuth2::Error on 400+ status<br />
 code response for this request.  Overrides the client instance setting.</p>
 </div>
           
@@ -2241,28 +2243,28 @@ code response for this request.  Overrides the client instance setting.</p>
     
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the token passed to the request
-is an access token, the server MAY revoke the respective refresh
+    <div class='inline'><p>If the token passed to the request<br />
+is an access token, the server MAY revoke the respective refresh<br />
 token as well.</p>
 </div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the token passed to the request
-is a refresh token and the authorization server supports the
-revocation of access tokens, then the authorization server SHOULD
-also invalidate all access tokens based on the same authorization
+    <div class='inline'><p>If the token passed to the request<br />
+is a refresh token and the authorization server supports the<br />
+revocation of access tokens, then the authorization server SHOULD<br />
+also invalidate all access tokens based on the same authorization<br />
 grant</p>
 </div>
   </div>
 
   <div class="note notetag">
     <strong>Note:</strong>
-    <div class='inline'><p>If the server responds with HTTP status code 503, your code must
-assume the token still exists and may retry after a reasonable delay.
-The server may include a “Retry-After” header in the response to
-indicate how long the service is expected to be unavailable to the
+    <div class='inline'><p>If the server responds with HTTP status code 503, your code must<br />
+assume the token still exists and may retry after a reasonable delay.<br />
+The server may include a “Retry-After” header in the response to<br />
+indicate how long the service is expected to be unavailable to the<br />
 requesting client.</p>
 </div>
   </div>
@@ -2654,7 +2656,7 @@ requesting client.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Nov  7 21:14:33 2025 by
+  Generated on Sat Nov  8 00:26:51 2025 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.37 (ruby-3.4.7).
 </div>
