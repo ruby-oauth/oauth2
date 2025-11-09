@@ -1139,6 +1139,10 @@ NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day
 
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:START -->
 No sponsors yet. Be the first!
+
+### Open Collective for Donors
+
+[Bill Woika](https://opencollective.com/bill-woika)
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:END -->
 
 [kettle-readme-backers]: https://github.com/ruby-oauth/oauth2/blob/main/exe/kettle-readme-backers
