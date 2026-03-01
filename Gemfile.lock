@@ -360,7 +360,7 @@ DEPENDENCIES
   irb (~> 1.15, >= 1.15.2)
   kettle-dev (~> 1.1)
   kettle-soup-cover (~> 1.0, >= 1.0.10)
-  kettle-test (~> 1.0, >= 1.0.6)
+  kettle-test (~> 1.0, >= 1.0.10)
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)
   mutex_m (~> 0.2)
