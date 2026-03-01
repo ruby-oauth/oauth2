@@ -61,8 +61,6 @@
 
 <h1 id="-oauth-20-authorization-framework">🔐 OAuth 2.0 Authorization Framework</h1>
 
-<p>⭐️ including OAuth 2.1 draft spec &amp; OpenID Connect (OIDC)</p>
-
 <p><a href="https://bestgems.org/gems/oauth2"><img src="https://img.shields.io/gem/v/oauth2.svg" alt="Version"></a> <a href="http://github.com/ruby-oauth/oauth2/releases"><img src="https://img.shields.io/github/tag/ruby-oauth/oauth2.svg" alt="GitHub tag (latest SemVer)"></a> <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-259D6C.svg" alt="License: MIT"></a> <a href="https://bestgems.org/gems/oauth2"><img src="https://img.shields.io/gem/rd/oauth2.svg" alt="Downloads Rank"></a> <a href="https://www.codetriage.com/ruby-oauth/oauth2"><img src="https://www.codetriage.com/ruby-oauth/oauth2/badges/users.svg" alt="Open Source Helpers"></a> <a href="https://codecov.io/gh/ruby-oauth/oauth2"><img src="https://codecov.io/gh/ruby-oauth/oauth2/graph/badge.svg" alt="CodeCov Test Coverage"></a> <a href="https://coveralls.io/github/ruby-oauth/oauth2?branch=main"><img src="https://coveralls.io/repos/github/ruby-oauth/oauth2/badge.svg?branch=main" alt="Coveralls Test Coverage"></a> <a href="https://qlty.sh/gh/ruby-oauth/projects/oauth2/metrics/code?sort=coverageRating"><img src="https://qlty.sh/gh/ruby-oauth/projects/oauth2/coverage.svg" alt="QLTY Test Coverage"></a> <a href="https://qlty.sh/gh/ruby-oauth/projects/oauth2"><img src="https://qlty.sh/gh/ruby-oauth/projects/oauth2/maintainability.svg" alt="QLTY Maintainability"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/heads.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/heads.yml/badge.svg" alt="CI Heads"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/dep-heads.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/dep-heads.yml/badge.svg" alt="CI Runtime Dependencies @ HEAD"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml/badge.svg" alt="CI Current"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml/badge.svg" alt="CI JRuby"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/locked_deps.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/locked_deps.yml/badge.svg" alt="Deps Locked"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/unlocked_deps.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/unlocked_deps.yml/badge.svg" alt="Deps Unlocked"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/supported.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/supported.yml/badge.svg" alt="CI Supported"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/legacy.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/legacy.yml/badge.svg" alt="CI Legacy"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml/badge.svg" alt="CI Unsupported"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml/badge.svg" alt="CI Ancient"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/coverage.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/coverage.yml/badge.svg" alt="CI Test Coverage"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/style.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/style.yml/badge.svg" alt="CI Style"></a> <a href="https://github.com/ruby-oauth/oauth2/security/code-scanning"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL"></a> <a href="https://github.com/ruby-oauth/oauth2/actions/workflows/license-eye.yml"><img src="https://github.com/ruby-oauth/oauth2/actions/workflows/license-eye.yml/badge.svg" alt="Apache SkyWalking Eyes License Compatibility Check"></a></p>
 
 <p><code>if ci_badges.map(&amp;:color).detect { it != "green"}</code> ☝️ <a href="https://discord.gg/3qme4XHNKN">let me know</a>, as I may have missed the <a href="https://discord.gg/3qme4XHNKN">discord notification</a>.</p>
@@ -83,9 +81,9 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 <h2 id="-synopsis">🌻 Synopsis</h2>
 
 <p>OAuth 2.0 is the industry-standard protocol for authorization.<br>
-OAuth 2.0 focuses on client developer simplicity while providing specific authorization flows for web applications,<br>
-    desktop applications, mobile phones, and living room devices.<br>
 This is a RubyGem for implementing OAuth 2.0 clients (not servers) in Ruby applications.</p>
+
+<p>⭐️ including OAuth 2.1 draft spec &amp; OpenID Connect (OIDC)</p>
 
 <h3 id="quick-examples">Quick Examples</h3>
 
@@ -103,13 +101,14 @@ This is a RubyGem for implementing OAuth 2.0 clients (not servers) in Ruby appli
 
   <p>NOTE: In the ruby version below, certain params are passed to the <code>get_token</code> call, instead of the client creation.</p>
 
-  <pre class="code language-ruby"><code class="language-ruby">OAuth2::Client.new(
+  <pre class="code language-ruby"><code class="language-ruby">client = OAuth2::Client.new(
   &quot;REDMOND_CLIENT_ID&quot;, # client_id
   &quot;REDMOND_CLIENT_SECRET&quot;, # client_secret
   auth_scheme: :request_body, # Other modes are supported: :basic_auth, :tls_client_auth, :private_key_jwt
   token_url: &quot;oauth2/token&quot;, # relative path, except with leading `/`, then absolute path
   site: &quot;https://login.microsoftonline.com/REDMOND_REDACTED&quot;,
-). # The base path for token_url when it is relative
+)
+client.
   client_credentials. # There are many other types to choose from!
   get_token(resource: &quot;REDMOND_RESOURCE_UUID&quot;)
 </code></pre>
@@ -580,36 +579,42 @@ See <a href="file.SECURITY.html" title="SECURITY.md">SECURITY.md</a> and <a href
 
 <h2 id="️-configuration">⚙️ Configuration</h2>
 
-<p>You can turn on additional warnings.</p>
+<p>Global settings for the library:</p>
 
 <pre class="code language-ruby"><code class="language-ruby">OAuth2.configure do |config|
-  # Turn on a warning like:
-  #   OAuth2::AccessToken.from_hash: `hash` contained more than one &#39;token&#39; key
   config.silence_extra_tokens_warning = false # default: true
-  # Set to true if you want to also show warnings about no tokens
-  config.silence_no_tokens_warning = false # default: true,
+  config.silence_no_tokens_warning = false    # default: true
 end
 </code></pre>
 
-<p>The “extra tokens” problem comes from ambiguity in the spec about which token is the right token.<br>
-Some OAuth 2.0 standards legitimately have multiple tokens.<br>
-You may need to subclass <code>OAuth2::AccessToken</code>, or write your own custom alternative to it, and pass it in.<br>
-Specify your custom class with the <code>access_token_class</code> option.</p>
-
-<p>If you only need one token, you can, as of v2.0.10,<br>
-specify the exact token name you want to extract via the <code>OAuth2::AccessToken</code> using<br>
-the <code>token_name</code> option.</p>
-
-<p>You’ll likely need to do some source diving.<br>
-This gem has 100% test coverage for lines and branches, so the specs are a great place to look for ideas.<br>
-If you have time and energy, please contribute to the documentation!</p>
-
 <h2 id="-basic-usage">🔧 Basic Usage</h2>
 
-<h3 id="authorize_url-and-token_url-are-on-site-root-just-works">
+<h3 id="client-initialization-options">Client Initialization Options</h3>
+
+<p><code>OAuth2::Client.new</code> accepts several options:</p>
+
+<ul>
+  <li>
+<code>:site</code>: The base URL for the OAuth 2.0 provider.</li>
+  <li>
+<code>:authorize_url</code>: The authorization endpoint (default: <code>"oauth/authorize"</code>).</li>
+  <li>
+<code>:token_url</code>: The token endpoint (default: <code>"oauth/token"</code>).</li>
+  <li>
+<code>:auth_scheme</code>: The authentication scheme (<code>:basic_auth</code>, <code>:request_body</code>, <code>:tls_client_auth</code>, <code>:private_key_jwt</code>). Default is <code>:basic_auth</code>.</li>
+  <li>
+<code>:connection_opts</code>: Options for the underlying Faraday connection (timeouts, proxy, etc.).</li>
+  <li>
+<code>:raise_errors</code>: Whether to raise <code>OAuth2::Error</code> on 400+ responses (default: <code>true</code>).</li>
+</ul>
+
+<details>
+  <summary><em>authorize_url</em> and <em>token_url</em></summary>
+
+  <h3 id="authorizeurl-and-tokenurl-are-on-site-root-just-works">
 <code>authorize_url</code> and <code>token_url</code> are on site root (Just Works!)</h3>
 
-<pre class="code language-ruby"><code class="language-ruby">require &quot;oauth2&quot;
+  <pre class="code language-ruby"><code class="language-ruby">require &quot;oauth2&quot;
 client = OAuth2::Client.new(&quot;client_id&quot;, &quot;client_secret&quot;, site: &quot;https://example.org&quot;)
 # =&gt; #&lt;OAuth2::Client:0x00000001204c8288 @id=&quot;client_id&quot;, @secret=&quot;client_sec...
 client.auth_code.authorize_url(redirect_uri: &quot;http://localhost:8080/oauth2/callback&quot;)
@@ -621,22 +626,22 @@ response.class.name
 # =&gt; OAuth2::Response
 </code></pre>
 
-<h3 id="relative-authorize_url-and-token_url-not-on-site-root-just-works">Relative <code>authorize_url</code> and <code>token_url</code> (Not on site root, Just Works!)</h3>
+  <h3 id="relative-authorizeurl-and-tokenurl-not-on-site-root-just-works">Relative <code>authorize_url</code> and <code>token_url</code> (Not on site root, Just Works!)</h3>
 
-<p>In the above example, the default Authorization URL is <code>oauth/authorize</code> and default Access Token URL is <code>oauth/token</code>, and, as they are missing a leading <code>/</code>, both are relative.</p>
+  <p>In the above example, the default Authorization URL is <code>oauth/authorize</code> and default Access Token URL is <code>oauth/token</code>, and, as they are missing a leading <code>/</code>, both are relative.</p>
 
-<pre class="code language-ruby"><code class="language-ruby">client = OAuth2::Client.new(&quot;client_id&quot;, &quot;client_secret&quot;, site: &quot;https://example.org/nested/directory/on/your/server&quot;)
+  <pre class="code language-ruby"><code class="language-ruby">client = OAuth2::Client.new(&quot;client_id&quot;, &quot;client_secret&quot;, site: &quot;https://example.org/nested/directory/on/your/server&quot;)
 # =&gt; #&lt;OAuth2::Client:0x00000001204c8288 @id=&quot;client_id&quot;, @secret=&quot;client_sec...
 client.auth_code.authorize_url(redirect_uri: &quot;http://localhost:8080/oauth2/callback&quot;)
 # =&gt; &quot;https://example.org/nested/directory/on/your/server/oauth/authorize?client_id=client_id&amp;redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Foauth2%2Fcallback&amp;response_type=code&quot;
 </code></pre>
 
-<h3 id="customize-authorize_url-and-token_url">Customize <code>authorize_url</code> and <code>token_url</code>
+  <h3 id="customize-authorizeurl-and-tokenurl">Customize <code>authorize_url</code> and <code>token_url</code>
 </h3>
 
-<p>You can specify custom URLs for authorization and access token, and when using a leading <code>/</code> they will <em>not be relative</em>, as shown below:</p>
+  <p>You can specify custom URLs for authorization and access token, and when using a leading <code>/</code> they will <em>not be relative</em>, as shown below:</p>
 
-<pre class="code language-ruby"><code class="language-ruby">client = OAuth2::Client.new(
+  <pre class="code language-ruby"><code class="language-ruby">client = OAuth2::Client.new(
   &quot;client_id&quot;,
   &quot;client_secret&quot;,
   site: &quot;https://example.org/nested/directory/on/your/server&quot;,
@@ -649,6 +654,29 @@ client.auth_code.authorize_url(redirect_uri: &quot;http://localhost:8080/oauth2/
 client.class.name
 # =&gt; OAuth2::Client
 </code></pre>
+
+</details>
+
+<h3 id="advanced-initializers">Advanced Initializers</h3>
+
+<pre class="code language-ruby"><code class="language-ruby">client = OAuth2::Client.new(id, secret, site: site) do |faraday|
+  faraday.request(:url_encoded)
+  faraday.adapter(:net_http_persistent)
+end
+</code></pre>
+
+<h3 id="accesstoken-features">AccessToken Features</h3>
+
+<p>Instances of <code>OAuth2::AccessToken</code> handle request signing and token expiration.</p>
+
+<ul>
+  <li>
+<strong>Snake Case &amp; Indifferent Access</strong>: <code>response.parsed</code> returns a <code>SnakyHash</code> allowing access via string/symbol and snake_case keys even if the provider returns CamelCase.</li>
+  <li>
+<strong>Auto-Refresh</strong>: You can manually check <code>token.expired?</code> and call <code>token.refresh</code>.</li>
+  <li>
+<strong>Serialization</strong>: Persist tokens using <code>token.to_hash</code> and restore via <code>OAuth2::AccessToken.from_hash(client, hash)</code>.</li>
+</ul>
 
 <h3 id="snake_case-and-indifferent-access-in-responseparsed">snake_case and indifferent access in Response#parsed</h3>
 
@@ -795,12 +823,12 @@ client = OAuth2::Client.new(
 <h3 id="oauth2response">OAuth2::Response</h3>
 
 <p>The <code>AccessToken</code> methods <code>#get</code>, <code>#post</code>, <code>#put</code> and <code>#delete</code> and the generic <code>#request</code><br>
-will return an instance of the #OAuth2::Response class.</p>
+will return an instance of the <code>OAuth2::Response</code> class.</p>
 
 <p>This instance contains a <code>#parsed</code> method that will parse the response body and<br>
 return a Hash-like <a href="https://gitlab.com/ruby-oauth/snaky_hash/-/blob/main/lib/snaky_hash/string_keyed.rb"><code>SnakyHash::StringKeyed</code></a> if the <code>Content-Type</code> is <code>application/x-www-form-urlencoded</code> or if<br>
-the body is a JSON object.  It will return an Array if the body is a JSON<br>
-array.  Otherwise, it will return the original body string.</p>
+the body is a JSON object. It will return an Array if the body is a JSON<br>
+array. Otherwise, it will return the original body string.</p>
 
 <p>The original response body, headers, and status can be accessed via their<br>
 respective methods.</p>
@@ -886,28 +914,6 @@ Response instance will contain the <code>OAuth2::Error</code> instance.</p>
 
 <h3 id="authorization-grants">Authorization Grants</h3>
 
-<p>Note on OAuth 2.1 (draft):</p>
-
-<ul>
-  <li>PKCE is required for all OAuth clients using the authorization code flow (especially public clients). Implement PKCE in your app when required by your provider. See RFC 7636 and RFC 8252.</li>
-  <li>Redirect URIs must be compared using exact string matching by the Authorization Server.</li>
-  <li>The Implicit grant (response_type=token) and the Resource Owner Password Credentials grant are omitted from OAuth 2.1; they remain here for OAuth 2.0 compatibility but should be avoided for new apps.</li>
-  <li>Bearer tokens in the query string are omitted due to security risks; prefer Authorization header usage.</li>
-  <li>Refresh tokens for public clients must either be sender-constrained (e.g., DPoP/MTLS) or one-time use.</li>
-  <li>The definitions of public and confidential clients are simplified to refer only to whether the client has credentials.</li>
-</ul>
-
-<p>References:</p>
-
-<ul>
-  <li>OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13</li>
-  <li>Aaron Parecki: https://aaronparecki.com/2019/12/12/21/its-time-for-oauth-2-dot-1</li>
-  <li>FusionAuth: https://fusionauth.io/blog/2020/04/15/whats-new-in-oauth-2-1</li>
-  <li>Okta: https://developer.okta.com/blog/2019/12/13/oauth-2-1-how-many-rfcs</li>
-  <li>Video: https://www.youtube.com/watch?v=g_aVPdwBTfw</li>
-  <li>Differences overview: https://fusionauth.io/learn/expert-advice/oauth/differences-between-oauth-2-oauth-2-1/</li>
-</ul>
-
 <p>Currently, the Authorization Code, Implicit, Resource Owner Password Credentials, Client Credentials, and Assertion<br>
 authentication grant types have helper strategy classes that simplify client<br>
 use. They are available via the <a href="https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/auth_code.rb"><code>#auth_code</code></a>,<br>
@@ -915,6 +921,31 @@ use. They are available via the <a href="https://gitlab.com/ruby-oauth/oauth2/-/
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/password.rb"><code>#password</code></a>,<br>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/client_credentials.rb"><code>#client_credentials</code></a>, and<br>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/assertion.rb"><code>#assertion</code></a> methods respectively.</p>
+
+<h4 id="oauth-21-draft-note">OAuth 2.1 (draft) Note:</h4>
+
+<ul>
+  <li>
+<strong>PKCE</strong> is required for all OAuth clients using the authorization code flow (especially public clients). Implement PKCE in your app when required by your provider. See RFC 7636 and RFC 8252.</li>
+  <li>
+<strong>Implicit grant</strong> (response_type=token) and <strong>Resource Owner Password Credentials grant</strong> are omitted from OAuth 2.1; they remain here for OAuth 2.0 compatibility but should be avoided for new apps.</li>
+  <li>
+<strong>Redirect URIs</strong> must be compared using exact string matching by the Authorization Server.</li>
+</ul>
+
+<details>
+  <summary>OAuth 2.1 (draft) References</summary>
+
+  <ul>
+    <li>OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13</li>
+    <li>Aaron Parecki: https://aaronparecki.com/2019/12/12/21/its-time-for-oauth-2-dot-1</li>
+    <li>FusionAuth: https://fusionauth.io/blog/2020/04/15/whats-new-in-oauth-2-1</li>
+    <li>Okta: https://developer.okta.com/blog/2019/12/13/oauth-2-1-how-many-rfcs</li>
+    <li>Video: https://www.youtube.com/watch?v=g_aVPdwBTfw</li>
+    <li>Differences overview: https://fusionauth.io/learn/expert-advice/oauth/differences-between-oauth-2-oauth-2-1/</li>
+  </ul>
+
+</details>
 
 <p>These aren’t full examples, but demonstrative of the differences between usage for each strategy.</p>
 
@@ -1051,7 +1082,7 @@ puts access.to_hash # full token response
 
 </details>
 
-<h3 id="instagram-api-verbdependent-token-mode">Instagram API (verb‑dependent token mode)</h3>
+<h3 id="verbdependent-token-mode">Verb‑dependent Token Mode</h3>
 
 <p>Providers like Instagram require the access token to be sent differently depending on the HTTP verb:</p>
 
@@ -1062,9 +1093,19 @@ puts access.to_hash # full token response
 
 <p>Since v2.0.15, you can configure an AccessToken with a verb‑dependent mode. The gem will choose how to send the token based on the request method.</p>
 
-<p>Example: exchanging and refreshing long‑lived Instagram tokens, and making API calls</p>
+<p>Tips:</p>
 
-<pre class="code language-ruby"><code class="language-ruby">require &quot;oauth2&quot;
+<ul>
+  <li>Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for <code>GET</code> requests.</li>
+  <li>If you need a custom rule, you can pass a <code>Proc</code> for <code>mode</code>, e.g. <code>mode: -&gt;(verb) { verb == :get ? :query : :header }</code>.</li>
+</ul>
+
+<details>
+  <summary>Instagram API Example</summary>
+
+  <p>Example: exchanging and refreshing long‑lived Instagram tokens, and making API calls</p>
+
+  <pre class="code language-ruby"><code class="language-ruby">require &quot;oauth2&quot;
 
 # NOTE: Users authenticate via Facebook Login to obtain a short‑lived user token (not shown here).
 # See Facebook Login docs for obtaining the initial short‑lived token.
@@ -1119,12 +1160,7 @@ me = long_lived.get(&quot;/me&quot;, params: {fields: &quot;id,username&quot;}).
 # long_lived.post(&quot;/me/media&quot;, body: {image_url: &quot;https://...&quot;, caption: &quot;hello&quot;})
 </code></pre>
 
-<p>Tips:</p>
-
-<ul>
-  <li>Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for <code>GET</code> requests.</li>
-  <li>If you need a custom rule, you can pass a <code>Proc</code> for <code>mode</code>, e.g. <code>mode: -&gt;(verb) { verb == :get ? :query : :header }</code>.</li>
-</ul>
+</details>
 
 <h3 id="refresh-tokens">Refresh Tokens</h3>
 
@@ -1371,12 +1407,14 @@ end
 })
 </code></pre>
 
-<h3 id="openid-connect-oidc-notes">OpenID Connect (OIDC) Notes</h3>
+<h3 id="openid-connect-oidc">OpenID Connect (OIDC)</h3>
 
 <ul>
-  <li>If the token response includes an <code>id_token</code> (a JWT), this gem surfaces it but does not validate the signature. Use a JWT library and your provider’s JWKs to verify it.</li>
-  <li>For private_key_jwt client authentication, provide <code>auth_scheme: :private_key_jwt</code> and ensure your key configuration matches the provider requirements.</li>
-  <li>See <a href="file.OIDC.html" title="OIDC.md">OIDC.md</a> for a more complete OIDC overview, example, and links to the relevant specifications.</li>
+  <li>If the token response includes an <code>id_token</code> (a JWT), this gem surfaces it in <code>token.params['id_token']</code>.</li>
+  <li>
+<strong>Note</strong>: This gem does <strong>not</strong> validate the signature of the <code>id_token</code>. You must use a JWT library (like the <code>jwt</code> <a href="https://github.com/jwt/ruby-jwt">gem</a>) and your provider’s JWKs to verify it.</li>
+  <li>For <code>private_key_jwt</code> client authentication, provide <code>auth_scheme: :private_key_jwt</code> and ensure your key configuration matches the provider requirements.</li>
+  <li>See <a href="file.OIDC.html" title="OIDC.md">OIDC.md</a> for a more complete OIDC overview and examples.</li>
 </ul>
 
 <h3 id="debugging">Debugging</h3>
@@ -1607,7 +1645,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sun Mar  1 00:56:52 2026 by
+  Generated on Sun Mar  1 02:04:37 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.38 (ruby-4.0.1).
 </div>
