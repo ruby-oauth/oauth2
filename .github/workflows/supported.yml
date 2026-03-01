@@ -39,7 +39,7 @@ jobs:
           # Ruby 3.2
           - ruby: "ruby-3.2"
             appraisal: "ruby-3-2"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: latest
             bundler: latest
@@ -47,7 +47,7 @@ jobs:
           # Ruby 3.3
           - ruby: "ruby-3.3"
             appraisal: "ruby-3-3"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: latest
             bundler: latest

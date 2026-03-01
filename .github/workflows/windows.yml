@@ -40,7 +40,7 @@ jobs:
           # Ruby 3.4
           - ruby: "ruby"
             appraisal: "current"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: latest
             bundler: latest

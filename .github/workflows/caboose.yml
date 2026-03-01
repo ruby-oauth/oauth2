@@ -38,7 +38,7 @@ jobs:
           # Ruby 2.3
           - ruby: "ruby-2.3"
             appraisal: "ruby-2-3-hashie_v0"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
@@ -46,7 +46,7 @@ jobs:
           # Ruby 2.3
           - ruby: "ruby-2.3"
             appraisal: "ruby-2-3-hashie_v1"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
@@ -54,7 +54,7 @@ jobs:
           # Ruby 2.3
           - ruby: "ruby-2.3"
             appraisal: "ruby-2-3-hashie_v2"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
@@ -62,7 +62,7 @@ jobs:
           # Ruby 2.3
           - ruby: "ruby-2.3"
             appraisal: "ruby-2-3-hashie_v3"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
@@ -70,7 +70,7 @@ jobs:
           # Ruby 2.3
           - ruby: "ruby-2.3"
             appraisal: "ruby-2-3-hashie_v4"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
@@ -78,7 +78,7 @@ jobs:
           # Ruby 2.3
           - ruby: "ruby-2.3"
             appraisal: "ruby-2-3-hashie_v5"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: "3.3.27"
             bundler: "2.3.27"
