@@ -57,26 +57,23 @@ module OAuth2
       def from_hash(client, hash)
         fresh = hash.dup
         # If token_name is present, then use that key name
-        key =
-          if fresh.key?(:token_name)
-            t_key = fresh[:token_name]
-            no_tokens_warning(fresh, t_key)
-            t_key
-          else
-            # Otherwise, if one of the supported default keys is present, use whichever has precedence
-            supported_keys = TOKEN_KEY_LOOKUP & fresh.keys
-            t_key = supported_keys[0]
-            extra_tokens_warning(supported_keys, t_key)
-            t_key
-          end
+        if fresh.key?(:token_name)
+          t_key = fresh[:token_name]
+          no_tokens_warning(fresh, t_key)
+        else
+          # Otherwise, if one of the supported default keys is present, use whichever has precedence
+          supported_keys = TOKEN_KEY_LOOKUP & fresh.keys
+          t_key = supported_keys[0]
+          extra_tokens_warning(supported_keys, t_key)
+        end
         # :nocov:
         # TODO: Get rid of this branching logic when dropping Hashie < v3.2
         token = if !defined?(Hashie::VERSION) # i.e. <= "1.1.0"; the first Hashie to ship with a VERSION constant
           warn("snaky_hash and oauth2 will drop support for Hashie v0 in the next major version. Please upgrade to a modern Hashie.")
           # There is a bug in Hashie v0, which is accounts for.
-          fresh.delete(key) || fresh[key] || ""
+          fresh.delete(t_key) || fresh[t_key] || ""
         else
-          fresh.delete(key) || ""
+          fresh.delete(t_key) || ""
         end
         # :nocov:
         new(client, token, fresh)

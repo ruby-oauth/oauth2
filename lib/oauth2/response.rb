@@ -43,18 +43,20 @@ module OAuth2
       "text/plain" => :text,
     }
 
-    # Adds a new content type parser.
-    #
-    # @param [Symbol] key A descriptive symbol key such as :json or :query
-    # @param [Array<String>, String] mime_types One or more mime types to which this parser applies
-    # @yield [String] Block that will be called to parse the response body
-    # @yieldparam [String] body The response body to parse
-    # @return [void]
-    def self.register_parser(key, mime_types, &block)
-      key = key.to_sym
-      @@parsers[key] = block
-      Array(mime_types).each do |mime_type|
-        @@content_types[mime_type] = key
+    class << self
+      # Adds a new content type parser.
+      #
+      # @param [Symbol] key A descriptive symbol key such as :json or :query
+      # @param [Array<String>, String] mime_types One or more mime types to which this parser applies
+      # @yield [String] Block that will be called to parse the response body
+      # @yieldparam [String] body The response body to parse
+      # @return [void]
+      def register_parser(key, mime_types, &block)
+        key = key.to_sym
+        @@parsers[key] = block
+        Array(mime_types).each do |mime_type|
+          @@content_types[mime_type] = key
+        end
       end
     end
 

@@ -51,13 +51,15 @@ module OAuth2
       end
     end
 
-    # Encodes a Basic Authorization header value for the provided credentials.
-    #
-    # @param [String] user The client identifier
-    # @param [String] password The client secret
-    # @return [String] The value to use for the Authorization header
-    def self.encode_basic_auth(user, password)
-      "Basic #{Base64.strict_encode64("#{user}:#{password}")}"
+    class << self
+      # Encodes a Basic Authorization header value for the provided credentials.
+      #
+      # @param [String] user The client identifier
+      # @param [String] password The client secret
+      # @return [String] The value to use for the Authorization header
+      def encode_basic_auth(user, password)
+        "Basic #{Base64.strict_encode64("#{user}:#{password}")}"
+      end
     end
 
   private

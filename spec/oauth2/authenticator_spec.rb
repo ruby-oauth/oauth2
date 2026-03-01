@@ -48,7 +48,7 @@ RSpec.describe OAuth2::Authenticator do
         )
       end
 
-      context "passing nil secret" do
+      context "with nil secret" do
         let(:client_secret) { nil }
 
         it "does not set nil client_secret" do
@@ -57,7 +57,7 @@ RSpec.describe OAuth2::Authenticator do
         end
       end
 
-      context "using tls client authentication" do
+      context "with tls client authentication" do
         let(:mode) { :tls_client_auth }
 
         it "does not add client_secret" do
@@ -66,7 +66,7 @@ RSpec.describe OAuth2::Authenticator do
         end
       end
 
-      context "using private key jwt authentication" do
+      context "with private key jwt authentication" do
         let(:mode) { :private_key_jwt }
 
         it "does not include client_id or client_secret" do
@@ -76,7 +76,7 @@ RSpec.describe OAuth2::Authenticator do
       end
     end
 
-    context "using tls_client_auth" do
+    context "with tls_client_auth" do
       let(:mode) { :tls_client_auth }
 
       context "when client_id present" do

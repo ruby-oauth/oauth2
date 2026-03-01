@@ -388,7 +388,7 @@ RSpec.describe OAuth2::Response do
         # Give this hash class `dump` and `load` abilities!
         extend SnakyHash::Serializer
 
-        unless instance_methods.include?(:transform_keys)
+        unless method_defined?(:transform_keys)
           # Patch our custom Hash to support Ruby < 2.4.2
           def transform_keys!
             keys.each do |key|
@@ -539,7 +539,7 @@ RSpec.describe OAuth2::Response do
         # Give this hash class `dump` and `load` abilities!
         extend SnakyHash::Serializer
 
-        unless instance_methods.include?(:transform_keys)
+        unless method_defined?(:transform_keys)
           # Patch our custom Hash to support Ruby < 2.4.2
           def transform_keys!
             keys.each do |key|
