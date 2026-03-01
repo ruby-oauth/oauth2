@@ -378,7 +378,7 @@ DEPENDENCIES
   rubocop-ruby2_2
   ruby-progressbar (~> 1.13)
   standard (>= 1.50)
-  stone_checksums (~> 1.0, >= 1.0.2)
+  stone_checksums (~> 1.0, >= 1.0.3)
   stringio (>= 3.0)
   yard (~> 0.9, >= 0.9.37)
   yard-fence (~> 0.4)
