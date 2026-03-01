@@ -16,19 +16,37 @@ module OAuth2
 
     # Class-level helpers for configuring filtered attributes.
     module ClassMethods
+      class << self
+        # Declare attributes that should be redacted in inspect output.
+        #
+        # @param [Array<Symbol, String>] attributes One or more attribute names
+        # @return [void]
+        def filtered_attributes(base, *attributes)
+          base.instance_variable_set(:@filtered_attribute_names, attributes.map(&:to_sym))
+        end
+
+        # The configured attribute names to filter.
+        #
+        # @param [Class] base The class to get filtered attributes for
+        # @return [Array<Symbol>]
+        def filtered_attribute_names(base)
+          base.instance_variable_get(:@filtered_attribute_names) || []
+        end
+      end
+
       # Declare attributes that should be redacted in inspect output.
       #
       # @param [Array<Symbol, String>] attributes One or more attribute names
       # @return [void]
       def filtered_attributes(*attributes)
-        @filtered_attribute_names = attributes.map(&:to_sym)
+        ClassMethods.filtered_attributes(self, *attributes)
       end
 
       # The configured attribute names to filter.
       #
       # @return [Array<Symbol>]
       def filtered_attribute_names
-        @filtered_attribute_names || []
+        ClassMethods.filtered_attribute_names(self)
       end
     end
 
@@ -36,7 +54,7 @@ module OAuth2
     #
     # @return [String]
     def inspect
-      filtered_attribute_names = self.class.filtered_attribute_names
+      filtered_attribute_names = ClassMethods.filtered_attribute_names(self.class)
       return super if filtered_attribute_names.empty?
 
       inspected_vars = instance_variables.map do |var|

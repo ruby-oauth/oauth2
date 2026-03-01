@@ -152,7 +152,7 @@ Thanks, @pboling / @galtzo
   spec.add_development_dependency("rexml", "~> 3.2", ">= 3.2.5")        # ruby >= 0
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 1.1")                           # ruby >= 2.3.0
+  spec.add_development_dependency("kettle-dev", "~> 2.0")                           # ruby >= 2.3.0
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.2")                      # ruby >= 2.0.0
@@ -164,12 +164,12 @@ Thanks, @pboling / @galtzo
   spec.add_development_dependency("require_bench", "~> 1.0", ">= 1.0.4")            # ruby >= 2.2.0
 
   # Testing
-  spec.add_development_dependency("appraisal2", "~> 3.0")                           # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.6")              # ruby >= 2.3
+  spec.add_development_dependency("appraisal2", "~> 3.0", ">= 3.0.6")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
+  spec.add_development_dependency("kettle-test", "~> 1.0", ">= 1.0.10")              # ruby >= 2.3
 
   # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
-  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.2")          # ruby >= 2.2.0
+  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.3")          # ruby >= 2.2.0
 
   # Git integration (optional)
   # The 'git' gem is optional; oauth2 falls back to shelling out to `git` if it is not present.

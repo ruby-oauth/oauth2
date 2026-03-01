@@ -180,7 +180,7 @@ RSpec.describe OAuth2::Client do
             end
           end
         end
-        client.auth_code.get_token("code")
+        expect(client.auth_code.get_token("code")).to be_a(OAuth2::AccessToken)
       end
     end
 
@@ -199,7 +199,7 @@ RSpec.describe OAuth2::Client do
             end
           end
         end
-        client.auth_code.get_token("code")
+        expect(client.auth_code.get_token("code")).to be_a(OAuth2::AccessToken)
       end
     end
 
@@ -842,7 +842,7 @@ RSpec.describe OAuth2::Client do
           [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-token")]
         end
       end
-      client.get_token({})
+      expect(client.get_token({})).to be_a(OAuth2::AccessToken)
     end
 
     it "authenticates with Basic auth" do
@@ -853,7 +853,7 @@ RSpec.describe OAuth2::Client do
           [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-token")]
         end
       end
-      client.get_token({})
+      expect(client.get_token({})).to be_a(OAuth2::AccessToken)
     end
 
     it "authenticates with JSON" do
@@ -862,7 +862,7 @@ RSpec.describe OAuth2::Client do
           [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-token")]
         end
       end
-      client.get_token(headers: {"Content-Type" => "application/json"})
+      expect(client.get_token(headers: {"Content-Type" => "application/json"})).to be_a(OAuth2::AccessToken)
     end
 
     it "sets the response object on the access token" do
@@ -984,12 +984,14 @@ RSpec.describe OAuth2::Client do
         custom_class = Class.new(OAuth2::AccessToken) do
           attr_accessor :response
 
-          def self.from_hash(client, hash)
-            new(client, hash.delete("custom_token"))
-          end
+          class << self
+            def from_hash(client, hash)
+              new(client, hash.delete("custom_token"))
+            end
 
-          def self.contains_token?(hash)
-            hash.key?("custom_token")
+            def contains_token?(hash)
+              hash.key?("custom_token")
+            end
           end
         end
 
@@ -997,7 +999,7 @@ RSpec.describe OAuth2::Client do
       end
 
       it "returns the parsed :custom_token from body" do
-        client.get_token({})
+        expect(client.get_token({})).to be_a(CustomAccessToken)
       end
 
       context "when the :raise_errors flag is set to true" do
@@ -1084,12 +1086,14 @@ RSpec.describe OAuth2::Client do
           def initialize(client, hash)
           end
 
-          def self.from_hash(client, hash)
-            new(client, hash.delete("custom_token"))
-          end
+          class << self
+            def from_hash(client, hash)
+              new(client, hash.delete("custom_token"))
+            end
 
-          def self.contains_token?(hash)
-            hash.key?("custom_token")
+            def contains_token?(hash)
+              hash.key?("custom_token")
+            end
           end
         end
 

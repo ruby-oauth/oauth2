@@ -67,6 +67,7 @@ module_function
       env_var_version || cli_arg_version ||
       bundler_requirement_for(lockfile_version)
   end
+  module_function :bundler_requirement
 
   def bundler_requirement_for(version)
     return "#{Gem::Requirement.default}.a" unless version
@@ -75,12 +76,13 @@ module_function
 
     requirement = bundler_gem_version.approximate_recommendation
 
-    return requirement unless Gem.rubygems_version < Gem::Version.new("2.7.0")
+    return requirement if Gem.rubygems_version >= Gem::Version.new("2.7.0")
 
     requirement += ".a" if bundler_gem_version.prerelease?
 
     requirement
   end
+  module_function :bundler_requirement_for
 
   def load_bundler!
     ENV["BUNDLE_GEMFILE"] ||= gemfile

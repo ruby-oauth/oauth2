@@ -15,7 +15,7 @@ gem "jwt", github: "jwt/ruby-jwt", branch: "main"
 gem "logger", github: "ruby/logger", branch: "master"
 
 # Ruby >= 3.2
-gem "multi_xml", github: "sferik/multi_xml", branch: "master"
+gem "multi_xml", github: "sferik/multi_xml", branch: "main"
 
 # Ruby >= 2.4
 gem "rack", github: "rack/rack", branch: "main"

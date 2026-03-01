@@ -52,27 +52,21 @@ module OAuth2
   # The current runtime configuration for the library.
   #
   # @return [SnakyHash::SymbolKeyed]
-  @config = DEFAULT_CONFIG.dup
-
   class << self
-    # Access the current configuration.
-    #
-    # Prefer using {OAuth2.configure} to mutate configuration.
-    #
-    # @return [SnakyHash::SymbolKeyed]
-    attr_reader :config
-  end
+    def config
+      @config ||= DEFAULT_CONFIG.dup
+    end
 
-  # Configure global library behavior.
-  #
-  # Yields the mutable configuration object so callers can update settings.
-  #
-  # @yieldparam [SnakyHash::SymbolKeyed] config the configuration object
-  # @return [void]
-  def configure
-    yield @config
+    # Configure global library behavior.
+    #
+    # Yields the mutable configuration object so callers can update settings.
+    #
+    # @yieldparam [SnakyHash::SymbolKeyed] config the configuration object
+    # @return [void]
+    def configure
+      yield config
+    end
   end
-  module_function :configure
 end
 
 # Extend OAuth2::Version with VersionGem helpers to provide semantic version helpers.

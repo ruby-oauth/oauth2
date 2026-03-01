@@ -851,7 +851,7 @@ RSpec.describe OAuth2::AccessToken do
       end
     end
 
-    context "params include [number]" do
+    context "with params including [number]" do
       VERBS.each do |verb|
         it "sends #{verb.to_s.upcase} correct query" do
           expect(subject.__send__(verb, "/token/query_string", params: {"foo[bar][1]" => "val"}).body).to include("foo[bar][1]=val")
@@ -921,12 +921,14 @@ RSpec.describe OAuth2::AccessToken do
 
     before do
       custom_class = Class.new(described_class) do
-        def self.from_hash(client, hash)
-          new(client, hash.delete("access_token"), hash)
-        end
+        class << self
+          def from_hash(client, hash)
+            new(client, hash.delete("access_token"), hash)
+          end
 
-        def self.contains_token?(hash)
-          hash.key?("refresh_token")
+          def contains_token?(hash)
+            hash.key?("refresh_token")
+          end
         end
       end
 

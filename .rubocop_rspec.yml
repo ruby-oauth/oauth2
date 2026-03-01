@@ -31,4 +31,7 @@ RSpec/MultipleMemoizedHelpers:
 
 RSpec/SpecFilePathFormat:
   CustomTransform:
-    "OAuth": "oauth"
+    "OAuth2": "oauth2"
+
+RSpec/Output:
+  Enabled: false
