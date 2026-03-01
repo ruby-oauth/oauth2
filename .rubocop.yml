@@ -9,6 +9,13 @@ plugins: rubocop-on-rbs
 RBS:
   Enabled: true
 
+# This tells RuboCop to add the exclusions in this file
+# to the default exclusions (and those from other inherited files),
+# rather than overwriting them.
+inherit_mode:
+  merge:
+    - Exclude
+
 AllCops:
   DisplayCopNames: true # Display the name of the failing cops
   Exclude:
