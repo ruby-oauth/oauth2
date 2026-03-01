@@ -51,7 +51,7 @@ jobs:
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1.288.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
