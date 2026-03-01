@@ -9,8 +9,6 @@
 
 # 🔐 OAuth 2.0 Authorization Framework
 
-⭐️ including OAuth 2.1 draft spec & OpenID Connect (OIDC)
-
 [![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
 
 `if ci_badges.map(&:color).detect { it != "green"}` ☝️ [let me know][🖼️galtzo-discord], as I may have missed the [discord notification][🖼️galtzo-discord].
@@ -31,9 +29,9 @@ I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-ta
 ## 🌻 Synopsis
 
 OAuth 2.0 is the industry-standard protocol for authorization.
-OAuth 2.0 focuses on client developer simplicity while providing specific authorization flows for web applications,
-    desktop applications, mobile phones, and living room devices.
 This is a RubyGem for implementing OAuth 2.0 clients (not servers) in Ruby applications.
+
+⭐️ including OAuth 2.1 draft spec & OpenID Connect (OIDC)
 
 ### Quick Examples
 
@@ -53,13 +51,14 @@ curl --request POST \
 NOTE: In the ruby version below, certain params are passed to the `get_token` call, instead of the client creation.
 
 ```ruby
-OAuth2::Client.new(
+client = OAuth2::Client.new(
   "REDMOND_CLIENT_ID", # client_id
   "REDMOND_CLIENT_SECRET", # client_secret
   auth_scheme: :request_body, # Other modes are supported: :basic_auth, :tls_client_auth, :private_key_jwt
   token_url: "oauth2/token", # relative path, except with leading `/`, then absolute path
   site: "https://login.microsoftonline.com/REDMOND_REDACTED",
-). # The base path for token_url when it is relative
+)
+client.
   client_credentials. # There are many other types to choose from!
   get_token(resource: "REDMOND_RESOURCE_UUID")
 ```
@@ -322,32 +321,30 @@ See [SECURITY.md][🔐security] and [IRP.md][🔐irp].
 
 ## ⚙️ Configuration
 
-You can turn on additional warnings.
+Global settings for the library:
 
 ```ruby
 OAuth2.configure do |config|
-  # Turn on a warning like:
-  #   OAuth2::AccessToken.from_hash: `hash` contained more than one 'token' key
   config.silence_extra_tokens_warning = false # default: true
-  # Set to true if you want to also show warnings about no tokens
-  config.silence_no_tokens_warning = false # default: true,
+  config.silence_no_tokens_warning = false    # default: true
 end
 ```
 
-The "extra tokens" problem comes from ambiguity in the spec about which token is the right token.
-Some OAuth 2.0 standards legitimately have multiple tokens.
-You may need to subclass `OAuth2::AccessToken`, or write your own custom alternative to it, and pass it in.
-Specify your custom class with the `access_token_class` option.
-
-If you only need one token, you can, as of v2.0.10,
-specify the exact token name you want to extract via the `OAuth2::AccessToken` using
-the `token_name` option.
-
-You'll likely need to do some source diving.
-This gem has 100% test coverage for lines and branches, so the specs are a great place to look for ideas.
-If you have time and energy, please contribute to the documentation!
-
 ## 🔧 Basic Usage
+
+### Client Initialization Options
+
+`OAuth2::Client.new` accepts several options:
+
+- `:site`: The base URL for the OAuth 2.0 provider.
+- `:authorize_url`: The authorization endpoint (default: `"oauth/authorize"`).
+- `:token_url`: The token endpoint (default: `"oauth/token"`).
+- `:auth_scheme`: The authentication scheme (`:basic_auth`, `:request_body`, `:tls_client_auth`, `:private_key_jwt`). Default is `:basic_auth`.
+- `:connection_opts`: Options for the underlying Faraday connection (timeouts, proxy, etc.).
+- `:raise_errors`: Whether to raise `OAuth2::Error` on 400+ responses (default: `true`).
+
+<details markdown="1">
+  <summary><em>authorize_url</em> and <em>token_url</em></summary>
 
 ### `authorize_url` and `token_url` are on site root (Just Works!)
 
@@ -393,6 +390,25 @@ client.auth_code.authorize_url(redirect_uri: "http://localhost:8080/oauth2/callb
 client.class.name
 # => OAuth2::Client
 ```
+
+</details>
+
+### Advanced Initializers
+
+```ruby
+client = OAuth2::Client.new(id, secret, site: site) do |faraday|
+  faraday.request(:url_encoded)
+  faraday.adapter(:net_http_persistent)
+end
+```
+
+### AccessToken Features
+
+Instances of `OAuth2::AccessToken` handle request signing and token expiration.
+
+- **Snake Case & Indifferent Access**: `response.parsed` returns a `SnakyHash` allowing access via string/symbol and snake_case keys even if the provider returns CamelCase.
+- **Auto-Refresh**: You can manually check `token.expired?` and call `token.refresh`.
+- **Serialization**: Persist tokens using `token.to_hash` and restore via `OAuth2::AccessToken.from_hash(client, hash)`.
 
 ### snake_case and indifferent access in Response#parsed
 
@@ -546,12 +562,12 @@ client = OAuth2::Client.new(
 ### OAuth2::Response
 
 The `AccessToken` methods `#get`, `#post`, `#put` and `#delete` and the generic `#request`
-will return an instance of the #OAuth2::Response class.
+will return an instance of the `OAuth2::Response` class.
 
 This instance contains a `#parsed` method that will parse the response body and
 return a Hash-like [`SnakyHash::StringKeyed`](https://gitlab.com/ruby-oauth/snaky_hash/-/blob/main/lib/snaky_hash/string_keyed.rb) if the `Content-Type` is `application/x-www-form-urlencoded` or if
-the body is a JSON object.  It will return an Array if the body is a JSON
-array.  Otherwise, it will return the original body string.
+the body is a JSON object. It will return an Array if the body is a JSON
+array. Otherwise, it will return the original body string.
 
 The original response body, headers, and status can be accessed via their
 respective methods.
@@ -593,16 +609,22 @@ Response instance will contain the `OAuth2::Error` instance.
 
 ### Authorization Grants
 
-Note on OAuth 2.1 (draft):
+Currently, the Authorization Code, Implicit, Resource Owner Password Credentials, Client Credentials, and Assertion
+authentication grant types have helper strategy classes that simplify client
+use. They are available via the [`#auth_code`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/auth_code.rb),
+[`#implicit`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/implicit.rb),
+[`#password`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/password.rb),
+[`#client_credentials`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/client_credentials.rb), and
+[`#assertion`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/assertion.rb) methods respectively.
 
-- PKCE is required for all OAuth clients using the authorization code flow (especially public clients). Implement PKCE in your app when required by your provider. See RFC 7636 and RFC 8252.
-- Redirect URIs must be compared using exact string matching by the Authorization Server.
-- The Implicit grant (response_type=token) and the Resource Owner Password Credentials grant are omitted from OAuth 2.1; they remain here for OAuth 2.0 compatibility but should be avoided for new apps.
-- Bearer tokens in the query string are omitted due to security risks; prefer Authorization header usage.
-- Refresh tokens for public clients must either be sender-constrained (e.g., DPoP/MTLS) or one-time use.
-- The definitions of public and confidential clients are simplified to refer only to whether the client has credentials.
+#### OAuth 2.1 (draft) Note:
 
-References:
+- **PKCE** is required for all OAuth clients using the authorization code flow (especially public clients). Implement PKCE in your app when required by your provider. See RFC 7636 and RFC 8252.
+- **Implicit grant** (response_type=token) and **Resource Owner Password Credentials grant** are omitted from OAuth 2.1; they remain here for OAuth 2.0 compatibility but should be avoided for new apps.
+- **Redirect URIs** must be compared using exact string matching by the Authorization Server.
+
+<details markdown="1">
+  <summary>OAuth 2.1 (draft) References</summary>
 
 - OAuth 2.1 draft: https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-13
 - Aaron Parecki: https://aaronparecki.com/2019/12/12/21/its-time-for-oauth-2-dot-1
@@ -611,13 +633,7 @@ References:
 - Video: https://www.youtube.com/watch?v=g_aVPdwBTfw
 - Differences overview: https://fusionauth.io/learn/expert-advice/oauth/differences-between-oauth-2-oauth-2-1/
 
-Currently, the Authorization Code, Implicit, Resource Owner Password Credentials, Client Credentials, and Assertion
-authentication grant types have helper strategy classes that simplify client
-use. They are available via the [`#auth_code`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/auth_code.rb),
-[`#implicit`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/implicit.rb),
-[`#password`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/password.rb),
-[`#client_credentials`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/client_credentials.rb), and
-[`#assertion`](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/lib/oauth2/strategy/assertion.rb) methods respectively.
+</details>
 
 These aren't full examples, but demonstrative of the differences between usage for each strategy.
 
@@ -752,7 +768,7 @@ Notes:
 
 </details>
 
-### Instagram API (verb‑dependent token mode)
+### Verb‑dependent Token Mode
 
 Providers like Instagram require the access token to be sent differently depending on the HTTP verb:
 
@@ -760,6 +776,14 @@ Providers like Instagram require the access token to be sent differently dependi
 - POST/DELETE requests: token must be in the Authorization header (Bearer ...)
 
 Since v2.0.15, you can configure an AccessToken with a verb‑dependent mode. The gem will choose how to send the token based on the request method.
+
+Tips:
+
+- Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for `GET` requests.
+- If you need a custom rule, you can pass a `Proc` for `mode`, e.g. `mode: ->(verb) { verb == :get ? :query : :header }`.
+
+<details markdown="1">
+  <summary>Instagram API Example</summary>
 
 Example: exchanging and refreshing long‑lived Instagram tokens, and making API calls
 
@@ -819,10 +843,7 @@ me = long_lived.get("/me", params: {fields: "id,username"}).parsed
 # long_lived.post("/me/media", body: {image_url: "https://...", caption: "hello"})
 ```
 
-Tips:
-
-- Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for `GET` requests.
-- If you need a custom rule, you can pass a `Proc` for `mode`, e.g. `mode: ->(verb) { verb == :get ? :query : :header }`.
+</details>
 
 ### Refresh Tokens
 
@@ -1063,11 +1084,12 @@ access = client.get_token({
 })
 ```
 
-### OpenID Connect (OIDC) Notes
+### OpenID Connect (OIDC)
 
-- If the token response includes an `id_token` (a JWT), this gem surfaces it but does not validate the signature. Use a JWT library and your provider's JWKs to verify it.
-- For private_key_jwt client authentication, provide `auth_scheme: :private_key_jwt` and ensure your key configuration matches the provider requirements.
-- See [OIDC.md](OIDC.md) for a more complete OIDC overview, example, and links to the relevant specifications.
+- If the token response includes an `id_token` (a JWT), this gem surfaces it in `token.params['id_token']`.
+- **Note**: This gem does **not** validate the signature of the `id_token`. You must use a JWT library (like the `jwt` [gem](https://github.com/jwt/ruby-jwt)) and your provider's JWKs to verify it.
+- For `private_key_jwt` client authentication, provide `auth_scheme: :private_key_jwt` and ensure your key configuration matches the provider requirements.
+- See [OIDC.md](OIDC.md) for a more complete OIDC overview and examples.
 
 ### Debugging
 
@@ -1239,7 +1261,7 @@ See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright
 
 <ul>
     <li>
-        Copyright (c) 2017 – 2025 Peter H. Boling, of
+        Copyright (c) 2017 – 2026 Peter H. Boling, of
         <a href="https://discord.gg/3qme4XHNKN">
             Galtzo.com
             <picture>
