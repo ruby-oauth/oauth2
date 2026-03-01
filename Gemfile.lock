@@ -349,7 +349,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (~> 2.8, >= 2.8.7, >= 2.8, < 3)
-  appraisal2 (~> 3.0)
+  appraisal2 (~> 3.0, >= 3.0.6)
   backports (~> 3.25, >= 3.25.1)
   benchmark (~> 0.4, >= 0.4.1)
   bundler-audit (~> 0.9.2)
