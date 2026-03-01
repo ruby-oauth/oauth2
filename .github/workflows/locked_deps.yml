@@ -74,7 +74,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@v1.288.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
