@@ -40,7 +40,7 @@ jobs:
           # Ruby 3.4
           - ruby: "ruby"
             appraisal: "current"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: latest
             bundler: latest
@@ -50,7 +50,7 @@ jobs:
           #   (according to runtime: targets Ruby 3.2 compatibility)
           - ruby: "truffleruby"
             appraisal: "current"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: default
             bundler: default
@@ -58,7 +58,7 @@ jobs:
           # jruby-10.0 (targets Ruby 3.4 compatibility)
           - ruby: "jruby"
             appraisal: "current"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: default
             bundler: default

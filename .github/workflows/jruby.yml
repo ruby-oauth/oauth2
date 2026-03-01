@@ -39,7 +39,7 @@ jobs:
           # jruby-9.4 (targets Ruby 3.1 compatibility)
           - ruby: "jruby-9.4"
             appraisal: "ruby-3-1"
-            exec_cmd: "rake test"
+            exec_cmd: "rake magic"
             gemfile: "Appraisal.root"
             rubygems: default
             bundler: default
