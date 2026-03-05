@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # includes modules from stdlib
-require "cgi"
+require "cgi/escape"
 require "time"
 
 # third party gems
