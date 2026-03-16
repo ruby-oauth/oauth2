@@ -68,7 +68,7 @@ jobs:
 
       - name: Setup Ruby & RubyGems
         if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
-        uses: ruby/setup-ruby@v1.290.0
+        uses: ruby/setup-ruby@v1.293.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
