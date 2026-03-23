@@ -17,7 +17,7 @@ jobs:
         with:
           persist-credentials: false
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@v1.293.0
+        uses: ruby/setup-ruby@v1.295.0
         with:
           ruby-version: ruby
           rubygems: default
