@@ -95,7 +95,7 @@ jobs:
       #   which will hopefully be noticed for the lack of code coverage comments
       - name: Upload coverage to CodeCov
         if: ${{ !env.ACT }}
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v6
         with:
           use_oidc: true
           fail_ci_if_error: false # optional (default = false)
