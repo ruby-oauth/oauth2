@@ -170,5 +170,22 @@ RSpec.describe OAuth2::Authenticator do
         expect(subject.inspect).to include("@secret=\"bar\"")
       end
     end
+
+    context "when config changes after initialization" do
+      before do
+        @original_filtered_label = OAuth2.config[:filtered_label]
+        subject
+        OAuth2.config[:filtered_label] = "[REDACTED]"
+      end
+
+      after do
+        OAuth2.config[:filtered_label] = @original_filtered_label
+      end
+
+      it "keeps using the initialized filter label" do
+        expect(subject.inspect).to include("@secret=[FILTERED]")
+        expect(subject.inspect).not_to include("@secret=[REDACTED]")
+      end
+    end
   end
 end

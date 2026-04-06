@@ -20,7 +20,13 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- [gh!707][gh!707] Add `OAuth2.config[:filtered_label]` to configure the placeholder used for filtered sensitive values in inspected objects and debug logging output by @pboling
+- [gh!707][gh!707] Add `OAuth2.config[:filtered_debug_keys]` to configure which key names have their values redacted from debug logging output by @pboling
+- [gh!707][gh!707] Add `OAuth2::ThingFilter` as the shared filtering primitive used by inspect-time and debug-log filtering by @pboling
+
 ### Changed
+
+- [gh!707][gh!707] Make inspect-time and debug-log filters snapshot their configuration at initialization time rather than tracking later config changes by @pboling
 
 ### Deprecated
 
@@ -29,6 +35,11 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 ### Security
+
+- [gh!707][gh!707] Redact sensitive values from debug logging output, including Authorization headers and common token/secret fields in headers, query strings, form bodies, and JSON payloads by @pboling
+  - NOTE: debug logging has always been, and remains, opt-in. It is turned off by defualt.
+
+[gh!707]: https://github.com/ruby-oauth/oauth2/pull/707
 
 ## [2.0.18] - 2025-11-08
 
@@ -53,8 +64,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - [gh!690][gh!690], [gh!691][gh!691], [gh!692][gh!692] - Add yard-fence
   - handle braces within code fences in markdown properly by @pboling
-
-### Security
 
 [gh!683]: https://github.com/ruby-oauth/oauth2/pull/683
 [gh!684]: https://github.com/ruby-oauth/oauth2/pull/684
@@ -195,8 +204,6 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 - [gh!660][gh!660] - Links in README (including link to HEAD documentation) by @pboling
-
-### Security
 
 [gh!660]: https://github.com/ruby-oauth/oauth2/pull/660
 [gh!657]: https://github.com/ruby-oauth/oauth2/pull/657

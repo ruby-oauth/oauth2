@@ -17,6 +17,8 @@ module OAuth2
     # @param [OAuth2::Response, Hash, Object] response A Response or error payload
     def initialize(response)
       @response = response
+      @code = nil
+      @description = nil
       if response.respond_to?(:parsed)
         if response.parsed.is_a?(Hash)
           @code = response.parsed["error"]

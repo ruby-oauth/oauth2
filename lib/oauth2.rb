@@ -10,7 +10,9 @@ require "version_gem"
 
 # includes gem files
 require_relative "oauth2/version"
+require_relative "oauth2/thing_filter"
 require_relative "oauth2/filtered_attributes"
+require_relative "oauth2/sanitized_logger"
 require_relative "oauth2/error"
 require_relative "oauth2/authenticator"
 require_relative "oauth2/client"
@@ -43,18 +45,40 @@ module OAuth2
   #     config[:silence_no_tokens_warning] = false
   #   end
   #
+  # @example Customize filtered output markers and debug-log value filtering by key name
+  #   OAuth2.configure do |config|
+  #     config[:filtered_label] = "[REDACTED]"
+  #     config[:filtered_debug_keys] += ["client_assertion"]
+  #   end
+  #
+  # Existing objects and logger wrappers snapshot filtering configuration during
+  # initialization. Changing these config values later affects only newly
+  # initialized objects and debug loggers.
+  #
   # @return [SnakyHash::SymbolKeyed] A mutable Hash-like config with symbol keys
   DEFAULT_CONFIG = SnakyHash::SymbolKeyed.new(
     silence_extra_tokens_warning: true,
     silence_no_tokens_warning: true,
+    filtered_label: "[FILTERED]",
+    filtered_debug_keys: %w[
+      access_token
+      refresh_token
+      id_token
+      client_secret
+      assertion
+      code_verifier
+      token
+    ],
   )
 
   # The current runtime configuration for the library.
   #
   # @return [SnakyHash::SymbolKeyed]
+  CONFIG = DEFAULT_CONFIG.dup
+
   class << self
     def config
-      @config ||= DEFAULT_CONFIG.dup
+      CONFIG
     end
 
     # Configure global library behavior.
