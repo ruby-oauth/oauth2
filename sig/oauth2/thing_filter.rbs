@@ -1,0 +1,10 @@
+module OAuth2
+  class ThingFilter
+    attr_reader things: Array[String]
+    attr_reader label: String
+
+    def initialize: (Enumerable[untyped] things, label: String) -> void
+    def filtered?: (untyped thing_name) -> bool
+    def pattern_source: () -> String
+  end
+end

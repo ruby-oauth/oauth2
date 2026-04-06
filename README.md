@@ -330,6 +330,19 @@ OAuth2.configure do |config|
 end
 ```
 
+Filtering-related settings:
+
+```ruby
+OAuth2.configure do |config|
+  config.filtered_label = "[REDACTED]" # default: "[FILTERED]"
+  config.filtered_debug_keys += ["client_assertion"]
+end
+```
+
+- `filtered_label` controls the placeholder used when sensitive values are filtered from inspected objects and debug logging output.
+- `filtered_debug_keys` controls which key names have their values redacted from debug logging output when `OAUTH_DEBUG=true`.
+- Debug logging remains opt-in and should still be used cautiously in production environments.
+
 ## 🔧 Basic Usage
 
 ### Client Initialization Options

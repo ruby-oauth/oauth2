@@ -1,17 +1,40 @@
+# frozen_string_literal: true
+
 module OAuth2
-  # Mixin that redacts sensitive instance variables in #inspect output.
+  # Mixin that redacts sensitive instance variables in `#inspect` output.
   #
-  # Classes include this module and declare which attributes should be filtered
-  # using {.filtered_attributes}. Any instance variable name that includes one of
-  # those attribute names will be shown as [FILTERED] in the object's inspect.
+  # Classes include this module and declare which attribute names should be
+  # filtered via {.filtered_attributes}. Matching and replacement behavior is
+  # delegated to {ThingFilter}, which is initialized once per object.
+  #
+  # This means existing objects keep the filter configuration that was present
+  # when they were initialized, even if global config or class-level filter
+  # declarations change later.
   module FilteredAttributes
-    # Hook invoked when the module is included. Extends the including class with
-    # class-level helpers.
+    class << self
+      # Hook invoked when the module is included. Extends the including class with
+      # class-level helpers and prepends the initializer hook.
+      #
+      # @param [Class] base The including class
+      # @return [void]
+      def included(base)
+        base.extend(ClassMethods)
+        base.prepend(InitializerMethods)
+      end
+    end
+
+    # Initializer hook that snapshots the thing filter for this object.
     #
-    # @param [Class] base The including class
-    # @return [void]
-    def self.included(base)
-      base.extend(ClassMethods)
+    # The snapshot captures both the class-level filtered attribute names and
+    # the current `OAuth2.config[:filtered_label]` value.
+    module InitializerMethods
+      def initialize(*args, &block)
+        super(*args, &block)
+        @thing_filter = ThingFilter.new(
+          self.class.filtered_attribute_names,
+          label: OAuth2.config[:filtered_label],
+        )
+      end
     end
 
     # Class-level helpers for configuring filtered attributes.
@@ -30,6 +53,8 @@ module OAuth2
         # @param [Class] base The class to get filtered attributes for
         # @return [Array<Symbol>]
         def filtered_attribute_names(base)
+          return [] unless base.instance_variable_defined?(:@filtered_attribute_names)
+
           base.instance_variable_get(:@filtered_attribute_names) || []
         end
       end
@@ -50,16 +75,24 @@ module OAuth2
       end
     end
 
+    # The initialized thing filter used by this object.
+    #
+    # This is a per-instance snapshot created during initialization.
+    #
+    # @return [ThingFilter]
+    def thing_filter
+      @thing_filter
+    end
+
     # Custom inspect that redacts configured attributes.
     #
     # @return [String]
     def inspect
-      filtered_attribute_names = ClassMethods.filtered_attribute_names(self.class)
-      return super if filtered_attribute_names.empty?
+      return super if thing_filter.things.empty?
 
       inspected_vars = instance_variables.map do |var|
-        if filtered_attribute_names.any? { |filtered_var| var.to_s.include?(filtered_var.to_s) }
-          "#{var}=[FILTERED]"
+        if thing_filter.filtered?(var)
+          "#{var}=#{thing_filter.label}"
         else
           "#{var}=#{instance_variable_get(var).inspect}"
         end

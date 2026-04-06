@@ -204,7 +204,7 @@ RSpec.describe OAuth2::Client do
     end
 
     describe "custom headers" do
-      context "string key headers" do
+      context "with string key headers" do
         it "adds the custom headers to request" do
           client = described_class.new("abc", "def", site: "https://api.example.com", auth_scheme: :request_body) do |builder|
             builder.adapter :test do |stub|
@@ -219,7 +219,7 @@ RSpec.describe OAuth2::Client do
         end
       end
 
-      context "symbol key headers" do
+      context "with symbol key headers" do
         it "adds the custom headers to request" do
           client = described_class.new("abc", "def", site: "https://api.example.com", auth_scheme: :request_body) do |builder|
             builder.adapter :test do |stub|
@@ -234,7 +234,7 @@ RSpec.describe OAuth2::Client do
         end
       end
 
-      context "string key custom headers with basic auth" do
+      context "with string key custom headers and basic auth" do
         it "adds the custom headers to request" do
           client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
             builder.adapter :test do |stub|
@@ -249,7 +249,7 @@ RSpec.describe OAuth2::Client do
         end
       end
 
-      context "symbol key custom headers with basic auth" do
+      context "with symbol key custom headers and basic auth" do
         it "adds the custom headers to request" do
           client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
             builder.adapter :test do |stub|
@@ -287,16 +287,153 @@ RSpec.describe OAuth2::Client do
           end.not_to raise_error
         end
 
-        it "prints both request and response bodies to STDOUT" do
+        it "prints useful non-sensitive request and response details to STDOUT" do
           printed = capture(:stdout) do
             subject.request(:get, "/success")
-            subject.request(:get, "/reflect", body: "this is magical")
+            subject.request(:get, "/reflect", body: "this is harmless")
           end
           expect(printed).to match "request: GET https://api.example.com/success"
           expect(printed).to match "response: Content-Type:"
           expect(printed).to match "response: yay"
-          expect(printed).to match "request: this is magical"
-          expect(printed).to match "response: this is magical"
+          expect(printed).to match "request: this is harmless"
+          expect(printed).to match "response: this is harmless"
+        end
+
+        it "redacts Authorization header values from STDOUT" do
+          secret = "super-secret-token"
+
+          printed = capture(:stdout) do
+            subject.request(:get, "/success", headers: {"Authorization" => "Bearer #{secret}"})
+          end
+
+          expect(printed).to include("request: GET https://api.example.com/success")
+          expect(printed).not_to include(secret)
+          expect(printed).not_to include("Bearer #{secret}")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        it "redacts form-encoded secret fields from STDOUT" do
+          printed = capture(:stdout) do
+            subject.request(:post, "/reflect", body: "access_token=abc123&client_secret=shhh&grant_type=refresh_token")
+          end
+
+          expect(printed).not_to include("abc123")
+          expect(printed).not_to include("shhh")
+          expect(printed).to include("grant_type")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        it "redacts token material in JSON responses from STDOUT" do
+          client = stubbed_client(auth_scheme: :request_body) do |stub|
+            stub.post("/oauth/token") do
+              [
+                200,
+                {"Content-Type" => "application/json"},
+                JSON.dump(
+                  "access_token" => "the-access-token",
+                  "refresh_token" => "the-refresh-token",
+                  "id_token" => "the-id-token",
+                  "token_type" => "Bearer",
+                ),
+              ]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.get_token({})
+          end
+
+          expect(printed).not_to include("the-access-token")
+          expect(printed).not_to include("the-refresh-token")
+          expect(printed).not_to include("the-id-token")
+          expect(printed).to include("token_type")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        it "redacts query-string secret fields from STDOUT" do
+          printed = capture(:stdout) do
+            subject.request(:get, "/success", params: {"access_token" => "abc123", "state" => "ok-state"})
+          end
+
+          expect(printed).not_to include("abc123")
+          expect(printed).to include("ok-state")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        it "redacts basic auth credentials from STDOUT" do
+          client = stubbed_client do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-token")]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.get_token({})
+          end
+
+          expect(printed).not_to include(OAuth2::Authenticator.encode_basic_auth("abc", "def"))
+          expect(printed).not_to include("def")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        it "redacts code_verifier and assertion fields from STDOUT" do
+          printed = capture(:stdout) do
+            subject.request(:post, "/reflect", body: "code_verifier=pkce-secret&assertion=jwt-assertion-material&grant_type=authorization_code")
+          end
+
+          expect(printed).not_to include("pkce-secret")
+          expect(printed).not_to include("jwt-assertion-material")
+          expect(printed).to include("grant_type")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        it "redacts revoke token values from STDOUT" do
+          printed = capture(:stdout) do
+            subject.revoke_token("banana-foster")
+          end
+
+          expect(printed).not_to include("banana-foster")
+          expect(printed).to include("/oauth/revoke")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        it "safely redacts obvious secrets in opaque non-JSON response bodies" do
+          client = stubbed_client do |stub|
+            stub.get("/opaque_secret") do
+              [200, {"Content-Type" => "text/plain"}, "access_token=abc123&note=hello"]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.request(:get, "/opaque_secret")
+          end
+
+          expect(printed).not_to include("abc123")
+          expect(printed).to include("note=hello")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        it "keeps using the initialized debug filter after config changes" do
+          subject.connection
+
+          original_filtered_label = OAuth2.config[:filtered_label]
+          original_filtered_debug_keys = OAuth2.config[:filtered_debug_keys]
+
+          begin
+            OAuth2.config[:filtered_label] = "[REDACTED]"
+            OAuth2.config[:filtered_debug_keys] = []
+
+            printed = capture(:stdout) do
+              subject.request(:get, "/success", headers: {"Authorization" => "Bearer super-secret-token"})
+            end
+
+            expect(printed).not_to include("super-secret-token")
+            expect(printed).to include("[FILTERED]")
+            expect(printed).not_to include("[REDACTED]")
+          ensure
+            OAuth2.config[:filtered_label] = original_filtered_label
+            OAuth2.config[:filtered_debug_keys] = original_filtered_debug_keys
+          end
         end
       end
 
@@ -1172,7 +1309,7 @@ RSpec.describe OAuth2::Client do
           expect(printed).to eq(msg)
         end
 
-        context "on request" do
+        context "when on request" do
           subject(:printed) do
             capture(:stderr) do
               client.get_token({}, {}, extract_access_token)

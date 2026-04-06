@@ -19,6 +19,7 @@ inherit_mode:
 AllCops:
   DisplayCopNames: true # Display the name of the failing cops
   Exclude:
+    - 'bin/*'
     - 'gemfiles/vendor/**/*'
     - 'vendor/**/*'
     - '**/.irbrc'
