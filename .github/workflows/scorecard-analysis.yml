@@ -1,0 +1,38 @@
+on:
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+  schedule:
+    - cron: 0 7 * * 1
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/scorecard-analysis.yml
+
+permissions: read-all
+
+name: Scorecard Analysis
+jobs:
+  analysis:
+    name: Scorecard analysis
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd #v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Run analysis
+        uses: ossf/scorecard-action@4eaacf0543bb3f2c246792bd56e8cdeffafb205a #v2.4.3
+        with:
+          results_file: results.sarif
+          results_format: sarif
+          publish_results: true
+
+      - name: Upload to code-scanning
+        uses: github/codeql-action/upload-sarif@c10b8064de6f491fea524254123dbe5e09572f13 #4.35.1
+        with:
+          sarif_file: results.sarif
