@@ -63,7 +63,16 @@ This document outlines the threat model for the `oauth2` Ruby gem, which impleme
   - Validate and sanitize all inputs
   - Use parameterized queries and safe APIs
 
-### 5.7 Insufficient Logging and Monitoring
+### 5.7 Request-Target Trust Boundary Expansion
+- **Threat:** Applications may pass untrusted or insufficiently validated absolute URLs into request paths that can carry OAuth credentials or authenticated state.
+- **Risk:** This can expand trust boundaries, contributing to token leakage, authenticated requests to unintended hosts, or SSRF-like pivoting in the surrounding application.
+- **Mitigations:**
+  - Prefer relative paths where practical
+  - Do not pass untrusted absolute URLs into token-bearing clients
+  - Validate or allowlist outbound request targets at the application layer
+  - Treat request-target validation as a separate concern from log redaction and token storage
+
+### 5.8 Insufficient Logging and Monitoring
 - **Threat:** Attacks go undetected
 - **Mitigations:**
   - Log security-relevant events (without sensitive data)

@@ -9,7 +9,7 @@
 
 # 🔐 OAuth 2.0 Authorization Framework
 
-[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![Open Source Helpers][👽oss-helpi]][👽oss-help] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
+[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
 
 `if ci_badges.map(&:color).detect { it != "green"}` ☝️ [let me know][🖼️galtzo-discord], as I may have missed the [discord notification][🖼️galtzo-discord].
 
@@ -560,6 +560,13 @@ ENV["OAUTH_DEBUG"] = "true"
 By default, debug output will go to `$stdout`. This can be overridden when
 initializing your OAuth2::Client.
 
+Sensitive values are filtered from debug logging output using:
+
+- `OAuth2.config[:filtered_label]`
+- `OAuth2.config[:filtered_debug_keys]`
+
+Debug logging remains opt-in and should still be used cautiously in production environments.
+
 ```ruby
 require "oauth2"
 client = OAuth2::Client.new(
@@ -571,6 +578,21 @@ client = OAuth2::Client.new(
 ```
 
 </details>
+
+### Request Target Trust Boundaries
+
+This gem supports request flows that can involve absolute URLs in addition to relative paths.
+That flexibility can expand trust boundaries when a token-bearing client is asked to send requests
+to caller-provided targets.
+
+Practical guidance:
+
+- prefer relative paths where practical
+- do not pass untrusted absolute URLs into token-bearing clients
+- validate or allowlist request targets at the application layer today if your deployment has strict trust-boundary requirements
+
+This release line does not yet enforce same-host or allowlist request policy automatically.
+If stricter outbound request controls are needed, they should currently be implemented by the calling application.
 
 ### OAuth2::Response
 
@@ -1401,8 +1423,6 @@ Thanks for RTFM. ☺️
 [📜gh-wiki-img]: https://img.shields.io/badge/wiki-examples-943CD2.svg?style=for-the-badge&logo=github&logoColor=white
 [👽dl-rank]: https://bestgems.org/gems/oauth2
 [👽dl-ranki]: https://img.shields.io/gem/rd/oauth2.svg
-[👽oss-help]: https://www.codetriage.com/ruby-oauth/oauth2
-[👽oss-helpi]: https://www.codetriage.com/ruby-oauth/oauth2/badges/users.svg
 [👽version]: https://bestgems.org/gems/oauth2
 [👽versioni]: https://img.shields.io/gem/v/oauth2.svg
 [🏀qlty-mnt]: https://qlty.sh/gh/ruby-oauth/projects/oauth2

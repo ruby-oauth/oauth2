@@ -22,15 +22,17 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - [gh!707][gh!707] Add `OAuth2.config[:filtered_label]` to configure the placeholder used for filtered sensitive values in inspected objects and debug logging output by @pboling
 - [gh!707][gh!707] Add `OAuth2.config[:filtered_debug_keys]` to configure which key names have their values redacted from debug logging output by @pboling
-- [gh!707][gh!707] Add `OAuth2::ThingFilter` as the shared filtering primitive used by inspect-time and debug-log filtering by @pboling
 
 ### Changed
 
 - [gh!707][gh!707] Make inspect-time and debug-log filters snapshot their configuration at initialization time rather than tracking later config changes by @pboling
+- Refactor sensitive-value filtering to use `auth-sanitizer` while preserving `OAuth2::FilteredAttributes` as a permanent API alias by @pboling
 
 ### Deprecated
 
 ### Removed
+
+- Remove the internal `OAuth2::ThingFilter` and `OAuth2::SanitizedLogger` implementations now provided by `auth-sanitizer` by @pboling
 
 ### Fixed
 

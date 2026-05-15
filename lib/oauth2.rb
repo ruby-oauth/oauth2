@@ -5,14 +5,13 @@ require "cgi/escape"
 require "time"
 
 # third party gems
+require "auth/sanitizer"
 require "snaky_hash"
 require "version_gem"
 
 # includes gem files
 require_relative "oauth2/version"
-require_relative "oauth2/thing_filter"
 require_relative "oauth2/filtered_attributes"
-require_relative "oauth2/sanitized_logger"
 require_relative "oauth2/error"
 require_relative "oauth2/authenticator"
 require_relative "oauth2/client"
@@ -92,6 +91,11 @@ module OAuth2
     end
   end
 end
+
+# Wire Auth::Sanitizer's label provider to read from OAuth2.config so that
+# FilteredAttributes-bearing objects and Auth::Sanitizer::SanitizedLogger instances
+# pick up OAuth2.config[:filtered_label] at their initialization time.
+Auth::Sanitizer.filtered_label_provider = -> { OAuth2.config[:filtered_label] }
 
 # Extend OAuth2::Version with VersionGem helpers to provide semantic version helpers.
 OAuth2::Version.class_eval do
