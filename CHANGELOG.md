@@ -22,7 +22,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - [gh!707][gh!707] Add `OAuth2.config[:filtered_label]` to configure the placeholder used for filtered sensitive values in inspected objects and debug logging output by @pboling
 - [gh!707][gh!707] Add `OAuth2.config[:filtered_debug_keys]` to configure which key names have their values redacted from debug logging output by @pboling
-- [gh!707][gh!707] Add `OAuth2::ThingFilter` as the shared filtering primitive used by inspect-time and debug-log filtering by @pboling
 
 ### Changed
 
