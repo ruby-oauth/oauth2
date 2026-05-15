@@ -42,7 +42,7 @@ module OAuth2
     # @option options [Hash] :connection_opts ({}) Hash of connection options to pass to initialize Faraday
     # @option options [Boolean] :raise_errors (true) whether to raise an OAuth2::Error on responses with 400+ status codes
     # @option options [Integer] :max_redirects (5) maximum number of redirects to follow
-    # @option options [Logger] :logger (::Logger.new($stdout)) Logger instance for HTTP request/response output; requires OAUTH_DEBUG to be true. When debug logging is enabled, sensitive values are filtered using a {ThingFilter} initialized from `OAuth2.config[:filtered_label]` and the key names in `OAuth2.config[:filtered_debug_keys]`.
+    # @option options [Logger] :logger (::Logger.new($stdout)) Logger instance for HTTP request/response output; requires OAUTH_DEBUG to be true. When debug logging is enabled, sensitive values are filtered using {Auth::Sanitizer::SanitizedLogger} initialized from `OAuth2.config[:filtered_label]` and the key names in `OAuth2.config[:filtered_debug_keys]`.
     # @option options [Class] :access_token_class (AccessToken) class to use for access tokens; you can subclass OAuth2::AccessToken, @version 2.0+
     # @option options [Hash] :ssl SSL options for Faraday
     #
@@ -563,7 +563,15 @@ module OAuth2
     end
 
     def oauth_debug_logging(builder)
-      builder.response(:logger, SanitizedLogger.new(options[:logger]), bodies: true) if OAuth2::OAUTH_DEBUG
+      builder.response(
+        :logger,
+        Auth::Sanitizer::SanitizedLogger.new(
+          options[:logger],
+          filtered_keys: OAuth2.config[:filtered_debug_keys],
+          label: OAuth2.config[:filtered_label],
+        ),
+        bodies: true,
+      ) if OAuth2::OAUTH_DEBUG
     end
   end
 end

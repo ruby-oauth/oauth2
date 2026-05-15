@@ -560,6 +560,13 @@ ENV["OAUTH_DEBUG"] = "true"
 By default, debug output will go to `$stdout`. This can be overridden when
 initializing your OAuth2::Client.
 
+Sensitive values are filtered from debug logging output using:
+
+- `OAuth2.config[:filtered_label]`
+- `OAuth2.config[:filtered_debug_keys]`
+
+Debug logging remains opt-in and should still be used cautiously in production environments.
+
 ```ruby
 require "oauth2"
 client = OAuth2::Client.new(
@@ -571,6 +578,21 @@ client = OAuth2::Client.new(
 ```
 
 </details>
+
+### Request Target Trust Boundaries
+
+This gem supports request flows that can involve absolute URLs in addition to relative paths.
+That flexibility can expand trust boundaries when a token-bearing client is asked to send requests
+to caller-provided targets.
+
+Practical guidance:
+
+- prefer relative paths where practical
+- do not pass untrusted absolute URLs into token-bearing clients
+- validate or allowlist request targets at the application layer today if your deployment has strict trust-boundary requirements
+
+This release line does not yet enforce same-host or allowlist request policy automatically.
+If stricter outbound request controls are needed, they should currently be implemented by the calling application.
 
 ### OAuth2::Response
 

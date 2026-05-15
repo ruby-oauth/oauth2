@@ -12,6 +12,9 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from <gem name>.gemspec
 gemspec
 
+# Local path override for auth-sanitizer (not yet published)
+gem "auth-sanitizer", path: "../auth-sanitizer"
+
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"
 

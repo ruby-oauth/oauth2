@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe OAuth2::ThingFilter do
+RSpec.describe Auth::Sanitizer::ThingFilter do
   describe "#initialize" do
     it "does not freeze caller-owned string inputs" do
       things = [String.new("secret")]
@@ -30,7 +30,7 @@ RSpec.describe OAuth2::ThingFilter do
   describe "FilteredAttributes integration" do
     let(:poro_class) do
       Class.new do
-        include OAuth2::FilteredAttributes
+        include Auth::Sanitizer::FilteredAttributes
 
         attr_reader :secret, :name
         filtered_attributes :secret
