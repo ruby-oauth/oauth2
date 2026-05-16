@@ -1,0 +1,28 @@
+# Shared development environment for this gem.
+# Local overrides belong in .env.local (loaded via dotenvy through mise).
+
+[env]
+K_JEM_TEMPLATING = "false"
+K_SOUP_COV_DO = "true"
+K_SOUP_COV_COMMAND_NAME = "Test Coverage"
+K_SOUP_COV_FORMATTERS = "html,xml,rcov,lcov,json,tty"
+K_SOUP_COV_MIN_BRANCH = "76"
+K_SOUP_COV_MIN_LINE = "92"
+K_SOUP_COV_MIN_HARD = "true"
+K_SOUP_COV_MULTI_FORMATTERS = "true"
+K_SOUP_COV_OPEN_BIN = ""
+MAX_ROWS = "1"
+KETTLE_TEST_SILENT = "true"
+KETTLE_DEV_DEBUG = "false"
+DEBUG = "false"
+FLOSS_CFG_FUND_DEBUG = "false"
+FLOSS_CFG_FUND_LOGFILE = "tmp/log/debug.log"
+RUBOCOP_LTS_LOCAL = "false"
+OPENCOLLECTIVE_HANDLE = "ruby-oauth"
+FUNDING_ORG = "ruby-oauth"
+_.path = ["exe", "bin"]
+_.file = { path = ".env.local", redact = true }
+_.source = ".config/mise/env.sh"
+
+[tools]
+ruby = "4.0.4"

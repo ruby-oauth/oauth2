@@ -20,28 +20,44 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.19] - 2026-05-15
+
+- TAG: [v2.0.19][2.0.19t]
+- COVERAGE: 100.00% -- 515/515 lines in 14 files
+- BRANCH COVERAGE: 100.00% -- 174/174 branches in 14 files
+- 89.11% documented
+
+### Added
+
 - [gh!707][gh!707] Add `OAuth2.config[:filtered_label]` to configure the placeholder used for filtered sensitive values in inspected objects and debug logging output by @pboling
 - [gh!707][gh!707] Add `OAuth2.config[:filtered_debug_keys]` to configure which key names have their values redacted from debug logging output by @pboling
 
 ### Changed
 
 - [gh!707][gh!707] Make inspect-time and debug-log filters snapshot their configuration at initialization time rather than tracking later config changes by @pboling
-- Refactor sensitive-value filtering to use `auth-sanitizer` while preserving `OAuth2::FilteredAttributes` as a permanent API alias by @pboling
-
-### Deprecated
+- [gh!714][gh!714]Refactor sensitive-value filtering to use `auth-sanitizer` while preserving `OAuth2::FilteredAttributes` as a permanent API alias by @pboling
 
 ### Removed
 
 - Remove the internal `OAuth2::ThingFilter` and `OAuth2::SanitizedLogger` implementations now provided by `auth-sanitizer` by @pboling
 
-### Fixed
-
 ### Security
 
 - [gh!707][gh!707] Redact sensitive values from debug logging output, including Authorization headers and common token/secret fields in headers, query strings, form bodies, and JSON payloads by @pboling
-  - NOTE: debug logging has always been, and remains, opt-in. It is turned off by defualt.
+  - NOTE: debug logging has always been, and remains, opt-in. It is turned off by default.
 
 [gh!707]: https://github.com/ruby-oauth/oauth2/pull/707
+[gh!714]: https://github.com/ruby-oauth/oauth2/pull/714
 
 ## [2.0.18] - 2025-11-08
 
@@ -747,7 +763,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.18...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.19...HEAD
+[2.0.19]: https://github.com/ruby-oauth/oauth2/compare/v2.0.18...v2.0.19
+[2.0.19t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.19
 [2.0.18]: https://github.com/ruby-oauth/oauth2/compare/v2.0.17...v2.0.18
 [2.0.18t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.18
 [2.0.17]: https://github.com/ruby-oauth/oauth2/compare/v2.0.16...v2.0.17
