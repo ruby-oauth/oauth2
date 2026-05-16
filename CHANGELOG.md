@@ -26,7 +26,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 
 - [gh!707][gh!707] Make inspect-time and debug-log filters snapshot their configuration at initialization time rather than tracking later config changes by @pboling
-- Refactor sensitive-value filtering to use `auth-sanitizer` while preserving `OAuth2::FilteredAttributes` as a permanent API alias by @pboling
+- [gh!714][gh!714]Refactor sensitive-value filtering to use `auth-sanitizer` while preserving `OAuth2::FilteredAttributes` as a permanent API alias by @pboling
 
 ### Deprecated
 
@@ -42,6 +42,7 @@ Please file a bug if you notice a violation of semantic versioning.
   - NOTE: debug logging has always been, and remains, opt-in. It is turned off by defualt.
 
 [gh!707]: https://github.com/ruby-oauth/oauth2/pull/707
+[gh!714]: https://github.com/ruby-oauth/oauth2/pull/714
 
 ## [2.0.18] - 2025-11-08
 
