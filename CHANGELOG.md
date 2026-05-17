@@ -20,6 +20,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- OAuth2::VERSION (Traditional Constant Location)
+
 ### Changed
 
 ### Deprecated
