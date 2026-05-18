@@ -3,10 +3,16 @@ repos:
   rev: v8.16.3
   hooks:
   - id: gitleaks
+- repo: local
+  hooks:
+  - id: rubocop-gradual
+    name: rubocop_gradual
+    entry: bundle exec rake rubocop_gradual:check
+    language: system
+    pass_filenames: false
 - repo: https://github.com/jumanjihouse/pre-commit-hooks
   rev: 3.0.0
   hooks:
-  - id: RuboCop
   - id: shellcheck
 - repo: https://github.com/pre-commit/pre-commit-hooks
   rev: v4.4.0
