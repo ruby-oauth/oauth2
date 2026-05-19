@@ -54,11 +54,16 @@ jobs:
             bundler: latest
 
     steps:
+      - name: Harden the runner (Audit all outbound calls)
+        uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5 # v2.19.3
+        with:
+          egress-policy: audit
+
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@v1.308.0
+        uses: ruby/setup-ruby@97ecb7b512899eb71ab1bf2310a624c6f1589ac6 # v1.308.0
         with:
           ruby-version: "${{ matrix.ruby }}"
           rubygems: "${{ matrix.rubygems }}"
@@ -78,14 +83,14 @@ jobs:
       # Do SaaS coverage uploads first
       - name: Upload coverage to Coveralls
         if: ${{ !env.ACT }}
-        uses: coverallsapp/github-action@master
+        uses: coverallsapp/github-action@09b709cf6a16e30b0808ba050c7a6e8a5ef13f8d # master
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
         continue-on-error: ${{ matrix.experimental != 'false' }}
 
       - name: Upload coverage to QLTY
         if: ${{ !env.ACT }}
-        uses: qltysh/qlty-action/coverage@main
+        uses: qltysh/qlty-action/coverage@141b881236146435192435eb7b0e06ea0b70b4d9 # main
         with:
           token: ${{secrets.QLTY_COVERAGE_TOKEN}}
           files: coverage/.resultset.json
@@ -95,7 +100,7 @@ jobs:
       #   which will hopefully be noticed for the lack of code coverage comments
       - name: Upload coverage to CodeCov
         if: ${{ !env.ACT }}
-        uses: codecov/codecov-action@v6
+        uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354 # v6.0.1
         with:
           use_oidc: true
           fail_ci_if_error: false # optional (default = false)
@@ -105,7 +110,7 @@ jobs:
       # Then PR comments
       - name: Code Coverage Summary Report
         if: ${{ !env.ACT && github.event_name == 'pull_request' }}
-        uses: irongut/CodeCoverageSummary@v1.3.0
+        uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 # v1.3.0
         with:
           filename: ./coverage/coverage.xml
           badge: true
@@ -119,7 +124,7 @@ jobs:
         continue-on-error: ${{ matrix.experimental != 'false' }}
 
       - name: Add Coverage PR Comment
-        uses: marocchino/sticky-pull-request-comment@v3
+        uses: marocchino/sticky-pull-request-comment@d4d6b0936434b21bc8345ad45a440c5f7d2c40ff # v3.0.3
         if: ${{ !env.ACT && github.event_name == 'pull_request' }}
         with:
           recreate: true
