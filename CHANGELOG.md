@@ -30,6 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Load `auth-sanitizer` through an internal isolated loader so requiring `oauth2` does not add top-level `Auth` or `AuthSanitizer` constants that may collide with downstream applications.
+
 ### Security
 
 ## [2.0.19] - 2026-05-15
