@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
-RSpec.describe Auth::Sanitizer::ThingFilter do
+RSpec.describe "OAuth2::AUTH_SANITIZER::ThingFilter" do
+  let(:thing_filter_class) { OAuth2::AUTH_SANITIZER::ThingFilter }
+
   describe "#initialize" do
     it "does not freeze caller-owned string inputs" do
       things = [String.new("secret")]
       label = String.new("[FILTERED]")
 
-      described_class.new(things, label: label)
+      thing_filter_class.new(things, label: label)
 
       expect(things.first).not_to be_frozen
       expect(label).not_to be_frozen
@@ -16,7 +18,7 @@ RSpec.describe Auth::Sanitizer::ThingFilter do
       original_thing = String.new("secret")
       original_label = String.new("[FILTERED]")
 
-      filter = described_class.new([original_thing], label: original_label)
+      filter = thing_filter_class.new([original_thing], label: original_label)
 
       original_thing.replace("token")
       original_label.replace("[REDACTED]")
@@ -30,7 +32,7 @@ RSpec.describe Auth::Sanitizer::ThingFilter do
   describe "FilteredAttributes integration" do
     let(:poro_class) do
       Class.new do
-        include Auth::Sanitizer::FilteredAttributes
+        include OAuth2::AUTH_SANITIZER::FilteredAttributes
 
         attr_reader :secret, :name
         filtered_attributes :secret
