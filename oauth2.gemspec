@@ -132,7 +132,7 @@ Thanks, @pboling / @galtzo
   spec.add_dependency("logger", "~> 1.2")                     # ruby >= 0
   spec.add_dependency("multi_xml", "~> 0.5")                  # ruby >= 0
   spec.add_dependency("rack", [">= 1.2", "< 4"])              # ruby >= 0
-  spec.add_dependency("snaky_hash", "~> 2.0", ">= 2.0.3")     # ruby >= 2.2.0
+  spec.add_dependency("snaky_hash", "~> 2.0", ">= 2.0.4")     # ruby >= 2.2.0
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")    # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
@@ -156,7 +156,7 @@ Thanks, @pboling / @galtzo
   spec.add_development_dependency("kettle-dev", "~> 2.0")                           # ruby >= 2.3.0
 
   # Security
-  spec.add_development_dependency("bundler-audit", "~> 0.9.2")                      # ruby >= 2.0.0
+  spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
 
   # Tasks
   spec.add_development_dependency("rake", "~> 13.0")                                # ruby >= 2.2.0
