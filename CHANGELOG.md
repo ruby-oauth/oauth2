@@ -24,15 +24,19 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- auth-sanitizer v0.1.3
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
-- Load `auth-sanitizer` through an internal isolated loader so requiring `oauth2` does not add top-level `Auth` or `AuthSanitizer` constants that may collide with downstream applications.
+- [gh!721][gh!721] Load `auth-sanitizer` through an internal isolated loader so requiring `oauth2` does not add top-level `Auth` or `AuthSanitizer` constants that may collide with downstream applications by @pboling
 
 ### Security
+
+[gh!721]: https://github.com/ruby-oauth/oauth2/pull/721
 
 ## [2.0.19] - 2026-05-15
 
