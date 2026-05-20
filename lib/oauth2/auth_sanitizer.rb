@@ -24,9 +24,9 @@ module OAuth2
       1,
     )
 
-    auth_sanitizer_loader_namespace
-      .const_get(:AuthSanitizer)
-      .const_get(:Loader)
-      .load_isolated
+    auth_sanitizer_loader_namespace.
+      const_get(:AuthSanitizer).
+      const_get(:Loader).
+      load_isolated
   end
 end
