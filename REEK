@@ -1,2 +1,2 @@
-./reek: 1: Error:: not found
-./reek: 2: Error:: not found
+./reek: 1: ./reek:: not found
+./reek: 2: ./reek:: not found

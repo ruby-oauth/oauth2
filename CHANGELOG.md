@@ -20,15 +20,30 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.20] - 2026-05-20
+
+- TAG: [v2.0.20][2.0.20t]
+- COVERAGE: 99.62% -- 525/527 lines in 15 files
+- BRANCH COVERAGE: 98.88% -- 176/178 branches in 15 files
+- 88.35% documented
+
+### Added
+
 - OAuth2::VERSION (Traditional Constant Location)
 
 ### Changed
 
 - auth-sanitizer v0.1.3
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -771,7 +786,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.19...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.20...HEAD
+[2.0.20]: https://github.com/ruby-oauth/oauth2/compare/v2.0.19...v2.0.20
+[2.0.20t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.20
 [2.0.19]: https://github.com/ruby-oauth/oauth2/compare/v2.0.18...v2.0.19
 [2.0.19t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.19
 [2.0.18]: https://github.com/ruby-oauth/oauth2/compare/v2.0.17...v2.0.18
