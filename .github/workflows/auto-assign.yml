@@ -20,7 +20,7 @@ jobs:
         egress-policy: audit
 
     - name: 'Auto-assign issue'
-      uses: pozil/auto-assign-issue@dda699c5656ae92f208b052fc91193a8423fffa6 # v3
+      uses: pozil/auto-assign-issue@07fe6dc0e9771842b428f5739098d6140734e226 # v4
       with:
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           assignees: pboling
