@@ -40,7 +40,7 @@ jobs:
           # Ruby 3.4
           - ruby: "ruby"
             appraisal: "current"
-            exec_cmd: "kettle-test"
+            exec_cmd: "rake spec"
             gemfile: "Appraisal.root"
             rubygems: latest
             bundler: latest
