@@ -40,6 +40,7 @@ jobs:
           # truffleruby-23.0 (targets Ruby 3.0 compatibility)
           - ruby: "truffleruby-23.0"
             appraisal: "ruby-3-0"
+            experimental: true
             exec_cmd: "kettle-test"
             rubygems: default
             bundler: default

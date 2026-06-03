@@ -28,6 +28,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Replaced stale platform CI `rake magic` commands with `kettle-test`.
+- Pinned `multi_xml` below 0.9 for TruffleRuby compatibility.
+- Marked TruffleRuby 23.0 CI as experimental because it can crash inside the interpreter during Bundler setup.
+
 ### Security
 
 ## [2.0.20] - 2026-05-20
