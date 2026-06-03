@@ -40,7 +40,7 @@ jobs:
           # Ruby 3.4
           - ruby: "ruby"
             appraisal: "current"
-            exec_cmd: "rake spec"
+            exec_cmd: "rspec"
             gemfile: "Appraisal.root"
             rubygems: latest
             bundler: latest
