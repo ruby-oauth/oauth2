@@ -1,5 +1,5 @@
-# Targets the evergreen latest release of ruby, truffleruby, and jruby
-name: Current
+# Targets the evergreen latest release of ruby
+name: Current MRI
 
 permissions:
   contents: read
@@ -31,80 +31,35 @@ jobs:
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
     name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}
     runs-on: ubuntu-latest
-    continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
-      BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.gemfile }}.gemfile
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
     strategy:
       matrix:
         include:
-          # Ruby 3.4
+          # Ruby 4.0
           - ruby: "ruby"
             appraisal: "current"
-            exec_cmd: "rake magic"
-            gemfile: "Appraisal.root"
+            exec_cmd: "kettle-test"
             rubygems: latest
             bundler: latest
 
-          # truffleruby-24.1 (targets Ruby 3.3 compatibility)
-          - ruby: "truffleruby"
-            appraisal: "current"
-            exec_cmd: "rake magic"
-            gemfile: "Appraisal.root"
-            rubygems: default
-            bundler: default
-
-          # jruby-10.0 (targets Ruby 3.4 compatibility)
-          - ruby: "jruby"
-            appraisal: "current"
-            exec_cmd: "rake magic"
-            gemfile: "Appraisal.root"
-            rubygems: default
-            bundler: default
-
     steps:
-      - name: Harden the runner (Audit all outbound calls)
-        uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5 # v2.19.3
-        with:
-          egress-policy: audit
-
       - name: Checkout
-        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
-        uses: ruby/setup-ruby@97ecb7b512899eb71ab1bf2310a624c6f1589ac6 # v1.308.0
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
-          bundler-cache: false
-
-      # Raw `bundle` will use the BUNDLE_GEMFILE set to matrix.gemfile (i.e. Appraisal.root)
-      # We need to do this first to get appraisal installed.
-      # NOTE: This does not use the primary Gemfile at all.
-      - name: Install Root Appraisal
-        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
-        run: bundle
-
-      - name: "[Attempt 1] Install Root Appraisal"
-        id: bundleAttempt1
-        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
-        run: bundle
-        # Continue to the next step on failure
-        continue-on-error: true
-
-      # Effectively an automatic retry of the previous step.
-      - name: "[Attempt 2] Install Root Appraisal"
-        id: bundleAttempt2
-        # If bundleAttempt1 failed, try again here; Otherwise skip.
-        if: ${{ steps.bundleAttempt1.outcome == 'failure' && (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
-        run: bundle
+          bundler-cache: true
 
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt1
-        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} bundle
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
         # Continue to the next step on failure
         continue-on-error: true
 
@@ -112,9 +67,8 @@ jobs:
       - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt2
         # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
-        if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' && (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} bundle
+        if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
 
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
-        if: ${{ (env.ACT && !(startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) || (!env.ACT && (startsWith(matrix.ruby, 'jruby')) || startsWith(matrix.ruby, 'truffleruby')) }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

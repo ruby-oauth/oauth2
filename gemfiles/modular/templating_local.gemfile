@@ -1,0 +1,82 @@
+# frozen_string_literal: true
+
+# Local path overrides for templating development.
+# Loaded by the associated non-local gemfile when SMORG_RB_DEV or KETTLE_RB_DEV
+# is not "false".
+
+require "nomono/bundler" unless defined?(Nomono)
+
+smorg_rb_local_gems = %w[
+  tree_haver
+  ast-merge
+  ast-merge-git
+  ast-template
+  bash-merge
+  binary-merge
+  commonmarker-merge
+  citrus-toml-merge
+  dotenv-merge
+  go-merge
+  json-merge
+  kettle-jem
+  kramdown-merge
+  markdown-merge
+  markly-merge
+  parslet-toml-merge
+  plain-merge
+  prism-merge
+  psych-merge
+  rbs-merge
+  ruby-merge
+  rust-merge
+  smorg-rb
+  typescript-merge
+  toml-merge
+  yaml-merge
+  zip-merge
+  ast-crispr
+  ast-crispr-markdown-markly
+  ast-crispr-ruby-prism
+]
+
+kettle_rb_local_gems = %w[
+  kettle-dev kettle-test kettle-soup-cover kettle-drift
+]
+declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
+smorg_rb_local_gems_to_eval = smorg_rb_local_gems - %w[oauth2] - declared_gems
+kettle_rb_local_gems_to_eval = kettle_rb_local_gems - %w[oauth2] - declared_gems
+
+tree_sitter_language_pack_dev = ENV.fetch("TREE_SITTER_LANGUAGE_PACK_DEV", nil)
+if tree_sitter_language_pack_dev.to_s.empty? && ENV.fetch("SMORG_RB_DEV", "false").casecmp("false") != 0
+  candidate = File.expand_path("../../tree-sitter-language-pack/packages/ruby", ENV.fetch("SMORG_RB_DEV"))
+  tree_sitter_language_pack_dev = candidate if Dir.exist?(candidate)
+end
+
+# export VENDORED_GEMS=
+platform :mri do
+  unless tree_sitter_language_pack_dev.to_s.empty?
+    gem "tree_sitter_language_pack", path: tree_sitter_language_pack_dev
+  end
+
+  if ENV.fetch("SMORG_RB_DEV", "false").casecmp("false") != 0
+    eval_nomono_gems(
+      gems: smorg_rb_local_gems_to_eval,
+      prefix: "SMORG_RB",
+      path_env: "SMORG_RB_DEV",
+      vendored_gems_env: "VENDORED_GEMS",
+      vendor_gem_dir_env: "VENDOR_GEM_DIR",
+      debug_env: "SMORG_RB_DEBUG"
+    )
+  end
+
+  if ENV.fetch("KETTLE_RB_DEV", "false").casecmp("false") != 0
+    eval_nomono_gems(
+      gems: kettle_rb_local_gems_to_eval,
+      prefix: "KETTLE_RB",
+      path_env: "KETTLE_RB_DEV",
+      vendored_gems_env: "VENDORED_GEMS",
+      vendor_gem_dir_env: "VENDOR_GEM_DIR",
+      debug_env: "KETTLE_DEV_DEBUG"
+    )
+  end
+end

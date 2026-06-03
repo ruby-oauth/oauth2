@@ -1,0 +1,9 @@
+{
+  "name": "Apt Install Packages",
+  "id": "apt-install",
+  "version": "1.0.0",
+  "description": "More packages are needed",
+  "install": {
+    "script": "install.sh"
+  }
+}

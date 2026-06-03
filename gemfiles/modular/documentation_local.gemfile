@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+# Local path overrides for development.
+# Loaded by the associated non-local gemfile when GALTZO_FLOSS_DEV != "false".
+
+require "nomono/bundler" unless defined?(Nomono)
+
+local_gems = %w[yard-fence yard-timekeeper yard-yaml]
+
+# export GALTZO_FLOSS_DEV=/path/to/galtzo-floss
+eval_nomono_gems(
+  gems: local_gems,
+  prefix: "GALTZO_FLOSS",
+  path_env: "GALTZO_FLOSS_DEV",
+  vendored_gems_env: "GALTZO_FLOSS_VENDORED_GEMS",
+  vendor_gem_dir_env: "GALTZO_FLOSS_VENDOR_GEM_DIR",
+  debug_env: "GALTZO_FLOSS_DEBUG"
+)

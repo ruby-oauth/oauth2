@@ -1,0 +1,22 @@
+# frozen_string_literal: true
+
+smorg_remote = ENV.fetch("SMORG_RB_DEV", "false").casecmp("false").zero?
+kettle_remote = ENV.fetch("KETTLE_RB_DEV", "false").casecmp("false").zero?
+
+if smorg_remote
+  # Merge recipes and parser dependencies for released installs.
+  gem "kettle-jem", ">= 7.0"
+end
+
+if kettle_remote
+  # Template/plugin checks for released installs.
+  gem "kettle-drift", "~> 1.0", ">= 1.0.1", require: false
+end
+
+# Set SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local development with path-based dependencies.
+# When false (default / CI), released kettle-jem brings merge gems and parser dependencies.
+# Local path overrides bring the same dependencies from sibling gemspecs.
+#
+# Set KETTLE_RB_DEV=/path/to/kettle-rb for local development with Kettle plugin gems.
+# When false (default / CI), released Kettle plugin gems are used.
+eval_gemfile "templating_local.gemfile" unless smorg_remote && kettle_remote

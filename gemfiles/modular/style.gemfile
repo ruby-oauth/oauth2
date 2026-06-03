@@ -1,25 +1,27 @@
 # frozen_string_literal: true
 
-# We run rubocop on the latest version of Ruby,
-#   but in support of the oldest supported version of Ruby
+# To retain during oauth2 templating:
+#     kettle-jem:freeze
+#     # ... your code
+#     kettle-jem:unfreeze
+#
 
-gem "reek", "~> 6.5"
-# gem "rubocop", "~> 1.73", ">= 1.73.2" # constrained by standard
-gem "rubocop-packaging", "~> 0.6", ">= 0.6.0"
-gem "standard", ">= 1.50"
-gem "rubocop-on-rbs", "~> 1.8"                    # ruby >= 3.1.0
+# Style tasks run on the latest Ruby; RuboCop-LTS selects the compatibility
+# rules for the configured Ruby floor independently from task dependency floors.
 
-# Std Lib extractions
-gem "benchmark", "~> 0.4", ">= 0.4.1" # Removed from Std Lib in Ruby 3.5
+gem "reek", "~> 6.5", ">= 6.5.0"
 
-if ENV.fetch("RUBOCOP_LTS_LOCAL", "false").casecmp("true").zero?
-  home = ENV["HOME"]
-  gem "rubocop-lts", path: "#{home}/src/rubocop-lts/rubocop-lts"
-  gem "rubocop-lts-rspec", path: "#{home}/src/rubocop-lts/rubocop-lts-rspec"
-  gem "rubocop-ruby2_2", path: "#{home}/src/rubocop-lts/rubocop-ruby2_2"
-  gem "standard-rubocop-lts", path: "#{home}/src/rubocop-lts/standard-rubocop-lts"
-else
-  gem "rubocop-lts", "~> 8.0"
-  gem "rubocop-ruby2_2"
-  gem "rubocop-rspec", "~> 3.6"
+platform :mri do
+  gem "rubocop-on-rbs", "~> 2.0", ">= 2.0.0"        # ruby >= 3.2.0
+  # gem "rubocop", "~> 1.73", ">= 1.73.2" # constrained by standard
+  gem "rubocop-packaging", "~> 0.6", ">= 0.6.0"
+  gem "standard", "~> 1.54", ">= 1.54.0"
+
+  if ENV.fetch("RUBOCOP_LTS_LOCAL", "false").casecmp("false").zero?
+    gem "rubocop-lts", "~> 8.3", ">= 8.3.0"
+    gem "rubocop-lts-rspec", "~> 1.0", ">= 1.0.3"
+    gem "rubocop-ruby2_2", "~> 3.0", ">= 3.0.2"
+  else
+    eval_gemfile("style_local.gemfile")
+  end
 end

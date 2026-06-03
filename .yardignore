@@ -1,0 +1,13 @@
+# Ignore built gem artifacts and package dir
+bin/**/*
+certs/**/*
+checksums/**/*
+gemfiles/**/*
+pkg/**/*
+spec/**/*
+spec*/**/*
+test/**/*
+tmp/**/*
+*.gem
+# Also ignore yardoc cache
+.yardoc/

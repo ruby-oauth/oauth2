@@ -2,5 +2,13 @@
 
 # We run code coverage on the latest version of Ruby only.
 
-# Coverage
-gem "kettle-soup-cover", "~> 1.0", ">= 1.0.10", require: false
+# Set KETTLE_RB_DEV=true for local development with path-based dependencies.
+# When false (default / CI), remote released gems are used.
+if ENV.fetch("KETTLE_RB_DEV", "false").casecmp("false").zero?
+  # Coverage (remote/released)
+  platform :mri do
+    gem "kettle-soup-cover", "~> 2.0", ">= 2.0.1", require: false
+  end
+else
+  eval_gemfile "coverage_local.gemfile"
+end

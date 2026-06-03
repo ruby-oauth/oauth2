@@ -1,0 +1,2 @@
+# Ruby >= 2.1
+gem "benchmark", "~> 0.5", ">= 0.5.0" # Removed from Std Lib in Ruby 4.0

@@ -1,0 +1,3 @@
+# <<structuredmerge:git-drivers>> do not edit below this line
+*.rb diff=smorg-ruby
+# <</structuredmerge:git-drivers>>
