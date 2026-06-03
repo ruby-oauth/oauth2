@@ -36,7 +36,7 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Check Dependencies' License
-        uses: apache/skywalking-eyes/dependency@e910f72bae86171d727742c25f8a4555b7b83893 # main
+        uses: apache/skywalking-eyes/dependency@ab3d1fe50d23f9c82eff489297167e2dde8ba6cb # main
         with:
           config: .licenserc.yaml
           # Ruby packages declared as dependencies in gemspecs or Gemfiles are
