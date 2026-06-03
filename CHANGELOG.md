@@ -30,7 +30,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Replaced stale platform CI `rake magic` commands with portable spec commands.
 - Pinned `multi_xml` below 0.9 for TruffleRuby compatibility.
-- Marked TruffleRuby 23.0 CI as experimental because it can crash inside the interpreter during Bundler setup.
+- Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup.
 
 ### Security
 
