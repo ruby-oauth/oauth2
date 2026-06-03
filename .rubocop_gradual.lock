@@ -1,0 +1,112 @@
+{
+  "Dangerfile:4179048641": [
+    [14, 37, 28, "Style/CommandLiteral: Use backticks around command string.", 3620978996],
+    [15, 31, 22, "Style/CommandLiteral: Use backticks around command string.", 135242276]
+  ],
+  "Gemfile:3732601743": [
+    [39, 34, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "OIDC.md:2301357827": [
+    [68, 22, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [83, 47, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [94, 31, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [120, 35, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "README.md:1334494681": [
+    [52, 61, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [288, 38, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [466, 46, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "Rakefile:2059788630": [
+    [82, 7, 1, "Layout/DotPosition: Place the . on the previous line, together with the method call receiver.", 177547],
+    [83, 7, 1, "Layout/DotPosition: Place the . on the previous line, together with the method call receiver.", 177547],
+    [84, 7, 1, "Layout/DotPosition: Place the . on the previous line, together with the method call receiver.", 177547]
+  ],
+  "examples/e2e.rb:1294860234": [
+    [84, 7, 27, "Style/RedundantAssignment: Redundant assignment before returning detected.", 1540382448],
+    [96, 35, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [119, 9, 20, "Style/RescueStandardError: Omit the error class when rescuing `StandardError` by itself.", 3081355729]
+  ],
+  "gemfiles/head.gemfile:2755017595": [
+    [6, 1, 37, "Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem `benchmark` should appear before `cgi`.", 1662013857]
+  ],
+  "lib/oauth2.rb:1976856902": [
+    [70, 6, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [104, 1, 1, "Layout/TrailingEmptyLines: 1 trailing blank lines detected.", 177583]
+  ],
+  "lib/oauth2/auth_sanitizer.rb:2357970967": [
+    [15, 37, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [28, 8, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "lib/oauth2/client.rb:812229436": [
+    [449, 19, 7, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 2182031361],
+    [566, 7, 290, "Style/MultilineIfModifier: Favor a normal if-statement over a modifier clause in a multiline statement.", 2416587893],
+    [571, 48, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [573, 21, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "oauth2.gemspec:2324570894": [
+    [81, 5, 36, "Style/TrailingCommaInArrayLiteral: Put a comma after the last item of a multiline array.", 3227795012],
+    [106, 5, 9, "Style/TrailingCommaInArrayLiteral: Put a comma after the last item of a multiline array.", 1146747705],
+    [178, 3, 68, "Gemspec/OrderedDependencies: Dependencies should be sorted in an alphabetical order within their section of the gemspec. Dependency `backports` should appear before `rexml`.", 4213155631]
+  ],
+  "spec/examples/google_spec.rb:2278649676": [
+    [17, 35, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "spec/oauth2/access_token_spec.rb:3714162602": [
+    [277, 49, 6, "RSpec/Extra/BeEmpty: Use `be_empty` matchers for checking an empty array.", 1172408214],
+    [915, 47, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [948, 49, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [1124, 21, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "spec/oauth2/authenticator_spec.rb:4192675259": [
+    [47, 35, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [121, 62, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [166, 61, 6, "RSpec/Extra/BeEmpty: Use `be_empty` matchers for checking an empty array.", 1172408214]
+  ],
+  "spec/oauth2/client_spec.rb:695659489": [
+    [336, 43, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [604, 61, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [1434, 21, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [1516, 10, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "spec/oauth2/error_spec.rb:2429976860": [
+    [30, 26, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [81, 12, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [133, 13, 8, "Lint/SymbolConversion: Unnecessary symbol conversion; use `_links:` instead.", 3919971785],
+    [134, 15, 6, "Lint/SymbolConversion: Unnecessary symbol conversion; use `self:` instead.", 3157993209],
+    [134, 24, 6, "Lint/SymbolConversion: Unnecessary symbol conversion; use `href:` instead.", 3145682396],
+    [135, 15, 11, "Lint/SymbolConversion: Unnecessary symbol conversion; use `warehouse:` instead.", 845038880],
+    [135, 29, 6, "Lint/SymbolConversion: Unnecessary symbol conversion; use `href:` instead.", 3145682396],
+    [136, 15, 9, "Lint/SymbolConversion: Unnecessary symbol conversion; use `invoice:` instead.", 3637610740],
+    [136, 27, 6, "Lint/SymbolConversion: Unnecessary symbol conversion; use `href:` instead.", 3145682396],
+    [138, 13, 10, "Lint/SymbolConversion: Unnecessary symbol conversion; use `currency:` instead.", 3297580354],
+    [139, 13, 8, "Lint/SymbolConversion: Unnecessary symbol conversion; use `status:` instead.", 2173058545],
+    [140, 13, 7, "Lint/SymbolConversion: Unnecessary symbol conversion; use `total:` instead.", 880603719],
+    [140, 27, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [223, 15, 6, "Lint/SymbolConversion: Unnecessary symbol conversion; use `text:` instead.", 3149955960],
+    [224, 15, 19, "Lint/SymbolConversion: Unnecessary symbol conversion; use `error_description:` instead.", 938909828],
+    [225, 15, 7, "Lint/SymbolConversion: Unnecessary symbol conversion; use `error:` instead.", 295269117],
+    [226, 15, 8, "Lint/SymbolConversion: Unnecessary symbol conversion; use `status:` instead.", 2173058545],
+    [228, 12, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [298, 15, 6, "Lint/SymbolConversion: Unnecessary symbol conversion; use `text:` instead.", 3149955960],
+    [299, 15, 7, "Lint/SymbolConversion: Unnecessary symbol conversion; use `error:` instead.", 295269117],
+    [300, 15, 8, "Lint/SymbolConversion: Unnecessary symbol conversion; use `status:` instead.", 2173058545],
+    [302, 12, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [360, 15, 6, "Lint/SymbolConversion: Unnecessary symbol conversion; use `text:` instead.", 3149955960],
+    [361, 15, 19, "Lint/SymbolConversion: Unnecessary symbol conversion; use `error_description:` instead.", 938909828],
+    [363, 12, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [454, 12, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [471, 14, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [522, 12, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [555, 12, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [571, 12, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [589, 14, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ],
+  "spec/oauth2/response_spec.rb:3052399414": [
+    [25, 20, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [290, 25, 6, "RSpec/Extra/BeEmpty: Use `be_empty` matchers for checking an empty array.", 1172408214],
+    [360, 38, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [424, 38, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
+    [615, 38, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
+  ]
+}
