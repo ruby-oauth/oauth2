@@ -125,6 +125,7 @@ end
 
 appraise "ruby-3-2" do
   eval_gemfile "modular/x_std_libs/r3/libs.gemfile"
+  gem "json", "< 2.19"
   eval_gemfile "modular/faraday_v2.gemfile"
   eval_gemfile "modular/hashie_v5.gemfile"
   eval_gemfile "modular/jwt_v2.gemfile"

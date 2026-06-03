@@ -2,6 +2,8 @@
 
 source "https://gem.coop"
 
+gem "json", "< 2.19"
+
 gemspec path: "../"
 
 eval_gemfile("modular/faraday_v2.gemfile")
