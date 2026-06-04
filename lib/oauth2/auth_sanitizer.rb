@@ -2,7 +2,7 @@
 
 module OAuth2
   AUTH_SANITIZER = begin
-    auth_sanitizer_requirement = Gem::Requirement.new("~> 0.1", ">= 0.1.3")
+    auth_sanitizer_requirement = Gem::Requirement.new("~> 0.1", ">= 0.1.5")
     auth_sanitizer_spec = Gem.loaded_specs["auth-sanitizer"]
     unless auth_sanitizer_spec && auth_sanitizer_requirement.satisfied_by?(auth_sanitizer_spec.version)
       # :nocov:
