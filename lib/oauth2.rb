@@ -102,3 +102,6 @@ OAuth2::Version.class_eval do
   extend VersionGem::Basic
 end
 
+Oauth2::Version.class_eval do
+  extend VersionGem::Basic
+end

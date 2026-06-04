@@ -43,7 +43,6 @@ jobs:
             exec_cmd: "kettle-test"
             rubygems: default
             bundler: default
-            experimental: true
 
     steps:
       - name: Checkout

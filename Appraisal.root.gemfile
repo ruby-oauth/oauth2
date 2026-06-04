@@ -14,7 +14,3 @@ source "https://gem.coop"
 # We do not load the standard Gemfile, as it is tailored for local development.
 
 gemspec
-
-if defined?(RUBY_ENGINE) && RUBY_ENGINE == "truffleruby"
-  gem "json", "< 2.16"
-end
