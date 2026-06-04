@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Oauth2
+module OAuth2
   module Version
     VERSION = "2.0.20"
   end

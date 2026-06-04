@@ -11,10 +11,10 @@ gem_version =
     # Loading Version into an anonymous module allows version.rb to get code coverage from SimpleCov!
     # See: https://github.com/simplecov-ruby/simplecov/issues/557#issuecomment-2630782358
     # See: https://github.com/panorama-ed/memo_wise/pull/397
-    Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/oauth2/version.rb", mod) }::Oauth2::Version::VERSION
+    Module.new.tap { |mod| Kernel.load("#{__dir__}/lib/oauth2/version.rb", mod) }::OAuth2::Version::VERSION
   else
     require_relative "lib/oauth2/version"
-    Oauth2::Version::VERSION
+    OAuth2::Version::VERSION
   end
 
 Gem::Specification.new do |spec|
@@ -106,7 +106,7 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Utilities
-  spec.add_dependency("auth-sanitizer", "~> 0.1", ">= 0.1.5") # ruby >= 2.2.0
+  spec.add_dependency("auth-sanitizer", "~> 0.2", ">= 0.2.0") # ruby >= 2.2.0
   spec.add_dependency("faraday", [">= 0.17.3", "< 4.0"])      # ruby >= 1.9
   spec.add_dependency("jwt", [">= 1.0", "< 4.0"])             # ruby >= 0
   spec.add_dependency("logger", "~> 1.2")                     # ruby >= 0

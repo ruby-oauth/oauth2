@@ -101,7 +101,3 @@ OAuth2::AUTH_SANITIZER.filtered_label_provider = -> { OAuth2.config[:filtered_la
 OAuth2::Version.class_eval do
   extend VersionGem::Basic
 end
-
-Oauth2::Version.class_eval do
-  extend VersionGem::Basic
-end
