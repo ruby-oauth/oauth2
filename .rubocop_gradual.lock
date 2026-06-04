@@ -27,8 +27,74 @@
     [96, 35, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
     [119, 9, 20, "Style/RescueStandardError: Omit the error class when rescuing `StandardError` by itself.", 3081355729]
   ],
-  "gemfiles/head.gemfile:2755017595": [
-    [6, 1, 37, "Bundler/OrderedGems: Gems should be sorted in an alphabetical order within their section of the Gemfile. Gem `benchmark` should appear before `cgi`.", 1662013857]
+  "gemfiles/audit.gemfile:4097039583": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/coverage.gemfile:1435431423": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/current.gemfile:925536359": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/dep_heads.gemfile:4245842416": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/head.gemfile:1068259318": [
+    [7, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_3_hashie_v0.gemfile:1904598874": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_3_hashie_v1.gemfile:2887526779": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_3_hashie_v2.gemfile:1758500888": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_3_hashie_v3.gemfile:1042487865": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_3_hashie_v4.gemfile:1714695134": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_3_hashie_v5.gemfile:2697623039": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_4.gemfile:934005945": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_5.gemfile:71908085": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_6.gemfile:3036555318": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_2_7.gemfile:1765814795": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_3_0.gemfile:1848338356": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_3_1.gemfile:1848338356": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_3_2.gemfile:2304315993": [
+    [7, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_3_3.gemfile:1626535370": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/ruby_3_4.gemfile:1681685778": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/style.gemfile:2182619773": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/templating.gemfile:3242685695": [
+    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
+  ],
+  "gemfiles/unlocked_deps.gemfile:4246355745": [
+    [7, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
   ],
   "lib/oauth2.rb:1976856902": [
     [70, 6, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
