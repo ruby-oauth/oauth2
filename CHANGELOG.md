@@ -23,6 +23,11 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 
 - Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.1.5`.
+- Refreshed generated package metadata, support documentation, CI workflows,
+  and development dependency floors from the current kettle-jem template.
+- Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in
+  generated README badges and compatibility tables.
+- Removed the post-install message from the gemspec to keep installs quieter.
 
 ### Deprecated
 
@@ -38,6 +43,10 @@ Please file a bug if you notice a violation of semantic versioning.
 - Replaced stale platform CI `rake magic` commands with portable spec commands.
 - Pinned `multi_xml` below 0.9 for TruffleRuby compatibility.
 - Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup.
+- Improved gemspec version loading for older Rubies and isolated load-path
+  contexts.
+- Constrained `json` in TruffleRuby and Ruby 3.2 appraisal bundles so generated
+  CI dependency resolution remains compatible with those Ruby targets.
 
 ### Security
 
