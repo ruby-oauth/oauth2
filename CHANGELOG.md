@@ -29,6 +29,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 - Updated CI workflow maintenance: QLTY uploads now use OIDC, harden-runner is pinned to v2.19.4, and Caboose dependency installation logs are visible on failure.
+- Restored Ruby 2.3 Caboose CI bundle resolution by using the last compatible kettle development/test toolchain on that EOL runtime.
 - Replaced stale platform CI `rake magic` commands with portable spec commands.
 - Pinned `multi_xml` below 0.9 for TruffleRuby compatibility.
 - Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup.

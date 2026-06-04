@@ -84,6 +84,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <ul>
   <li>Updated CI workflow maintenance: QLTY uploads now use OIDC, harden-runner is pinned to v2.19.4, and Caboose dependency installation logs are visible on failure.</li>
+  <li>Restored Ruby 2.3 Caboose CI bundle resolution by using the last compatible kettle development/test toolchain on that EOL runtime.</li>
   <li>Replaced stale platform CI <code>rake magic</code> commands with portable spec commands.</li>
   <li>Pinned <code>multi_xml</code> below 0.9 for TruffleRuby compatibility.</li>
   <li>Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup.</li>
@@ -1405,7 +1406,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jun  3 19:00:56 2026 by
+  Generated on Wed Jun  3 19:07:25 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.4).
 </div>
