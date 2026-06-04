@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>
+  File: IRP
+  
+    &mdash; Documentation by YARD 0.9.44
+  
+</title>
+
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+
+  <link rel="stylesheet" href="css/common.css" type="text/css">
+
+<script type="text/javascript">
+  pathId = "IRP";
+  relpath = '';
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="main_progress" aria-hidden="true"></div>
+
+    <div class="nav_wrap">
+      <iframe id="nav" src="file_list.html?1"></iframe>
+      <div id="resizer"></div>
+    </div>
+
+    <div id="main" tabindex="-1">
+      <div id="header">
+        <div id="menu">
+  
+    <a href="_index.html">Index</a> &raquo; 
+    <span class="title">File: IRP</span>
+  
+</div>
+
+        <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="class_list.html">
+
+        <svg width="24" height="24">
+          <rect x="0" y="4" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="12" width="24" height="4" rx="1" ry="1"></rect>
+          <rect x="0" y="20" width="24" height="4" rx="1" ry="1"></rect>
+        </svg>
+    </a>
+  
+</div>
+        <div class="clear"></div>
+      </div>
+
+      <div id="content"><div id='filecontents'><h1 id="incident-response-plan">Incident Response Plan</h1>
+
+<p>This plan describes how maintainers coordinate security and operational incidents for this project.</p>
+
+<h2 id="scope">Scope</h2>
+
+<p>Use this plan for suspected vulnerabilities, compromised release credentials, malicious dependency activity, or other events that may affect users of this project.</p>
+
+<h2 id="contacts">Contacts</h2>
+
+<p>Report security issues using the process in <a href="SECURITY.md">SECURITY.md</a>. Maintainers should keep incident coordination private until disclosure is appropriate.</p>
+
+<h2 id="triage">Triage</h2>
+
+<ol>
+  <li>Confirm whether the report affects a released artifact, source repository, CI system, package registry account, or maintainer credential.</li>
+  <li>Assign one maintainer as incident lead.</li>
+  <li>Record the affected versions, known exposure window, and current mitigation status.</li>
+  <li>Decide whether package publishing, CI secrets, or repository automation should be temporarily disabled.</li>
+</ol>
+
+<h2 id="containment">Containment</h2>
+
+<p>Rotate exposed credentials, revoke compromised tokens, disable affected automation, and remove malicious artifacts where possible. If a published package is affected, coordinate with the package registry before deleting or yanking releases.</p>
+
+<h2 id="remediation">Remediation</h2>
+
+<p>Prepare the minimal fix, add regression coverage when practical, and release patched versions. Prefer a clear advisory over silent fixes when users need to take action.</p>
+
+<h2 id="disclosure">Disclosure</h2>
+
+<p>Publish an advisory that includes affected versions, fixed versions, impact, mitigation steps, and credits when appropriate. Link the advisory from the changelog or release notes.</p>
+
+<h2 id="follow-up">Follow-up</h2>
+
+<p>After closure, review what failed, update this plan, and add preventive checks to CI or release automation where possible.</p>
+</div></div>
+
+      <div id="footer">
+  Generated on Wed Jun  3 19:00:56 2026 by
+  <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.9.44 (ruby-4.0.4).
+</div>
+
+    </div>
+  </body>
+</html>

@@ -101,7 +101,7 @@ jobs:
         if: ${{ !env.ACT }}
         uses: qltysh/qlty-action/coverage@a19242102d17e497f437d7466aa01b528537e899 # v2.2.0
         with:
-          token: ${{secrets.QLTY_COVERAGE_TOKEN}}
+          oidc: true
           files: coverage/lcov.info
           format: lcov
           skip-errors: false
