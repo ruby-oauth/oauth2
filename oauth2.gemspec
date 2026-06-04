@@ -172,7 +172,11 @@ Gem::Specification.new do |spec|
   # This means we have no choice but to use the erb that shipped with Ruby 2.3
   # /opt/hostedtoolcache/Ruby/2.3.8/x64/lib/ruby/gems/2.3.0/gems/erb-2.2.2/lib/erb.rb:670:in `prepare_trim_mode': undefined method `match?' for "-":String (NoMethodError)
   # spec.add_development_dependency("erb", ">= 2.2")                                  # ruby >= 2.3.0, not SemVer, old rubies get dropped in a patch.
-  spec.add_development_dependency("gitmoji-regex", "~> 2.0", ">= 2.0.1")            # ruby >= 2.4
+  if Gem.ruby_version < Gem::Version.new("2.4")
+    spec.add_development_dependency("gitmoji-regex", "~> 1.0", ">= 1.0.3")          # ruby >= 2.3.0
+  else
+    spec.add_development_dependency("gitmoji-regex", "~> 2.0", ">= 2.0.1")          # ruby >= 2.4
+  end
 
   # HTTP recording for deterministic specs
   # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head
