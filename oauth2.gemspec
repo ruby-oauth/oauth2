@@ -73,7 +73,7 @@ Gem::Specification.new do |spec|
     # Public certs for gem signing
     *enumerate_package_files.call("certs"),
     # Signatures
-    *enumerate_package_files.call("sig")
+    *enumerate_package_files.call("sig"),
   ]
 
   # Automatically included with gem package, no need to list again in files.
@@ -98,7 +98,7 @@ Gem::Specification.new do |spec|
     "^sig/",
     "--line-numbers",
     "--inline-source",
-    "--quiet"
+    "--quiet",
   ]
   spec.bindir = "exe"
   # Listed files are the relative paths from bindir above.
@@ -180,7 +180,7 @@ Gem::Specification.new do |spec|
   # spec.add_development_dependency("vcr", ">= 4")                        # 6.0 claims to support ruby >= 2.3, but fails on ruby 2.4
   # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
   spec.add_development_dependency("addressable", "~> 2.8", ">= 2.8.7")  # ruby >= 2.2
+  spec.add_development_dependency("backports", "~> 3.25", ">= 3.25.1")  # ruby >= 0
   spec.add_development_dependency("nkf", "~> 0.2")                      # ruby >= 2.3
   spec.add_development_dependency("rexml", "~> 3.2", ">= 3.2.5")        # ruby >= 0
-  spec.add_development_dependency("backports", "~> 3.25", ">= 3.25.1")  # ruby >= 0
 end
