@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# To retain during oauth2 templating:
+# To retain during kettle-jem templating:
 #     kettle-jem:freeze
 #     # ... your code
 #     kettle-jem:unfreeze

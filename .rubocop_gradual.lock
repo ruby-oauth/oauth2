@@ -3,9 +3,6 @@
     [14, 37, 28, "Style/CommandLiteral: Use backticks around command string.", 3620978996],
     [15, 31, 22, "Style/CommandLiteral: Use backticks around command string.", 135242276]
   ],
-  "Gemfile:3732601743": [
-    [39, 34, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
-  ],
   "OIDC.md:2301357827": [
     [68, 22, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
     [83, 47, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
@@ -16,11 +13,6 @@
     [52, 61, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
     [288, 38, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
     [466, 46, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
-  ],
-  "Rakefile:2059788630": [
-    [82, 7, 1, "Layout/DotPosition: Place the . on the previous line, together with the method call receiver.", 177547],
-    [83, 7, 1, "Layout/DotPosition: Place the . on the previous line, together with the method call receiver.", 177547],
-    [84, 7, 1, "Layout/DotPosition: Place the . on the previous line, together with the method call receiver.", 177547]
   ],
   "examples/e2e.rb:1294860234": [
     [84, 7, 27, "Style/RedundantAssignment: Redundant assignment before returning detected.", 1540382448],
@@ -95,10 +87,6 @@
   ],
   "gemfiles/unlocked_deps.gemfile:4246355745": [
     [7, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
-  ],
-  "lib/oauth2.rb:1976856902": [
-    [70, 6, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
-    [104, 1, 1, "Layout/TrailingEmptyLines: 1 trailing blank lines detected.", 177583]
   ],
   "lib/oauth2/client.rb:812229436": [
     [449, 19, 7, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 2182031361],

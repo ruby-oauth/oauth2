@@ -1,4 +1,4 @@
-module OAuth2
+module Oauth2
   module Version
     VERSION: String
   end

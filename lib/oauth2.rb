@@ -67,7 +67,7 @@ module OAuth2
       assertion
       code_verifier
       token
-    ],
+    ]
   )
 
   # The current runtime configuration for the library.
@@ -99,5 +99,9 @@ OAuth2::AUTH_SANITIZER.filtered_label_provider = -> { OAuth2.config[:filtered_la
 
 # Extend OAuth2::Version with VersionGem helpers to provide semantic version helpers.
 OAuth2::Version.class_eval do
+  extend VersionGem::Basic
+end
+
+Oauth2::Version.class_eval do
   extend VersionGem::Basic
 end
