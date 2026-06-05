@@ -104,6 +104,7 @@ rubygems:
   # Published runtime Ruby floor used for generated gemspec metadata and README
   # compatibility text. Omit this to derive the value from the gemspec.
   min_ruby: "2.2.0"
+  namespace: "OAuth2"
 
 # Repository URL topology.
 # This is independent from templates.profile. A gem may use the full template
