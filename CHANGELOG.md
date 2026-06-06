@@ -30,6 +30,46 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
+## [2.0.21] - 2026-06-06
+
+- TAG: [v2.0.21][2.0.21t]
+- COVERAGE: 100.00% -- 525/525 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 174/174 branches in 15 files
+- 88.35% documented
+
+### Changed
+
+- Raised generated `version_gem` and `appraisal2` dependency floors to
+  `version_gem` >= 1.1.10 and `appraisal2` >= 3.0.9.
+- Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.2.0`.
+- Refreshed generated package metadata, support documentation, CI workflows,
+  and development dependency floors from the current kettle-jem template.
+- Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in
+  generated README badges and compatibility tables.
+- Removed the post-install message from the gemspec to keep installs quieter.
+
+- Refreshed generated README support badges so Ruby 2.3 is listed as
+  supported but untested.
+- Refreshed generated project metadata from the current kettle-jem template.
+
+### Removed
+
+- Dropped the obsolete Ruby 2.3 Caboose workflow and its Hashie appraisal
+  gemfiles; development tooling now requires Ruby 2.4 or newer, and Ruby 2.4
+  coverage is already handled by the standard Ruby 2.4 workflow.
+
+### Fixed
+
+- Updated CI workflow maintenance: QLTY uploads now use OIDC and harden-runner
+  is pinned to v2.19.4.
+- Replaced stale platform CI `rake magic` commands with portable spec commands.
+- Pinned `multi_xml` below 0.9 for TruffleRuby compatibility.
+- Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup.
+- Improved gemspec version loading for older Rubies and isolated load-path
+  contexts.
+- Constrained `json` in TruffleRuby and Ruby 3.2 appraisal bundles so generated
+  CI dependency resolution remains compatible with those Ruby targets.
+
 ## [2.0.20] - 2026-05-20
 
 - TAG: [v2.0.20][2.0.20t]
@@ -786,7 +826,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.20...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.21...HEAD
+[2.0.21]: https://github.com/ruby-oauth/oauth2/compare/v2.0.20...v2.0.21
+[2.0.21t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.21
 [2.0.20]: https://github.com/ruby-oauth/oauth2/compare/v2.0.19...v2.0.20
 [2.0.20t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.20
 [2.0.19]: https://github.com/ruby-oauth/oauth2/compare/v2.0.18...v2.0.19

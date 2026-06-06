@@ -19,7 +19,7 @@ Many paths lead to being a sponsor or a backer of this project. Are you on such 
 [🖇polar-img]: https://img.shields.io/badge/polar-donate-a51611.svg?style=flat
 [🖇polar]: https://polar.sh/pboling
 [🖇kofi-img]: https://img.shields.io/badge/ko--fi-%E2%9C%93-a51611.svg?style=flat
-[🖇kofi]: https://ko-fi.com/O5O86SNP4
+[🖇kofi]: https://ko-fi.com/pboling
 [🖇patreon-img]: https://img.shields.io/badge/patreon-donate-a51611.svg?style=flat
 [🖇patreon]: https://patreon.com/galtzo
 [🖇buyme-small-img]: https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-a51611.svg?style=flat

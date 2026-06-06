@@ -1,5 +1,14 @@
+# frozen_string_literal: true
+
+# To retain during kettle-jem templating:
+#     kettle-jem:freeze
+#     # ... your code
+#     kettle-jem:unfreeze
+#
+
 # Ex-Standard Library gems
-gem "irb", "~> 1.15", ">= 1.15.2" # removed from stdlib in 3.5
+# irb is included in main Gemfile (and unlocked_deps Appraisal), so it can't be included here.
+# gem "irb", "~> 1.15", ">= 1.15.2" # removed from stdlib in 3.5
 
 platform :mri do
   # Debugging - Ensure ENV["DEBUG"] == "true" to use debuggers within spec suite

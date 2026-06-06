@@ -1,0 +1,4 @@
+eval_gemfile "../../erb/r4/v5.0.gemfile"
+eval_gemfile "../../mutex_m/r4/v0.3.gemfile"
+eval_gemfile "../../stringio/r4/v3.0.gemfile"
+eval_gemfile "../../benchmark/r4/v0.5.gemfile"

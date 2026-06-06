@@ -1,0 +1,78 @@
+name: JRuby 9.3
+
+permissions:
+  contents: read
+
+env:
+  K_SOUP_COV_DO: false
+
+on:
+  push:
+    branches:
+      - 'main'
+      - '*-stable'
+    tags:
+      - '!*' # Do not execute on tags
+  pull_request:
+    branches:
+      - '*'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  test:
+    if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}
+    runs-on: ubuntu-22.04
+    continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
+    env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
+    strategy:
+      matrix:
+        include:
+          # jruby-9.3 (targets Ruby 2.6 compatibility)
+          - ruby: "jruby-9.3"
+            appraisal: "ruby-2-6"
+            exec_cmd: "kettle-test"
+            rubygems: "3.4.22"
+            bundler: "2.4.22"
+
+    steps:
+      - name: Checkout
+        if: ${{ !env.ACT }}
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Setup Ruby & RubyGems
+        if: ${{ !env.ACT }}
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          rubygems: ${{ matrix.rubygems }}
+          bundler: ${{ matrix.bundler }}
+          bundler-cache: true
+
+      - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
+        id: bundleAppraisalAttempt1
+        if: ${{ !env.ACT }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        # Continue to the next step on failure
+        continue-on-error: true
+
+      # Effectively an automatic retry of the previous step.
+      - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
+        id: bundleAppraisalAttempt2
+        # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
+        if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' && !env.ACT }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
+
+      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
+        if: ${{ !env.ACT }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

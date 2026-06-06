@@ -27,19 +27,17 @@ jobs:
     if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
     runs-on: ubuntu-latest
     steps:
-      - name: Harden the runner (Audit all outbound calls)
-        uses: step-security/harden-runner@ab7a9404c0f3da075243ca237b5fac12c98deaa5 # v2.19.3
-        with:
-          egress-policy: audit
-
       - name: Checkout
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+        with:
+          persist-credentials: false
 
       - name: Check Dependencies' License
-        uses: apache/skywalking-eyes/dependency@e910f72bae86171d727742c25f8a4555b7b83893 # main
+        uses: apache/skywalking-eyes/dependency@61275cc80d0798a405cb070f7d3a8aaf7cf2c2c1 # v0.8.0
         with:
           config: .licenserc.yaml
-          # Ruby packages declared as dependencies in gemspecs or Gemfiles are
-          #   typically consumed as binaries; enable weak-compatibility
-          #   so permissive and weak-copyleft combinations are treated as compatible.
-          flags: --weak-compatible
+          mode: "check"
+          # Generated from configured licenses. Compatibility check mode is used
+          #   only when License-Eye has a usable main-license matrix; otherwise
+          #   resolve mode records dependency licenses without false failures.
+          flags: "--weak-compatible"

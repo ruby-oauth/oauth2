@@ -1,0 +1,24 @@
+# frozen_string_literal: true
+
+# Style tasks run on the latest Ruby; RuboCop-LTS selects the compatibility
+# rules for the configured Ruby floor independently from task dependency floors.
+
+# Local path overrides for development.
+# Loaded by the associated non-local gemfile when RUBOCOP_LTS_LOCAL != "false".
+
+require "nomono/bundler" unless defined?(Nomono)
+
+local_gems = %w[rubocop-lts rubocop-lts-rspec rubocop-ruby2_2 standard-rubocop-lts]
+
+# export VENDORED_GEMS=rubocop-lts,rubocop-lts-rspec,rubocop-ruby2_2,standard-rubocop-lts
+platform :mri do
+  eval_nomono_gems(
+    gems: local_gems,
+    prefix: "RUBOCOP_LTS",
+    path_env: "RUBOCOP_LTS_LOCAL",
+    vendored_gems_env: "VENDORED_GEMS",
+    vendor_gem_dir_env: "VENDOR_GEM_DIR",
+    debug_env: "RUBOCOP_LTS_DEBUG",
+    root: ["src", "rubocop-lts"]
+  )
+end

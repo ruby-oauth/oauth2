@@ -1,0 +1,84 @@
+{
+  "- 'gemfiles/vendor/**/*'\n- 'vendor/**/*'": [
+    {
+      "file": ".rubocop.yml",
+      "lines": [
+        23,
+        57
+      ]
+    }
+  ],
+  "- 'vendor/**/*'\n- '**/.irbrc'": [
+    {
+      "file": ".rubocop.yml",
+      "lines": [
+        24,
+        58
+      ]
+    }
+  ],
+  "- Complete migration to main branch as default (@pboling)\n- Complete migration to Gitlab, updating all links, and references in VCS-managed files (@pboling)": [
+    {
+      "file": "CHANGELOG.md",
+      "lines": [
+        413,
+        589
+      ]
+    }
+  ],
+  "// Use 'forwardPorts' to make a list of ports inside the container available locally.\n// \"forwardPorts\": [],": [
+    {
+      "file": ".devcontainer/devcontainer.json",
+      "lines": [
+        11,
+        22
+      ]
+    }
+  ],
+  "Exclude:\n- 'spec/**/*.rb'": [
+    {
+      "file": ".rubocop.yml",
+      "lines": [
+        55,
+        107
+      ]
+    }
+  ],
+  "appraisal: \"dep-heads\"\nexec_cmd: \"kettle-test\"": [
+    {
+      "file": ".github/workflows/dep-heads.yml",
+      "lines": [
+        44,
+        51,
+        58
+      ]
+    }
+  ],
+  "appraisal: \"head\"\nexec_cmd: \"kettle-test\"": [
+    {
+      "file": ".github/workflows/heads.yml",
+      "lines": [
+        43,
+        50,
+        57
+      ]
+    }
+  ],
+  "exec_cmd: \"kettle-test\"\nrubygems: default": [
+    {
+      "file": ".github/workflows/dep-heads.yml",
+      "lines": [
+        52,
+        59
+      ]
+    },
+    {
+      "file": ".github/workflows/heads.yml",
+      "lines": [
+        44,
+        51,
+        58
+      ]
+    }
+  ]
+}

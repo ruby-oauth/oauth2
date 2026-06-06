@@ -1,0 +1,109 @@
+# License
+
+This project is made available under the following license.
+Choose the option that best fits your use case:
+
+- [MIT](MIT.md)
+
+## Copyright Notice
+
+- Copyright (c) 2010-2014, 2016-2017 Erik Michaels-Ober
+- Copyright (c) 2010 Jeremy Kemper
+- Copyright (c) 2010-2011 Michael Bleigh
+- Copyright (c) 2010-2011 Paul Walker
+- Copyright (c) 2010 rick
+- Copyright (c) 2010 Tim Habermaas
+- Copyright (c) 2010 Wynn Netherland
+- Copyright (c) 2011 Alexander Lang
+- Copyright (c) 2011 Alexander Lang
+- Copyright (c) 2011 Greg Spurrier
+- Copyright (c) 2011 Jay Adkisson
+- Copyright (c) 2011 Luke Saunders
+- Copyright (c) 2011 Paul Walker
+- Copyright (c) 2011 Simon Gate
+- Copyright (c) 2012 Bas Vodde
+- Copyright (c) 2012 Damian Janowski
+- Copyright (c) 2012 Daniël van de Burgt
+- Copyright (c) 2012 Dorren Chen
+- Copyright (c) 2012 Igor Sales
+- Copyright (c) 2012 Leigh Caplan
+- Copyright (c) 2012 Michael Andrews
+- Copyright (c) 2012 Omer Rauchwerger
+- Copyright (c) 2012 Saverio Trioni
+- Copyright (c) 2012 Trent Ogren
+- Copyright (c) 2012 Vsevolod Romashov
+- Copyright (c) 2013 Antonio Tapiador del Dujo
+- Copyright (c) 2013 Eduardo Gurgel
+- Copyright (c) 2013 Geostellar Developer
+- Copyright (c) 2013-2014, 2018 Niels Ganser
+- Copyright (c) 2013 Rainux Luo
+- Copyright (c) 2013 Taylor Hedberg
+- Copyright (c) 2013 Tim Clem
+- Copyright (c) 2014 Dave Stevens
+- Copyright (c) 2014 Ellis Berner
+- Copyright (c) 2014 Frank Macreery
+- Copyright (c) 2014 Michael Bleigh
+- Copyright (c) 2014 Olivier Lacan
+- Copyright (c) 2014 Peter Souter
+- Copyright (c) 2014 Ryan Williams
+- Copyright (c) 2015 Andrew Cantino and Jeff Moore
+- Copyright (c) 2015 Thomas Walpole
+- Copyright (c) 2016 Bo Jeanes
+- Copyright (c) 2016 Cody Cutrer
+- Copyright (c) 2016 Edward Rudd
+- Copyright (c) 2016 Lawrence Oluyede
+- Copyright (c) 2016 Linus Pettersson
+- Copyright (c) 2016 Motoshi Nishihira
+- Copyright (c) 2017 Adrian Setyadi
+- Copyright (c) 2017-2018 Benjamin Quorning
+- Copyright (c) 2017 Christoph Petschnig
+- Copyright (c) 2017, 2022 Nathaniel Bibler
+- Copyright (c) 2017 Oleg
+- Copyright (c) 2017 Samuel Cochran
+- Copyright (c) 2017 tetsuya
+- Copyright (c) 2017 Yury Velikanau
+- Copyright (c) 2018 Alex Kowalczuk
+- Copyright (c) 2018 asm__
+- Copyright (c) 2018 David Christensen
+- Copyright (c) 2018 fossabot
+- Copyright (c) 2018 Jeff Moore
+- Copyright (c) 2018 Jeff Moore
+- Copyright (c) 2018 Jonathan del Strother
+- Copyright (c) 2018 Joseph Page
+- Copyright (c) 2018 Joseph Page
+- Copyright (c) 2018 Lomey
+- Copyright (c) 2018 Markus Bengts
+- Copyright (c) 2018 Mathias Klippinge
+- Copyright (c) 2018 nikz
+- Copyright (c) 2018-2019, 2021-2022, 2024-2026 Peter H. Boling
+- Copyright (c) 2019 Daniel Fockler
+- Copyright (c) 2019 Elliot Crosby-McCullough
+- Copyright (c) 2019 João Paulo
+- Copyright (c) 2019 Orien Madgwick
+- Copyright (c) 2019 Ryan T. Hosford
+- Copyright (c) 2019 Tom Corley
+- Copyright (c) 2020 anvox
+- Copyright (c) 2020 Jesse Cotton
+- Copyright (c) 2020 Olle Jonsson
+- Copyright (c) 2020 Stephen Reid
+- Copyright (c) 2021 Anders Carling
+- Copyright (c) 2021 dobon
+- Copyright (c) 2021 Jan Zaydowicz
+- Copyright (c) 2021 Nicholas Palaniuk
+- Copyright (c) 2021-2022 Stan Hu
+- Copyright (c) 2022 Benjamin Quorning
+- Copyright (c) 2022 Bouke van der Bijl
+- Copyright (c) 2022 nov
+- Copyright (c) 2022 Rick Selby
+- Copyright (c) 2022 Ryo Takahashi
+- Copyright (c) 2023 Jessie Young
+- Copyright (c) 2023 Карим Гимадеев
+- Copyright (c) 2024 Aboling0
+- Copyright (c) 2024 Elise Wood
+- Copyright (c) 2024 Manuel van Rijn
+- Copyright (c) 2025-2026 Annibelle Boling
+- Copyright (c) 2025 Mark James
+- Copyright (c) 2025 Mridang Agarwalla
+- Copyright (c) 2025 Sasa Rosic
+- Copyright (c) 2026 kain
+- Copyright (c) 2026 StepSecurity Bot

@@ -2,6 +2,6 @@
 
 source "https://gem.coop"
 
-gemspec path: "../"
+gemspec :path => "../"
 
 eval_gemfile("modular/x_std_libs.gemfile")

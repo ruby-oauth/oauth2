@@ -4,15 +4,13 @@
 
 | Version  | Supported |
 |----------|-----------|
-| 1.latest | ✅         |
+| 2.0.latest | ✅         |
 
 ## Security contact information
 
 To report a security vulnerability, please use the
 [Tidelift security contact](https://tidelift.com/security).
 Tidelift will coordinate the fix and disclosure.
-
-More detailed explanation of the process is in [IRP.md][IRP].
 
 ## Additional Support
 
@@ -21,4 +19,3 @@ please consider sponsoring the project / maintainer @ https://liberapay.com/pbol
 or find other sponsorship links in the [README].
 
 [README]: README.md
-[IRP]: IRP.md

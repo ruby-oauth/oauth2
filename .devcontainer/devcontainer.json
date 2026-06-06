@@ -1,9 +1,20 @@
 // For format details, see https://aka.ms/devcontainer.json. For config options, see the
 // README at: https://github.com/devcontainers/templates/tree/main/src/ruby
 {
-	"name": "Ruby",
+  "name": "Ruby",
 	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-	"image": "mcr.microsoft.com/devcontainers/ruby:1-3-bookworm",
+  "image": "mcr.microsoft.com/devcontainers/ruby:1-3-bookworm",
+  // Features to add to the dev container. More info: https://containers.dev/features.
+  "features": {
+    "./apt-install": {}
+  },
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  // "forwardPorts": [],
+
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // First setup tree-sitter (auto-detects sudo requirement), then run bundle as the regular user
+  // Use ${containerWorkspaceFolder} to get the actual workspace path in the container
+  "postCreateCommand": "bash ${containerWorkspaceFolder}/.devcontainer/scripts/setup-tree-sitter.sh --workspace=${containerWorkspaceFolder} && bundle update --bundler",
 
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
@@ -15,11 +26,11 @@
 	// "postCreateCommand": "ruby --version",
 
 	// Configure tool-specific properties.
-  "customizations" : {
-    "jetbrains" : {
-      "backend" : "RubyMine"
+  "customizations": {
+    "jetbrains": {
+      "backend": "RubyMine"
     }
-  },
+  }
 
 	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
 	// "remoteUser": "root"

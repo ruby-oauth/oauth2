@@ -1,0 +1,33 @@
+# frozen_string_literal: true
+
+# Local path overrides for development.
+# Loaded by the associated non-local gemfile when KETTLE_RB_DEV != "false".
+
+require "nomono/bundler" unless defined?(Nomono)
+
+local_gems = %w[kettle-dev kettle-test kettle-soup-cover kettle-drift]
+declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
+local_gems_to_eval = local_gems - %w[oauth2] - declared_gems
+
+# export KETTLE_RB_DEV=/path/to/kettle-rb
+platform :mri do
+  eval_nomono_gems(
+    gems: local_gems_to_eval,
+    prefix: "KETTLE_RB",
+    path_env: "KETTLE_RB_DEV",
+    vendored_gems_env: "VENDORED_GEMS",
+    vendor_gem_dir_env: "VENDOR_GEM_DIR",
+    debug_env: "KETTLE_DEV_DEBUG"
+  )
+
+  if ENV.fetch("GALTZO_FLOSS_DEV", "false").casecmp("false") != 0
+    eval_nomono_gems(
+      gems: %w[turbo_tests2],
+      prefix: "GALTZO_FLOSS",
+      path_env: "GALTZO_FLOSS_DEV",
+      vendored_gems_env: "GALTZO_FLOSS_VENDORED_GEMS",
+      vendor_gem_dir_env: "GALTZO_FLOSS_VENDOR_GEM_DIR",
+      debug_env: "GALTZO_FLOSS_DEBUG"
+    )
+  end
+end

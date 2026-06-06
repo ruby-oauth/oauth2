@@ -1,3 +1,4 @@
 eval_gemfile "../erb/vHEAD.gemfile"
 eval_gemfile "../mutex_m/vHEAD.gemfile"
 eval_gemfile "../stringio/vHEAD.gemfile"
+eval_gemfile "../benchmark/vHEAD.gemfile"

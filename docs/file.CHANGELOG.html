@@ -6,7 +6,7 @@
 <title>
   File: CHANGELOG
   
-    &mdash; Documentation by YARD 0.9.43
+    &mdash; Documentation by YARD 0.9.44
   
 </title>
 
@@ -70,11 +70,17 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.19...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.21...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
 <h3 id="changed">Changed</h3>
+
+<ul>
+  <li>Refreshed generated README support badges so Ruby 2.3 is listed as<br>
+supported but untested.</li>
+  <li>Refreshed generated project metadata from the current kettle-jem template.</li>
+</ul>
 
 <h3 id="deprecated">Deprecated</h3>
 
@@ -83,6 +89,84 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <h3 id="fixed">Fixed</h3>
 
 <h3 id="security">Security</h3>
+
+<h2 id="2021---2026-06-05">
+<a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.20...v2.0.21">2.0.21</a> - 2026-06-05</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.21">v2.0.21</a>
+</li>
+  <li>COVERAGE: 100.00% – 525/525 lines in 15 files</li>
+  <li>BRANCH COVERAGE: 100.00% – 174/174 branches in 15 files</li>
+  <li>88.35% documented</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
+
+<ul>
+  <li>Raised generated <code>version_gem</code> and <code>appraisal2</code> dependency floors to<br>
+<code>version_gem</code> &gt;= 1.1.10 and <code>appraisal2</code> &gt;= 3.0.9.</li>
+  <li>Raised the runtime dependency floor for <code>auth-sanitizer</code> to <code>&gt;= 0.2.0</code>.</li>
+  <li>Refreshed generated package metadata, support documentation, CI workflows,<br>
+and development dependency floors from the current kettle-jem template.</li>
+  <li>Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in<br>
+generated README badges and compatibility tables.</li>
+  <li>Removed the post-install message from the gemspec to keep installs quieter.</li>
+</ul>
+
+<h3 id="removed-1">Removed</h3>
+
+<ul>
+  <li>Dropped the obsolete Ruby 2.3 Caboose workflow and its Hashie appraisal<br>
+gemfiles; development tooling now requires Ruby 2.4 or newer, and Ruby 2.4<br>
+coverage is already handled by the standard Ruby 2.4 workflow.</li>
+</ul>
+
+<h3 id="fixed-1">Fixed</h3>
+
+<ul>
+  <li>Updated CI workflow maintenance: QLTY uploads now use OIDC and harden-runner<br>
+is pinned to v2.19.4.</li>
+  <li>Replaced stale platform CI <code>rake magic</code> commands with portable spec commands.</li>
+  <li>Pinned <code>multi_xml</code> below 0.9 for TruffleRuby compatibility.</li>
+  <li>Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup.</li>
+  <li>Improved gemspec version loading for older Rubies and isolated load-path<br>
+contexts.</li>
+  <li>Constrained <code>json</code> in TruffleRuby and Ruby 3.2 appraisal bundles so generated<br>
+CI dependency resolution remains compatible with those Ruby targets.</li>
+</ul>
+
+<h2 id="2020---2026-05-20">
+<a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.19...v2.0.20">2.0.20</a> - 2026-05-20</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.20">v2.0.20</a>
+</li>
+  <li>COVERAGE: 99.62% – 525/527 lines in 15 files</li>
+  <li>BRANCH COVERAGE: 98.88% – 176/178 branches in 15 files</li>
+  <li>88.35% documented</li>
+</ul>
+
+<h3 id="added-1">Added</h3>
+
+<ul>
+  <li>OAuth2::VERSION (Traditional Constant Location)</li>
+</ul>
+
+<h3 id="changed-2">Changed</h3>
+
+<ul>
+  <li>auth-sanitizer v0.1.3</li>
+</ul>
+
+<h3 id="fixed-2">Fixed</h3>
+
+<ul>
+  <li>
+<a href="https://github.com/ruby-oauth/oauth2/pull/721">gh!721</a> Load <code>auth-sanitizer</code> through an internal isolated loader so requiring <code>oauth2</code> does not add top-level <code>Auth</code> or <code>AuthSanitizer</code> constants that may collide with downstream applications by @pboling</li>
+</ul>
+
+<h3 id="security-1">Security</h3>
 
 <h2 id="2019---2026-05-15">
 <a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.18...v2.0.19">2.0.19</a> - 2026-05-15</h2>
@@ -95,7 +179,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>89.11% documented</li>
 </ul>
 
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 
 <ul>
   <li>
@@ -104,7 +188,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://github.com/ruby-oauth/oauth2/pull/707">gh!707</a> Add <code>OAuth2.config[:filtered_debug_keys]</code> to configure which key names have their values redacted from debug logging output by @pboling</li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-3">Changed</h3>
 
 <ul>
   <li>
@@ -113,13 +197,13 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://github.com/ruby-oauth/oauth2/pull/714">gh!714</a>Refactor sensitive-value filtering to use <code>auth-sanitizer</code> while preserving <code>OAuth2::FilteredAttributes</code> as a permanent API alias by @pboling</li>
 </ul>
 
-<h3 id="removed-1">Removed</h3>
+<h3 id="removed-2">Removed</h3>
 
 <ul>
   <li>Remove the internal <code>OAuth2::ThingFilter</code> and <code>OAuth2::SanitizedLogger</code> implementations now provided by <code>auth-sanitizer</code> by @pboling</li>
 </ul>
 
-<h3 id="security-1">Security</h3>
+<h3 id="security-2">Security</h3>
 
 <ul>
   <li>
@@ -141,7 +225,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-2">Added</h3>
+<h3 id="added-3">Added</h3>
 
 <ul>
   <li>
@@ -152,7 +236,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://github.com/ruby-oauth/oauth2/pull/687">gh!687</a>- Add Threat Model by @pboling</li>
 </ul>
 
-<h3 id="changed-2">Changed</h3>
+<h3 id="changed-4">Changed</h3>
 
 <ul>
   <li>
@@ -164,7 +248,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   </li>
 </ul>
 
-<h3 id="fixed-1">Fixed</h3>
+<h3 id="fixed-3">Fixed</h3>
 
 <ul>
   <li>
@@ -186,7 +270,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-3">Added</h3>
+<h3 id="added-4">Added</h3>
 
 <ul>
   <li>
@@ -204,7 +288,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-4">Added</h3>
+<h3 id="added-5">Added</h3>
 
 <ul>
   <li>
@@ -226,7 +310,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://github.com/ruby-oauth/oauth2/pull/676">gh!676</a>, <a href="https://github.com/ruby-oauth/oauth2/pull/679">gh!679</a> - Apache SkyWalking Eyes dependency license check by @pboling</li>
 </ul>
 
-<h3 id="changed-3">Changed</h3>
+<h3 id="changed-5">Changed</h3>
 
 <ul>
   <li>
@@ -246,7 +330,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-5">Added</h3>
+<h3 id="added-6">Added</h3>
 
 <ul>
   <li>
@@ -266,14 +350,14 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   </li>
 </ul>
 
-<h3 id="changed-4">Changed</h3>
+<h3 id="changed-6">Changed</h3>
 
 <ul>
   <li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/669">gh!669</a> - Upgrade to kettle-dev v1.1.9 by @pboling</li>
 </ul>
 
-<h3 id="fixed-2">Fixed</h3>
+<h3 id="fixed-4">Fixed</h3>
 
 <ul>
   <li>Remove accidentally duplicated lines, and fix typos in CHANGELOG.md</li>
@@ -291,7 +375,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-6">Added</h3>
+<h3 id="added-7">Added</h3>
 
 <ul>
   <li>improved documentation by @pboling</li>
@@ -335,7 +419,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-7">Added</h3>
+<h3 id="added-8">Added</h3>
 
 <ul>
   <li>
@@ -352,7 +436,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>Documentation: Added docs/OIDC.md with OIDC 1.0 overview, example, and references</li>
 </ul>
 
-<h3 id="changed-5">Changed</h3>
+<h3 id="changed-7">Changed</h3>
 
 <ul>
   <li>Upgrade Code of Conduct to Contributor Covenant 2.1 by @pboling</li>
@@ -360,7 +444,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://github.com/ruby-oauth/oauth2/pull/660">gh!660</a> - Shrink post-install message by 4 lines by @pboling</li>
 </ul>
 
-<h3 id="fixed-3">Fixed</h3>
+<h3 id="fixed-5">Fixed</h3>
 
 <ul>
   <li>
@@ -378,7 +462,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>80.00% documented</li>
 </ul>
 
-<h3 id="added-8">Added</h3>
+<h3 id="added-9">Added</h3>
 
 <ul>
   <li>
@@ -396,13 +480,13 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>Documentation site @ https://oauth2.galtzo.com now complete</li>
 </ul>
 
-<h3 id="changed-6">Changed</h3>
+<h3 id="changed-8">Changed</h3>
 
 <ul>
   <li>Updates to gemspec (email, funding url, post install message)</li>
 </ul>
 
-<h3 id="fixed-4">Fixed</h3>
+<h3 id="fixed-6">Fixed</h3>
 
 <ul>
   <li>Documentation Typos by @pboling</li>
@@ -419,7 +503,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>80.00% documented</li>
 </ul>
 
-<h3 id="added-9">Added</h3>
+<h3 id="added-10">Added</h3>
 
 <ul>
   <li>
@@ -449,7 +533,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   </li>
 </ul>
 
-<h3 id="changed-7">Changed</h3>
+<h3 id="changed-9">Changed</h3>
 
 <ul>
   <li>
@@ -461,7 +545,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>Updated <code>spec.homepage_uri</code> in gemspec to GitHub Pages YARD documentation site (@pboling)</li>
 </ul>
 
-<h3 id="fixed-5">Fixed</h3>
+<h3 id="fixed-7">Fixed</h3>
 
 <ul>
   <li>
@@ -480,7 +564,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
   <li>79.05% documented</li>
 </ul>
 
-<h3 id="added-10">Added</h3>
+<h3 id="added-11">Added</h3>
 
 <ul>
   <li>
@@ -526,7 +610,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/648">!648</a> - Improved documentation (@pboling)</li>
 </ul>
 
-<h3 id="changed-8">Changed</h3>
+<h3 id="changed-10">Changed</h3>
 
 <ul>
   <li>Default value of <code>OAuth2.config.silence_extra_tokens_warning</code> was <code>false</code>, now <code>true</code> (@pboling)</li>
@@ -543,7 +627,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/647">!647</a> - Errors raised by <code>OAuth2::AccessToken</code> are now always <code>OAuth2::Error</code> and have better metadata (@pboling)</li>
 </ul>
 
-<h3 id="fixed-6">Fixed</h3>
+<h3 id="fixed-8">Fixed</h3>
 
 <ul>
   <li>
@@ -584,13 +668,13 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="added-11">Added</h3>
+<h3 id="added-12">Added</h3>
 
 <ul>
   <li>More specs (@pboling)</li>
 </ul>
 
-<h3 id="changed-9">Changed</h3>
+<h3 id="changed-11">Changed</h3>
 
 <ul>
   <li>Complete migration to main branch as default (@pboling)</li>
@@ -605,14 +689,14 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="changed-10">Changed</h3>
+<h3 id="changed-12">Changed</h3>
 
 <ul>
   <li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/630">!630</a> - Extract snaky_hash to external dependency (@pboling)</li>
 </ul>
 
-<h3 id="added-12">Added</h3>
+<h3 id="added-13">Added</h3>
 
 <ul>
   <li>
@@ -628,14 +712,14 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="added-13">Added</h3>
+<h3 id="added-14">Added</h3>
 
 <ul>
   <li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/629">!629</a> - Allow POST of JSON to get token (@pboling, @terracatta)</li>
 </ul>
 
-<h3 id="fixed-7">Fixed</h3>
+<h3 id="fixed-9">Fixed</h3>
 
 <ul>
   <li>
@@ -656,7 +740,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="fixed-8">Fixed</h3>
+<h3 id="fixed-10">Fixed</h3>
 
 <ul>
   <li>
@@ -671,7 +755,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="fixed-9">Fixed</h3>
+<h3 id="fixed-11">Fixed</h3>
 
 <ul>
   <li>
@@ -701,7 +785,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="fixed-10">Fixed</h3>
+<h3 id="fixed-12">Fixed</h3>
 
 <ul>
   <li>
@@ -716,7 +800,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="added-14">Added</h3>
+<h3 id="added-15">Added</h3>
 
 <ul>
   <li>
@@ -725,7 +809,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/612">!612</a> - Add <code>snaky: false</code> option to skip conversion to <code>OAuth2::SnakyHash</code> (default: true) (@pboling)</li>
 </ul>
 
-<h3 id="fixed-11">Fixed</h3>
+<h3 id="fixed-13">Fixed</h3>
 
 <ul>
   <li>
@@ -742,7 +826,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="fixed-12">Fixed</h3>
+<h3 id="fixed-14">Fixed</h3>
 
 <ul>
   <li>
@@ -761,7 +845,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="added-15">Added</h3>
+<h3 id="added-16">Added</h3>
 
 <ul>
   <li>Documentation improvements (@pboling)</li>
@@ -776,7 +860,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="added-16">Added</h3>
+<h3 id="added-17">Added</h3>
 
 <ul>
   <li>
@@ -833,7 +917,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/581">!581</a> - <em>Documentation</em>: of breaking changes (@pboling)</li>
 </ul>
 
-<h3 id="changed-11">Changed</h3>
+<h3 id="changed-13">Changed</h3>
 
 <ul>
   <li>
@@ -868,7 +952,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/576">!591</a> - <em>DEPRECATION</em>: <code>OAuth2::Client</code> - <code>:extract_access_token</code> option is deprecated</li>
 </ul>
 
-<h3 id="fixed-13">Fixed</h3>
+<h3 id="fixed-15">Fixed</h3>
 
 <ul>
   <li>
@@ -909,7 +993,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/598">!598</a> - Fix unparseable data not raised as error in <code>Client#get_token</code>, respecting <code>:raise_errors</code> config (@stanhu)</li>
 </ul>
 
-<h3 id="removed-2">Removed</h3>
+<h3 id="removed-3">Removed</h3>
 
 <ul>
   <li>
@@ -1176,13 +1260,13 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="added-17">Added</h3>
+<h3 id="added-18">Added</h3>
 
 <ul>
   <li>Add an implementation of the MAC token spec.</li>
 </ul>
 
-<h3 id="fixed-14">Fixed</h3>
+<h3 id="fixed-16">Fixed</h3>
 
 <ul>
   <li>Fix Base64.strict_encode64 incompatibility with Ruby 1.8.7.</li>
@@ -1196,7 +1280,7 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </li>
 </ul>
 
-<h3 id="changed-12">Changed</h3>
+<h3 id="changed-14">Changed</h3>
 
 <ul>
   <li>
@@ -1366,9 +1450,9 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Fri May 15 21:15:11 2026 by
+  Generated on Sat Jun  6 00:27:01 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.43 (ruby-4.0.4).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>

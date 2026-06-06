@@ -1,17 +1,10 @@
-[![Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0][🖼️galtzo-i]][🖼️galtzo-discord] [![ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5][🖼️ruby-lang-i]][🖼️ruby-lang] [![oauth2 Logo by Chris Messina, CC BY-SA 3.0][🖼️oauth2-i]][🖼️oauth2]
+<a href="https://github.com/ruby-oauth"><img alt="ruby-oauth Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/ruby-oauth/avatar-128px.svg" width="14%" align="right"/></a>
 
-[🖼️galtzo-i]: https://logos.galtzo.com/assets/images/galtzo-floss/avatar-192px.svg
-[🖼️galtzo-discord]: https://discord.gg/3qme4XHNKN
-[🖼️ruby-lang-i]: https://logos.galtzo.com/assets/images/ruby-lang/avatar-192px.svg
-[🖼️ruby-lang]: https://www.ruby-lang.org/
-[🖼️oauth2-i]: https://logos.galtzo.com/assets/images/oauth/oauth2/avatar-192px.svg
-[🖼️oauth2]: https://github.com/ruby-oauth/oauth2
+# 🔐 OAuth2
 
-# 🔐 OAuth 2.0 Authorization Framework
+[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI Truffle Ruby][🚎9-t-wfi]][🚎9-t-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
 
-[![Version][👽versioni]][👽version] [![GitHub tag (latest SemVer)][⛳️tag-img]][⛳️tag] [![License: MIT][📄license-img]][📄license-ref] [![Downloads Rank][👽dl-ranki]][👽dl-rank] [![CodeCov Test Coverage][🏀codecovi]][🏀codecov] [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls] [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov] [![QLTY Maintainability][🏀qlty-mnti]][🏀qlty-mnt] [![CI Heads][🚎3-hd-wfi]][🚎3-hd-wf] [![CI Runtime Dependencies @ HEAD][🚎12-crh-wfi]][🚎12-crh-wf] [![CI Current][🚎11-c-wfi]][🚎11-c-wf] [![CI JRuby][🚎10-j-wfi]][🚎10-j-wf] [![Deps Locked][🚎13-🔒️-wfi]][🚎13-🔒️-wf] [![Deps Unlocked][🚎14-🔓️-wfi]][🚎14-🔓️-wf] [![CI Supported][🚎6-s-wfi]][🚎6-s-wf] [![CI Legacy][🚎4-lg-wfi]][🚎4-lg-wf] [![CI Unsupported][🚎7-us-wfi]][🚎7-us-wf] [![CI Ancient][🚎1-an-wfi]][🚎1-an-wf] [![CI Test Coverage][🚎2-cov-wfi]][🚎2-cov-wf] [![CI Style][🚎5-st-wfi]][🚎5-st-wf] [![CodeQL][🖐codeQL-img]][🖐codeQL] [![Apache SkyWalking Eyes License Compatibility Check][🚎15-🪪-wfi]][🚎15-🪪-wf]
-
-`if ci_badges.map(&:color).detect { it != "green"}` ☝️ [let me know][🖼️galtzo-discord], as I may have missed the [discord notification][🖼️galtzo-discord].
+`if ci_badges.map(&:color).detect { it != "green"}` ☝️ [let me know][✉️discord-invite], as I may have missed the [discord notification][✉️discord-invite].
 
 ---
 
@@ -20,13 +13,13 @@
 [![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate on Polar][🖇polar-img]][🖇polar] [![Donate at ko-fi.com][🖇kofi-img]][🖇kofi]
 
 <details>
-    <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
+ <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
 
 I've summarized my thoughts in [this blog post](https://dev.to/galtzo/hostile-takeover-of-rubygems-my-thoughts-5hlo).
 
 </details>
 
-## 🌻 Synopsis
+## 🌻 Synopsis <a href="https://discord.gg/3qme4XHNKN"><img alt="Galtzo FLOSS Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px.svg" width="8%" align="right"/></a> <a href="https://ruby-toolbox.com"><img alt="ruby-lang Logo, Yukihiro Matsumoto, Ruby Visual Identity Team, CC BY-SA 2.5" src="https://logos.galtzo.com/assets/images/ruby-lang/avatar-128px.svg" width="8%" align="right"/></a>
 
 OAuth 2.0 is the industry-standard protocol for authorization.
 This is a RubyGem for implementing OAuth 2.0 clients (not servers) in Ruby applications.
@@ -56,7 +49,7 @@ client = OAuth2::Client.new(
   "REDMOND_CLIENT_SECRET", # client_secret
   auth_scheme: :request_body, # Other modes are supported: :basic_auth, :tls_client_auth, :private_key_jwt
   token_url: "oauth2/token", # relative path, except with leading `/`, then absolute path
-  site: "https://login.microsoftonline.com/REDMOND_REDACTED",
+  site: "https://login.microsoftonline.com/REDMOND_REDACTED"
 )
 client.
   client_credentials. # There are many other types to choose from!
@@ -152,39 +145,44 @@ See also the [OAuth 2.0 Spec][oauth2-spec] and the [OpenID Connect Spec][oidc-sp
 
 ## 💡 Info you can shake a stick at
 
-| Tokens to Remember      | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace]                                                                                                                                                                                                                                                                          |
+| Tokens to Remember | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace] |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Works with JRuby        | ![JRuby 9.1 Compat][💎jruby-9.1i] ![JRuby 9.2 Compat][💎jruby-9.2i] ![JRuby 9.3 Compat][💎jruby-9.3i] <br/> [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎10-j-wf] [![JRuby 10.0 Compat][💎jruby-c-i]][🚎11-c-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]                                                                                                          |
-| Works with Truffle Ruby | ![Truffle Ruby 22.3 Compat][💎truby-22.3i] ![Truffle Ruby 23.0 Compat][💎truby-23.0i] ![Truffle Ruby 23.1 Compat][💎truby-23.1i] <br/> [![Truffle Ruby 24.1 Compat][💎truby-c-i]][🚎11-c-wf]                                                                                                                                                                        |
-| Works with MRI Ruby 3   | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎4-lg-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎6-s-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎6-s-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎6-s-wf] [![Ruby 3.4 Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]                                                                                         |
-| Works with MRI Ruby 2   | ![Ruby 2.2 Compat][💎ruby-2.2i] <br/> [![Ruby 2.3 Compat][💎ruby-2.3i]][🚎1-an-wf] [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎1-an-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎1-an-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎7-us-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎7-us-wf]                                                                                              |
-| Support & Community     | [![Join Me on Daily.dev's RubyFriends][✉️ruby-friends-img]][✉️ruby-friends] [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]                                       |
-| Source                  | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc]                                                                                                                                                         |
-| Documentation           | [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![Maintainer Blog][🚂maint-blog-img]][🚂maint-blog] [![GitLab Wiki][📜gl-wiki-img]][📜gl-wiki] [![GitHub Wiki][📜gh-wiki-img]][📜gh-wiki]                                                                                          |
-| Compliance              | [![License: MIT][📄license-img]][📄license-ref] [![Compatible with Apache Software Projects: Verified by SkyWalking Eyes][📄license-compat-img]][📄license-compat] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver] |
-| Style                   | [![Enforced Code Style Linter][💎rlts-img]][💎rlts] [![Keep-A-Changelog 1.0.0][📗keep-changelog-img]][📗keep-changelog] [![Gitmoji Commits][📌gitmoji-img]][📌gitmoji] [![Compatibility appraised by: appraisal2][💎appraisal2-img]][💎appraisal2]                                                                                                                  |
-| Maintainer 🎖️          | [![Follow Me on LinkedIn][💖🖇linkedin-img]][💖🖇linkedin] [![Follow Me on Ruby.Social][💖🐘ruby-mast-img]][💖🐘ruby-mast] [![Follow Me on Bluesky][💖🦋bluesky-img]][💖🦋bluesky] [![Contact Maintainer][🚂maint-contact-img]][🚂maint-contact] [![My technical writing][💖💁🏼‍♂️devto-img]][💖💁🏼‍♂️devto]                                                      |
-| `...` 💖                | [![Find Me on WellFound:][💖✌️wellfound-img]][💖✌️wellfound] [![Find Me on CrunchBase][💖💲crunchbase-img]][💖💲crunchbase] [![My LinkTree][💖🌳linktree-img]][💖🌳linktree] [![More About Me][💖💁🏼‍♂️aboutme-img]][💖💁🏼‍♂️aboutme] [🧊][💖🧊berg] [🐙][💖🐙hub]  [🛖][💖🛖hut] [🧪][💖🧪lab]                                                                   |
+| Works with JRuby | [![JRuby 9.2 Compat][💎jruby-9.2i]][🚎jruby-9.2-wf] [![JRuby 9.3 Compat][💎jruby-9.3i]][🚎jruby-9.3-wf] <br/> [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎jruby-9.4-wf] [![JRuby current Compat][💎jruby-c-i]][🚎10-j-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]|
+| Works with Truffle Ruby | [![Truffle Ruby 22.3 Compat][💎truby-22.3i]][🚎truby-22.3-wf] [![Truffle Ruby 23.0 Compat][💎truby-23.0i]][🚎truby-23.0-wf] [![Truffle Ruby 23.1 Compat][💎truby-23.1i]][🚎truby-23.1-wf] <br/> [![Truffle Ruby 24.2 Compat][💎truby-24.2i]][🚎truby-24.2-wf] [![Truffle Ruby 25.0 Compat][💎truby-25.0i]][🚎truby-25.0-wf] [![Truffle Ruby current Compat][💎truby-c-i]][🚎9-t-wf]|
+| Works with MRI Ruby 4 | [![Ruby 4.0 Compat][💎ruby-4.0i]][🚎11-c-wf] [![Ruby current Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]|
+| Works with MRI Ruby 3 | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎ruby-3.0-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎ruby-3.1-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎ruby-3.2-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎ruby-3.3-wf] [![Ruby 3.4 Compat][💎ruby-3.4i]][🚎ruby-3.4-wf]|
+| Works with MRI Ruby 2 | ![Ruby 2.2 Compat][💎ruby-2.2i] ![Ruby 2.3 Compat][💎ruby-2.3i] <br/> [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎ruby-2.4-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎ruby-2.5-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎ruby-2.6-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎ruby-2.7-wf]|
+| Support & Community | [![Join Me on Daily.dev's RubyFriends][✉️ruby-friends-img]][✉️ruby-friends] [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork] [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor] |
+| Source | [![Source on GitLab.com][📜src-gl-img]][📜src-gl] [![Source on CodeBerg.org][📜src-cb-img]][📜src-cb] [![Source on Github.com][📜src-gh-img]][📜src-gh] [![The best SHA: dQw4w9WgXcQ!][🧮kloc-img]][🧮kloc] |
+| Documentation | [![Current release on RubyDoc.info][📜docs-cr-rd-img]][🚎yard-current] [![YARD on Galtzo.com][📜docs-head-rd-img]][🚎yard-head] [![Maintainer Blog][🚂maint-blog-img]][🚂maint-blog] [![GitLab Wiki][📜gl-wiki-img]][📜gl-wiki] [![GitHub Wiki][📜gh-wiki-img]][📜gh-wiki] |
+| Compliance | [![License: MIT][📄license-img]][📄license] [![Apache license compatibility: Category A][📄license-compat-img]][📄license-compat] [![📄ilo-declaration-img]][📄ilo-declaration] [![Security Policy][🔐security-img]][🔐security] [![Contributor Covenant 2.1][🪇conduct-img]][🪇conduct] [![SemVer 2.0.0][📌semver-img]][📌semver] |
+| Style | [![Enforced Code Style Linter][💎rlts-img]][💎rlts] [![Keep-A-Changelog 1.0.0][📗keep-changelog-img]][📗keep-changelog] [![Gitmoji Commits][📌gitmoji-img]][📌gitmoji] [![Compatibility appraised by: appraisal2][💎appraisal2-img]][💎appraisal2] |
+| Maintainer 🎖️ | [![Follow Me on LinkedIn][💖🖇linkedin-img]][💖🖇linkedin] [![Follow Me on Ruby.Social][💖🐘ruby-mast-img]][💖🐘ruby-mast] [![Follow Me on Bluesky][💖🦋bluesky-img]][💖🦋bluesky] [![Contact Maintainer][🚂maint-contact-img]][🚂maint-contact] [![My technical writing][💖💁🏼‍♂️devto-img]][💖💁🏼‍♂️devto] |
+| `...` 💖 | [![Find Me on WellFound:][💖✌️wellfound-img]][💖✌️wellfound] [![Find Me on CrunchBase][💖💲crunchbase-img]][💖💲crunchbase] [![My LinkTree][💖🌳linktree-img]][💖🌳linktree] [![More About Me][💖💁🏼‍♂️aboutme-img]][💖💁🏼‍♂️aboutme] [🧊][💖🧊berg] [🐙][💖🐙hub] [🛖][💖🛖hut] [🧪][💖🧪lab] |
 
 ### Compatibility
 
 Compatible with MRI Ruby 2.2.0+, and concordant releases of JRuby, and TruffleRuby.
+CI workflows and Appraisals are generated for MRI Ruby 2.4+.
+This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and
+may be higher than the gem's runtime compatibility floor when legacy Rubies are
+not practical for the current toolchain.
 
-| 🚚 _Amazing_ test matrix was brought to you by | 🔎 appraisal2 🔎 and the color 💚 green 💚             |
+| 🚚 _Amazing_ test matrix was brought to you by | 🔎 appraisal2 🔎 and the color 💚 green 💚 |
 |------------------------------------------------|--------------------------------------------------------|
-| 👟 Check it out!                               | ✨ [github.com/appraisal-rb/appraisal2][💎appraisal2] ✨ |
+| 👟 Check it out! | ✨ [github.com/appraisal-rb/appraisal2][💎appraisal2] ✨ |
 
 ### Federated DVCS
 
 <details markdown="1">
-  <summary>Find this repo on federated forges (Coming soon!)</summary>
+ <summary>Find this repo on federated forges (Coming soon!)</summary>
 
-| Federated [DVCS][💎d-in-dvcs] Repository        | Status                                                                | Issues                    | PRs                      | Wiki                      | CI                       | Discussions                  |
+| Federated [DVCS][💎d-in-dvcs] Repository | Status | Issues | PRs | Wiki | CI | Discussions |
 |-------------------------------------------------|-----------------------------------------------------------------------|---------------------------|--------------------------|---------------------------|--------------------------|------------------------------|
-| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl]   | The Truth                                                             | [💚][🤝gl-issues]         | [💚][🤝gl-pulls]         | [💚][📜gl-wiki]           | 🐭 Tiny Matrix           | ➖                            |
-| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate])                             | [💚][🤝cb-issues]         | [💚][🤝cb-pulls]         | ➖                         | ⭕️ No Matrix             | ➖                            |
-| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh]   | Another Mirror                                                        | [💚][🤝gh-issues]         | [💚][🤝gh-pulls]         | [💚][📜gh-wiki]           | 💯 Full Matrix           | [💚][gh-discussions]         |
-| 🎮️ [Discord Server][✉️discord-invite]          | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
+| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl] | The Truth | [💚][🤝gl-issues] | [💚][🤝gl-pulls] | [💚][📜gl-wiki] | 🐭 Tiny Matrix | ➖ |
+| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate]) | [💚][🤝cb-issues] | [💚][🤝cb-pulls] | ➖ | ⭕️ No Matrix | ➖ |
+| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh] | Another Mirror | [💚][🤝gh-issues] | [💚][🤝gh-pulls] | [💚][📜gh-wiki] | 💯 Full Matrix | [💚][gh-discussions] |
+| 🎮️ [Discord Server][✉️discord-invite] | [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite] | [Let's][✉️discord-invite] | [talk][✉️discord-invite] | [about][✉️discord-invite] | [this][✉️discord-invite] | [library!][✉️discord-invite] |
 
 </details>
 
@@ -195,7 +193,7 @@ Compatible with MRI Ruby 2.2.0+, and concordant releases of JRuby, and TruffleRu
 Available as part of the Tidelift Subscription.
 
 <details markdown="1">
-  <summary>Need enterprise-level guarantees?</summary>
+ <summary>Need enterprise-level guarantees?</summary>
 
 The maintainers of this and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source packages you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact packages you use.
 
@@ -226,114 +224,6 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ```console
 gem install oauth2
 ```
-
-### 🔒 Secure Installation
-
-<details markdown="1">
-  <summary>For Medium or High Security Installations</summary>
-
-This gem is cryptographically signed, and has verifiable [SHA-256 and SHA-512][💎SHA_checksums] checksums by
-[stone_checksums][💎stone_checksums]. Be sure the gem you install hasn’t been tampered with
-by following the instructions below.
-
-Add my public key (if you haven’t already, expires 2045-04-29) as a trusted certificate:
-
-```console
-gem cert --add <(curl -Ls https://raw.github.com/galtzo-floss/certs/main/pboling.pem)
-```
-
-You only need to do that once.  Then proceed to install with:
-
-```console
-gem install oauth2 -P MediumSecurity
-```
-
-The `MediumSecurity` trust profile will verify signed gems, but allow the installation of unsigned dependencies.
-
-This is necessary because not all of `oauth2`’s dependencies are signed, so we cannot use `HighSecurity`.
-
-If you want to up your security game full-time:
-
-```console
-bundle config set --global trust-policy MediumSecurity
-```
-
-`MediumSecurity` instead of `HighSecurity` is necessary if not all the gems you use are signed.
-
-NOTE: Be prepared to track down certs for signed gems and add them the same way you added mine.
-
-</details>
-
-## What is new for v2.0?
-
-- Works with Ruby versions >= 2.2
-- Drop support for the expired MAC Draft (all versions)
-- Support IETF rfc7515 JSON Web Signature - JWS (since v2.0.12)
-    - Support JWT `kid` for key discovery and management
-- Support IETF rfc7523 JWT Bearer Tokens (since v2.0.0)
-- Support IETF rfc7231 Relative Location in Redirect (since v2.0.0)
-- Support IETF rfc6749 Don't set oauth params when nil (since v2.0.0)
-- Support IETF rfc7009 Token Revocation (since v2.0.10, updated in v2.0.13 to support revocation via URL-encoded parameters)
-- Support [OIDC 1.0 Private Key JWT](https://openid.net/specs/openid-connect-core-1_0.html#ClientAuthentication); based on the OAuth JWT assertion specification [(RFC 7523)](https://tools.ietf.org/html/rfc7523)
-- Support new formats, including from [jsonapi.org](http://jsonapi.org/format/): `application/vdn.api+json`, `application/vnd.collection+json`, `application/hal+json`, `application/problem+json`
-- Adds option to `OAuth2::Client#get_token`:
-    - `:access_token_class` (`AccessToken`); user specified class to use for all calls to `get_token`
-- Adds option to `OAuth2::AccessToken#initialize`:
-    - `:expires_latency` (`nil`); number of seconds by which AccessToken validity will be reduced to offset latency
-- By default, keys are transformed to snake case.
-    - Original keys will still work as previously, in most scenarios, thanks to [snaky_hash][snaky_hash] gem.
-    - However, this is a _breaking_ change if you rely on `response.parsed.to_h` to retain the original case, and the original wasn't snake case, as the keys in the result will be snake case.
-    - As of version 2.0.4 you can turn key transformation off with the `snaky: false` option.
-- By default, the `:auth_scheme` is now `:basic_auth` (instead of `:request_body`)
-    - Third-party strategies and gems may need to be updated if a provider was requiring client id/secret in the request body
-- [... A lot more](https://gitlab.com/ruby-oauth/oauth2/-/blob/main/CHANGELOG.md#200-2022-06-21-tag)
-
-[snaky_hash]: https://gitlab.com/ruby-oauth/snaky_hash
-
-## Compatibility
-
-Targeted ruby compatibility is non-EOL versions of Ruby, currently 3.2, 3.3, and 3.4.
-Compatibility is further distinguished as "Best Effort Support" or "Incidental Support" for older versions of Ruby.
-This gem will install on Ruby versions >= v2.2 for 2.x releases.
-See `1-4-stable` branch for older rubies.
-
-<details markdown="1">
-  <summary>Ruby Engine Compatibility Policy</summary>
-
-This gem is tested against MRI, JRuby, and Truffleruby.
-Each of those has varying versions that target a specific version of MRI Ruby.
-This gem should work in the just-listed Ruby engines according to the targeted MRI compatibility in the table below.
-If you would like to add support for additional engines,
-see [gemfiles/README.md](gemfiles/README.md), then submit a PR to the correct maintenance branch as according to the table below.
-
-</details>
-
-<details markdown="1">
-  <summary>Ruby Version Compatibility Policy</summary>
-
-If something doesn't work on one of these interpreters, it's a bug.
-
-This library may inadvertently work (or seem to work) on other Ruby
-implementations; however, support will only be provided for the versions listed
-above.
-
-If you would like this library to support another Ruby version, you may
-volunteer to be a maintainer. Being a maintainer entails making sure all tests
-run and pass on that implementation. When something breaks on your
-implementation, you will be responsible for providing patches in a timely
-fashion. If critical issues for a particular implementation exist at the time
-of a major release, support for that Ruby version may be dropped.
-
-</details>
-
-|     | Ruby OAuth2 Version | Maintenance Branch | Targeted Support     | Best Effort Support     | Incidental Support           |
-|:----|---------------------|--------------------|----------------------|-------------------------|------------------------------|
-| 1️⃣ | 2.0.x               | `main`             | 3.2, 3.3, 3.4        | 2.5, 2.6, 2.7, 3.0, 3.1 | 2.2, 2.3, 2.4                |
-| 2️⃣ | 1.4.x               | `1-4-stable`       | 3.2, 3.3, 3.4        | 2.5, 2.6, 2.7, 3.0, 3.1 | 1.9, 2.0, 2.1, 2.2, 2.3, 2.4 |
-| 3️⃣ | older               | N/A                | Best of luck to you! | Please upgrade!         |                              |
-
-NOTE: The 1.4 series will only receive critical security updates.
-See [SECURITY.md][🔐security] and [IRP.md][🔐irp].
 
 ## ⚙️ Configuration
 
@@ -411,7 +301,7 @@ client = OAuth2::Client.new(
   "client_secret",
   site: "https://example.org/nested/directory/on/your/server",
   authorize_url: "/jaunty/authorize/",
-  token_url: "/stirrups/access_token",
+  token_url: "/stirrups/access_token"
 )
 # => #<OAuth2::Client:0x00000001204c8288 @id="client_id", @secret="client_sec...
 client.auth_code.authorize_url(redirect_uri: "http://localhost:8080/oauth2/callback")
@@ -589,7 +479,7 @@ client = OAuth2::Client.new(
   "client_id",
   "client_secret",
   site: "https://example.org",
-  logger: Logger.new("example.log", "weekly"),
+  logger: Logger.new("example.log", "weekly")
 )
 ```
 
@@ -726,437 +616,14 @@ access = client.auth_code.get_token("code_value", redirect_uri: "http://localhos
 You can always use the `#request` method on the `OAuth2::Client` instance to make
 requests for tokens for any Authentication grant type.
 
-## 📘 Comprehensive Usage
-
-### Common Flows (end-to-end)
-
-- Authorization Code (server-side web app):
-
-```ruby
-require "oauth2"
-client = OAuth2::Client.new(
-  ENV["CLIENT_ID"],
-  ENV["CLIENT_SECRET"],
-  site: "https://provider.example.com",
-  redirect_uri: "https://my.app.example.com/oauth/callback",
-)
-
-# Step 1: redirect user to consent
-state = SecureRandom.hex(16)
-auth_url = client.auth_code.authorize_url(scope: "openid profile email", state: state)
-# redirect_to auth_url
-
-# Step 2: handle the callback
-# params[:code], params[:state]
-raise "state mismatch" unless params[:state] == state
-access = client.auth_code.get_token(params[:code])
-
-# Step 3: call APIs
-profile = access.get("/api/v1/me").parsed
-```
-
-- Client Credentials (machine-to-machine):
-
-```ruby
-client = OAuth2::Client.new(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"], site: "https://provider.example.com")
-access = client.client_credentials.get_token(audience: "https://api.example.com")
-resp = access.get("/v1/things")
-```
-
-- Resource Owner Password (legacy; avoid when possible):
-
-```ruby
-access = client.password.get_token("jdoe", "s3cret", scope: "read")
-```
-
-#### Examples
-
-<details markdown="1">
-<summary>JHipster UAA (Spring Cloud) password grant example (legacy; avoid when possible)</summary>
-
-```ruby
-# This converts a Postman/Net::HTTP multipart token request to oauth2 gem usage.
-# JHipster UAA typically exposes the token endpoint at /uaa/oauth/token.
-# The original snippet included:
-# - Basic Authorization header for the client (web_app:changeit)
-# - X-XSRF-TOKEN header from a cookie (some deployments require it)
-# - grant_type=password with username/password and client_id
-# Using oauth2 gem, you don't need to build multipart bodies; the gem sends
-# application/x-www-form-urlencoded as required by RFC 6749.
-
-require "oauth2"
-
-client = OAuth2::Client.new(
-  "web_app",            # client_id
-  "changeit",           # client_secret
-  site: "http://localhost:8080/uaa",
-  token_url: "/oauth/token",      # absolute under site (or "oauth/token" relative)
-  auth_scheme: :basic_auth,         # sends HTTP Basic Authorization header
-)
-
-# If your UAA requires an XSRF header for the token call, provide it as a header.
-# Often this is not required for token endpoints, but if your gateway enforces it,
-# obtain the value from the XSRF-TOKEN cookie and pass it here.
-xsrf_token = ENV["X_XSRF_TOKEN"] # e.g., pulled from a prior set-cookie value
-
-access = client.password.get_token(
-  "admin",                 # username
-  "admin",                 # password
-  headers: xsrf_token ? {"X-XSRF-TOKEN" => xsrf_token} : {},
-  # JHipster commonly also accepts/needs the client_id in the body; include if required:
-  # client_id: "web_app",
-)
-
-puts access.token
-puts access.to_hash # full token response
-```
-
-Notes:
-
-- Resource Owner Password Credentials (ROPC) is deprecated in OAuth 2.1 and discouraged. Prefer Authorization Code + PKCE.
-- If your deployment strictly demands the X-XSRF-TOKEN header, first fetch it from an endpoint that sets the XSRF-TOKEN cookie (often "/" or a login page) and pass it to headers.
-- For Basic auth, auth_scheme: :basic_auth handles the Authorization header; you do not need to base64-encode manually.
-
-</details>
-
-### Verb‑dependent Token Mode
-
-Providers like Instagram require the access token to be sent differently depending on the HTTP verb:
-
-- GET requests: token must be in the query string (?access_token=...)
-- POST/DELETE requests: token must be in the Authorization header (Bearer ...)
-
-Since v2.0.15, you can configure an AccessToken with a verb‑dependent mode. The gem will choose how to send the token based on the request method.
-
-Tips:
-
-- Avoid query‑string bearer tokens unless required by your provider. Instagram explicitly requires it for `GET` requests.
-- If you need a custom rule, you can pass a `Proc` for `mode`, e.g. `mode: ->(verb) { verb == :get ? :query : :header }`.
-
-<details markdown="1">
-  <summary>Instagram API Example</summary>
-
-Example: exchanging and refreshing long‑lived Instagram tokens, and making API calls
-
-```ruby
-require "oauth2"
-
-# NOTE: Users authenticate via Facebook Login to obtain a short‑lived user token (not shown here).
-# See Facebook Login docs for obtaining the initial short‑lived token.
-
-client = OAuth2::Client.new(nil, nil, site: "https://graph.instagram.com")
-
-# Start with a short‑lived token you already obtained via Facebook Login
-short_lived = OAuth2::AccessToken.new(
-  client,
-  ENV["IG_SHORT_LIVED_TOKEN"],
-  # Key part: verb‑dependent mode
-  mode: {get: :query, post: :header, delete: :header},
-)
-
-# 1) Exchange for a long‑lived token (Instagram requires GET with access_token in query)
-#    Endpoint: GET https://graph.instagram.com/access_token
-#    Params: grant_type=ig_exchange_token, client_secret=APP_SECRET
-exchange = short_lived.get(
-  "/access_token",
-  params: {
-    grant_type: "ig_exchange_token",
-    client_secret: ENV["IG_APP_SECRET"],
-    # access_token param will be added automatically by the AccessToken (mode => :query for GET)
-  },
-)
-long_lived_token_value = exchange.parsed["access_token"]
-
-long_lived = OAuth2::AccessToken.new(
-  client,
-  long_lived_token_value,
-  mode: {get: :query, post: :header, delete: :header},
-)
-
-# 2) Refresh the long‑lived token (Instagram uses GET with token in query)
-#    Endpoint: GET https://graph.instagram.com/refresh_access_token
-refresh_resp = long_lived.get(
-  "/refresh_access_token",
-  params: {grant_type: "ig_refresh_token"},
-)
-long_lived = OAuth2::AccessToken.new(
-  client,
-  refresh_resp.parsed["access_token"],
-  mode: {get: :query, post: :header, delete: :header},
-)
-
-# 3) Typical API GET request (token in query automatically)
-me = long_lived.get("/me", params: {fields: "id,username"}).parsed
-
-# 4) Example POST (token sent via Bearer header automatically)
-# Note: Replace the path/params with a real Instagram Graph API POST you need,
-# such as publishing media via the Graph API endpoints.
-# long_lived.post("/me/media", body: {image_url: "https://...", caption: "hello"})
-```
-
-</details>
-
-### Refresh Tokens
-
-When the server issues a refresh_token, you can refresh manually or implement an auto-refresh wrapper.
-
-- Manual refresh:
-
-```ruby
-if access.expired?
-  access = access.refresh
-end
-```
-
-- Auto-refresh wrapper pattern:
-
-```ruby
-class AutoRefreshingToken
-  def initialize(token_provider, store: nil)
-    @token = token_provider
-    @store = store # e.g., something that responds to read/write for token data
-  end
-
-  def with(&blk)
-    tok = ensure_fresh!
-    blk ? blk.call(tok) : tok
-  rescue OAuth2::Error => e
-    # If a 401 suggests token invalidation, try one refresh and retry once
-    if e.response && e.response.status == 401 && @token.refresh_token
-      @token = @token.refresh
-      @store.write(@token.to_hash) if @store
-      retry
-    end
-    raise
-  end
-
-private
-
-  def ensure_fresh!
-    if @token.expired? && @token.refresh_token
-      @token = @token.refresh
-      @store.write(@token.to_hash) if @store
-    end
-    @token
-  end
-end
-
-# usage
-keeper = AutoRefreshingToken.new(access)
-keeper.with { |tok| tok.get("/v1/protected") }
-```
-
-Persist the token across processes using `AccessToken#to_hash` and `AccessToken.from_hash(client, hash)`.
-
-### Token Revocation (RFC 7009)
-
-You can revoke either the access token or the refresh token.
-
-```ruby
-# Revoke the current access token
-access.revoke(token_type_hint: :access_token)
-
-# Or explicitly revoke the refresh token (often also invalidates associated access tokens)
-access.revoke(token_type_hint: :refresh_token)
-```
-
-### Client Configuration Tips
-
-#### Mutual TLS (mTLS) client authentication
-
-Some providers require OAuth requests (including the token request and subsequent API calls) to be sender‑constrained using mutual TLS (mTLS). With this gem, you enable mTLS by providing a client certificate/private key to Faraday via connection_opts.ssl and, if your provider requires it for client authentication, selecting the tls_client_auth auth_scheme.
-
-Example using PEM files (certificate and key):
-
-```ruby
-require "oauth2"
-require "openssl"
-
-client = OAuth2::Client.new(
-  ENV.fetch("CLIENT_ID"),
-  ENV.fetch("CLIENT_SECRET"),
-  site: "https://example.com",
-  authorize_url: "/oauth/authorize/",
-  token_url: "/oauth/token/",
-  auth_scheme: :tls_client_auth, # if your AS requires mTLS-based client authentication
-  connection_opts: {
-    ssl: {
-      client_cert: OpenSSL::X509::Certificate.new(File.read("localhost.pem")),
-      client_key: OpenSSL::PKey::RSA.new(File.read("localhost-key.pem")),
-      # Optional extras, uncomment as needed:
-      # ca_file: "/path/to/ca-bundle.pem",   # custom CA(s)
-      # verify: true                           # enable server cert verification (recommended)
-    },
-  },
-)
-
-# Example token request (any grant type can be used). The mTLS handshake
-# will occur automatically on HTTPS calls using the configured cert/key.
-access = client.client_credentials.get_token
-
-# Subsequent resource requests will also use mTLS on HTTPS endpoints of `site`:
-resp = access.get("/v1/protected")
-```
-
-Notes:
-
-- Files must contain the appropriate PEMs. The private key may be encrypted; if so, pass a password to `OpenSSL::PKey::RSA.new(File.read(path), ENV["KEY_PASSWORD"])`.
-- If your certificate and key are in a PKCS#12/PFX bundle, you can load them like:
-  - `p12 = OpenSSL::PKCS12.new(File.read("client.p12"), ENV["P12_PASSWORD"])`
-  - `client_cert = p12.certificate; client_key = p12.key`
-- Server trust:
-  - If your environment does not have system CAs, specify `ca_file` or `ca_path` inside the `ssl:` hash.
-  - Keep `verify: true` in production. Set `verify: false` only for local testing.
-- Faraday adapter: Any adapter that supports Ruby’s OpenSSL should work. `net_http` (default) and `net_http_persistent` are common choices.
-- Scope of mTLS: The SSL client cert is applied to any HTTPS request made by this client (token and resource requests) to the configured site base URL (and absolute URLs you call with the same client).
-- OIDC tie-in: Some OPs require tls_client_auth at the token endpoint per OIDC/OAuth specifications. That is enabled via `auth_scheme: :tls_client_auth` as shown above.
-
-#### Authentication schemes for the token request
-
-```ruby
-OAuth2::Client.new(
-  id,
-  secret,
-  site: "https://provider.example.com",
-  auth_scheme: :basic_auth, # default. Alternatives: :request_body, :tls_client_auth, :private_key_jwt
-)
-```
-
-#### Faraday connection, timeouts, proxy, custom adapter/middleware:
-
-```ruby
-client = OAuth2::Client.new(
-  id,
-  secret,
-  site: "https://provider.example.com",
-  connection_opts: {
-    request: {open_timeout: 5, timeout: 15},
-    proxy: ENV["HTTPS_PROXY"],
-    ssl: {verify: true},
-  },
-) do |faraday|
-  faraday.request(:url_encoded)
-  # faraday.response :logger, Logger.new($stdout) # see OAUTH_DEBUG below
-  faraday.adapter(:net_http_persistent) # or any Faraday adapter you need
-end
-```
-
-##### Using flat query params (`Faraday::FlatParamsEncoder`)
-
-Some APIs expect repeated key parameters to be sent as flat params rather than arrays. Faraday provides `FlatParamsEncoder` for this purpose. You can configure the oauth2 client to use it when building requests.
-
-```ruby
-require "faraday"
-
-client = OAuth2::Client.new(
-  id,
-  secret,
-  site: "https://api.example.com",
-  # Pass Faraday connection options to make FlatParamsEncoder the default
-  connection_opts: {
-    request: {params_encoder: Faraday::FlatParamsEncoder},
-  },
-) do |faraday|
-  faraday.request(:url_encoded)
-  faraday.adapter(:net_http)
-end
-
-access = client.client_credentials.get_token
-
-# Example of a GET with two flat filter params (not an array):
-# Results in: ?filter=order.clientCreatedTime%3E1445006997000&filter=order.clientCreatedTime%3C1445611797000
-resp = access.get(
-  "/v1/orders",
-  params: {
-    # Provide the values as an array; FlatParamsEncoder expands them as repeated keys
-    filter: [
-      "order.clientCreatedTime>1445006997000",
-      "order.clientCreatedTime<1445611797000",
-    ],
-  },
-)
-```
-
-If you instead need to build a raw Faraday connection yourself, the equivalent configuration is:
-
-```ruby
-conn = Faraday.new("https://api.example.com", request: {params_encoder: Faraday::FlatParamsEncoder})
-```
-
-#### Redirection
-
-The library follows up to `max_redirects` (default 5).
-You can override per-client via `options[:max_redirects]`.
-
-### Handling Responses and Errors
-
-- Parsing:
-
-```ruby
-resp = access.get("/v1/thing")
-resp.status     # Integer
-resp.headers    # Hash
-resp.body       # String
-resp.parsed     # SnakyHash::StringKeyed or Array when JSON array
-```
-
-- Error handling:
-
-```ruby
-begin
-  access.get("/v1/forbidden")
-rescue OAuth2::Error => e
-  e.code         # OAuth2 error code (when present)
-  e.description  # OAuth2 error description (when present)
-  e.response     # OAuth2::Response (full access to status/headers/body)
-end
-```
-
-- Disable raising on 4xx/5xx to inspect the response yourself:
-
-```ruby
-client = OAuth2::Client.new(id, secret, site: site, raise_errors: false)
-res = client.request(:get, "/v1/maybe-errors")
-if res.status == 429
-  sleep res.headers["retry-after"].to_i
-end
-```
-
-### Making Raw Token Requests
-
-If a provider requires non-standard parameters or headers, you can call `client.get_token` directly:
-
-```ruby
-access = client.get_token({
-  grant_type: "client_credentials",
-  audience: "https://api.example.com",
-  headers: {"X-Custom" => "value"},
-  parse: :json, # override parsing
-})
-```
-
-### OpenID Connect (OIDC)
-
-- If the token response includes an `id_token` (a JWT), this gem surfaces it in `token.params['id_token']`.
-- **Note**: This gem does **not** validate the signature of the `id_token`. You must use a JWT library (like the `jwt` [gem](https://github.com/jwt/ruby-jwt)) and your provider's JWKs to verify it.
-- For `private_key_jwt` client authentication, provide `auth_scheme: :private_key_jwt` and ensure your key configuration matches the provider requirements.
-- See [OIDC.md](OIDC.md) for a more complete OIDC overview and examples.
-
-### Debugging
-
-- Set environment variable `OAUTH_DEBUG=true` to enable verbose Faraday logging (uses the client-provided logger).
-- To mirror a working curl request, ensure you set the same auth scheme, params, and content type. The Quick Example at the top shows a curl-to-ruby translation.
-
----
-
 ## 🦷 FLOSS Funding
 
 While ruby-oauth tools are free software and will always be, the project would benefit immensely from some funding.
 Raising a monthly budget of... "dollars" would make the project more sustainable.
 
 We welcome both individual and corporate sponsors! We also offer a
-wide array of funding channels to account for your preferences
-(although currently [Open Collective][🖇osc] is our preferred funding platform).
+wide array of funding channels to account for your preferences.
+Currently, [Open Collective][🖇osc] is our preferred funding platform.
 
 **If you're working in a company that's making significant use of ruby-oauth tools we'd
 appreciate it if you suggest to your company to become a ruby-oauth sponsor.**
@@ -1168,7 +635,7 @@ You can support the development of ruby-oauth tools via
 [Open Collective][🖇osc]
 and [Tidelift][🏙️entsup-tidelift].
 
-| 📍 NOTE                                                                                                                                                                                                              |
+| 📍 NOTE |
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | If doing a sponsorship in the form of donation is problematic for your company <br/> from an accounting standpoint, we'd recommend the use of Tidelift, <br/> where you can get a support-like subscription instead. |
 
@@ -1190,17 +657,13 @@ NOTE: [kettle-readme-backers][kettle-readme-backers] updates this list every day
 
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:START -->
 No sponsors yet. Be the first!
-
-### Open Collective for Donors
-
-[Bill Woika](https://opencollective.com/bill-woika)
 <!-- OPENCOLLECTIVE-ORGANIZATIONS:END -->
 
 [kettle-readme-backers]: https://github.com/ruby-oauth/oauth2/blob/main/exe/kettle-readme-backers
 
 ### Another way to support open-source
 
-I’m driven by a passion to foster a thriving open-source community – a space where people can tackle complex problems, no matter how small.  Revitalizing libraries that have fallen into disrepair, and building new libraries focused on solving real-world challenges, are my passions.  I was recently affected by layoffs, and the tech jobs market is unwelcoming. I’m reaching out here because your support would significantly aid my efforts to provide for my family, and my farm (11 🐔 chickens, 2 🐶 dogs, 3 🐰 rabbits, 8 🐈‍ cats).
+I’m driven by a passion to foster a thriving open-source community – a space where people can tackle complex problems, no matter how small. Revitalizing libraries that have fallen into disrepair, and building new libraries focused on solving real-world challenges, are my passions. I was recently affected by layoffs, and the tech jobs market is unwelcoming. I’m reaching out here because your support would significantly aid my efforts to provide for my family, and my farm (11 🐔 chickens, 2 🐶 dogs, 3 🐰 rabbits, 8 🐈‍ cats).
 
 If you work at a company that uses my work, please encourage them to support me as a corporate sponsor. My work on gems you use might show up in `bundle fund`.
 
@@ -1212,15 +675,12 @@ I’m developing a new library, [floss_funding][🖇floss-funding-gem], designed
 
 ## 🔐 Security
 
-To report a security vulnerability, please use the [Tidelift security contact](https://tidelift.com/security).
-Tidelift will coordinate the fix and disclosure.
-
-For more see [SECURITY.md][🔐security], [THREAT_MODEL.md][🔐threat-model], and [IRP.md][🔐irp].
+See [SECURITY.md][🔐security].
 
 ## 🤝 Contributing
 
 If you need some ideas of where to help, you could work on adding more code coverage,
-or if it is already 💯 (see [below](#code-coverage)) check [reek](REEK), [issues][🤝gh-issues], or [PRs][🤝gh-pulls],
+or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues] or [PRs][🤝gh-pulls],
 or use the gem and think about how it could be better.
 
 We [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] so if you make changes, remember to update it.
@@ -1233,11 +693,16 @@ See [CONTRIBUTING.md][🤝contributing].
 
 ### Code Coverage
 
+<details markdown="1">
+<summary>Coverage service badges</summary>
+
 [![Coverage Graph][🏀codecov-g]][🏀codecov]
 
 [![Coveralls Test Coverage][🏀coveralls-img]][🏀coveralls]
 
 [![QLTY Test Coverage][🏀qlty-covi]][🏀qlty-cov]
+
+</details>
 
 ### 🪇 Code of Conduct
 
@@ -1253,13 +718,13 @@ Made with [contributors-img][🖐contrib-rocks].
 Also see GitLab Contributors: [https://gitlab.com/ruby-oauth/oauth2/-/graphs/main][🚎contributors-gl]
 
 <details>
-    <summary>⭐️ Star History</summary>
+ <summary>⭐️ Star History</summary>
 
-<a href="https://star-history.com/#ruby-oauth/oauth2&Date">
+<a href="https://star-history.com/ruby-oauth/oauth2&Date">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date&theme=dark" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date" />
-   <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date" />
+ <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date&theme=dark" />
+ <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date" />
+ <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date" />
  </picture>
 </a>
 
@@ -1267,19 +732,8 @@ Also see GitLab Contributors: [https://gitlab.com/ruby-oauth/oauth2/-/graphs/mai
 
 ## 📌 Versioning
 
-This Library adheres to [![Semantic Versioning 2.0.0][📌semver-img]][📌semver].
-Violations of this scheme should be reported as bugs.
-Specifically, if a minor or patch version is released that breaks backward compatibility,
-a new version should be immediately released that restores compatibility.
-Breaking changes to the public API will only be introduced with new major versions.
-
-> dropping support for a platform is both obviously and objectively a breaking change <br/>
->—Jordan Harband ([@ljharb](https://github.com/ljharb), maintainer of SemVer) [in SemVer issue 716][📌semver-breaking]
-
-I understand that policy doesn't work universally ("exceptions to every rule!"),
-but it is the policy here.
-As such, in many cases it is good to specify a dependency on this library using
-the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
+This library follows [![Semantic Versioning 2.0.0][📌semver-img]][📌semver] for its public API where practical.
+For most applications, prefer the [Pessimistic Version Constraint][📌pvc] with two digits of precision.
 
 For example:
 
@@ -1290,8 +744,8 @@ spec.add_dependency("oauth2", "~> 2.0")
 <details markdown="1">
 <summary>📌 Is "Platform Support" part of the public API? More details inside.</summary>
 
-SemVer should, IMO, but doesn't explicitly, say that dropping support for specific Platforms
-is a *breaking change* to an API, and for that reason the bike shedding is endless.
+Dropping support for a platform can be a breaking change for affected users.
+If a release changes supported platforms, it should be called out clearly in the changelog and versioned with that impact in mind.
 
 To get a better understanding of how SemVer is intended to work over a project's lifetime,
 read this article from the creator of SemVer:
@@ -1305,25 +759,117 @@ See [CHANGELOG.md][📌changelog] for a list of releases.
 ## 📄 License
 
 The gem is available as open source under the terms of
-the [MIT License][📄license] [![License: MIT][📄license-img]][📄license-ref].
-See [LICENSE.txt][📄license] for the official [Copyright Notice][📄copyright-notice-explainer].
+the [MIT](MIT.md) [![License: MIT][📄license-img]][📄license-ref].
 
 ### © Copyright
 
-<ul>
-    <li>
-        Copyright (c) 2017 – 2026 Peter H. Boling, of
-        <a href="https://discord.gg/3qme4XHNKN">
-            Galtzo.com
-            <picture>
-              <img src="https://logos.galtzo.com/assets/images/galtzo-floss/avatar-128px-blank.svg" alt="Galtzo.com Logo (Wordless) by Aboling0, CC BY-SA 4.0" width="24">
-            </picture>
-        </a>, and oauth2 contributors.
-    </li>
-    <li>
-        Copyright (c) 2011 - 2013 Michael Bleigh and Intridea, Inc.
-    </li>
-</ul>
+See [LICENSE.md][📄license] for the official copyright notice.
+
+<details markdown="1">
+<summary>Copyright holders</summary>
+
+- Copyright (c) 2010-2014, 2016-2017 Erik Michaels-Ober
+- Copyright (c) 2010 Jeremy Kemper
+- Copyright (c) 2010-2011 Michael Bleigh
+- Copyright (c) 2010-2011 Paul Walker
+- Copyright (c) 2010 rick
+- Copyright (c) 2010 Tim Habermaas
+- Copyright (c) 2010 Wynn Netherland
+- Copyright (c) 2011 Alexander Lang
+- Copyright (c) 2011 Alexander Lang
+- Copyright (c) 2011 Greg Spurrier
+- Copyright (c) 2011 Jay Adkisson
+- Copyright (c) 2011 Luke Saunders
+- Copyright (c) 2011 Paul Walker
+- Copyright (c) 2011 Simon Gate
+- Copyright (c) 2012 Bas Vodde
+- Copyright (c) 2012 Damian Janowski
+- Copyright (c) 2012 Daniël van de Burgt
+- Copyright (c) 2012 Dorren Chen
+- Copyright (c) 2012 Igor Sales
+- Copyright (c) 2012 Leigh Caplan
+- Copyright (c) 2012 Michael Andrews
+- Copyright (c) 2012 Omer Rauchwerger
+- Copyright (c) 2012 Saverio Trioni
+- Copyright (c) 2012 Trent Ogren
+- Copyright (c) 2012 Vsevolod Romashov
+- Copyright (c) 2013 Antonio Tapiador del Dujo
+- Copyright (c) 2013 Eduardo Gurgel
+- Copyright (c) 2013 Geostellar Developer
+- Copyright (c) 2013-2014, 2018 Niels Ganser
+- Copyright (c) 2013 Rainux Luo
+- Copyright (c) 2013 Taylor Hedberg
+- Copyright (c) 2013 Tim Clem
+- Copyright (c) 2014 Dave Stevens
+- Copyright (c) 2014 Ellis Berner
+- Copyright (c) 2014 Frank Macreery
+- Copyright (c) 2014 Michael Bleigh
+- Copyright (c) 2014 Olivier Lacan
+- Copyright (c) 2014 Peter Souter
+- Copyright (c) 2014 Ryan Williams
+- Copyright (c) 2015 Andrew Cantino and Jeff Moore
+- Copyright (c) 2015 Thomas Walpole
+- Copyright (c) 2016 Bo Jeanes
+- Copyright (c) 2016 Cody Cutrer
+- Copyright (c) 2016 Edward Rudd
+- Copyright (c) 2016 Lawrence Oluyede
+- Copyright (c) 2016 Linus Pettersson
+- Copyright (c) 2016 Motoshi Nishihira
+- Copyright (c) 2017 Adrian Setyadi
+- Copyright (c) 2017-2018 Benjamin Quorning
+- Copyright (c) 2017 Christoph Petschnig
+- Copyright (c) 2017, 2022 Nathaniel Bibler
+- Copyright (c) 2017 Oleg
+- Copyright (c) 2017 Samuel Cochran
+- Copyright (c) 2017 tetsuya
+- Copyright (c) 2017 Yury Velikanau
+- Copyright (c) 2018 Alex Kowalczuk
+- Copyright (c) 2018 asm__
+- Copyright (c) 2018 David Christensen
+- Copyright (c) 2018 fossabot
+- Copyright (c) 2018 Jeff Moore
+- Copyright (c) 2018 Jeff Moore
+- Copyright (c) 2018 Jonathan del Strother
+- Copyright (c) 2018 Joseph Page
+- Copyright (c) 2018 Joseph Page
+- Copyright (c) 2018 Lomey
+- Copyright (c) 2018 Markus Bengts
+- Copyright (c) 2018 Mathias Klippinge
+- Copyright (c) 2018 nikz
+- Copyright (c) 2018-2019, 2021-2022, 2024-2026 Peter H. Boling
+- Copyright (c) 2019 Daniel Fockler
+- Copyright (c) 2019 Elliot Crosby-McCullough
+- Copyright (c) 2019 João Paulo
+- Copyright (c) 2019 Orien Madgwick
+- Copyright (c) 2019 Ryan T. Hosford
+- Copyright (c) 2019 Tom Corley
+- Copyright (c) 2020 anvox
+- Copyright (c) 2020 Jesse Cotton
+- Copyright (c) 2020 Olle Jonsson
+- Copyright (c) 2020 Stephen Reid
+- Copyright (c) 2021 Anders Carling
+- Copyright (c) 2021 dobon
+- Copyright (c) 2021 Jan Zaydowicz
+- Copyright (c) 2021 Nicholas Palaniuk
+- Copyright (c) 2021-2022 Stan Hu
+- Copyright (c) 2022 Benjamin Quorning
+- Copyright (c) 2022 Bouke van der Bijl
+- Copyright (c) 2022 nov
+- Copyright (c) 2022 Rick Selby
+- Copyright (c) 2022 Ryo Takahashi
+- Copyright (c) 2023 Jessie Young
+- Copyright (c) 2023 Карим Гимадеев
+- Copyright (c) 2024 Aboling0
+- Copyright (c) 2024 Elise Wood
+- Copyright (c) 2024 Manuel van Rijn
+- Copyright (c) 2025-2026 Annibelle Boling
+- Copyright (c) 2025 Mark James
+- Copyright (c) 2025 Mridang Agarwalla
+- Copyright (c) 2025 Sasa Rosic
+- Copyright (c) 2026 kain
+- Copyright (c) 2026 StepSecurity Bot
+
+</details>
 
 ## 🤑 A request for help
 
@@ -1343,6 +889,8 @@ To say "thanks!" ☝️ Join the Discord or 👇️ send money.
 [![Sponsor ruby-oauth/oauth2 on Open Source Collective][🖇osc-all-bottom-img]][🖇osc] 💌 [![Sponsor me on GitHub Sponsors][🖇sponsor-bottom-img]][🖇sponsor] 💌 [![Sponsor me on Liberapay][⛳liberapay-bottom-img]][⛳liberapay] 💌 [![Donate on PayPal][🖇paypal-bottom-img]][🖇paypal]
 
 ### Please give the project a star ⭐ ♥.
+
+Many parts of this project are actively managed by a [kettle-jem](https://github.com/structuredmerge/structuredmerge-ruby/tree/main/gems/kettle-jem) smart template utilizing [StructuredMerge.org](https://structuredmerge.org) merge contracts.
 
 Thanks for RTFM. ☺️
 
@@ -1366,7 +914,7 @@ Thanks for RTFM. ☺️
 [🖇polar-img]: https://img.shields.io/badge/polar-donate-a51611.svg?style=flat
 [🖇polar]: https://polar.sh/pboling
 [🖇kofi-img]: https://img.shields.io/badge/ko--fi-%E2%9C%93-a51611.svg?style=flat
-[🖇kofi]: https://ko-fi.com/O5O86SNP4
+[🖇kofi]: https://ko-fi.com/pboling
 [🖇patreon-img]: https://img.shields.io/badge/patreon-donate-a51611.svg?style=flat
 [🖇patreon]: https://patreon.com/galtzo
 [🖇buyme-small-img]: https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-a51611.svg?style=flat
@@ -1382,22 +930,19 @@ Thanks for RTFM. ☺️
 [✉️ruby-friends-img]: https://img.shields.io/badge/daily.dev-%F0%9F%92%8E_Ruby_Friends-0A0A0A?style=for-the-badge&logo=dailydotdev&logoColor=white
 [✉️ruby-friends]: https://app.daily.dev/squads/rubyfriends
 
-[⛳gg-discussions]: https://groups.google.com/g/oauth-ruby
-[⛳gg-discussions-img]: https://img.shields.io/badge/google-group-0093D0.svg?style=for-the-badge&logo=google&logoColor=orange
-
 [✇bundle-group-pattern]: https://gist.github.com/pboling/4564780
 [⛳️gem-namespace]: https://github.com/ruby-oauth/oauth2
 [⛳️namespace-img]: https://img.shields.io/badge/namespace-OAuth2-3C2D2D.svg?style=square&logo=ruby&logoColor=white
 [⛳️gem-name]: https://bestgems.org/gems/oauth2
 [⛳️name-img]: https://img.shields.io/badge/name-oauth2-3C2D2D.svg?style=square&logo=rubygems&logoColor=red
 [⛳️tag-img]: https://img.shields.io/github/tag/ruby-oauth/oauth2.svg
-[⛳️tag]: http://github.com/ruby-oauth/oauth2/releases
+[⛳️tag]: https://github.com/ruby-oauth/oauth2/releases
 [🚂maint-blog]: http://www.railsbling.com/tags/oauth2
 [🚂maint-blog-img]: https://img.shields.io/badge/blog-railsbling-0093D0.svg?style=for-the-badge&logo=rubyonrails&logoColor=orange
 [🚂maint-contact]: http://www.railsbling.com/contact
 [🚂maint-contact-img]: https://img.shields.io/badge/Contact-Maintainer-0093D0.svg?style=flat&logo=rubyonrails&logoColor=red
 [💖🖇linkedin]: http://www.linkedin.com/in/peterboling
-[💖🖇linkedin-img]: https://img.shields.io/badge/PeterBoling-LinkedIn-0B66C2?style=flat&logo=newjapanprowrestling
+[💖🖇linkedin-img]: https://img.shields.io/badge/LinkedIn-Profile-0B66C2?style=flat&logo=newjapanprowrestling
 [💖✌️wellfound]: https://wellfound.com/u/peter-boling
 [💖✌️wellfound-img]: https://img.shields.io/badge/peter--boling-orange?style=flat&logo=wellfound
 [💖💲crunchbase]: https://www.crunchbase.com/person/peter-boling
@@ -1426,7 +971,7 @@ Thanks for RTFM. ☺️
 [💁🏼‍♂️peterboling]: http://www.peterboling.com
 [🚂railsbling]: http://www.railsbling.com
 [📜src-gl-img]: https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&logo=Gitlab&logoColor=orange
-[📜src-gl]: https://gitlab.com/ruby-oauth/oauth2/
+[📜src-gl]: https://gitlab.com/ruby-oauth/oauth2
 [📜src-cb-img]: https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&logo=CodeBerg&logoColor=blue
 [📜src-cb]: https://codeberg.org/ruby-oauth/oauth2
 [📜src-gh-img]: https://img.shields.io/badge/GitHub-238636?style=for-the-badge&logo=Github&logoColor=green
@@ -1435,8 +980,8 @@ Thanks for RTFM. ☺️
 [📜docs-head-rd-img]: https://img.shields.io/badge/YARD_on_Galtzo.com-HEAD-943CD2?style=for-the-badge&logo=readthedocs&logoColor=white
 [📜gl-wiki]: https://gitlab.com/ruby-oauth/oauth2/-/wikis/home
 [📜gh-wiki]: https://github.com/ruby-oauth/oauth2/wiki
-[📜gl-wiki-img]: https://img.shields.io/badge/wiki-examples-943CD2.svg?style=for-the-badge&logo=gitlab&logoColor=white
-[📜gh-wiki-img]: https://img.shields.io/badge/wiki-examples-943CD2.svg?style=for-the-badge&logo=github&logoColor=white
+[📜gl-wiki-img]: https://img.shields.io/badge/wiki-gitlab-943CD2.svg?style=for-the-badge&logo=gitlab&logoColor=white
+[📜gh-wiki-img]: https://img.shields.io/badge/wiki-github-943CD2.svg?style=for-the-badge&logo=github&logoColor=white
 [👽dl-rank]: https://bestgems.org/gems/oauth2
 [👽dl-ranki]: https://img.shields.io/gem/rd/oauth2.svg
 [👽version]: https://bestgems.org/gems/oauth2
@@ -1449,32 +994,37 @@ Thanks for RTFM. ☺️
 [🏀codecovi]: https://codecov.io/gh/ruby-oauth/oauth2/graph/badge.svg
 [🏀coveralls]: https://coveralls.io/github/ruby-oauth/oauth2?branch=main
 [🏀coveralls-img]: https://coveralls.io/repos/github/ruby-oauth/oauth2/badge.svg?branch=main
-[🖐codeQL]: https://github.com/ruby-oauth/oauth2/security/code-scanning
-[🖐codeQL-img]: https://github.com/ruby-oauth/oauth2/actions/workflows/codeql-analysis.yml/badge.svg
-[🚎1-an-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml
-[🚎1-an-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/ancient.yml/badge.svg
+[🚎ruby-2.4-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-2.4.yml
+[🚎ruby-2.5-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-2.5.yml
+[🚎ruby-2.6-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-2.6.yml
+[🚎ruby-2.7-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-2.7.yml
+[🚎ruby-3.0-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-3.0.yml
+[🚎ruby-3.1-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-3.1.yml
+[🚎ruby-3.2-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-3.2.yml
+[🚎ruby-3.3-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-3.3.yml
+[🚎ruby-3.4-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/ruby-3.4.yml
+[🚎jruby-9.2-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-9.2.yml
+[🚎jruby-9.3-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-9.3.yml
+[🚎jruby-9.4-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-9.4.yml
+[🚎truby-22.3-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-22.3.yml
+[🚎truby-23.0-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-23.0.yml
+[🚎truby-23.1-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-23.1.yml
+[🚎truby-24.2-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-24.2.yml
+[🚎truby-25.0-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-25.0.yml
 [🚎2-cov-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/coverage.yml
 [🚎2-cov-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/coverage.yml/badge.svg
 [🚎3-hd-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/heads.yml
 [🚎3-hd-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/heads.yml/badge.svg
-[🚎4-lg-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/legacy.yml
-[🚎4-lg-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/legacy.yml/badge.svg
 [🚎5-st-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/style.yml
 [🚎5-st-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/style.yml/badge.svg
-[🚎6-s-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/supported.yml
-[🚎6-s-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/supported.yml/badge.svg
-[🚎7-us-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml
-[🚎7-us-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/unsupported.yml/badge.svg
-[🚎8-ho-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/hoary.yml
-[🚎8-ho-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/hoary.yml/badge.svg
+[🚎9-t-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffle.yml
+[🚎9-t-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffle.yml/badge.svg
 [🚎10-j-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml
 [🚎10-j-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby.yml/badge.svg
 [🚎11-c-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml
 [🚎11-c-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/current.yml/badge.svg
 [🚎12-crh-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/dep-heads.yml
 [🚎12-crh-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/dep-heads.yml/badge.svg
-[🚎13-cbs-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/caboose.yml
-[🚎13-cbs-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/caboose.yml/badge.svg
 [🚎13-🔒️-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/locked_deps.yml
 [🚎13-🔒️-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/locked_deps.yml/badge.svg
 [🚎14-🔓️-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/unlocked_deps.yml
@@ -1482,7 +1032,7 @@ Thanks for RTFM. ☺️
 [🚎15-🪪-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/license-eye.yml
 [🚎15-🪪-wfi]: https://github.com/ruby-oauth/oauth2/actions/workflows/license-eye.yml/badge.svg
 [💎ruby-2.2i]: https://img.shields.io/badge/Ruby-2.2_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=white
-[💎ruby-2.3i]: https://img.shields.io/badge/Ruby-2.3-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
+[💎ruby-2.3i]: https://img.shields.io/badge/Ruby-2.3_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.4i]: https://img.shields.io/badge/Ruby-2.4-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.5i]: https://img.shields.io/badge/Ruby-2.5-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-2.6i]: https://img.shields.io/badge/Ruby-2.6-DF00CA?style=for-the-badge&logo=ruby&logoColor=white
@@ -1491,16 +1041,18 @@ Thanks for RTFM. ☺️
 [💎ruby-3.1i]: https://img.shields.io/badge/Ruby-3.1-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-3.2i]: https://img.shields.io/badge/Ruby-3.2-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-3.3i]: https://img.shields.io/badge/Ruby-3.3-CC342D?style=for-the-badge&logo=ruby&logoColor=white
+[💎ruby-3.4i]: https://img.shields.io/badge/Ruby-3.4-CC342D?style=for-the-badge&logo=ruby&logoColor=white
+[💎ruby-4.0i]: https://img.shields.io/badge/Ruby-4.0-CC342D?style=for-the-badge&logo=ruby&logoColor=white
 [💎ruby-c-i]: https://img.shields.io/badge/Ruby-current-CC342D?style=for-the-badge&logo=ruby&logoColor=green
 [💎ruby-headi]: https://img.shields.io/badge/Ruby-HEAD-CC342D?style=for-the-badge&logo=ruby&logoColor=blue
-[💎truby-22.3i]: https://img.shields.io/badge/Truffle_Ruby-22.3_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
-[💎truby-23.0i]: https://img.shields.io/badge/Truffle_Ruby-23.0_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
-[💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-22.3i]: https://img.shields.io/badge/Truffle_Ruby-22.3-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-23.0i]: https://img.shields.io/badge/Truffle_Ruby-23.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-24.2i]: https://img.shields.io/badge/Truffle_Ruby-24.2-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
+[💎truby-25.0i]: https://img.shields.io/badge/Truffle_Ruby-25.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-c-i]: https://img.shields.io/badge/Truffle_Ruby-current-34BCB1?style=for-the-badge&logo=ruby&logoColor=green
-[💎truby-headi]: https://img.shields.io/badge/Truffle_Ruby-HEAD-34BCB1?style=for-the-badge&logo=ruby&logoColor=blue
-[💎jruby-9.1i]: https://img.shields.io/badge/JRuby-9.1_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=red
-[💎jruby-9.2i]: https://img.shields.io/badge/JRuby-9.2_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=red
-[💎jruby-9.3i]: https://img.shields.io/badge/JRuby-9.3_(%F0%9F%9A%ABCI)-AABBCC?style=for-the-badge&logo=ruby&logoColor=red
+[💎jruby-9.2i]: https://img.shields.io/badge/JRuby-9.2-FBE742?style=for-the-badge&logo=ruby&logoColor=red
+[💎jruby-9.3i]: https://img.shields.io/badge/JRuby-9.3-FBE742?style=for-the-badge&logo=ruby&logoColor=red
 [💎jruby-9.4i]: https://img.shields.io/badge/JRuby-9.4-FBE742?style=for-the-badge&logo=ruby&logoColor=red
 [💎jruby-c-i]: https://img.shields.io/badge/JRuby-current-FBE742?style=for-the-badge&logo=ruby&logoColor=green
 [💎jruby-headi]: https://img.shields.io/badge/JRuby-HEAD-FBE742?style=for-the-badge&logo=ruby&logoColor=blue
@@ -1511,38 +1063,35 @@ Thanks for RTFM. ☺️
 [🤝cb-issues]: https://codeberg.org/ruby-oauth/oauth2/issues
 [🤝cb-pulls]: https://codeberg.org/ruby-oauth/oauth2/pulls
 [🤝cb-donate]: https://donate.codeberg.org/
-[🤝contributing]: CONTRIBUTING.md
-[🏀codecov-g]: https://codecov.io/gh/ruby-oauth/oauth2/graphs/tree.svg
+[🤝contributing]: https://github.com/ruby-oauth/oauth2/blob/main/CONTRIBUTING.md
+[🏀codecov-g]: https://codecov.io/gh/ruby-oauth/oauth2/graph/badge.svg
 [🖐contrib-rocks]: https://contrib.rocks
 [🖐contributors]: https://github.com/ruby-oauth/oauth2/graphs/contributors
 [🖐contributors-img]: https://contrib.rocks/image?repo=ruby-oauth/oauth2
 [🚎contributors-gl]: https://gitlab.com/ruby-oauth/oauth2/-/graphs/main
-[🪇conduct]: CODE_OF_CONDUCT.md
+[🪇conduct]: https://github.com/ruby-oauth/oauth2/blob/main/CODE_OF_CONDUCT.md
 [🪇conduct-img]: https://img.shields.io/badge/Contributor_Covenant-2.1-259D6C.svg
 [📌pvc]: http://guides.rubygems.org/patterns/#pessimistic-version-constraint
 [📌semver]: https://semver.org/spec/v2.0.0.html
 [📌semver-img]: https://img.shields.io/badge/semver-2.0.0-259D6C.svg?style=flat
 [📌semver-breaking]: https://github.com/semver/semver/issues/716#issuecomment-869336139
 [📌major-versions-not-sacred]: https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html
-[📌changelog]: CHANGELOG.md
+[📌changelog]: https://github.com/ruby-oauth/oauth2/blob/main/CHANGELOG.md
 [📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-34495e.svg?style=flat
 [📌gitmoji]: https://gitmoji.dev
 [📌gitmoji-img]: https://img.shields.io/badge/gitmoji_commits-%20%F0%9F%98%9C%20%F0%9F%98%8D-34495e.svg?style=flat-square
 [🧮kloc]: https://www.youtube.com/watch?v=dQw4w9WgXcQ
-[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.527-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
-[🔐security]: SECURITY.md
+[🧮kloc-img]: https://img.shields.io/badge/KLOC-0.525-FFDD67.svg?style=for-the-badge&logo=YouTube&logoColor=blue
+[🔐security]: https://github.com/ruby-oauth/oauth2/blob/main/SECURITY.md
 [🔐security-img]: https://img.shields.io/badge/security-policy-259D6C.svg?style=flat
-[🔐irp]: IRP.md
-[🔐irp-img]: https://img.shields.io/badge/IRP-259D6C.svg?style=flat
-[🔐threat-model]: THREAT_MODEL.md
-[🔐threat-model-img]: https://img.shields.io/badge/threat-model-259D6C.svg?style=flat
 [📄copyright-notice-explainer]: https://opensource.stackexchange.com/questions/5778/why-do-licenses-such-as-the-mit-license-specify-a-single-year
-[📄license]: LICENSE.txt
-[📄license-ref]: https://opensource.org/licenses/MIT
+[📄license]: LICENSE.md
+[📄license-ref]: MIT.md
 [📄license-img]: https://img.shields.io/badge/License-MIT-259D6C.svg
-[📄license-compat]: https://dev.to/galtzo/how-to-check-license-compatibility-41h0
-[📄license-compat-img]: https://img.shields.io/badge/Apache_Compatible:_Category_A-%E2%9C%93-259D6C.svg?style=flat&logo=Apache
+[📄license-compat]: https://www.apache.org/legal/resolved.html#category-a
+[📄license-compat-img]: https://img.shields.io/badge/Apache_Compatible:_Category_A-✓-259D6C.svg?style=flat&logo=Apache
+
 [📄ilo-declaration]: https://www.ilo.org/declaration/lang--en/index.htm
 [📄ilo-declaration-img]: https://img.shields.io/badge/ILO_Fundamental_Principles-✓-259D6C.svg?style=flat
 [🚎yard-current]: http://rubydoc.info/gems/oauth2
@@ -1555,12 +1104,13 @@ Thanks for RTFM. ☺️
 [💎appraisal2-img]: https://img.shields.io/badge/appraised_by-appraisal2-34495e.svg?plastic&logo=ruby&logoColor=white
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
 
-<details>
-  <summary>
-    rel="me" Social Proofs
-  </summary>
-
-<a rel="me" alt="Follow me on Ruby.social" href="https://ruby.social/@galtzo"><img src="https://img.shields.io/mastodon/follow/109447111526622197?domain=https://ruby.social&style=social&label=Follow%20@galtzo%20on%20Ruby.social"></a>
-<a rel="me" alt="Follow me on FLOSS.social" href="https://floss.social/@galtzo"><img src="https://img.shields.io/mastodon/follow/110304921404405715?domain=https://floss.social&style=social&label=Follow%20@galtzo%20on%20Floss.social"></a>
-
-</details>
+<!-- kettle-jem:metadata:start -->
+| Field | Value |
+|---|---|
+| Package | oauth2 |
+| Description | 🔐 A Ruby wrapper for the OAuth 2.0 Authorization Framework, including the OAuth 2.1 draft spec, and OpenID Connect (OIDC) |
+| Homepage | https://github.com/ruby-oauth/oauth2 |
+| Source | https://github.com/ruby-oauth/oauth2/tree/v2.0.21 |
+| License | `MIT` |
+| Funding | https://github.com/sponsors/pboling, https://issuehunt.io/u/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/ruby-oauth, https://patreon.com/galtzo, https://polar.sh/pboling, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/oauth2, https://www.buymeacoffee.com/pboling |
+<!-- kettle-jem:metadata:end -->

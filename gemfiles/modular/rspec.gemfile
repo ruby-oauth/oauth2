@@ -1,0 +1,4 @@
+gem "rspec_junit_formatter",
+  github: "pboling/rspec_junit_formatter",
+  branch: "main",
+  ref: "9e6bcaaedd49477b62878ed568dc4ada5cc7cb5e"

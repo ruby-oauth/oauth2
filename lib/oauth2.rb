@@ -67,7 +67,7 @@ module OAuth2
       assertion
       code_verifier
       token
-    ],
+    ]
   )
 
   # The current runtime configuration for the library.

@@ -1,0 +1,65 @@
+name: TruffleRuby 23.1
+
+permissions:
+  contents: read
+
+env:
+  K_SOUP_COV_DO: false
+
+on:
+  push:
+    branches:
+      - 'main'
+      - '*-stable'
+    tags:
+      - '!*' # Do not execute on tags
+  pull_request:
+    branches:
+      - '*'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
+
+jobs:
+  test:
+    if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}
+    runs-on: ubuntu-22.04
+    continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
+    env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/ruby_3_2.gemfile
+    strategy:
+      matrix:
+        include:
+          # NOTE: truffleruby does not support upgrading rubygems.
+          # truffleruby-23.1 (targets Ruby 3.2 compatibility)
+          - ruby: "truffleruby-23.1"
+            appraisal: "ruby-3-2"
+            exec_cmd: "kettle-test"
+            rubygems: default
+            bundler: default
+
+    steps:
+      - name: Checkout
+        if: ${{ !env.ACT }}
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
+        with:
+          persist-credentials: false
+
+      - name: Setup Ruby & RubyGems
+        if: ${{ !env.ACT }}
+        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
+        with:
+          ruby-version: ${{ matrix.ruby }}
+          rubygems: ${{ matrix.rubygems }}
+          bundler: ${{ matrix.bundler }}
+          bundler-cache: true
+
+      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
+        if: ${{ !env.ACT }}
+        run: bundle exec ${{ matrix.exec_cmd }}

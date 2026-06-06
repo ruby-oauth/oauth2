@@ -2,7 +2,7 @@
 
 module OAuth2
   AUTH_SANITIZER = begin
-    auth_sanitizer_requirement = Gem::Requirement.new("~> 0.1", ">= 0.1.3")
+    auth_sanitizer_requirement = Gem::Requirement.new("~> 0.1", ">= 0.1.5")
     auth_sanitizer_spec = Gem.loaded_specs["auth-sanitizer"]
     unless auth_sanitizer_spec && auth_sanitizer_requirement.satisfied_by?(auth_sanitizer_spec.version)
       # :nocov:
@@ -12,7 +12,7 @@ module OAuth2
 
     auth_sanitizer_loader_path = File.join(
       auth_sanitizer_spec.full_gem_path,
-      "lib/auth_sanitizer/loader.rb",
+      "lib/auth_sanitizer/loader.rb"
     )
     unless File.file?(auth_sanitizer_loader_path)
       # :nocov:
@@ -25,7 +25,7 @@ module OAuth2
     auth_sanitizer_loader_namespace.module_eval(
       File.read(auth_sanitizer_loader_path),
       auth_sanitizer_loader_path,
-      1,
+      1
     )
 
     auth_sanitizer_loader_namespace.
