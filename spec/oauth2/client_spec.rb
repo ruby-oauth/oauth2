@@ -333,7 +333,7 @@ RSpec.describe OAuth2::Client do
                   "access_token" => "the-access-token",
                   "refresh_token" => "the-refresh-token",
                   "id_token" => "the-id-token",
-                  "token_type" => "Bearer",
+                  "token_type" => "Bearer"
                 ),
               ]
             end
@@ -601,7 +601,7 @@ RSpec.describe OAuth2::Client do
 
       before do
         allow(connection).to(
-          receive(:run_request).and_raise(faraday_exception),
+          receive(:run_request).and_raise(faraday_exception)
         )
         allow(subject).to receive(:connection).and_return(connection) # rubocop:disable RSpec/SubjectStub
       end
@@ -1431,7 +1431,7 @@ RSpec.describe OAuth2::Client do
         expect(
           instance.revoke_token(token) do |_req|
             puts "Hello there"
-          end.status,
+          end.status
         ).to eq(200)
       end
 
@@ -1513,7 +1513,7 @@ RSpec.describe OAuth2::Client do
             "order.clientCreatedTime>1445006997000",
             "order.clientCreatedTime<1445611797000",
           ],
-        },
+        }
       )
     end
   end

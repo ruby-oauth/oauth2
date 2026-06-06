@@ -65,7 +65,7 @@ client = OAuth2::Client.new(
   ENV.fetch("OIDC_CLIENT_SECRET"),
   site: ENV.fetch("OIDC_ISSUER"),              # e.g. https://accounts.example.com
   authorize_url: "/authorize",                 # or discovered
-  token_url: "/token",                         # or discovered
+  token_url: "/token"                         # or discovered
 )
 
 # Step 1: Redirect to OP for consent/auth
@@ -80,7 +80,7 @@ authz_url = client.auth_code.authorize_url(
   nonce: nonce,
   code_challenge: pkce_challenge,
   code_challenge_method: "S256",
-  redirect_uri: ENV.fetch("OIDC_REDIRECT_URI"),
+  redirect_uri: ENV.fetch("OIDC_REDIRECT_URI")
 )
 # redirect_to authz_url
 
@@ -91,7 +91,7 @@ raise "state mismatch" unless params[:state] == state
 token = client.auth_code.get_token(
   params[:code],
   redirect_uri: ENV.fetch("OIDC_REDIRECT_URI"),
-  code_verifier: pkce_verifier,
+  code_verifier: pkce_verifier
 )
 
 # The token may include: access_token, id_token, refresh_token, etc.
@@ -117,7 +117,7 @@ decoded, headers = JWT.decode(
   verify_iss: true,
   iss: issuer,
   verify_aud: true,
-  aud: ENV.fetch("OIDC_CLIENT_ID"),
+  aud: ENV.fetch("OIDC_CLIENT_ID")
 )
 
 # Verify nonce

@@ -446,7 +446,7 @@ module OAuth2
       # See: Hash#partition https://bugs.ruby-lang.org/issues/16252
       req_opts, oauth_opts = opts.
         partition { |k, _v| RESERVED_REQ_KEYS.include?(k.to_s) }.
-        map { |p| Hash[p] }
+        map(&:to_h)
 
       begin
         response = connection.run_request(verb, url, req_opts[:body], req_opts[:headers]) do |req|
@@ -563,15 +563,17 @@ module OAuth2
     end
 
     def oauth_debug_logging(builder)
-      builder.response(
-        :logger,
-        OAuth2::AUTH_SANITIZER::SanitizedLogger.new(
-          options[:logger],
-          filtered_keys: OAuth2.config[:filtered_debug_keys],
-          label: OAuth2.config[:filtered_label],
-        ),
-        bodies: true,
-      ) if OAuth2::OAUTH_DEBUG
+      if OAuth2::OAUTH_DEBUG
+        builder.response(
+          :logger,
+          OAuth2::AUTH_SANITIZER::SanitizedLogger.new(
+            options[:logger],
+            filtered_keys: OAuth2.config[:filtered_debug_keys],
+            label: OAuth2.config[:filtered_label]
+          ),
+          bodies: true
+        )
+      end
     end
   end
 end
