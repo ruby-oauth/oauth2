@@ -117,15 +117,31 @@ Notes
 
 </details>
 
-If it seems like you are in the wrong place, you might try one of these:
+### Alternatives
 
-* [OAuth 2.0 Spec][oauth2-spec]
-* [doorkeeper gem][doorkeeper-gem] for OAuth 2.0 server/provider implementation.
-* [oauth sibling gem][sibling-gem] for OAuth 1.0a implementations in Ruby.
+This gem is a low-level OAuth 2.0 **client** (it talks _to_ an authorization server to obtain and use tokens).
+If that isn't quite what you need, one of the following libraries may be a better fit (the first row is this gem for comparison):
+
+| Library                                        | Role                                | When to use it                                                                                                                                                                             |
+|------------------------------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| **this gem** ([oauth2][📜src-gh])              | OAuth 2.0 / 2.1 + OIDC **client**   | You are calling an OAuth 2.0 API, or signing in against a provider, and want a small, dependency-light, spec-faithful client with fine-grained control over the request/response cycle.      |
+| [omniauth][omniauth-gem] + [omniauth-oauth2][omniauth-oauth2-gem] | "Log in with…" **client** (Rack)    | You primarily want user _authentication_ ("Log in with GitHub/GitLab/Google") wired into a Rack/Rails app via a strategy, rather than driving the token flow yourself.                       |
+| [openid_connect][openid-connect-gem]           | OpenID Connect client & server      | You need full [OpenID Connect][oidc-spec] (ID-token validation, discovery, userinfo, etc.) with batteries included. Maintained by [@nov][nov].                                              |
+| [rack-oauth2][rack-oauth2-gem]                  | OAuth 2.0 client **and** server     | You want lower-level Rack primitives, need both client and server pieces, or are building on top of `openid_connect`. Maintained by [@nov][nov].                                            |
+| [doorkeeper][doorkeeper-gem]                    | OAuth 2.0 **server / provider**     | You want to _be_ the authorization server — issuing tokens to other apps — in a Rails/Grape/Sinatra application, rather than acting as a client.                                            |
+| [oauth][sibling-gem]                            | OAuth **1.0a** client & server      | The provider you integrate with only speaks the older OAuth 1.0a protocol. This is our sibling gem.                                                                                         |
+
+See also the [OAuth 2.0 Spec][oauth2-spec] and the [OpenID Connect Spec][oidc-spec].
 
 [oauth2-spec]: https://oauth.net/2/
+[oidc-spec]: https://openid.net/developers/how-connect-works/
 [sibling-gem]: https://gitlab.com/ruby-oauth/oauth
 [doorkeeper-gem]: https://github.com/doorkeeper-gem/doorkeeper
+[omniauth-gem]: https://github.com/omniauth/omniauth
+[omniauth-oauth2-gem]: https://github.com/omniauth/omniauth-oauth2
+[openid-connect-gem]: https://github.com/nov/openid_connect
+[rack-oauth2-gem]: https://github.com/nov/rack-oauth2
+[nov]: https://github.com/nov
 
 ## 💡 Info you can shake a stick at
 
