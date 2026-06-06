@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+if RUBY_ENGINE == "truffleruby" && RUBY_ENGINE_VERSION.start_with?("22.3")
+  # TruffleRuby 22.3 ships the json default gem from its emulated MRI Ruby.
+  gem "json", "= 2.5.1"
+end

@@ -33,6 +33,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries
   experimental so native extension build failures do not fail the whole
   workflow.
+- Pinned `json` only for EOL TruffleRuby appraisal bundles, matching the
+  default `json` gem shipped with each TruffleRuby release instead of
+  constraining MRI Ruby appraisal bundles.
 
 ### Security
 
