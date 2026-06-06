@@ -22,10 +22,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Refreshed generated README support badges so Ruby 2.3 is listed as
-  supported but untested.
-- Refreshed generated project metadata from the current kettle-jem template.
-
 ### Deprecated
 
 ### Removed
@@ -34,7 +30,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-## [2.0.21] - 2026-06-05
+## [2.0.21] - 2026-06-06
 
 - TAG: [v2.0.21][2.0.21t]
 - COVERAGE: 100.00% -- 525/525 lines in 15 files
@@ -51,6 +47,10 @@ Please file a bug if you notice a violation of semantic versioning.
 - Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in
   generated README badges and compatibility tables.
 - Removed the post-install message from the gemspec to keep installs quieter.
+
+- Refreshed generated README support badges so Ruby 2.3 is listed as
+  supported but untested.
+- Refreshed generated project metadata from the current kettle-jem template.
 
 ### Removed
 
