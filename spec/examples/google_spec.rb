@@ -14,7 +14,7 @@ RSpec.describe "using OAuth2 with Google" do
         site: "https://accounts.google.com",
         authorize_url: "/o/oauth2/auth",
         token_url: "/o/oauth2/token",
-        auth_scheme: :request_body,
+        auth_scheme: :request_body
       )
     end
 

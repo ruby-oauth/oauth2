@@ -22,7 +22,7 @@ RSpec.describe OAuth2::Response do
         "response",
         headers: {"Content-Type" => "application/foo-bar"},
         status: 200,
-        body: "baz",
+        body: "baz"
       )
     end
 
@@ -287,7 +287,7 @@ RSpec.describe OAuth2::Response do
       described_class.register_parser(:arity_3, []) do |passed_body, passed_response, *args|
         expect(passed_body).to eq(body)
         expect(passed_response).to eq(response)
-        expect(args).to eq([])
+        expect(args).to be_empty
 
         "a-ok"
       end
@@ -357,7 +357,7 @@ RSpec.describe OAuth2::Response do
         "response",
         headers: {"Content-Type" => "application/json"},
         status: 200,
-        body: parsed_response.to_json,
+        body: parsed_response.to_json
       )
     end
 
@@ -421,7 +421,7 @@ RSpec.describe OAuth2::Response do
         "response",
         headers: {"Content-Type" => "application/json"},
         status: 200,
-        body: parsed_response.to_json,
+        body: parsed_response.to_json
       )
     end
 
@@ -612,7 +612,7 @@ RSpec.describe OAuth2::Response do
         "response",
         headers: {"Content-Type" => "application/json"},
         status: 200,
-        body: parsed_response.to_json,
+        body: parsed_response.to_json
       )
     end
 

@@ -274,7 +274,7 @@ RSpec.describe OAuth2::AccessToken do
 
             it "does not warn when no token is found" do
               skip("Warning output we spit on Hashie without VERSION constant makes this test invalid") unless defined?(Hashie::VERSION)
-              expect(printed.each_line.to_a).to eq([])
+              expect(printed.each_line.to_a).to be_empty
             end
           end
         end
@@ -912,7 +912,7 @@ RSpec.describe OAuth2::AccessToken do
         refresh_token: "abaca",
         expires_in: 600,
         param_name: "o_param",
-        access_token_class: access_token_class,
+        access_token_class: access_token_class
       )
     end
     let(:new_access) do
@@ -945,7 +945,7 @@ RSpec.describe OAuth2::AccessToken do
           refresh_token: nil,
           expires_in: 600,
           param_name: "o_param",
-          access_token_class: access_token_class,
+          access_token_class: access_token_class
         )
       end
 
@@ -1121,7 +1121,7 @@ RSpec.describe OAuth2::AccessToken do
         expect(
           access_token.revoke do |_req|
             puts "Hello again"
-          end.status,
+          end.status
         ).to eq(200)
       end
 

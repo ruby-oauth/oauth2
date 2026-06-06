@@ -44,7 +44,7 @@ RSpec.describe OAuth2::Authenticator do
           "client_id" => "foo",
           "client_secret" => "bar",
           "state" => "42",
-          :headers => {"A" => "b"},
+          :headers => {"A" => "b"}
         )
       end
 
@@ -118,7 +118,7 @@ RSpec.describe OAuth2::Authenticator do
         output = subject.apply(input)
         expect(output).to eq(
           "state" => "42",
-          :headers => {"A" => "b", "Authorization" => header},
+          :headers => {"A" => "b", "Authorization" => header}
         )
       end
     end
@@ -163,7 +163,7 @@ RSpec.describe OAuth2::Authenticator do
       end
 
       it "changes the filter" do
-        expect(described_class.filtered_attribute_names).to eq([])
+        expect(described_class.filtered_attribute_names).to be_empty
       end
 
       it "does not filter out the @secret value" do

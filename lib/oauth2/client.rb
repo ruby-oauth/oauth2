@@ -563,15 +563,17 @@ module OAuth2
     end
 
     def oauth_debug_logging(builder)
-      builder.response(
-        :logger,
-        OAuth2::AUTH_SANITIZER::SanitizedLogger.new(
-          options[:logger],
-          filtered_keys: OAuth2.config[:filtered_debug_keys],
-          label: OAuth2.config[:filtered_label],
-        ),
-        bodies: true,
-      ) if OAuth2::OAUTH_DEBUG
+      if OAuth2::OAUTH_DEBUG
+        builder.response(
+          :logger,
+          OAuth2::AUTH_SANITIZER::SanitizedLogger.new(
+            options[:logger],
+            filtered_keys: OAuth2.config[:filtered_debug_keys],
+            label: OAuth2.config[:filtered_label]
+          ),
+          bodies: true
+        )
+      end
     end
   end
 end

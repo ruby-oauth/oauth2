@@ -27,7 +27,7 @@ RSpec.describe OAuth2::Error do
     raw_response = Faraday::Response.new(
       status: 418,
       response_headers: response_headers,
-      body: response_body,
+      body: response_body
     )
 
     OAuth2::Response.new(raw_response)
@@ -78,7 +78,7 @@ RSpec.describe OAuth2::Error do
           [
             "i_am_a_teapot: Short and stout\n",
             '{"text":"Coffee brewing failed","error_description":"Short and stout","error":"i_am_a_teapot"}',
-          ],
+          ]
         )
       end
 
@@ -130,14 +130,14 @@ RSpec.describe OAuth2::Error do
         let(:response_headers) { {"Content-Type" => "application/hal+json"} }
         let(:response_body) do
           StirredHash[
-            "_links": {
-              "self": {"href": "/orders/523"},
-              "warehouse": {"href": "/warehouse/56"},
-              "invoice": {"href": "/invoices/873"},
+            _links: {
+              self: {href: "/orders/523"},
+              warehouse: {href: "/warehouse/56"},
+              invoice: {href: "/invoices/873"},
             },
-            "currency": "USD",
-            "status": "shipped",
-            "total": 10.20,
+            currency: "USD",
+            status: "shipped",
+            total: 10.20
           ]
         end
 
@@ -220,12 +220,12 @@ RSpec.describe OAuth2::Error do
           [
             "i_am_a_teapot: Short and stout\n",
             {
-              "text": "Coffee brewing failed",
-              "error_description": "Short and stout",
-              "error": "i_am_a_teapot",
-              "status": "418",
+              text: "Coffee brewing failed",
+              error_description: "Short and stout",
+              error: "i_am_a_teapot",
+              status: "418",
             }.to_json,
-          ],
+          ]
         )
       end
 
@@ -295,11 +295,11 @@ RSpec.describe OAuth2::Error do
           [
             "i_am_a_teapot: \n",
             {
-              "text": "Coffee brewing failed",
-              "error": "i_am_a_teapot",
-              "status": "418",
+              text: "Coffee brewing failed",
+              error: "i_am_a_teapot",
+              status: "418",
             }.to_json,
-          ],
+          ]
         )
       end
 
@@ -357,10 +357,10 @@ RSpec.describe OAuth2::Error do
           [
             "Short and stout\n",
             {
-              "text": "Coffee brewing failed",
-              "error_description": "Short and stout",
+              text: "Coffee brewing failed",
+              error_description: "Short and stout",
             }.to_json,
-          ],
+          ]
         )
       end
 
@@ -451,7 +451,7 @@ RSpec.describe OAuth2::Error do
           [
             "i_am_a_teapot: Short and stout\n",
             {:text => "Coffee brewing failed", "error_description" => "Short and stout", "error" => "i_am_a_teapot"}.to_s,
-          ],
+          ]
         )
       end
 
@@ -468,7 +468,7 @@ RSpec.describe OAuth2::Error do
             [
               "i_am_a_teapot: Short and stout\n",
               {:hello => :world, "error_description" => "Short and stout", "error" => "i_am_a_teapot"}.to_s,
-            ],
+            ]
           )
         end
       end
@@ -519,7 +519,7 @@ RSpec.describe OAuth2::Error do
           [
             "i_am_a_teapot: Short and stout\n",
             {:text => "Coffee brewing failed", "error_description" => "Short and stout", "error" => "i_am_a_teapot", "status" => "418"}.to_s,
-          ],
+          ]
         )
       end
 
@@ -552,7 +552,7 @@ RSpec.describe OAuth2::Error do
           [
             "i_am_a_teapot: \n",
             {:text => "Coffee brewing failed", "error" => "i_am_a_teapot", "status" => "418"}.to_s,
-          ],
+          ]
         )
       end
     end
@@ -568,7 +568,7 @@ RSpec.describe OAuth2::Error do
           [
             "Short and stout\n",
             {:text => "Coffee brewing failed", "error_description" => "Short and stout"}.to_s,
-          ],
+          ]
         )
       end
 
@@ -586,7 +586,7 @@ RSpec.describe OAuth2::Error do
             [
               "Short and stout\n",
               {:text => "Coffee brewing failed", "error_description" => "Short and stout"}.to_s,
-            ],
+            ]
           )
         end
       end

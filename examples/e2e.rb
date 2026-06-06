@@ -81,9 +81,8 @@ module E2E
       unless res.code.to_i == 200
         raise "Discovery failed: #{res.code} #{res.message} - #{res.body}"
       end
-      data = JSON.parse(res.body)
+      JSON.parse(res.body)
       # Expect token_endpoint and possibly userinfo_endpoint
-      data
     end
 
     def fetch_token(well_known)
@@ -93,7 +92,7 @@ module E2E
         site: @issuer_base,
         token_url: URI.parse(well_known["token_endpoint"]).request_uri,
         ssl: {verify: false},
-        auth_scheme: :request_body, # send client creds in request body (compatible default for mock servers)
+        auth_scheme: :request_body # send client creds in request body (compatible default for mock servers)
       )
       # Use client_credentials grant
       client.client_credentials.get_token
@@ -116,7 +115,7 @@ module E2E
       if res.code.to_i == 200
         begin
           body = JSON.parse(res.body)
-        rescue StandardError
+        rescue
           body = res.body
         end
         puts "userinfo body: #{body.inspect}"
