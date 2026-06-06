@@ -446,7 +446,7 @@ module OAuth2
       # See: Hash#partition https://bugs.ruby-lang.org/issues/16252
       req_opts, oauth_opts = opts.
         partition { |k, _v| RESERVED_REQ_KEYS.include?(k.to_s) }.
-        map { |p| Hash[p] }
+        map(&:to_h)
 
       begin
         response = connection.run_request(verb, url, req_opts[:body], req_opts[:headers]) do |req|

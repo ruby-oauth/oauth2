@@ -1,5 +1,0 @@
-{
-  "lib/oauth2/client.rb:3803451763": [
-    [449, 19, 7, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 2182031361]
-  ]
-}
