@@ -35,8 +35,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Restored the canonical `OAuth2::Version` namespace so the gem can load
-  successfully through Bundler and direct requires.
 - Updated CI workflow maintenance: QLTY uploads now use OIDC, harden-runner is pinned to v2.19.4, and Caboose dependency installation logs are visible on failure.
 - Restored Ruby 2.3 Caboose CI bundle resolution by using the last compatible kettle development/test toolchain on that EOL runtime.
 - Kept Ruby 2.3 Caboose CI on the last compatible `gitmoji-regex` release.
