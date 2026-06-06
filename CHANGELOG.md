@@ -22,6 +22,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Refreshed generated README support badges so Ruby 2.3 is listed as
+  supported but untested.
+- Refreshed generated project metadata from the current kettle-jem template.
+
 ### Deprecated
 
 ### Removed
