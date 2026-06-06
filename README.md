@@ -120,9 +120,9 @@ Notes
 ### Alternatives
 
 This gem is a low-level OAuth 2.0 **client** (it talks _to_ an authorization server to obtain and use tokens).
-If that isn't quite what you need, one of these may be a better fit:
+If that isn't quite what you need, one of the following libraries may be a better fit (the first row is this gem for comparison):
 
-| Library                                        | Role                                | Why you might use it instead                                                                                                                                                                |
+| Library                                        | Role                                | When to use it                                                                                                                                                                             |
 |------------------------------------------------|-------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **this gem** ([oauth2][📜src-gh])              | OAuth 2.0 / 2.1 + OIDC **client**   | You are calling an OAuth 2.0 API, or signing in against a provider, and want a small, dependency-light, spec-faithful client with fine-grained control over the request/response cycle.      |
 | [omniauth][omniauth-gem] + [omniauth-oauth2][omniauth-oauth2-gem] | "Log in with…" **client** (Rack)    | You primarily want user _authentication_ ("Log in with GitHub/GitLab/Google") wired into a Rack/Rails app via a strategy, rather than driving the token flow yourself.                       |
