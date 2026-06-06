@@ -20,8 +20,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- Added the `appraisal2-rubocop` development dependency and Appraisal2 hook
-  loading so generated Appraisal gemfiles are normalized during generation.
+- Added conditional `appraisal2-rubocop` Appraisal root loading on modern Ruby
+  so generated Appraisal gemfiles are normalized during generation without
+  forcing the plugin into old-Ruby appraisal bundles.
 
 ### Changed
 

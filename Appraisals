@@ -6,10 +6,13 @@
 # oauth2 will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
-# HOW TO UPDATE APPRAISALS (Appraisal2 RuboCop hooks normalize generated gemfiles):
+# HOW TO UPDATE APPRAISALS (Appraisal2 RuboCop hooks normalize generated gemfiles on modern Ruby):
 #   bin/rake appraisal:update
 
-require "appraisal2/rubocop"
+begin
+  require "appraisal2/rubocop"
+rescue LoadError
+end
 
 # Lock/Unlock Deps Pattern
 #
