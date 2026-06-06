@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    oauth2 (2.0.20)
+    oauth2 (2.0.21)
       auth-sanitizer (~> 0.2, >= 0.2.0)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
@@ -502,7 +502,7 @@ CHECKSUMS
   nokogiri (1.19.3-x86_64-linux-gnu) sha256=2f5078620fe12e83669b5b17311b32532a8153d02eee7ad06948b926d6080976
   nokogiri (1.19.3-x86_64-linux-musl) sha256=248c906d2166eca5efb56d52fdee5f9a1f51d69a72e2b64fdac647b4ce39ea3f
   nomono (1.0.2) sha256=49236d39350a66f28ed3f51ec2d94afb8278667576e37ed9763a591e15b65f80
-  oauth2 (2.0.20)
+  oauth2 (2.0.21)
   openssl (4.0.2) sha256=1037ad2868ae58df9ad917891c0c0f9815a1172f6846d4bcdd508e4c2ee747c2
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   parallel (1.28.0) sha256=33e6de1484baf2524792d178b0913fc8eb94c628d6cfe45599ad4458c638c970

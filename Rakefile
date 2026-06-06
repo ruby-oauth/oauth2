@@ -78,10 +78,10 @@ if Dir.exist?(File.join(__dir__, "gems")) && Dir.exist?(File.join(__dir__, "work
   end
 
   def family_gem_dirs
-    Dir.glob(File.join(__dir__, "gems", "*", "*.gemspec"))
-      .map { |path| File.dirname(path) }
-      .uniq
-      .sort_by { |path| File.basename(path) }
+    Dir.glob(File.join(__dir__, "gems", "*", "*.gemspec")).
+      map { |path| File.dirname(path) }.
+      uniq.
+      sort_by { |path| File.basename(path) }
   end
 
   namespace :family do

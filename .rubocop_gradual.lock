@@ -9,11 +9,6 @@
     [94, 31, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
     [120, 35, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
   ],
-  "README.md:1334494681": [
-    [52, 61, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
-    [288, 38, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
-    [466, 46, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545]
-  ],
   "examples/e2e.rb:1294860234": [
     [84, 7, 27, "Style/RedundantAssignment: Redundant assignment before returning detected.", 1540382448],
     [96, 35, 1, "Style/TrailingCommaInArguments: Avoid comma after the last parameter of a method call.", 177545],
@@ -33,24 +28,6 @@
   ],
   "gemfiles/head.gemfile:1068259318": [
     [7, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
-  ],
-  "gemfiles/ruby_2_3_hashie_v0.gemfile:1904598874": [
-    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
-  ],
-  "gemfiles/ruby_2_3_hashie_v1.gemfile:2887526779": [
-    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
-  ],
-  "gemfiles/ruby_2_3_hashie_v2.gemfile:1758500888": [
-    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
-  ],
-  "gemfiles/ruby_2_3_hashie_v3.gemfile:1042487865": [
-    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
-  ],
-  "gemfiles/ruby_2_3_hashie_v4.gemfile:1714695134": [
-    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
-  ],
-  "gemfiles/ruby_2_3_hashie_v5.gemfile:2697623039": [
-    [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
   ],
   "gemfiles/ruby_2_4.gemfile:934005945": [
     [5, 9, 8, "Style/HashSyntax: Use the new Ruby 1.9 hash syntax.", 1623647569]
