@@ -20,7 +20,14 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Added the `appraisal2-rubocop` development dependency and Appraisal2 hook
+  loading so generated Appraisal gemfiles are normalized during generation.
+
 ### Changed
+
+- Raised development tooling floors to `kettle-dev` >= 2.1.0 and
+  `appraisal2` >= 3.1.0 for Appraisal2's split generate/install/update
+  command semantics.
 
 ### Deprecated
 
