@@ -23,7 +23,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 
 - Raised generated `version_gem` and `appraisal2` dependency floors to
-  `version_gem` >= 1.1.10 and `appraisal2` >= 3.0.8.
+  `version_gem` >= 1.1.10 and `appraisal2` >= 3.0.9.
 - Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.2.0`.
 - Refreshed generated package metadata, support documentation, CI workflows,
   and development dependency floors from the current kettle-jem template.

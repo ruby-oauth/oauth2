@@ -17,11 +17,11 @@ GEM
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     ansi (1.6.0)
-    appraisal2 (3.0.8)
+    appraisal2 (3.0.9)
       bundler (>= 1.17.3)
       rake (>= 10)
       thor (>= 0.14)
-      version_gem (~> 1.0, >= 1.0.10)
+      version_gem (~> 1.1, >= 1.1.10)
     ast (2.4.3)
     auth-sanitizer (0.2.0)
       version_gem (~> 1.1, >= 1.1.9)
@@ -402,7 +402,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (~> 2.8, >= 2.8.7, >= 2.8, < 3)
-  appraisal2 (~> 3.0, >= 3.0.8)
+  appraisal2 (~> 3.0, >= 3.0.9)
   backports (~> 3.25, >= 3.25.1)
   benchmark (~> 0.5, >= 0.5.0)
   bundler-audit (~> 0.9.3)
@@ -447,7 +447,7 @@ DEPENDENCIES
 CHECKSUMS
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
   ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
-  appraisal2 (3.0.8) sha256=4c7fb55e689e7a5bd879faa6eaa1de4f8edd88fe272c6341bd5704bfe82f2507
+  appraisal2 (3.0.9) sha256=dca9de5fc0e241aa6a032f9544b0022d09b087c1b12adf16904ace72da9f3f13
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   auth-sanitizer (0.2.0) sha256=3b9763c1156546a5982d5d71a7904fb292a14ca2b9bd3f959061f22d732b60a0
   backports (3.25.3) sha256=94298d32dc3c40ca15633b54e282780b49e2db0c045f602ea1907e4f63a17235
