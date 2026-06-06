@@ -25,4 +25,4 @@ _.file = { path = ".env.local", redact = true }
 _.source = ".config/mise/env.sh"
 
 [tools]
-ruby = "4.0.4"
+ruby = "4.0.5"

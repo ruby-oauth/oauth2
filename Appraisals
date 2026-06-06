@@ -104,6 +104,8 @@ appraise "ruby-2-7" do
 end
 
 appraise "ruby-3-0" do
+  eval_gemfile "modular/json/truffleruby_22_3.gemfile"
+  eval_gemfile "modular/json/truffleruby_23_0.gemfile"
   eval_gemfile "modular/x_std_libs/r3.1/libs.gemfile"
   eval_gemfile "modular/faraday_v2.gemfile"
   eval_gemfile "modular/hashie_v5.gemfile"
@@ -124,8 +126,8 @@ appraise "ruby-3-1" do
 end
 
 appraise "ruby-3-2" do
+  eval_gemfile "modular/json/truffleruby_23_1.gemfile"
   eval_gemfile "modular/x_std_libs/r3/libs.gemfile"
-  gem "json", "< 2.19"
   eval_gemfile "modular/faraday_v2.gemfile"
   eval_gemfile "modular/hashie_v5.gemfile"
   eval_gemfile "modular/jwt_v2.gemfile"
