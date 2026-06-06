@@ -28,15 +28,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Pinned generated GitHub Actions `actions/checkout` steps to the peeled
-  v6.0.3 commit SHA so OSSF Scorecard workflow verification accepts them.
-- Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries
-  experimental so native extension build failures do not fail the whole
-  workflow.
-- Pinned `json` only for EOL TruffleRuby appraisal bundles, matching the
-  default `json` gem shipped with each TruffleRuby release instead of
-  constraining MRI Ruby appraisal bundles.
-
 ### Security
 
 ## [2.0.21] - 2026-06-06
@@ -46,38 +37,52 @@ Please file a bug if you notice a violation of semantic versioning.
 - BRANCH COVERAGE: 100.00% -- 174/174 branches in 15 files
 - 88.35% documented
 
+### Added
+
+- [gh!730][gh!730] - Alternatives section to README by @jonathangrinstead
+- Updates to alternatives section - by @pboling
+
+[gh!730]: https://github.com/ruby-oauth/oauth2/pull/730
+
 ### Changed
 
 - Raised generated `version_gem` and `appraisal2` dependency floors to
-  `version_gem` >= 1.1.10 and `appraisal2` >= 3.0.9.
-- Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.2.0`.
+  `version_gem` >= 1.1.10 and `appraisal2` >= 3.0.9 - by @pboling
+- Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.2.0` - by @pboling
 - Refreshed generated package metadata, support documentation, CI workflows,
-  and development dependency floors from the current kettle-jem template.
+  and development dependency floors from the current kettle-jem template - by @pboling
 - Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in
-  generated README badges and compatibility tables.
-- Removed the post-install message from the gemspec to keep installs quieter.
-
+  generated README badges and compatibility tables - by @pboling
+- Removed the post-install message from the gemspec to keep installs quieter - by @pboling
 - Refreshed generated README support badges so Ruby 2.3 is listed as
-  supported but untested.
-- Refreshed generated project metadata from the current kettle-jem template.
+  supported but untested - by @pboling
+- Refreshed generated project metadata from the current kettle-jem template - by @pboling
 
 ### Removed
 
 - Dropped the obsolete Ruby 2.3 Caboose workflow and its Hashie appraisal
   gemfiles; development tooling now requires Ruby 2.4 or newer, and Ruby 2.4
-  coverage is already handled by the standard Ruby 2.4 workflow.
+  coverage is already handled by the standard Ruby 2.4 workflow - by @pboling
 
 ### Fixed
 
 - Updated CI workflow maintenance: QLTY uploads now use OIDC and harden-runner
-  is pinned to v2.19.4.
-- Replaced stale platform CI `rake magic` commands with portable spec commands.
-- Pinned `multi_xml` below 0.9 for TruffleRuby compatibility.
-- Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup.
+  is pinned to v2.19.4 - by @pboling
+- Replaced stale platform CI `rake magic` commands with portable spec commands - by @pboling
+- Pinned `multi_xml` below 0.9 for TruffleRuby compatibility - by @pboling
+- Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup - by @pboling
 - Improved gemspec version loading for older Rubies and isolated load-path
-  contexts.
+  contexts - by @pboling
 - Constrained `json` in TruffleRuby and Ruby 3.2 appraisal bundles so generated
-  CI dependency resolution remains compatible with those Ruby targets.
+  CI dependency resolution remains compatible with those Ruby targets - by @pboling
+- Pinned generated GitHub Actions `actions/checkout` steps to the peeled
+  v6.0.3 commit SHA so OSSF Scorecard workflow verification accepts them - by @pboling
+- Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries
+  experimental so native extension build failures do not fail the whole
+  workflow - by @pboling
+- Pinned `json` only for EOL TruffleRuby appraisal bundles, matching the
+  default `json` gem shipped with each TruffleRuby release instead of
+  constraining MRI Ruby appraisal bundles - by @pboling
 
 ## [2.0.20] - 2026-05-20
 
@@ -88,11 +93,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- OAuth2::VERSION (Traditional Constant Location)
+- OAuth2::VERSION (Traditional Constant Location) - by @pboling
 
 ### Changed
 
-- auth-sanitizer v0.1.3
+- auth-sanitizer v0.1.3 - by @pboling
 
 ### Fixed
 

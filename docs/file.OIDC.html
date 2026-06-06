@@ -145,7 +145,7 @@ client = OAuth2::Client.new(
   ENV.fetch(&quot;OIDC_CLIENT_SECRET&quot;),
   site: ENV.fetch(&quot;OIDC_ISSUER&quot;),              # e.g. https://accounts.example.com
   authorize_url: &quot;/authorize&quot;,                 # or discovered
-  token_url: &quot;/token&quot;,                         # or discovered
+  token_url: &quot;/token&quot;                         # or discovered
 )
 
 # Step 1: Redirect to OP for consent/auth
@@ -160,7 +160,7 @@ authz_url = client.auth_code.authorize_url(
   nonce: nonce,
   code_challenge: pkce_challenge,
   code_challenge_method: &quot;S256&quot;,
-  redirect_uri: ENV.fetch(&quot;OIDC_REDIRECT_URI&quot;),
+  redirect_uri: ENV.fetch(&quot;OIDC_REDIRECT_URI&quot;)
 )
 # redirect_to authz_url
 
@@ -171,7 +171,7 @@ raise &quot;state mismatch&quot; unless params[:state] == state
 token = client.auth_code.get_token(
   params[:code],
   redirect_uri: ENV.fetch(&quot;OIDC_REDIRECT_URI&quot;),
-  code_verifier: pkce_verifier,
+  code_verifier: pkce_verifier
 )
 
 # The token may include: access_token, id_token, refresh_token, etc.
@@ -197,7 +197,7 @@ decoded, headers = JWT.decode(
   verify_iss: true,
   iss: issuer,
   verify_aud: true,
-  aud: ENV.fetch(&quot;OIDC_CLIENT_ID&quot;),
+  aud: ENV.fetch(&quot;OIDC_CLIENT_ID&quot;)
 )
 
 # Verify nonce
@@ -258,9 +258,9 @@ userinfo = token.get(&quot;/userinfo&quot;).parsed
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jun  3 19:00:56 2026 by
+  Generated on Sat Jun  6 02:48:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.4).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>

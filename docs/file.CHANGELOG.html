@@ -76,22 +76,27 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="changed">Changed</h3>
 
-<ul>
-  <li>Refreshed generated README support badges so Ruby 2.3 is listed as<br>
-supported but untested.</li>
-  <li>Refreshed generated project metadata from the current kettle-jem template.</li>
-</ul>
-
 <h3 id="deprecated">Deprecated</h3>
 
 <h3 id="removed">Removed</h3>
 
 <h3 id="fixed">Fixed</h3>
 
+<ul>
+  <li>Pinned generated GitHub Actions <code>actions/checkout</code> steps to the peeled<br>
+v6.0.3 commit SHA so OSSF Scorecard workflow verification accepts them.</li>
+  <li>Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries<br>
+experimental so native extension build failures do not fail the whole<br>
+workflow.</li>
+  <li>Pinned <code>json</code> only for EOL TruffleRuby appraisal bundles, matching the<br>
+default <code>json</code> gem shipped with each TruffleRuby release instead of<br>
+constraining MRI Ruby appraisal bundles.</li>
+</ul>
+
 <h3 id="security">Security</h3>
 
-<h2 id="2021---2026-06-05">
-<a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.20...v2.0.21">2.0.21</a> - 2026-06-05</h2>
+<h2 id="2021---2026-06-06">
+<a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.20...v2.0.21">2.0.21</a> - 2026-06-06</h2>
 
 <ul>
   <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.21">v2.0.21</a>
@@ -111,7 +116,12 @@ supported but untested.</li>
 and development dependency floors from the current kettle-jem template.</li>
   <li>Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in<br>
 generated README badges and compatibility tables.</li>
-  <li>Removed the post-install message from the gemspec to keep installs quieter.</li>
+  <li>
+    <p>Removed the post-install message from the gemspec to keep installs quieter.</p>
+  </li>
+  <li>Refreshed generated README support badges so Ruby 2.3 is listed as<br>
+supported but untested.</li>
+  <li>Refreshed generated project metadata from the current kettle-jem template.</li>
 </ul>
 
 <h3 id="removed-1">Removed</h3>
@@ -1450,7 +1460,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 00:27:01 2026 by
+  Generated on Sat Jun  6 02:48:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

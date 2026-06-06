@@ -207,15 +207,64 @@ E2E complete
 
 </details>
 
-<p>If it seems like you are in the wrong place, you might try one of these:</p>
+<h3 id="alternatives">Alternatives</h3>
 
-<ul>
-  <li><a href="https://oauth.net/2/">OAuth 2.0 Spec</a></li>
-  <li>
-<a href="https://github.com/doorkeeper-gem/doorkeeper">doorkeeper gem</a> for OAuth 2.0 server/provider implementation.</li>
-  <li>
-<a href="https://gitlab.com/ruby-oauth/oauth">oauth sibling gem</a> for OAuth 1.0a implementations in Ruby.</li>
-</ul>
+<p>This gem is a low-level OAuth 2.0 <strong>client</strong> (it talks <em>to</em> an authorization server to obtain and use tokens).<br>
+If that isn’t quite what you need, one of the following libraries may be a better fit (the first row is this gem for comparison):</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Library</th>
+      <th>Role</th>
+      <th>When to use it</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+<strong>this gem</strong> (<a href="https://github.com/ruby-oauth/oauth2">oauth2</a>)</td>
+      <td>OAuth 2.0 / 2.1 + OIDC <strong>client</strong>
+</td>
+      <td>You are calling an OAuth 2.0 API, or signing in against a provider, and want a small, dependency-light, spec-faithful client with fine-grained control over the request/response cycle.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/ruby-oauth/oauth2-mcp">oauth2-mcp</a></td>
+      <td>OAuth 2.1 MCP Auth client <strong>and</strong> server</td>
+      <td>Focused, spec-faithful, MCP Auth client with fine-grained control over the request/response cycle. Rack/Roda compatible clients and servers. Built on top of this gem, <a href="https://github.com/ruby-oauth/oauth2">oauth2</a>.</td>
+    </tr>
+    <tr>
+      <td>
+<a href="https://github.com/omniauth/omniauth">omniauth</a> + <a href="https://github.com/omniauth/omniauth-oauth2">omniauth-oauth2</a>
+</td>
+      <td>“Log in with…” <strong>client</strong> (Rack)</td>
+      <td>You primarily want user <em>authentication</em> (“Log in with GitHub/GitLab/Google”) wired into a Rack/Rails app via a strategy, rather than driving the token flow yourself. Built on top of this gem, <a href="https://github.com/ruby-oauth/oauth2">oauth2</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/nov/openid_connect">openid_connect</a></td>
+      <td>OpenID Connect client &amp; server</td>
+      <td>You need full <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect</a> (ID-token validation, discovery, userinfo, etc.) with batteries included. Maintained by <a href="https://github.com/nov">@nov</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/nov/rack-oauth2">rack-oauth2</a></td>
+      <td>OAuth 2.0 client <strong>and</strong> server</td>
+      <td>You want lower-level Rack primitives, need both client and server pieces, or are building on top of <code>openid_connect</code>. Maintained by <a href="https://github.com/nov">@nov</a>.</td>
+    </tr>
+    <tr>
+      <td><a href="https://github.com/doorkeeper-gem/doorkeeper">doorkeeper</a></td>
+      <td>OAuth 2.0 <strong>server / provider</strong>
+</td>
+      <td>You want to <em>be</em> the authorization server — issuing tokens to other apps — in a Rails/Grape/Sinatra application, rather than acting as a client.</td>
+    </tr>
+    <tr>
+      <td><a href="https://gitlab.com/ruby-oauth/oauth">oauth</a></td>
+      <td>OAuth <strong>1.0a</strong> client &amp; server</td>
+      <td>The provider you integrate with only speaks the older OAuth 1.0a protocol. This is our sibling gem.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>See also the <a href="https://oauth.net/2/">OAuth 2.0 Spec</a>, the <a href="https://openid.net/specs/openid-connect-core-1_0.html">OpenID Connect Spec</a>, and the <a href="https://modelcontextprotocol.io/specification/draft/basic/authorization">MCP Auth Spec</a>.</p>
 
 <h2 id="-info-you-can-shake-a-stick-at">💡 Info you can shake a stick at</h2>
 
@@ -1183,7 +1232,7 @@ Please consider sponsoring me or the project.</p>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 00:27:01 2026 by
+  Generated on Sat Jun  6 02:48:20 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
