@@ -9,7 +9,7 @@ PATH
       multi_xml (~> 0.5)
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0, >= 2.0.4)
-      version_gem (~> 1.1, >= 1.1.9)
+      version_gem (~> 1.1, >= 1.1.10)
 
 GEM
   remote: https://gem.coop/
@@ -402,7 +402,7 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (~> 2.8, >= 2.8.7, >= 2.8, < 3)
-  appraisal2 (~> 3.0, >= 3.0.7)
+  appraisal2 (~> 3.0, >= 3.0.8)
   backports (~> 3.25, >= 3.25.1)
   benchmark (~> 0.5, >= 0.5.0)
   bundler-audit (~> 0.9.3)

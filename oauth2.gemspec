@@ -113,7 +113,7 @@ Gem::Specification.new do |spec|
   spec.add_dependency("multi_xml", "~> 0.5")                  # ruby >= 0
   spec.add_dependency("rack", [">= 1.2", "< 4"])              # ruby >= 0
   spec.add_dependency("snaky_hash", "~> 2.0", ">= 2.0.4")     # ruby >= 2.2.0
-  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.9")    # ruby >= 2.2.0
+  spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.10")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
   #       visibility and discoverability.
@@ -141,7 +141,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency("require_bench", "~> 1.0", ">= 1.0.4")            # ruby >= 2.2.0
 
   # Testing
-  spec.add_development_dependency("appraisal2", "~> 3.0", ">= 3.0.7")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
+  spec.add_development_dependency("appraisal2", "~> 3.0", ">= 3.0.8")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
   spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.3")             # ruby >= 2.4
   spec.add_development_dependency("turbo_tests2", "~> 3.1", ">= 3.1.1")            # ruby >= 2.4.0, default kettle-test runner
 
