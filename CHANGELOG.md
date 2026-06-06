@@ -28,6 +28,12 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Pinned generated GitHub Actions `actions/checkout` steps to the peeled
+  v6.0.3 commit SHA so OSSF Scorecard workflow verification accepts them.
+- Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries
+  experimental so native extension build failures do not fail the whole
+  workflow.
+
 ### Security
 
 ## [2.0.21] - 2026-06-06
