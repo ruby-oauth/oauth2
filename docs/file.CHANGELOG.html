@@ -82,17 +82,6 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="fixed">Fixed</h3>
 
-<ul>
-  <li>Pinned generated GitHub Actions <code>actions/checkout</code> steps to the peeled<br>
-v6.0.3 commit SHA so OSSF Scorecard workflow verification accepts them.</li>
-  <li>Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries<br>
-experimental so native extension build failures do not fail the whole<br>
-workflow.</li>
-  <li>Pinned <code>json</code> only for EOL TruffleRuby appraisal bundles, matching the<br>
-default <code>json</code> gem shipped with each TruffleRuby release instead of<br>
-constraining MRI Ruby appraisal bundles.</li>
-</ul>
-
 <h3 id="security">Security</h3>
 
 <h2 id="2021---2026-06-06">
@@ -106,22 +95,39 @@ constraining MRI Ruby appraisal bundles.</li>
   <li>88.35% documented</li>
 </ul>
 
+<h3 id="added-1">Added</h3>
+
+<ul>
+  <li>
+<a href="https://github.com/ruby-oauth/oauth2/pull/730">gh!730</a> - Alternatives section to README by @jonathangrinstead</li>
+  <li>Updates to alternatives section - by @pboling</li>
+</ul>
+
+<ul>
+  <li>Added conditional <code>appraisal2-rubocop</code> Appraisal root loading on modern Ruby<br>
+so generated Appraisal gemfiles are normalized during generation without<br>
+forcing the plugin into old-Ruby appraisal bundles.</li>
+</ul>
+
 <h3 id="changed-1">Changed</h3>
 
 <ul>
   <li>Raised generated <code>version_gem</code> and <code>appraisal2</code> dependency floors to<br>
-<code>version_gem</code> &gt;= 1.1.10 and <code>appraisal2</code> &gt;= 3.0.9.</li>
-  <li>Raised the runtime dependency floor for <code>auth-sanitizer</code> to <code>&gt;= 0.2.0</code>.</li>
+<code>version_gem</code> &gt;= 1.1.10 and <code>appraisal2</code> &gt;= 3.0.9 - by @pboling</li>
+  <li>Raised the runtime dependency floor for <code>auth-sanitizer</code> to <code>&gt;= 0.2.0</code> - by @pboling</li>
   <li>Refreshed generated package metadata, support documentation, CI workflows,<br>
-and development dependency floors from the current kettle-jem template.</li>
+and development dependency floors from the current kettle-jem template - by @pboling</li>
   <li>Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in<br>
-generated README badges and compatibility tables.</li>
-  <li>
-    <p>Removed the post-install message from the gemspec to keep installs quieter.</p>
-  </li>
+generated README badges and compatibility tables - by @pboling</li>
+  <li>Removed the post-install message from the gemspec to keep installs quieter - by @pboling</li>
   <li>Refreshed generated README support badges so Ruby 2.3 is listed as<br>
-supported but untested.</li>
-  <li>Refreshed generated project metadata from the current kettle-jem template.</li>
+supported but untested - by @pboling</li>
+  <li>
+    <p>Refreshed generated project metadata from the current kettle-jem template - by @pboling</p>
+  </li>
+  <li>Raised development tooling floors to <code>kettle-dev</code> &gt;= 2.1.0 and<br>
+<code>appraisal2</code> &gt;= 3.1.0 for Appraisal2’s split generate/install/update<br>
+command semantics.</li>
 </ul>
 
 <h3 id="removed-1">Removed</h3>
@@ -129,21 +135,29 @@ supported but untested.</li>
 <ul>
   <li>Dropped the obsolete Ruby 2.3 Caboose workflow and its Hashie appraisal<br>
 gemfiles; development tooling now requires Ruby 2.4 or newer, and Ruby 2.4<br>
-coverage is already handled by the standard Ruby 2.4 workflow.</li>
+coverage is already handled by the standard Ruby 2.4 workflow - by @pboling</li>
 </ul>
 
 <h3 id="fixed-1">Fixed</h3>
 
 <ul>
   <li>Updated CI workflow maintenance: QLTY uploads now use OIDC and harden-runner<br>
-is pinned to v2.19.4.</li>
-  <li>Replaced stale platform CI <code>rake magic</code> commands with portable spec commands.</li>
-  <li>Pinned <code>multi_xml</code> below 0.9 for TruffleRuby compatibility.</li>
-  <li>Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup.</li>
+is pinned to v2.19.4 - by @pboling</li>
+  <li>Replaced stale platform CI <code>rake magic</code> commands with portable spec commands - by @pboling</li>
+  <li>Pinned <code>multi_xml</code> below 0.9 for TruffleRuby compatibility - by @pboling</li>
+  <li>Marked EOL TruffleRuby 22.3, 23.0, and 23.1 CI as experimental because they can crash inside the interpreter during Bundler setup - by @pboling</li>
   <li>Improved gemspec version loading for older Rubies and isolated load-path<br>
-contexts.</li>
+contexts - by @pboling</li>
   <li>Constrained <code>json</code> in TruffleRuby and Ruby 3.2 appraisal bundles so generated<br>
-CI dependency resolution remains compatible with those Ruby targets.</li>
+CI dependency resolution remains compatible with those Ruby targets - by @pboling</li>
+  <li>Pinned generated GitHub Actions <code>actions/checkout</code> steps to the peeled<br>
+v6.0.3 commit SHA so OSSF Scorecard workflow verification accepts them - by @pboling</li>
+  <li>Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries<br>
+experimental so native extension build failures do not fail the whole<br>
+workflow - by @pboling</li>
+  <li>Pinned <code>json</code> only for EOL TruffleRuby appraisal bundles, matching the<br>
+default <code>json</code> gem shipped with each TruffleRuby release instead of<br>
+constraining MRI Ruby appraisal bundles - by @pboling</li>
 </ul>
 
 <h2 id="2020---2026-05-20">
@@ -157,16 +171,16 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>88.35% documented</li>
 </ul>
 
-<h3 id="added-1">Added</h3>
+<h3 id="added-2">Added</h3>
 
 <ul>
-  <li>OAuth2::VERSION (Traditional Constant Location)</li>
+  <li>OAuth2::VERSION (Traditional Constant Location) - by @pboling</li>
 </ul>
 
 <h3 id="changed-2">Changed</h3>
 
 <ul>
-  <li>auth-sanitizer v0.1.3</li>
+  <li>auth-sanitizer v0.1.3 - by @pboling</li>
 </ul>
 
 <h3 id="fixed-2">Fixed</h3>
@@ -189,7 +203,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>89.11% documented</li>
 </ul>
 
-<h3 id="added-2">Added</h3>
+<h3 id="added-3">Added</h3>
 
 <ul>
   <li>
@@ -235,7 +249,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-3">Added</h3>
+<h3 id="added-4">Added</h3>
 
 <ul>
   <li>
@@ -280,7 +294,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-4">Added</h3>
+<h3 id="added-5">Added</h3>
 
 <ul>
   <li>
@@ -298,7 +312,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-5">Added</h3>
+<h3 id="added-6">Added</h3>
 
 <ul>
   <li>
@@ -340,7 +354,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-6">Added</h3>
+<h3 id="added-7">Added</h3>
 
 <ul>
   <li>
@@ -385,7 +399,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-7">Added</h3>
+<h3 id="added-8">Added</h3>
 
 <ul>
   <li>improved documentation by @pboling</li>
@@ -429,7 +443,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>90.48% documented</li>
 </ul>
 
-<h3 id="added-8">Added</h3>
+<h3 id="added-9">Added</h3>
 
 <ul>
   <li>
@@ -472,7 +486,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>80.00% documented</li>
 </ul>
 
-<h3 id="added-9">Added</h3>
+<h3 id="added-10">Added</h3>
 
 <ul>
   <li>
@@ -513,7 +527,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>80.00% documented</li>
 </ul>
 
-<h3 id="added-10">Added</h3>
+<h3 id="added-11">Added</h3>
 
 <ul>
   <li>
@@ -574,7 +588,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
   <li>79.05% documented</li>
 </ul>
 
-<h3 id="added-11">Added</h3>
+<h3 id="added-12">Added</h3>
 
 <ul>
   <li>
@@ -678,7 +692,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 </li>
 </ul>
 
-<h3 id="added-12">Added</h3>
+<h3 id="added-13">Added</h3>
 
 <ul>
   <li>More specs (@pboling)</li>
@@ -706,7 +720,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/630">!630</a> - Extract snaky_hash to external dependency (@pboling)</li>
 </ul>
 
-<h3 id="added-13">Added</h3>
+<h3 id="added-14">Added</h3>
 
 <ul>
   <li>
@@ -722,7 +736,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 </li>
 </ul>
 
-<h3 id="added-14">Added</h3>
+<h3 id="added-15">Added</h3>
 
 <ul>
   <li>
@@ -810,7 +824,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 </li>
 </ul>
 
-<h3 id="added-15">Added</h3>
+<h3 id="added-16">Added</h3>
 
 <ul>
   <li>
@@ -855,7 +869,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 </li>
 </ul>
 
-<h3 id="added-16">Added</h3>
+<h3 id="added-17">Added</h3>
 
 <ul>
   <li>Documentation improvements (@pboling)</li>
@@ -870,7 +884,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 </li>
 </ul>
 
-<h3 id="added-17">Added</h3>
+<h3 id="added-18">Added</h3>
 
 <ul>
   <li>
@@ -1270,7 +1284,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 </li>
 </ul>
 
-<h3 id="added-18">Added</h3>
+<h3 id="added-19">Added</h3>
 
 <ul>
   <li>Add an implementation of the MAC token spec.</li>
@@ -1460,7 +1474,7 @@ CI dependency resolution remains compatible with those Ruby targets.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 02:48:20 2026 by
+  Generated on Sat Jun  6 18:22:59 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

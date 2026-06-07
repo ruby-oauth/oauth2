@@ -20,15 +20,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
-- Added conditional `appraisal2-rubocop` Appraisal root loading on modern Ruby
-  so generated Appraisal gemfiles are normalized during generation without
-  forcing the plugin into old-Ruby appraisal bundles.
-
 ### Changed
-
-- Raised development tooling floors to `kettle-dev` >= 2.1.0 and
-  `appraisal2` >= 3.1.0 for Appraisal2's split generate/install/update
-  command semantics.
 
 ### Deprecated
 
@@ -52,6 +44,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gh!730]: https://github.com/ruby-oauth/oauth2/pull/730
 
+- Added conditional `appraisal2-rubocop` Appraisal root loading on modern Ruby
+  so generated Appraisal gemfiles are normalized during generation without
+  forcing the plugin into old-Ruby appraisal bundles.
+
 ### Changed
 
 - Raised generated `version_gem` and `appraisal2` dependency floors to
@@ -65,6 +61,10 @@ Please file a bug if you notice a violation of semantic versioning.
 - Refreshed generated README support badges so Ruby 2.3 is listed as
   supported but untested - by @pboling
 - Refreshed generated project metadata from the current kettle-jem template - by @pboling
+
+- Raised development tooling floors to `kettle-dev` >= 2.1.0 and
+  `appraisal2` >= 3.1.0 for Appraisal2's split generate/install/update
+  command semantics.
 
 ### Removed
 
