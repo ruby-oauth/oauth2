@@ -125,9 +125,13 @@ supported but untested - by @pboling</li>
   <li>
     <p>Refreshed generated project metadata from the current kettle-jem template - by @pboling</p>
   </li>
-  <li>Raised development tooling floors to <code>kettle-dev</code> &gt;= 2.1.0 and<br>
+  <li>
+    <p>Raised development tooling floors to <code>kettle-dev</code> &gt;= 2.1.0 and<br>
 <code>appraisal2</code> &gt;= 3.1.0 for Appraisal2’s split generate/install/update<br>
-command semantics.</li>
+command semantics.</p>
+  </li>
+  <li>Refreshed generated Appraisal and CI templates to use Appraisal2 3.1.1 and<br>
+appraisal2-rubocop 0.2.0.</li>
 </ul>
 
 <h3 id="removed-1">Removed</h3>
@@ -155,9 +159,13 @@ v6.0.3 commit SHA so OSSF Scorecard workflow verification accepts them - by @pbo
   <li>Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries<br>
 experimental so native extension build failures do not fail the whole<br>
 workflow - by @pboling</li>
-  <li>Pinned <code>json</code> only for EOL TruffleRuby appraisal bundles, matching the<br>
+  <li>
+    <p>Pinned <code>json</code> only for EOL TruffleRuby appraisal bundles, matching the<br>
 default <code>json</code> gem shipped with each TruffleRuby release instead of<br>
-constraining MRI Ruby appraisal bundles - by @pboling</li>
+constraining MRI Ruby appraisal bundles - by @pboling</p>
+  </li>
+  <li>Avoid loading the Ruby-3.2+-only style toolchain from <code>Appraisal.root.gemfile</code><br>
+on Ruby 3.1.</li>
 </ul>
 
 <h2 id="2020---2026-05-20">
@@ -1474,7 +1482,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 18:22:59 2026 by
+  Generated on Sat Jun  6 21:03:45 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
