@@ -13,6 +13,10 @@ RSpec.describe OAuth2::Client do
         stub.get("/unauthorized") { |_env| [401, {"Content-Type" => "application/json"}, JSON.dump(error: error_value, error_description: error_description_value)] }
         stub.get("/conflict") { |_env| [409, {"Content-Type" => "text/plain"}, "not authorized"] }
         stub.get("/redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "/success"}, ""] }
+        stub.get("/protocol_relative_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "//attacker.example/leak"}, ""] }
+        stub.get("///attacker.example/leak") { |env| [200, {}, JSON.dump(auth: env[:request_headers]["Authorization"], url: env[:url].to_s)] }
+        stub.get("/absolute_cross_origin_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak"}, ""] }
+        stub.get("/leak") { |env| [200, {}, JSON.dump(auth: env[:request_headers]["Authorization"], marker: env[:request_headers]["X-Marker"], url: env[:url].to_s)] }
         stub.get("/redirect_no_loc") { |_env| [302, {"Content-Type" => "text/plain"}, ""] }
         stub.post("/redirect") { |_env| [303, {"Content-Type" => "text/plain", "location" => "/reflect"}, ""] }
         stub.get("/error") { |_env| [500, {"Content-Type" => "text/plain"}, "unknown error"] }
@@ -523,6 +527,34 @@ RSpec.describe OAuth2::Client do
       expect(response.status).to eq(200)
       expect(response.headers).to eq("Content-Type" => "text/awesome")
       expect(response.response.env.url.to_s).to eq("https://api.example.com/success")
+    end
+
+    it "treats protocol-relative redirect locations as same-origin paths" do
+      response = subject.request(:get, "/protocol_relative_redirect", headers: {"Authorization" => "Bearer secret"})
+      body = JSON.parse(response.body)
+
+      expect(body["auth"]).to eq("Bearer secret")
+      expect(body["url"]).to eq("https://api.example.com///attacker.example/leak")
+      expect(response.response.env.url.to_s).to eq("https://api.example.com///attacker.example/leak")
+    end
+
+    it "removes Authorization headers from cross-origin redirects" do
+      response = subject.request(:get, "/absolute_cross_origin_redirect", headers: {"Authorization" => "Bearer secret", "X-Marker" => "kept"})
+      body = JSON.parse(response.body)
+
+      expect(body["auth"]).to be_nil
+      expect(body["marker"]).to eq("kept")
+      expect(body["url"]).to eq("https://attacker.example/leak")
+      expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
+    end
+
+    it "follows cross-origin redirects when there are no credential headers to remove" do
+      response = subject.request(:get, "/absolute_cross_origin_redirect")
+      body = JSON.parse(response.body)
+
+      expect(body["auth"]).to be_nil
+      expect(body["url"]).to eq("https://attacker.example/leak")
+      expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
     end
 
     it "accepts an absolute URL request target" do

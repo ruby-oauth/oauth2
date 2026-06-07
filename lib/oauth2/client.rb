@@ -159,8 +159,9 @@ module OAuth2
         end
         location = response.headers["location"]
         if location
-          full_location = response.response.env.url.merge(location)
-          request(verb, full_location, req_opts)
+          current_location = response.response.env.url
+          full_location = resolve_redirect_location(current_location, location)
+          request(verb, full_location, sanitize_redirect_options(req_opts, current_location, full_location))
         else
           error = Error.new(response)
           raise(error, "Got #{status} status code, but no Location header was present")
@@ -463,6 +464,36 @@ module OAuth2
       snaky = oauth_opts.key?(:snaky) ? oauth_opts.delete(:snaky) : Response::DEFAULT_OPTIONS[:snaky]
 
       Response.new(response, parse: parse, snaky: snaky)
+    end
+
+    def resolve_redirect_location(current_location, location)
+      safe_location =
+        if location.respond_to?(:start_with?) && location.start_with?("//")
+          "./#{location}"
+        else
+          location
+        end
+
+      current_location.merge(safe_location)
+    end
+
+    def sanitize_redirect_options(req_opts, current_location, next_location)
+      return req_opts unless cross_origin_redirect?(current_location, next_location)
+
+      headers = req_opts[:headers]
+      return req_opts unless headers && headers.any? { |key, _value| key.to_s.casecmp("Authorization").zero? }
+
+      safe_opts = req_opts.dup
+      safe_headers = headers.dup
+      safe_headers.delete_if { |key, _value| key.to_s.casecmp("Authorization").zero? }
+      safe_opts[:headers] = safe_headers
+      safe_opts
+    end
+
+    def cross_origin_redirect?(current_location, next_location)
+      current_location.scheme != next_location.scheme ||
+        current_location.host != next_location.host ||
+        current_location.port != next_location.port
     end
 
     # Returns the authenticator object

@@ -30,6 +30,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
+- Prevent protocol-relative redirect `Location` values from changing request authority, and strip `Authorization` headers from cross-origin redirects.
+
 ## [2.0.21] - 2026-06-06
 
 - TAG: [v2.0.21][2.0.21t]
