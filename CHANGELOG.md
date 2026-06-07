@@ -22,8 +22,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.2.1`.
-
 ### Deprecated
 
 ### Removed
@@ -47,14 +45,12 @@ Please file a bug if you notice a violation of semantic versioning.
 [gh!730]: https://github.com/ruby-oauth/oauth2/pull/730
 
 - Added conditional `appraisal2-rubocop` Appraisal root loading on modern Ruby
-  so generated Appraisal gemfiles are normalized during generation without
-  forcing the plugin into old-Ruby appraisal bundles.
+  so generated Appraisal gemfiles are normalized during generation - by @pboling
 
 ### Changed
 
-- Raised generated `version_gem` and `appraisal2` dependency floors to
-  `version_gem` >= 1.1.10 and `appraisal2` >= 3.0.9 - by @pboling
-- Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.2.0` - by @pboling
+- Raised generated `version_gem` dependency floor to `version_gem` >= 1.1.10 - by @pboling
+- Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.2.1` - by @pboling
 - Refreshed generated package metadata, support documentation, CI workflows,
   and development dependency floors from the current kettle-jem template - by @pboling
 - Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in
@@ -63,13 +59,10 @@ Please file a bug if you notice a violation of semantic versioning.
 - Refreshed generated README support badges so Ruby 2.3 is listed as
   supported but untested - by @pboling
 - Refreshed generated project metadata from the current kettle-jem template - by @pboling
-
 - Raised development tooling floors to `kettle-dev` >= 2.1.0 and
-  `appraisal2` >= 3.1.0 for Appraisal2's split generate/install/update
+  `appraisal2` >= 3.1.1 for Appraisal2's split generate/install/update
   command semantics.
-
-- Refreshed generated Appraisal and CI templates to use Appraisal2 3.1.1 and
-  appraisal2-rubocop 0.2.0.
+- Refreshed generated Appraisal and CI templates to appraisal2-rubocop 0.2.0 - by @pboling
 
 ### Removed
 
@@ -96,9 +89,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - Pinned `json` only for EOL TruffleRuby appraisal bundles, matching the
   default `json` gem shipped with each TruffleRuby release instead of
   constraining MRI Ruby appraisal bundles - by @pboling
-
-- Avoid loading the Ruby-3.2+-only style toolchain from `Appraisal.root.gemfile`
-  on Ruby 3.1.
 
 ## [2.0.20] - 2026-05-20
 

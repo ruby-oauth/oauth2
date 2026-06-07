@@ -76,10 +76,6 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="changed">Changed</h3>
 
-<ul>
-  <li>Raised the runtime dependency floor for <code>auth-sanitizer</code> to <code>&gt;= 0.2.1</code>.</li>
-</ul>
-
 <h3 id="deprecated">Deprecated</h3>
 
 <h3 id="removed">Removed</h3>
@@ -109,16 +105,14 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <ul>
   <li>Added conditional <code>appraisal2-rubocop</code> Appraisal root loading on modern Ruby<br>
-so generated Appraisal gemfiles are normalized during generation without<br>
-forcing the plugin into old-Ruby appraisal bundles.</li>
+so generated Appraisal gemfiles are normalized during generation - by @pboling</li>
 </ul>
 
 <h3 id="changed-1">Changed</h3>
 
 <ul>
-  <li>Raised generated <code>version_gem</code> and <code>appraisal2</code> dependency floors to<br>
-<code>version_gem</code> &gt;= 1.1.10 and <code>appraisal2</code> &gt;= 3.0.9 - by @pboling</li>
-  <li>Raised the runtime dependency floor for <code>auth-sanitizer</code> to <code>&gt;= 0.2.0</code> - by @pboling</li>
+  <li>Raised generated <code>version_gem</code> dependency floor to <code>version_gem</code> &gt;= 1.1.10 - by @pboling</li>
+  <li>Raised the runtime dependency floor for <code>auth-sanitizer</code> to <code>&gt;= 0.2.1</code> - by @pboling</li>
   <li>Refreshed generated package metadata, support documentation, CI workflows,<br>
 and development dependency floors from the current kettle-jem template - by @pboling</li>
   <li>Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in<br>
@@ -126,16 +120,11 @@ generated README badges and compatibility tables - by @pboling</li>
   <li>Removed the post-install message from the gemspec to keep installs quieter - by @pboling</li>
   <li>Refreshed generated README support badges so Ruby 2.3 is listed as<br>
 supported but untested - by @pboling</li>
-  <li>
-    <p>Refreshed generated project metadata from the current kettle-jem template - by @pboling</p>
-  </li>
-  <li>
-    <p>Raised development tooling floors to <code>kettle-dev</code> &gt;= 2.1.0 and<br>
-<code>appraisal2</code> &gt;= 3.1.0 for Appraisal2’s split generate/install/update<br>
-command semantics.</p>
-  </li>
-  <li>Refreshed generated Appraisal and CI templates to use Appraisal2 3.1.1 and<br>
-appraisal2-rubocop 0.2.0.</li>
+  <li>Refreshed generated project metadata from the current kettle-jem template - by @pboling</li>
+  <li>Raised development tooling floors to <code>kettle-dev</code> &gt;= 2.1.0 and<br>
+<code>appraisal2</code> &gt;= 3.1.1 for Appraisal2’s split generate/install/update<br>
+command semantics.</li>
+  <li>Refreshed generated Appraisal and CI templates to appraisal2-rubocop 0.2.0 - by @pboling</li>
 </ul>
 
 <h3 id="removed-1">Removed</h3>
@@ -163,13 +152,9 @@ v6.0.3 commit SHA so OSSF Scorecard workflow verification accepts them - by @pbo
   <li>Marked generated EOL TruffleRuby 22.3, 23.0, and 23.1 matrix entries<br>
 experimental so native extension build failures do not fail the whole<br>
 workflow - by @pboling</li>
-  <li>
-    <p>Pinned <code>json</code> only for EOL TruffleRuby appraisal bundles, matching the<br>
+  <li>Pinned <code>json</code> only for EOL TruffleRuby appraisal bundles, matching the<br>
 default <code>json</code> gem shipped with each TruffleRuby release instead of<br>
-constraining MRI Ruby appraisal bundles - by @pboling</p>
-  </li>
-  <li>Avoid loading the Ruby-3.2+-only style toolchain from <code>Appraisal.root.gemfile</code><br>
-on Ruby 3.1.</li>
+constraining MRI Ruby appraisal bundles - by @pboling</li>
 </ul>
 
 <h2 id="2020---2026-05-20">
@@ -1486,7 +1471,7 @@ on Ruby 3.1.</li>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun  6 21:31:15 2026 by
+  Generated on Sat Jun  6 21:38:51 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
