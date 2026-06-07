@@ -22,6 +22,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Raised generated development tooling floors to `kettle-dev` >= 2.1.1 and
+  `version_gem` >= 1.1.11.
+
 ### Deprecated
 
 ### Removed
