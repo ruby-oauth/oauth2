@@ -87,7 +87,6 @@ jobs:
           test -s coverage/lcov.info
           test -s coverage/coverage.xml
 
-      # Do SaaS coverage uploads first
       - name: Upload coverage to Coveralls
         if: ${{ !env.ACT }}
         uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e # v2.3.7
@@ -101,15 +100,12 @@ jobs:
         if: ${{ !env.ACT }}
         uses: qltysh/qlty-action/coverage@fd52dc852530a708d68c3b7342f8d33d1df4cd55 # v2.2.1
         with:
-          token: ${{secrets.QLTY_COVERAGE_TOKEN}}
           oidc: true
           files: coverage/lcov.info
           format: lcov
           skip-errors: false
         continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
 
-      # Codecov is useful, but coverage report generation above is the
-      # authoritative CI gate. Do not fail CI on SaaS upload/auth problems.
       - name: Upload coverage to CodeCov
         if: ${{ !env.ACT }}
         uses: codecov/codecov-action@e79a6962e0d4c0c17b229090214935d2e33f8354 # v6.0.1
@@ -120,7 +116,6 @@ jobs:
           files: coverage/lcov.info,coverage/coverage.xml
           verbose: true
 
-      # Then PR comments
       - name: Code Coverage Summary Report
         if: ${{ !env.ACT && github.event_name == 'pull_request' }}
         uses: irongut/CodeCoverageSummary@51cc3a756ddcd398d447c044c02cb6aa83fdae95 # v1.3.0

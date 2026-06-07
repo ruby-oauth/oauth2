@@ -22,11 +22,17 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Refreshed generated Appraisal and CI templates to use Appraisal2 3.1.1 and
+  appraisal2-rubocop 0.2.0.
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- Avoid loading the Ruby-3.2+-only style toolchain from `Appraisal.root.gemfile`
+  on Ruby 3.1.
 
 ### Security
 

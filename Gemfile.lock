@@ -17,13 +17,13 @@ GEM
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     ansi (1.6.0)
-    appraisal2 (3.1.0)
+    appraisal2 (3.1.1)
       bundler (>= 1.17.3)
       rake (>= 10)
       thor (>= 0.14)
       version_gem (~> 1.1, >= 1.1.10)
-    appraisal2-rubocop (0.1.0)
-      appraisal2 (>= 3.1.0)
+    appraisal2-rubocop (0.2.0)
+      appraisal2 (>= 3.1.1)
       rubocop (>= 1.0)
       version_gem (~> 1.1, >= 1.1.10)
     ast (2.4.3)
@@ -406,8 +406,8 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (~> 2.8, >= 2.8.7, >= 2.8, < 3)
-  appraisal2 (~> 3.1, >= 3.1.0)
-  appraisal2-rubocop (~> 0.1, >= 0.1.0)
+  appraisal2 (~> 3.1, >= 3.1.1)
+  appraisal2-rubocop (~> 0.2, >= 0.2.0)
   backports (~> 3.25, >= 3.25.1)
   benchmark (~> 0.5, >= 0.5.0)
   bundler-audit (~> 0.9.3)
@@ -452,8 +452,8 @@ DEPENDENCIES
 CHECKSUMS
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
   ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
-  appraisal2 (3.1.0) sha256=79e0335331b8604ee417bb71cef74c91e1c4ad3d41e1c77804b879684b572240
-  appraisal2-rubocop (0.1.0) sha256=2d3b4100bc8c88f57e199ca0ced4d7a465326f693761474d10cb6eafe69c9148
+  appraisal2 (3.1.1) sha256=920bc89c5530e4356cf18606ceb9036a55e49ee57ba1eb6ea6d41b302ce14044
+  appraisal2-rubocop (0.2.0) sha256=c3353136ad1e32e9084c6ede76997510b3b77cf7d2fe19ab4c54a3f5e16cb9c9
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   auth-sanitizer (0.2.0) sha256=3b9763c1156546a5982d5d71a7904fb292a14ca2b9bd3f959061f22d732b60a0
   backports (3.25.3) sha256=94298d32dc3c40ca15633b54e282780b49e2db0c045f602ea1907e4f63a17235

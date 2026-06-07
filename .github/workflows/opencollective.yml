@@ -12,6 +12,9 @@ permissions:
 jobs:
   update-backers:
     runs-on: ubuntu-latest
+    env:
+      README_UPDATER_TOKEN: ${{ secrets.README_UPDATER_TOKEN }}
+      REPO: ${{ github.repository }}
     steps:
       - uses: actions/checkout@df4cb1c069e1874edd31b4311f1884172cec0e10 # v6.0.3
         with:
@@ -25,11 +28,10 @@ jobs:
           bundler-cache: true
 
       - name: README Update
+        if: ${{ env.README_UPDATER_TOKEN != '' }}
         env:
           # Keep GITHUB_TOKEN for any tools/scripts expecting it, mapped to the same secret
-          GITHUB_TOKEN: ${{ secrets.README_UPDATER_TOKEN }}
-          README_UPDATER_TOKEN: ${{ secrets.README_UPDATER_TOKEN }}
-          REPO: ${{ github.repository }}
+          GITHUB_TOKEN: ${{ env.README_UPDATER_TOKEN }}
         run: |
           git config user.name 'autobolt'
           git config user.email 'autobots@9thbit.net'
