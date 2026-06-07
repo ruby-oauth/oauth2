@@ -22,15 +22,26 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Raised generated development tooling floors to `kettle-dev` >= 2.1.1 and
-  `version_gem` >= 1.1.11.
-- Raised the runtime dependency floor for `snaky_hash` to `>= 2.0.5`.
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+### Security
+
+## [2.0.22] - 2026-06-07
+
+- TAG: [v2.0.22][2.0.22t]
+- COVERAGE: 100.00% -- 542/542 lines in 15 files
+- BRANCH COVERAGE: 100.00% -- 180/180 branches in 15 files
+- 88.35% documented
+
+### Changed
+
+- Raised generated development tooling floors to `kettle-dev` >= 2.1.1 and
+  `version_gem` >= 1.1.11.
+- Raised the runtime dependency floor for `snaky_hash` to `>= 2.0.5`.
 
 ### Security
 
@@ -852,8 +863,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.21...HEAD
-[GHSA-pp92-crg2-gfv9]: https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-pp92-crg2-gfv9
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.22...HEAD
+[2.0.22]: https://github.com/ruby-oauth/oauth2/compare/v2.0.21...v2.0.22
+[2.0.22t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.22
 [2.0.21]: https://github.com/ruby-oauth/oauth2/compare/v2.0.20...v2.0.21
 [2.0.21t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.21
 [2.0.20]: https://github.com/ruby-oauth/oauth2/compare/v2.0.19...v2.0.20
