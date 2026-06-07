@@ -24,6 +24,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Raised generated development tooling floors to `kettle-dev` >= 2.1.1 and
   `version_gem` >= 1.1.11.
+- Raised the runtime dependency floor for `snaky_hash` to `>= 2.0.5`.
 
 ### Deprecated
 
