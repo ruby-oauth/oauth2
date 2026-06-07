@@ -34,7 +34,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-- Prevent protocol-relative redirect `Location` values from changing request authority, and strip `Authorization` headers from cross-origin redirects.
+- [GHSA-pp92-crg2-gfv9] Prevent protocol-relative redirect `Location` values from changing request authority, and strip `Authorization` headers from cross-origin redirects.
 
 ## [2.0.21] - 2026-06-06
 
@@ -853,6 +853,7 @@ Please file a bug if you notice a violation of semantic versioning.
 [gemfiles/readme]: gemfiles/README.md
 
 [Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.21...HEAD
+[GHSA-pp92-crg2-gfv9]: https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-pp92-crg2-gfv9
 [2.0.21]: https://github.com/ruby-oauth/oauth2/compare/v2.0.20...v2.0.21
 [2.0.21t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.21
 [2.0.20]: https://github.com/ruby-oauth/oauth2/compare/v2.0.19...v2.0.20
