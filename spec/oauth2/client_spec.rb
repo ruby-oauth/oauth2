@@ -14,11 +14,20 @@ RSpec.describe OAuth2::Client do
         stub.get("/conflict") { |_env| [409, {"Content-Type" => "text/plain"}, "not authorized"] }
         stub.get("/redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "/success"}, ""] }
         stub.get("/protocol_relative_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "//attacker.example/leak"}, ""] }
-        stub.get("///attacker.example/leak") { |env| [200, {}, JSON.dump(auth: env[:request_headers]["Authorization"], url: env[:url].to_s)] }
+        stub.get("///attacker.example/leak") do |env|
+          auth_header = env[:request_headers].detect { |key, _value| key.to_s.casecmp("Authorization").zero? }
+          [200, {}, JSON.dump(auth: auth_header && auth_header[1], url: env[:url].to_s)]
+        end
         stub.get("/absolute_cross_origin_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak"}, ""] }
-        stub.get("/leak") { |env| [200, {}, JSON.dump(auth: env[:request_headers]["Authorization"], marker: env[:request_headers]["X-Marker"], url: env[:url].to_s)] }
+        stub.get("/same_origin_absolute_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "https://api.example.com/leak"}, ""] }
+        stub.get("/leak") do |env|
+          auth_header = env[:request_headers].detect { |key, _value| key.to_s.casecmp("Authorization").zero? }
+          [200, {}, JSON.dump(auth: auth_header && auth_header[1], marker: env[:request_headers]["X-Marker"], url: env[:url].to_s)]
+        end
         stub.get("/redirect_no_loc") { |_env| [302, {"Content-Type" => "text/plain"}, ""] }
-        stub.post("/redirect") { |_env| [303, {"Content-Type" => "text/plain", "location" => "/reflect"}, ""] }
+        stub.post("/redirect") { |_env| [303, {"Content-Type" => "text/plain", "location" => "/reflect_303"}, ""] }
+        stub.get("/reflect_303") { |env| [200, {}, JSON.dump(body: env[:body], method: env[:method].to_s, url: env[:url].to_s)] }
+        stub.post("/reflect_303") { |env| [599, {}, JSON.dump(body: env[:body], method: env[:method].to_s, url: env[:url].to_s)] }
         stub.get("/error") { |_env| [500, {"Content-Type" => "text/plain"}, "unknown error"] }
         stub.get("/unparsable_error") { |_env| [500, {"Content-Type" => "application/json"}, "unknown error"] }
         stub.get("/empty_get") { |_env| [204, {}, nil] }
@@ -548,6 +557,16 @@ RSpec.describe OAuth2::Client do
       expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
     end
 
+    it "removes Authorization headers case-insensitively from cross-origin redirects" do
+      response = subject.request(:get, "/absolute_cross_origin_redirect", headers: {"authorization" => "Bearer secret", "X-Marker" => "kept"})
+      body = JSON.parse(response.body)
+
+      expect(body["auth"]).to be_nil
+      expect(body["marker"]).to eq("kept")
+      expect(body["url"]).to eq("https://attacker.example/leak")
+      expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
+    end
+
     it "follows cross-origin redirects when there are no credential headers to remove" do
       response = subject.request(:get, "/absolute_cross_origin_redirect")
       body = JSON.parse(response.body)
@@ -555,6 +574,15 @@ RSpec.describe OAuth2::Client do
       expect(body["auth"]).to be_nil
       expect(body["url"]).to eq("https://attacker.example/leak")
       expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
+    end
+
+    it "keeps Authorization headers on same-origin absolute redirects" do
+      response = subject.request(:get, "/same_origin_absolute_redirect", headers: {"Authorization" => "Bearer secret"})
+      body = JSON.parse(response.body)
+
+      expect(body["auth"]).to eq("Bearer secret")
+      expect(body["url"]).to eq("https://api.example.com/leak")
+      expect(response.response.env.url.to_s).to eq("https://api.example.com/leak")
     end
 
     it "accepts an absolute URL request target" do
@@ -566,9 +594,13 @@ RSpec.describe OAuth2::Client do
 
     it "redirects using GET on a 303" do
       response = subject.request(:post, "/redirect", body: "foo=bar")
-      expect(response.body).to be_empty
+      body = JSON.parse(response.body)
+
+      expect(body["body"]).to be_nil
+      expect(body["method"]).to eq("get")
+      expect(body["url"]).to eq("https://api.example.com/reflect_303")
       expect(response.status).to eq(200)
-      expect(response.response.env.url.to_s).to eq("https://api.example.com/reflect")
+      expect(response.response.env.url.to_s).to eq("https://api.example.com/reflect_303")
     end
 
     it "raises an error if a redirect has no Location header" do
