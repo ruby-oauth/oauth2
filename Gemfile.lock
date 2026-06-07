@@ -17,10 +17,14 @@ GEM
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
     ansi (1.6.0)
-    appraisal2 (3.0.9)
+    appraisal2 (3.1.0)
       bundler (>= 1.17.3)
       rake (>= 10)
       thor (>= 0.14)
+      version_gem (~> 1.1, >= 1.1.10)
+    appraisal2-rubocop (0.1.0)
+      appraisal2 (>= 3.1.0)
+      rubocop (>= 1.0)
       version_gem (~> 1.1, >= 1.1.10)
     ast (2.4.3)
     auth-sanitizer (0.2.0)
@@ -100,9 +104,9 @@ GEM
     json (2.19.8)
     jwt (3.2.0)
       base64
-    kettle-dev (2.0.8)
+    kettle-dev (2.1.0)
       kettle-test (~> 2.0, >= 2.0.2)
-      version_gem (~> 1.1, >= 1.1.9)
+      version_gem (~> 1.1, >= 1.1.10)
     kettle-soup-cover (2.0.1)
       simplecov (~> 0.22, >= 0.22.0)
       simplecov-cobertura (~> 3.1, >= 3.1.0)
@@ -402,7 +406,8 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (~> 2.8, >= 2.8.7, >= 2.8, < 3)
-  appraisal2 (~> 3.0, >= 3.0.9)
+  appraisal2 (~> 3.1, >= 3.1.0)
+  appraisal2-rubocop (~> 0.1, >= 0.1.0)
   backports (~> 3.25, >= 3.25.1)
   benchmark (~> 0.5, >= 0.5.0)
   bundler-audit (~> 0.9.3)
@@ -411,7 +416,7 @@ DEPENDENCIES
   gem_bench (~> 2.0, >= 2.0.5)
   gitmoji-regex (~> 2.0, >= 2.0.1)
   irb (~> 1.17)
-  kettle-dev (~> 2.0, >= 2.0.8)
+  kettle-dev (~> 2.1, >= 2.1.0)
   kettle-soup-cover (~> 2.0, >= 2.0.1)
   kettle-test (~> 2.0, >= 2.0.3)
   kramdown (~> 2.5, >= 2.5.1)
@@ -447,7 +452,8 @@ DEPENDENCIES
 CHECKSUMS
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
   ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
-  appraisal2 (3.0.9) sha256=dca9de5fc0e241aa6a032f9544b0022d09b087c1b12adf16904ace72da9f3f13
+  appraisal2 (3.1.0) sha256=79e0335331b8604ee417bb71cef74c91e1c4ad3d41e1c77804b879684b572240
+  appraisal2-rubocop (0.1.0) sha256=2d3b4100bc8c88f57e199ca0ced4d7a465326f693761474d10cb6eafe69c9148
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
   auth-sanitizer (0.2.0) sha256=3b9763c1156546a5982d5d71a7904fb292a14ca2b9bd3f959061f22d732b60a0
   backports (3.25.3) sha256=94298d32dc3c40ca15633b54e282780b49e2db0c045f602ea1907e4f63a17235
@@ -483,7 +489,7 @@ CHECKSUMS
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   json (2.19.8) sha256=6354310fd76ef69b87d5bd1f38b40d730613baf90b6803d2d0a48f618d32dfaa
   jwt (3.2.0) sha256=5419b1fe37b1da0982bd07051f573a8b8789ab724c2aa7e785e4784a3ed217d7
-  kettle-dev (2.0.8) sha256=25ead564dad6acf1df2089bbe9be76bac436a76dffe73a4f3db0ff053ae5ab82
+  kettle-dev (2.1.0) sha256=beff475826384b448fe6a480f5a8a4ed90c647ffcebd4575272a4ae382da539b
   kettle-soup-cover (2.0.1) sha256=58417b5d4fc6a631c09cd78a5128b388d9a18c143b8553df2ee8dedbc8a314d7
   kettle-test (2.0.3) sha256=db616394605eaab0f6369b03476d854e66c5d4d9c7a798975837a43685c2a293
   kramdown (2.5.2) sha256=1ba542204c66b6f9111ff00dcc26075b95b220b07f2905d8261740c82f7f02fa

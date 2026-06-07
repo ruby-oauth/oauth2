@@ -869,6 +869,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2025 Mark James
 - Copyright (c) 2025 Mridang Agarwalla
 - Copyright (c) 2025 Sasa Rosic
+- Copyright (c) 2026 Jonathan Grinstead
 - Copyright (c) 2026 kain
 - Copyright (c) 2026 StepSecurity Bot
 

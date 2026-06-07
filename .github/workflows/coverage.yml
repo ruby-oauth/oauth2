@@ -102,6 +102,7 @@ jobs:
         uses: qltysh/qlty-action/coverage@fd52dc852530a708d68c3b7342f8d33d1df4cd55 # v2.2.1
         with:
           token: ${{secrets.QLTY_COVERAGE_TOKEN}}
+          oidc: true
           files: coverage/lcov.info
           format: lcov
           skip-errors: false
