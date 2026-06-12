@@ -30,6 +30,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Addressed Reek code-quality checks with targeted cleanup and documented compatibility exclusions by @pboling
 - Fixed deprecation warning from MultiXML by @robzolkos
 
 [gh!733]: https://github.com/ruby-oauth/oauth2/pull/733

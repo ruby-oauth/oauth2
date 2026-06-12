@@ -68,13 +68,7 @@ module OAuth2
         end
         # :nocov:
         # TODO: Get rid of this branching logic when dropping Hashie < v3.2
-        token = if !defined?(Hashie::VERSION) # i.e. <= "1.1.0"; the first Hashie to ship with a VERSION constant
-          warn("snaky_hash and oauth2 will drop support for Hashie v0 in the next major version. Please upgrade to a modern Hashie.")
-          # There is a bug in Hashie v0, which is accounts for.
-          fresh.delete(t_key) || fresh[t_key] || ""
-        else
-          fresh.delete(t_key) || ""
-        end
+        token = extract_token_value(fresh, t_key)
         # :nocov:
         new(client, token, fresh)
       end
@@ -108,6 +102,17 @@ Custom token_name (#{key}) is not found in (#{hash.keys})
 You may need to set `snaky: false`. See inline documentation for more info.
         ])
       end
+
+      # :nocov:
+      def extract_token_value(fresh, key)
+        token_value = fresh.delete(key)
+        return token_value || "" if defined?(Hashie::VERSION)
+
+        warn("snaky_hash and oauth2 will drop support for Hashie v0 in the next major version. Please upgrade to a modern Hashie.")
+        # There is a bug in Hashie v0, which this accounts for.
+        token_value || fresh[key] || ""
+      end
+      # :nocov:
     end
 
     # Initialize an AccessToken
@@ -305,8 +310,8 @@ You may need to set `snaky: false`. See inline documentation for more info.
       # TODO: Switch when dropping Ruby < 2.5 support
       # params.transform_keys(&:to_sym) # Ruby 2.5 only
       # Old Ruby transform_keys alternative:
-      sheesh = @params.each_with_object({}) { |(k, v), memo|
-        memo[k.to_sym] = v
+      sheesh = @params.each_with_object({}) { |(key, value), memo|
+        memo[key.to_sym] = value
       }
       sheesh.merge(hsh)
     end
@@ -375,6 +380,7 @@ You may need to set `snaky: false`. See inline documentation for more info.
 
     def configure_authentication!(opts, verb)
       mode_opt = options[:mode]
+      param_name = options[:param_name]
       mode =
         if mode_opt.respond_to?(:call)
           mode_opt.call(verb)
@@ -388,19 +394,19 @@ You may need to set `snaky: false`. See inline documentation for more info.
 
       case mode
       when :header
-        opts[:headers] ||= {}
-        opts[:headers].merge!(headers)
+        request_headers = opts[:headers] ||= {}
+        request_headers.merge!(headers)
       when :query
         # OAuth 2.1 note: Bearer tokens in the query string are omitted from the spec due to security risks.
         # Prefer the default :header mode whenever possible.
-        opts[:params] ||= {}
-        opts[:params][options[:param_name]] = token
+        request_params = opts[:params] ||= {}
+        request_params[param_name] = token
       when :body
-        opts[:body] ||= {}
-        if opts[:body].is_a?(Hash)
-          opts[:body][options[:param_name]] = token
+        request_body = opts[:body] ||= {}
+        if request_body.is_a?(Hash)
+          request_body[param_name] = token
         else
-          opts[:body] += "&#{options[:param_name]}=#{token}"
+          opts[:body] = "#{request_body}&#{param_name}=#{token}"
         end
         # @todo support for multi-part (file uploads)
       else

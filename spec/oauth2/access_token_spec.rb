@@ -295,10 +295,11 @@ RSpec.describe OAuth2::AccessToken do
     end
 
     def assert_initialized_token(target)
+      target_params = target.params
       expect(target.token).to eq(token)
       expect(target).to be_expires
-      expect(target.params.keys).to include("foo")
-      expect(target.params["foo"]).to eq("bar")
+      expect(target_params.keys).to include("foo")
+      expect(target_params["foo"]).to eq("bar")
     end
 
     it "initializes with a Hash" do

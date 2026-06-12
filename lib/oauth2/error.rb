@@ -20,9 +20,10 @@ module OAuth2
       @code = nil
       @description = nil
       if response.respond_to?(:parsed)
-        if response.parsed.is_a?(Hash)
-          @code = response.parsed["error"]
-          @description = response.parsed["error_description"]
+        parsed_response = response.parsed
+        if parsed_response.is_a?(Hash)
+          @code = parsed_response["error"]
+          @description = parsed_response["error_description"]
         end
       elsif response.is_a?(Hash)
         @code = response["error"]
@@ -46,11 +47,12 @@ module OAuth2
     # @return [String] Message suitable for StandardError
     def error_message(response_body, opts = {})
       lines = []
+      error_description = opts[:error_description]
 
-      lines << opts[:error_description] if opts[:error_description]
+      lines << error_description if error_description
 
-      error_string = if response_body.respond_to?(:encode) && opts[:error_description].respond_to?(:encoding)
-        script_encoding = opts[:error_description].encoding
+      error_string = if response_body.respond_to?(:encode) && error_description.respond_to?(:encoding)
+        script_encoding = error_description.encoding
         response_body.encode(script_encoding, invalid: :replace, undef: :replace)
       else
         response_body

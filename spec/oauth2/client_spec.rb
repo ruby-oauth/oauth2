@@ -1292,7 +1292,7 @@ RSpec.describe OAuth2::Client do
 
       before do
         custom_class = Class.new do
-          def initialize(client, hash)
+          def initialize(_client, _hash)
           end
 
           class << self
