@@ -2,4 +2,4 @@
 
 require "multi_xml"
 
-MultiXml.parser = :rexml
+(defined?(MultiXML) ? MultiXML : MultiXml).parser = :rexml
