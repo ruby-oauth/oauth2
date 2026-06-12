@@ -871,6 +871,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2025 Sasa Rosic
 - Copyright (c) 2026 Jonathan Grinstead
 - Copyright (c) 2026 kain
+- Copyright (c) 2026 Rob Zolkos
 - Copyright (c) 2026 StepSecurity Bot
 
 </details>
@@ -1114,7 +1115,7 @@ Thanks for RTFM. ☺️
 | Package | oauth2 |
 | Description | 🔐 A Ruby wrapper for the OAuth 2.0 Authorization Framework, including the OAuth 2.1 draft spec, and OpenID Connect (OIDC) |
 | Homepage | https://github.com/ruby-oauth/oauth2 |
-| Source | https://github.com/ruby-oauth/oauth2/tree/v2.0.21 |
+| Source | https://github.com/ruby-oauth/oauth2/tree/v2.0.22 |
 | License | `MIT` |
 | Funding | https://github.com/sponsors/pboling, https://issuehunt.io/u/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/ruby-oauth, https://patreon.com/galtzo, https://polar.sh/pboling, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/oauth2, https://www.buymeacoffee.com/pboling |
 <!-- kettle-jem:metadata:end -->

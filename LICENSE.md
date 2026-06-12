@@ -107,4 +107,5 @@ Choose the option that best fits your use case:
 - Copyright (c) 2025 Sasa Rosic
 - Copyright (c) 2026 Jonathan Grinstead
 - Copyright (c) 2026 kain
+- Copyright (c) 2026 Rob Zolkos
 - Copyright (c) 2026 StepSecurity Bot

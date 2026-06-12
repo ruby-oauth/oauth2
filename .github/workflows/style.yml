@@ -47,7 +47,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
+        uses: ruby/setup-ruby@12fd324f1d0b43274fdc8130f6980590a667c455 # v1.312.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
@@ -70,5 +70,7 @@ jobs:
       - name: Run ${{ matrix.appraisal }} checks via ${{ matrix.exec_cmd }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
 
-      - name: Validate RBS Types
-        run: bundle exec appraisal ${{ matrix.appraisal }} rbs validate
+      - name: Validate RBS Environment
+        run: >-
+          bundle exec appraisal ${{ matrix.appraisal }} bundle exec ruby -rrbs -rpathname -e
+          'loader = RBS::EnvironmentLoader.new; loader.add(path: Pathname("sig")); RBS::Environment.from_loader(loader).resolve_type_names'

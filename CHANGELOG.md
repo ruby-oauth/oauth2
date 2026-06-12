@@ -22,11 +22,17 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Upgraded to snaky_hash v2.0.6 by @pboling
+
 ### Deprecated
 
 ### Removed
 
 ### Fixed
+
+- Fixed deprecation warning from MultiXML by @robzolkos
+
+[gh!733]: https://github.com/ruby-oauth/oauth2/pull/733
 
 ### Security
 
@@ -45,7 +51,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-- [GHSA-pp92-crg2-gfv9] Prevent protocol-relative redirect `Location` values from changing request authority, and strip `Authorization` headers from cross-origin redirects.
+- [GHSA-pp92-crg2-gfv9][GHSA-pp92-crg2-gfv9] Prevent protocol-relative redirect `Location` values from changing request authority, and strip `Authorization` headers from cross-origin redirects by @tonghuaroot and @pboling
+
+[GHSA-pp92-crg2-gfv9]: https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-pp92-crg2-gfv9
 
 ## [2.0.21] - 2026-06-06
 

@@ -67,10 +67,10 @@ jobs:
           persist-credentials: false
 
       - name: Install tree-sitter library
-        uses: kettle-rb/ts-grammar-action@4b0c04d11ed5b85c67c0c60c6ecb590e81748ccb # v1.0.1
+        uses: kettle-rb/ts-grammar-action@4adf5a6f4960c7e8d0fcc1d05165e3647eb5cc8c # v1.0.0
 
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@afeafc3d1ab54a631816aba4c914a0081c12ff2f # v1.310.0
+        uses: ruby/setup-ruby@12fd324f1d0b43274fdc8130f6980590a667c455 # v1.312.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}

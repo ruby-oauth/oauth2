@@ -10,7 +10,7 @@ end
 
 if kettle_remote
   # Template/plugin checks for released installs.
-  gem "kettle-drift", "~> 1.0", ">= 1.0.1", require: false
+  gem "kettle-drift", "~> 1.0", ">= 1.0.3", require: false
 end
 
 # Set SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local development with path-based dependencies.
