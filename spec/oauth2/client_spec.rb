@@ -649,14 +649,14 @@ RSpec.describe OAuth2::Client do
     it "provides the response in the Exception" do
       expect { subject.request(:get, "/error") }.to raise_error do |ex|
         expect(ex.response).not_to be_nil
-        expect(ex.to_s).to match(/unknown error/)
+        expect(ex.to_s).to include("unknown error")
       end
     end
 
     it "informs about unhandled status code" do
       expect { subject.request(:get, "/unhandled_status") }.to raise_error do |ex|
         expect(ex.response).not_to be_nil
-        expect(ex.to_s).to match(/Unhandled status code value of 600/)
+        expect(ex.to_s).to include("Unhandled status code value of 600")
       end
     end
 
@@ -767,7 +767,8 @@ RSpec.describe OAuth2::Client do
           end
         end
 
-        expect { client.get_token(parse: :xml) }.to raise_error(MultiXml::ParseError)
+        xml_parse_error = defined?(MultiXML) ? MultiXML::ParseError : MultiXml::ParseError
+        expect { client.get_token(parse: :xml) }.to raise_error(xml_parse_error)
       end
     end
 
