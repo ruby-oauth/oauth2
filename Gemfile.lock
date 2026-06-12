@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    oauth2 (2.0.22)
+    oauth2 (2.0.23)
       auth-sanitizer (~> 0.2, >= 0.2.1)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
@@ -10,296 +10,6 @@ PATH
       rack (>= 1.2, < 4)
       snaky_hash (~> 2.0, >= 2.0.6)
       version_gem (~> 1.1, >= 1.1.11)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/kettle-dev/kettle-drift
-  specs:
-    kettle-drift (1.0.3)
-      version_gem (~> 1.1, >= 1.1.11)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/kettle-dev/kettle-soup-cover
-  specs:
-    kettle-soup-cover (2.0.2)
-      simplecov (~> 0.22, >= 0.22.0)
-      simplecov-cobertura (~> 3.1, >= 3.1.0)
-      simplecov-console (~> 0.9, >= 0.9.5)
-      simplecov-html (~> 0.13, >= 0.13.2)
-      simplecov-lcov (~> 0.9, >= 0.9.0)
-      simplecov-rcov (~> 0.3, >= 0.3.7)
-      simplecov_json_formatter (~> 0.1, >= 0.1.4)
-      version_gem (~> 1.1, >= 1.1.11)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/ast-crispr-markdown-markly
-  specs:
-    ast-crispr-markdown-markly (7.0.0)
-      ast-crispr (= 7.0.0)
-      markly-merge (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/ast-crispr-ruby-prism
-  specs:
-    ast-crispr-ruby-prism (7.0.0)
-      ast-crispr (= 7.0.0)
-      prism (>= 1.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/ast-crispr
-  specs:
-    ast-crispr (7.0.0)
-      ast-merge (= 7.0.0)
-      service_actor (~> 3.9)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/ast-merge-git
-  specs:
-    ast-merge-git (7.0.0)
-      ast-merge (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/ast-merge
-  specs:
-    ast-merge (7.0.0)
-      benchmark
-      token-resolver (~> 2.0, >= 2.0.1)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/ast-template
-  specs:
-    ast-template (7.0.0)
-      ast-merge (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/bash-merge
-  specs:
-    bash-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/binary-merge
-  specs:
-    binary-merge (7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/citrus-toml-merge
-  specs:
-    citrus-toml-merge (7.0.0)
-      toml-merge (= 7.0.0)
-      toml-rb (~> 4.1)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/commonmarker-merge
-  specs:
-    commonmarker-merge (7.0.0)
-      commonmarker (~> 2.2)
-      markdown-merge (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/dotenv-merge
-  specs:
-    dotenv-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/go-merge
-  specs:
-    go-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/json-merge
-  specs:
-    json-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/kettle-jem
-  specs:
-    kettle-jem (7.0.0)
-      ast-crispr-markdown-markly (= 7.0.0)
-      ast-crispr-ruby-prism (= 7.0.0)
-      ast-merge (= 7.0.0)
-      bash-merge (= 7.0.0)
-      citrus-toml-merge (= 7.0.0)
-      commonmarker-merge (= 7.0.0)
-      dotenv-merge (= 7.0.0)
-      json-merge (= 7.0.0)
-      kettle-dev (~> 2.2, >= 2.2.3)
-      kramdown-merge (= 7.0.0)
-      markdown-merge (= 7.0.0)
-      markly-merge (= 7.0.0)
-      prism-merge (= 7.0.0)
-      psych-merge (= 7.0.0)
-      rbs-merge (= 7.0.0)
-      ruby-merge (= 7.0.0)
-      token-resolver (~> 2.0, >= 2.0.2)
-      toml-merge (= 7.0.0)
-      toml-rb (~> 4.2)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.11)
-      yaml-merge (= 7.0.0)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/kramdown-merge
-  specs:
-    kramdown-merge (7.0.0)
-      kramdown (~> 2.5)
-      markdown-merge (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/markdown-merge
-  specs:
-    markdown-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/markly-merge
-  specs:
-    markly-merge (7.0.0)
-      markdown-merge (= 7.0.0)
-      markly (~> 0.9)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/parslet-toml-merge
-  specs:
-    parslet-toml-merge (7.0.0)
-      toml (~> 0.3)
-      toml-merge (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/plain-merge
-  specs:
-    plain-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/prism-merge
-  specs:
-    prism-merge (7.0.0)
-      prism (~> 1.6)
-      ruby-merge (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/psych-merge
-  specs:
-    psych-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-      yaml-merge (= 7.0.0)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/rbs-merge
-  specs:
-    rbs-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      rbs (>= 3.10)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/ruby-merge
-  specs:
-    ruby-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/rust-merge
-  specs:
-    rust-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/smorg-rb
-  specs:
-    smorg-rb (7.0.0)
-      ast-merge (= 7.0.0)
-      ast-merge-git (= 7.0.0)
-      go-merge (= 7.0.0)
-      json-merge (= 7.0.0)
-      kettle-jem (= 7.0.0)
-      markly-merge (= 7.0.0)
-      plain-merge (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/toml-merge
-  specs:
-    toml-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/tree_haver
-  specs:
-    tree_haver (7.0.0)
-      citrus (~> 3.0)
-      parslet (~> 2.0)
-      tree_sitter_language_pack (~> 1.6)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/typescript-merge
-  specs:
-    typescript-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/yaml-merge
-  specs:
-    yaml-merge (7.0.0)
-      ast-merge (= 7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/ruby/gems/zip-merge
-  specs:
-    zip-merge (7.0.0)
-      tree_haver (= 7.0.0)
-      version_gem (~> 1.1, >= 1.1.9)
-
-PATH
-  remote: /home/pboling/src/kettle-rb/structuredmerge/tree-sitter-language-pack/packages/ruby
-  specs:
-    tree_sitter_language_pack (1.8.1)
-      rb_sys (~> 0.9)
-      sorbet-runtime (~> 0.5)
 
 GEM
   remote: https://gem.coop/
@@ -326,11 +36,7 @@ GEM
       bundler (>= 1.2.0)
       thor (~> 1.0)
     cgi (0.5.1)
-    citrus (3.0.2)
     cmdparse (3.0.7)
-    commonmarker (2.8.2)
-      rb_sys (~> 0.9)
-    commonmarker (2.8.2-x86_64-linux)
     concurrent-ruby (1.3.6)
     date (3.5.1)
     debug (1.11.1)
@@ -401,6 +107,15 @@ GEM
     kettle-dev (2.2.3)
       kettle-test (~> 2.0, >= 2.0.4)
       version_gem (~> 1.1, >= 1.1.11)
+    kettle-soup-cover (2.0.2)
+      simplecov (~> 0.22, >= 0.22.0)
+      simplecov-cobertura (~> 3.1, >= 3.1.0)
+      simplecov-console (~> 0.9, >= 0.9.5)
+      simplecov-html (~> 0.13, >= 0.13.2)
+      simplecov-lcov (~> 0.9, >= 0.9.0)
+      simplecov-rcov (~> 0.3, >= 0.3.7)
+      simplecov_json_formatter (~> 0.1, >= 0.1.4)
+      version_gem (~> 1.1, >= 1.1.11)
     kettle-test (2.0.5)
       appraisal2 (~> 3.0, >= 3.0.6)
       backports (~> 3.0)
@@ -420,7 +135,6 @@ GEM
     language_server-protocol (3.17.0.5)
     lint_roller (1.1.0)
     logger (1.7.0)
-    markly (0.16.0)
     multi_xml (0.9.1)
       bigdecimal (>= 3.1, < 5)
     mutex_m (0.3.0)
@@ -451,7 +165,6 @@ GEM
     parser (3.3.11.1)
       ast (~> 2.4.1)
       racc
-    parslet (2.0.0)
     pp (0.6.3)
       prettyprint
     prettyprint (0.2.0)
@@ -464,9 +177,6 @@ GEM
     rack (3.2.6)
     rainbow (3.1.1)
     rake (13.4.2)
-    rake-compiler-dock (1.12.0)
-    rb_sys (0.9.128)
-      rake-compiler-dock (= 1.12.0)
     rbs (4.0.2)
       logger
       prism (>= 1.6.0)
@@ -598,8 +308,6 @@ GEM
     ruby-progressbar (1.13.0)
     ruby_engine (2.0.3)
     ruby_version (1.0.3)
-    service_actor (3.9.4)
-      zeitwerk (>= 1.0)
     silent_stream (1.0.12)
       logger (~> 1.2)
       version_gem (>= 1.1.8, < 3)
@@ -622,7 +330,6 @@ GEM
     snaky_hash (2.0.6)
       hashie (>= 0.1.0, < 6)
       version_gem (>= 1.1.8, < 3)
-    sorbet-runtime (0.6.13296)
     standard (1.55.0)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -658,14 +365,6 @@ GEM
       delegate (~> 0.1)
       rspec (~> 3.0)
       timecop (>= 0.7, < 1)
-    token-resolver (2.0.2)
-      parslet (~> 2.0)
-      version_gem (~> 1.1, >= 1.1.11)
-    toml (0.3.0)
-      parslet (>= 1.8.0, < 3.0.0)
-    toml-rb (4.2.0)
-      citrus (~> 3.0, > 3.0)
-      racc (~> 1.7)
     tsort (0.2.0)
     turbo_tests2 (3.1.2)
       parallel_tests (>= 3.3.0, < 6)
@@ -716,49 +415,26 @@ DEPENDENCIES
   addressable (~> 2.8, >= 2.8.7, >= 2.8, < 3)
   appraisal2 (~> 3.1, >= 3.1.2)
   appraisal2-rubocop (~> 0.2, >= 0.2.0)
-  ast-crispr!
-  ast-crispr-markdown-markly!
-  ast-crispr-ruby-prism!
-  ast-merge!
-  ast-merge-git!
-  ast-template!
   backports (~> 3.25, >= 3.25.1)
-  bash-merge!
   benchmark (~> 0.5, >= 0.5.0)
-  binary-merge!
   bundler-audit (~> 0.9.3)
   cgi (~> 0.5)
-  citrus-toml-merge!
-  commonmarker-merge!
   debug (>= 1.1)
-  dotenv-merge!
   erb (~> 6.0, >= 6.0.4)
   gem_bench (~> 2.0, >= 2.0.5)
   gitmoji-regex (~> 2.0, >= 2.0.1)
-  go-merge!
   irb (~> 1.17)
-  json-merge!
   kettle-dev (~> 2.2, >= 2.2.3)
-  kettle-drift!
-  kettle-jem!
-  kettle-soup-cover!
+  kettle-soup-cover (~> 2.0, >= 2.0.2)
   kettle-test (~> 2.0, >= 2.0.5)
   kramdown (~> 2.5, >= 2.5.1)
-  kramdown-merge!
   kramdown-parser-gfm (~> 1.1)
-  markdown-merge!
-  markly-merge!
   mutex_m (~> 0.2)
   nkf (~> 0.2)
   nomono (~> 1.0, >= 1.0.3)
   oauth2!
-  parslet-toml-merge!
-  plain-merge!
-  prism-merge!
-  psych-merge!
   rake (~> 13.0)
   rbs (>= 3.0)
-  rbs-merge!
   rdoc (~> 6.11)
   reek (~> 6.5, >= 6.5.0)
   require_bench (~> 1.0, >= 1.0.4)
@@ -770,28 +446,19 @@ DEPENDENCIES
   rubocop-on-rbs (~> 2.0, >= 2.0.0)
   rubocop-packaging (~> 0.6, >= 0.6.0)
   rubocop-ruby2_2 (~> 3.0, >= 3.0.2)
-  ruby-merge!
   ruby-progressbar (~> 1.13)
-  rust-merge!
-  smorg-rb!
   standard (~> 1.54, >= 1.54.0)
   stone_checksums (~> 1.0, >= 1.0.3)
   stringio (>= 3.0)
-  toml-merge!
-  tree_haver!
-  tree_sitter_language_pack!
   turbo_tests2 (~> 3.1, >= 3.1.2)
-  typescript-merge!
   webrick (~> 1.9)
   yaml-converter (~> 0.1)
-  yaml-merge!
   yard (~> 0.9, >= 0.9.44)
   yard-fence (~> 0.9, >= 0.9.3)
   yard-junk (~> 0.1, >= 0.1.0)
   yard-relative_markdown_links (~> 0.6)
   yard-timekeeper (~> 0.2, >= 0.2.1)
   yard-yaml (~> 0.2, >= 0.2.0)
-  zip-merge!
 
 CHECKSUMS
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
@@ -799,28 +466,15 @@ CHECKSUMS
   appraisal2 (3.1.2) sha256=33a1f8c1e2808aa33a24b4c73d1f20c9571b5a34541d66d04d5e744b5906437a
   appraisal2-rubocop (0.2.0) sha256=c3353136ad1e32e9084c6ede76997510b3b77cf7d2fe19ab4c54a3f5e16cb9c9
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
-  ast-crispr (7.0.0)
-  ast-crispr-markdown-markly (7.0.0)
-  ast-crispr-ruby-prism (7.0.0)
-  ast-merge (7.0.0)
-  ast-merge-git (7.0.0)
-  ast-template (7.0.0)
   auth-sanitizer (0.2.1) sha256=917dcf01f7589b06c26726afe90568cf2fb29d37a1f94facfc664f11967cc577
   backports (3.25.3) sha256=94298d32dc3c40ca15633b54e282780b49e2db0c045f602ea1907e4f63a17235
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
-  bash-merge (7.0.0)
   benchmark (0.5.0) sha256=465df122341aedcb81a2a24b4d3bd19b6c67c1530713fd533f3ff034e419236c
   bigdecimal (4.1.2) sha256=53d217666027eab4280346fba98e7d5b66baaae1b9c3c1c0ffe89d48188a3fbd
-  binary-merge (7.0.0)
   bundler (4.0.13) sha256=19f08be7f27022cf0b89f27da0b044ae075e8270a9ef44ad248a932614e1ca3b
   bundler-audit (0.9.3) sha256=81c8766c71e47d0d28a0f98c7eed028539f21a6ea3cd8f685eb6f42333c9b4e9
   cgi (0.5.1) sha256=e93fcafc69b8a934fe1e6146121fa35430efa8b4a4047c4893764067036f18e9
-  citrus (3.0.2)
-  citrus-toml-merge (7.0.0)
   cmdparse (3.0.7) sha256=f7c5cace10bec6abf853370ae095e4b97a84ed9d847b3fb38f41cc4fbc950739
-  commonmarker (2.8.2)
-  commonmarker (2.8.2-x86_64-linux)
-  commonmarker-merge (7.0.0)
   concurrent-ruby (1.3.6) sha256=6b56837e1e7e5292f9864f34b69c5a2cbc75c0cf5338f1ce9903d10fa762d5ab
   date (3.5.1) sha256=750d06384d7b9c15d562c76291407d89e368dda4d4fff957eb94962d325a0dc0
   debug (1.11.1) sha256=2e0b0ac6119f2207a6f8ac7d4a73ca8eb4e440f64da0a3136c30343146e952b6
@@ -828,7 +482,6 @@ CHECKSUMS
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
   diffy (3.4.4) sha256=79384ab5ca82d0e115b2771f0961e27c164c456074bd2ec46b637ebf7b6e47e3
   docile (1.4.1) sha256=96159be799bfa73cdb721b840e9802126e4e03dfc26863db73647204c727f21e
-  dotenv-merge (7.0.0)
   dry-configurable (1.4.0) sha256=e35d1b5f3c081753ef361f564919db79000f32cfa6f20ee3a3ba5921b41b73ce
   dry-core (1.2.0) sha256=0cc5a7da88df397f153947eeeae42e876e999c1e30900f3c536fb173854e96a1
   dry-inflector (1.3.1) sha256=7fb0c2bb04f67638f25c52e7ba39ab435d922a3a5c3cd196120f63accb682dcc
@@ -842,28 +495,20 @@ CHECKSUMS
   gem_bench (2.0.5) sha256=0dc0fb44a5a5eb7b2f5c1c68a5b0164d72007132822c012bac3abe976b199ead
   geom2d (0.4.1) sha256=ea0998ea90c4f2752e24fe13d85a4f89bee689d151316140ebcc6369bf634ed9
   gitmoji-regex (2.0.1) sha256=a0afe78c4a2cb4590068c3007a1172ac3f12a73fb289bbc8c7a73c759cf8a2f5
-  go-merge (7.0.0)
   hashie (5.1.0) sha256=c266471896f323c446ea8207f8ffac985d2718df0a0ba98651a3057096ca3870
   hexapdf (1.9.1) sha256=2d1f6a3622e6bc2a70a707d4c3f3fa44f5552ecd9d899f6283abb07398a84884
   io-console (0.8.2) sha256=d6e3ae7a7cc7574f4b8893b4fca2162e57a825b223a177b7afa236c5ef9814cc
   irb (1.18.0) sha256=de9454a0703a54704b9811a5ef31a60c86949fbf4013fcf244fabc7c775248e3
   json (2.19.9) sha256=9b9025b7cdddafa38d316eca0b2358488e42d417045c1b90d216a9fefe46b79a
-  json-merge (7.0.0)
   jwt (3.2.0) sha256=5419b1fe37b1da0982bd07051f573a8b8789ab724c2aa7e785e4784a3ed217d7
   kettle-dev (2.2.3) sha256=b4f4445a35901e4b44ec94ef283495dd323ee2ea2e40e9b5b422cb5a78b1e72c
-  kettle-drift (1.0.3)
-  kettle-jem (7.0.0)
-  kettle-soup-cover (2.0.2)
+  kettle-soup-cover (2.0.2) sha256=e400380e165cc880fb0c83f05b2836d815c414b4c707e9c93d5b91979ab12ab4
   kettle-test (2.0.5) sha256=98fd96f03c4470cd2cb0b1cef339455064d8a68bc180f70864d85fd74f41d978
   kramdown (2.5.2) sha256=1ba542204c66b6f9111ff00dcc26075b95b220b07f2905d8261740c82f7f02fa
-  kramdown-merge (7.0.0)
   kramdown-parser-gfm (1.1.0) sha256=fb39745516427d2988543bf01fc4cf0ab1149476382393e0e9c48592f6581729
   language_server-protocol (3.17.0.5) sha256=fd1e39a51a28bf3eec959379985a72e296e9f9acfce46f6a79d31ca8760803cc
   lint_roller (1.1.0) sha256=2c0c845b632a7d172cb849cc90c1bce937a28c5c8ccccb50dfd46a485003cc87
   logger (1.7.0) sha256=196edec7cc44b66cfb40f9755ce11b392f21f7967696af15d274dde7edff0203
-  markdown-merge (7.0.0)
-  markly (0.16.0)
-  markly-merge (7.0.0)
   multi_xml (0.9.1) sha256=7ce766b59c17241ed62976caeae1fae9b2431b263398c35396239a68c4a64e57
   mutex_m (0.3.0) sha256=cfcb04ac16b69c4813777022fdceda24e9f798e48092a2b817eb4c0a782b0751
   net-http (0.9.1) sha256=25ba0b67c63e89df626ed8fac771d0ad24ad151a858af2cc8e6a716ca4336996
@@ -876,30 +521,22 @@ CHECKSUMS
   nokogiri (1.19.3-x86_64-linux-gnu) sha256=2f5078620fe12e83669b5b17311b32532a8153d02eee7ad06948b926d6080976
   nokogiri (1.19.3-x86_64-linux-musl) sha256=248c906d2166eca5efb56d52fdee5f9a1f51d69a72e2b64fdac647b4ce39ea3f
   nomono (1.0.3) sha256=8a64c6d26e2500097b4fa94eeea5bab717e7b01785853c4e60fe07b0529c8d99
-  oauth2 (2.0.22)
+  oauth2 (2.0.23)
   openssl (4.0.2) sha256=1037ad2868ae58df9ad917891c0c0f9815a1172f6846d4bcdd508e4c2ee747c2
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   parallel (1.28.0) sha256=33e6de1484baf2524792d178b0913fc8eb94c628d6cfe45599ad4458c638c970
   parallel_tests (5.7.0) sha256=3f1762c46ca2c223b8af8ef877217f9d76974e191bfa934f2580b58bcf1d005c
   parser (3.3.11.1) sha256=d17ace7aabe3e72c3cc94043714be27cc6f852f104d81aa284c2281aecc65d54
-  parslet (2.0.0)
-  parslet-toml-merge (7.0.0)
-  plain-merge (7.0.0)
   pp (0.6.3) sha256=2951d514450b93ccfeb1df7d021cae0da16e0a7f95ee1e2273719669d0ab9df6
   prettyprint (0.2.0) sha256=2bc9e15581a94742064a3cc8b0fb9d45aae3d03a1baa6ef80922627a0766f193
   prism (1.9.0) sha256=7b530c6a9f92c24300014919c9dcbc055bf4cdf51ec30aed099b06cd6674ef85
-  prism-merge (7.0.0)
   psych (5.4.0) sha256=14f72d69a611af663d7d70e4a7b67d9eb1f3ae9f8d916b478961d5a0075ba5b7
-  psych-merge (7.0.0)
   public_suffix (7.0.5) sha256=1a8bb08f1bbea19228d3bed6e5ed908d1cb4f7c2726d18bd9cadf60bc676f623
   racc (1.8.1) sha256=4a7f6929691dbec8b5209a0b373bc2614882b55fc5d2e447a21aaa691303d62f
   rack (3.2.6) sha256=5ed78e1f73b2e25679bec7d45ee2d4483cc4146eb1be0264fc4d94cb5ef212c2
   rainbow (3.1.1) sha256=039491aa3a89f42efa1d6dec2fc4e62ede96eb6acd95e52f1ad581182b79bc6a
   rake (13.4.2) sha256=cb825b2bd5f1f8e91ca37bddb4b9aaf345551b4731da62949be002fa89283701
-  rake-compiler-dock (1.12.0)
-  rb_sys (0.9.128)
   rbs (4.0.2) sha256=af75671e66cd03434cc546622741ebf83f6197ec4328375805306330bf78ef25
-  rbs-merge (7.0.0)
   rdoc (6.17.0) sha256=0f50d4e568fc98195f9bb155a9e8dff6c7feabfb515fb22ef6df1d12ad5a02b7
   reek (6.5.0) sha256=d26d3a492773b2bbc228888067a21afe33ac07954a17dbd64cdeae42c4c69be1
   regexp_parser (2.12.0) sha256=35a916a1d63190ab5c9009457136ae5f3c0c7512d60291d0d1378ba18ce08ebb
@@ -934,12 +571,9 @@ CHECKSUMS
   rubocop-rspec_rails (2.32.0) sha256=4a0d641c72f6ebb957534f539d9d0a62c47abd8ce0d0aeee1ef4701e892a9100
   rubocop-ruby2_2 (3.0.2) sha256=17b343e195fea52be4a645997f9c6498211f7a4bde9ea416a8f8991970bf4a4c
   rubocop-thread_safety (0.7.3) sha256=067cdd52fbf5deffc18995437e45b5194236eaff4f71de3375a1f6052e48f431
-  ruby-merge (7.0.0)
   ruby-progressbar (1.13.0) sha256=80fc9c47a9b640d6834e0dc7b3c94c9df37f08cb072b7761e4a71e22cff29b33
   ruby_engine (2.0.3) sha256=ca2ae7def8cfcdc2bfb6a186d36d5d59c8b403245dc0256c3802b767fa278aaa
   ruby_version (1.0.3) sha256=5930f9950746b7e6c973184398ee364ee7440b170fef7922b9f5cdf317f1ccb5
-  rust-merge (7.0.0)
-  service_actor (3.9.4)
   silent_stream (1.0.12) sha256=377c43aa10033fe90c33b39ea8cd97d79f2d1c4856df598efc56f3091f3ae782
   simplecov (0.22.0) sha256=fe2622c7834ff23b98066bb0a854284b2729a569ac659f82621fc22ef36213a5
   simplecov-cobertura (3.2.0) sha256=70d702658677fcb20e5aceb6915ccf8bc62ff2ccd38b62b3ad5c9db5c0888740
@@ -948,9 +582,7 @@ CHECKSUMS
   simplecov-lcov (0.9.0) sha256=7a77a31e200a595ed4b0249493056efd0c920601f53d2ef135ca34ee796346cd
   simplecov-rcov (0.3.7) sha256=372f50bf6df6b6350b7d0c840f2f8bdabe021861a43c26877b747c9ac96139fc
   simplecov_json_formatter (0.1.4) sha256=529418fbe8de1713ac2b2d612aa3daa56d316975d307244399fa4838c601b428
-  smorg-rb (7.0.0)
   snaky_hash (2.0.6) sha256=3663cae48cdef582b517025cf8a39d8789996eaf0b4ed89e2f0624836505654a
-  sorbet-runtime (0.6.13296)
   standard (1.55.0) sha256=8a8f2c3e681a4db3aafde1b301561b0f3d7c5f06c160167cb744a4d7baf0426e
   standard-custom (1.0.2) sha256=424adc84179a074f1a2a309bb9cf7cd6bfdb2b6541f20c6bf9436c0ba22a652b
   standard-performance (1.9.0) sha256=49483d31be448292951d80e5e67cdcb576c2502103c7b40aec6f1b6e9c88e3f2
@@ -963,22 +595,14 @@ CHECKSUMS
   thor (1.5.0) sha256=e3a9e55fe857e44859ce104a84675ab6e8cd59c650a49106a05f55f136425e73
   timecop (0.9.11) sha256=41284dc6e5041f2184f781ace766f942108c842f8d8c1386a26e6343decc7542
   timecop-rspec (1.0.3) sha256=005f14841bb606dcaefb060e321b5388e2e59537742bee8b3a9a9a40e598fab9
-  token-resolver (2.0.2)
-  toml (0.3.0)
-  toml-merge (7.0.0)
-  toml-rb (4.2.0)
-  tree_haver (7.0.0)
-  tree_sitter_language_pack (1.8.1)
   tsort (0.2.0) sha256=9650a793f6859a43b6641671278f79cfead60ac714148aabe4e3f0060480089f
   turbo_tests2 (3.1.2) sha256=3b3958be15b5f9d434bb62fba358c59ffa576b263af8d69826ad8ab9e969a22f
-  typescript-merge (7.0.0)
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
   unicode-emoji (4.2.0) sha256=519e69150f75652e40bf736106cfbc8f0f73aa3fb6a65afe62fefa7f80b0f80f
   uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
   version_gem (1.1.11) sha256=695df6464862b3dc976b4f6e0e089062517c8137ecd31078d8c378347f959c97
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml-converter (0.2.0) sha256=0602148de1664ab701c7938a036987576c55e87fb6d4b3cb0fff19c4f7a91386
-  yaml-merge (7.0.0)
   yard (0.9.44) sha256=eb087e9b631ccd887b049f303d489963945452d5e2a7eb49a5a74a7cf6887f28
   yard-fence (0.9.3) sha256=fe8e8eb07245024ff33b20f5ae90d565ebe8116919734d7c5e7fef5d8b165394
   yard-junk (0.1.0) sha256=e85fe2ec1afa47313decd333447b53458cb1ed49b510b70015fdc3041a94bcdd
@@ -986,7 +610,6 @@ CHECKSUMS
   yard-timekeeper (0.2.1) sha256=561bb43fd7afccefd8d09cef000d3f1e7b3b25614cb5027f35a22218141ace70
   yard-yaml (0.2.0) sha256=41024aa7e93ff098cce159ca2d94b95287a1505c90cb7a5e4986c0fc9c26412d
   zeitwerk (2.8.2) sha256=7212a61311083c604184b1ea2574b9aa05cd14f855a0841c06985cabe9181d12
-  zip-merge (7.0.0)
   zlib (3.2.3) sha256=5bd316698b32f31a64ab910a8b6c282442ca1626a81bbd6a1674e8522e319c20
 
 BUNDLED WITH

@@ -22,11 +22,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Upgraded to snaky_hash v2.0.6 by @pboling
-
 ### Deprecated
 
 ### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.23] - 2026-06-12
+
+- TAG: [v2.0.23][2.0.23t]
+- COVERAGE: 100.00% -- 552/552 lines in 15 files
+- BRANCH COVERAGE: 98.90% -- 180/182 branches in 15 files
+- 88.35% documented
+
+### Changed
+
+- Upgraded to snaky_hash v2.0.6 by @pboling
+- Upgraded all GHA workflow actions to latest by @pboling
 
 ### Fixed
 
@@ -34,8 +48,6 @@ Please file a bug if you notice a violation of semantic versioning.
 - Fixed deprecation warning from MultiXML by @robzolkos
 
 [gh!733]: https://github.com/ruby-oauth/oauth2/pull/733
-
-### Security
 
 ## [2.0.22] - 2026-06-07
 
@@ -872,7 +884,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.22...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.23...HEAD
+[2.0.23]: https://github.com/ruby-oauth/oauth2/compare/v2.0.22...v2.0.23
+[2.0.23t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.23
 [2.0.22]: https://github.com/ruby-oauth/oauth2/compare/v2.0.21...v2.0.22
 [2.0.22t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.22
 [2.0.21]: https://github.com/ruby-oauth/oauth2/compare/v2.0.20...v2.0.21
