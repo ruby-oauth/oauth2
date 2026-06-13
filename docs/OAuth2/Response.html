@@ -754,17 +754,17 @@ to access and parse response data in various formats.</p>
       <pre class="lines">
 
 
-74
 75
 76
 77
 78
 79
 80
-81</pre>
+81
+82</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 74</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 75</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_response'>response</span><span class='comma'>,</span> <span class='label'>parse:</span> <span class='symbol'>:automatic</span><span class='comma'>,</span> <span class='label'>snaky:</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>snaky_hash_klass:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='ivar'>@response</span> <span class='op'>=</span> <span class='id identifier rubyid_response'>response</span>
@@ -843,12 +843,12 @@ to access and parse response data in various formats.</p>
       <pre class="lines">
 
 
-26
 27
-28</pre>
+28
+29</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 26</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 27</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_options'>options</span>
   <span class='ivar'>@options</span>
@@ -917,12 +917,12 @@ to access and parse response data in various formats.</p>
       <pre class="lines">
 
 
-23
 24
-25</pre>
+25
+26</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 24</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_response'>response</span>
   <span class='ivar'>@response</span>
@@ -1049,16 +1049,16 @@ to access and parse response data in various formats.</p>
       <pre class="lines">
 
 
-54
 55
 56
 57
 58
 59
-60</pre>
+60
+61</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 54</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 55</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_register_parser'>register_parser</span><span class='lparen'>(</span><span class='id identifier rubyid_key'>key</span><span class='comma'>,</span> <span class='id identifier rubyid_mime_types'>mime_types</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_key'>key</span> <span class='op'>=</span> <span class='id identifier rubyid_key'>key</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
@@ -1135,12 +1135,12 @@ to access and parse response data in various formats.</p>
       <pre class="lines">
 
 
-100
 101
-102</pre>
+102
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 100</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 101</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_body'>body</span>
   <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_body'>body</span> <span class='op'>||</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span>
@@ -1207,15 +1207,15 @@ to access and parse response data in various formats.</p>
       <pre class="lines">
 
 
-135
 136
 137
 138
 139
-140</pre>
+140
+141</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 136</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_content_type'>content_type</span>
   <span class='id identifier rubyid_response_headers'>response_headers</span> <span class='op'>=</span> <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span>
@@ -1285,12 +1285,12 @@ to access and parse response data in various formats.</p>
       <pre class="lines">
 
 
-86
 87
-88</pre>
+88
+89</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 86</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 87</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_headers'>headers</span>
   <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span>
@@ -1370,7 +1370,6 @@ to access and parse response data in various formats.</p>
       <pre class="lines">
 
 
-108
 109
 110
 111
@@ -1392,10 +1391,11 @@ to access and parse response data in various formats.</p>
 127
 128
 129
-130</pre>
+130
+131</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 108</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 109</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parsed'>parsed</span>
   <span class='kw'>return</span> <span class='ivar'>@parsed</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='ivar'>@parsed</span><span class='rparen'>)</span>
@@ -1518,7 +1518,6 @@ by looking up <span class='object_link'><a href="#content_type-instance_method" 
       <pre class="lines">
 
 
-156
 157
 158
 159
@@ -1530,10 +1529,11 @@ by looking up <span class='object_link'><a href="#content_type-instance_method" 
 165
 166
 167
-168</pre>
+168
+169</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 156</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 157</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_parser'>parser</span>
   <span class='kw'>return</span> <span class='ivar'>@parser</span> <span class='kw'>if</span> <span class='kw'>defined?</span><span class='lparen'>(</span><span class='ivar'>@parser</span><span class='rparen'>)</span>
@@ -1610,12 +1610,12 @@ by looking up <span class='object_link'><a href="#content_type-instance_method" 
       <pre class="lines">
 
 
-93
 94
-95</pre>
+95
+96</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 93</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/response.rb', line 94</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_status'>status</span>
   <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_status'>status</span>
@@ -1630,7 +1630,7 @@ by looking up <span class='object_link'><a href="#content_type-instance_method" 
 </div>
 
       <div id="footer">
-  Generated on Fri Jun 12 17:56:33 2026 by
+  Generated on Sat Jun 13 04:37:02 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

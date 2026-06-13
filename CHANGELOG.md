@@ -28,15 +28,13 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Fixed head appraisal dependency conflicts and Ruby 2.4 protocol-relative redirect handling by @pboling
-
 ### Security
 
-## [2.0.23] - 2026-06-12
+## [2.0.23] - 2026-06-13
 
 - TAG: [v2.0.23][2.0.23t]
-- COVERAGE: 100.00% -- 552/552 lines in 15 files
-- BRANCH COVERAGE: 98.90% -- 180/182 branches in 15 files
+- COVERAGE: 100.00% -- 562/562 lines in 15 files
+- BRANCH COVERAGE: 97.89% -- 186/190 branches in 15 files
 - 88.35% documented
 
 ### Changed
@@ -50,6 +48,8 @@ Please file a bug if you notice a violation of semantic versioning.
 - Fixed deprecation warning from MultiXML by @robzolkos
 
 [gh!733]: https://github.com/ruby-oauth/oauth2/pull/733
+
+- Fixed head appraisal dependency conflicts and Ruby 2.4 protocol-relative redirect handling by @pboling
 
 ## [2.0.22] - 2026-06-07
 

@@ -2192,7 +2192,7 @@ code response for this request.  Overrides the client instance setting.</p>
 
   <span class='kw'>case</span> <span class='id identifier rubyid_status'>status</span>
   <span class='kw'>when</span> <span class='int'>301</span><span class='comma'>,</span> <span class='int'>302</span><span class='comma'>,</span> <span class='int'>303</span><span class='comma'>,</span> <span class='int'>307</span>
-    <span class='id identifier rubyid_redirect_count'>redirect_count</span> <span class='op'>=</span> <span class='id identifier rubyid_req_opts'>req_opts</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:redirect_count</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_redirect_count'>redirect_count</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_req_opts'>req_opts</span><span class='lbracket'>[</span><span class='symbol'>:redirect_count</span><span class='rbracket'>]</span> <span class='op'>||</span> <span class='int'>0</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_i'>to_i</span> <span class='op'>+</span> <span class='int'>1</span>
     <span class='id identifier rubyid_req_opts'>req_opts</span><span class='lbracket'>[</span><span class='symbol'>:redirect_count</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_redirect_count'>redirect_count</span>
     <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span> <span class='kw'>if</span> <span class='id identifier rubyid_redirect_count'>redirect_count</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:max_redirects</span><span class='rbracket'>]</span>
 
@@ -2656,7 +2656,7 @@ requesting client.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Jun 12 17:56:33 2026 by
+  Generated on Sat Jun 13 04:37:02 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
