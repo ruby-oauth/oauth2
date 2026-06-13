@@ -42,7 +42,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Changed
 
 - Upgraded to snaky_hash v2.0.6 by @pboling
-- Upgraded all GHA workflow actions to latest by @pboling
+- Refreshed generated GHA workflow action SHA pins by @pboling
 
 ### Fixed
 
