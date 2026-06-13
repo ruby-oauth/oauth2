@@ -28,6 +28,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed head appraisal dependency conflicts and Ruby 2.4 protocol-relative redirect handling by @pboling
+
 ### Security
 
 ## [2.0.23] - 2026-06-12

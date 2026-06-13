@@ -469,14 +469,17 @@ module OAuth2
     end
 
     def resolve_redirect_location(current_location, location)
-      safe_location =
-        if location.respond_to?(:start_with?) && location.start_with?("//")
-          "./#{location}"
-        else
-          location
-        end
+      return protocol_relative_redirect_location(current_location, location) if location.respond_to?(:start_with?) && location.start_with?("//")
 
-      current_location.merge(safe_location)
+      current_location.merge(location)
+    end
+
+    def protocol_relative_redirect_location(current_location, location)
+      current_location.dup.tap do |safe_location|
+        safe_location.path = "/#{location}"
+        safe_location.query = nil if safe_location.respond_to?(:query=)
+        safe_location.fragment = nil if safe_location.respond_to?(:fragment=)
+      end
     end
 
     def sanitize_redirect_options(req_opts, current_location, next_location)

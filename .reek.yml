@@ -35,6 +35,7 @@ detectors:
       - OAuth2::Client#oauth_debug_logging
       - OAuth2::Client#params_to_req_opts
       - OAuth2::Client#parse_snaky_params_headers
+      - OAuth2::Client#resolve_redirect_location
       - OAuth2::Strategy::Assertion#build_assertion
       - OAuth2::Strategy::AuthCode#assert_valid_params
       - OAuth2::Strategy::Implicit#assert_valid_params
@@ -62,6 +63,7 @@ detectors:
     exclude:
       - OAuth2::AccessToken#configure_authentication!
       - OAuth2::Client#build_access_token
+      - OAuth2::Client#protocol_relative_redirect_location
       - OAuth2::Client#resolve_redirect_location
       - OAuth2::Error#error_message
       - OAuth2::Error#initialize
@@ -113,6 +115,7 @@ detectors:
       - OAuth2::AccessToken#convert_expires_at
       - OAuth2::Client#authorization_header?
       - OAuth2::Client#cross_origin_redirect?
+      - OAuth2::Client#protocol_relative_redirect_location
       - OAuth2::Client#resolve_redirect_location
       - OAuth2::Error#error_message
       - OAuth2::Strategy::Assertion#build_request
