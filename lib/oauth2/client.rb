@@ -476,9 +476,13 @@ module OAuth2
 
     def protocol_relative_redirect_location(current_location, location)
       protocol_relative_location = URI.parse(location)
+      authority = +""
+      authority << "#{protocol_relative_location.userinfo}@" if protocol_relative_location.userinfo
+      authority << protocol_relative_location.host.to_s
+      authority << ":#{protocol_relative_location.port}" if protocol_relative_location.port
 
       current_location.dup.tap do |safe_location|
-        safe_location.path = "///#{protocol_relative_location.host}#{protocol_relative_location.path}"
+        safe_location.path = "///#{authority}#{protocol_relative_location.path}"
         safe_location.query = protocol_relative_location.query if safe_location.respond_to?(:query=)
         safe_location.fragment = protocol_relative_location.fragment if safe_location.respond_to?(:fragment=)
       end
@@ -491,7 +495,8 @@ module OAuth2
       return req_opts unless headers && headers.any? { |key, _value| authorization_header?(key) }
 
       safe_opts = req_opts.dup
-      safe_headers = headers.reject { |key, _value| authorization_header?(key) }
+      safe_headers = headers.dup
+      safe_headers.delete_if { |key, _value| authorization_header?(key) }
       safe_opts[:headers] = safe_headers
       safe_opts
     end

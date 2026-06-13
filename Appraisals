@@ -52,7 +52,6 @@ appraise "unlocked_deps" do
 end
 
 appraise "head" do
-  eval_gemfile "modular/x_std_libs.gemfile"
   eval_gemfile "modular/runtime_heads.gemfile"
 end
 

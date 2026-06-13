@@ -573,6 +573,24 @@ RSpec.describe OAuth2::Client do
       expect(full_location.to_s).to eq("https://api.example.com///attacker.example/leak?x=1#frag")
     end
 
+    it "preserves userinfo and port in protocol-relative redirect authorities" do
+      client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/protocol_relative_redirect_with_authority") do |_env|
+            [302, {"Content-Type" => "text/plain", "location" => "//user:pass@attacker.example:8080/leak"}, ""]
+          end
+          stub.get("///user:pass@attacker.example:8080/leak") do |env|
+            [200, {}, JSON.dump(url: env[:url].to_s)]
+          end
+        end
+      end
+
+      response = client.request(:get, "/protocol_relative_redirect_with_authority")
+      body = JSON.parse(response.body)
+
+      expect(body["url"]).to eq("https://api.example.com///user:pass@attacker.example:8080/leak")
+    end
+
     it "removes Authorization headers from cross-origin redirects" do
       response = subject.request(:get, "/absolute_cross_origin_redirect", headers: {"Authorization" => "Bearer secret", "X-Marker" => "kept"})
       body = JSON.parse(response.body)
@@ -591,6 +609,21 @@ RSpec.describe OAuth2::Client do
       expect(body["marker"]).to eq("kept")
       expect(body["url"]).to eq("https://attacker.example/leak")
       expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
+    end
+
+    it "preserves the header object type when sanitizing cross-origin redirects" do
+      headers = Faraday::Utils::Headers.new
+      headers["Authorization"] = "Bearer secret"
+      headers["X-Marker"] = "kept"
+      current_location = URI("https://api.example.com/start")
+      next_location = URI("https://attacker.example/leak")
+
+      safe_opts = subject.send(:sanitize_redirect_options, {headers: headers}, current_location, next_location)
+
+      expect(safe_opts[:headers]).to be_a(Faraday::Utils::Headers)
+      expect(safe_opts[:headers]["Authorization"]).to be_nil
+      expect(safe_opts[:headers]["X-Marker"]).to eq("kept")
+      expect(headers["Authorization"]).to eq("Bearer secret")
     end
 
     it "follows cross-origin redirects when there are no credential headers to remove" do
