@@ -547,6 +547,32 @@ RSpec.describe OAuth2::Client do
       expect(response.response.env.url.to_s).to eq("https://api.example.com///attacker.example/leak")
     end
 
+    it "preserves query and fragment components in protocol-relative redirect locations" do
+      client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/protocol_relative_redirect_with_components") do |_env|
+            [302, {"Content-Type" => "text/plain", "location" => "//attacker.example/leak_with_components?x=1#frag"}, ""]
+          end
+          stub.get("///attacker.example/leak_with_components") do |env|
+            [200, {}, JSON.dump(url: env[:url].to_s)]
+          end
+        end
+      end
+
+      response = client.request(:get, "/protocol_relative_redirect_with_components")
+      body = JSON.parse(response.body)
+
+      expect(body["url"]).to eq("https://api.example.com///attacker.example/leak_with_components?x=1")
+      expect(response.response.env.url.to_s).to eq("https://api.example.com///attacker.example/leak_with_components?x=1")
+    end
+
+    it "retains protocol-relative redirect fragments on the resolved URI" do
+      current_location = URI("https://api.example.com/start")
+      full_location = subject.send(:resolve_redirect_location, current_location, "//attacker.example/leak?x=1#frag")
+
+      expect(full_location.to_s).to eq("https://api.example.com///attacker.example/leak?x=1#frag")
+    end
+
     it "removes Authorization headers from cross-origin redirects" do
       response = subject.request(:get, "/absolute_cross_origin_redirect", headers: {"Authorization" => "Bearer secret", "X-Marker" => "kept"})
       body = JSON.parse(response.body)

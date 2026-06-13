@@ -475,10 +475,12 @@ module OAuth2
     end
 
     def protocol_relative_redirect_location(current_location, location)
+      protocol_relative_location = URI.parse(location)
+
       current_location.dup.tap do |safe_location|
-        safe_location.path = "/#{location}"
-        safe_location.query = nil if safe_location.respond_to?(:query=)
-        safe_location.fragment = nil if safe_location.respond_to?(:fragment=)
+        safe_location.path = "///#{protocol_relative_location.host}#{protocol_relative_location.path}"
+        safe_location.query = protocol_relative_location.query if safe_location.respond_to?(:query=)
+        safe_location.fragment = protocol_relative_location.fragment if safe_location.respond_to?(:fragment=)
       end
     end
 
