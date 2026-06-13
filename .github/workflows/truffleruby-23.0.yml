@@ -68,3 +68,4 @@ jobs:
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT }}
         run: bundle exec ${{ matrix.exec_cmd }}
+        continue-on-error: ${{ matrix.experimental }}
