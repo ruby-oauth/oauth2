@@ -150,7 +150,7 @@ module OAuth2
 
       case status
       when 301, 302, 303, 307
-        redirect_count = req_opts.fetch(:redirect_count, 0) + 1
+        redirect_count = (req_opts[:redirect_count] || 0).to_i + 1
         req_opts[:redirect_count] = redirect_count
         return response if redirect_count > options[:max_redirects]
 

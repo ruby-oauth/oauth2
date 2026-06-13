@@ -674,6 +674,12 @@ RSpec.describe OAuth2::Client do
       subject.options[:max_redirects] = max_redirects
     end
 
+    it "tolerates nil redirect counts" do
+      response = subject.request(:get, "/redirect", redirect_count: nil)
+      expect(response.status).to eq(200)
+      expect(response.response.env.url.to_s).to eq("https://api.example.com/success")
+    end
+
     it "returns if raise_errors is false" do
       subject.options[:raise_errors] = false
       response = subject.request(:get, "/unauthorized")
