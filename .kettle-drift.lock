@@ -21,8 +21,36 @@
     {
       "file": "CHANGELOG.md",
       "lines": [
-        464,
-        640
+        477,
+        653
+      ]
+    }
+  ],
+  "- OAuth2::AccessToken\n- OAuth2::Client": [
+    {
+      "file": "REEK",
+      "lines": [
+        25,
+        87,
+        91
+      ]
+    }
+  ],
+  "- OAuth2::Client#protocol_relative_redirect_location\n- OAuth2::Client#resolve_redirect_location": [
+    {
+      "file": "REEK",
+      "lines": [
+        66,
+        118
+      ]
+    }
+  ],
+  "- OAuth2::Client#resolve_redirect_location\n- OAuth2::Error#error_message": [
+    {
+      "file": "REEK",
+      "lines": [
+        67,
+        119
       ]
     }
   ],
@@ -61,6 +89,19 @@
         43,
         50,
         57
+      ]
+    }
+  ],
+  "exclude:\n- OAuth2::AccessToken": [
+    {
+      "file": "REEK",
+      "lines": [
+        24,
+        43,
+        52,
+        73,
+        86,
+        90
       ]
     }
   ],

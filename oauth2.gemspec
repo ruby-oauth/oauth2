@@ -73,7 +73,7 @@ Gem::Specification.new do |spec|
     # Public certs for gem signing
     *enumerate_package_files.call("certs"),
     # Signatures
-    *enumerate_package_files.call("sig"),
+    *enumerate_package_files.call("sig")
   ]
 
   # Automatically included with gem package, no need to list again in files.
@@ -98,7 +98,7 @@ Gem::Specification.new do |spec|
     "^sig/",
     "--line-numbers",
     "--inline-source",
-    "--quiet",
+    "--quiet"
   ]
   spec.bindir = "exe"
   # Listed files are the relative paths from bindir above.
@@ -129,7 +129,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 2.2", ">= 2.2.3")      # ruby >= 2.4
+  spec.add_development_dependency("kettle-dev", "~> 2.2", ">= 2.2.5")      # ruby >= 2.4
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
