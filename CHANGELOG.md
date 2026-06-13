@@ -28,7 +28,28 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed head appraisal dependency conflicts and Ruby 2.4 protocol-relative redirect handling by @pboling
+
 ### Security
+
+## [2.0.23] - 2026-06-12
+
+- TAG: [v2.0.23][2.0.23t]
+- COVERAGE: 100.00% -- 552/552 lines in 15 files
+- BRANCH COVERAGE: 98.90% -- 180/182 branches in 15 files
+- 88.35% documented
+
+### Changed
+
+- Upgraded to snaky_hash v2.0.6 by @pboling
+- Refreshed generated GHA workflow action SHA pins by @pboling
+
+### Fixed
+
+- Addressed Reek code-quality checks with targeted cleanup and documented compatibility exclusions by @pboling
+- Fixed deprecation warning from MultiXML by @robzolkos
+
+[gh!733]: https://github.com/ruby-oauth/oauth2/pull/733
 
 ## [2.0.22] - 2026-06-07
 
@@ -45,7 +66,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-- [GHSA-pp92-crg2-gfv9] Prevent protocol-relative redirect `Location` values from changing request authority, and strip `Authorization` headers from cross-origin redirects.
+- [GHSA-pp92-crg2-gfv9][GHSA-pp92-crg2-gfv9] Prevent protocol-relative redirect `Location` values from changing request authority, and strip `Authorization` headers from cross-origin redirects by @tonghuaroot and @pboling
+
+[GHSA-pp92-crg2-gfv9]: https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-pp92-crg2-gfv9
 
 ## [2.0.21] - 2026-06-06
 
@@ -863,7 +886,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.22...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.23...HEAD
+[2.0.23]: https://github.com/ruby-oauth/oauth2/compare/v2.0.22...v2.0.23
+[2.0.23t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.23
 [2.0.22]: https://github.com/ruby-oauth/oauth2/compare/v2.0.21...v2.0.22
 [2.0.22t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.22
 [2.0.21]: https://github.com/ruby-oauth/oauth2/compare/v2.0.20...v2.0.21

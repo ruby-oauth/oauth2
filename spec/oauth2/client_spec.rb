@@ -547,6 +547,50 @@ RSpec.describe OAuth2::Client do
       expect(response.response.env.url.to_s).to eq("https://api.example.com///attacker.example/leak")
     end
 
+    it "preserves query and fragment components in protocol-relative redirect locations" do
+      client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/protocol_relative_redirect_with_components") do |_env|
+            [302, {"Content-Type" => "text/plain", "location" => "//attacker.example/leak_with_components?x=1#frag"}, ""]
+          end
+          stub.get("///attacker.example/leak_with_components") do |env|
+            [200, {}, JSON.dump(url: env[:url].to_s)]
+          end
+        end
+      end
+
+      response = client.request(:get, "/protocol_relative_redirect_with_components")
+      body = JSON.parse(response.body)
+
+      expect(body["url"]).to eq("https://api.example.com///attacker.example/leak_with_components?x=1")
+      expect(response.response.env.url.to_s).to eq("https://api.example.com///attacker.example/leak_with_components?x=1")
+    end
+
+    it "retains protocol-relative redirect fragments on the resolved URI" do
+      current_location = URI("https://api.example.com/start")
+      full_location = subject.send(:resolve_redirect_location, current_location, "//attacker.example/leak?x=1#frag")
+
+      expect(full_location.to_s).to eq("https://api.example.com///attacker.example/leak?x=1#frag")
+    end
+
+    it "preserves userinfo and port in protocol-relative redirect authorities" do
+      client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/protocol_relative_redirect_with_authority") do |_env|
+            [302, {"Content-Type" => "text/plain", "location" => "//user:pass@attacker.example:8080/leak"}, ""]
+          end
+          stub.get("///user:pass@attacker.example:8080/leak") do |env|
+            [200, {}, JSON.dump(url: env[:url].to_s)]
+          end
+        end
+      end
+
+      response = client.request(:get, "/protocol_relative_redirect_with_authority")
+      body = JSON.parse(response.body)
+
+      expect(body["url"]).to eq("https://api.example.com///user:pass@attacker.example:8080/leak")
+    end
+
     it "removes Authorization headers from cross-origin redirects" do
       response = subject.request(:get, "/absolute_cross_origin_redirect", headers: {"Authorization" => "Bearer secret", "X-Marker" => "kept"})
       body = JSON.parse(response.body)
@@ -565,6 +609,21 @@ RSpec.describe OAuth2::Client do
       expect(body["marker"]).to eq("kept")
       expect(body["url"]).to eq("https://attacker.example/leak")
       expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
+    end
+
+    it "preserves the header object type when sanitizing cross-origin redirects" do
+      headers = Faraday::Utils::Headers.new
+      headers["Authorization"] = "Bearer secret"
+      headers["X-Marker"] = "kept"
+      current_location = URI("https://api.example.com/start")
+      next_location = URI("https://attacker.example/leak")
+
+      safe_opts = subject.send(:sanitize_redirect_options, {headers: headers}, current_location, next_location)
+
+      expect(safe_opts[:headers]).to be_a(Faraday::Utils::Headers)
+      expect(safe_opts[:headers]["Authorization"]).to be_nil
+      expect(safe_opts[:headers]["X-Marker"]).to eq("kept")
+      expect(headers["Authorization"]).to eq("Bearer secret")
     end
 
     it "follows cross-origin redirects when there are no credential headers to remove" do
@@ -613,6 +672,12 @@ RSpec.describe OAuth2::Client do
       response = subject.request(:get, "/redirect")
       expect(response.status).to eq(302)
       subject.options[:max_redirects] = max_redirects
+    end
+
+    it "tolerates nil redirect counts" do
+      response = subject.request(:get, "/redirect", redirect_count: nil)
+      expect(response.status).to eq(200)
+      expect(response.response.env.url.to_s).to eq("https://api.example.com/success")
     end
 
     it "returns if raise_errors is false" do
@@ -1140,7 +1205,7 @@ RSpec.describe OAuth2::Client do
         let(:body) { "BLOOP" }
 
         it "raises error" do
-          block_is_expected { get_token }.to raise_error(JSON::ParserError, /unexpected.*'BLOOP'/)
+          block_is_expected { get_token }.to raise_error(JSON::ParserError)
         end
 
         context "when extract_access_token raises an exception" do
@@ -1292,7 +1357,7 @@ RSpec.describe OAuth2::Client do
 
       before do
         custom_class = Class.new do
-          def initialize(client, hash)
+          def initialize(_client, _hash)
           end
 
           class << self

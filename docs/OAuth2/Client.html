@@ -1027,7 +1027,8 @@
 93
 94
 95
-96</pre>
+96
+97</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 85</span>
@@ -1036,8 +1037,9 @@
   <span class='ivar'>@connection</span> <span class='op'>||=</span>
     <span class='const'>Faraday</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_site'>site</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:connection_opts</span><span class='rbracket'>]</span><span class='rparen'>)</span> <span class='kw'>do</span> <span class='op'>|</span><span class='id identifier rubyid_builder'>builder</span><span class='op'>|</span>
       <span class='id identifier rubyid_oauth_debug_logging'>oauth_debug_logging</span><span class='lparen'>(</span><span class='id identifier rubyid_builder'>builder</span><span class='rparen'>)</span>
-      <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:connection_build</span><span class='rbracket'>]</span>
-        <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:connection_build</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_builder'>builder</span><span class='rparen'>)</span>
+      <span class='id identifier rubyid_connection_build'>connection_build</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:connection_build</span><span class='rbracket'>]</span>
+      <span class='kw'>if</span> <span class='id identifier rubyid_connection_build'>connection_build</span>
+        <span class='id identifier rubyid_connection_build'>connection_build</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_builder'>builder</span><span class='rparen'>)</span>
       <span class='kw'>else</span>
         <span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='symbol'>:url_encoded</span><span class='rparen'>)</span>             <span class='comment'># form-encode POST params
 </span>        <span class='id identifier rubyid_builder'>builder</span><span class='period'>.</span><span class='id identifier rubyid_adapter'>adapter</span><span class='lparen'>(</span><span class='const'>Faraday</span><span class='period'>.</span><span class='id identifier rubyid_default_adapter'>default_adapter</span><span class='rparen'>)</span>  <span class='comment'># make requests with Net::HTTP
@@ -1278,12 +1280,12 @@ asserts the identity of the user or client application seeking access.</p>
       <pre class="lines">
 
 
-315
 316
-317</pre>
+317
+318</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 315</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 316</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_assertion'>assertion</span>
   <span class='ivar'>@assertion</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../OAuth2.html" title="OAuth2 (module)">OAuth2</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy.html" title="OAuth2::Strategy (module)">Strategy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy/Assertion.html" title="OAuth2::Strategy::Assertion (class)">Assertion</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Strategy/Base.html#initialize-instance_method" title="OAuth2::Strategy::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -1325,12 +1327,12 @@ asserts the identity of the user or client application seeking access.</p>
       <pre class="lines">
 
 
-281
 282
-283</pre>
+283
+284</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 281</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 282</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_auth_code'>auth_code</span>
   <span class='ivar'>@auth_code</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../OAuth2.html" title="OAuth2 (module)">OAuth2</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy.html" title="OAuth2::Strategy (module)">Strategy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy/AuthCode.html" title="OAuth2::Strategy::AuthCode (class)">AuthCode</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Strategy/Base.html#initialize-instance_method" title="OAuth2::Strategy::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -1403,13 +1405,13 @@ asserts the identity of the user or client application seeking access.</p>
       <pre class="lines">
 
 
-102
 103
 104
-105</pre>
+105
+106</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 103</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authorize_url'>authorize_url</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>||</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_merge'>merge</span><span class='lparen'>(</span><span class='id identifier rubyid_redirection_params'>redirection_params</span><span class='rparen'>)</span>
@@ -1452,12 +1454,12 @@ asserts the identity of the user or client application seeking access.</p>
       <pre class="lines">
 
 
-302
 303
-304</pre>
+304
+305</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 302</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 303</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_client_credentials'>client_credentials</span>
   <span class='ivar'>@client_credentials</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../OAuth2.html" title="OAuth2 (module)">OAuth2</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy.html" title="OAuth2::Strategy (module)">Strategy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy/ClientCredentials.html" title="OAuth2::Strategy::ClientCredentials (class)">ClientCredentials</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Strategy/Base.html#initialize-instance_method" title="OAuth2::Strategy::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -1624,7 +1626,6 @@ and raise_errors is false</p>
       <pre class="lines">
 
 
-209
 210
 211
 212
@@ -1638,10 +1639,11 @@ and raise_errors is false</p>
 220
 221
 222
-223</pre>
+223
+224</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 209</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 210</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_get_token'>get_token</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span><span class='comma'>,</span> <span class='id identifier rubyid_access_token_opts'>access_token_opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='id identifier rubyid_extract_access_token'>extract_access_token</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_warn'>warn</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>OAuth2::Client#get_token argument `extract_access_token` will be removed in oauth2 v3. Refactor to use `access_token_class` on #initialize.</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='id identifier rubyid_extract_access_token'>extract_access_token</span>
@@ -1705,15 +1707,15 @@ and raise_errors is false</p>
       <pre class="lines">
 
 
-271
 272
 273
 274
 275
-276</pre>
+276
+277</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 271</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 272</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_http_method'>http_method</span>
   <span class='id identifier rubyid_http_meth'>http_meth</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:token_method</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_sym'>to_sym</span>
@@ -1758,12 +1760,12 @@ and raise_errors is false</p>
       <pre class="lines">
 
 
-288
 289
-290</pre>
+290
+291</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 288</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 289</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_implicit'>implicit</span>
   <span class='ivar'>@implicit</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../OAuth2.html" title="OAuth2 (module)">OAuth2</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy.html" title="OAuth2::Strategy (module)">Strategy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy/Implicit.html" title="OAuth2::Strategy::Implicit (class)">Implicit</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Strategy/Base.html#initialize-instance_method" title="OAuth2::Strategy::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -1805,12 +1807,12 @@ and raise_errors is false</p>
       <pre class="lines">
 
 
-295
 296
-297</pre>
+297
+298</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 295</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 296</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_password'>password</span>
   <span class='ivar'>@password</span> <span class='op'>||=</span> <span class='const'><span class='object_link'><a href="../OAuth2.html" title="OAuth2 (module)">OAuth2</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy.html" title="OAuth2::Strategy (module)">Strategy</a></span></span><span class='op'>::</span><span class='const'><span class='object_link'><a href="Strategy/Password.html" title="OAuth2::Strategy::Password (class)">Password</a></span></span><span class='period'>.</span><span class='id identifier rubyid_new'><span class='object_link'><a href="Strategy/Base.html#initialize-instance_method" title="OAuth2::Strategy::Base#initialize (method)">new</a></span></span><span class='lparen'>(</span><span class='kw'>self</span><span class='rparen'>)</span>
@@ -1887,20 +1889,22 @@ care of managing this.</p>
       <pre class="lines">
 
 
-340
 341
 342
 343
 344
 345
-346</pre>
+346
+347
+348</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 340</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 341</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_redirection_params'>redirection_params</span>
-  <span class='kw'>if</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:redirect_uri</span><span class='rbracket'>]</span>
-    <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>redirect_uri</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:redirect_uri</span><span class='rbracket'>]</span><span class='rbrace'>}</span>
+  <span class='id identifier rubyid_redirect_uri'>redirect_uri</span> <span class='op'>=</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:redirect_uri</span><span class='rbracket'>]</span>
+  <span class='kw'>if</span> <span class='id identifier rubyid_redirect_uri'>redirect_uri</span>
+    <span class='lbrace'>{</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>redirect_uri</span><span class='tstring_end'>&quot;</span></span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_redirect_uri'>redirect_uri</span><span class='rbrace'>}</span>
   <span class='kw'>else</span>
     <span class='lbrace'>{</span><span class='rbrace'>}</span>
   <span class='kw'>end</span>
@@ -2140,7 +2144,6 @@ code response for this request.  Overrides the client instance setting.</p>
       <pre class="lines">
 
 
-146
 147
 148
 149
@@ -2177,10 +2180,11 @@ code response for this request.  Overrides the client instance setting.</p>
 180
 181
 182
-183</pre>
+183
+184</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 146</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 147</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_verb'>verb</span><span class='comma'>,</span> <span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='id identifier rubyid_req_opts'>req_opts</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_response'>response</span> <span class='op'>=</span> <span class='id identifier rubyid_execute_request'>execute_request</span><span class='lparen'>(</span><span class='id identifier rubyid_verb'>verb</span><span class='comma'>,</span> <span class='id identifier rubyid_url'>url</span><span class='comma'>,</span> <span class='id identifier rubyid_req_opts'>req_opts</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -2188,9 +2192,9 @@ code response for this request.  Overrides the client instance setting.</p>
 
   <span class='kw'>case</span> <span class='id identifier rubyid_status'>status</span>
   <span class='kw'>when</span> <span class='int'>301</span><span class='comma'>,</span> <span class='int'>302</span><span class='comma'>,</span> <span class='int'>303</span><span class='comma'>,</span> <span class='int'>307</span>
-    <span class='id identifier rubyid_req_opts'>req_opts</span><span class='lbracket'>[</span><span class='symbol'>:redirect_count</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='int'>0</span>
-    <span class='id identifier rubyid_req_opts'>req_opts</span><span class='lbracket'>[</span><span class='symbol'>:redirect_count</span><span class='rbracket'>]</span> <span class='op'>+=</span> <span class='int'>1</span>
-    <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span> <span class='kw'>if</span> <span class='id identifier rubyid_req_opts'>req_opts</span><span class='lbracket'>[</span><span class='symbol'>:redirect_count</span><span class='rbracket'>]</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:max_redirects</span><span class='rbracket'>]</span>
+    <span class='id identifier rubyid_redirect_count'>redirect_count</span> <span class='op'>=</span> <span class='id identifier rubyid_req_opts'>req_opts</span><span class='period'>.</span><span class='id identifier rubyid_fetch'>fetch</span><span class='lparen'>(</span><span class='symbol'>:redirect_count</span><span class='comma'>,</span> <span class='int'>0</span><span class='rparen'>)</span> <span class='op'>+</span> <span class='int'>1</span>
+    <span class='id identifier rubyid_req_opts'>req_opts</span><span class='lbracket'>[</span><span class='symbol'>:redirect_count</span><span class='rbracket'>]</span> <span class='op'>=</span> <span class='id identifier rubyid_redirect_count'>redirect_count</span>
+    <span class='kw'>return</span> <span class='id identifier rubyid_response'>response</span> <span class='kw'>if</span> <span class='id identifier rubyid_redirect_count'>redirect_count</span> <span class='op'>&gt;</span> <span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:max_redirects</span><span class='rbracket'>]</span>
 
     <span class='kw'>if</span> <span class='id identifier rubyid_status'>status</span> <span class='op'>==</span> <span class='int'>303</span>
       <span class='id identifier rubyid_verb'>verb</span> <span class='op'>=</span> <span class='symbol'>:get</span>
@@ -2464,7 +2468,6 @@ requesting client.</p>
       <pre class="lines">
 
 
-258
 259
 260
 261
@@ -2472,10 +2475,11 @@ requesting client.</p>
 263
 264
 265
-266</pre>
+266
+267</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 258</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 259</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_revoke_token'>revoke_token</span><span class='lparen'>(</span><span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_token_type_hint'>token_type_hint</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:token_method</span><span class='rbracket'>]</span> <span class='op'>||=</span> <span class='symbol'>:post_with_query_string</span>
@@ -2554,12 +2558,12 @@ requesting client.</p>
       <pre class="lines">
 
 
-119
 120
-121</pre>
+121
+122</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 119</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 120</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_revoke_url'>revoke_url</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_build_url'>build_url</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:revoke_url</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -2632,12 +2636,12 @@ requesting client.</p>
       <pre class="lines">
 
 
-111
 112
-113</pre>
+113
+114</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 111</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/client.rb', line 112</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_token_url'>token_url</span><span class='lparen'>(</span><span class='id identifier rubyid_params'>params</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_connection'>connection</span><span class='period'>.</span><span class='id identifier rubyid_build_url'>build_url</span><span class='lparen'>(</span><span class='id identifier rubyid_options'>options</span><span class='lbracket'>[</span><span class='symbol'>:token_url</span><span class='rbracket'>]</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span>
@@ -2652,7 +2656,7 @@ requesting client.</p>
 </div>
 
       <div id="footer">
-  Generated on Sun Jun  7 01:08:14 2026 by
+  Generated on Fri Jun 12 17:56:33 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

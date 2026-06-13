@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require "json"
+require "set"
 require "multi_xml"
 require "rack"
 
@@ -108,15 +109,16 @@ module OAuth2
     def parsed
       return @parsed if defined?(@parsed)
 
+      response_parser = parser
       @parsed =
-        if parser.respond_to?(:call)
-          case parser.arity
+        if response_parser.respond_to?(:call)
+          case response_parser.arity
           when 0
-            parser.call
+            response_parser.call
           when 1
-            parser.call(body)
+            response_parser.call(body)
           else
-            parser.call(body, response)
+            response_parser.call(body, response)
           end
         end
 
@@ -132,9 +134,10 @@ module OAuth2
     #
     # @return [String, nil] The content type or nil if headers are not present
     def content_type
-      return unless response.headers
+      response_headers = response.headers
+      return unless response_headers
 
-      ((response.headers.values_at("content-type", "Content-Type").compact.first || "").split(";").first || "").strip.downcase
+      ((response_headers.values_at("content-type", "Content-Type").compact.first || "").split(";").first || "").strip.downcase
     end
 
     # Determines the parser to be used for the response body
@@ -154,11 +157,12 @@ module OAuth2
     def parser
       return @parser if defined?(@parser)
 
+      parse_option = options[:parse]
       @parser =
-        if options[:parse].respond_to?(:call)
-          options[:parse]
-        elsif options[:parse]
-          @@parsers[options[:parse].to_sym]
+        if parse_option.respond_to?(:call)
+          parse_option
+        elsif parse_option
+          @@parsers[parse_option.to_sym]
         end
 
       @parser ||= @@parsers[@@content_types[content_type]]

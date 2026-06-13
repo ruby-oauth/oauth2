@@ -86,8 +86,9 @@ module OAuth2
       @connection ||=
         Faraday.new(site, options[:connection_opts]) do |builder|
           oauth_debug_logging(builder)
-          if options[:connection_build]
-            options[:connection_build].call(builder)
+          connection_build = options[:connection_build]
+          if connection_build
+            connection_build.call(builder)
           else
             builder.request(:url_encoded)             # form-encode POST params
             builder.adapter(Faraday.default_adapter)  # make requests with Net::HTTP
@@ -149,9 +150,9 @@ module OAuth2
 
       case status
       when 301, 302, 303, 307
-        req_opts[:redirect_count] ||= 0
-        req_opts[:redirect_count] += 1
-        return response if req_opts[:redirect_count] > options[:max_redirects]
+        redirect_count = (req_opts[:redirect_count] || 0).to_i + 1
+        req_opts[:redirect_count] = redirect_count
+        return response if redirect_count > options[:max_redirects]
 
         if status == 303
           verb = :get
@@ -338,8 +339,9 @@ module OAuth2
     #
     # @return [Hash] the params to add to a request or URL
     def redirection_params
-      if options[:redirect_uri]
-        {"redirect_uri" => options[:redirect_uri]}
+      redirect_uri = options[:redirect_uri]
+      if redirect_uri
+        {"redirect_uri" => redirect_uri}
       else
         {}
       end
@@ -446,7 +448,7 @@ module OAuth2
       url = connection.build_url(url).to_s
       # See: Hash#partition https://bugs.ruby-lang.org/issues/16252
       req_opts, oauth_opts = opts.
-        partition { |k, _v| RESERVED_REQ_KEYS.include?(k.to_s) }.
+        partition { |key, _value| RESERVED_REQ_KEYS.include?(key.to_s) }.
         map(&:to_h)
 
       begin
@@ -454,10 +456,10 @@ module OAuth2
           req.params.update(req_opts[:params]) if req_opts[:params]
           yield(req) if block_given?
         end
-      rescue Faraday::ConnectionFailed => e
-        raise ConnectionError, e
-      rescue Faraday::TimeoutError => e
-        raise TimeoutError, e
+      rescue Faraday::ConnectionFailed => exception
+        raise ConnectionError, exception
+      rescue Faraday::TimeoutError => exception
+        raise TimeoutError, exception
       end
 
       parse = oauth_opts.key?(:parse) ? oauth_opts.delete(:parse) : Response::DEFAULT_OPTIONS[:parse]
@@ -467,27 +469,40 @@ module OAuth2
     end
 
     def resolve_redirect_location(current_location, location)
-      safe_location =
-        if location.respond_to?(:start_with?) && location.start_with?("//")
-          "./#{location}"
-        else
-          location
-        end
+      return protocol_relative_redirect_location(current_location, location) if location.respond_to?(:start_with?) && location.start_with?("//")
 
-      current_location.merge(safe_location)
+      current_location.merge(location)
+    end
+
+    def protocol_relative_redirect_location(current_location, location)
+      protocol_relative_location = URI.parse(location)
+      authority = +""
+      authority << "#{protocol_relative_location.userinfo}@" if protocol_relative_location.userinfo
+      authority << protocol_relative_location.host.to_s
+      authority << ":#{protocol_relative_location.port}" if protocol_relative_location.port
+
+      current_location.dup.tap do |safe_location|
+        safe_location.path = "///#{authority}#{protocol_relative_location.path}"
+        safe_location.query = protocol_relative_location.query if safe_location.respond_to?(:query=)
+        safe_location.fragment = protocol_relative_location.fragment if safe_location.respond_to?(:fragment=)
+      end
     end
 
     def sanitize_redirect_options(req_opts, current_location, next_location)
       return req_opts unless cross_origin_redirect?(current_location, next_location)
 
       headers = req_opts[:headers]
-      return req_opts unless headers && headers.any? { |key, _value| key.to_s.casecmp("Authorization").zero? }
+      return req_opts unless headers && headers.any? { |key, _value| authorization_header?(key) }
 
       safe_opts = req_opts.dup
       safe_headers = headers.dup
-      safe_headers.delete_if { |key, _value| key.to_s.casecmp("Authorization").zero? }
+      safe_headers.delete_if { |key, _value| authorization_header?(key) }
       safe_opts[:headers] = safe_headers
       safe_opts
+    end
+
+    def authorization_header?(key)
+      key.to_s.casecmp("Authorization").zero?
     end
 
     def cross_origin_redirect?(current_location, next_location)
@@ -595,12 +610,13 @@ module OAuth2
 
     def oauth_debug_logging(builder)
       if OAuth2::OAUTH_DEBUG
+        config = OAuth2.config
         builder.response(
           :logger,
           OAuth2::AUTH_SANITIZER::SanitizedLogger.new(
             options[:logger],
-            filtered_keys: OAuth2.config[:filtered_debug_keys],
-            label: OAuth2.config[:filtered_label]
+            filtered_keys: config[:filtered_debug_keys],
+            label: config[:filtered_label]
           ),
           bodies: true
         )
