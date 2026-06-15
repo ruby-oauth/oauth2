@@ -91,8 +91,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Raised generated `version_gem` dependency floor to `version_gem` >= 1.1.10 - by @pboling
 - Raised the runtime dependency floor for `auth-sanitizer` to `>= 0.2.1` so
-  OAuth2 consumers get the current inspect redaction behavior and downstream RBS
-  duplicate-declaration fixes - by @pboling
+  OAuth2 consumers get hash and nested-attribute inspect redaction fixes plus
+  downstream RBS duplicate-declaration fixes - by @pboling
 - Refreshed generated package metadata, support documentation, CI workflows,
   and development dependency floors from the current kettle-jem template - by @pboling
 - Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in
