@@ -56,6 +56,7 @@ jobs:
           - ruby: "jruby-head"
             appraisal: "head"
             exec_cmd: "kettle-test"
+            kettle_test_runner: "rspec"
             rubygems: default
             bundler: default
 
@@ -91,4 +92,6 @@ jobs:
 
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT || (! startsWith(matrix.ruby, 'jruby') && !startsWith(matrix.ruby, 'truffleruby')) }}
+        env:
+          KETTLE_TEST_RUNNER: ${{ matrix.kettle_test_runner || 'turbo_tests2' }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
