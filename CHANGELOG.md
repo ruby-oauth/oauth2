@@ -28,9 +28,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
-- Fixed the isolated `auth-sanitizer` load-path regression spec so subprocess
-  RubyGems startup cannot inherit Bundler/Appraisal activation from CI.
-
 ### Security
 
 ## [2.0.24] - 2026-06-18
@@ -52,6 +49,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - Fixed isolated `auth-sanitizer` loading when Bundler standalone setup makes
   `auth_sanitizer/loader.rb` available on `$LOAD_PATH` without adding
   `auth-sanitizer` to `Gem.loaded_specs` or `GEM_PATH`.
+
+- Fixed the isolated `auth-sanitizer` load-path regression spec so subprocess
+  RubyGems startup cannot inherit Bundler/Appraisal activation from CI.
 
 ## [2.0.23] - 2026-06-13
 
