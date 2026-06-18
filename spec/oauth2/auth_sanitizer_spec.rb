@@ -15,7 +15,9 @@ RSpec.describe "OAuth2::AUTH_SANITIZER" do
 
   it "loads when auth-sanitizer is only available on the load path, not GEM_PATH" do
     oauth2_lib = File.expand_path("../../lib", __dir__)
+    anonymous_loader_lib = File.join(Gem.loaded_specs.fetch("anonymous_loader").full_gem_path, "lib")
     auth_sanitizer_lib = File.join(Gem.loaded_specs.fetch("auth-sanitizer").full_gem_path, "lib")
+    version_gem_lib = File.join(Gem.loaded_specs.fetch("version_gem").full_gem_path, "lib")
     script = <<~'RUBY'
       require "rubygems"
 
@@ -34,22 +36,21 @@ RSpec.describe "OAuth2::AUTH_SANITIZER" do
       require "oauth2/auth_sanitizer"
       abort("OAuth2::AUTH_SANITIZER was not loaded") unless OAuth2.const_defined?(:AUTH_SANITIZER, false)
     RUBY
-    ruby_env = if defined?(Bundler)
-      Bundler.with_unbundled_env { ENV.to_h }
-    else
-      ENV.to_h
+    passthrough_env_keys = %w[
+      GEM_HOME
+      GEM_PATH
+      HOME
+      PATH
+      PATHEXT
+      SystemRoot
+      TEMP
+      TMP
+      TMPDIR
+      WINDIR
+    ]
+    ruby_env = passthrough_env_keys.each_with_object({}) do |key, env|
+      env[key] = ENV[key] if ENV.key?(key)
     end
-    %w[
-      BUNDLE_BIN_PATH
-      BUNDLE_GEMFILE
-      BUNDLE_PATH
-      BUNDLE_WITH
-      BUNDLE_WITHOUT
-      BUNDLER_VERSION
-      RUBYGEMS_GEMDEPS
-      RUBYLIB
-      RUBYOPT
-    ].each { |key| ruby_env[key] = nil }
 
     stdout, stderr, status = Open3.capture3(
       ruby_env,
@@ -58,9 +59,14 @@ RSpec.describe "OAuth2::AUTH_SANITIZER" do
       "-I",
       oauth2_lib,
       "-I",
+      anonymous_loader_lib,
+      "-I",
       auth_sanitizer_lib,
+      "-I",
+      version_gem_lib,
       "-e",
-      script
+      script,
+      unsetenv_others: true
     )
 
     expect(status).to be_success, <<~MSG

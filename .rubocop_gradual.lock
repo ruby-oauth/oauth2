@@ -1,9 +1,9 @@
 {
-  "spec/oauth2/auth_sanitizer_spec.rb:1763449711": [
-    [19, 14, 2, "Lint/Syntax: unexpected token tLSHFT\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5859461],
-    [66, 35, 2, "Lint/Syntax: unexpected token tLSHFT\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5859461],
-    [67, 38, 2, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5861278],
-    [67, 66, 4, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 2087898353],
-    [69, 13, 1, "Lint/Syntax: unexpected token tCOLON\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177567]
+  "spec/oauth2/auth_sanitizer_spec.rb:2015103424": [
+    [21, 14, 2, "Lint/Syntax: unexpected token tLSHFT\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5859461],
+    [72, 35, 2, "Lint/Syntax: unexpected token tLSHFT\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5859461],
+    [73, 38, 2, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 5861278],
+    [73, 66, 4, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 2087898353],
+    [75, 13, 1, "Lint/Syntax: unexpected token tCOLON\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177567]
   ]
 }
