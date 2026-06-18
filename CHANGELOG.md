@@ -22,22 +22,33 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Raised the `anonymous_loader` runtime dependency floor to `>= 0.1.1`.
-- Raised the `auth-sanitizer` runtime dependency floor to `>= 0.2.2` and
-  switched isolated sanitizer loading to the released `anonymous_loader` gem,
-  including local workspace wiring for the new runtime dependency.
-
 ### Deprecated
 
 ### Removed
 
 ### Fixed
 
+### Security
+
+## [2.0.24] - 2026-06-18
+
+- TAG: [v2.0.24][2.0.24t]
+- COVERAGE: 100.00% -- 558/558 lines in 15 files
+- BRANCH COVERAGE: 97.89% -- 186/190 branches in 15 files
+- 88.35% documented
+
+### Changed
+
+- Raised the `anonymous_loader` runtime dependency floor to `>= 0.1.1`.
+- Raised the `auth-sanitizer` runtime dependency floor to `>= 0.2.2` and
+  switched isolated sanitizer loading to the released `anonymous_loader` gem,
+  including local workspace wiring for the new runtime dependency.
+
+### Fixed
+
 - Fixed isolated `auth-sanitizer` loading when Bundler standalone setup makes
   `auth_sanitizer/loader.rb` available on `$LOAD_PATH` without adding
   `auth-sanitizer` to `Gem.loaded_specs` or `GEM_PATH`.
-
-### Security
 
 ## [2.0.23] - 2026-06-13
 
@@ -897,7 +908,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.23...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.24...HEAD
+[2.0.24]: https://github.com/ruby-oauth/oauth2/compare/v2.0.23...v2.0.24
+[2.0.24t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.24
 [2.0.23]: https://github.com/ruby-oauth/oauth2/compare/v2.0.22...v2.0.23
 [2.0.23t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.23
 [2.0.22]: https://github.com/ruby-oauth/oauth2/compare/v2.0.21...v2.0.22

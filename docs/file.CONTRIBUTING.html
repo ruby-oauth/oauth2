@@ -187,7 +187,7 @@ Tip: When running a single spec file locally, you may want <code>K_SOUP_COV_MIN_
   <li>Git hosting forges generally ignore external diff drivers, so pull request views may still show raw textual diffs even when local <code>git diff</code> uses semantic drivers.</li>
 </ul>
 
-<pre class="code language-console"><code class="language-console">K_JEM_TEMPLATING=true bundle exec kettle-jem install
+<pre class="code language-console"><code class="language-console">K_JEM_TEMPLATING=true kettle-jem install
 </code></pre>
 
 <p>Troubleshooting Git diffs</p>
@@ -195,7 +195,7 @@ Tip: When running a single spec file locally, you may want <code>K_SOUP_COV_MIN_
   <li>Use <code>git diff --no-ext-diff</code> to compare against Git’s built-in diff output.</li>
   <li>Use <code>git diff --no-textconv</code> when a textconv projection obscures the raw file bytes you need to inspect.</li>
   <li>If Git reports a missing <code>smorg-*</code> executable, rerun <code>bundle install</code> and the setup command above, then check <code>git config --local --get-regexp '^diff\.smorg-'</code>.</li>
-  <li>To remove managed local entries, run <code>K_JEM_TEMPLATING=true bundle exec kettle-jem install --undo</code>; remove global command registrations with <code>git config --global --unset-all diff.smorg-ruby.command</code>.</li>
+  <li>To remove managed local entries, run <code>K_JEM_TEMPLATING=true kettle-jem install --undo</code>; remove global command registrations with <code>git config --global --unset-all diff.smorg-ruby.command</code>.</li>
 </ul>
 
 <p>For a quick starting point, this repository’s <code>mise.toml</code> defines the shared defaults, and <code>.env.local</code> can override them locally. Copy <code>.env.local.example</code> to <code>.env.local</code>, use <code>KEY=value</code> lines, and either activate <code>mise</code> in your shell or run commands through <code>mise exec -C /path/to/project -- ...</code>.</p>
@@ -357,9 +357,9 @@ push git commits and tags, and push the <code>.gem</code> file to the gem host c
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jun  3 19:00:56 2026 by
+  Generated on Thu Jun 18 09:48:15 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.4).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>

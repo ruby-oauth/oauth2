@@ -270,16 +270,16 @@ Use the <code>K_SOUP_COV_MIN_HARD=false</code> environment variable to disable h
 and regenerate local finishing artifacts such as binstubs:</p>
 
 <pre class="code language-bash"><code class="language-bash"># Standard run (quiet, non-interactive — the default)
-mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true bundle exec kettle-jem install
+mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true kettle-jem install
 
 # Verbose output (see per-file detail)
-mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true KETTLE_JEM_VERBOSE=true bundle exec kettle-jem install
+mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true KETTLE_JEM_VERBOSE=true kettle-jem install
 
 # Interactive mode (prompt before each change)
-mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true bundle exec kettle-jem install --interactive
+mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true kettle-jem install --interactive
 
 # Scoped file update only; skips install finishing steps
-mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true bundle exec kettle-jem template --only README.md
+mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true kettle-jem template --only README.md
 </code></pre>
 
 <p>Use the <code>kettle-jem</code> executable as the public entrypoint. The<br>
@@ -410,9 +410,9 @@ end
 </div></div>
 
       <div id="footer">
-  Generated on Wed Jun  3 19:00:56 2026 by
+  Generated on Thu Jun 18 09:48:15 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.9.44 (ruby-4.0.4).
+  0.9.44 (ruby-4.0.5).
 </div>
 
     </div>

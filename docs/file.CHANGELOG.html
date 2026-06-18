@@ -70,11 +70,32 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.23...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.24...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
 <h3 id="changed">Changed</h3>
+
+<h3 id="deprecated">Deprecated</h3>
+
+<h3 id="removed">Removed</h3>
+
+<h3 id="fixed">Fixed</h3>
+
+<h3 id="security">Security</h3>
+
+<h2 id="2024---2026-06-18">
+<a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.23...v2.0.24">2.0.24</a> - 2026-06-18</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.24">v2.0.24</a>
+</li>
+  <li>COVERAGE: 100.00% – 558/558 lines in 15 files</li>
+  <li>BRANCH COVERAGE: 97.89% – 186/190 branches in 15 files</li>
+  <li>88.35% documented</li>
+</ul>
+
+<h3 id="changed-1">Changed</h3>
 
 <ul>
   <li>Raised the <code>anonymous_loader</code> runtime dependency floor to <code>&gt;= 0.1.1</code>.</li>
@@ -83,19 +104,13 @@ switched isolated sanitizer loading to the released <code>anonymous_loader</code
 including local workspace wiring for the new runtime dependency.</li>
 </ul>
 
-<h3 id="deprecated">Deprecated</h3>
-
-<h3 id="removed">Removed</h3>
-
-<h3 id="fixed">Fixed</h3>
+<h3 id="fixed-1">Fixed</h3>
 
 <ul>
   <li>Fixed isolated <code>auth-sanitizer</code> loading when Bundler standalone setup makes<br>
 <code>auth_sanitizer/loader.rb</code> available on <code>$LOAD_PATH</code> without adding<br>
 <code>auth-sanitizer</code> to <code>Gem.loaded_specs</code> or <code>GEM_PATH</code>.</li>
 </ul>
-
-<h3 id="security">Security</h3>
 
 <h2 id="2023---2026-06-13">
 <a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.22...v2.0.23">2.0.23</a> - 2026-06-13</h2>
@@ -108,14 +123,14 @@ including local workspace wiring for the new runtime dependency.</li>
   <li>88.35% documented</li>
 </ul>
 
-<h3 id="changed-1">Changed</h3>
+<h3 id="changed-2">Changed</h3>
 
 <ul>
   <li>Upgraded to snaky_hash v2.0.6 by @pboling</li>
   <li>Refreshed generated GHA workflow action SHA pins by @pboling</li>
 </ul>
 
-<h3 id="fixed-1">Fixed</h3>
+<h3 id="fixed-2">Fixed</h3>
 
 <ul>
   <li>Addressed Reek code-quality checks with targeted cleanup and documented compatibility exclusions by @pboling</li>
@@ -137,7 +152,7 @@ including local workspace wiring for the new runtime dependency.</li>
   <li>88.35% documented</li>
 </ul>
 
-<h3 id="changed-2">Changed</h3>
+<h3 id="changed-3">Changed</h3>
 
 <ul>
   <li>Raised generated development tooling floors to <code>kettle-dev</code> &gt;= 2.1.1 and<br>
@@ -176,7 +191,7 @@ including local workspace wiring for the new runtime dependency.</li>
 so generated Appraisal gemfiles are normalized during generation - by @pboling</li>
 </ul>
 
-<h3 id="changed-3">Changed</h3>
+<h3 id="changed-4">Changed</h3>
 
 <ul>
   <li>Raised generated <code>version_gem</code> dependency floor to <code>version_gem</code> &gt;= 1.1.10 - by @pboling</li>
@@ -205,7 +220,7 @@ gemfiles; development tooling now requires Ruby 2.4 or newer, and Ruby 2.4<br>
 coverage is already handled by the standard Ruby 2.4 workflow - by @pboling</li>
 </ul>
 
-<h3 id="fixed-2">Fixed</h3>
+<h3 id="fixed-3">Fixed</h3>
 
 <ul>
   <li>Updated CI workflow maintenance: QLTY uploads now use OIDC and harden-runner<br>
@@ -244,13 +259,13 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   <li>OAuth2::VERSION (Traditional Constant Location) - by @pboling</li>
 </ul>
 
-<h3 id="changed-4">Changed</h3>
+<h3 id="changed-5">Changed</h3>
 
 <ul>
   <li>auth-sanitizer v0.1.3 - by @pboling</li>
 </ul>
 
-<h3 id="fixed-3">Fixed</h3>
+<h3 id="fixed-4">Fixed</h3>
 
 <ul>
   <li>
@@ -279,7 +294,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/707">gh!707</a> Add <code>OAuth2.config[:filtered_debug_keys]</code> to configure which key names have their values redacted from debug logging output by @pboling</li>
 </ul>
 
-<h3 id="changed-5">Changed</h3>
+<h3 id="changed-6">Changed</h3>
 
 <ul>
   <li>
@@ -327,7 +342,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/687">gh!687</a>- Add Threat Model by @pboling</li>
 </ul>
 
-<h3 id="changed-6">Changed</h3>
+<h3 id="changed-7">Changed</h3>
 
 <ul>
   <li>
@@ -339,7 +354,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   </li>
 </ul>
 
-<h3 id="fixed-4">Fixed</h3>
+<h3 id="fixed-5">Fixed</h3>
 
 <ul>
   <li>
@@ -401,7 +416,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/676">gh!676</a>, <a href="https://github.com/ruby-oauth/oauth2/pull/679">gh!679</a> - Apache SkyWalking Eyes dependency license check by @pboling</li>
 </ul>
 
-<h3 id="changed-7">Changed</h3>
+<h3 id="changed-8">Changed</h3>
 
 <ul>
   <li>
@@ -441,14 +456,14 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   </li>
 </ul>
 
-<h3 id="changed-8">Changed</h3>
+<h3 id="changed-9">Changed</h3>
 
 <ul>
   <li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/669">gh!669</a> - Upgrade to kettle-dev v1.1.9 by @pboling</li>
 </ul>
 
-<h3 id="fixed-5">Fixed</h3>
+<h3 id="fixed-6">Fixed</h3>
 
 <ul>
   <li>Remove accidentally duplicated lines, and fix typos in CHANGELOG.md</li>
@@ -527,7 +542,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   <li>Documentation: Added docs/OIDC.md with OIDC 1.0 overview, example, and references</li>
 </ul>
 
-<h3 id="changed-9">Changed</h3>
+<h3 id="changed-10">Changed</h3>
 
 <ul>
   <li>Upgrade Code of Conduct to Contributor Covenant 2.1 by @pboling</li>
@@ -535,7 +550,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/660">gh!660</a> - Shrink post-install message by 4 lines by @pboling</li>
 </ul>
 
-<h3 id="fixed-6">Fixed</h3>
+<h3 id="fixed-7">Fixed</h3>
 
 <ul>
   <li>
@@ -571,13 +586,13 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   <li>Documentation site @ https://oauth2.galtzo.com now complete</li>
 </ul>
 
-<h3 id="changed-10">Changed</h3>
+<h3 id="changed-11">Changed</h3>
 
 <ul>
   <li>Updates to gemspec (email, funding url, post install message)</li>
 </ul>
 
-<h3 id="fixed-7">Fixed</h3>
+<h3 id="fixed-8">Fixed</h3>
 
 <ul>
   <li>Documentation Typos by @pboling</li>
@@ -624,7 +639,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   </li>
 </ul>
 
-<h3 id="changed-11">Changed</h3>
+<h3 id="changed-12">Changed</h3>
 
 <ul>
   <li>
@@ -636,7 +651,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   <li>Updated <code>spec.homepage_uri</code> in gemspec to GitHub Pages YARD documentation site (@pboling)</li>
 </ul>
 
-<h3 id="fixed-8">Fixed</h3>
+<h3 id="fixed-9">Fixed</h3>
 
 <ul>
   <li>
@@ -701,7 +716,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/648">!648</a> - Improved documentation (@pboling)</li>
 </ul>
 
-<h3 id="changed-12">Changed</h3>
+<h3 id="changed-13">Changed</h3>
 
 <ul>
   <li>Default value of <code>OAuth2.config.silence_extra_tokens_warning</code> was <code>false</code>, now <code>true</code> (@pboling)</li>
@@ -718,7 +733,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/647">!647</a> - Errors raised by <code>OAuth2::AccessToken</code> are now always <code>OAuth2::Error</code> and have better metadata (@pboling)</li>
 </ul>
 
-<h3 id="fixed-9">Fixed</h3>
+<h3 id="fixed-10">Fixed</h3>
 
 <ul>
   <li>
@@ -765,7 +780,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   <li>More specs (@pboling)</li>
 </ul>
 
-<h3 id="changed-13">Changed</h3>
+<h3 id="changed-14">Changed</h3>
 
 <ul>
   <li>Complete migration to main branch as default (@pboling)</li>
@@ -780,7 +795,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </li>
 </ul>
 
-<h3 id="changed-14">Changed</h3>
+<h3 id="changed-15">Changed</h3>
 
 <ul>
   <li>
@@ -810,7 +825,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/629">!629</a> - Allow POST of JSON to get token (@pboling, @terracatta)</li>
 </ul>
 
-<h3 id="fixed-10">Fixed</h3>
+<h3 id="fixed-11">Fixed</h3>
 
 <ul>
   <li>
@@ -831,7 +846,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </li>
 </ul>
 
-<h3 id="fixed-11">Fixed</h3>
+<h3 id="fixed-12">Fixed</h3>
 
 <ul>
   <li>
@@ -846,7 +861,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </li>
 </ul>
 
-<h3 id="fixed-12">Fixed</h3>
+<h3 id="fixed-13">Fixed</h3>
 
 <ul>
   <li>
@@ -876,7 +891,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </li>
 </ul>
 
-<h3 id="fixed-13">Fixed</h3>
+<h3 id="fixed-14">Fixed</h3>
 
 <ul>
   <li>
@@ -900,7 +915,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/612">!612</a> - Add <code>snaky: false</code> option to skip conversion to <code>OAuth2::SnakyHash</code> (default: true) (@pboling)</li>
 </ul>
 
-<h3 id="fixed-14">Fixed</h3>
+<h3 id="fixed-15">Fixed</h3>
 
 <ul>
   <li>
@@ -917,7 +932,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </li>
 </ul>
 
-<h3 id="fixed-15">Fixed</h3>
+<h3 id="fixed-16">Fixed</h3>
 
 <ul>
   <li>
@@ -1008,7 +1023,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/581">!581</a> - <em>Documentation</em>: of breaking changes (@pboling)</li>
 </ul>
 
-<h3 id="changed-15">Changed</h3>
+<h3 id="changed-16">Changed</h3>
 
 <ul>
   <li>
@@ -1043,7 +1058,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://gitlab.com/ruby-oauth/oauth2/-/merge_requests/576">!591</a> - <em>DEPRECATION</em>: <code>OAuth2::Client</code> - <code>:extract_access_token</code> option is deprecated</li>
 </ul>
 
-<h3 id="fixed-16">Fixed</h3>
+<h3 id="fixed-17">Fixed</h3>
 
 <ul>
   <li>
@@ -1357,7 +1372,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   <li>Add an implementation of the MAC token spec.</li>
 </ul>
 
-<h3 id="fixed-17">Fixed</h3>
+<h3 id="fixed-18">Fixed</h3>
 
 <ul>
   <li>Fix Base64.strict_encode64 incompatibility with Ruby 1.8.7.</li>
@@ -1371,7 +1386,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </li>
 </ul>
 
-<h3 id="changed-16">Changed</h3>
+<h3 id="changed-17">Changed</h3>
 
 <ul>
   <li>
@@ -1541,7 +1556,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jun 18 08:34:34 2026 by
+  Generated on Thu Jun 18 09:48:15 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
