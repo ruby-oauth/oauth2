@@ -28,6 +28,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed isolated `auth-sanitizer` loading when Bundler standalone setup makes
+  `auth_sanitizer/loader.rb` available on `$LOAD_PATH` without adding
+  `auth-sanitizer` to `Gem.loaded_specs` or `GEM_PATH`.
+
 ### Security
 
 ## [2.0.23] - 2026-06-13
