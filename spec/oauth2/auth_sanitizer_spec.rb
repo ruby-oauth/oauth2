@@ -34,14 +34,25 @@ RSpec.describe "OAuth2::AUTH_SANITIZER" do
       require "oauth2/auth_sanitizer"
       abort("OAuth2::AUTH_SANITIZER was not loaded") unless OAuth2.const_defined?(:AUTH_SANITIZER, false)
     RUBY
+    ruby_env = if defined?(Bundler)
+      Bundler.with_unbundled_env { ENV.to_h }
+    else
+      ENV.to_h
+    end
+    %w[
+      BUNDLE_BIN_PATH
+      BUNDLE_GEMFILE
+      BUNDLE_PATH
+      BUNDLE_WITH
+      BUNDLE_WITHOUT
+      BUNDLER_VERSION
+      RUBYGEMS_GEMDEPS
+      RUBYLIB
+      RUBYOPT
+    ].each { |key| ruby_env[key] = nil }
 
     stdout, stderr, status = Open3.capture3(
-      {
-        "BUNDLE_GEMFILE" => nil,
-        "BUNDLER_VERSION" => nil,
-        "RUBYLIB" => nil,
-        "RUBYOPT" => nil,
-      },
+      ruby_env,
       RbConfig.ruby,
       "-I",
       oauth2_lib,
