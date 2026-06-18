@@ -54,6 +54,7 @@ RSpec.describe "OAuth2::AUTH_SANITIZER" do
     stdout, stderr, status = Open3.capture3(
       ruby_env,
       RbConfig.ruby,
+      "--disable=gems",
       "-I",
       oauth2_lib,
       "-I",

@@ -28,6 +28,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+- Fixed the isolated `auth-sanitizer` load-path regression spec so child Ruby
+  processes cannot inherit Bundler/Appraisal activation from CI startup.
+
 ### Security
 
 ## [2.0.24] - 2026-06-18
