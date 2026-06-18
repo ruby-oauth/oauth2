@@ -12,7 +12,7 @@
 gem "reek", "~> 6.5", ">= 6.5.0"
 
 platform :mri do
-  gem "appraisal2-rubocop", "~> 0.2", ">= 0.2.0", require: false
+  gem "appraisal2-rubocop", "~> 0.2", ">= 0.2.1", require: false
   gem "rubocop-gradual", "~> 0.4", ">= 0.4.0"
   gem "rubocop-minitest", "~> 0.38", ">= 0.38.1"
   gem "rubocop-on-rbs", "~> 2.0", ">= 2.0.0"        # ruby >= 3.2.0

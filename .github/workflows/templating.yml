@@ -61,6 +61,12 @@ jobs:
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
 
+      - name: Update templating bootstrap dependencies
+        env:
+          BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
+          K_JEM_TEMPLATING: "true"
+        run: bundle update nomono
+
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt1
         run: bundle exec appraisal ${{ matrix.appraisal }} install

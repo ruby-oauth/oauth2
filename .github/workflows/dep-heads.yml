@@ -56,7 +56,7 @@ jobs:
           # jruby-10.0 (targets Ruby 3.4 compatibility)
           - ruby: "jruby"
             appraisal: "dep-heads"
-            exec_cmd: "rspec"
+            exec_cmd: "kettle-test"
             rubygems: default
             bundler: default
             experimental: true
@@ -93,5 +93,4 @@ jobs:
 
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT || (! startsWith(matrix.ruby, 'jruby') && !startsWith(matrix.ruby, 'truffleruby')) }}
-        timeout-minutes: 15
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

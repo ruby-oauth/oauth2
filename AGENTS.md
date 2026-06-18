@@ -163,16 +163,16 @@ and regenerate local finishing artifacts such as binstubs:
 
 ```bash
 # Standard run (quiet, non-interactive — the default)
-mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true bundle exec kettle-jem install
+mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true kettle-jem install
 
 # Verbose output (see per-file detail)
-mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true KETTLE_JEM_VERBOSE=true bundle exec kettle-jem install
+mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true KETTLE_JEM_VERBOSE=true kettle-jem install
 
 # Interactive mode (prompt before each change)
-mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true bundle exec kettle-jem install --interactive
+mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true kettle-jem install --interactive
 
 # Scoped file update only; skips install finishing steps
-mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true bundle exec kettle-jem template --only README.md
+mise exec -C /path/to/project -- env K_JEM_TEMPLATING=true kettle-jem template --only README.md
 ```
 
 Use the `kettle-jem` executable as the public entrypoint. The

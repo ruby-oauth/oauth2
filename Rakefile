@@ -6,7 +6,7 @@
 # kettle-jem will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
-# oauth2 Rakefile v7.0.0 - 2026-06-13
+# oauth2 Rakefile v7.0.0 - 2026-06-18
 # Ruby 2.3 (Safe Navigation) or higher required
 #
 # See LICENSE.md for license information.
@@ -64,24 +64,16 @@ end
 
 # :nocov:
 ### MONOREPO FAMILY TASKS
-if Dir.exist?(File.join(__dir__, "gems")) && Dir.exist?(File.join(__dir__, "workspace-scripts"))
-  def family_script_path(script_name)
-    File.join(__dir__, "workspace-scripts", script_name)
-  end
-
-  def run_family_script(script_name, *args)
-    script = family_script_path(script_name)
-    raise "Missing family script: #{script}" unless File.file?(script)
-
-    command = [script, *args].compact
-    sh(*command)
-  end
-
+if Dir.exist?(File.join(__dir__, "gems"))
   def family_gem_dirs
     Dir.glob(File.join(__dir__, "gems", "*", "*.gemspec")).
       map { |path| File.dirname(path) }.
       uniq.
       sort_by { |path| File.basename(path) }
+  end
+
+  def run_kettle_family(*args)
+    sh("bundle", "exec", "kettle-family", *args)
   end
 
   namespace :family do
@@ -92,32 +84,37 @@ if Dir.exist?(File.join(__dir__, "gems")) && Dir.exist?(File.join(__dir__, "work
 
     desc "Run release readiness checks for the Ruby gem family"
     task :readiness do
-      run_family_script("10_release_readiness_check.rb")
+      run_kettle_family("check")
     end
 
     desc "Run tests for the Ruby gem family"
     task :test do
-      run_family_script("5_test_ruby_gems.sh")
+      run_kettle_family("test", "--execute")
     end
 
     desc "Run lint for the Ruby gem family"
     task :lint do
-      run_family_script("4_lint_ruby_gems.sh")
+      run_kettle_family("lint", "--execute")
     end
 
     desc "Generate YARD docs for the Ruby gem family"
     task :docs do
-      run_family_script("6_docs_ruby_gems.sh")
+      run_kettle_family("docs", "--execute")
+    end
+
+    desc "Report release state for the Ruby gem family"
+    task :release_state do
+      run_kettle_family("release-state")
     end
 
     desc "Run the Ruby gem family release planner"
     task :release do
-      run_family_script("11_release_ruby_gems.rb")
+      run_kettle_family("release")
     end
 
     desc "Execute the Ruby gem family release"
     task :release_execute do
-      run_family_script("11_release_ruby_gems.rb", "--execute")
+      run_kettle_family("release", "--execute")
     end
   end
 end
