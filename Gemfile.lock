@@ -2,7 +2,8 @@ PATH
   remote: .
   specs:
     oauth2 (2.0.23)
-      auth-sanitizer (~> 0.2, >= 0.2.1)
+      anonymous_loader (~> 0.1, >= 0.1.0)
+      auth-sanitizer (~> 0.2, >= 0.2.2)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
       logger (~> 1.2)
@@ -16,6 +17,8 @@ GEM
   specs:
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
+    anonymous_loader (0.1.0)
+      version_gem (~> 1.1, >= 1.1.12)
     ansi (1.6.0)
     appraisal2 (3.1.2)
       bundler (>= 1.17.3)
@@ -26,7 +29,7 @@ GEM
       rubocop (>= 1.0)
       version_gem (~> 1.1, >= 1.1.10)
     ast (2.4.3)
-    auth-sanitizer (0.2.1)
+    auth-sanitizer (0.2.2)
       version_gem (~> 1.1, >= 1.1.10)
     backports (3.25.3)
     base64 (0.3.0)
@@ -374,7 +377,7 @@ GEM
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
     uri (1.1.1)
-    version_gem (1.1.11)
+    version_gem (1.1.12)
     webrick (1.9.2)
     yaml-converter (0.2.0)
       hexapdf (>= 1.8, < 2)
@@ -462,11 +465,12 @@ DEPENDENCIES
 
 CHECKSUMS
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
+  anonymous_loader (0.1.0) sha256=bcef54b92ff9266736fdabc511958f97e98ac84519339cc3e30c6dd490851e4a
   ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
   appraisal2 (3.1.2) sha256=33a1f8c1e2808aa33a24b4c73d1f20c9571b5a34541d66d04d5e744b5906437a
   appraisal2-rubocop (0.2.0) sha256=c3353136ad1e32e9084c6ede76997510b3b77cf7d2fe19ab4c54a3f5e16cb9c9
   ast (2.4.3) sha256=954615157c1d6a382bc27d690d973195e79db7f55e9765ac7c481c60bdb4d383
-  auth-sanitizer (0.2.1) sha256=917dcf01f7589b06c26726afe90568cf2fb29d37a1f94facfc664f11967cc577
+  auth-sanitizer (0.2.2) sha256=300112debb67fe5e7a4f67a697790cea09744970e816745afb1f4235d6f27bae
   backports (3.25.3) sha256=94298d32dc3c40ca15633b54e282780b49e2db0c045f602ea1907e4f63a17235
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   benchmark (0.5.0) sha256=465df122341aedcb81a2a24b4d3bd19b6c67c1530713fd533f3ff034e419236c
@@ -600,7 +604,7 @@ CHECKSUMS
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
   unicode-emoji (4.2.0) sha256=519e69150f75652e40bf736106cfbc8f0f73aa3fb6a65afe62fefa7f80b0f80f
   uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
-  version_gem (1.1.11) sha256=695df6464862b3dc976b4f6e0e089062517c8137ecd31078d8c378347f959c97
+  version_gem (1.1.12) sha256=b78f691677807997e63901e8aba1b96d4ae172ce5570ad9ceb0208eb3a0edb3d
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml-converter (0.2.0) sha256=0602148de1664ab701c7938a036987576c55e87fb6d4b3cb0fff19c4f7a91386
   yard (0.9.44) sha256=eb087e9b631ccd887b049f303d489963945452d5e2a7eb49a5a74a7cf6887f28

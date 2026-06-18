@@ -76,11 +76,23 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="changed">Changed</h3>
 
+<ul>
+  <li>Raised the <code>auth-sanitizer</code> runtime dependency floor to <code>&gt;= 0.2.2</code> and<br>
+switched isolated sanitizer loading to the released <code>anonymous_loader</code> gem,<br>
+including local workspace wiring for the new runtime dependency.</li>
+</ul>
+
 <h3 id="deprecated">Deprecated</h3>
 
 <h3 id="removed">Removed</h3>
 
 <h3 id="fixed">Fixed</h3>
+
+<ul>
+  <li>Fixed isolated <code>auth-sanitizer</code> loading when Bundler standalone setup makes<br>
+<code>auth_sanitizer/loader.rb</code> available on <code>$LOAD_PATH</code> without adding<br>
+<code>auth-sanitizer</code> to <code>Gem.loaded_specs</code> or <code>GEM_PATH</code>.</li>
+</ul>
 
 <h3 id="security">Security</h3>
 
@@ -167,7 +179,9 @@ so generated Appraisal gemfiles are normalized during generation - by @pboling</
 
 <ul>
   <li>Raised generated <code>version_gem</code> dependency floor to <code>version_gem</code> &gt;= 1.1.10 - by @pboling</li>
-  <li>Raised the runtime dependency floor for <code>auth-sanitizer</code> to <code>&gt;= 0.2.1</code> - by @pboling</li>
+  <li>Raised the runtime dependency floor for <code>auth-sanitizer</code> to <code>&gt;= 0.2.1</code> so<br>
+OAuth2 consumers get hash and nested-attribute inspect redaction fixes plus<br>
+downstream RBS duplicate-declaration fixes - by @pboling</li>
   <li>Refreshed generated package metadata, support documentation, CI workflows,<br>
 and development dependency floors from the current kettle-jem template - by @pboling</li>
   <li>Documented the current per-version Ruby, JRuby, and TruffleRuby CI matrix in<br>
@@ -1526,7 +1540,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </div></div>
 
       <div id="footer">
-  Generated on Sat Jun 13 04:37:02 2026 by
+  Generated on Thu Jun 18 08:22:24 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

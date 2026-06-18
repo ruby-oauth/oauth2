@@ -32,7 +32,7 @@ unless %w[false 0 no off].include?(ENV.fetch("RUBY_OAUTH_DEV", "false").downcase
   end
 
   eval_nomono_gems(
-    gems: %w[auth-sanitizer],
+    gems: %w[anonymous_loader auth-sanitizer],
     prefix: "RUBY_OAUTH",
     path_env: "RUBY_OAUTH_DEV",
     root: %w[code src ruby-oauth],
