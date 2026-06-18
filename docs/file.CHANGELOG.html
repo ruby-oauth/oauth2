@@ -82,11 +82,6 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 
 <h3 id="fixed">Fixed</h3>
 
-<ul>
-  <li>Fixed the isolated <code>auth-sanitizer</code> load-path regression spec so child Ruby<br>
-processes cannot inherit Bundler/Appraisal activation from CI startup.</li>
-</ul>
-
 <h3 id="security">Security</h3>
 
 <h2 id="2024---2026-06-18">
@@ -112,15 +107,9 @@ including local workspace wiring for the new runtime dependency.</li>
 <h3 id="fixed-1">Fixed</h3>
 
 <ul>
-  <li>
-    <p>Fixed isolated <code>auth-sanitizer</code> loading when Bundler standalone setup makes<br>
+  <li>Fixed isolated <code>auth-sanitizer</code> loading when Bundler standalone setup makes<br>
 <code>auth_sanitizer/loader.rb</code> available on <code>$LOAD_PATH</code> without adding<br>
-<code>auth-sanitizer</code> to <code>Gem.loaded_specs</code> or <code>GEM_PATH</code>.</p>
-  </li>
-  <li>
-    <p>Fixed the isolated <code>auth-sanitizer</code> load-path regression spec so subprocess<br>
-RubyGems startup cannot inherit Bundler/Appraisal activation from CI.</p>
-  </li>
+<code>auth-sanitizer</code> to <code>Gem.loaded_specs</code> or <code>GEM_PATH</code>.</li>
 </ul>
 
 <h2 id="2023---2026-06-13">
@@ -1567,7 +1556,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jun 18 10:47:11 2026 by
+  Generated on Thu Jun 18 11:33:29 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
