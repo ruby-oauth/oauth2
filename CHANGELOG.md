@@ -22,6 +22,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
+- Raised the `anonymous_loader` runtime dependency floor to `>= 0.1.1`.
 - Raised the `auth-sanitizer` runtime dependency floor to `>= 0.2.2` and
   switched isolated sanitizer loading to the released `anonymous_loader` gem,
   including local workspace wiring for the new runtime dependency.
