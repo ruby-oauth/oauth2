@@ -48,7 +48,6 @@ GEM
     delegate (0.6.1)
     diff-lcs (1.6.2)
     diffy (3.4.4)
-    docile (1.4.1)
     dry-configurable (1.4.0)
       dry-core (~> 1.0)
       zeitwerk (~> 2.6)
@@ -110,15 +109,14 @@ GEM
     kettle-dev (2.2.13)
       kettle-test (~> 2.0, >= 2.0.4)
       version_gem (~> 1.1, >= 1.1.11)
-    kettle-soup-cover (2.0.2)
-      simplecov (~> 0.22, >= 0.22.0)
-      simplecov-cobertura (~> 3.1, >= 3.1.0)
+    kettle-soup-cover (3.0.0.rc1)
+      simplecov (>= 1.0.pre)
+      simplecov-cobertura (>= 4.0.pre)
       simplecov-console (~> 0.9, >= 0.9.5)
-      simplecov-html (~> 0.13, >= 0.13.2)
-      simplecov-lcov (~> 0.9, >= 0.9.0)
       simplecov-rcov (~> 0.3, >= 0.3.7)
       simplecov_json_formatter (~> 0.1, >= 0.1.4)
-      version_gem (~> 1.1, >= 1.1.11)
+      simplecov_lcov_formatter (~> 0.9, >= 0.9.0)
+      version_gem (~> 1.1, >= 1.1.12)
     kettle-test (2.0.5)
       appraisal2 (~> 3.0, >= 3.0.6)
       backports (~> 3.0)
@@ -314,22 +312,19 @@ GEM
     silent_stream (1.0.12)
       logger (~> 1.2)
       version_gem (>= 1.1.8, < 3)
-    simplecov (0.22.0)
-      docile (~> 1.1)
-      simplecov-html (~> 0.11)
-      simplecov_json_formatter (~> 0.1)
-    simplecov-cobertura (3.2.0)
+    simplecov (1.0.0.rc3)
+    simplecov-cobertura (4.0.0.rc1)
       rexml
-      simplecov (~> 0.19)
+      simplecov (>= 1.0.0.rc2, < 2.0)
     simplecov-console (0.9.5)
       ansi
       simplecov
       terminal-table
-    simplecov-html (0.13.2)
-    simplecov-lcov (0.9.0)
     simplecov-rcov (0.3.7)
       simplecov (>= 0.4.1)
     simplecov_json_formatter (0.1.4)
+    simplecov_lcov_formatter (0.9.0)
+      simplecov (>= 0.18)
     snaky_hash (2.0.6)
       hashie (>= 0.1.0, < 6)
       version_gem (>= 1.1.8, < 3)
@@ -428,7 +423,7 @@ DEPENDENCIES
   gitmoji-regex (~> 2.0, >= 2.0.2)
   irb (~> 1.17)
   kettle-dev (~> 2.2, >= 2.2.13)
-  kettle-soup-cover (~> 2.0, >= 2.0.2)
+  kettle-soup-cover (~> 3.0.a, >= 3.0.0.rc1)
   kettle-test (~> 2.0, >= 2.0.5)
   kramdown (~> 2.5, >= 2.5.1)
   kramdown-parser-gfm (~> 1.1)
@@ -485,7 +480,6 @@ CHECKSUMS
   delegate (0.6.1) sha256=54cf946cacfe05b1c23114edd8fbd8d54e9cea7abf36b95130ab53cc88b8f7e4
   diff-lcs (1.6.2) sha256=9ae0d2cba7d4df3075fe8cd8602a8604993efc0dfa934cff568969efb1909962
   diffy (3.4.4) sha256=79384ab5ca82d0e115b2771f0961e27c164c456074bd2ec46b637ebf7b6e47e3
-  docile (1.4.1) sha256=96159be799bfa73cdb721b840e9802126e4e03dfc26863db73647204c727f21e
   dry-configurable (1.4.0) sha256=e35d1b5f3c081753ef361f564919db79000f32cfa6f20ee3a3ba5921b41b73ce
   dry-core (1.2.0) sha256=0cc5a7da88df397f153947eeeae42e876e999c1e30900f3c536fb173854e96a1
   dry-inflector (1.3.1) sha256=7fb0c2bb04f67638f25c52e7ba39ab435d922a3a5c3cd196120f63accb682dcc
@@ -506,7 +500,7 @@ CHECKSUMS
   json (2.19.9) sha256=9b9025b7cdddafa38d316eca0b2358488e42d417045c1b90d216a9fefe46b79a
   jwt (3.2.0) sha256=5419b1fe37b1da0982bd07051f573a8b8789ab724c2aa7e785e4784a3ed217d7
   kettle-dev (2.2.13) sha256=f396b331c7b15ede36aecc1d52f33ce5ad048f713d1051d4bfe96a43538a3e36
-  kettle-soup-cover (2.0.2) sha256=e400380e165cc880fb0c83f05b2836d815c414b4c707e9c93d5b91979ab12ab4
+  kettle-soup-cover (3.0.0.rc1) sha256=ec678a573c9c3e75cb091da3251079834db715aaba31785d84c0a2c8d8c5f72d
   kettle-test (2.0.5) sha256=98fd96f03c4470cd2cb0b1cef339455064d8a68bc180f70864d85fd74f41d978
   kramdown (2.5.2) sha256=1ba542204c66b6f9111ff00dcc26075b95b220b07f2905d8261740c82f7f02fa
   kramdown-parser-gfm (1.1.0) sha256=fb39745516427d2988543bf01fc4cf0ab1149476382393e0e9c48592f6581729
@@ -579,13 +573,12 @@ CHECKSUMS
   ruby_engine (2.0.3) sha256=ca2ae7def8cfcdc2bfb6a186d36d5d59c8b403245dc0256c3802b767fa278aaa
   ruby_version (1.0.3) sha256=5930f9950746b7e6c973184398ee364ee7440b170fef7922b9f5cdf317f1ccb5
   silent_stream (1.0.12) sha256=377c43aa10033fe90c33b39ea8cd97d79f2d1c4856df598efc56f3091f3ae782
-  simplecov (0.22.0) sha256=fe2622c7834ff23b98066bb0a854284b2729a569ac659f82621fc22ef36213a5
-  simplecov-cobertura (3.2.0) sha256=70d702658677fcb20e5aceb6915ccf8bc62ff2ccd38b62b3ad5c9db5c0888740
+  simplecov (1.0.0.rc3) sha256=932addedd729aa355ca2087d99f088d32660b3203e471f64e11caba418b229ab
+  simplecov-cobertura (4.0.0.rc1) sha256=1de000b112889f5c2d4d4627d00fb27fa0c77de5b2a7a46d9c230c2408de2c11
   simplecov-console (0.9.5) sha256=b1108bcfff5f210143e2b8301698c367b01586f20d25a73e95475a5df6fc6ff6
-  simplecov-html (0.13.2) sha256=bd0b8e54e7c2d7685927e8d6286466359b6f16b18cb0df47b508e8d73c777246
-  simplecov-lcov (0.9.0) sha256=7a77a31e200a595ed4b0249493056efd0c920601f53d2ef135ca34ee796346cd
   simplecov-rcov (0.3.7) sha256=372f50bf6df6b6350b7d0c840f2f8bdabe021861a43c26877b747c9ac96139fc
   simplecov_json_formatter (0.1.4) sha256=529418fbe8de1713ac2b2d612aa3daa56d316975d307244399fa4838c601b428
+  simplecov_lcov_formatter (0.9.0) sha256=4c1839bb31dcf7a8f7a6474c94ed228aa03b994e9dd5e1965e58b4121b049bed
   snaky_hash (2.0.6) sha256=3663cae48cdef582b517025cf8a39d8789996eaf0b4ed89e2f0624836505654a
   standard (1.55.0) sha256=8a8f2c3e681a4db3aafde1b301561b0f3d7c5f06c160167cb744a4d7baf0426e
   standard-custom (1.0.2) sha256=424adc84179a074f1a2a309bb9cf7cd6bfdb2b6541f20c6bf9436c0ba22a652b

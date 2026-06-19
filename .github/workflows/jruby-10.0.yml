@@ -1,4 +1,4 @@
-name: Current TruffleRuby
+name: JRuby 10.0
 
 permissions:
   contents: read
@@ -36,13 +36,13 @@ jobs:
     strategy:
       matrix:
         include:
-          # NOTE: truffleruby does not support upgrading rubygems.
-          # truffleruby-34.0 (targets Ruby 3.4 compatibility)
-          - ruby: "truffleruby"
-            appraisal: "current"
+          # jruby-10.0 (targets Ruby 3.4 compatibility)
+          - ruby: "jruby-10.0"
+            appraisal: "ruby-3-4"
             exec_cmd: "kettle-test"
             rubygems: default
             bundler: default
+            experimental: true
 
     steps:
       - name: Checkout

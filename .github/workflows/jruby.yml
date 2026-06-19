@@ -36,7 +36,7 @@ jobs:
     strategy:
       matrix:
         include:
-          # jruby-10.0 (targets Ruby 3.4 compatibility)
+          # jruby-10.1 (targets Ruby 4.0 compatibility)
           - ruby: "jruby"
             appraisal: "current"
             exec_cmd: "kettle-test"

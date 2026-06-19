@@ -7,7 +7,7 @@
 if ENV.fetch("KETTLE_RB_DEV", "false").casecmp("false").zero?
   # Coverage (remote/released)
   platform :mri do
-    gem "kettle-soup-cover", "~> 2.0", ">= 2.0.2", require: false
+    gem "kettle-soup-cover", "~> 3.0.a", ">= 3.0.0.rc1", require: false
   end
 else
   eval_gemfile "coverage_local.gemfile"
