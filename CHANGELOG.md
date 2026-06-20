@@ -20,6 +20,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- Added support for JRuby 10.1 and TruffleRuby 34.0.
+
 ### Changed
 
 - Retemplated generated project metadata, support documentation, CI workflows,
