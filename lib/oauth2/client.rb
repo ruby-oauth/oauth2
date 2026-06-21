@@ -3,14 +3,14 @@
 require "faraday"
 require "logger"
 
-# :nocov: since coverage tracking only runs on the builds with Faraday v2
+# simplecov:disable since coverage tracking only runs on the builds with Faraday v2
 # We do run builds on Faraday v0 (and v1!), so this code is actually covered!
 # This is the only nocov in the whole project!
 if Faraday::Utils.respond_to?(:default_space_encoding)
   # This setting doesn't exist in faraday 0.x
   Faraday::Utils.default_space_encoding = "%20"
 end
-# :nocov:
+# simplecov:enable
 
 module OAuth2
   ConnectionError = Class.new(Faraday::ConnectionFailed)

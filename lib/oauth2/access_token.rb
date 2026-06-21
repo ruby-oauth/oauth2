@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-# :nocov:
+# simplecov:disable
 begin
   # The first version of hashie that has a version file was 1.1.0
   # The first version of hashie that required the version file at runtime was 3.2.0
@@ -13,7 +13,7 @@ begin
 rescue LoadError
   nil
 end
-# :nocov:
+# simplecov:enable
 
 module OAuth2
   class AccessToken # rubocop:disable Metrics/ClassLength
@@ -66,10 +66,10 @@ module OAuth2
           t_key = supported_keys[0]
           extra_tokens_warning(supported_keys, t_key)
         end
-        # :nocov:
+        # simplecov:disable
         # TODO: Get rid of this branching logic when dropping Hashie < v3.2
         token = extract_token_value(fresh, t_key)
-        # :nocov:
+        # simplecov:enable
         new(client, token, fresh)
       end
 
@@ -103,7 +103,7 @@ You may need to set `snaky: false`. See inline documentation for more info.
         ])
       end
 
-      # :nocov:
+      # simplecov:disable
       def extract_token_value(fresh, key)
         token_value = fresh.delete(key)
         return token_value || "" if defined?(Hashie::VERSION)
@@ -112,7 +112,7 @@ You may need to set `snaky: false`. See inline documentation for more info.
         # There is a bug in Hashie v0, which this accounts for.
         token_value || fresh[key] || ""
       end
-      # :nocov:
+      # simplecov:enable
     end
 
     # Initialize an AccessToken
