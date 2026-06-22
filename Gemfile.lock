@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     oauth2 (2.0.24)
-      anonymous_loader (~> 0.1, >= 0.1.1)
+      anonymous_loader (~> 0.1, >= 0.1.2)
       auth-sanitizer (~> 0.2, >= 0.2.2)
       faraday (>= 0.17.3, < 4.0)
       jwt (>= 1.0, < 4.0)
@@ -17,8 +17,8 @@ GEM
   specs:
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
-    anonymous_loader (0.1.1)
-      version_gem (~> 1.1, >= 1.1.12)
+    anonymous_loader (0.1.2)
+      version_gem (~> 1.1, >= 1.1.13)
     ansi (1.6.0)
     appraisal2 (3.1.2)
       bundler (>= 1.17.3)
@@ -372,7 +372,7 @@ GEM
       unicode-emoji (~> 4.1)
     unicode-emoji (4.2.0)
     uri (1.1.1)
-    version_gem (1.1.12)
+    version_gem (1.1.13)
     webrick (1.9.2)
     yaml-converter (0.2.1)
       hexapdf (>= 1.8, < 2)
@@ -460,7 +460,7 @@ DEPENDENCIES
 
 CHECKSUMS
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
-  anonymous_loader (0.1.1) sha256=b765191e2eadd6e9da52e4eb41ab44f83241fa013fadddb7a8c1374f71157662
+  anonymous_loader (0.1.2) sha256=8ccf77c3f0812fb93d47956fdd6f30344a3835864e3cb1431ca597905985efc2
   ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
   appraisal2 (3.1.2) sha256=33a1f8c1e2808aa33a24b4c73d1f20c9571b5a34541d66d04d5e744b5906437a
   appraisal2-rubocop (0.2.1) sha256=46020fa515706b96d1e9ed76d43ecca09a5bc37b76b884a980e5282dacbaa87b
@@ -597,7 +597,7 @@ CHECKSUMS
   unicode-display_width (3.2.0) sha256=0cdd96b5681a5949cdbc2c55e7b420facae74c4aaf9a9815eee1087cb1853c42
   unicode-emoji (4.2.0) sha256=519e69150f75652e40bf736106cfbc8f0f73aa3fb6a65afe62fefa7f80b0f80f
   uri (1.1.1) sha256=379fa58d27ffb1387eaada68c749d1426738bd0f654d812fcc07e7568f5c57c6
-  version_gem (1.1.12) sha256=b78f691677807997e63901e8aba1b96d4ae172ce5570ad9ceb0208eb3a0edb3d
+  version_gem (1.1.13) sha256=77f3035ac45877cd14610648fec2d23bd8c10fa13dfcf63a588825aa98587260
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml-converter (0.2.1) sha256=656c5248fcc08d8cafebf8114d73c72112a577d2f8d6f09cdb2d0118eaeb646a
   yard (0.9.44) sha256=eb087e9b631ccd887b049f303d489963945452d5e2a7eb49a5a74a7cf6887f28
