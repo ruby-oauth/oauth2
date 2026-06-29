@@ -46,16 +46,17 @@ declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
 smorg_rb_local_gems_to_eval = smorg_rb_local_gems - %w[oauth2] - declared_gems
 kettle_rb_local_gems_to_eval = kettle_rb_local_gems - %w[oauth2] - declared_gems
 
-tree_sitter_language_pack_dev = ENV.fetch("TREE_SITTER_LANGUAGE_PACK_DEV", nil)
-if tree_sitter_language_pack_dev.to_s.empty? && ENV.fetch("SMORG_RB_DEV", "false").casecmp("false") != 0
+tslp_dev = ENV.fetch("TSLP_DEV", nil)
+
+if tslp_dev.to_s.empty? && ENV.fetch("SMORG_RB_DEV", "false").casecmp("false") != 0
   candidate = File.expand_path("../../tree-sitter-language-pack/packages/ruby", ENV.fetch("SMORG_RB_DEV"))
-  tree_sitter_language_pack_dev = candidate if Dir.exist?(candidate)
+  tslp_dev = candidate if Dir.exist?(candidate)
 end
 
 # export VENDORED_GEMS=
 platform :mri do
-  unless tree_sitter_language_pack_dev.to_s.empty?
-    gem "tree_sitter_language_pack", path: tree_sitter_language_pack_dev
+  unless tslp_dev.to_s.empty?
+    gem "tree_sitter_language_pack", path: tslp_dev
   end
 
   if ENV.fetch("SMORG_RB_DEV", "false").casecmp("false") != 0
