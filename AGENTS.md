@@ -134,7 +134,7 @@ gemfiles/
 
 ### Running Commands
 
-Always make commands self-contained. Use `mise exec -C /home/pboling/src/kettle-rb/prism-merge -- ...` so the command gets the project environment in the same invocation.
+Always make commands self-contained. Use `mise exec -C /home/pboling/src/my/prism-merge -- ...` so the command gets the project environment in the same invocation.
 If the command is complicated write a script in local tmp/ and then run the script.
 
 ### Running Tests

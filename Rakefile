@@ -6,7 +6,7 @@
 # kettle-jem will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
-# oauth2 Rakefile v7.0.0 - 2026-06-19
+# oauth2 Rakefile v7.0.0 - 2026-06-29
 # Ruby 2.3 (Safe Navigation) or higher required
 #
 # See LICENSE.md for license information.
@@ -19,7 +19,8 @@
 #
 # rake appraisal:install                      # Install Appraisal gemfiles (initial setup...
 # rake appraisal:reset                        # Delete Appraisal lockfiles (gemfiles/*.gemfile.lock)
-# rake appraisal:update                       # Update Appraisal gemfiles and run RuboCop...
+# rake appraisal:generate                     # Generate Appraisal gemfiles without resolving...
+# rake appraisal:update                       # Generate and update Appraisal gemfiles
 # rake bench                                  # Run all benchmarks (alias for bench:run)
 # rake bench:list                             # List available benchmark scripts
 # rake bench:run                              # Run all benchmark scripts (skips on CI)

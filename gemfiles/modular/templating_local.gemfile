@@ -4,7 +4,21 @@
 # Loaded by the associated non-local gemfile when SMORG_RB_DEV or KETTLE_RB_DEV
 # is not "false".
 
-require "nomono/bundler" unless defined?(Nomono)
+nomono_activation_requirements = ["~> 1.0", ">= 1.0.6"]
+nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
+if File.file?(nomono_lockfile)
+  nomono_locked_spec = Bundler::LockfileParser.
+    new(Bundler.read_file(nomono_lockfile)).
+    specs.
+    find { |spec| spec.name == "nomono" }
+  nomono_locked = nomono_locked_spec &&
+    Gem::Requirement.new(nomono_activation_requirements).satisfied_by?(nomono_locked_spec.version)
+  if nomono_locked
+    nomono_activation_requirements = ["= #{nomono_locked_spec.version}"]
+  end
+end
+Kernel.send(:gem, "nomono", *nomono_activation_requirements)
+require "nomono/bundler"
 
 smorg_rb_local_gems = %w[
   tree_haver
@@ -47,11 +61,6 @@ smorg_rb_local_gems_to_eval = smorg_rb_local_gems - %w[oauth2] - declared_gems
 kettle_rb_local_gems_to_eval = kettle_rb_local_gems - %w[oauth2] - declared_gems
 
 tslp_dev = ENV.fetch("TSLP_DEV", nil)
-
-if tslp_dev.to_s.empty? && ENV.fetch("SMORG_RB_DEV", "false").casecmp("false") != 0
-  candidate = File.expand_path("../../tree-sitter-language-pack/packages/ruby", ENV.fetch("SMORG_RB_DEV"))
-  tslp_dev = candidate if Dir.exist?(candidate)
-end
 
 # export VENDORED_GEMS=
 platform :mri do

@@ -131,8 +131,11 @@ toolchain, and it may be higher than the gemspec runtime floor.
 They are created and updated with the commands:
 
 ```console
-bin/rake appraisal:update
+bin/rake appraisal:generate
 ```
+
+Use `bin/rake appraisal:update` when you intentionally need to resolve fresh
+appraisal locks.
 
 If you need to reset all gemfiles/*.gemfile.lock files:
 

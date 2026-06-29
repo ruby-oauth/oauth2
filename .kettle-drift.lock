@@ -21,8 +21,8 @@
     {
       "file": "CHANGELOG.md",
       "lines": [
-        502,
-        678
+        505,
+        681
       ]
     }
   ],
@@ -78,6 +78,15 @@
         44,
         51,
         58
+      ]
+    }
+  ],
+  "prefix: \"RUBY_OAUTH\",\npath_env: \"RUBY_OAUTH_DEV\",": [
+    {
+      "file": "Gemfile",
+      "lines": [
+        64,
+        94
       ]
     }
   ]

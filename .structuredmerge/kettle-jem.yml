@@ -385,7 +385,7 @@ tokens:
     orcid: "0009-0008-8519-441X"                                # ORCID identifier only, not the full URL. Example: 0000-0001-2345-6789. ENV: KJ_AUTHOR_ORCID
 
   funding:
-    open_collective: "galtzo-floss" # Open Collective slug, true to enable with ENV/.opencollective.yml, false to disable. ENV: OPENCOLLECTIVE_HANDLE or FUNDING_ORG
+    open_collective: "ruby-oauth" # Open Collective slug, true to enable with ENV/.opencollective.yml, false to disable. ENV: OPENCOLLECTIVE_HANDLE or FUNDING_ORG
     patreon: "galtzo"        # Patreon account slug only. Used as https://patreon.com/<value>. ENV: KJ_FUNDING_PATREON
     kofi: "pboling"           # Ko-fi handle/slug only. Used as https://ko-fi.com/<value>. ENV: KJ_FUNDING_KOFI
     paypal: "peterboling"         # PayPal.Me slug only. Used as https://www.paypal.com/paypalme/<value>. ENV: KJ_FUNDING_PAYPAL
@@ -413,6 +413,8 @@ files:
   AGENTS.md:
     strategy: accept_template
   Appraisal.root.gemfile:
+    strategy: accept_template
+  Gemfile:
     strategy: accept_template
   Rakefile:
     strategy: accept_template

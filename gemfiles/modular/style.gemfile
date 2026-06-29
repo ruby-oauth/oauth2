@@ -12,7 +12,7 @@
 gem "reek", "~> 6.5", ">= 6.5.0"
 
 platform :mri do
-  gem "appraisal2-rubocop", "~> 0.2", ">= 0.2.1", require: false
+  gem "appraisal2-rubocop", "~> 0.2", ">= 0.2.2", require: false
   gem "rubocop-gradual", "~> 0.4", ">= 0.4.0"
   gem "rubocop-minitest", "~> 0.38", ">= 0.38.1"
   gem "rubocop-on-rbs", "~> 2.0", ">= 2.0.0"        # ruby >= 3.2.0
@@ -21,9 +21,10 @@ platform :mri do
   gem "standard", "~> 1.54", ">= 1.54.0"
 
   if ENV.fetch("RUBOCOP_LTS_LOCAL", "false").casecmp("false").zero?
-    gem "rubocop-lts", "~> 8.3", ">= 8.3.0"
-    gem "rubocop-lts-rspec", "~> 1.0", ">= 1.0.3"
-    gem "rubocop-ruby2_2", "~> 3.0", ">= 3.0.2"
+    declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
+    gem "rubocop-lts", "~> 8.3", ">= 8.3.1" unless declared_gems.include?("rubocop-lts")
+    gem "rubocop-lts-rspec", "~> 1.0", ">= 1.0.4" unless declared_gems.include?("rubocop-lts-rspec")
+    gem "rubocop-ruby2_2", "~> 3.0", ">= 3.0.5" unless declared_gems.include?("rubocop-ruby2_2")
   else
     eval_gemfile("style_local.gemfile")
   end

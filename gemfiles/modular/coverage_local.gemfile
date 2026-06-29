@@ -3,13 +3,27 @@
 # Local path overrides for development.
 # Loaded by the associated non-local gemfile when KETTLE_RB_DEV != "false".
 
-require "nomono/bundler" unless defined?(Nomono)
+nomono_activation_requirements = ["~> 1.0", ">= 1.0.6"]
+nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
+if File.file?(nomono_lockfile)
+  nomono_locked_spec = Bundler::LockfileParser.
+    new(Bundler.read_file(nomono_lockfile)).
+    specs.
+    find { |spec| spec.name == "nomono" }
+  nomono_locked = nomono_locked_spec &&
+    Gem::Requirement.new(nomono_activation_requirements).satisfied_by?(nomono_locked_spec.version)
+  if nomono_locked
+    nomono_activation_requirements = ["= #{nomono_locked_spec.version}"]
+  end
+end
+Kernel.send(:gem, "nomono", *nomono_activation_requirements)
+require "nomono/bundler"
 
 local_gems = %w[kettle-dev kettle-test kettle-soup-cover kettle-drift]
 declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
 local_gems_to_eval = local_gems - %w[oauth2] - declared_gems
 
-# export KETTLE_RB_DEV=/path/to/kettle-rb
+# export KETTLE_RB_DEV=/path/to/my
 platform :mri do
   eval_nomono_gems(
     gems: local_gems_to_eval,
