@@ -19,7 +19,7 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 gemspec
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-nomono_requirements = ["~> 1.0", ">= 1.0.6"]
+nomono_requirements = ["~> 1.0", ">= 1.0.7"]
 gem "nomono", *nomono_requirements, require: false # ruby >= 2.2
 
 # Direct sibling dependencies (env-switched via RUBY_OAUTH_DEV)
