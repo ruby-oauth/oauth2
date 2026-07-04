@@ -9,15 +9,15 @@
 # Documentation
 gem "kramdown", "~> 2.5", ">= 2.5.1", require: false # Ruby >= 2.5
 gem "kramdown-parser-gfm", "~> 1.1", require: false # Ruby >= 2.3
-gem "yaml-converter", "~> 0.2", ">= 0.2.2", require: false # Ruby >= 3.2
+gem "yaml-converter", "~> 0.2", ">= 0.2.3", require: false # Ruby >= 3.2
 gem "yard", "~> 0.9", ">= 0.9.44", require: false
 gem "yard-junk", "~> 0.1", ">= 0.1.0", require: false # Ruby >= 3.1
 gem "yard-relative_markdown_links", "~> 0.6", require: false
 
 if ENV.fetch("GALTZO_FLOSS_DEV", "false").casecmp("false").zero?
-  gem "yard-fence", "~> 0.9", ">= 0.9.5", require: false # Ruby >= 3.2
-  gem "yard-timekeeper", "~> 0.2", ">= 0.2.2", require: false
-  gem "yard-yaml", "~> 0.2", ">= 0.2.2", require: false
+  gem "yard-fence", "~> 0.9", ">= 0.9.6", require: false # Ruby >= 3.2
+  gem "yard-timekeeper", "~> 0.2", ">= 0.2.3", require: false
+  gem "yard-yaml", "~> 0.2", ">= 0.2.3", require: false
 else
   eval_gemfile "documentation_local.gemfile"
 end

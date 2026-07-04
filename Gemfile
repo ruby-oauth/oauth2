@@ -81,24 +81,6 @@ end
 # Templating (env-switched: SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local paths)
 eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
 
-unless ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
-  unless %w[false 0 no off].include?(ENV.fetch("RUBY_OAUTH_DEV", "false").downcase)
-    begin
-      require "nomono/bundler" unless defined?(Nomono)
-    rescue LoadError
-      require_relative "../nomono/lib/nomono/bundler"
-    end
-
-    eval_nomono_gems(
-      gems: %w[anonymous_loader auth-sanitizer],
-      prefix: "RUBY_OAUTH",
-      path_env: "RUBY_OAUTH_DEV",
-      root: %w[code src ruby-oauth],
-      debug_env: "RUBY_OAUTH_DEBUG"
-    )
-  end
-end
-
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"
 
