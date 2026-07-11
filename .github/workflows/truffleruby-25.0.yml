@@ -63,7 +63,7 @@ jobs:
       - name: Bundle install for TruffleRuby 25.0
         if: ${{ !env.ACT }}
         run: |
-          bundle config set --local path vendor/bundle
+          bundle config set --local path "${RUNNER_TEMP}/bundle"
           bundle install --jobs 1
 
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
