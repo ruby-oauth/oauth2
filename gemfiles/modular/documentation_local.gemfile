@@ -3,7 +3,7 @@
 # Local path overrides for development.
 # Loaded by the associated non-local gemfile when GALTZO_FLOSS_DEV != "false".
 
-nomono_activation_requirements = ["~> 1.0", ">= 1.0.7"]
+nomono_activation_requirements = ["~> 1.0", ">= 1.0.8"]
 nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
 if File.file?(nomono_lockfile)
   nomono_locked_spec = Bundler::LockfileParser.
