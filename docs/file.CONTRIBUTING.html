@@ -210,8 +210,11 @@ toolchain, and it may be higher than the gemspec runtime floor.</p>
 
 <p>They are created and updated with the commands:</p>
 
-<pre class="code language-console"><code class="language-console">bin/rake appraisal:update
+<pre class="code language-console"><code class="language-console">bin/rake appraisal:generate
 </code></pre>
+
+<p>Use <code>bin/rake appraisal:update</code> when you intentionally need to resolve fresh<br>
+appraisal locks.</p>
 
 <p>If you need to reset all gemfiles/*.gemfile.lock files:</p>
 
@@ -357,7 +360,7 @@ push git commits and tags, and push the <code>.gem</code> file to the gem host c
 </div></div>
 
       <div id="footer">
-  Generated on Thu Jun 18 09:48:15 2026 by
+  Generated on Tue Jul 14 02:28:05 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>

@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.25] - 2026-07-14
+
+- TAG: [v2.0.25][2.0.25t]
+- COVERAGE: 100.00% -- 558/558 lines in 15 files
+- BRANCH COVERAGE: 97.89% -- 186/190 branches in 15 files
+- 88.35% documented
+
+### Added
+
 - Added support for JRuby 10.1 and TruffleRuby 34.0.
 
 ### Changed
@@ -28,15 +47,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - Retemplated generated project metadata, support documentation, CI workflows,
   binstubs, and development dependency floors with `kettle-jem` v7.0.0.
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - Package configured license files in gem release file lists.
-
-### Security
 
 ## [2.0.24] - 2026-06-18
 
@@ -916,7 +929,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.24...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.25...HEAD
+[2.0.25]: https://github.com/ruby-oauth/oauth2/compare/v2.0.24...v2.0.25
+[2.0.25t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.25
 [2.0.24]: https://github.com/ruby-oauth/oauth2/compare/v2.0.23...v2.0.24
 [2.0.24t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.24
 [2.0.23]: https://github.com/ruby-oauth/oauth2/compare/v2.0.22...v2.0.23

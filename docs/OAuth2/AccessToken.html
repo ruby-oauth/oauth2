@@ -1774,10 +1774,10 @@ OAuth2.config.silence_no_tokens_warning is true</p>
     <span class='id identifier rubyid_t_key'>t_key</span> <span class='op'>=</span> <span class='id identifier rubyid_supported_keys'>supported_keys</span><span class='lbracket'>[</span><span class='int'>0</span><span class='rbracket'>]</span>
     <span class='id identifier rubyid_extra_tokens_warning'>extra_tokens_warning</span><span class='lparen'>(</span><span class='id identifier rubyid_supported_keys'>supported_keys</span><span class='comma'>,</span> <span class='id identifier rubyid_t_key'>t_key</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
-  <span class='comment'># :nocov:
+  <span class='comment'># simplecov:disable
 </span>  <span class='comment'># TODO: Get rid of this branching logic when dropping Hashie &lt; v3.2
 </span>  <span class='id identifier rubyid_token'>token</span> <span class='op'>=</span> <span class='id identifier rubyid_extract_token_value'>extract_token_value</span><span class='lparen'>(</span><span class='id identifier rubyid_fresh'>fresh</span><span class='comma'>,</span> <span class='id identifier rubyid_t_key'>t_key</span><span class='rparen'>)</span>
-  <span class='comment'># :nocov:
+  <span class='comment'># simplecov:enable
 </span>  <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_client'>client</span><span class='comma'>,</span> <span class='id identifier rubyid_token'>token</span><span class='comma'>,</span> <span class='id identifier rubyid_fresh'>fresh</span><span class='rparen'>)</span>
 <span class='kw'>end</span></pre>
     </td>
@@ -3060,7 +3060,7 @@ requesting client.</p>
 </div>
 
       <div id="footer">
-  Generated on Fri Jun 12 17:56:33 2026 by
+  Generated on Tue Jul 14 02:28:05 2026 by
   <a href="https://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.9.44 (ruby-4.0.5).
 </div>
