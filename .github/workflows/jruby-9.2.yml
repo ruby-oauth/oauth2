@@ -57,7 +57,13 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
-          bundler-cache: true
+          bundler-cache: false
+
+      - name: Bundle install for JRuby 9.2
+        if: ${{ !env.ACT }}
+        run: |
+          bundle config set --local path "${RUNNER_TEMP}/bundle"
+          bundle install --jobs 1
 
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt1
