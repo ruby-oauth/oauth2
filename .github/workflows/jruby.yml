@@ -33,6 +33,7 @@ jobs:
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
+      KETTLE_TEST_RUNNER: rspec
     strategy:
       matrix:
         include:
@@ -76,4 +77,5 @@ jobs:
 
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT }}
+        timeout-minutes: 15
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
