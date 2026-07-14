@@ -109,14 +109,14 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   # Utilities
-  spec.add_dependency("anonymous_loader", "~> 0.1", ">= 0.1.2") # ruby >= 2.2.0
-  spec.add_dependency("auth-sanitizer", "~> 0.2", ">= 0.2.2") # ruby >= 2.2.0
+  spec.add_dependency("anonymous_loader", "~> 0.1", ">= 0.1.3") # ruby >= 2.2.0
+  spec.add_dependency("auth-sanitizer", "~> 0.2", ">= 0.2.3") # ruby >= 2.2.0
   spec.add_dependency("faraday", [">= 0.17.3", "< 4.0"])      # ruby >= 1.9
   spec.add_dependency("jwt", [">= 1.0", "< 4.0"])             # ruby >= 0
   spec.add_dependency("logger", "~> 1.2")                     # ruby >= 0
   spec.add_dependency("multi_xml", "~> 0.5")                  # ruby >= 0
   spec.add_dependency("rack", [">= 1.2", "< 4"])              # ruby >= 0
-  spec.add_dependency("snaky_hash", "~> 2.0", ">= 2.0.6")     # ruby >= 2.2.0
+  spec.add_dependency("snaky_hash", "~> 2.0", ">= 2.0.7")     # ruby >= 2.2.0
   spec.add_dependency("version_gem", "~> 1.1", ">= 1.1.14")              # ruby >= 2.2.0
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
