@@ -43,7 +43,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Changed
 
-- Raised the `anonymous_loader` runtime dependency floor to `>= 0.1.2`.
+- Raised the `anonymous_loader` runtime dependency floor to `>= 0.1.3`.
+- Raised the `auth-sanitizer` runtime dependency floor to `>= 0.2.3`.
 - Retemplated generated project metadata, support documentation, CI workflows,
   binstubs, and development dependency floors with `kettle-jem` v7.0.0.
 
