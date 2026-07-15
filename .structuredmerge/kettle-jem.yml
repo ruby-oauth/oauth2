@@ -418,6 +418,8 @@ files:
     strategy: accept_template
   Rakefile:
     strategy: accept_template
+    preference: destination
+    add_template_only_nodes: true
   .github:
     copilot_instructions.md:
       strategy: accept_template
