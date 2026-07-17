@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Local path overrides for templating development.
-# Loaded by the associated non-local gemfile when SMORG_RB_DEV or KETTLE_RB_DEV
+# Loaded by the associated non-local gemfile when SMORG_RB_DEV or KETTLE_DEV_DEV
 # is not "false".
 
 nomono_activation_requirements = ["~> 1.0", ">= 1.0.8"]
@@ -53,12 +53,12 @@ smorg_rb_local_gems = %w[
   ast-crispr-ruby-prism
 ]
 
-kettle_rb_local_gems = %w[
+kettle_dev_local_gems = %w[
   kettle-dev kettle-test kettle-soup-cover kettle-drift
 ]
 declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
 smorg_rb_local_gems_to_eval = smorg_rb_local_gems - %w[oauth2] - declared_gems
-kettle_rb_local_gems_to_eval = kettle_rb_local_gems - %w[oauth2] - declared_gems
+kettle_dev_local_gems_to_eval = kettle_dev_local_gems - %w[oauth2] - declared_gems
 
 tslp_dev = ENV.fetch("TSLP_DEV", nil)
 
@@ -79,11 +79,11 @@ platform :mri do
     )
   end
 
-  if ENV.fetch("KETTLE_RB_DEV", "false").casecmp("false") != 0
+  if ENV.fetch("KETTLE_DEV_DEV", "false").casecmp("false") != 0
     eval_nomono_gems(
-      gems: kettle_rb_local_gems_to_eval,
-      prefix: "KETTLE_RB",
-      path_env: "KETTLE_RB_DEV",
+      gems: kettle_dev_local_gems_to_eval,
+      prefix: "KETTLE_DEV",
+      path_env: "KETTLE_DEV_DEV",
       vendored_gems_env: "VENDORED_GEMS",
       vendor_gem_dir_env: "VENDOR_GEM_DIR",
       debug_env: "KETTLE_DEV_DEBUG"
