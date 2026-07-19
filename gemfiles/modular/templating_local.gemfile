@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Local path overrides for templating development.
-# Loaded by the associated non-local gemfile when SMORG_RB_DEV or KETTLE_DEV_DEV
+# Loaded by the associated non-local gemfile when STRUCTUREDMERGE_DEV or KETTLE_DEV_DEV
 # is not "false".
 
 nomono_activation_requirements = ["~> 1.0", ">= 1.0.8"]
@@ -68,14 +68,14 @@ platform :mri do
     gem "tree_sitter_language_pack", path: tslp_dev
   end
 
-  if ENV.fetch("SMORG_RB_DEV", "false").casecmp("false") != 0
+  if ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0
     eval_nomono_gems(
       gems: smorg_rb_local_gems_to_eval,
-      prefix: "SMORG_RB",
-      path_env: "SMORG_RB_DEV",
+      prefix: "STRUCTUREDMERGE",
+      path_env: "STRUCTUREDMERGE_DEV",
       vendored_gems_env: "VENDORED_GEMS",
       vendor_gem_dir_env: "VENDOR_GEM_DIR",
-      debug_env: "SMORG_RB_DEBUG"
+      debug_env: "STRUCTUREDMERGE_DEBUG"
     )
   end
 

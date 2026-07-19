@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-smorg_remote = ENV.fetch("SMORG_RB_DEV", "false").casecmp("false").zero?
+smorg_remote = ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false").zero?
 kettle_remote = ENV.fetch("KETTLE_DEV_DEV", "false").casecmp("false").zero?
 
 if smorg_remote
@@ -13,7 +13,7 @@ if kettle_remote
   gem "kettle-drift", "~> 1.0", ">= 1.0.5", require: false
 end
 
-# Set SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local development with path-based dependencies.
+# Set STRUCTUREDMERGE_DEV=/path/to/structuredmerge/ruby/gems for local development with path-based dependencies.
 # When false (default / CI), released kettle-jem brings merge gems and parser dependencies.
 # Local path overrides bring the same dependencies from sibling gemspecs.
 #
