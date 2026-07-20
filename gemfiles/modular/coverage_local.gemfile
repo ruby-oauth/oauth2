@@ -3,6 +3,14 @@
 # Local path overrides for development.
 # Loaded by the associated non-local gemfile when KETTLE_DEV_DEV != "false".
 
+# Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
+# Bundler records that dependency during Gemfile evaluation, but it does not
+# activate that exact version before the immediate `require "nomono/bundler"`.
+# If multiple compatible nomono versions are installed, RubyGems may activate
+# the newest installed version while Gemfile.lock pins an older compatible one;
+# Bundler then aborts with "already activated nomono X, but your Gemfile
+# requires nomono Y". Prefer the locked compatible version when present, then
+# activate it explicitly before requiring the Bundler DSL extension used below.
 nomono_activation_requirements = ["~> 1.0", ">= 1.0.8"]
 nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
 if File.file?(nomono_lockfile)

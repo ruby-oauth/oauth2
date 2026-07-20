@@ -30,6 +30,20 @@ Follow these instructions:
 8. Create new Pull Request.
 9. Announce it in the channel for this org in the [Discord][✉️discord-invite]!
 
+## Ruby engine CI branches
+
+Pull requests run MRI workflows by default. JRuby and TruffleRuby workflows are
+available by branch naming convention so ordinary PRs do not spend CI time on
+alternate Ruby engines.
+
+- Use a branch named `jruby/*` to run JRuby workflows for a pull request.
+- Use a branch named `truffleruby/*` to run TruffleRuby workflows for a pull
+  request.
+- Use a branch named `engines/*` to run both JRuby and TruffleRuby workflows for
+  a pull request.
+
+Pushes to the default branch continue to run the configured engine workflows.
+
 ## Executables vs Rake tasks
 
 Executables shipped by dependencies, such as kettle-dev, and stone_checksums, are available
@@ -116,7 +130,7 @@ Troubleshooting Git diffs
 - Use `git diff --no-ext-diff` to compare against Git's built-in diff output.
 - Use `git diff --no-textconv` when a textconv projection obscures the raw file bytes you need to inspect.
 - If Git reports a missing `smorg-*` executable, rerun `bundle install` and the setup command above, then check `git config --local --get-regexp '^diff\.smorg-'`.
-- To remove managed local entries, run `K_JEM_TEMPLATING=true kettle-jem install --undo`; remove global command registrations with `git config --global --unset-all diff.smorg-ruby.command`.
+- To remove managed local entries, run `K_JEM_TEMPLATING=true kettle-jem install --undo`; remove global command registrations with `git config --global --unset-all diff.smorg-rb.command`, `git config --global --unset-all merge.smorg-rb.driver`, and `git config --global --unset-all merge.smorg-rb.name`.
 
 For a quick starting point, this repository’s `mise.toml` defines the shared defaults, and `.env.local` can override them locally. Copy `.env.local.example` to `.env.local`, use `KEY=value` lines, and either activate `mise` in your shell or run commands through `mise exec -C /path/to/project -- ...`.
 

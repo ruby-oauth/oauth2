@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-smorg_remote = ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false").zero?
+structuredmerge_remote = ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false").zero?
 kettle_remote = ENV.fetch("KETTLE_DEV_DEV", "false").casecmp("false").zero?
 
-if smorg_remote
+if structuredmerge_remote
   # Merge recipes and parser dependencies for released installs.
   gem "kettle-jem", ">= 7.0"
 end
@@ -19,4 +19,4 @@ end
 #
 # Set KETTLE_DEV_DEV=/path/to/my for local development with Kettle plugin gems.
 # When false (default / CI), released Kettle plugin gems are used.
-eval_gemfile "templating_local.gemfile" unless smorg_remote && kettle_remote
+eval_gemfile "templating_local.gemfile" unless structuredmerge_remote && kettle_remote

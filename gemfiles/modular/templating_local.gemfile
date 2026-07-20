@@ -4,6 +4,14 @@
 # Loaded by the associated non-local gemfile when STRUCTUREDMERGE_DEV or KETTLE_DEV_DEV
 # is not "false".
 
+# Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
+# Bundler records that dependency during Gemfile evaluation, but it does not
+# activate that exact version before the immediate `require "nomono/bundler"`.
+# If multiple compatible nomono versions are installed, RubyGems may activate
+# the newest installed version while Gemfile.lock pins an older compatible one;
+# Bundler then aborts with "already activated nomono X, but your Gemfile
+# requires nomono Y". Prefer the locked compatible version when present, then
+# activate it explicitly before requiring the Bundler DSL extension used below.
 nomono_activation_requirements = ["~> 1.0", ">= 1.0.8"]
 nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
 if File.file?(nomono_lockfile)
@@ -20,7 +28,8 @@ end
 Kernel.send(:gem, "nomono", *nomono_activation_requirements)
 require "nomono/bundler"
 
-smorg_rb_local_gems = %w[
+structuredmerge_local_gems = %w[
+  tree_sitter_language_pack
   tree_haver
   ast-merge
   ast-merge-git
@@ -57,20 +66,15 @@ kettle_dev_local_gems = %w[
   kettle-dev kettle-test kettle-soup-cover kettle-drift
 ]
 declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
-smorg_rb_local_gems_to_eval = smorg_rb_local_gems - %w[oauth2] - declared_gems
+structuredmerge_local_gems_to_eval = structuredmerge_local_gems - %w[oauth2] - declared_gems
 kettle_dev_local_gems_to_eval = kettle_dev_local_gems - %w[oauth2] - declared_gems
 
-tslp_dev = ENV.fetch("TSLP_DEV", nil)
-
-# export VENDORED_GEMS=
+# export VENDORED_GEMS=tree_sitter_language_pack
+# export VENDOR_GEM_DIR=/path/to/vendor # expects $VENDOR_GEM_DIR/tree_sitter_language_pack
 platform :mri do
-  unless tslp_dev.to_s.empty?
-    gem "tree_sitter_language_pack", path: tslp_dev
-  end
-
   if ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0
     eval_nomono_gems(
-      gems: smorg_rb_local_gems_to_eval,
+      gems: structuredmerge_local_gems_to_eval,
       prefix: "STRUCTUREDMERGE",
       path_env: "STRUCTUREDMERGE_DEV",
       vendored_gems_env: "VENDORED_GEMS",
