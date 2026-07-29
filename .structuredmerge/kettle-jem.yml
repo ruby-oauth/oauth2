@@ -79,6 +79,9 @@
 # ENV override: KJ_PROJECT_EMOJI
 project_emoji: 🔐
 
+rubyforum:
+  project_tag: "oauth2"
+
 # Engines this project supports.
 # List the Ruby engines that your gem targets. kettle-jem uses this to decide
 # which CI workflows, README compatibility rows, and badge references to
