@@ -3,7 +3,7 @@
 This project is made available under the following license.
 Choose the option that best fits your use case:
 
-- [MIT](MIT.md)
+- [MIT](https://github.com/ruby-oauth/oauth2/blob/main/MIT.md)
 
 ## Copyright Notice
 

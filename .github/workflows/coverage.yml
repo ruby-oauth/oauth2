@@ -54,12 +54,12 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@003a5c4d8d6321bd302e38f6f0ec593f77f06600 # v1.319.0
+        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
         with:
           ruby-version: "${{ matrix.ruby }}"
           rubygems: "${{ matrix.rubygems }}"
@@ -99,12 +99,13 @@ jobs:
 
       - name: Upload coverage to Coveralls
         if: ${{ !env.ACT }}
-        uses: coverallsapp/github-action@5cbfd81b66ca5d10c19b062c04de0199c215fb6e # v2.3.7
+        uses: coverallsapp/github-action@8d6379e14d29928660c4ba802d8e85393440b329 # v2.3.8
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           file: coverage/lcov.info
           format: lcov
-        continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
+          fail-on-error: false
+        continue-on-error: true
 
       - name: Upload coverage to QLTY
         if: ${{ !env.ACT }}
@@ -113,18 +114,19 @@ jobs:
           oidc: true
           files: coverage/lcov.info
           format: lcov
-          skip-errors: false
-        continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
+          skip-errors: true
+        continue-on-error: true
 
       - name: Upload coverage to CodeCov
         if: ${{ !env.ACT }}
-        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7
+        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
         with:
           use_oidc: true
           disable_search: true
           fail_ci_if_error: false
           files: coverage/lcov.info,coverage/coverage.xml
           verbose: true
+        continue-on-error: true
 
       - name: Code Coverage Summary Report
         if: ${{ !env.ACT && github.event_name == 'pull_request' }}

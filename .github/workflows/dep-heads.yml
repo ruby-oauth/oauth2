@@ -1,5 +1,4 @@
-# Targets the evergreen latest release of ruby, truffleruby, and jruby
-#   and tests against the HEAD of runtime dependencies
+# Targets enabled evergreen Ruby engines and tests against the HEAD of runtime dependencies
 name: Runtime Deps @ HEAD
 
 permissions:
@@ -43,38 +42,34 @@ jobs:
           - ruby: "ruby"
             appraisal: "dep-heads"
             exec_cmd: "kettle-test"
+            # Run directly from the generated appraisal Gemfile so setup-ruby
+            # does not bootstrap Appraisal.root.gemfile against dependency
+            # sources before this dep-heads appraisal is selected.
+            # This makes gemfiles/dep_heads.gemfile required checked-in output
+            # for repositories using this generated workflow.
+            bundle_gemfile: "gemfiles/dep_heads.gemfile"
+            direct_bundle: true
             rubygems: latest
             bundler: latest
 
     steps:
       - name: Checkout
         if: ${{ !env.ACT }}
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: ruby/setup-ruby@003a5c4d8d6321bd302e38f6f0ec593f77f06600 # v1.319.0
+        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
-
-      - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
-        id: bundleAppraisalAttempt1
-        if: ${{ !env.ACT }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
-        # Continue to the next step on failure
-        continue-on-error: true
-
-      # Effectively an automatic retry of the previous step.
-      - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
-        id: bundleAppraisalAttempt2
-        # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
-        if: ${{ !env.ACT && steps.bundleAppraisalAttempt1.outcome == 'failure' }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
+          # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
+          # sections that rv clean-install does not currently parse.
+          use-setup-ruby: "3.2 3.3 3.4 4.0"
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
@@ -86,12 +81,12 @@ jobs:
             rspec-status-dep-heads-${{matrix.ruby}}-${{matrix.appraisal}}-${{hashFiles('**/Gemfile.lock','Appraisal.root.gemfile','gemfiles/**/*.gemfile')}}-
             rspec-status-dep-heads-${{matrix.ruby}}-${{matrix.appraisal}}-
 
-      - name: Tests for ${{ matrix.ruby }} via Appraisal and ${{ matrix.exec_cmd }}
+      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
+        run: bundle exec ${{ matrix.exec_cmd }}
 
   truffleruby:
-    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'truffleruby/'))"
+    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'truffleruby/') || startsWith(github.head_ref, 'feature/release'))"
     name: Specs truffleruby@dep-heads
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
@@ -104,31 +99,34 @@ jobs:
           - ruby: "truffleruby"
             appraisal: "dep-heads"
             exec_cmd: "kettle-test"
-            # TruffleRuby's bundled RubyGems/Bundler path cannot reliably
-            # bootstrap Appraisal against all configured gem servers here.
-            # Run directly from the generated appraisal Gemfile instead.
+            # Run directly from the generated appraisal Gemfile so setup-ruby
+            # does not bootstrap Appraisal.root.gemfile against dependency
+            # sources before this dep-heads appraisal is selected.
             # This makes gemfiles/dep_heads.gemfile required checked-in output
             # for repositories using this generated workflow.
             bundle_gemfile: "gemfiles/dep_heads.gemfile"
             direct_bundle: true
-            rubygems: default
-            bundler: default
+            rubygems: latest
+            bundler: latest
 
     steps:
       - name: Checkout
         if: ${{ !env.ACT }}
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: ruby/setup-ruby@003a5c4d8d6321bd302e38f6f0ec593f77f06600 # v1.319.0
+        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
+          # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
+          # sections that rv clean-install does not currently parse.
+          use-setup-ruby: "3.2 3.3 3.4 4.0"
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
@@ -145,12 +143,12 @@ jobs:
         run: bundle exec ${{ matrix.exec_cmd }}
 
   jruby:
-    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'jruby/'))"
+    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'jruby/') || startsWith(github.head_ref, 'feature/release'))"
     name: Specs jruby@dep-heads
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env:
-      BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
+      BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.bundle_gemfile || 'Appraisal.root.gemfile' }}
     strategy:
       fail-fast: true
       matrix:
@@ -158,6 +156,13 @@ jobs:
           - ruby: "jruby"
             appraisal: "dep-heads"
             exec_cmd: "kettle-test"
+            # Run directly from the generated appraisal Gemfile so setup-ruby
+            # does not bootstrap Appraisal.root.gemfile against dependency
+            # sources before this dep-heads appraisal is selected.
+            # This makes gemfiles/dep_heads.gemfile required checked-in output
+            # for repositories using this generated workflow.
+            bundle_gemfile: "gemfiles/dep_heads.gemfile"
+            direct_bundle: true
             rubygems: default
             bundler: default
             experimental: true
@@ -165,29 +170,21 @@ jobs:
     steps:
       - name: Checkout
         if: ${{ !env.ACT }}
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: ruby/setup-ruby@003a5c4d8d6321bd302e38f6f0ec593f77f06600 # v1.319.0
+        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
-
-      - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
-        id: bundleAppraisalAttempt1
-        if: ${{ !env.ACT }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
-        continue-on-error: true
-
-      - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
-        id: bundleAppraisalAttempt2
-        if: ${{ !env.ACT && steps.bundleAppraisalAttempt1.outcome == 'failure' }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
+          # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
+          # sections that rv clean-install does not currently parse.
+          use-setup-ruby: "3.2 3.3 3.4 4.0"
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
@@ -199,6 +196,6 @@ jobs:
             rspec-status-dep-heads-${{matrix.ruby}}-${{matrix.appraisal}}-${{hashFiles('**/Gemfile.lock','Appraisal.root.gemfile','gemfiles/**/*.gemfile')}}-
             rspec-status-dep-heads-${{matrix.ruby}}-${{matrix.appraisal}}-
 
-      - name: Tests for ${{ matrix.ruby }} via Appraisal and ${{ matrix.exec_cmd }}
+      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         if: ${{ !env.ACT }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
+        run: bundle exec ${{ matrix.exec_cmd }}

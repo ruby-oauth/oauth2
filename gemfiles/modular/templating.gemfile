@@ -4,13 +4,15 @@ structuredmerge_remote = ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("fals
 kettle_remote = ENV.fetch("KETTLE_DEV_DEV", "false").casecmp("false").zero?
 
 if structuredmerge_remote
-  # Merge recipes and parser dependencies for released installs.
+  # Parser dependencies for released installs.
+  gem "tree_sitter_language_pack", "~> 1.13", ">= 1.13.7"
+  # Merge recipes for released installs.
   gem "kettle-jem", ">= 7.0"
 end
 
 if kettle_remote
   # Template/plugin checks for released installs.
-  gem "kettle-drift", "~> 1.0", ">= 1.0.5", require: false
+  gem "kettle-drift", "~> 1.0", ">= 1.0.9", require: false
 end
 
 # Set STRUCTUREDMERGE_DEV=/path/to/structuredmerge/ruby/gems for local development with path-based dependencies.

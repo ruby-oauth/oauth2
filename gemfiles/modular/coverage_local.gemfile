@@ -6,28 +6,22 @@
 # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
 # Bundler records that dependency during Gemfile evaluation, but it does not
 # activate that exact version before the immediate `require "nomono/bundler"`.
-# If multiple compatible nomono versions are installed, RubyGems may activate
-# the newest installed version while Gemfile.lock pins an older compatible one;
-# Bundler then aborts with "already activated nomono X, but your Gemfile
-# requires nomono Y". Prefer the locked compatible version when present, then
-# activate it explicitly before requiring the Bundler DSL extension used below.
-nomono_activation_requirements = ["~> 1.0", ">= 1.0.8"]
+nomono_activation_requirements = ["~> 1.1", ">= 1.1.2"]
 nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
 if File.file?(nomono_lockfile)
+  require "bundler"
   nomono_locked_spec = Bundler::LockfileParser.
     new(Bundler.read_file(nomono_lockfile)).
     specs.
     find { |spec| spec.name == "nomono" }
   nomono_locked = nomono_locked_spec &&
     Gem::Requirement.new(nomono_activation_requirements).satisfied_by?(nomono_locked_spec.version)
-  if nomono_locked
-    nomono_activation_requirements = ["= #{nomono_locked_spec.version}"]
-  end
+  nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
 end
 Kernel.send(:gem, "nomono", *nomono_activation_requirements)
 require "nomono/bundler"
 
-local_gems = %w[kettle-dev kettle-test kettle-soup-cover kettle-drift]
+local_gems = %w[kettle-dev kettle-family kettle-test kettle-soup-cover kettle-drift]
 declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
 local_gems_to_eval = local_gems - %w[oauth2] - declared_gems
 
@@ -39,7 +33,8 @@ platform :mri do
     path_env: "KETTLE_DEV_DEV",
     vendored_gems_env: "VENDORED_GEMS",
     vendor_gem_dir_env: "VENDOR_GEM_DIR",
-    debug_env: "KETTLE_DEV_DEBUG"
+    debug_env: "KETTLE_DEV_DEBUG",
+    root: ["src", "my", "kettle-dev"]
   )
 
   if ENV.fetch("GALTZO_FLOSS_DEV", "false").casecmp("false") != 0

@@ -79,7 +79,15 @@
 # ENV override: KJ_PROJECT_EMOJI
 project_emoji: 🔐
 
+# RubyForum community tag.
+# The project tag is used when present; otherwise the family tag is used.
+# kettle-family or family-level mise config can set the family tag during
+# templating so the value is written into each project config for standalone
+# checkouts.
 rubyforum:
+  # ENV override: KJ_RUBYFORUM_FAMILY_TAG
+  family_tag: "ruby-oauth"
+  # ENV override: KJ_RUBYFORUM_PROJECT_TAG
   project_tag: "oauth2"
 
 # Engines this project supports.
@@ -108,6 +116,18 @@ rubygems:
   # compatibility text. Omit this to derive the value from the gemspec.
   min_ruby: "2.2.0"
   namespace: "OAuth2"
+  # VersionGem loading pattern.
+  # auto      - preserve an existing lib/<entrypoint>/version_gem.rb dedicated
+  #             entrypoint; otherwise use the inline main-entrypoint pattern
+  #             when the runtime Ruby floor supports version_gem.
+  # inline    - require version_gem from lib/<entrypoint>.rb.
+  # dedicated - generate lib/<entrypoint>/version_gem.rb and keep
+  #             lib/<entrypoint>.rb free of version_gem. Use this for gems in
+  #             the version_gem test/tooling dependency graph.
+  # disabled  - do not depend on version_gem or generate VersionGem entrypoints.
+  #             Ruby floors below 2.2 use this effective behavior.
+  # ENV override: KJ_VERSION_GEM_ENTRYPOINT
+  version_gem_entrypoint: auto
 
 # Repository URL topology.
 # This is independent from templates.profile. A gem may use the full template
@@ -297,7 +317,7 @@ min_divergence_threshold:
 yard_host: "oauth2.galtzo.com"
 
 # Full URL used for gemspec metadata["homepage_uri"].
-# Defaults to https://{KJ|YARD_HOST}.
+# Defaults to https://oauth2.galtzo.com.
 # ENV override: KJ_HOMEPAGE_URI
 homepage_uri: "https://oauth2.galtzo.com"
 

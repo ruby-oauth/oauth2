@@ -27,7 +27,7 @@ concurrency:
 
 jobs:
   test:
-    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'truffleruby/'))"
+    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'truffleruby/') || startsWith(github.head_ref, 'feature/release'))"
     name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}
     runs-on: ubuntu-22.04
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
@@ -47,13 +47,13 @@ jobs:
     steps:
       - name: Checkout
         if: ${{ !env.ACT }}
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: ruby/setup-ruby@003a5c4d8d6321bd302e38f6f0ec593f77f06600 # v1.319.0
+        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
