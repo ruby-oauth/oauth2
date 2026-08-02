@@ -26,6 +26,8 @@ jobs:
           rubygems: default
           bundler: default
           bundler-cache: true
+          manual-compatibility-bundle: true
+          gem-install-retries: 7
 
       - name: README Update
         if: ${{ env.README_UPDATER_TOKEN != '' }}

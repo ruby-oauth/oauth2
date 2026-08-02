@@ -67,6 +67,8 @@ jobs:
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
+          manual-compatibility-bundle: true
+          gem-install-retries: 7
           # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
           # sections that rv clean-install does not currently parse.
           use-setup-ruby: "3.2 3.3 3.4 4.0"
@@ -124,6 +126,8 @@ jobs:
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
+          manual-compatibility-bundle: true
+          gem-install-retries: 7
           # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
           # sections that rv clean-install does not currently parse.
           use-setup-ruby: "3.2 3.3 3.4 4.0"
@@ -182,6 +186,8 @@ jobs:
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
+          manual-compatibility-bundle: true
+          gem-install-retries: 7
           # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
           # sections that rv clean-install does not currently parse.
           use-setup-ruby: "3.2 3.3 3.4 4.0"

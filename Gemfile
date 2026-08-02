@@ -18,10 +18,10 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from oauth2.gemspec
 gemspec
 
-gem "kettle-family", "~> 1.2", ">= 1.2.17"
+gem "kettle-family", "~> 1.2", ">= 1.2.22"
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-gem "nomono", "~> 1.1", ">= 1.1.2", require: false # ruby >= 3.2.0
+gem "nomono", "~> 1.1", ">= 1.1.3", require: false # ruby >= 3.2.0
 
 # Direct sibling dependencies (env-switched via RUBY_OAUTH_DEV)
 direct_sibling_gems = %w[

@@ -6,24 +6,28 @@
 # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
 # Bundler records that dependency during Gemfile evaluation, but it does not
 # activate that exact version before the immediate `require "nomono/bundler"`.
-nomono_activation_requirements = ["~> 1.1", ">= 1.1.2"]
+nomono_activation_requirements = ["~> 1.1", ">= 1.1.3"]
+nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
+nomono_already_activated = Gem.loaded_specs["nomono"]
 nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
-if File.file?(nomono_lockfile)
+if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
   require "bundler"
-  nomono_locked_spec = Bundler::LockfileParser.
-    new(Bundler.read_file(nomono_lockfile)).
-    specs.
-    find { |spec| spec.name == "nomono" }
-  nomono_locked = nomono_locked_spec &&
-    Gem::Requirement.new(nomono_activation_requirements).satisfied_by?(nomono_locked_spec.version)
-  nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
+  if File.file?(nomono_lockfile)
+    nomono_locked_spec = Bundler::LockfileParser.
+      new(Bundler.read_file(nomono_lockfile)).
+      specs.
+      find { |spec| spec.name == "nomono" }
+    nomono_locked = nomono_locked_spec &&
+      nomono_requirement.satisfied_by?(nomono_locked_spec.version)
+    nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
+  end
 end
 Kernel.send(:gem, "nomono", *nomono_activation_requirements)
 require "nomono/bundler"
 
 local_gems = %w[yard-fence yard-timekeeper yard-yaml]
 declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
-local_gems_to_eval = local_gems - %w[oauth2] - declared_gems
+local_gems_to_eval = local_gems - %w[] - declared_gems
 
 # export GALTZO_FLOSS_DEV=/path/to/galtzo-floss
 eval_nomono_gems(

@@ -309,7 +309,7 @@ machine_users:
 # Divergence is currently measured as the percent of produced files that would
 # change or be added during templating (100 - unchanged-file score).
 # ENV override: KJ_MIN_DIVERGENCE_THRESHOLD
-min_divergence_threshold: 
+min_divergence_threshold: ""
 
 # Hostname used for generated YARD documentation links.
 # Defaults to <gem-name>.<author-email-domain>.
