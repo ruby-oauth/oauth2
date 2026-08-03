@@ -70,6 +70,160 @@
 #
 # Everything else should be set explicitly here or via ENV.
 
+# Direct dependency ownership decisions.
+# On first templating, kettle-jem discovers dependencies declared directly by
+# Gemfile/gemspec and also by modular Gemfiles, and writes them here for review.
+# Resolve each entry by choosing one supported action, then add a reason.
+#
+# Every entry must include gem, direct, modular, action, and reason:
+# dependency_conflicts:
+#   resolve:
+#     - gem: yard-relative_markdown_links
+#       direct: shields-badge.gemspec
+#       modular: gemfiles/modular/documentation.gemfile
+#       action: remove_modular_gem
+#       reason: "The gemspec owns the project's documentation integration."
+# Supported actions (the destination project must explicitly choose one):
+#   remove_modular_gem       - remove the modular Gemfile's direct gem call.
+#   remove_x_std_lib_eval    - remove x_std_libs eval references for the gem.
+#   keep_both                - retain both declarations when their requirements
+#                              overlap. This is intended for a broad direct
+#                              requirement narrowed by framework/engine Gemfiles;
+#                              incompatible ranges remain an error.
+dependency_conflicts:
+  # Review each entry and choose a supported action.
+  # keep_both is for a broad direct requirement plus a compatible modular narrowing.
+  resolve:
+    - gem: addressable
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/optional.gemfile
+      action: keep_both
+      reason: "The gemspec owns a broad compatible addressable requirement; the modular file supplies the same supported range for optional tooling."
+    - gem: appraisal2
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: bundler-audit
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/audit.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: bundler-audit
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency; the audit modular file is for projects without a direct declaration."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v0.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible Faraday range; this modular file selects a historical engine version for matrix testing."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v1.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible Faraday range; this modular file selects a historical engine version for matrix testing."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v2.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible Faraday range; this modular file selects a historical engine version for matrix testing."
+    - gem: gitmoji-regex
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v1.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible JWT range; this modular file selects a historical engine version for matrix testing."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v2.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible JWT range; this modular file selects a supported engine version for matrix testing."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v3.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible JWT range; this modular file selects a supported engine version for matrix testing."
+    - gem: kettle-test
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_2.gemfile
+      action: keep_both
+      reason: "The gemspec declares a compatible broad Logger range; this modular file selects a supported historical version for matrix testing."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_5.gemfile
+      action: keep_both
+      reason: "The gemspec declares a compatible broad Logger range; this modular file selects a supported historical version for matrix testing."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_7.gemfile
+      action: keep_both
+      reason: "The gemspec declares a compatible broad Logger range; this modular file selects a supported version for matrix testing."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_5.gemfile
+      action: keep_both
+      reason: "The gemspec’s multi_xml ~> 0.5 requirement overlaps this historical matrix version."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_6.gemfile
+      action: remove_modular_gem
+      reason: "multi_xml ~> 0.5 in oauth2.gemspec is incompatible with the 0.6 matrix declaration."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_7.gemfile
+      action: remove_modular_gem
+      reason: "multi_xml ~> 0.5 in oauth2.gemspec is incompatible with the 0.7 matrix declaration."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v1_2.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible Rack range; this modular file selects a historical engine version for matrix testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v1_6.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible Rack range; this modular file selects a historical engine version for matrix testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v2.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible Rack range; this modular file selects a historical engine version for matrix testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v3.gemfile
+      action: keep_both
+      reason: "The gemspec declares a broad compatible Rack range; this modular file selects a supported engine version for matrix testing."
+    - gem: rake
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: require_bench
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: ruby-progressbar
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: stone_checksums
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
 # This project's identifying emoji.
 # Used as the leading emoji in the README H1 heading and in the gemspec
 # summary and description. Every gem should have its own unique emoji.
