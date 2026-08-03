@@ -22,6 +22,3 @@ if ENV.fetch("GALTZO_FLOSS_DEV", "false").casecmp("false").zero?
 else
   eval_gemfile "documentation_local.gemfile"
 end
-
-# Std Lib extractions
-gem "rdoc", "~> 6.11", require: false unless ENV.fetch("KJ_FRAMEWORK_MATRIX_GEM", "") == "rdoc"

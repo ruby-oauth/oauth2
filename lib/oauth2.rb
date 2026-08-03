@@ -98,6 +98,7 @@ end
 OAuth2::AUTH_SANITIZER.filtered_label_provider = -> { OAuth2.config[:filtered_label] }
 
 # Extend OAuth2::Version with VersionGem helpers to provide semantic version helpers.
+
 OAuth2::Version.class_eval do
   extend VersionGem::Basic
 end

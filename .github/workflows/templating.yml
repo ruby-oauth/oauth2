@@ -43,6 +43,7 @@ jobs:
             exec_cmd: "rake kettle:jem:selftest"
             rubygems: latest
             bundler: latest
+            experimental: false
 
     steps:
       - name: Checkout
@@ -63,7 +64,10 @@ jobs:
       - name: Update templating bootstrap dependencies
         env:
           BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
-        run: bundle update nomono
+        # Refresh kettle-family with nomono. A just-released kettle-family can
+        # briefly be absent from the gem.coop index while the lockfile already
+        # points at it; keeping it locked makes Bundler fail before appraisal.
+        run: bundle update nomono kettle-family
 
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt1

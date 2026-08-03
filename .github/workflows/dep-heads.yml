@@ -66,12 +66,26 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
-          bundler-cache: true
+          bundler-cache: ${{ matrix.ruby != 'jruby' }}
           manual-compatibility-bundle: true
           gem-install-retries: 7
           # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
           # sections that rv clean-install does not currently parse.
           use-setup-ruby: "3.2 3.3 3.4 4.0"
+
+      - name: Prepare engine-specific lockfile
+        if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
+        run: |
+          BUNDLE_LOCKFILE="${RUNNER_TEMP}/kettle-jem-lockfiles/${{ matrix.appraisal }}-${{ matrix.ruby }}.lock"
+          echo "BUNDLE_LOCKFILE=${BUNDLE_LOCKFILE}" >> "$GITHUB_ENV"
+          mkdir -p "$(dirname "$BUNDLE_LOCKFILE")"
+          if [ "${{ matrix.ruby }}" = "jruby" ]; then
+            bundle lock --lockfile="$BUNDLE_LOCKFILE" --add-platform=universal-java --update
+          fi
+
+      - name: Bundle install
+        if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
+        run: bundle install --jobs 4
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
@@ -125,12 +139,26 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
-          bundler-cache: true
+          bundler-cache: ${{ matrix.ruby != 'jruby' }}
           manual-compatibility-bundle: true
           gem-install-retries: 7
           # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
           # sections that rv clean-install does not currently parse.
           use-setup-ruby: "3.2 3.3 3.4 4.0"
+
+      - name: Prepare engine-specific lockfile
+        if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
+        run: |
+          BUNDLE_LOCKFILE="${RUNNER_TEMP}/kettle-jem-lockfiles/${{ matrix.appraisal }}-${{ matrix.ruby }}.lock"
+          echo "BUNDLE_LOCKFILE=${BUNDLE_LOCKFILE}" >> "$GITHUB_ENV"
+          mkdir -p "$(dirname "$BUNDLE_LOCKFILE")"
+          if [ "${{ matrix.ruby }}" = "jruby" ]; then
+            bundle lock --lockfile="$BUNDLE_LOCKFILE" --add-platform=universal-java --update
+          fi
+
+      - name: Bundle install
+        if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
+        run: bundle install --jobs 4
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
@@ -185,12 +213,26 @@ jobs:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
-          bundler-cache: true
+          bundler-cache: ${{ matrix.ruby != 'jruby' }}
           manual-compatibility-bundle: true
           gem-install-retries: 7
           # Direct appraisal Gemfiles can contain Bundler GIT/PATH lockfile
           # sections that rv clean-install does not currently parse.
           use-setup-ruby: "3.2 3.3 3.4 4.0"
+
+      - name: Prepare engine-specific lockfile
+        if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
+        run: |
+          BUNDLE_LOCKFILE="${RUNNER_TEMP}/kettle-jem-lockfiles/${{ matrix.appraisal }}-${{ matrix.ruby }}.lock"
+          echo "BUNDLE_LOCKFILE=${BUNDLE_LOCKFILE}" >> "$GITHUB_ENV"
+          mkdir -p "$(dirname "$BUNDLE_LOCKFILE")"
+          if [ "${{ matrix.ruby }}" = "jruby" ]; then
+            bundle lock --lockfile="$BUNDLE_LOCKFILE" --add-platform=universal-java --update
+          fi
+
+      - name: Bundle install
+        if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
+        run: bundle install --jobs 4
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
