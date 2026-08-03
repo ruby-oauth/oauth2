@@ -21,7 +21,7 @@ gemspec
 gem "kettle-family", "~> 1.2", ">= 1.2.22"
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-gem "nomono", "~> 1.1", ">= 1.1.3", require: false # ruby >= 3.2.0
+gem "nomono", "~> 1.1", ">= 1.1.4", require: false # ruby >= 3.2.0
 
 # Direct sibling dependencies (env-switched via RUBY_OAUTH_DEV)
 direct_sibling_gems = %w[
