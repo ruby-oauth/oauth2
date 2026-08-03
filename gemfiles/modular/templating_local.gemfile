@@ -18,7 +18,10 @@ if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already
       new(Bundler.read_file(nomono_lockfile)).
       specs.
       find { |spec| spec.name == "nomono" }
+    nomono_locked_installed = nomono_locked_spec &&
+      Gem::Specification.find_all_by_name("nomono").any? { |spec| spec.version == nomono_locked_spec.version }
     nomono_locked = nomono_locked_spec &&
+      nomono_locked_installed &&
       nomono_requirement.satisfied_by?(nomono_locked_spec.version)
     nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
   end

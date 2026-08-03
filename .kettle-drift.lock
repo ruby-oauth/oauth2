@@ -26,6 +26,66 @@
       ]
     }
   ],
+  "- gem: bundler-audit\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        107,
+        112
+      ]
+    }
+  ],
+  "- gem: faraday\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        117,
+        122,
+        127
+      ]
+    }
+  ],
+  "- gem: jwt\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        137,
+        142,
+        147
+      ]
+    }
+  ],
+  "- gem: logger\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        157,
+        162,
+        167
+      ]
+    }
+  ],
+  "- gem: multi_xml\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        172,
+        177,
+        182
+      ]
+    }
+  ],
+  "- gem: rack\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        187,
+        192,
+        197,
+        202
+      ]
+    }
+  ],
   "// Use 'forwardPorts' to make a list of ports inside the container available locally.\n// \"forwardPorts\": [],": [
     {
       "file": ".devcontainer/devcontainer.json",
@@ -41,6 +101,126 @@
       "lines": [
         55,
         107
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec declares a broad compatible Faraday range; this modular file selects a historical engine version for matrix testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        120,
+        125,
+        130
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec declares a broad compatible JWT range; this modular file selects a supported engine version for matrix testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        145,
+        150
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec declares a broad compatible Rack range; this modular file selects a historical engine version for matrix testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        190,
+        195,
+        200
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec declares a compatible broad Logger range; this modular file selects a supported historical version for matrix testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        160,
+        165
+      ]
+    }
+  ],
+  "action: remove_modular_gem\nreason: \"oauth2.gemspec owns this development dependency.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        105,
+        110,
+        135,
+        155,
+        210,
+        215,
+        220,
+        225
+      ]
+    }
+  ],
+  "direct: oauth2.gemspec\nmodular: gemfiles/modular/injected.gemfile": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        103,
+        113,
+        133,
+        153,
+        208,
+        213,
+        218,
+        223
+      ]
+    }
+  ],
+  "modular: gemfiles/modular/injected.gemfile\naction: remove_modular_gem": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        104,
+        114,
+        134,
+        154,
+        209,
+        214,
+        219,
+        224
+      ]
+    }
+  ],
+  "reason: \"The gemspec declares a broad compatible Faraday range; this modular file selects a historical engine version for matrix testing.\"\n- gem: faraday": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        121,
+        126
+      ]
+    }
+  ],
+  "reason: \"The gemspec declares a broad compatible Rack range; this modular file selects a historical engine version for matrix testing.\"\n- gem: rack": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        191,
+        196,
+        201
+      ]
+    }
+  ],
+  "reason: \"The gemspec declares a compatible broad Logger range; this modular file selects a supported historical version for matrix testing.\"\n- gem: logger": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        161,
+        166
+      ]
+    }
+  ],
+  "reason: \"oauth2.gemspec owns this development dependency.\"\n- gem: bundler-audit": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        106,
+        111
       ]
     }
   ]
