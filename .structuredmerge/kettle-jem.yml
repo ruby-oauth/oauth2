@@ -92,7 +92,7 @@
 #                              incompatible ranges remain an error.
 dependency_conflicts:
   # Set true only after every discovered conflict has an intentional action.
-  reviewed: false
+  reviewed: true
   # Review each entry and choose a supported action.
   # keep_both is for a broad direct requirement plus a compatible modular narrowing.
   resolve:
