@@ -287,6 +287,6 @@ NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in th
 [🚎appraisal2]: https://github.com/appraisal-rb/appraisal2
 [🏃‍♂️runner-tool-cache]: https://github.com/ruby/ruby-builder/releases/tag/toolcache
 [✉️discord-invite]: https://discord.gg/3qme4XHNKN
-[✉️discord-invite-img]: https://img.shields.io/discord/1373797679469170758?style=for-the-badge&logo=discord
+[✉️discord-invite-img]: https://img.shields.io/discord/1373797679469170758?style=flat&logo=discord
 [✉️ruby-forum]: https://www.rubyforum.org/tag/oauth2
 [✉️ruby-forum-img]: https://img.shields.io/discourse/topics?server=https%3A%2F%2Fwww.rubyforum.org&style=flat&logo=discourse&label=Ruby%20Users%20Forum
