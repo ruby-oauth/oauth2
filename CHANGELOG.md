@@ -98,6 +98,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
+- [GHSA-h4fh-g8xf-8255](https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-h4fh-g8xf-8255) - Added the opt-in `allow_cross_origin_redirects: false` protection. When disabled, cross-origin redirects are rejected before request bodies, query parameters, or authorization headers can be replayed to the redirected origin. The patch release keeps the default enabled for compatibility; the next minor release will default it to disabled and provide `allow_cross_origin_redirects: true` as the explicit opt-out. The behavior and transition are documented against [RFC 6749 §3.2](https://www.rfc-editor.org/rfc/rfc6749.html#section-3.2), [RFC 9700 §§2.1 and 4.12](https://www.rfc-editor.org/rfc/rfc9700.html#section-2.1), and [OAuth 2.1 draft §7.5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-15#section-7.5.3).
+
 ## [2.0.25] - 2026-07-14
 
 - TAG: [v2.0.25][2.0.25t]

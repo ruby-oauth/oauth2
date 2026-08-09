@@ -42,6 +42,10 @@ module OAuth2
     # @option options [Hash] :connection_opts ({}) Hash of connection options to pass to initialize Faraday
     # @option options [Boolean] :raise_errors (true) whether to raise an OAuth2::Error on responses with 400+ status codes
     # @option options [Integer] :max_redirects (5) maximum number of redirects to follow
+    # @option options [Boolean] :allow_cross_origin_redirects (true) whether to follow redirects to a different origin.
+    #   This remains true by default for the 2.0 patch release for compatibility. Set it to false to reject
+    #   cross-origin redirects before request credentials in the body, query, or Authorization header can be resent.
+    #   The default will change to false in the next minor release; set it to true there to retain legacy behavior.
     # @option options [Logger] :logger (::Logger.new($stdout)) Logger instance for HTTP request/response output; requires OAUTH_DEBUG to be true. When debug logging is enabled, sensitive values are filtered using {OAuth2::AUTH_SANITIZER::SanitizedLogger} initialized from `OAuth2.config[:filtered_label]` and the key names in `OAuth2.config[:filtered_debug_keys]`.
     # @option options [Class] :access_token_class (AccessToken) class to use for access tokens; you can subclass OAuth2::AccessToken, @version 2.0+
     # @option options [Hash] :ssl SSL options for Faraday
@@ -63,6 +67,7 @@ module OAuth2
         connection_opts: {},
         connection_build: block,
         max_redirects: 5,
+        allow_cross_origin_redirects: true,
         raise_errors: true,
         logger: ::Logger.new($stdout),
         access_token_class: AccessToken,
@@ -162,6 +167,7 @@ module OAuth2
         if location
           current_location = response.response.env.url
           full_location = resolve_redirect_location(current_location, location)
+          reject_cross_origin_redirect!(response, current_location, full_location) unless options[:allow_cross_origin_redirects]
           request(verb, full_location, sanitize_redirect_options(req_opts, current_location, full_location))
         else
           error = Error.new(response)
@@ -499,6 +505,24 @@ module OAuth2
       safe_headers.delete_if { |key, _value| authorization_header?(key) }
       safe_opts[:headers] = safe_headers
       safe_opts
+    end
+
+    # Reject a cross-origin redirect before any request credentials can be sent
+    # to the new origin. OAuth 2.0 requires token requests to use TLS and POST
+    # (RFC 6749, section 3.2), but does not require clients to follow endpoint
+    # redirects. OAuth 2.0 Security BCP requires avoiding accidental forwarding
+    # of credentials across redirects (RFC 9700, sections 2.1 and 4.12), and
+    # OAuth 2.1 explicitly excludes HTTP 307 for requests containing credentials
+    # (draft-ietf-oauth-v2-1, section 7.5.3).
+    #
+    # The 2.0 patch release keeps the legacy default for compatibility. The
+    # next minor release will default to rejecting cross-origin redirects, with
+    # `allow_cross_origin_redirects: true` available as an explicit opt-out.
+    def reject_cross_origin_redirect!(response, current_location, next_location)
+      return unless cross_origin_redirect?(current_location, next_location)
+
+      error = Error.new(response)
+      raise(error, "Refusing cross-origin redirect from #{current_location} to #{next_location}")
     end
 
     def authorization_header?(key)

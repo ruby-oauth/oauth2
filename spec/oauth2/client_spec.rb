@@ -683,6 +683,51 @@ RSpec.describe OAuth2::Client do
       expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
     end
 
+    it "defaults to allowing cross-origin redirects for patch-release compatibility" do
+      expect(subject.options[:allow_cross_origin_redirects]).to be(true)
+    end
+
+    it "rejects cross-origin redirects before forwarding a request body when disabled" do
+      client = stubbed_client(allow_cross_origin_redirects: false) do |stub|
+        stub.post("/body_redirect") do |_env|
+          [307, {"location" => "https://attacker.example/leak"}, ""]
+        end
+        stub.post("https://attacker.example/leak") do |_env|
+          raise "credential-bearing request reached the redirected origin"
+        end
+      end
+
+      expect do
+        client.request(:post, "/body_redirect", body: "client_secret=secret")
+      end.to raise_error(OAuth2::Error, /Refusing cross-origin redirect/)
+    end
+
+    it "rejects cross-origin redirects before forwarding query params when disabled" do
+      client = stubbed_client(allow_cross_origin_redirects: false) do |stub|
+        stub.get("/params_redirect") do |_env|
+          [302, {"location" => "https://attacker.example/leak"}, ""]
+        end
+        stub.get("https://attacker.example/leak") do |_env|
+          raise "credential-bearing request reached the redirected origin"
+        end
+      end
+
+      expect do
+        client.request(:get, "/params_redirect", params: {access_token: "secret-token"})
+      end.to raise_error(OAuth2::Error, /Refusing cross-origin redirect/)
+    end
+
+    it "continues same-origin redirects when cross-origin redirects are disabled" do
+      client = stubbed_client(allow_cross_origin_redirects: false) do |stub|
+        stub.get("/same_origin_redirect") do |_env|
+          [302, {"location" => "/success"}, ""]
+        end
+        stub.get("/success") { |_env| [200, {}, "safe"] }
+      end
+
+      expect(client.request(:get, "/same_origin_redirect").body).to eq("safe")
+    end
+
     it "keeps Authorization headers on same-origin absolute redirects" do
       response = subject.request(:get, "/same_origin_absolute_redirect", headers: {"Authorization" => "Bearer secret"})
       body = JSON.parse(response.body)

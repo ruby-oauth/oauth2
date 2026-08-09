@@ -108,6 +108,13 @@ Gem::Specification.new do |spec|
   spec.executables = []
   spec.require_paths = ["lib"]
 
+  spec.post_install_message = <<-MESSAGE
+    Security notice: GHSA-h4fh-g8xf-8255 (https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-h4fh-g8xf-8255)
+    addresses credential replay through cross-origin redirects. In this patch release,
+    opt in with `allow_cross_origin_redirects: false`; the next minor release will
+    default to false, with `true` available as the compatibility opt-out.
+  MESSAGE
+
   # Utilities
   spec.add_dependency("anonymous_loader", "~> 0.1", ">= 0.1.3") # ruby >= 2.2.0
   spec.add_dependency("auth-sanitizer", "~> 0.2", ">= 0.2.3") # ruby >= 2.2.0
