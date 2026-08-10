@@ -743,11 +743,11 @@ Also see GitLab Contributors: [https://gitlab.com/ruby-oauth/oauth2/-/graphs/mai
 <details markdown="1">
  <summary>⭐️ Star History</summary>
 
-<a href="https://star-history.com/ruby-oauth/oauth2&Date">
+<a href="https://star-history.dera.page/ruby-oauth/oauth2&Date">
  <picture>
- <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date&theme=dark" />
- <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date" />
- <img alt="Star History Chart" src="https://api.star-history.com/svg?repos=ruby-oauth/oauth2&type=Date" />
+ <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=Date&theme=dark" />
+ <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=Date" />
+ <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=Date" />
  </picture>
 </a>
 
