@@ -171,7 +171,7 @@ You may need to set `snaky: false`. See inline documentation for more info.
       @expires_at &&= convert_expires_at(@expires_at)
       @expires_latency &&= @expires_latency.to_i
       @expires_at ||= Time.now.to_i + @expires_in if @expires_in && !@expires_in.zero?
-      @expires_at -= @expires_latency if @expires_latency
+      @expires_at -= @expires_latency if @expires_at && @expires_latency
       @options = {
         mode: opts.delete(:mode) || :header,
         header_format: opts.delete(:header_format) || "Bearer %s",
