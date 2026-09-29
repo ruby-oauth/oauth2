@@ -795,6 +795,56 @@ RSpec.describe OAuth2::AccessToken do
         target = described_class.from_hash(client, hash.merge(expires_at: expires_at))
         expect(target.expires_at).to eq(expires_at - expires_latency)
       end
+
+      context "when neither expires_in nor expires_at is provided" do
+        let(:hash) do
+          {
+            access_token: token,
+            expires_latency: expires_latency,
+          }
+        end
+
+        it "does not raise" do
+          expect { described_class.from_hash(client, hash) }.not_to raise_error
+        end
+
+        it "does not expire" do
+          target = described_class.from_hash(client, hash)
+          expect(target.expires_at).to be_nil
+          expect(target).not_to be_expires
+          expect(target).not_to be_expired
+        end
+
+        it "retains expires_latency" do
+          target = described_class.from_hash(client, hash)
+          expect(target.expires_latency).to eq(expires_latency)
+        end
+      end
+
+      context "when expires_in is zero" do
+        let(:expires_in) { 0 }
+
+        it "does not raise" do
+          expect { described_class.from_hash(client, hash) }.not_to raise_error
+        end
+
+        it "does not expire" do
+          target = described_class.from_hash(client, hash)
+          expect(target.expires_at).to be_nil
+          expect(target).not_to be_expires
+        end
+      end
+
+      context "when the token endpoint response omits expires_in" do
+        let(:refresh_body) { JSON.dump(access_token: "refreshed_foo", refresh_token: "refresh_bar") }
+
+        it "builds a non-expiring token via Client#get_token" do
+          target = client.get_token({grant_type: "refresh_token", refresh_token: "abaca"}, {expires_latency: expires_latency})
+          expect(target.token).to eq("refreshed_foo")
+          expect(target.expires_latency).to eq(expires_latency)
+          expect(target).not_to be_expires
+        end
+      end
     end
   end
 
