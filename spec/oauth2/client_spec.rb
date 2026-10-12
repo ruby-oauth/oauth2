@@ -1703,10 +1703,11 @@ RSpec.describe OAuth2::Client do
     end
   end
 
-  # Builds the connection the way the default one is built, with :url_encoded before the adapter,
-  # and sends the client secret in the request body.
-  def debug_logging_client(&stubs)
-    OAuth2::Client.new("abc", "the-client-secret", site: "https://api.example.com", auth_scheme: :request_body) do |builder|
+  # Like stubbed_client, but with :url_encoded as in the default connection
+  # and the client secret sent in the request body.
+  def debug_logging_client(params = {}, &stubs)
+    params = {site: "https://api.example.com", auth_scheme: :request_body}.merge(params)
+    OAuth2::Client.new("abc", "the-client-secret", params) do |builder|
       builder.request :url_encoded
       builder.adapter :test, &stubs
     end
