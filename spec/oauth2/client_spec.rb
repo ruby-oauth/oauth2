@@ -362,6 +362,17 @@ describe OAuth2::Client do
       expect(token.token).to eq('the-token')
     end
 
+    it 'raises unexpected JSON parser errors' do
+      client = stubbed_client do |stub|
+        stub.post('/oauth/token') do
+          [200, {'Content-Type' => 'application/json'}, MultiJson.encode('access_token' => 'the-token')]
+        end
+      end
+      allow(MultiJson).to receive(:load).and_raise(ArgumentError)
+
+      expect { client.get_token({}) }.to raise_error(ArgumentError)
+    end
+
     it 'authenticates with request parameters' do
       client = stubbed_client(:auth_scheme => :request_body) do |stub|
         stub.post('/oauth/token', 'client_id' => 'abc', 'client_secret' => 'def') do |env|

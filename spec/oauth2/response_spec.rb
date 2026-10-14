@@ -61,6 +61,21 @@ describe OAuth2::Response do
       expect(subject.parsed['answer']).to eq(42)
     end
 
+    it 'returns the raw body when application/json body is malformed' do
+      headers = {'Content-Type' => 'application/json'}
+      response = double('response', :headers => headers, :body => 'BLOOP')
+      subject = described_class.new(response)
+      expect(subject.parsed).to eq('BLOOP')
+    end
+
+    it 'raises unexpected JSON parser errors' do
+      headers = {'Content-Type' => 'application/json'}
+      response = double('response', :headers => headers, :body => '{}')
+      allow(MultiJson).to receive(:load).and_raise(ArgumentError)
+      subject = described_class.new(response)
+      expect { subject.parsed }.to raise_error(ArgumentError)
+    end
+
     it "doesn't try to parse other content-types" do
       headers = {'Content-Type' => 'text/html'}
       body = '<!DOCTYPE html><html><head></head><body></body></html>'
