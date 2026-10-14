@@ -2,6 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 ## [unreleased]
+- JSON parser only falls back to the raw body on `MultiJson::DecodeError`; other errors (e.g. an incompatible `json`/`multi_json` pairing) now raise instead of surfacing as a missing token (@dpep)
 
 ## [1.4.11] - 2022-09-16
 - Complete migration to main branch as default (@pboling)
