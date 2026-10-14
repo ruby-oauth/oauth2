@@ -600,12 +600,15 @@ module OAuth2
     #
     # @api private
     def build_access_token_legacy(response, access_token_opts, extract_access_token)
-      extract_access_token.call(self, response.parsed.merge(access_token_opts))
-    rescue
-      # An error will be raised by the called if nil is returned and options[:raise_errors] is truthy, so this rescue is but temporary.
-      # Unfortunately, it does hide the real error, but this is deprecated legacy code,
-      #   and this was effectively the long-standing pre-existing behavior, so there is little point in changing it.
-      nil
+      parsed = response.parsed
+      begin
+        extract_access_token.call(self, parsed.merge(access_token_opts))
+      rescue
+        # An error will be raised by the called if nil is returned and options[:raise_errors] is truthy, so this rescue is but temporary.
+        # Unfortunately, it does hide the real error, but this is deprecated legacy code,
+        #   and this was effectively the long-standing pre-existing behavior, so there is little point in changing it.
+        nil
+      end
     end
 
     def oauth_debug_logging(builder)
