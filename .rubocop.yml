@@ -106,3 +106,7 @@ Gemspec/DependencyVersion:
 Lint/LiteralInInterpolation:
   Exclude:
     - 'spec/**/*.rb'
+# Appraisal uses this filename for the moving HEAD dependency fixture.
+Naming/FileName:
+  Exclude:
+    - '**/vHEAD.gemfile'

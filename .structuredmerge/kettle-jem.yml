@@ -70,6 +70,18 @@
 #
 # Everything else should be set explicitly here or via ENV.
 
+# Author identity aliases used when rendering copyright notices and gemspec
+# author metadata. Keys are matched case-insensitively against Git commit
+# author names, Git commit author emails, and existing gemspec author names.
+# Values are the canonical display names written to generated files. This is
+# useful when one person has committed under multiple names or email addresses.
+# These aliases do not rewrite Git history.
+author_aliases:
+  pboling: "Peter H. Boling"
+  "|7eter l-|. l3oling": "Peter H. Boling"
+  "Peter Boling": "Peter H. Boling"
+  galtzo: "Peter H. Boling"
+  Aboling0: "Annibelle Boling"
 # Direct dependency ownership decisions.
 # On first templating, kettle-jem discovers dependencies declared directly by
 # Gemfile/gemspec and also by modular Gemfiles, and writes them here for review.
@@ -257,6 +269,19 @@ engines:
   - ruby
   - jruby
   - truffleruby
+# List the OS platforms this project's CI exercises. kettle-jem uses this to
+# generate the current.yml OS matrix and the README platform tier table.
+# Windows applies only when declared: the `if: matrix.os` guards and the
+# Windows-only test step are emitted solely for destinations that opt in.
+#
+# Supported values: linux, macos, windows
+# Default (when key is absent): linux, macos
+# These are CI OS families, a distinct vocabulary from Gem::Platform strings
+# and Gemfile DSL platform symbols; never reuse them for
+# `bundle lock --add-platform`.
+platforms:
+  - linux
+  - macos
 
 # Ruby version policy.
 ruby:

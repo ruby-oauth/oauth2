@@ -20,7 +20,7 @@ gem_version =
 Gem::Specification.new do |spec|
   spec.name = "oauth2"
   spec.version = gem_version
-  spec.authors = ["Erik Michaels-Ober", "Jeremy Kemper", "Michael Bleigh", "Paul Walker", "rick", "Tim Habermaas", "Wynn Netherland", "Alexander Lang", "Greg Spurrier", "Jay Adkisson", "Luke Saunders", "Simon Gate", "Bas Vodde", "Damian Janowski", "Daniël van de Burgt", "Dorren Chen", "Igor Sales", "Leigh Caplan", "Michael Andrews", "Omer Rauchwerger", "Saverio Trioni", "Trent Ogren", "Vsevolod Romashov", "Antonio Tapiador del Dujo", "Eduardo Gurgel", "Geostellar Developer", "Niels Ganser", "Rainux Luo", "Taylor Hedberg", "Tim Clem", "Dave Stevens", "Ellis Berner", "Frank Macreery", "Olivier Lacan", "Peter Souter", "Ryan Williams", "Andrew Cantino and Jeff Moore", "Thomas Walpole", "Bo Jeanes", "Cody Cutrer", "Edward Rudd", "Lawrence Oluyede", "Linus Pettersson", "Motoshi Nishihira", "Adrian Setyadi", "Benjamin Quorning", "Christoph Petschnig", "Nathaniel Bibler", "Oleg", "Samuel Cochran", "tetsuya", "Yury Velikanau", "Alex Kowalczuk", "asm__", "David Christensen", "fossabot", "Jeff Moore", "Jonathan del Strother", "Joseph Page", "Lomey", "Markus Bengts", "Mathias Klippinge", "nikz", "Peter H. Boling", "Daniel Fockler", "Elliot Crosby-McCullough", "João Paulo", "Orien Madgwick", "Ryan T. Hosford", "Tom Corley", "anvox", "Jesse Cotton", "Olle Jonsson", "Stephen Reid", "Anders Carling", "dobon", "Jan Zaydowicz", "Nicholas Palaniuk", "Stan Hu", "Bouke van der Bijl", "nov", "Rick Selby", "Ryo Takahashi", "Jessie Young", "Карим Гимадеев", "Aboling0", "Elise Wood", "Manuel van Rijn", "Annibelle Boling", "Mark James", "Mridang Agarwalla", "Sasa Rosic", "Jonathan Grinstead", "kain", "Rob Zolkos", "StepSecurity Bot"]
+  spec.authors = ["Erik Michaels-Ober", "Jeremy Kemper", "Michael Bleigh", "Paul Walker", "rick", "Tim Habermaas", "Wynn Netherland", "Alexander Lang", "Greg Spurrier", "Jay Adkisson", "Luke Saunders", "Simon Gate", "Bas Vodde", "Damian Janowski", "Daniël van de Burgt", "Dorren Chen", "Igor Sales", "Leigh Caplan", "Michael Andrews", "Omer Rauchwerger", "Saverio Trioni", "Trent Ogren", "Vsevolod Romashov", "Antonio Tapiador del Dujo", "Eduardo Gurgel", "Geostellar Developer", "Niels Ganser", "Rainux Luo", "Taylor Hedberg", "Tim Clem", "Dave Stevens", "Ellis Berner", "Frank Macreery", "Olivier Lacan", "Peter Souter", "Ryan Williams", "Andrew Cantino and Jeff Moore", "Thomas Walpole", "Bo Jeanes", "Cody Cutrer", "Edward Rudd", "Lawrence Oluyede", "Linus Pettersson", "Motoshi Nishihira", "Adrian Setyadi", "Benjamin Quorning", "Christoph Petschnig", "Nathaniel Bibler", "Oleg", "Samuel Cochran", "tetsuya", "Yury Velikanau", "Alex Kowalczuk", "asm__", "David Christensen", "fossabot", "Jeff Moore", "Jonathan del Strother", "Joseph Page", "Lomey", "Markus Bengts", "Mathias Klippinge", "nikz", "Peter H. Boling", "Daniel Fockler", "Elliot Crosby-McCullough", "João Paulo", "Orien Madgwick", "Ryan T. Hosford", "Tom Corley", "anvox", "Jesse Cotton", "Olle Jonsson", "Stephen Reid", "Anders Carling", "dobon", "Jan Zaydowicz", "Nicholas Palaniuk", "Stan Hu", "Bouke van der Bijl", "nov", "Rick Selby", "Ryo Takahashi", "Jessie Young", "Карим Гимадеев", "Annibelle Boling", "Elise Wood", "Manuel van Rijn", "Mark James", "Mridang Agarwalla", "Sasa Rosic", "Jonathan Grinstead", "kain", "Rob Zolkos", "StepSecurity Bot", "iamibi", "Mubelotix"]
   spec.email = ["floss@galtzo.com"]
 
   spec.summary = "🔐 OAuth 2.0, 2.1 & OIDC Core Ruby implementation"
@@ -108,13 +108,6 @@ Gem::Specification.new do |spec|
   spec.executables = []
   spec.require_paths = ["lib"]
 
-  spec.post_install_message = <<-MESSAGE
-    Security notice: GHSA-h4fh-g8xf-8255 (https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-h4fh-g8xf-8255)
-    addresses credential replay through cross-origin redirects. In this patch release,
-    opt in with `allow_cross_origin_redirects: false`; the next minor release will
-    default to false, with `true` available as the compatibility opt-out.
-  MESSAGE
-
   # Utilities
   spec.add_dependency("anonymous_loader", "~> 0.1", ">= 0.1.3") # ruby >= 2.2.0
   spec.add_dependency("auth-sanitizer", "~> 0.2", ">= 0.2.3") # ruby >= 2.2.0
@@ -140,7 +133,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 3.0", ">= 3.0.6")             # ruby >= 2.4
+  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.20")             # ruby >= 2.4
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
@@ -153,20 +146,20 @@ Gem::Specification.new do |spec|
 
   # Testing
   # Loads version files in anonymous namespaces for coverage without constant redefinition warnings.
-  spec.add_development_dependency("appraisal2", "~> 3.2", ">= 3.2.0")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.19")            # ruby >= 2.4
-  spec.add_development_dependency("turbo_tests2", "~> 3.2", ">= 3.2.4")           # ruby >= 2.4.0, default kettle-test runner
+  spec.add_development_dependency("appraisal2", "~> 3.2", ">= 3.2.6")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.27")            # ruby >= 2.4
+  spec.add_development_dependency("turbo_tests2", "~> 4.0", ">= 4.0.0")           # ruby >= 2.4.0, default kettle-test runner
 
   # Releasing
   spec.add_development_dependency("ruby-progressbar", "~> 1.13")                    # ruby >= 0
-  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.8")          # ruby >= 2.2.0
+  spec.add_development_dependency("stone_checksums", "~> 1.0", ">= 1.0.9")          # ruby >= 2.2.0
 
   # Development tasks
   # The cake is a lie. erb v2.2, the oldest release, was never compatible with Ruby 2.3.
   # This means we have no choice but to use the erb that shipped with Ruby 2.3
   # /opt/hostedtoolcache/Ruby/2.3.8/x64/lib/ruby/gems/2.3.0/gems/erb-2.2.2/lib/erb.rb:670:in `prepare_trim_mode': undefined method `match?' for "-":String (NoMethodError)
   # spec.add_development_dependency("erb", ">= 2.2")                                  # ruby >= 2.3.0, not SemVer, old rubies get dropped in a patch.
-  spec.add_development_dependency("gitmoji-regex", "~> 2.0", ">= 2.0.11")            # ruby >= 2.4
+  spec.add_development_dependency("gitmoji-regex", "~> 2.0", ">= 2.0.15")            # ruby >= 2.4
 
   # HTTP recording for deterministic specs
   # In Ruby 3.5 (HEAD) the CGI library has been pared down, so we also need to depend on gem "cgi" for ruby@head

@@ -21,8 +21,8 @@
     {
       "file": "CHANGELOG.md",
       "lines": [
-        589,
-        765
+        604,
+        780
       ]
     }
   ],
@@ -30,8 +30,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        109,
-        114
+        121,
+        126
       ]
     }
   ],
@@ -39,9 +39,9 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        119,
-        124,
-        129
+        131,
+        136,
+        141
       ]
     }
   ],
@@ -49,9 +49,9 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        139,
-        144,
-        149
+        151,
+        156,
+        161
       ]
     }
   ],
@@ -59,9 +59,9 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        159,
-        164,
-        169
+        171,
+        176,
+        181
       ]
     }
   ],
@@ -69,9 +69,9 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        174,
-        179,
-        184
+        186,
+        191,
+        196
       ]
     }
   ],
@@ -79,10 +79,19 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        189,
-        194,
-        199,
-        204
+        201,
+        206,
+        211,
+        216
+      ]
+    }
+  ],
+  "- ruby: \"ruby\"\nappraisal: \"current\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        41,
+        47
       ]
     }
   ],
@@ -108,9 +117,9 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        122,
-        127,
-        132
+        134,
+        139,
+        144
       ]
     }
   ],
@@ -118,8 +127,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        147,
-        152
+        159,
+        164
       ]
     }
   ],
@@ -127,9 +136,9 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        192,
-        197,
-        202
+        204,
+        209,
+        214
       ]
     }
   ],
@@ -137,8 +146,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        162,
-        167
+        174,
+        179
       ]
     }
   ],
@@ -146,14 +155,23 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        107,
-        112,
-        137,
-        157,
-        212,
-        217,
-        222,
-        227
+        119,
+        124,
+        149,
+        169,
+        224,
+        229,
+        234,
+        239
+      ]
+    }
+  ],
+  "config: .licenserc.yaml\nmode: \"check\"": [
+    {
+      "file": ".github/workflows/license-eye.yml",
+      "lines": [
+        49,
+        62
       ]
     }
   ],
@@ -161,14 +179,23 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        105,
-        115,
-        135,
-        155,
-        210,
-        215,
-        220,
-        225
+        117,
+        127,
+        147,
+        167,
+        222,
+        227,
+        232,
+        237
+      ]
+    }
+  ],
+  "exec_cmd: \"kettle-test\"\nrubygems: latest": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        44,
+        50
       ]
     }
   ],
@@ -176,14 +203,14 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        106,
-        116,
-        136,
-        156,
-        211,
-        216,
-        221,
-        226
+        118,
+        128,
+        148,
+        168,
+        223,
+        228,
+        233,
+        238
       ]
     }
   ],
@@ -191,8 +218,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        123,
-        128
+        135,
+        140
       ]
     }
   ],
@@ -200,9 +227,9 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        193,
-        198,
-        203
+        205,
+        210,
+        215
       ]
     }
   ],
@@ -210,8 +237,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        163,
-        168
+        175,
+        180
       ]
     }
   ],
@@ -219,8 +246,8 @@
     {
       "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        108,
-        113
+        120,
+        125
       ]
     }
   ]

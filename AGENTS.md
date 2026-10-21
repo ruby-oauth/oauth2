@@ -95,7 +95,6 @@ This gem is part of the **StructuredMerge** ecosystem. Key development tools:
 |-----------|---------|
 | `kettle-release` | Full gem release workflow |
 | `kettle-pre-release` | Pre-release validation |
-| `kettle-changelog` | Changelog generation |
 | `kettle-dvcs` | DVCS (git) workflow automation |
 | `kettle-commit-msg` | Commit message validation |
 | `kettle-check-eof` | EOF newline validation |

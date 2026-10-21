@@ -5,6 +5,8 @@ permissions:
   contents: read
 
 env:
+  # Kill stalled test workers instead of hanging until the CI job timeout.
+  TURBO_TESTS2_WATCHDOG_SECONDS: 900
   K_SOUP_COV_DO: false
 
 on:
@@ -31,6 +33,7 @@ jobs:
     if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
     name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}${{ matrix.name_extra || '' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.bundle_gemfile || 'Appraisal.root.gemfile' }}
@@ -61,7 +64,7 @@ jobs:
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
@@ -85,7 +88,7 @@ jobs:
 
       - name: Bundle install
         if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
-        run: bundle install --jobs 4
+        run: bundle install --jobs 1
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
@@ -102,7 +105,7 @@ jobs:
         run: bundle exec ${{ matrix.exec_cmd }}
 
   truffleruby:
-    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'truffleruby/') || startsWith(github.head_ref, 'feature/release'))"
+    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'truffleruby/') || startsWith(github.head_ref, 'feature/release') || startsWith(github.event.pull_request.title, 'Release '))"
     name: Specs truffleruby@dep-heads
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
@@ -134,7 +137,7 @@ jobs:
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
@@ -158,7 +161,7 @@ jobs:
 
       - name: Bundle install
         if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
-        run: bundle install --jobs 4
+        run: bundle install --jobs 1
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
@@ -175,12 +178,17 @@ jobs:
         run: bundle exec ${{ matrix.exec_cmd }}
 
   jruby:
-    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'jruby/') || startsWith(github.head_ref, 'feature/release'))"
+    if: "(github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))) && (github.event_name != 'pull_request' || startsWith(github.head_ref, 'engines/') || startsWith(github.head_ref, 'jruby/') || startsWith(github.head_ref, 'feature/release') || startsWith(github.event.pull_request.title, 'Release '))"
     name: Specs jruby@dep-heads
     runs-on: ubuntu-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env:
       BUNDLE_GEMFILE: ${{ github.workspace }}/${{ matrix.bundle_gemfile || 'Appraisal.root.gemfile' }}
+      # Keep JVM and native-extension build memory bounded on the constrained runner.
+      JRUBY_OPTS: "-J-Xmx1280m"
+      BUNDLE_JOBS: "1"
+      CARGO_BUILD_JOBS: "1"
+      TURBO_TESTS2_MAX_PROCESSES: 2
     strategy:
       fail-fast: true
       matrix:
@@ -208,7 +216,7 @@ jobs:
 
       - name: Setup Ruby & RubyGems
         if: ${{ !env.ACT }}
-        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
@@ -232,7 +240,7 @@ jobs:
 
       - name: Bundle install
         if: ${{ !env.ACT && matrix.ruby == 'jruby' }}
-        run: bundle install --jobs 4
+        run: bundle install --jobs 1
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"

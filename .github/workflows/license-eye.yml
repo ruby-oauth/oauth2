@@ -32,7 +32,18 @@ jobs:
         with:
           persist-credentials: false
 
-      - name: Check Dependencies' License
+      # This action is a composite that builds license-eye from source on every
+      # run, and its own cache is broken upstream: dependency/action.yml passes
+      # cache-dependency-path ${{ github.action_path }}/go.sum, but go.sum lives
+      # at the action's repository root, not in dependency/ (404 vs 200). So
+      # setup-go logs "Restore cache failed: Some specified paths were not
+      # resolved" and the module cache never restores, making each run
+      # re-download ~35 Go modules and re-run make. That leaves every run
+      # exposed to a transient proxy.golang.org error such as
+      # "stream error: INTERNAL_ERROR; received from peer", which fails the job
+      # on an otherwise healthy repository. Retry once before failing.
+      - name: "[Attempt 1] Check Dependencies' License"
+        id: licenseEyeAttempt1
         uses: apache/skywalking-eyes/dependency@a196742f472feaffafea537ce5a2a4c3c53a8de4 # v0.9.0
         with:
           config: .licenserc.yaml
@@ -40,4 +51,14 @@ jobs:
           # Generated from configured licenses. Compatibility check mode is used
           #   only when License-Eye has a usable main-license matrix; otherwise
           #   resolve mode records dependency licenses without false failures.
+          flags: "--weak-compatible"
+        continue-on-error: true
+
+      - name: "[Attempt 2] Check Dependencies' License"
+        id: licenseEyeAttempt2
+        if: ${{ steps.licenseEyeAttempt1.outcome == 'failure' }}
+        uses: apache/skywalking-eyes/dependency@a196742f472feaffafea537ce5a2a4c3c53a8de4 # v0.9.0
+        with:
+          config: .licenserc.yaml
+          mode: "check"
           flags: "--weak-compatible"

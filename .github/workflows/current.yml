@@ -29,8 +29,9 @@ concurrency:
 jobs:
   test:
     if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
-    name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}
-    runs-on: ubuntu-latest
+    name: Specs ${{ matrix.os }} ${{ matrix.ruby }}@${{ matrix.appraisal }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 30
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
     strategy:
@@ -39,6 +40,13 @@ jobs:
           # Ruby 4.0
           - ruby: "ruby"
             appraisal: "current"
+            os: ubuntu-latest
+            exec_cmd: "kettle-test"
+            rubygems: latest
+            bundler: latest
+          - ruby: "ruby"
+            appraisal: "current"
+            os: macos-latest
             exec_cmd: "kettle-test"
             rubygems: latest
             bundler: latest
@@ -50,7 +58,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
@@ -70,17 +78,20 @@ jobs:
         id: bundleAppraisalAttempt2
         # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
         if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        run: |
+          rm -f gemfiles/${{ matrix.appraisal }}.gemfile.lock
+          rm -rf vendor/bundle "$HOME/.bundle/cache"
+          bundle exec appraisal ${{ matrix.appraisal }} install
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
         uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
         with:
           path: .rspec_status
-          key: rspec-status-current-${{matrix.ruby}}-${{matrix.appraisal}}-${{hashFiles('**/Gemfile.lock','Appraisal.root.gemfile','gemfiles/**/*.gemfile')}}-${{github.run_id}}-${{github.run_attempt}}
+          key: rspec-status-current-${{matrix.os}}-${{matrix.ruby}}-${{matrix.appraisal}}-${{hashFiles('**/Gemfile.lock','Appraisal.root.gemfile','gemfiles/**/*.gemfile')}}-${{github.run_id}}-${{github.run_attempt}}
           restore-keys: |
-            rspec-status-current-${{matrix.ruby}}-${{matrix.appraisal}}-${{hashFiles('**/Gemfile.lock','Appraisal.root.gemfile','gemfiles/**/*.gemfile')}}-
-            rspec-status-current-${{matrix.ruby}}-${{matrix.appraisal}}-
+            rspec-status-current-${{matrix.os}}-${{matrix.ruby}}-${{matrix.appraisal}}-${{hashFiles('**/Gemfile.lock','Appraisal.root.gemfile','gemfiles/**/*.gemfile')}}-
+            rspec-status-current-${{matrix.os}}-${{matrix.ruby}}-${{matrix.appraisal}}-
 
-      - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
+      - name: Tests for ${{ matrix.os }} ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} ${{ matrix.exec_cmd }}

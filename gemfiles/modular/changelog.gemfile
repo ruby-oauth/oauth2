@@ -1,0 +1,58 @@
+# frozen_string_literal: true
+
+# kettle-changelog depends on the current kettle-dev APIs and the structured
+# Markdown merger. Keep it out of older appraisal jobs whose Ruby cannot load
+# its runtime dependency floor.
+# Release lockfile/build commands set this dependency-specific switch so
+# the development tool cannot pull unpublished family gems into resolution.
+kettle_changelog_skip = ENV.fetch("KETTLE_DEV_SKIP_CHANGELOG_DEPENDENCY", "false").downcase
+kettle_changelog_skip = %w[true 1 yes on].include?(kettle_changelog_skip)
+kettle_changelog_local = ENV.fetch("KETTLE_DEV_DEV", "false").downcase
+kettle_changelog_local = !%w[false 0 no off].include?(kettle_changelog_local)
+unless kettle_changelog_skip
+  if kettle_changelog_local
+    # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
+    # Bundler records that dependency during Gemfile evaluation, but it does not
+    # activate that exact version before the immediate `require "nomono/bundler"`.
+    nomono_activation_requirements = ["~> 1.1", ">= 1.1.14"]
+    nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
+    nomono_already_activated = Gem.loaded_specs["nomono"]
+    nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
+    nomono_locked_spec = nil
+    if File.file?(nomono_lockfile)
+      require "bundler"
+      nomono_locked_spec = Bundler::LockfileParser.
+        new(Bundler.read_file(nomono_lockfile)).
+        specs.
+        find { |spec| spec.name == "nomono" }
+    end
+    nomono_local_loader = if nomono_locked_spec && nomono_locked_spec.source.is_a?(Bundler::Source::Path)
+      File.expand_path(
+        File.join(nomono_locked_spec.source.path, "lib", "nomono", "bundler"),
+        File.dirname(nomono_lockfile)
+      )
+    end
+    if nomono_local_loader && File.file?("#{nomono_local_loader}.rb")
+      require nomono_local_loader
+    else
+      if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
+        nomono_locked_installed = nomono_locked_spec &&
+          Gem::Specification.find_all_by_name("nomono").any? { |spec| spec.version == nomono_locked_spec.version }
+        nomono_locked = nomono_locked_spec &&
+          nomono_locked_installed &&
+          nomono_requirement.satisfied_by?(nomono_locked_spec.version)
+        nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
+      end
+      Kernel.send(:gem, "nomono", *nomono_activation_requirements)
+      require "nomono/bundler"
+    end
+    eval_nomono_gems(
+      gems: ["kettle-changelog"],
+      prefix: "KETTLE_DEV",
+      path_env: "KETTLE_DEV_DEV",
+      root: ["src", "my", "kettle-dev"]
+    )
+  elsif Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("4.0.0")
+    gem "kettle-changelog", "~> 1.0", ">= 1.0.13"
+  end
+end

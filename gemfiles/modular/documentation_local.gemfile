@@ -10,13 +10,24 @@ nomono_activation_requirements = ["~> 1.1", ">= 1.1.14"]
 nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
 nomono_already_activated = Gem.loaded_specs["nomono"]
 nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
-if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
+nomono_locked_spec = nil
+if File.file?(nomono_lockfile)
   require "bundler"
-  if File.file?(nomono_lockfile)
-    nomono_locked_spec = Bundler::LockfileParser.
-      new(Bundler.read_file(nomono_lockfile)).
-      specs.
-      find { |spec| spec.name == "nomono" }
+  nomono_locked_spec = Bundler::LockfileParser.
+    new(Bundler.read_file(nomono_lockfile)).
+    specs.
+    find { |spec| spec.name == "nomono" }
+end
+nomono_local_loader = if nomono_locked_spec && nomono_locked_spec.source.is_a?(Bundler::Source::Path)
+  File.expand_path(
+    File.join(nomono_locked_spec.source.path, "lib", "nomono", "bundler"),
+    File.dirname(nomono_lockfile)
+  )
+end
+if nomono_local_loader && File.file?("#{nomono_local_loader}.rb")
+  require nomono_local_loader
+else
+  if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
     nomono_locked_installed = nomono_locked_spec &&
       Gem::Specification.find_all_by_name("nomono").any? { |spec| spec.version == nomono_locked_spec.version }
     nomono_locked = nomono_locked_spec &&
@@ -24,9 +35,9 @@ if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already
       nomono_requirement.satisfied_by?(nomono_locked_spec.version)
     nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
   end
+  Kernel.send(:gem, "nomono", *nomono_activation_requirements)
+  require "nomono/bundler"
 end
-Kernel.send(:gem, "nomono", *nomono_activation_requirements)
-require "nomono/bundler"
 
 local_gems = %w[yard-fence yard-timekeeper yard-yaml]
 declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)

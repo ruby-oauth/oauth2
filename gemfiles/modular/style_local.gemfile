@@ -4,7 +4,7 @@
 # rules for the configured Ruby floor independently from task dependency floors.
 
 # Local path overrides for development.
-# Loaded by the associated non-local gemfile when RUBOCOP_LTS_LOCAL != "false".
+# Loaded by the associated non-local gemfile when RUBOCOP_LTS_DEV != "false".
 
 # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
 # Bundler records that dependency during Gemfile evaluation, but it does not
@@ -13,13 +13,24 @@ nomono_activation_requirements = ["~> 1.1", ">= 1.1.14"]
 nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
 nomono_already_activated = Gem.loaded_specs["nomono"]
 nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
-if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
+nomono_locked_spec = nil
+if File.file?(nomono_lockfile)
   require "bundler"
-  if File.file?(nomono_lockfile)
-    nomono_locked_spec = Bundler::LockfileParser.
-      new(Bundler.read_file(nomono_lockfile)).
-      specs.
-      find { |spec| spec.name == "nomono" }
+  nomono_locked_spec = Bundler::LockfileParser.
+    new(Bundler.read_file(nomono_lockfile)).
+    specs.
+    find { |spec| spec.name == "nomono" }
+end
+nomono_local_loader = if nomono_locked_spec && nomono_locked_spec.source.is_a?(Bundler::Source::Path)
+  File.expand_path(
+    File.join(nomono_locked_spec.source.path, "lib", "nomono", "bundler"),
+    File.dirname(nomono_lockfile)
+  )
+end
+if nomono_local_loader && File.file?("#{nomono_local_loader}.rb")
+  require nomono_local_loader
+else
+  if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
     nomono_locked_installed = nomono_locked_spec &&
       Gem::Specification.find_all_by_name("nomono").any? { |spec| spec.version == nomono_locked_spec.version }
     nomono_locked = nomono_locked_spec &&
@@ -27,23 +38,69 @@ if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already
       nomono_requirement.satisfied_by?(nomono_locked_spec.version)
     nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
   end
+  Kernel.send(:gem, "nomono", *nomono_activation_requirements)
+  require "nomono/bundler"
 end
-Kernel.send(:gem, "nomono", *nomono_activation_requirements)
-require "nomono/bundler"
+
+local_gem_requirements = {
+  "rubocop-lts" => ["~> 8.3", ">= 8.3.3"],
+  "rubocop-lts-rspec" => ["~> 1.0", ">= 1.0.7"],
+  "rubocop-ruby2_2" => ["~> 3.0", ">= 3.0.7"],
+  "standard-rubocop-lts" => ["~> 2.0", ">= 2.0.14"],
+}
 
 local_gems = %w[rubocop-lts rubocop-lts-rspec rubocop-ruby2_2 standard-rubocop-lts]
 declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
-local_gems_to_eval = local_gems - %w[] - declared_gems
+
+# Filter local_gems: only include gems whose local checkout version satisfies
+# the declared requirement. Unsatisfied gems fall back to the registry.
+def local_gem_satisfies?(gem_name, requirements, dev_root)
+  return false unless dev_root && File.directory?(dev_root)
+
+  # Resolve the actual gem name (handle token substitution)
+  actual_name = gem_name.dup
+  actual_name = ENV["RUBOCOP_RUBY_GEM"] if gem_name == "rubocop-ruby2_2"
+  return false if actual_name.nil? || actual_name.empty?
+
+  # Find the gemspec
+  gemspec_path = Dir.glob(File.join(dev_root, actual_name, "*.gemspec")).first
+  return false unless gemspec_path && File.file?(gemspec_path)
+
+  # Parse version from gemspec
+  spec = Gem::Specification.load(gemspec_path)
+  return false unless spec && spec.version
+
+  # Check if version satisfies all requirements
+  requirements.all? do |req|
+    Gem::Requirement.new(req).satisfied_by?(spec.version)
+  end
+rescue => e
+  warn "Warning: could not check local version for #{gem_name}: #{e.message}"
+  false
+end
+
+dev_root = ENV["RUBOCOP_LTS_DEV"]
+local_gems_to_eval = local_gems.select do |gem|
+  reqs = local_gem_requirements[gem]
+  reqs && local_gem_satisfies?(gem, reqs, dev_root)
+end - %w[] - declared_gems
+
+# The generated RuboCop config loads this plugin in both local and released
+# style modes, so the local bundle must provide it too.
+gem "rubocop-packaging",
+  github: "pboling/rubocop-packaging",
+  ref: "3539ba858d379740d638566faee9e56b2b854145"
 
 # export VENDORED_GEMS=rubocop-lts,rubocop-lts-rspec,rubocop-ruby2_2,standard-rubocop-lts
 platform :mri do
   eval_nomono_gems(
     gems: local_gems_to_eval,
+    requirements: local_gem_requirements,
     prefix: "RUBOCOP_LTS",
-    path_env: "RUBOCOP_LTS_LOCAL",
+    path_env: "RUBOCOP_LTS_DEV",
     vendored_gems_env: "VENDORED_GEMS",
     vendor_gem_dir_env: "VENDOR_GEM_DIR",
     debug_env: "RUBOCOP_LTS_DEBUG",
-    root: ["src", "rubocop-lts"]
+    root: ["src", "my", "rubocop-lts"]
   )
 end

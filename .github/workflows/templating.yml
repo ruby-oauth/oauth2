@@ -52,7 +52,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
@@ -80,7 +80,23 @@ jobs:
         id: bundleAppraisalAttempt2
         # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
         if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        run: |
+          rm -f gemfiles/${{ matrix.appraisal }}.gemfile.lock
+          rm -rf vendor/bundle "$HOME/.bundle/cache"
+          bundle exec appraisal ${{ matrix.appraisal }} install
+
+      - name: Cache tree-sitter-language-pack grammars
+        if: "${{!env.ACT}}"
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          # TSLP hot-loads grammars on demand into a versioned cache dir.
+          # Caching it keeps the self-test off the network in the common case;
+          # a miss falls back to the in-run prefetch (kettle-jem tslp_prefetch
+          # phase) with retries and attributable diagnostics.
+          path: ~/.cache/tree-sitter-language-pack
+          key: tslp-grammars-${{runner.os}}-${{hashFiles('gemfiles/templating.gemfile.lock','Gemfile.lock')}}
+          restore-keys: |
+            tslp-grammars-${{runner.os}}-
 
       - name: Templating self-test for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

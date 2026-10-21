@@ -151,7 +151,7 @@ See also the [OAuth 2.0 Spec][oauth2-spec], the [OpenID Connect Spec][oidc-spec]
 | Tokens to Remember | [![Gem name][⛳️name-img]][⛳️gem-name] [![Gem namespace][⛳️namespace-img]][⛳️gem-namespace] |
 |-------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Works with JRuby | [![JRuby 9.2 Compat][💎jruby-9.2i]][🚎jruby-9.2-wf] [![JRuby 9.3 Compat][💎jruby-9.3i]][🚎jruby-9.3-wf] <br/> [![JRuby 9.4 Compat][💎jruby-9.4i]][🚎jruby-9.4-wf] [![JRuby 10.0 Compat][💎jruby-10.0i]][🚎jruby-10.0-wf] [![JRuby current Compat][💎jruby-c-i]][🚎10-j-wf] [![JRuby HEAD Compat][💎jruby-headi]][🚎3-hd-wf]|
-| Works with Truffle Ruby | [![Truffle Ruby 22.3 Compat][💎truby-22.3i]][🚎truby-22.3-wf] [![Truffle Ruby 23.0 Compat][💎truby-23.0i]][🚎truby-23.0-wf] [![Truffle Ruby 23.1 Compat][💎truby-23.1i]][🚎truby-23.1-wf] <br/> [![Truffle Ruby 24.2 Compat][💎truby-24.2i]][🚎truby-24.2-wf] [![Truffle Ruby 25.0 Compat][💎truby-25.0i]][🚎truby-25.0-wf] [![Truffle Ruby 33.0 Compat][💎truby-33.0i]][🚎truby-33.0-wf] [![Truffle Ruby current Compat][💎truby-c-i]][🚎9-t-wf] [![Truffle Ruby HEAD Compat][💎truby-headi]][🚎3-hd-wf]|
+| Works with Truffle Ruby | [![Truffle Ruby 22.3 Compat][💎truby-22.3i]][🚎truby-22.3-wf] [![Truffle Ruby 23.1 Compat][💎truby-23.1i]][🚎truby-23.1-wf] <br/> [![Truffle Ruby 24.2 Compat][💎truby-24.2i]][🚎truby-24.2-wf] [![Truffle Ruby 25.0 Compat][💎truby-25.0i]][🚎truby-25.0-wf] [![Truffle Ruby 33.0 Compat][💎truby-33.0i]][🚎truby-33.0-wf] [![Truffle Ruby current Compat][💎truby-c-i]][🚎9-t-wf]|
 | Works with MRI Ruby 4 | [![Ruby current Compat][💎ruby-c-i]][🚎11-c-wf] [![Ruby HEAD Compat][💎ruby-headi]][🚎3-hd-wf]|
 | Works with MRI Ruby 3 | [![Ruby 3.0 Compat][💎ruby-3.0i]][🚎ruby-3.0-wf] [![Ruby 3.1 Compat][💎ruby-3.1i]][🚎ruby-3.1-wf] [![Ruby 3.2 Compat][💎ruby-3.2i]][🚎ruby-3.2-wf] [![Ruby 3.3 Compat][💎ruby-3.3i]][🚎ruby-3.3-wf] [![Ruby 3.4 Compat][💎ruby-3.4i]][🚎ruby-3.4-wf]|
 | Works with MRI Ruby 2 | ![Ruby 2.2 Compat][💎ruby-2.2i] ![Ruby 2.3 Compat][💎ruby-2.3i] <br/> [![Ruby 2.4 Compat][💎ruby-2.4i]][🚎ruby-2.4-wf] [![Ruby 2.5 Compat][💎ruby-2.5i]][🚎ruby-2.5-wf] [![Ruby 2.6 Compat][💎ruby-2.6i]][🚎ruby-2.6-wf] [![Ruby 2.7 Compat][💎ruby-2.7i]][🚎ruby-2.7-wf]|
@@ -165,7 +165,7 @@ See also the [OAuth 2.0 Spec][oauth2-spec], the [OpenID Connect Spec][oidc-spec]
 
 ### Compatibility
 
-Compatible with MRI Ruby 2.2.0+, and concordant releases of JRuby, and TruffleRuby.
+Compatible with MRI Ruby 2.2.0+, JRuby, and TruffleRuby.
 CI workflows and Appraisals are generated for MRI Ruby 2.4+.
 This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and
 may be higher than the gem's runtime compatibility floor when legacy Rubies are
@@ -191,6 +191,23 @@ The _amazing_ test matrix is powered by the kettle-dev stack.
 
 </details>
 
+### Runtime and Platform Support
+
+Support tiers describe what this project's CI actually exercises, not what may
+work in an untested environment:
+
+- **Parallel support**: CI runs the test suite with multiple workers available.
+- **Unsupported**: the engine/platform combination is not covered by CI and is
+ not a project compatibility claim.
+
+| Ruby engine/version | Linux | macOS | Windows | Notes |
+|---------------------|-------|-------|---------|-------|
+| MRI 3.1-3.4 | Parallel support | Unsupported | Unsupported | Versioned Ruby workflows run on Linux. |
+| MRI current | Parallel support | Parallel support | Unsupported | Current Ruby workflow covers the declared OS platforms. |
+| MRI head | Parallel support | Unsupported | Unsupported | CI is allowed to fail while Ruby is in development. |
+| JRuby (all CI lanes) | Parallel support | Unsupported | Unsupported | Engine workflows run on Linux; macOS and Windows are not exercised by CI. |
+| TruffleRuby (all CI lanes) | Parallel support | Unsupported | Unsupported | Never shipped a Windows build (zero Windows assets across 66 releases scanned 2026-10-10); setup-ruby hard-fails ([source](https://github.com/ruby/setup-ruby/blob/master/README.md)) |
+
 ### Federated DVCS
 
 <details markdown="1">
@@ -204,7 +221,9 @@ The _amazing_ test matrix is powered by the kettle-dev stack.
 
 </details>
 
-### Enterprise Support [![Tidelift](https://tidelift.com/badges/package/rubygems/oauth2)](https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=rubygems-oauth2&utm_medium=referral&utm_campaign=readme)
+### Enterprise Support
+
+[![Tidelift](https://tidelift.com/badges/package/rubygems/oauth2)](https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=rubygems-oauth2&utm_medium=referral&utm_campaign=readme)
 
 Available as part of the Tidelift Subscription.
 
@@ -697,8 +716,7 @@ See [SECURITY.md][🔐security].
 ## 🤝 Contributing
 
 If you need some ideas of where to help, you could work on adding more code coverage,
-or if it is already 💯 (see [below](#code-coverage)) check [issues][🤝gh-issues] or [PRs][🤝gh-pulls],
-or use the gem and think about how it could be better.
+check [issues][🤝gh-issues] or [PRs][🤝gh-pulls], or use the gem and think about how it could be better.
 
 We [![Keep A Changelog][📗keep-changelog-img]][📗keep-changelog] so if you make changes, remember to update it.
 
@@ -739,9 +757,9 @@ Also see GitLab Contributors: [https://gitlab.com/ruby-oauth/oauth2/-/graphs/mai
 
 <a href="https://star-history.dera.page/#ruby-oauth/oauth2&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=date&theme=dark&legend=top-left" />
-   <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=date&legend=top-left" />
-   <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=date&legend=top-left" />
+ <source media="(prefers-color-scheme: dark)" srcset="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=date&theme=dark&legend=top-left" />
+ <source media="(prefers-color-scheme: light)" srcset="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=date&legend=top-left" />
+ <img alt="Star History Chart" src="https://star-history.dera.page/svg?repos=ruby-oauth/oauth2&type=date&legend=top-left" />
  </picture>
 </a>
 
@@ -787,17 +805,15 @@ See [LICENSE.md][📄license] for the official copyright notice.
 
 - Copyright (c) 2010-2014, 2016-2017 Erik Michaels-Ober
 - Copyright (c) 2010 Jeremy Kemper
-- Copyright (c) 2010-2011 Michael Bleigh
+- Copyright (c) 2010-2011, 2014 Michael Bleigh
 - Copyright (c) 2010-2011 Paul Walker
 - Copyright (c) 2010 rick
 - Copyright (c) 2010 Tim Habermaas
 - Copyright (c) 2010 Wynn Netherland
 - Copyright (c) 2011 Alexander Lang
-- Copyright (c) 2011 Alexander Lang
 - Copyright (c) 2011 Greg Spurrier
 - Copyright (c) 2011 Jay Adkisson
 - Copyright (c) 2011 Luke Saunders
-- Copyright (c) 2011 Paul Walker
 - Copyright (c) 2011 Simon Gate
 - Copyright (c) 2012 Bas Vodde
 - Copyright (c) 2012 Damian Janowski
@@ -820,7 +836,6 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2014 Dave Stevens
 - Copyright (c) 2014 Ellis Berner
 - Copyright (c) 2014 Frank Macreery
-- Copyright (c) 2014 Michael Bleigh
 - Copyright (c) 2014 Olivier Lacan
 - Copyright (c) 2014 Peter Souter
 - Copyright (c) 2014 Ryan Williams
@@ -833,7 +848,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2016 Linus Pettersson
 - Copyright (c) 2016 Motoshi Nishihira
 - Copyright (c) 2017 Adrian Setyadi
-- Copyright (c) 2017-2018 Benjamin Quorning
+- Copyright (c) 2017-2018, 2022 Benjamin Quorning
 - Copyright (c) 2017 Christoph Petschnig
 - Copyright (c) 2017, 2022 Nathaniel Bibler
 - Copyright (c) 2017 Oleg
@@ -845,9 +860,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2018 David Christensen
 - Copyright (c) 2018 fossabot
 - Copyright (c) 2018 Jeff Moore
-- Copyright (c) 2018 Jeff Moore
 - Copyright (c) 2018 Jonathan del Strother
-- Copyright (c) 2018 Joseph Page
 - Copyright (c) 2018 Joseph Page
 - Copyright (c) 2018 Lomey
 - Copyright (c) 2018 Markus Bengts
@@ -869,24 +882,23 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2021 Jan Zaydowicz
 - Copyright (c) 2021 Nicholas Palaniuk
 - Copyright (c) 2021-2022 Stan Hu
-- Copyright (c) 2022 Benjamin Quorning
 - Copyright (c) 2022 Bouke van der Bijl
 - Copyright (c) 2022 nov
 - Copyright (c) 2022 Rick Selby
 - Copyright (c) 2022 Ryo Takahashi
 - Copyright (c) 2023 Jessie Young
 - Copyright (c) 2023 Карим Гимадеев
-- Copyright (c) 2024 Aboling0
+- Copyright (c) 2024-2026 Annibelle Boling
 - Copyright (c) 2024 Elise Wood
 - Copyright (c) 2024 Manuel van Rijn
-- Copyright (c) 2025-2026 Annibelle Boling
 - Copyright (c) 2025 Mark James
 - Copyright (c) 2025 Mridang Agarwalla
 - Copyright (c) 2025 Sasa Rosic
+- Copyright (c) 2026 iamibi
 - Copyright (c) 2026 Jonathan Grinstead
 - Copyright (c) 2026 kain
+- Copyright (c) 2026 Mubelotix
 - Copyright (c) 2026 Rob Zolkos
-- Copyright (c) 2026 StepSecurity Bot
 
 </details>
 
@@ -1027,7 +1039,6 @@ Thanks for RTFM. ☺️
 [🚎jruby-9.4-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-9.4.yml
 [🚎jruby-10.0-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/jruby-10.0.yml
 [🚎truby-22.3-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-22.3.yml
-[🚎truby-23.0-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-23.0.yml
 [🚎truby-23.1-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-23.1.yml
 [🚎truby-24.2-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-24.2.yml
 [🚎truby-25.0-wf]: https://github.com/ruby-oauth/oauth2/actions/workflows/truffleruby-25.0.yml
@@ -1066,13 +1077,11 @@ Thanks for RTFM. ☺️
 [💎ruby-c-i]: https://img.shields.io/badge/Ruby-current-CC342D?style=for-the-badge&logo=ruby&logoColor=green
 [💎ruby-headi]: https://img.shields.io/badge/Ruby-HEAD-CC342D?style=for-the-badge&logo=ruby&logoColor=blue
 [💎truby-22.3i]: https://img.shields.io/badge/Truffle_Ruby-22.3-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
-[💎truby-23.0i]: https://img.shields.io/badge/Truffle_Ruby-23.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-23.1i]: https://img.shields.io/badge/Truffle_Ruby-23.1-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-24.2i]: https://img.shields.io/badge/Truffle_Ruby-24.2-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-25.0i]: https://img.shields.io/badge/Truffle_Ruby-25.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-33.0i]: https://img.shields.io/badge/Truffle_Ruby-33.0-34BCB1?style=for-the-badge&logo=ruby&logoColor=pink
 [💎truby-c-i]: https://img.shields.io/badge/Truffle_Ruby-current-34BCB1?style=for-the-badge&logo=ruby&logoColor=green
-[💎truby-headi]: https://img.shields.io/badge/Truffle_Ruby-HEAD-34BCB1?style=for-the-badge&logo=ruby&logoColor=blue
 [💎jruby-9.2i]: https://img.shields.io/badge/JRuby-9.2-FBE742?style=for-the-badge&logo=ruby&logoColor=red
 [💎jruby-9.3i]: https://img.shields.io/badge/JRuby-9.3-FBE742?style=for-the-badge&logo=ruby&logoColor=red
 [💎jruby-9.4i]: https://img.shields.io/badge/JRuby-9.4-FBE742?style=for-the-badge&logo=ruby&logoColor=red

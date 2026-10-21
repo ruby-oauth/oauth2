@@ -6,6 +6,8 @@ permissions:
   id-token: write
 
 env:
+  # Kill stalled test workers instead of hanging until the CI job timeout.
+  TURBO_TESTS2_WATCHDOG_SECONDS: 900
   K_SOUP_COV_MIN_BRANCH: 76
   K_SOUP_COV_MIN_LINE: 92
   K_SOUP_COV_MIN_HARD: true
@@ -38,6 +40,7 @@ jobs:
     if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
     name: Code Coverage on ${{ matrix.ruby }}@current
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
@@ -59,7 +62,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: appraisal-rb/setup-ruby-flash@b22cb587431e9611d9e0a624a43872e2bbfbcd66 # v2.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: "${{ matrix.ruby }}"
           rubygems: "${{ matrix.rubygems }}"
@@ -79,7 +82,10 @@ jobs:
         id: bundleAppraisalAttempt2
         # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
         if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        run: |
+          rm -f gemfiles/${{ matrix.appraisal }}.gemfile.lock
+          rm -rf vendor/bundle "$HOME/.bundle/cache"
+          bundle exec appraisal ${{ matrix.appraisal }} install
 
       - name: Restore RSpec status log
         if: "${{!env.ACT}}"
@@ -99,6 +105,22 @@ jobs:
           test -s coverage/lcov.info
           test -s coverage/coverage.xml
 
+      # Preserve per-worker SimpleCov resultsets when the coverage gate fails.
+      # turbo_tests2 workers write coverage/turbo_tests/<TEST_ENV_NUMBER>/.resultset.json;
+      # if a worker's recorded hits are lost before collation the failure is otherwise
+      # invisible (examples all pass; only the merged total drops).
+      - name: Upload per-worker coverage resultsets on coverage failure
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: coverage-resultsets-${{ matrix.ruby }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            coverage/turbo_tests/**/.resultset.json
+            coverage/.resultset.json
+            coverage/resultset.json
+          if-no-files-found: warn
+          retention-days: 14
+
       - name: Upload coverage to Coveralls
         if: ${{ !env.ACT }}
         uses: coverallsapp/github-action@8d6379e14d29928660c4ba802d8e85393440b329 # v2.3.8
@@ -111,7 +133,7 @@ jobs:
 
       - name: Upload coverage to QLTY
         if: ${{ !env.ACT }}
-        uses: qltysh/qlty-action/coverage@08a0a862c159eae9b9003081da6663d96efef637 # v2.3.0
+        uses: qltysh/qlty-action/coverage@c9b09987143d1e4ac955f4803c7bea742102feb5 # v2.4.0
         with:
           oidc: true
           files: coverage/lcov.info
@@ -121,7 +143,7 @@ jobs:
 
       - name: Upload coverage to CodeCov
         if: ${{ !env.ACT }}
-        uses: codecov/codecov-action@fb8b3582c8e4def4969c97caa2f19720cb33a72f # v7.0.0
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7.1.1
         with:
           use_oidc: true
           disable_search: true
