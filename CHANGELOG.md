@@ -67,6 +67,8 @@ Please file a bug if you notice a violation of semantic versioning.
   - other (5)
   - workflows (34)
 
+- Dependency floors raised to the latest releases: anonymous_loader >= 0.1.4, snaky_hash >= 2.0.8, version_gem >= 1.1.16, kettle-dev >= 3.1.24.
+
 ### Deprecated
 
 ### Removed

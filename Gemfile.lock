@@ -21,35 +21,13 @@ PATH
       snaky_hash (~> 2.0, >= 2.0.8)
       version_gem (~> 1.1, >= 1.1.16)
 
-PATH
-  remote: /var/home/pboling/src/my/ruby-oauth/anonymous_loader
-  specs:
-    anonymous_loader (0.1.4)
-      version_gem (~> 1.1, >= 1.1.15)
-
-PATH
-  remote: /var/home/pboling/src/my/ruby-oauth/auth-sanitizer
-  specs:
-    auth-sanitizer (0.2.4)
-      version_gem (~> 1.1, >= 1.1.16)
-
-PATH
-  remote: /var/home/pboling/src/my/ruby-oauth/snaky_hash
-  specs:
-    snaky_hash (2.0.8)
-      hashie (>= 0.1.0, < 6)
-      version_gem (~> 1.1, >= 1.1.16)
-
-PATH
-  remote: /var/home/pboling/src/my/ruby-oauth/version_gem
-  specs:
-    version_gem (1.1.16)
-
 GEM
   remote: https://gem.coop/
   specs:
     addressable (2.9.0)
       public_suffix (>= 2.0.2, < 8.0)
+    anonymous_loader (0.1.4)
+      version_gem (~> 1.1, >= 1.1.15)
     ansi (1.6.0)
     appraisal2 (3.2.6)
       bundler (>= 1.17.3)
@@ -87,6 +65,8 @@ GEM
       ast-merge (= 7.1.16)
       token-resolver (~> 2.0, >= 2.0.10)
       version_gem (~> 1.1, >= 1.1.15)
+    auth-sanitizer (0.2.4)
+      version_gem (~> 1.1, >= 1.1.16)
     backports (3.25.3)
     base64 (0.3.0)
     bash-merge (7.1.16)
@@ -512,6 +492,9 @@ GEM
       simplecov (>= 0.4.1)
     simplecov_lcov_formatter (0.9.0)
       simplecov (>= 0.18)
+    snaky_hash (2.0.8)
+      hashie (>= 0.1.0, < 6)
+      version_gem (~> 1.1, >= 1.1.16)
     sorbet-runtime (0.6.13591)
     standard (1.57.0)
       language_server-protocol (~> 3.17.0.2)
@@ -586,6 +569,7 @@ GEM
       version_gem (~> 1.1, >= 1.1.15)
     unicode-display_width (2.6.0)
     uri (1.1.2)
+    version_gem (1.1.16)
     webrick (1.9.2)
     yaml-converter (0.2.7)
       hexapdf (>= 1.8, < 2)
@@ -628,10 +612,8 @@ PLATFORMS
 
 DEPENDENCIES
   addressable (~> 2.8, >= 2.8.7, >= 2.8, < 3)
-  anonymous_loader (~> 0.1, >= 0.1.3)!
   appraisal2 (~> 3.2, >= 3.2.6)
   appraisal2-rubocop (~> 1.0, >= 1.0.5)
-  auth-sanitizer (~> 0.2, >= 0.2.3)!
   backports (~> 3.25, >= 3.25.1)
   benchmark (~> 0.5, >= 0.5.0)
   bundler-audit (~> 0.9.3)
@@ -666,12 +648,10 @@ DEPENDENCIES
   rubocop-packaging!
   rubocop-ruby2_2 (~> 3.0, >= 3.0.7)
   ruby-progressbar (~> 1.13)
-  snaky_hash (~> 2.0, >= 2.0.7)!
   standard (~> 1.57, >= 1.57.0)
   stone_checksums (~> 1.0, >= 1.0.9)
   stringio (>= 3.0)
   turbo_tests2 (~> 4.0, >= 4.0.0)
-  version_gem (~> 1.1, >= 1.1.15)!
   webrick (~> 1.9)
   yaml-converter (~> 0.2, >= 0.2.7)
   yard (~> 0.9, >= 0.9.45)
@@ -684,7 +664,7 @@ DEPENDENCIES
 
 CHECKSUMS
   addressable (2.9.0) sha256=7fdf6ac3660f7f4e867a0838be3f6cf722ace541dd97767fa42bc6cfa980c7af
-  anonymous_loader (0.1.4)
+  anonymous_loader (0.1.4) sha256=ebccdc13b23ccbe24c616e7bef8f4c5d4d09622097781107bfbdbb4c5ae0504b
   ansi (1.6.0) sha256=ac9ea0c0ea8d32fb4e271348e609963ac78882f34b73836c2a02b3622e666658
   appraisal2 (3.2.6) sha256=6664d2404b9fe160dfbbed4dd9b78e7b9146402bc3468ff92ba78c1878bc318a
   appraisal2-rubocop (1.0.5) sha256=91db38e8585dc2b07491eee6c288764511a6c6a0a5d06c339c91ab6a4164bea8
@@ -695,7 +675,7 @@ CHECKSUMS
   ast-crispr-toml (7.1.16) sha256=057cd645807619cb7dbe60d84725889dcdecc0437e941b1f0bdfbe880f53f5d4
   ast-merge (7.1.16) sha256=3973f1f7efd5979bccc6bade5cb4da92c88a8ac78a951c18b1e9bc5ac212eeee
   ast-template (7.1.16) sha256=24cca8f82b4ddd69be1cdd1714b9241951bc597eb1667a84d6cba272c2905828
-  auth-sanitizer (0.2.4)
+  auth-sanitizer (0.2.4) sha256=12413515e0c5bfe9809d0ea103f3bc6d066750aa0b843cc12b704c3f8fe94ef0
   backports (3.25.3) sha256=94298d32dc3c40ca15633b54e282780b49e2db0c045f602ea1907e4f63a17235
   base64 (0.3.0) sha256=27337aeabad6ffae05c265c450490628ef3ebd4b67be58257393227588f5a97b
   bash-merge (7.1.16) sha256=23fbb68d954a55b645b14e97aa2c12fef89a8db1defb4409284c3bf0f2e00883
@@ -837,7 +817,7 @@ CHECKSUMS
   simplecov-console (0.9.5) sha256=b1108bcfff5f210143e2b8301698c367b01586f20d25a73e95475a5df6fc6ff6
   simplecov-rcov (0.3.7) sha256=372f50bf6df6b6350b7d0c840f2f8bdabe021861a43c26877b747c9ac96139fc
   simplecov_lcov_formatter (0.9.0) sha256=4c1839bb31dcf7a8f7a6474c94ed228aa03b994e9dd5e1965e58b4121b049bed
-  snaky_hash (2.0.8)
+  snaky_hash (2.0.8) sha256=309f8b9874d00e72c415747d90ab746f2718b19157da48788c798de3eb3bc2a2
   sorbet-runtime (0.6.13591) sha256=ef9d316efe9e63fd149b83c86d647891298124ff54c5783494c5990dde5445a6
   standard (1.57.0) sha256=4a65ea92421fbaf77fb54da91e16093cf79b335b8f62c35aaa3dd714c8592858
   standard-custom (1.0.2) sha256=424adc84179a074f1a2a309bb9cf7cd6bfdb2b6541f20c6bf9436c0ba22a652b
@@ -867,7 +847,7 @@ CHECKSUMS
   turbo_tests2 (4.0.0) sha256=a01c2e29eeca973946bcca8fed10366ffad34622b9fa85d4cb8ebf14f429aebd
   unicode-display_width (2.6.0) sha256=12279874bba6d5e4d2728cef814b19197dbb10d7a7837a869bab65da943b7f5a
   uri (1.1.2) sha256=89292e98eabbef6248b0a0ed5e7e398e152f83f17560023a6d94a7f492b169fb
-  version_gem (1.1.16)
+  version_gem (1.1.16) sha256=8cdfb3d7d47419a434935f60c9d7090558cf6baffe277d41ca6e2e49fa7c22c7
   webrick (1.9.2) sha256=beb4a15fc474defed24a3bda4ffd88a490d517c9e4e6118c3edce59e45864131
   yaml-converter (0.2.7) sha256=aa6cae4a9f41ab909c39e4185911c7c3b0a196ae33439ec721aa17631e6d1b3d
   yaml-merge (7.1.16) sha256=2a778d85a896289962f587a0eda3abdb37809123707664d72cab8fd2d8bf9eb7
