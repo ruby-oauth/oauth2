@@ -410,7 +410,7 @@ RSpec.describe OAuth2::Client do
           expect(printed).to match(/FILTERED|REDACTED/)
         end
 
-# Reporter's test from PR #769: Hash token-request bodies built by get_token with request_body auth
+        # Reporter's test from PR #769: Hash token-request bodies built by get_token with request_body auth
         it "redacts Hash token-request bodies built by get_token with request_body auth (GHSA-cmh8-5q25-68v6)" do
           client = stubbed_client(auth_scheme: :request_body) do |stub|
             stub.post("/oauth/token") do

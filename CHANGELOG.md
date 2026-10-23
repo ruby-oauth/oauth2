@@ -20,6 +20,25 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.26] - 2026-10-23
+
+- TAG: [v2.0.26][2.0.26t]
+- COVERAGE: 98.49% -- 654/664 lines in 16 files
+- BRANCH COVERAGE: 93.59% -- 219/234 branches in 16 files
+- 91.23% documented
+
+### Added
+
 - kettle-jem-template-20260720-005 - README Support & Community links now
   include RubyForum.
 - kettle-jem-template-20260726-001 - Projects now include YARD lint
@@ -68,10 +87,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - workflows (34)
 
 - Dependency floors raised to the latest releases: anonymous_loader >= 0.1.4, snaky_hash >= 2.0.8, version_gem >= 1.1.16, kettle-dev >= 3.1.24.
-
-### Deprecated
-
-### Removed
 
 ### Fixed
 
@@ -1023,7 +1038,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.25...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.26...HEAD
+[2.0.26]: https://github.com/ruby-oauth/oauth2/compare/v2.0.25...v2.0.26
+[2.0.26t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.26
 [2.0.25]: https://github.com/ruby-oauth/oauth2/compare/v2.0.24...v2.0.25
 [2.0.25t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.25
 [2.0.24]: https://github.com/ruby-oauth/oauth2/compare/v2.0.23...v2.0.24
