@@ -90,34 +90,6 @@ Tidelift will coordinate the fix and disclosure.</p>
 please consider sponsoring the project / maintainer @ https://liberapay.com/pboling/donate,<br>
 or find other sponsorship links in the <a href="README.md">README</a>.</p>
 
-<h2 id="redirect-credential-protection">Redirect credential protection</h2>
-
-<p>The OAuth2 client does not require HTTP redirects for OAuth protocol<br>
-interoperability. OAuth 2.0 requires HTTPS and <code>POST</code> for token requests<br>
-(<a href="https://www.rfc-editor.org/rfc/rfc6749.html#section-3.2">RFC 6749, §3.2</a>); it<br>
-does not require a client to follow a server-provided redirect from that<br>
-endpoint. The OAuth 2.0 Security BCP requires authorization servers to avoid<br>
-forwarding credentials when redirecting potentially credential-bearing requests<br>
-(<a href="https://www.rfc-editor.org/rfc/rfc9700.html#section-2.1">RFC 9700, §2.1</a>) and<br>
-documents the body-preserving risk of HTTP 307<br>
-(<a href="https://www.rfc-editor.org/rfc/rfc9700.html#section-4.12">RFC 9700, §4.12</a>).<br>
-The current OAuth 2.1 draft has the corresponding HTTP 307 restriction in<br>
-§7.5.3 (<a href="https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-15#section-7.5.3">draft-ietf-oauth-v2-1-15</a>).<br>
-For bearer tokens, the OAuth 2.0 bearer-token specification prefers the<br>
-<code>Authorization</code> header and warns that URI query transport is likely to be<br>
-logged (<a href="https://www.rfc-editor.org/rfc/rfc6750.html#section-2.3">RFC 6750, §§2.1 and 2.3</a>).</p>
-
-<p>GHSA-h4fh-g8xf-8255 identified that the prior oauth2 redirect fix removed only<br>
-the <code>Authorization</code> header. Request bodies and query parameters could still be<br>
-replayed to an attacker-controlled cross-origin <code>Location</code>, including passwords,<br>
-client secrets, authorization codes, refresh tokens, revocation tokens, and<br>
-bearer tokens.</p>
-
-<p>The patch release introduces <code>allow_cross_origin_redirects</code>. It defaults to<br>
-<code>true</code> for compatibility, but setting it to <code>false</code> rejects cross-origin<br>
-redirects before replaying the request. The next minor release will default it<br>
-to <code>false</code>; applications requiring the legacy behavior must explicitly opt out<br>
-with <code>allow_cross_origin_redirects: true</code>.</p>
 </div></div>
 
       <div id="footer">
