@@ -67,6 +67,14 @@ module OAuth2
       assertion
       code_verifier
       token
+      password
+      client_assertion
+      device_code
+      subject_token
+      actor_token
+      accessToken
+      refreshToken
+      idToken
     ]
   )
 

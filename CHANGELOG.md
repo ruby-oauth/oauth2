@@ -119,6 +119,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Add `allow_cross_origin_redirects` client option and `OAuth2::CrossOriginRedirectError` (code: `cross_origin_redirect_blocked`). When cross-origin redirects are disallowed, the client raises before any request credentials (Authorization header, body, or query parameters) can be replayed to another origin; the error message never includes the redirect Location and the redirect response body is never parsed. The 2.0 patch release keeps the legacy default (`true`); the next minor release will default to `false`. Addresses GHSA-h4fh-g8xf-8255, reported by iamibi, Guilhermemury, manus-pi, iRevivalx, katzj, arpitjain099, 0xRenSec, and manus-use.
 
+- GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG output no longer logs token-request secrets in cleartext: auth-sanitizer floor raised to 0.2.4, which redacts configured keys in Ruby `Hash#inspect` output (the shape Faraday's debug logger produces for Hash request bodies via `pretty_inspect`), and the default `filtered_debug_keys` now also cover `password`, `client_assertion`, `device_code`, `subject_token`, `actor_token`, and the camelCase token key variants. Reported by iamibi.
+
 ## [2.0.25] - 2026-07-14
 
 - TAG: [v2.0.25][2.0.25t]
