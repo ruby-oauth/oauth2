@@ -77,23 +77,23 @@ module OAuth2
         end
       end
 
-      private
+    private
 
       # Redact the authorization `code` value in URL-encoded, JSON, and
       # Hash#inspect-shaped string bodies. Only called in authorization_code
       # grant context, so `code` always names the credential here.
       def redact_code_in_string(body)
-        body.dup.scrub
-          .gsub(/\bcode=[^&\s"']+/, "code=#{@label}")
-          .gsub(/("code"\s*:\s*")[^"]*(")/i) { "#{$1}#{@label}#{$2}" }
-          .gsub(/(("code"|code:)\s*=>?\s*")[^"]*(")/i) { "#{$1}#{@label}#{$3}" }
+        body.dup.scrub.
+          gsub(/\bcode=[^&\s"']+/, "code=#{@label}").
+          gsub(/("code"\s*:\s*")[^"]*(")/i) { "#{$1}#{@label}#{$2}" }.
+          gsub(/(("code"|code:)\s*=>?\s*")[^"]*(")/i) { "#{$1}#{@label}#{$3}" }
       end
 
       # Redact the `code` query parameter of a URL, returning a new URI.
       def sanitize_url_code(url)
         sanitized = url.dup
         pairs = sanitized.query.to_s.tr("+", " ").split("&").map do |pair|
-          pair =~ /\Acode=/ ? "code=#{@label}" : pair
+          pair.start_with?("code=") ? "code=#{@label}" : pair
         end
         sanitized.query = pairs.join("&")
         sanitized
