@@ -89,12 +89,14 @@ RuboCop rules are meticulously configured by the <code>rubocop-lts</code> family
 
 <h2 id="understanding-the-lock-file">Understanding the Lock File</h2>
 
-<p>The <code>.rubocop_gradual.lock</code> file tracks all current RuboCop violations in the project. This allows the team to:</p>
+<p>The <code>.rubocop_gradual.lock</code> file is a work list, not a permanent baseline. Every entry represents a style issue that should be resolved by either fixing the code or making an intentional exception explicit.</p>
+
+<p>This allows the team to:</p>
 
 <ol>
-  <li>Prevent new violations while gradually fixing existing ones</li>
+  <li>Prevent new violations while existing issues are handled deliberately</li>
   <li>Track progress on code style improvements</li>
-  <li>Ensure CI builds don’t fail due to pre-existing violations</li>
+  <li>Distinguish temporary work items from intentional project style exceptions</li>
 </ol>
 
 <h2 id="common-commands">Common Commands</h2>
@@ -126,29 +128,30 @@ RuboCop rules are meticulously configured by the <code>rubocop-lts</code> family
 <ol>
   <li>Before submitting a PR, run <code>bundle exec rake rubocop_gradual:autocorrect</code><br>
 a. or just the default <code>bundle exec rake</code>, as autocorrection is a pre-requisite of the default task.</li>
-  <li>If there are new violations, either:
+  <li>If there are violations, either:
     <ul>
       <li>Fix them in your code</li>
-      <li>Run <code>bundle exec rake rubocop_gradual:force_update</code> to update the lock file (only for violations you can’t fix immediately)</li>
+      <li>Normalize intentional deviations with an explicit config or inline exception</li>
+      <li>Run <code>bundle exec rake rubocop_gradual:force_update</code> only for temporary work items you cannot fix immediately</li>
     </ul>
   </li>
   <li>Commit the updated <code>.rubocop_gradual.lock</code> file along with your changes</li>
 </ol>
 
-<h2 id="never-add-inline-rubocop-disables">Never add inline RuboCop disables</h2>
+<h2 id="explicit-style-exceptions">Explicit Style Exceptions</h2>
 
-<p>Do not add inline <code>rubocop:disable</code> / <code>rubocop:enable</code> comments anywhere in the codebase (including specs, except when following the few existing <code>rubocop:disable</code> patterns for a rule already being disabled elsewhere in the code). We handle exceptions in two supported ways:</p>
+<p>Do not treat <code>.rubocop_gradual.lock</code> as a baseline. Treat it as a list of work that must be fixed or normalized into the styleguide.</p>
 
-<ul>
-  <li>Permanent/structural exceptions: prefer adjusting the RuboCop configuration (e.g., in <code>.rubocop.yml</code>) to exclude a rule for a path or file pattern when it makes sense project-wide.</li>
-  <li>Temporary exceptions while improving code: record the current violations in <code>.rubocop_gradual.lock</code> via the gradual workflow:
-    <ul>
-      <li>
-<code>bundle exec rake rubocop_gradual:autocorrect</code> (preferred; will autocorrect what it can and update the lock only if no new violations were introduced)</li>
-      <li>If needed, <code>bundle exec rake rubocop_gradual:force_update</code> (as a last resort when you cannot fix the newly reported violations immediately)</li>
-    </ul>
-  </li>
-</ul>
+<p>Prefer this order:</p>
+
+<ol>
+  <li>Fix the code so it follows the configured styleguide.</li>
+  <li>For intentional project conventions, add the narrowest useful override in <code>.rubocop.yml</code> or <code>.rubocop_rspec.yml</code>.</li>
+  <li>For local intentional deviations, add a tightly scoped inline <code>rubocop:disable</code> / <code>rubocop:enable</code> around the exact line or block.</li>
+  <li>Keep an entry in <code>.rubocop_gradual.lock</code> only as temporary work to be resolved later.</li>
+</ol>
+
+<p>Use configuration overrides when a deviation is structural, generated, path-specific, or applies consistently to a small set of files. Use inline disables when the exception is local and the reason is clearer at the code site than in global config.</p>
 
 <p>In general, treat the rules as guidance to follow; fix violations rather than ignore them. For example, RSpec conventions in this project expect <code>described_class</code> to be used in specs that target a specific class under test.</p>
 
@@ -156,8 +159,8 @@ a. or just the default <code>bundle exec rake</code>, as autocorrection is a pre
 
 <ul>
   <li>Allows incremental adoption of code style rules</li>
-  <li>Prevents CI failures due to pre-existing violations</li>
-  <li>Provides a clear record of code style debt</li>
+  <li>Prevents CI failures due to temporary pre-existing violations</li>
+  <li>Provides a clear work list of code style debt</li>
   <li>Enables focused efforts on improving code quality over time</li>
 </ul>
 </div></div>
