@@ -82,7 +82,7 @@ This ensures that all contributions are properly licensed and attributed.</p>
 <p>Follow these instructions:</p>
 
 <ol>
-  <li>Join the community: <a href="https://www.rubyforum.org/tag/oauth2"><img src="https://img.shields.io/discourse/topics?server=https%3A%2F%2Fwww.rubyforum.org&amp;style=flat&amp;logo=discourse&amp;label=Ruby%20Users%20Forum" alt="Ruby Users Forum"></a> <a href="https://discord.gg/3qme4XHNKN"><img src="https://img.shields.io/discord/1373797679469170758?style=flat&amp;logo=discord" alt="Live Chat on Discord"></a>
+  <li>Join the Discord: <a href="https://discord.gg/3qme4XHNKN">![Live Chat on Discord][✉️discord-invite-img]</a>
 </li>
   <li>Fork the repository</li>
   <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
@@ -91,24 +91,8 @@ This ensures that all contributions are properly licensed and attributed.</p>
   <li>Push to the branch (<code>git push origin my-new-feature</code>)</li>
   <li>Make sure to add tests for it. This is important, so it doesn’t break in a future release.</li>
   <li>Create new Pull Request.</li>
-  <li>Announce it in the project tag on <a href="https://www.rubyforum.org/tag/oauth2">RubyForum</a> or the org channel on <a href="https://discord.gg/3qme4XHNKN">Discord</a>!</li>
+  <li>Announce it in the channel for this org in the <a href="https://discord.gg/3qme4XHNKN">Discord</a>!</li>
 </ol>
-
-<h2 id="ruby-engine-ci-branches">Ruby engine CI branches</h2>
-
-<p>Pull requests run MRI workflows by default. JRuby and TruffleRuby workflows are<br>
-available by branch naming convention so ordinary PRs do not spend CI time on<br>
-alternate Ruby engines.</p>
-
-<ul>
-  <li>Use a branch named <code>jruby/*</code> to run JRuby workflows for a pull request.</li>
-  <li>Use a branch named <code>truffleruby/*</code> to run TruffleRuby workflows for a pull<br>
-request.</li>
-  <li>Use a branch named <code>engines/*</code> to run both JRuby and TruffleRuby workflows for<br>
-a pull request.</li>
-</ul>
-
-<p>Pushes to the default branch continue to run the configured engine workflows.</p>
 
 <h2 id="executables-vs-rake-tasks">Executables vs Rake tasks</h2>
 
@@ -211,7 +195,7 @@ Tip: When running a single spec file locally, you may want <code>K_SOUP_COV_MIN_
   <li>Use <code>git diff --no-ext-diff</code> to compare against Git’s built-in diff output.</li>
   <li>Use <code>git diff --no-textconv</code> when a textconv projection obscures the raw file bytes you need to inspect.</li>
   <li>If Git reports a missing <code>smorg-*</code> executable, rerun <code>bundle install</code> and the setup command above, then check <code>git config --local --get-regexp '^diff\.smorg-'</code>.</li>
-  <li>To remove managed local entries, run <code>K_JEM_TEMPLATING=true kettle-jem install --undo</code>; remove global command registrations with <code>git config --global --unset-all diff.smorg-rb.command</code>, <code>git config --global --unset-all merge.smorg-rb.driver</code>, and <code>git config --global --unset-all merge.smorg-rb.name</code>.</li>
+  <li>To remove managed local entries, run <code>K_JEM_TEMPLATING=true kettle-jem install --undo</code>; remove global command registrations with <code>git config --global --unset-all diff.smorg-ruby.command</code>.</li>
 </ul>
 
 <p>For a quick starting point, this repository’s <code>mise.toml</code> defines the shared defaults, and <code>.env.local</code> can override them locally. Copy <code>.env.local.example</code> to <code>.env.local</code>, use <code>KEY=value</code> lines, and either activate <code>mise</code> in your shell or run commands through <code>mise exec -C /path/to/project -- ...</code>.</p>
