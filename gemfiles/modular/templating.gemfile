@@ -19,7 +19,7 @@ end
 if structuredmerge_remote
   # Keep the released floor when templating with local StructuredMerge paths;
   # kettle-jem-deps-floor advances this requirement from published versions.
-  gem "kettle-jem", "~> 7.1", ">= 7.1.28"
+  gem "kettle-jem", "~> 7.1", ">= 7.1.40"
 end
 
 if kettle_remote

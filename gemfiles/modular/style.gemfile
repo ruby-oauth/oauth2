@@ -14,12 +14,7 @@ gem "reek", "~> 6.6", ">= 6.6.0"
 platform :mri do
   gem "appraisal2-rubocop", "~> 1.0", ">= 1.0.5", require: false
   gem "rubocop-gradual", "~> 0.4", ">= 0.4.0"
-  # rubocop-minitest floor held at 0.40: 0.41.0 requires rubocop >= 1.89.0,
-  # but standard (~> 1.56) caps rubocop at ~> 1.88.0, making the pair
-  # unsatisfiable. This gem is registered in KettleJemDepsFloor::FLOOR_HOLDS,
-  # so kettle-jem-deps-floor will not auto-raise it. Remove the hold (and
-  # raise the floor) once standard supports rubocop >= 1.89.
-  gem "rubocop-minitest", "~> 0.40", ">= 0.40.0"
+  gem "rubocop-minitest", "~> 0.41", ">= 0.41.0"
   if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.3.0")
     gem "rubocop-on-rbs", "~> 2.2", ">= 2.2.0"      # ruby >= 3.3.0
   end
@@ -32,7 +27,7 @@ platform :mri do
       ref: "3539ba858d379740d638566faee9e56b2b854145"
     declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
     gem "rubocop-lts", "~> 8.3", ">= 8.3.3" unless declared_gems.include?("rubocop-lts")
-    gem "rubocop-lts-rspec", "~> 1.0", ">= 1.0.7" unless declared_gems.include?("rubocop-lts-rspec")
+    gem "rubocop-lts-rspec", "~> 1.0", ">= 1.0.8" unless declared_gems.include?("rubocop-lts-rspec")
     gem "rubocop-ruby2_2", "~> 3.0", ">= 3.0.7" unless declared_gems.include?("rubocop-ruby2_2")
   else
     eval_gemfile("style_local.gemfile")

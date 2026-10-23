@@ -205,6 +205,8 @@ GEM
       ruby-progressbar (~> 1.13)
       tty-progressbar (~> 0.18)
       version_gem (~> 1.1, >= 1.1.15)
+    kettle-drift (1.0.17)
+      version_gem (~> 1.1, >= 1.1.15)
     kettle-family (1.3.32)
       ast-crispr (~> 7.1, >= 7.1.11)
       ast-crispr-toml (~> 7.1, >= 7.1.11)
@@ -642,8 +644,10 @@ DEPENDENCIES
   gitmoji-regex (~> 2.0, >= 2.0.15)
   irb (~> 1.17)
   kettle-changelog (~> 1.0, >= 1.0.13)
-  kettle-dev (~> 3.1, >= 3.1.20)
+  kettle-dev (~> 3.1, >= 3.1.22)
+  kettle-drift (~> 1.0, >= 1.0.17)
   kettle-family (~> 1.3, >= 1.3.29)
+  kettle-jem (~> 7.1, >= 7.1.40)
   kettle-soup-cover (~> 3.0, >= 3.0.13)
   kettle-test (~> 2.0, >= 2.0.27)
   kramdown (~> 2.5, >= 2.5.2)
@@ -660,8 +664,8 @@ DEPENDENCIES
   rexml (~> 3.2, >= 3.2.5)
   rubocop-gradual (~> 0.4, >= 0.4.0)
   rubocop-lts (~> 8.3, >= 8.3.3)
-  rubocop-lts-rspec (~> 1.0, >= 1.0.7)
-  rubocop-minitest (~> 0.40, >= 0.40.0)
+  rubocop-lts-rspec (~> 1.0, >= 1.0.8)
+  rubocop-minitest (~> 0.41, >= 0.41.0)
   rubocop-on-rbs (~> 2.2, >= 2.2.0)
   rubocop-packaging!
   rubocop-ruby2_2 (~> 3.0, >= 3.0.7)
@@ -670,6 +674,7 @@ DEPENDENCIES
   standard (~> 1.57, >= 1.57.0)
   stone_checksums (~> 1.0, >= 1.0.9)
   stringio (>= 3.0)
+  tree_sitter_language_pack (~> 1.16, >= 1.16.2)
   turbo_tests2 (~> 4.0, >= 4.0.0)
   version_gem (~> 1.1, >= 1.1.15)!
   webrick (~> 1.9)
@@ -742,6 +747,7 @@ CHECKSUMS
   jwt (3.3.0) sha256=44cc34fbc341c148233cf66641522b4bce0dfb1ce55e8073f05c56f44f4ee546
   kettle-changelog (1.0.13) sha256=34be2385fd44032c7e0761d68aa26986984118ad00fdfe877ae445afef3953bd
   kettle-dev (3.1.23) sha256=9a2e973a9fa0147056e4d715a5daab78db9d94453382929125c5d2032f5e00f8
+  kettle-drift (1.0.17)
   kettle-family (1.3.32) sha256=314a84599b565af623d88acbcadc67461ed571fe3eb3cf392719903c1c74c3e1
   kettle-gha-pins (0.3.18) sha256=7e1aab36c248bab6b55e6c9d79b9efb8233c14a5e33e0d8013a874c49030046a
   kettle-jem (7.1.40) sha256=8cdf8bb51f95021a020d00221018d29d4b14ae7b7b5c0db14da2c23568ce7952
