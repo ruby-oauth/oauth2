@@ -11,6 +11,7 @@ require "version_gem"
 # includes gem files
 require_relative "oauth2/auth_sanitizer"
 require_relative "oauth2/filtered_attributes"
+require_relative "oauth2/sanitized_log_formatter"
 require_relative "oauth2/error"
 require_relative "oauth2/authenticator"
 require_relative "oauth2/client"
