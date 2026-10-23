@@ -31,14 +31,14 @@ PATH
   remote: /var/home/pboling/src/my/ruby-oauth/auth-sanitizer
   specs:
     auth-sanitizer (0.2.4)
-      version_gem (~> 1.1, >= 1.1.15)
+      version_gem (~> 1.1, >= 1.1.16)
 
 PATH
   remote: /var/home/pboling/src/my/ruby-oauth/snaky_hash
   specs:
     snaky_hash (2.0.8)
       hashie (>= 0.1.0, < 6)
-      version_gem (~> 1.1, >= 1.1.15)
+      version_gem (~> 1.1, >= 1.1.16)
 
 PATH
   remote: /var/home/pboling/src/my/ruby-oauth/version_gem
@@ -323,7 +323,7 @@ GEM
     openssl (4.0.2)
     ostruct (0.6.3)
     parallel (1.28.0)
-    parser (3.3.12.0)
+    parser (3.3.13.0)
       ast (~> 2.4.1)
       racc
     parslet (2.0.0)
@@ -774,7 +774,7 @@ CHECKSUMS
   openssl (4.0.2) sha256=1037ad2868ae58df9ad917891c0c0f9815a1172f6846d4bcdd508e4c2ee747c2
   ostruct (0.6.3) sha256=95a2ed4a4bd1d190784e666b47b2d3f078e4a9efda2fccf18f84ddc6538ed912
   parallel (1.28.0) sha256=33e6de1484baf2524792d178b0913fc8eb94c628d6cfe45599ad4458c638c970
-  parser (3.3.12.0) sha256=21a6d7f755d5a24dfbdc6e6b772e4e879a52e7631a88bc5a3a134606052c9828
+  parser (3.3.13.0) sha256=e02f9b63c2fe05b0c68f692ba4df89b3cb113b663964f75d988fbebfd6c3deca
   parslet (2.0.0) sha256=d45130695d39b43d7e6a91f4d2ec66b388a8d822bae38de9b4de9a5fbde1f606
   plain-merge (7.1.16) sha256=26ba05409259dd05763d375886e4015b79fd06e9855e52e113b13e91c6d97b1a
   pp (0.6.4) sha256=dfcb0fce700c41456265922884f9fe195d7fbb0674a3578e6c0f69588e82b570
