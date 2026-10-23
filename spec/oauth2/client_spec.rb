@@ -699,7 +699,7 @@ RSpec.describe OAuth2::Client do
 
       expect do
         client.request(:post, "/body_redirect", body: "client_secret=secret")
-      end.to raise_error(OAuth2::Error, /Refusing cross-origin redirect/)
+      end.to raise_error(OAuth2::CrossOriginRedirectError, /Refusing to follow cross-origin redirect/)
     end
 
     it "rejects cross-origin redirects before forwarding query params when disabled" do
@@ -714,7 +714,26 @@ RSpec.describe OAuth2::Client do
 
       expect do
         client.request(:get, "/params_redirect", params: {access_token: "secret-token"})
-      end.to raise_error(OAuth2::Error, /Refusing cross-origin redirect/)
+      end.to raise_error(OAuth2::CrossOriginRedirectError, /Refusing to follow cross-origin redirect/)
+    end
+
+    it "raises an error with a stable code, no Location in the message, and an unparsed body" do
+      client = stubbed_client(allow_cross_origin_redirects: false) do |stub|
+        stub.get("/params_redirect") do |_env|
+          [302, {"location" => "https://attacker.example/leak"}, "not json {"]
+        end
+      end
+
+      begin
+        client.request(:get, "/params_redirect", params: {access_token: "secret-token"})
+        raise "expected OAuth2::CrossOriginRedirectError"
+      rescue OAuth2::CrossOriginRedirectError => e
+        expect(e.code).to eq("cross_origin_redirect_blocked")
+        expect(e.message).not_to include("attacker.example")
+        expect(e.body).to be_nil
+        expect(e.response).to be_a(OAuth2::Response)
+        expect(e.response.body).to eq("not json {")
+      end
     end
 
     it "continues same-origin redirects when cross-origin redirects are disabled" do

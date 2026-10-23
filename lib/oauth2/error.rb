@@ -78,4 +78,34 @@ module OAuth2
       {error_description: error_description}
     end
   end
+
+  # Raised when a redirect to a different origin is refused.
+  #
+  # The redirect target is attacker-influenced, so the message deliberately
+  # omits the +Location+ value, and the redirect response body is never
+  # parsed. The original response remains available via {#response}.
+  class CrossOriginRedirectError < Error
+    # @return [String] Stable machine-readable code for this error
+    CODE = "cross_origin_redirect_blocked"
+
+    # @return [String] Location-free, body-free refusal message
+    MESSAGE = "Refusing to follow cross-origin redirect. " \
+      "Set `allow_cross_origin_redirects: true` to permit cross-origin redirects, " \
+      "noting that request credentials (headers, body, and query parameters) " \
+      "may then be exposed to the redirect target."
+
+    def initialize(response)
+      # Pass nil so Error#initialize never parses the redirect response body.
+      super(nil)
+      @response = response
+      @body = nil
+      @code = CODE
+      @description = "Cross-origin redirect refused (allow_cross_origin_redirects is false)."
+    end
+
+    # @return [String] Refusal message; never includes the redirect Location
+    def message
+      MESSAGE
+    end
+  end
 end

@@ -521,8 +521,7 @@ module OAuth2
     def reject_cross_origin_redirect!(response, current_location, next_location)
       return unless cross_origin_redirect?(current_location, next_location)
 
-      error = Error.new(response)
-      raise(error, "Refusing cross-origin redirect from #{current_location} to #{next_location}")
+      raise CrossOriginRedirectError.new(response)
     end
 
     def authorization_header?(key)

@@ -109,6 +109,14 @@ module OAuth2
     def response: () -> OAuth2::Response
   end
 
+  class CrossOriginRedirectError < Error
+    CODE: String
+    MESSAGE: String
+
+    def initialize: (OAuth2::Response) -> void
+    def message: () -> String
+  end
+
   module FilteredAttributes
     module InitializerMethods
       def initialize: (*untyped args) { () -> untyped } -> untyped
