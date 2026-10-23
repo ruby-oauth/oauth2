@@ -28,9 +28,115 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Fixed
 
+### Security
+
+## [2.0.26] - 2026-10-23
+
+- TAG: [v2.0.26][2.0.26t]
+- COVERAGE: 98.49% -- 654/664 lines in 16 files
+- BRANCH COVERAGE: 93.59% -- 219/234 branches in 16 files
+- 91.23% documented
+
+### Added
+
+- kettle-jem-template-20260720-005 - README Support & Community links now
+  include RubyForum.
+- kettle-jem-template-20260726-001 - Projects now include YARD lint
+  configuration and documentation dependencies so documentation issues fail
+  before generated docs are refreshed.
+- kettle-jem-template-20260727-001 - Spec harness documentation now lists the
+  RSpec helpers provided by `kettle-test`.
+- kettle-jem-template-20260729-005 - Gemspec metadata now publishes this
+  project's RubyForum tag as `mailing_list_uri`, and support docs link to the
+  tagged RubyForum community alongside Discord.
+
+- kettle-jem-template-20260913-001 - Templating now also surfaces a review
+  entry in `dependency_conflicts.resolve` when a direct development
+  dependency doesn't support one or more of this project's declared
+  `engines:` and has no template-managed modular home (e.g. `sqlite3` on
+  `jruby`). Review each entry and pick a resolution per the project's own
+  engine support needs.
+
+### Changed
+
+- kettle-jem-template-20260716-002 - Generated gemspec manifests now ship fewer
+  repository-only files by default to reduce downstream distro packaging churn.
+
+- kettle-jem-template-20260720-002 - Development Gemfiles now use the released
+  `tree_sitter_language_pack` gem 1.13.3 or newer by default.
+- kettle-jem-template-20260725-002 - Version specs now use `anonymous_loader` to
+  cover `version.rb` without redefining constants, or are removed when version
+  specs are not managed for the project.
+- kettle-jem-template-20260728-001 - Generated Ruby workflows now use clearer
+  setup-ruby-flash planning and can prepare appraisal-only jobs without
+  installing the main Gemfile bundle.
+
+- kettle-jem-template-20260801-001 - Generated README gem dashboard links now
+  use ClickGems instead of BestGems.
+
+- [kc] kettle-jem/prepare: updated 17 project files:
+  - configuration (1)
+  - dependencies (16)
+
+- [kc] kettle-jem/template: updated 55 project files:
+  - code and tests (3)
+  - configuration (1)
+  - dependencies (10)
+  - documentation (2)
+  - other (5)
+  - workflows (34)
+
+- Dependency floors raised to the latest releases: anonymous_loader >= 0.1.4, snaky_hash >= 2.0.8, version_gem >= 1.1.16, kettle-dev >= 3.1.24.
+
+### Fixed
+
 - `OAuth2::AccessToken` no longer raises `NoMethodError` when `expires_latency` is set but the token has no known expiry (no `expires_in`/`expires_at`, or `expires_in: 0`), e.g. `client.get_token(params, expires_latency: 30)` against a provider that omits `expires_in` by @iamibi
+- kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now
+  uses the installed `smorg-rb` driver command.
+- kettle-jem-template-20260725-001 - Release pull request branches beginning
+  with `feature/release` now run JRuby and TruffleRuby workflows.
+- kettle-jem-template-20260726-002 - Generated version files now document their
+  version namespace and constants, reducing warning-only YARD lint output.
+- kettle-jem-template-20260726-003 - Coverage upload steps now treat Coveralls,
+  QLTY, and Codecov as optional, so provider outages do not fail CI when local
+  coverage thresholds still pass.
+- kettle-jem-template-20260728-002 - Generated RuboCop configs now ignore the
+  same `gemfiles/vendor/bundle` tree as `.gitignore`, so vendored dependency
+  installs are not reported as project lint debt.
+- kettle-jem-template-20260728-003 - Generated dep-heads workflows now run
+  TruffleRuby jobs with current RubyGems and Bundler, avoiding setup failures
+  before the test suite starts.
+- kettle-jem-template-20260728-004 - Generated dep-heads workflows now use the
+  setup-ruby Bundler install path for direct appraisal Gemfiles, avoiding rv
+  lockfile parser failures on Git and path dependencies.
+- kettle-jem-template-20260728-005 - VersionGem bootstrap now creates the
+  missing canonical version spec when a project only has shim namespace version
+  specs.
+- kettle-jem-template-20260729-001 - Generated JRuby 9.4 workflows now use the
+  legacy manual bundle install path, avoiding setup-time Bundler full-index
+  failures against `gem.coop`.
+- kettle-jem-template-20260730-001 - Gemspec package file enumeration now runs
+  relative to the gemspec directory, so release package contents stay correct
+  even when the gemspec is loaded from another working directory.
+- kettle-jem-template-20260801-002 - Generated RSpec helpers now normalize
+  managed configuration block bindings structurally, preventing mixed block
+  parameter names from producing invalid configuration after a merge.
+- kettle-jem-template-20260801-003 - Generated project metadata and
+  documentation now normalize configured underscore hostnames to valid
+  hyphenated hostnames.
+- kettle-jem-template-20260801-004 - Generated organization README logos now
+  use GitHub's stable organization avatar endpoint instead of assuming a
+  matching Galtzo-hosted asset exists.
+- kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
+  preserving comments and trailing commas during template updates.
 
 ### Security
+
+- [GHSA-h4fh-g8xf-8255](https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-h4fh-g8xf-8255) - Added the opt-in `allow_cross_origin_redirects: false` protection. When disabled, cross-origin redirects are rejected before request bodies, query parameters, or authorization headers can be replayed to the redirected origin. The patch release keeps the default enabled for compatibility; the next minor release will default it to disabled and provide `allow_cross_origin_redirects: true` as the explicit opt-out. The behavior and transition are documented against [RFC 6749 §3.2](https://www.rfc-editor.org/rfc/rfc6749.html#section-3.2), [RFC 9700 §§2.1 and 4.12](https://www.rfc-editor.org/rfc/rfc9700.html#section-2.1), and [OAuth 2.1 draft §7.5.3](https://datatracker.ietf.org/doc/html/draft-ietf-oauth-v2-1-15#section-7.5.3).
+
+- Add `allow_cross_origin_redirects` client option and `OAuth2::CrossOriginRedirectError` (code: `cross_origin_redirect_blocked`). When cross-origin redirects are disallowed, the client raises before any request credentials (Authorization header, body, or query parameters) can be replayed to another origin; the error message never includes the redirect Location and the redirect response body is never parsed. The 2.0 patch release keeps the legacy default (`true`); the next minor release will default to `false`. Addresses GHSA-h4fh-g8xf-8255, reported by iamibi, Guilhermemury, manus-pi, iRevivalx, katzj, arpitjain099, 0xRenSec, and manus-use.
+
+- GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG output no longer logs token-request secrets in cleartext: auth-sanitizer floor raised to 0.2.4, which redacts configured keys in Ruby `Hash#inspect` output (the shape Faraday's debug logger produces for Hash request bodies via `pretty_inspect`), and the default `filtered_debug_keys` now also cover `password`, `client_assertion`, `device_code`, `subject_token`, `actor_token`, and the camelCase token key variants. Reported by iamibi.
 
 ## [2.0.25] - 2026-07-14
 
@@ -932,7 +1038,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.25...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.26...HEAD
+[2.0.26]: https://github.com/ruby-oauth/oauth2/compare/v2.0.25...v2.0.26
+[2.0.26t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.26
 [2.0.25]: https://github.com/ruby-oauth/oauth2/compare/v2.0.24...v2.0.25
 [2.0.25t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.25
 [2.0.24]: https://github.com/ruby-oauth/oauth2/compare/v2.0.23...v2.0.24
