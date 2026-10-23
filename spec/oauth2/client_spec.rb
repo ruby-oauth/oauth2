@@ -410,6 +410,89 @@ RSpec.describe OAuth2::Client do
           expect(printed).to match(/FILTERED|REDACTED/)
         end
 
+        # Reporter's test from PR #769: Hash token-request bodies built by get_token with request_body auth
+        it "redacts Hash token-request bodies built by get_token with request_body auth (GHSA-cmh8-5q25-68v6)" do
+          client = stubbed_client(auth_scheme: :request_body) do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-token")]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.get_token({})
+          end
+
+          # client_secret "def" travels in the request body Hash, which Faraday
+          # renders with pretty_inspect; the sanitizer must cover that shape.
+          expect(printed).not_to include("def")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        # Reporter's test from PR #769: password grant credentials
+        it "redacts password grant credentials from STDOUT (GHSA-cmh8-5q25-68v6)" do
+          client = stubbed_client do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-token")]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.password.get_token("the-username", "the-secret-password")
+          end
+
+          expect(printed).not_to include("the-secret-password")
+          expect(printed).to match(/FILTERED|REDACTED/)
+        end
+
+        # Additional tests: authorization code grant with code_verifier via auth_code.get_token
+        # #get_token passes the params to Faraday as a Hash, which the debug logger,
+        # added before :url_encoded, prints with #pretty_inspect.
+        it "redacts the client secret from the request body of #get_token from STDOUT" do
+          client = debug_logging_client do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-access-token")]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.auth_code.get_token("the-code")
+          end
+
+          expect(printed).to include("/oauth/token")
+          expect(printed).not_to include("the-client-secret")
+        end
+
+        it "redacts the code verifier from the request body of #get_token from STDOUT" do
+          client = debug_logging_client do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-access-token")]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.auth_code.get_token("the-code", code_verifier: "the-code-verifier")
+          end
+
+          expect(printed).to include("/oauth/token")
+          expect(printed).not_to include("the-code-verifier")
+        end
+
+        it "redacts the refresh token from the request body of AccessToken#refresh! from STDOUT" do
+          client = debug_logging_client do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-new-access-token")]
+            end
+          end
+          access_token = OAuth2::AccessToken.new(client, "the-access-token", refresh_token: "the-refresh-token")
+
+          printed = capture(:stdout) do
+            access_token.refresh!
+          end
+
+          expect(printed).to include("/oauth/token")
+          expect(printed).not_to include("the-refresh-token")
+        end
+
         it "safely redacts obvious secrets in opaque non-JSON response bodies" do
           client = stubbed_client do |stub|
             stub.get("/opaque_secret") do
