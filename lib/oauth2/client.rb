@@ -491,13 +491,23 @@ module OAuth2
     def sanitize_redirect_options(req_opts, current_location, next_location)
       return req_opts unless cross_origin_redirect?(current_location, next_location)
 
-      headers = req_opts[:headers]
-      return req_opts unless headers && headers.any? { |key, _value| authorization_header?(key) }
-
       safe_opts = req_opts.dup
-      safe_headers = headers.dup
-      safe_headers.delete_if { |key, _value| authorization_header?(key) }
-      safe_opts[:headers] = safe_headers
+
+      headers = safe_opts[:headers] || safe_opts["headers"]
+      if headers && headers.any? { |key, _value| authorization_header?(key) }
+        safe_headers = headers.dup
+        safe_headers.delete_if { |key, _value| authorization_header?(key) }
+        if safe_opts.key?("headers")
+          safe_opts["headers"] = safe_headers
+        else
+          safe_opts[:headers] = safe_headers
+        end
+      end
+
+      safe_opts.delete(:body)
+      safe_opts.delete("body")
+      safe_opts.delete(:params)
+      safe_opts.delete("params")
       safe_opts
     end
 
