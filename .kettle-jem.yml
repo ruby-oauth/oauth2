@@ -1,0 +1,20 @@
+readme:
+  corporate_sponsors:
+    - name: Alpha-Omega
+      url: https://alpha-omega.dev
+      img_src: https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg
+      members:
+        - name: Amazon Web Services
+          url: https://aws.amazon.com
+        - name: Google
+          url: https://www.google.com
+        - name: Microsoft
+          url: https://www.microsoft.com
+        - name: Anthropic
+          url: https://www.anthropic.com
+        - name: OpenAI
+          url: https://openai.com
+        - name: Citi
+          url: https://www.citigroup.com
+        - name: GitHub
+          url: https://github.com
