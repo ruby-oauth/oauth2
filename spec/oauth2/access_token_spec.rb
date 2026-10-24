@@ -679,6 +679,19 @@ RSpec.describe OAuth2::AccessToken do
             it "raises on initialize" do
               block_is_expected.to raise_error(OAuth2::Error, {error: "OAuth2::AccessToken has no token", error_description: "Options are: #{{raise_errors: true}}"}.to_s)
             end
+
+            context "when options contain sensitive parameters" do
+              let(:options) { {raise_errors: true, id_token: "jwt.secret.payload", client_secret: "topsecret"} }
+
+              it "redacts sensitive parameter values in error description" do
+                block_is_expected.to raise_error(OAuth2::Error) do |err|
+                  expect(err.message).to include("id_token")
+                  expect(err.message).to include("[FILTERED]")
+                  expect(err.message).not_to include("jwt.secret.payload")
+                  expect(err.message).not_to include("topsecret")
+                end
+              end
+            end
           end
 
           context "when there is refresh_token" do
