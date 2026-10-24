@@ -70,6 +70,143 @@
 #
 # Everything else should be set explicitly here or via ENV.
 
+dependency_conflicts:
+  # Set true only after every discovered conflict has an intentional action.
+  reviewed: true
+  # Review each entry and choose a supported action.
+  # keep_both is for a broad direct requirement plus a compatible modular narrowing.
+  resolve:
+    - gem: addressable
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/optional.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: appraisal2
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: bundler-audit
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/audit.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: bundler-audit
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v0.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v1.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing."
+    - gem: gitmoji-regex
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v1.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v3.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing."
+    - gem: kettle-test
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_5.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_7.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_5.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_6.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_7.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v1_2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v1_6.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v3.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing."
+    - gem: rake
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: require_bench
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: ruby-progressbar
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: stone_checksums
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+
 # This project's identifying emoji.
 # Used as the leading emoji in the README H1 heading and in the gemspec
 # summary and description. Every gem should have its own unique emoji.
