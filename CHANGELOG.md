@@ -33,8 +33,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ## [2.1.0] - 2026-10-25
 
 - TAG: [v2.1.0][2.1.0t]
-- COVERAGE: 98.48% -- 647/657 lines in 16 files
-- BRANCH COVERAGE: 93.48% -- 215/230 branches in 16 files
+- COVERAGE: 98.48% -- 649/659 lines in 16 files
+- BRANCH COVERAGE: 93.53% -- 217/232 branches in 16 files
 - 90.83% documented
 
 ### Changed
@@ -64,11 +64,6 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Security
 
 - GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
-
-[gh!769]: https://github.com/ruby-oauth/oauth2/pull/769
-[gh!770]: https://github.com/ruby-oauth/oauth2/pull/770
-[gh!775]: https://github.com/ruby-oauth/oauth2/pull/775
-[gh!776]: https://github.com/ruby-oauth/oauth2/pull/776
 
 ### Deprecated
 
@@ -1067,7 +1062,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.26...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.1.0...HEAD
+[2.1.0]: https://github.com/ruby-oauth/oauth2/compare/v2.0.26...v2.1.0
+[2.1.0t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.1.0
 [2.0.26]: https://github.com/ruby-oauth/oauth2/compare/v2.0.25...v2.0.26
 [2.0.26t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.26
 [2.0.25]: https://github.com/ruby-oauth/oauth2/compare/v2.0.24...v2.0.25
