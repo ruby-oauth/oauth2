@@ -3,8 +3,8 @@ readme:
     - name: Alpha-Omega
       url: https://alpha-omega.dev
       img_src: https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg
-      since: "2025-01-01"
-      until: "2026-12-31"
+      since: "2026-08-29"
+      until: "2027-12-31"
       members:
         - name: Amazon Web Services
           url: https://aws.amazon.com
