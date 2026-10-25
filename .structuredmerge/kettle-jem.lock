@@ -755,8 +755,8 @@ files:
   Appraisals:
     recipe: template_source_application_Appraisals
     action: write
-    dest_sha256: 24760b98eb187f29ac23362eaae1d5e0602e7675cfa7b72dbe9c116671b8e114
-    input_fingerprint: 94ce31dd22d5a139641fddf20a2f073ce45c06679082e37c7111a3f14eb6e846
+    dest_sha256: 292685dbed8dc3d5cff2fde12910b5f388ee24d7d76599677bd0c585b1093725
+    input_fingerprint: ecadb27577272089b8fc00d8edde1d64bee1595c789e887fb26f8711cc672844
     template_sources:
     - Appraisals.example
   CHANGELOG.md:

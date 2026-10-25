@@ -43,7 +43,7 @@ if direct_sibling_gems.any? &&
   # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
   # Bundler records that dependency during Gemfile evaluation, but it does not
   # activate that exact version before the immediate `require "nomono/bundler"`.
-  nomono_activation_requirements = ["~> 1.1", ">= 1.1.15"]
+  nomono_activation_requirements = ["~> 1.1", ">= 1.1.16"]
   nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
   nomono_already_activated = Gem.loaded_specs["nomono"]
   nomono_lockfile = File.expand_path("Gemfile.lock", __dir__)
