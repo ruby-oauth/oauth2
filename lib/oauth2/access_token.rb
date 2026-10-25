@@ -157,9 +157,10 @@ You may need to set `snaky: false`. See inline documentation for more info.
       no_tokens = (@token.nil? || @token.empty?) && (@refresh_token.nil? || @refresh_token.empty?)
       if no_tokens
         if @client.options[:raise_errors]
+          sanitized_opts = opts.is_a?(Hash) ? sanitize_opts(opts) : opts
           raise Error.new({
             error: "OAuth2::AccessToken has no token",
-            error_description: "Options are: #{opts.inspect}",
+            error_description: "Options are: #{sanitized_opts.inspect}",
           })
         elsif !OAuth2.config.silence_no_tokens_warning
           warn("OAuth2::AccessToken has no token")
@@ -418,6 +419,29 @@ You may need to set `snaky: false`. See inline documentation for more info.
       Time.iso8601(expires_at.to_s).to_i
     rescue ArgumentError
       expires_at.to_i
+    end
+
+    def sanitize_opts(hash)
+      label = (defined?(AUTH_SANITIZER) && AUTH_SANITIZER.respond_to?(:filtered_label)) ? AUTH_SANITIZER.filtered_label : "[FILTERED]"
+      hash.each_with_object({}) do |(key, value), acc|
+        acc[key] =
+          if sensitive_opts_key?(key)
+            label
+          elsif value.is_a?(Hash)
+            sanitize_opts(value)
+          else
+            value
+          end
+      end
+    end
+
+    def sensitive_opts_key?(key)
+      k = key.to_s.downcase
+      filtered_keys = (defined?(AUTH_SANITIZER) && AUTH_SANITIZER.respond_to?(:default_filtered_keys)) ? AUTH_SANITIZER.default_filtered_keys : %w[access_token refresh_token id_token client_secret assertion code_verifier token]
+      return true if filtered_keys.include?(k)
+      return true if TOKEN_KEY_LOOKUP.any? { |tk| tk.to_s.casecmp(k).zero? }
+
+      k.include?("secret") || k.include?("password") || k.end_with?("token")
     end
   end
 end
