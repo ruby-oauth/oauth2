@@ -6,8 +6,8 @@
     [73, 66, 4, "Lint/Syntax: unexpected token tIDENTIFIER\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 2087898353],
     [75, 13, 1, "Lint/Syntax: unexpected token tCOLON\n(Using Ruby 2.2 parser; configure using `TargetRubyVersion` parameter, under `AllCops`)", 177567]
   ],
-  "spec/oauth2/client_spec.rb:2370077212": [
-    [1664, 56, 50, "Lint/CopDirectiveSyntax: Unknown cop name `Style/BracesAroundHashParameters` (did you mean `Style/RedundantDoubleSplatHashBraces`?).", 1246087881],
-    [1676, 51, 50, "Lint/CopDirectiveSyntax: Unknown cop name `Style/BracesAroundHashParameters` (did you mean `Style/RedundantDoubleSplatHashBraces`?).", 1246087881]
+  "spec/oauth2/client_spec.rb:1572685600": [
+    [1708, 56, 50, "Lint/CopDirectiveSyntax: Unknown cop name `Style/BracesAroundHashParameters` (did you mean `Style/RedundantDoubleSplatHashBraces`?).", 1246087881],
+    [1720, 51, 50, "Lint/CopDirectiveSyntax: Unknown cop name `Style/BracesAroundHashParameters` (did you mean `Style/RedundantDoubleSplatHashBraces`?).", 1246087881]
   ]
 }
