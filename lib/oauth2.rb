@@ -9,7 +9,6 @@ require "snaky_hash"
 require "version_gem"
 
 # includes gem files
-require_relative "oauth2/version"
 require_relative "oauth2/auth_sanitizer"
 require_relative "oauth2/filtered_attributes"
 require_relative "oauth2/error"
@@ -23,6 +22,7 @@ require_relative "oauth2/strategy/client_credentials"
 require_relative "oauth2/strategy/assertion"
 require_relative "oauth2/access_token"
 require_relative "oauth2/response"
+require_relative "oauth2/version"
 
 # The namespace of this library
 #
@@ -106,6 +106,7 @@ end
 OAuth2::AUTH_SANITIZER.filtered_label_provider = -> { OAuth2.config[:filtered_label] }
 
 # Extend OAuth2::Version with VersionGem helpers to provide semantic version helpers.
+
 OAuth2::Version.class_eval do
   extend VersionGem::Basic
 end

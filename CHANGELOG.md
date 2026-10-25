@@ -20,7 +20,52 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- kettle-jem-template-20260720-001 - READMEs can now display configured
+  corporate sponsor logos.
+- kettle-jem-template-20260720-005 - README Support & Community links now
+  include RubyForum.
+- kettle-jem-template-20260726-001 - Projects now include YARD lint
+  configuration and documentation dependencies so documentation issues fail
+  before generated docs are refreshed.
+- kettle-jem-template-20260727-001 - Spec harness documentation now lists the
+  RSpec helpers provided by `kettle-test`.
+- kettle-jem-template-20260913-001 - Templating now also surfaces a review
+  entry in `dependency_conflicts.resolve` when a direct development
+  dependency doesn't support one or more of this project's declared
+  `engines:` and has no template-managed modular home (e.g. `sqlite3` on
+  `jruby`). Review each entry and pick a resolution per the project's own
+  engine support needs.
+
+- kettle-jem-template-20260729-005 - Gemspec metadata now publishes this
+  project's RubyForum tag as `mailing_list_uri`, and support docs link to the
+  tagged RubyForum community alongside Discord.
+
 ### Changed
+
+- [kc] kettle-jem/prepare: updated 25 project files:
+  - configuration (1)
+  - dependencies (24)
+
+- kettle-jem-template-20260716-002 - Gemspecs now ship fewer repository-only
+  files, reducing package noise for downstream packagers.
+- kettle-jem-template-20260720-002 - Development Gemfiles now use the released
+  `tree_sitter_language_pack` gem 1.13.3 or newer by default.
+- kettle-jem-template-20260725-002 - Version specs now use `anonymous_loader` to
+  cover `version.rb` without redefining constants, or are removed when version
+  specs are not managed for the project.
+- kettle-jem-template-20260728-001 - Generated Ruby workflows now use clearer
+  setup-ruby-flash planning and can prepare appraisal-only jobs without
+  installing the main Gemfile bundle.
+- kettle-jem-template-20260801-001 - Generated README gem dashboard links now
+  use ClickGems instead of BestGems.
+
+- [kc] kettle-jem/template: updated 84 project files:
+  - code and tests (7)
+  - configuration (1)
+  - dependencies (20)
+  - documentation (2)
+  - other (20)
+  - workflows (34)
 
 ### Deprecated
 
@@ -30,6 +75,45 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - `OAuth2::AccessToken` no longer raises `NoMethodError` when `expires_latency` is set but the token has no known expiry (no `expires_in`/`expires_at`, or `expires_in: 0`), e.g. `client.get_token(params, expires_latency: 30)` against a provider that omits `expires_in` by @iamibi
 - [gh!770][gh!770] - Raise token response parse errors when using the deprecated `extract_access_token` option, rather than swallowing them by @dpep
+
+- kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now
+  uses the installed `smorg-rb` driver command.
+- kettle-jem-template-20260725-001 - Release pull request branches beginning
+  with `feature/release` now run JRuby and TruffleRuby workflows.
+- kettle-jem-template-20260726-002 - Generated version files now document their
+  version namespace and constants, reducing warning-only YARD lint output.
+- kettle-jem-template-20260726-003 - Coverage upload steps now treat Coveralls,
+  QLTY, and Codecov as optional, so provider outages do not fail CI when local
+  coverage thresholds still pass.
+- kettle-jem-template-20260728-002 - Generated RuboCop configs now ignore the
+  same `gemfiles/vendor/bundle` tree as `.gitignore`, so vendored dependency
+  installs are not reported as project lint debt.
+- kettle-jem-template-20260728-003 - Generated dep-heads workflows now run
+  TruffleRuby jobs with current RubyGems and Bundler, avoiding setup failures
+  before the test suite starts.
+- kettle-jem-template-20260728-004 - Generated dep-heads workflows now use the
+  setup-ruby Bundler install path for direct appraisal Gemfiles, avoiding rv
+  lockfile parser failures on Git and path dependencies.
+- kettle-jem-template-20260728-005 - VersionGem bootstrap now creates the
+  missing canonical version spec when a project only has shim namespace version
+  specs.
+- kettle-jem-template-20260729-001 - Generated JRuby 9.4 workflows now use the
+  legacy manual bundle install path, avoiding setup-time Bundler full-index
+  failures against `gem.coop`.
+- kettle-jem-template-20260730-001 - Gemspec package file enumeration now runs
+  relative to the gemspec directory, so release package contents stay correct
+  even when the gemspec is loaded from another working directory.
+- kettle-jem-template-20260801-002 - Generated RSpec helpers now normalize
+  managed configuration block bindings structurally, preventing mixed block
+  parameter names from producing invalid configuration after a merge.
+- kettle-jem-template-20260801-003 - Generated project metadata and
+  documentation now normalize configured underscore hostnames to valid
+  hyphenated hostnames.
+- kettle-jem-template-20260801-004 - Generated organization README logos now
+  use GitHub's stable organization avatar endpoint instead of assuming a
+  matching Galtzo-hosted asset exists.
+- kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
+  preserving comments and trailing commas during template updates.
 
 ### Security
 

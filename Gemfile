@@ -18,9 +18,10 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from oauth2.gemspec
 gemspec
 
+gem "kettle-family", "~> 1.3", ">= 1.3.34"
+
 # Local workspace dependency wiring for *_local.gemfile overrides
-nomono_requirements = ["~> 1.0", ">= 1.0.8"]
-gem "nomono", *nomono_requirements, require: false # ruby >= 2.2
+gem "nomono", "~> 1.1", ">= 1.1.16", require: false # ruby >= 3.2.0
 
 # Direct sibling dependencies (env-switched via RUBY_OAUTH_DEV)
 direct_sibling_gems = %w[
@@ -39,34 +40,51 @@ if direct_sibling_gems.any? &&
       ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?)
   direct_sibling_dev_was_set = ENV.key?("RUBY_OAUTH_DEV")
   direct_sibling_dev_original = ENV.fetch("RUBY_OAUTH_DEV", nil)
-  begin
-    nomono_activation_requirements = nomono_requirements
-    nomono_lockfile = File.expand_path("Gemfile.lock", __dir__)
-    if File.file?(nomono_lockfile)
-      nomono_locked_spec = Bundler::LockfileParser.
-        new(Bundler.read_file(nomono_lockfile)).
-        specs.
-        find { |spec| spec.name == "nomono" }
+  # Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
+  # Bundler records that dependency during Gemfile evaluation, but it does not
+  # activate that exact version before the immediate `require "nomono/bundler"`.
+  nomono_activation_requirements = ["~> 1.1", ">= 1.1.16"]
+  nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
+  nomono_already_activated = Gem.loaded_specs["nomono"]
+  nomono_lockfile = File.expand_path("Gemfile.lock", __dir__)
+  nomono_locked_spec = nil
+  if File.file?(nomono_lockfile)
+    require "bundler"
+    nomono_locked_spec = Bundler::LockfileParser.
+      new(Bundler.read_file(nomono_lockfile)).
+      specs.
+      find { |spec| spec.name == "nomono" }
+  end
+  nomono_local_loader = if nomono_locked_spec && nomono_locked_spec.source.is_a?(Bundler::Source::Path)
+    File.expand_path(
+      File.join(nomono_locked_spec.source.path, "lib", "nomono", "bundler"),
+      File.dirname(nomono_lockfile)
+    )
+  end
+  if nomono_local_loader && File.file?("#{nomono_local_loader}.rb")
+    require nomono_local_loader
+  else
+    if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
+      nomono_locked_installed = nomono_locked_spec &&
+        Gem::Specification.find_all_by_name("nomono").any? { |spec| spec.version == nomono_locked_spec.version }
       nomono_locked = nomono_locked_spec &&
-        Gem::Requirement.new(nomono_requirements).satisfied_by?(nomono_locked_spec.version)
-      if nomono_locked
-        nomono_activation_requirements = ["= #{nomono_locked_spec.version}"]
-      end
+        nomono_locked_installed &&
+        nomono_requirement.satisfied_by?(nomono_locked_spec.version)
+      nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
     end
     Kernel.send(:gem, "nomono", *nomono_activation_requirements)
     require "nomono/bundler"
-    if direct_sibling_templating && !direct_sibling_local
-      ENV["RUBY_OAUTH_DEV"] = File.expand_path("..", __dir__)
-    end
+  end
+  begin
+    ENV["RUBY_OAUTH_DEV"] = File.expand_path("..", __dir__) if direct_sibling_templating && !direct_sibling_local
 
     eval_nomono_gems(
       gems: direct_sibling_gems,
+      requirements: {"anonymous_loader" => ["~> 0.1", ">= 0.1.3"], "auth-sanitizer" => ["~> 0.2", ">= 0.2.5"], "snaky_hash" => ["~> 2.0", ">= 2.0.7"], "version_gem" => ["~> 1.1", ">= 1.1.17"]},
       prefix: "RUBY_OAUTH",
       path_env: "RUBY_OAUTH_DEV",
       root: ["src", "my", "ruby-oauth"]
     )
-  rescue LoadError
-    warn "Install nomono to enable RUBY_OAUTH_DEV local sibling-gem dependencies."
   ensure
     if direct_sibling_templating && !direct_sibling_local
       if direct_sibling_dev_was_set
@@ -78,13 +96,23 @@ if direct_sibling_gems.any? &&
   end
 end
 
-# Templating (env-switched: SMORG_RB_DEV=/path/to/structuredmerge/ruby/gems for local paths)
-eval_gemfile "gemfiles/modular/templating.gemfile" if ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero?
+# Templating and the StructuredMerge family share this modular Gemfile.
+# kettle-jem needs StructuredMerge to template, and kettle-changelog needs it at
+# runtime (ast-crispr-markdown-markly -> markdown-merge -> tree_haver), so the
+# test, lint, and release bundles resolve the family too. While the family is
+# only partially released, registry copies pin the last published version exactly
+# and cannot be satisfied alongside a local lockstep version, so a partial local
+# wiring fails version solving for every command in the bundle.
+#
+# (env-switched: STRUCTUREDMERGE_DEV=/path/to/structuredmerge/ruby/gems for local paths)
+eval_gemfile "gemfiles/modular/templating.gemfile" if
+  ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero? ||
+    ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0
 
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"
 
-# Code Coverage (env-switched: KETTLE_RB_DEV=true for local paths)
+# Code Coverage (env-switched: KETTLE_DEV_DEV=true for local paths)
 eval_gemfile "gemfiles/modular/coverage.gemfile"
 
 # Linting
@@ -92,6 +120,9 @@ eval_gemfile "gemfiles/modular/style.gemfile"
 
 # Documentation
 eval_gemfile "gemfiles/modular/documentation.gemfile"
+
+# Changelog release tooling (available on Ruby versions supported by kettle-changelog)
+eval_gemfile "gemfiles/modular/changelog.gemfile"
 
 # Optional
 eval_gemfile "gemfiles/modular/optional.gemfile"

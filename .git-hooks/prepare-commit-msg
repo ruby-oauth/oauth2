@@ -3,7 +3,6 @@
 # Fail on error and unset variables
 set -eu
 
-# Run the generated wrapper directly so hook execution does not depend on shell activation.
-# We are not using direnv exec here because mise and direnv can result in conflicting PATH settings:
-# See: https://mise.jdx.dev/direnv.html
-exec "kettle-commit-msg" "$@"
+# Resolve the installed gem executable through RubyGems, not a repository-local
+# Bundler binstub that may select a temporarily inconsistent project lockfile.
+exec env RUBYOPT= ruby -e 'require "rubygems"; load Gem.bin_path("kettle-dev", "kettle-commit-msg")' "$@"

@@ -1,0 +1,54 @@
+---
+AllValidators:
+  YardOptions:
+    - --private
+    - --protected
+  Exclude:
+    - .git/**/*
+    - coverage/**/*
+    - docs/**/*
+    - gemfiles/**/*
+    - node_modules/**/*
+    - pkg/**/*
+    - spec/**/*
+    - test/**/*
+    - tmp/**/*
+    - vendor/**/*
+
+  FailOnSeverity: error
+Documentation/LineLength:
+  Enabled: true
+  Severity: warning
+  MaxLength: 100
+
+Documentation/TextSubstitution:
+  Enabled: true
+  Severity: warning
+  Substitutions:
+    "\u2013": "-"
+    "\u2014": "-"
+
+Documentation/UnderfilledLines:
+  Enabled: true
+  Severity: warning
+  MaxLength: 100
+
+Tags/ExampleSyntax:
+  Enabled: true
+  Severity: error
+
+Tags/Order:
+  Enabled: true
+  Severity: warning
+  EnforcedOrder:
+    - param
+    - option
+    - yield
+    - yieldparam
+    - yieldreturn
+    - return
+    - raise
+    - see
+    - example
+    - note
+    - todo

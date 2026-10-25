@@ -15,7 +15,8 @@ source "https://gem.coop"
 
 gemspec
 
-if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.2")
+# The style toolchain includes dependencies that require Ruby 3.3 or newer.
+if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.3")
   if respond_to?(:generator_only)
     generator_only do
       eval_gemfile "gemfiles/modular/style.gemfile"

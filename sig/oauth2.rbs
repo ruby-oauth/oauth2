@@ -6,4 +6,210 @@ module OAuth2
 
   def self.config: () -> untyped
   def self.configure: () { (untyped) -> void } -> void
+  module Version
+    VERSION: String
+  end
+  VERSION: String
+  class AccessToken
+    def self.from_hash: (OAuth2::Client, Hash[untyped, untyped]) -> OAuth2::AccessToken
+    def self.from_kvform: (OAuth2::Client, String) -> OAuth2::AccessToken
+
+    def initialize: (OAuth2::Client, String, ?Hash[Symbol, untyped]) -> void
+    def []: (String | Symbol) -> untyped
+    def expires?: () -> bool
+    def expired?: () -> bool
+    def refresh: (?Hash[untyped, untyped], ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::AccessToken
+    def revoke: (?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def to_hash: () -> Hash[Symbol, untyped]
+    def request: (Symbol, String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def get: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def post: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def put: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def patch: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def delete: (String, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+    def headers: () -> Hash[String, String]
+    def configure_authentication!: (Hash[Symbol, untyped], Symbol) -> void
+    def convert_expires_at: (untyped) -> (Time | Integer | nil)
+
+    attr_accessor response: OAuth2::Response
+  end
+
+  class Authenticator
+    include OAuth2::FilteredAttributes
+
+    attr_reader mode: (Symbol | String)
+    attr_reader id: String?
+    attr_reader secret: String?
+
+    def initialize: (String? id, String? secret, (Symbol | String) mode) -> void
+
+    def apply: (Hash[untyped, untyped]) -> Hash[untyped, untyped]
+
+    def self.encode_basic_auth: (String, String) -> String
+
+    private
+
+    def apply_params_auth: (Hash[untyped, untyped]) -> Hash[untyped, untyped]
+    def apply_client_id: (Hash[untyped, untyped]) -> Hash[untyped, untyped]
+    def apply_basic_auth: (Hash[untyped, untyped]) -> Hash[untyped, untyped]
+    def basic_auth_header: () -> Hash[String, String]
+  end
+
+  class Client
+    RESERVED_REQ_KEYS: Array[String]
+    RESERVED_PARAM_KEYS: Array[String]
+
+    include OAuth2::FilteredAttributes
+
+    attr_reader id: String
+    attr_reader secret: String
+    attr_reader site: String?
+    attr_accessor options: Hash[Symbol, untyped]
+    attr_writer connection: untyped
+
+    def initialize: (String client_id, String client_secret, ?Hash[Symbol, untyped]) { (untyped) -> void } -> void
+
+    def site=: (String) -> String
+
+    def connection: () -> untyped
+
+    def authorize_url: (?Hash[untyped, untyped]) -> String
+    def token_url: (?Hash[untyped, untyped]) -> String
+    def revoke_url: (?Hash[untyped, untyped]) -> String
+
+    def request: (Symbol verb, String url, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+
+    def get_token: (Hash[untyped, untyped] params, ?Hash[Symbol, untyped] access_token_opts, ?Proc) { (Hash[Symbol, untyped]) -> void } -> (OAuth2::AccessToken | nil)
+
+    def revoke_token: (String token, ?String token_type_hint, ?Hash[Symbol, untyped]) { (untyped) -> void } -> OAuth2::Response
+
+    def http_method: () -> Symbol
+
+    def auth_code: () -> OAuth2::Strategy::AuthCode
+    def implicit: () -> OAuth2::Strategy::Implicit
+    def password: () -> OAuth2::Strategy::Password
+    def client_credentials: () -> OAuth2::Strategy::ClientCredentials
+    def assertion: () -> OAuth2::Strategy::Assertion
+
+    def redirection_params: () -> Hash[String, String]
+
+    private
+
+    def params_to_req_opts: (Hash[untyped, untyped]) -> Hash[Symbol, untyped]
+    def parse_snaky_params_headers: (Hash[untyped, untyped]) -> [Symbol, bool, untyped, (Symbol | nil), Hash[untyped, untyped], Hash[String, String]]
+    def execute_request: (Symbol verb, String url, ?Hash[Symbol, untyped]) { (Faraday::Request) -> void } -> OAuth2::Response
+    def authenticator: () -> OAuth2::Authenticator
+    def parse_response_legacy: (OAuth2::Response, Hash[Symbol, untyped], Proc) -> (OAuth2::AccessToken | nil)
+    def parse_response: (OAuth2::Response, Hash[Symbol, untyped]) -> (OAuth2::AccessToken | nil)
+    def build_access_token: (OAuth2::Response, Hash[Symbol, untyped], untyped) -> OAuth2::AccessToken
+    def build_access_token_legacy: (OAuth2::Response, Hash[Symbol, untyped], Proc) -> (OAuth2::AccessToken | nil)
+    def oauth_debug_logging: (untyped) -> void
+  end
+
+  class Error < StandardError
+    def initialize: (OAuth2::Response) -> void
+    def code: () -> (String | Integer | nil)
+    def description: () -> (String | nil)
+    def response: () -> OAuth2::Response
+  end
+
+  module FilteredAttributes
+    module InitializerMethods
+      def initialize: (*untyped args) { () -> untyped } -> untyped
+    end
+
+    def self.included: (untyped) -> untyped
+    def filtered_attributes: (*(String | Symbol)) -> void
+    def thing_filter: () -> OAuth2::ThingFilter
+  end
+
+  class Response
+    DEFAULT_OPTIONS: Hash[Symbol, untyped]
+
+    def self.register_parser: (Symbol key, (Array[String] | String) mime_types) { (String) -> untyped } -> void
+
+    def initialize: (untyped response, parse: Symbol?, snaky: bool?, snaky_hash_klass: untyped?, options: Hash[Symbol, untyped]?) -> void
+    def headers: () -> Hash[untyped, untyped]
+    def status: () -> Integer
+    def body: () -> String
+    def parsed: () -> untyped
+    def content_type: () -> (String | nil)
+    def parser: () -> (untyped | nil)
+
+    attr_reader response: untyped
+    attr_accessor options: Hash[Symbol, untyped]
+  end
+
+  class SanitizedLogger
+    def initialize: (untyped logger) -> void
+
+    def add: (untyped severity, ?untyped message, ?untyped progname) { () -> untyped } -> untyped
+    def <<: (String message) -> untyped
+    def debug: (?untyped progname) { () -> untyped } -> untyped
+    def info: (?untyped progname) { () -> untyped } -> untyped
+    def warn: (?untyped progname) { () -> untyped } -> untyped
+    def error: (?untyped progname) { () -> untyped } -> untyped
+    def fatal: (?untyped progname) { () -> untyped } -> untyped
+    def unknown: (?untyped progname) { () -> untyped } -> untyped
+    def close: () -> void
+    def formatter: () -> untyped
+    def formatter=: (untyped formatter) -> void
+    def level: () -> untyped
+    def level=: (untyped level) -> void
+    def progname: () -> untyped
+    def progname=: (untyped progname) -> void
+    def respond_to_missing?: (Symbol method_name, ?bool include_private) -> bool
+    def method_missing: (Symbol method_name, *untyped args) { () -> untyped } -> untyped
+
+    private
+
+    def log: (Symbol level, ?untyped progname) { () -> untyped } -> untyped
+    def sanitize: (untyped message) -> untyped
+    def thing_filter: () -> OAuth2::ThingFilter
+    def sanitize_authorization_header: (String message) -> String
+    def sanitize_json_pairs: (String message) -> String
+    def sanitize_form_and_query_pairs: (String message) -> String
+  end
+
+  module Strategy
+    class Base
+      def initialize: (OAuth2::Client) -> void
+    end
+
+    class AuthCode < Base
+      def authorize_params: (?Hash[untyped, untyped]) -> Hash[untyped, untyped]
+      def authorize_url: (?Hash[untyped, untyped]) -> String
+      def get_token: (String, ?Hash[untyped, untyped], ?Hash[Symbol, untyped]) -> OAuth2::AccessToken
+    end
+
+    class Implicit < Base
+      def authorize_params: (?Hash[untyped, untyped]) -> Hash[untyped, untyped]
+      def authorize_url: (?Hash[untyped, untyped]) -> String
+      def get_token: (*untyped) -> void
+    end
+
+    class Password < Base
+      def authorize_url: () -> void
+      def get_token: (String, String, ?Hash[untyped, untyped], ?Hash[Symbol, untyped]) -> OAuth2::AccessToken
+    end
+
+    class ClientCredentials < Base
+      def authorize_url: () -> void
+      def get_token: (?Hash[untyped, untyped], ?Hash[Symbol, untyped]) -> OAuth2::AccessToken
+    end
+
+    class Assertion < Base
+      def authorize_url: () -> void
+      def get_token: (Hash[untyped, untyped], Hash[Symbol, untyped], ?Hash[Symbol, untyped], ?Hash[Symbol, untyped]) -> OAuth2::AccessToken
+    end
+  end
+
+  class ThingFilter
+    attr_reader things: Array[String]
+    attr_reader label: String
+
+    def initialize: (Enumerable[untyped] things, label: String) -> void
+    def filtered?: (untyped thing_name) -> bool
+    def pattern_source: () -> String
+  end
 end

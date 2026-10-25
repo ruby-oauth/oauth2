@@ -5,5 +5,3 @@ source "https://gem.coop"
 gemspec path: "../"
 
 eval_gemfile("modular/x_std_libs.gemfile")
-
-eval_gemfile("modular/runtime_heads.gemfile")

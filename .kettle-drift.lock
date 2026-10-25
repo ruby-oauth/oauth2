@@ -21,8 +21,149 @@
     {
       "file": "CHANGELOG.md",
       "lines": [
-        521,
-        697
+        617,
+        793
+      ]
+    }
+  ],
+  "- If the echo above has no output, then it didn't work.\n- Note: `zsh/datetime` module is needed, if running `zsh`.": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        242,
+        312
+      ]
+    }
+  ],
+  "- If your Bundler is >= 2.7.0, you can skip this; builds are reproducible by default.\n- Run `export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH`": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        240,
+        310
+      ]
+    }
+  ],
+  "- In older versions of `bash` you can use `date +%s` instead, i.e. `export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`\n11. Run `bundle exec rake build`": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        244,
+        314
+      ]
+    }
+  ],
+  "- NOTE: Remember to [check the build][🧪build].\n7. Run `export GIT_TRUNK_BRANCH_NAME=\"$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)\" && echo $GIT_TRUNK_BRANCH_NAME`": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        235,
+        305
+      ]
+    }
+  ],
+  "- Note: `zsh/datetime` module is needed, if running `zsh`.\n- In older versions of `bash` you can use `date +%s` instead, i.e. `export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        243,
+        313
+      ]
+    }
+  ],
+  "- Run `export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH`\n- If the echo above has no output, then it didn't work.": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        241,
+        311
+      ]
+    }
+  ],
+  "- The script automatically commits but does not push the checksums\n13. Sanity check the SHA256, comparing with the output from the `bin/gem_checksums` command:": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        249,
+        319
+      ]
+    }
+  ],
+  "- `sha256sum pkg/<gem name>-<version>.gem`\n14. Run `bundle exec rake release` which will create a git tag for the version,": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        251,
+        321
+      ]
+    }
+  ],
+  "- gem: bundler-audit\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        123,
+        128
+      ]
+    }
+  ],
+  "- gem: faraday\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        133,
+        138,
+        143
+      ]
+    }
+  ],
+  "- gem: jwt\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        153,
+        158,
+        163
+      ]
+    }
+  ],
+  "- gem: logger\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        173,
+        178,
+        183
+      ]
+    }
+  ],
+  "- gem: multi_xml\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        188,
+        193,
+        198
+      ]
+    }
+  ],
+  "- gem: rack\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        203,
+        208,
+        213,
+        218
+      ]
+    }
+  ],
+  "- ruby: \"ruby\"\nappraisal: \"current\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        41,
+        47
       ]
     }
   ],
@@ -35,6 +176,132 @@
       ]
     }
   ],
+  "1. Run `bin/setup && bin/rake` as a \"test, coverage, & linting\" sanity check\n2. Update the version number in `version.rb`, and ensure `CHANGELOG.md` reflects changes": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        229,
+        299
+      ]
+    }
+  ],
+  "10. Optional for older Bundler (< 2.7.0): Set `SOURCE_DATE_EPOCH` so `rake build` and `rake release` use the same timestamp and generate the same checksums\n- If your Bundler is >= 2.7.0, you can skip this; builds are reproducible by default.": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        239,
+        309
+      ]
+    }
+  ],
+  "11. Run `bundle exec rake build`\n12. Run `bin/gem_checksums` (more context [1][🔒️rubygems-checksums-pr], [2][🔒️rubygems-guides-pr])": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        245,
+        315
+      ]
+    }
+  ],
+  "12. Run `bin/gem_checksums` (more context [1][🔒️rubygems-checksums-pr], [2][🔒️rubygems-guides-pr])\nto create SHA-256 and SHA-512 checksums. This functionality is provided by the `stone_checksums`": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        246,
+        316
+      ]
+    }
+  ],
+  "13. Sanity check the SHA256, comparing with the output from the `bin/gem_checksums` command:\n- `sha256sum pkg/<gem name>-<version>.gem`": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        250,
+        320
+      ]
+    }
+  ],
+  "14. Run `bundle exec rake release` which will create a git tag for the version,\npush git commits and tags, and push the `.gem` file to the gem host configured in the gemspec.": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        252,
+        322
+      ]
+    }
+  ],
+  "2. Update the version number in `version.rb`, and ensure `CHANGELOG.md` reflects changes\n3. Run `bin/setup && bin/rake` again as a secondary check, and to update `Gemfile.lock`": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        230,
+        300
+      ]
+    }
+  ],
+  "3. Run `bin/setup && bin/rake` again as a secondary check, and to update `Gemfile.lock`\n4. Run `bin/rake yard` to regenerate the docs site using the canonical docs task": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        231,
+        301
+      ]
+    }
+  ],
+  "4. Run `bin/rake yard` to regenerate the docs site using the canonical docs task\n5. Run `git commit -am \"🔖 Prepare release v<VERSION>\"` to commit the changes": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        232,
+        302
+      ]
+    }
+  ],
+  "5. Run `git commit -am \"🔖 Prepare release v<VERSION>\"` to commit the changes\n6. Run `git push` to trigger the final CI pipeline before release, and merge PRs": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        233,
+        303
+      ]
+    }
+  ],
+  "6. Run `git push` to trigger the final CI pipeline before release, and merge PRs\n- NOTE: Remember to [check the build][🧪build].": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        234,
+        304
+      ]
+    }
+  ],
+  "7. Run `export GIT_TRUNK_BRANCH_NAME=\"$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)\" && echo $GIT_TRUNK_BRANCH_NAME`\n8. Run `git checkout $GIT_TRUNK_BRANCH_NAME`": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        236,
+        306
+      ]
+    }
+  ],
+  "8. Run `git checkout $GIT_TRUNK_BRANCH_NAME`\n9. Run `git pull origin $GIT_TRUNK_BRANCH_NAME` to ensure latest trunk code": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        237,
+        307
+      ]
+    }
+  ],
+  "9. Run `git pull origin $GIT_TRUNK_BRANCH_NAME` to ensure latest trunk code\n10. Optional for older Bundler (< 2.7.0): Set `SOURCE_DATE_EPOCH` so `rake build` and `rake release` use the same timestamp and generate the same checksums": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        238,
+        308
+      ]
+    }
+  ],
   "Exclude:\n- 'spec/**/*.rb'": [
     {
       "file": ".rubocop.yml",
@@ -44,40 +311,192 @@
       ]
     }
   ],
-  "appraisal: \"dep-heads\"\nexec_cmd: \"kettle-test\"": [
+  "[gem][💎stone_checksums].\n- The script automatically commits but does not push the checksums": [
     {
-      "file": ".github/workflows/dep-heads.yml",
+      "file": "CONTRIBUTING.md",
       "lines": [
-        44,
-        51,
-        58
+        248,
+        318
       ]
     }
   ],
-  "appraisal: \"head\"\nexec_cmd: \"kettle-test\"": [
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing.\"": [
     {
-      "file": ".github/workflows/heads.yml",
+      "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        43,
-        50,
-        57
+        136,
+        141,
+        146
       ]
     }
   ],
-  "exec_cmd: \"kettle-test\"\nrubygems: default": [
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing.\"": [
     {
-      "file": ".github/workflows/dep-heads.yml",
+      "file": ".structuredmerge/kettle-jem.yml",
       "lines": [
-        52,
-        59
+        156,
+        161,
+        166
       ]
-    },
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing.\"": [
     {
-      "file": ".github/workflows/heads.yml",
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        176,
+        181,
+        186
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        191,
+        196,
+        201
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        206,
+        211,
+        216,
+        221
+      ]
+    }
+  ],
+  "action: remove_modular_gem\nreason: \"oauth2.gemspec owns this development dependency.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        116,
+        121,
+        126,
+        131,
+        151,
+        171,
+        226,
+        231,
+        236,
+        241
+      ]
+    }
+  ],
+  "config: .licenserc.yaml\nmode: \"check\"": [
+    {
+      "file": ".github/workflows/license-eye.yml",
+      "lines": [
+        49,
+        62
+      ]
+    }
+  ],
+  "direct: oauth2.gemspec\nmodular: gemfiles/modular/injected.gemfile": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        119,
+        129,
+        149,
+        169,
+        224,
+        229,
+        234,
+        239
+      ]
+    }
+  ],
+  "exec_cmd: \"kettle-test\"\nrubygems: latest": [
+    {
+      "file": ".github/workflows/current.yml",
       "lines": [
         44,
-        51,
-        58
+        50
+      ]
+    }
+  ],
+  "modular: gemfiles/modular/injected.gemfile\naction: remove_modular_gem": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        120,
+        130,
+        150,
+        170,
+        225,
+        230,
+        235,
+        240
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing.\"\n- gem: faraday": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        137,
+        142
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing.\"\n- gem: jwt": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        157,
+        162
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing.\"\n- gem: logger": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        177,
+        182
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing.\"\n- gem: multi_xml": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        192,
+        197
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing.\"\n- gem: rack": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        207,
+        212,
+        217
+      ]
+    }
+  ],
+  "reason: \"oauth2.gemspec owns this development dependency.\"\n- gem: bundler-audit": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        122,
+        127
+      ]
+    }
+  ],
+  "to create SHA-256 and SHA-512 checksums. This functionality is provided by the `stone_checksums`\n[gem][💎stone_checksums].": [
+    {
+      "file": "CONTRIBUTING.md",
+      "lines": [
+        247,
+        317
       ]
     }
   ]
