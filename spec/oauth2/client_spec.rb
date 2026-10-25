@@ -410,6 +410,54 @@ RSpec.describe OAuth2::Client do
           expect(printed).to match(/FILTERED|REDACTED/)
         end
 
+        # #get_token passes the params to Faraday as a Hash, which the debug logger,
+        # added before :url_encoded, prints with #pretty_inspect.
+        it "redacts the client secret from the request body of #get_token from STDOUT" do
+          client = debug_logging_client do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-access-token")]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.auth_code.get_token("the-code")
+          end
+
+          expect(printed).to include("/oauth/token")
+          expect(printed).not_to include("the-client-secret")
+        end
+
+        it "redacts the code verifier from the request body of #get_token from STDOUT" do
+          client = debug_logging_client do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-access-token")]
+            end
+          end
+
+          printed = capture(:stdout) do
+            client.auth_code.get_token("the-code", code_verifier: "the-code-verifier")
+          end
+
+          expect(printed).to include("/oauth/token")
+          expect(printed).not_to include("the-code-verifier")
+        end
+
+        it "redacts the refresh token from the request body of AccessToken#refresh! from STDOUT" do
+          client = debug_logging_client do |stub|
+            stub.post("/oauth/token") do
+              [200, {"Content-Type" => "application/json"}, JSON.dump("access_token" => "the-new-access-token")]
+            end
+          end
+          access_token = OAuth2::AccessToken.new(client, "the-access-token", refresh_token: "the-refresh-token")
+
+          printed = capture(:stdout) do
+            access_token.refresh!
+          end
+
+          expect(printed).to include("/oauth/token")
+          expect(printed).not_to include("the-refresh-token")
+        end
+
         it "safely redacts obvious secrets in opaque non-JSON response bodies" do
           client = stubbed_client do |stub|
             stub.get("/opaque_secret") do
@@ -1651,6 +1699,16 @@ RSpec.describe OAuth2::Client do
   def stubbed_client(params = {}, &stubs)
     params = {site: "https://api.example.com"}.merge(params)
     OAuth2::Client.new("abc", "def", params) do |builder|
+      builder.adapter :test, &stubs
+    end
+  end
+
+  # Like stubbed_client, but with :url_encoded as in the default connection
+  # and the client secret sent in the request body.
+  def debug_logging_client(params = {}, &stubs)
+    params = {site: "https://api.example.com", auth_scheme: :request_body}.merge(params)
+    OAuth2::Client.new("abc", "the-client-secret", params) do |builder|
+      builder.request :url_encoded
       builder.adapter :test, &stubs
     end
   end
