@@ -29,6 +29,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 - `OAuth2::AccessToken` no longer raises `NoMethodError` when `expires_latency` is set but the token has no known expiry (no `expires_in`/`expires_at`, or `expires_in: 0`), e.g. `client.get_token(params, expires_latency: 30)` against a provider that omits `expires_in` by @iamibi
+- `OAuth2::Client#get_token` raises response parse errors (e.g. `JSON::ParserError`) when using the deprecated `extract_access_token` option, rather than returning `nil` by @dpep
 
 ### Security
 

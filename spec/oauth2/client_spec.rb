@@ -1260,8 +1260,8 @@ RSpec.describe OAuth2::Client do
           let(:status_code) { 200 }
           let(:extract_proc) { proc { |client, hash| raise ArgumentError } }
 
-          it "returns a nil :access_token" do
-            expect(client.get_token({}, {}, extract_proc)).to be_nil
+          it "raises the parse error" do
+            expect { client.get_token({}, {}, extract_proc) }.to raise_error(JSON::ParserError)
           end
         end
       end
@@ -1276,6 +1276,14 @@ RSpec.describe OAuth2::Client do
             token = client.get_token({})
             expect(token.response).to be_a OAuth2::Response
             expect(token.response.parsed).to eq("access_token" => "the-token")
+          end
+
+          context "when extract_access_token raises an exception" do
+            let(:extract_proc) { proc { |client, hash| raise ArgumentError } }
+
+            it "returns a nil :access_token" do
+              expect(client.get_token({}, {}, extract_proc)).to be_nil
+            end
           end
         end
 
