@@ -30,8 +30,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - `OAuth2::AccessToken` no longer raises `NoMethodError` when `expires_latency` is set but the token has no known expiry (no `expires_in`/`expires_at`, or `expires_in: 0`), e.g. `client.get_token(params, expires_latency: 30)` against a provider that omits `expires_in` by @iamibi
 - `OAuth2::Client#get_token` raises response parse errors (e.g. `JSON::ParserError`) when using the deprecated `extract_access_token` option, rather than returning `nil` by @dpep
+- Require `auth-sanitizer` 0.2.5 or later for structured debug-log and access-token error redaction.
 
 ### Security
+
+- Redact configured sensitive keys at every depth, including inside arrays, when an access-token initialization error includes response options.
 
 ## [2.0.25] - 2026-07-14
 

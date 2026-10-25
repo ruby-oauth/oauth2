@@ -493,15 +493,13 @@ module OAuth2
 
       safe_opts = req_opts.dup
 
-      headers = safe_opts[:headers] || safe_opts["headers"]
-      if headers && headers.any? { |key, _value| authorization_header?(key) }
+      [:headers, "headers"].each do |key|
+        headers = safe_opts[key]
+        next unless headers && headers.any? { |header, _value| authorization_header?(header) }
+
         safe_headers = headers.dup
-        safe_headers.delete_if { |key, _value| authorization_header?(key) }
-        if safe_opts.key?("headers")
-          safe_opts["headers"] = safe_headers
-        else
-          safe_opts[:headers] = safe_headers
-        end
+        safe_headers.delete_if { |header, _value| authorization_header?(header) }
+        safe_opts[key] = safe_headers
       end
 
       safe_opts.delete(:body)
