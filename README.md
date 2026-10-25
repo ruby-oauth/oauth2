@@ -773,7 +773,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 <details markdown="1">
 <summary>Copyright holders</summary>
 
-- Copyright (c) 2010-2014, 2016-2017 Erik Michaels-Ober
+- Copyright (c) 2010-2014, 2016-2017 Erik Berlin
 - Copyright (c) 2010 Jeremy Kemper
 - Copyright (c) 2010-2011, 2014 Michael Bleigh
 - Copyright (c) 2010-2011 Paul Walker
