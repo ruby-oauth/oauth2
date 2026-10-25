@@ -29,9 +29,18 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Fixed
 
 - `OAuth2::AccessToken` no longer raises `NoMethodError` when `expires_latency` is set but the token has no known expiry (no `expires_in`/`expires_at`, or `expires_in: 0`), e.g. `client.get_token(params, expires_latency: 30)` against a provider that omits `expires_in` by @iamibi
-- `OAuth2::Client#get_token` raises response parse errors (e.g. `JSON::ParserError`) when using the deprecated `extract_access_token` option, rather than returning `nil` by @dpep
+- [gh!770][gh!770] - Raise token response parse errors when using the deprecated `extract_access_token` option, rather than swallowing them by @dpep
 
 ### Security
+
+- [gh!769][gh!769] - Redact secrets in structured token-request debug bodies, expand the default filtered credential keys, and require `auth-sanitizer` >= 0.2.5 by @makssein
+- [gh!775][gh!775] - Strip Authorization headers, request bodies, and query parameters from cross-origin redirects by @Huge
+- [gh!776][gh!776] - Redact configured sensitive response options from tokenless access-token initialization errors by @Huge
+
+[gh!769]: https://github.com/ruby-oauth/oauth2/pull/769
+[gh!770]: https://github.com/ruby-oauth/oauth2/pull/770
+[gh!775]: https://github.com/ruby-oauth/oauth2/pull/775
+[gh!776]: https://github.com/ruby-oauth/oauth2/pull/776
 
 ## [2.0.25] - 2026-07-14
 
@@ -92,9 +101,9 @@ Please file a bug if you notice a violation of semantic versioning.
 - Addressed Reek code-quality checks with targeted cleanup and documented compatibility exclusions by @pboling
 - Fixed deprecation warning from MultiXML by @robzolkos
 
-[gh!733]: https://github.com/ruby-oauth/oauth2/pull/733
+- [gh!733][gh!733] - Fixed head appraisal dependency conflicts and Ruby 2.4 protocol-relative redirect handling by @pboling
 
-- Fixed head appraisal dependency conflicts and Ruby 2.4 protocol-relative redirect handling by @pboling
+[gh!733]: https://github.com/ruby-oauth/oauth2/pull/733
 
 ## [2.0.22] - 2026-06-07
 

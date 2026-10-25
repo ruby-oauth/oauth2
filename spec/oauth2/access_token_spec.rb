@@ -691,6 +691,37 @@ RSpec.describe OAuth2::AccessToken do
                   expect(err.message).not_to include("topsecret")
                 end
               end
+
+              it "redacts sensitive keys nested inside hashes and arrays" do
+                options.merge!(
+                  nested: [{password: "nested-password", client_assertion: "nested-assertion", public: "visible"}],
+                  accessToken: "camel-case-token",
+                  opaque: "device_code=opaque-secret&state=visible-state"
+                )
+
+                block_is_expected.to raise_error(OAuth2::Error) do |err|
+                  expect(err.message).not_to include("jwt.secret.payload", "topsecret", "nested-password", "nested-assertion", "camel-case-token", "opaque-secret")
+                  expect(err.message).to include("public", "visible", "visible-state", "[FILTERED]")
+                end
+              end
+
+              it "uses configured filtered keys and label" do
+                original_label = OAuth2.config[:filtered_label]
+                original_keys = OAuth2.config[:filtered_debug_keys]
+                begin
+                  OAuth2.config[:filtered_label] = "[REDACTED]"
+                  OAuth2.config[:filtered_debug_keys] = ["tenant_credential"]
+                  options[:tenant_credential] = "custom-secret"
+
+                  block_is_expected.to raise_error(OAuth2::Error) do |err|
+                    expect(err.message).to include("[REDACTED]")
+                    expect(err.message).not_to include("custom-secret")
+                  end
+                ensure
+                  OAuth2.config[:filtered_label] = original_label
+                  OAuth2.config[:filtered_debug_keys] = original_keys
+                end
+              end
             end
           end
 

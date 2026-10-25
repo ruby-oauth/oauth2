@@ -727,6 +727,26 @@ RSpec.describe OAuth2::Client do
       expect(req_opts[:params]).to eq({"code" => "secret_code"})
     end
 
+    it "removes string-keyed body and params and sanitizes both header key forms" do
+      current_location = URI("https://api.example.com/start")
+      next_location = URI("https://attacker.example/leak")
+      req_opts = {
+        "body" => {"client_secret" => "secret_val"},
+        "params" => {"code" => "secret_code"},
+        :headers => {"Authorization" => "Bearer symbol-secret", "X-Marker" => "kept"},
+        "headers" => {"authorization" => "Bearer string-secret", "X-Other" => "kept"},
+      }
+
+      safe_opts = subject.send(:sanitize_redirect_options, req_opts, current_location, next_location)
+
+      expect(safe_opts).not_to have_key("body")
+      expect(safe_opts).not_to have_key("params")
+      expect(safe_opts[:headers].keys).to eq(["X-Marker"])
+      expect(safe_opts["headers"].keys).to eq(["X-Other"])
+      expect(req_opts["body"]).to eq({"client_secret" => "secret_val"})
+      expect(req_opts["params"]).to eq({"code" => "secret_code"})
+    end
+
     it "keeps body and params on same-origin absolute redirects" do
       current_location = URI("https://api.example.com/start")
       next_location = URI("https://api.example.com/leak")
