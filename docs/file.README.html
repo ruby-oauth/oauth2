@@ -72,6 +72,7 @@
 <p><code>if ci_badges.map(&amp;:color).all? { it == "green"}</code> 👇️ send money so I can do more of this. FLOSS maintenance is now my full-time job.</p>
 
 <p><a href="https://opencollective.com/ruby-oauth#backer"><img src="https://opencollective.com/ruby-oauth/backers/badge.svg?style=flat" alt="OpenCollective Backers"></a> <a href="https://opencollective.com/ruby-oauth#sponsor"><img src="https://opencollective.com/ruby-oauth/sponsors/badge.svg?style=flat" alt="OpenCollective Sponsors"></a> <a href="https://github.com/sponsors/pboling"><img src="https://img.shields.io/badge/Sponsor_Me!-pboling.svg?style=social&amp;logo=github" alt="Sponsor Me on Github"></a> <a href="https://liberapay.com/pboling/donate"><img src="https://img.shields.io/liberapay/goal/pboling.svg?logo=liberapay&amp;color=a51611&amp;style=flat" alt="Liberapay Goal Progress"></a> <a href="https://www.paypal.com/paypalme/peterboling"><img src="https://img.shields.io/badge/donate-paypal-a51611.svg?style=flat&amp;logo=paypal" alt="Donate on PayPal"></a> <a href="https://www.buymeacoffee.com/pboling"><img src="https://img.shields.io/badge/buy_me_a_coffee-%E2%9C%93-a51611.svg?style=flat" alt="Buy me a coffee"></a> <a href="https://ko-fi.com/pboling"><img src="https://img.shields.io/badge/ko--fi-%E2%9C%93-a51611.svg?style=flat" alt="Donate at ko-fi.com"></a></p>
+<p><sub>Corporate sponsors: <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="24"></a> <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="24"></a> <a href="#-floss-funding">Become a sponsor</a></sub></p>
 
 <details>
   <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
@@ -317,7 +318,7 @@ If that isn’t quite what you need, one of the following libraries may be a bet
     <tr>
       <td>Source</td>
       <td>
-<a href="https://gitlab.com/ruby-oauth/oauth2"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/ruby-oauth/oauth2"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/ruby-oauth/oauth2"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=GitHub&amp;logoColor=green" alt="Source on GitHub.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.664-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
+<a href="https://gitlab.com/ruby-oauth/oauth2"><img src="https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&amp;logo=Gitlab&amp;logoColor=orange" alt="Source on GitLab.com"></a> <a href="https://codeberg.org/ruby-oauth/oauth2"><img src="https://img.shields.io/badge/CodeBerg-4893CC?style=for-the-badge&amp;logo=CodeBerg&amp;logoColor=blue" alt="Source on CodeBerg.org"></a> <a href="https://github.com/ruby-oauth/oauth2"><img src="https://img.shields.io/badge/GitHub-238636?style=for-the-badge&amp;logo=GitHub&amp;logoColor=green" alt="Source on GitHub.com"></a> <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"><img src="https://img.shields.io/badge/KLOC-0.656-FFDD67.svg?style=for-the-badge&amp;logo=YouTube&amp;logoColor=blue" alt="The best SHA: dQw4w9WgXcQ!"></a>
 </td>
     </tr>
     <tr>
@@ -358,6 +359,7 @@ If that isn’t quite what you need, one of the following libraries may be a bet
 
 <p>Compatible with MRI Ruby 2.2.0+, JRuby, and TruffleRuby.<br>
 CI workflows and Appraisals are generated for MRI Ruby 2.4+.<br>
+The current MRI CI lane runs on Linux and macOS.<br>
 This test floor is configured by <code>ruby.test_minimum</code> in <code>.kettle-jem.yml</code> and<br>
 may be higher than the gem’s runtime compatibility floor when legacy Rubies are<br>
 not practical for the current toolchain.</p>
@@ -432,68 +434,6 @@ not practical for the current toolchain.</p>
 
 </details>
 
-<h3 id="runtime-and-platform-support">Runtime and Platform Support</h3>
-
-<p>Support tiers describe what this project’s CI actually exercises, not what may<br>
-work in an untested environment:</p>
-
-<ul>
-  <li>
-<strong>Parallel support</strong>: CI runs the test suite with multiple workers available.</li>
-  <li>
-<strong>Unsupported</strong>: the engine/platform combination is not covered by CI and is<br>
- not a project compatibility claim.</li>
-</ul>
-
-<table>
-  <thead>
-    <tr>
-      <th>Ruby engine/version</th>
-      <th>Linux</th>
-      <th>macOS</th>
-      <th>Windows</th>
-      <th>Notes</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>MRI 3.1-3.4</td>
-      <td>Parallel support</td>
-      <td>Unsupported</td>
-      <td>Unsupported</td>
-      <td>Versioned Ruby workflows run on Linux.</td>
-    </tr>
-    <tr>
-      <td>MRI current</td>
-      <td>Parallel support</td>
-      <td>Parallel support</td>
-      <td>Unsupported</td>
-      <td>Current Ruby workflow covers the declared OS platforms.</td>
-    </tr>
-    <tr>
-      <td>MRI head</td>
-      <td>Parallel support</td>
-      <td>Unsupported</td>
-      <td>Unsupported</td>
-      <td>CI is allowed to fail while Ruby is in development.</td>
-    </tr>
-    <tr>
-      <td>JRuby (all CI lanes)</td>
-      <td>Parallel support</td>
-      <td>Unsupported</td>
-      <td>Unsupported</td>
-      <td>Engine workflows run on Linux; macOS and Windows are not exercised by CI.</td>
-    </tr>
-    <tr>
-      <td>TruffleRuby (all CI lanes)</td>
-      <td>Parallel support</td>
-      <td>Unsupported</td>
-      <td>Unsupported</td>
-      <td>Never shipped a Windows build (zero Windows assets across 66 releases scanned 2026-10-10); setup-ruby hard-fails (<a href="https://github.com/ruby/setup-ruby/blob/master/README.md">source</a>)</td>
-    </tr>
-  </tbody>
-</table>
-
 <h3 id="federated-dvcs">Federated DVCS</h3>
 
 <details>
@@ -545,34 +485,14 @@ work in an untested environment:</p>
 
 <h3 id="enterprise-support">Enterprise Support</h3>
 
-<p><a href="https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=rubygems-oauth2&amp;utm_medium=referral&amp;utm_campaign=readme"><img src="https://tidelift.com/badges/package/rubygems/oauth2" alt="Tidelift"></a></p>
+<p>For enterprise support from the maintainer, use <a href="https://www.upwork.com/freelancers/~014942e9b056abdf86?mp_source=share">Upwork</a> or <a href="https://www.codementor.io/peterboling?utm_source=github&amp;utm_medium=button&amp;utm_term=peterboling&amp;utm_campaign=github">CodeMentor</a>.</p>
 
-<p>Available as part of the Tidelift Subscription.</p>
+<p>Other support channels:</p>
 
-<details>
-  <summary>Need enterprise-level guarantees?</summary>
-
-  <p>The maintainers of this and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source packages you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact packages you use.</p>
-
-  <p><a href="https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=rubygems-oauth2&amp;utm_medium=referral&amp;utm_campaign=readme"><img src="https://img.shields.io/badge/Tidelift_and_Sonar-Enterprise_Support-FD3456?style=for-the-badge&amp;logo=sonar&amp;logoColor=white" alt="Get help from me on Tidelift"></a></p>
-
-  <ul>
-    <li>💡Subscribe for support guarantees covering <em>all</em> your FLOSS dependencies</li>
-    <li>💡Tidelift is part of <a href="https://blog.tidelift.com/tidelift-joins-sonar">Sonar</a>
-</li>
-    <li>💡Tidelift pays maintainers to maintain the software you depend on!<br>📊<code>@</code>Pointy Haired Boss: An <a href="https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=rubygems-oauth2&amp;utm_medium=referral&amp;utm_campaign=readme">enterprise support</a> subscription is “<a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">never gonna let you down</a>”, and <em>supports</em> open source maintainers</li>
-  </ul>
-
-  <p>Alternatively:</p>
-
-  <ul>
-    <li><a href="https://www.rubyforum.org/tag/oauth2"><img src="https://img.shields.io/discourse/topics?server=https://www.rubyforum.org&amp;style=for-the-badge&amp;logo=discourse&amp;label=Ruby%20Users%20Forum" alt="Ruby Users Forum"></a></li>
-    <li><a href="https://discord.gg/3qme4XHNKN"><img src="https://img.shields.io/discord/1373797679469170758?style=for-the-badge&amp;logo=discord" alt="Live Chat on Discord"></a></li>
-    <li><a href="https://www.upwork.com/freelancers/~014942e9b056abdf86?mp_source=share"><img src="https://img.shields.io/badge/UpWork-13544E?style=for-the-badge&amp;logo=Upwork&amp;logoColor=white" alt="Get help from me on Upwork"></a></li>
-    <li><a href="https://www.codementor.io/peterboling?utm_source=github&amp;utm_medium=button&amp;utm_term=peterboling&amp;utm_campaign=github"><img src="https://img.shields.io/badge/CodeMentor-Get_Help-1abc9c?style=for-the-badge&amp;logo=CodeMentor&amp;logoColor=white" alt="Get help from me on Codementor"></a></li>
-  </ul>
-
-</details>
+<ul>
+  <li><a href="https://www.rubyforum.org/tag/oauth2"><img src="https://img.shields.io/discourse/topics?server=https://www.rubyforum.org&amp;style=for-the-badge&amp;logo=discourse&amp;label=Ruby%20Users%20Forum" alt="Ruby Users Forum"></a></li>
+  <li><a href="https://discord.gg/3qme4XHNKN"><img src="https://img.shields.io/discord/1373797679469170758?style=for-the-badge&amp;logo=discord" alt="Live Chat on Discord"></a></li>
+</ul>
 
 <h2 id="-installation">✨ Installation</h2>
 
@@ -1045,28 +965,27 @@ Raising a monthly budget of… “dollars” would make the project more sustain
 wide array of funding channels to account for your preferences.<br>
 Currently, <a href="https://opencollective.com/ruby-oauth">Open Collective</a> is our preferred funding platform.</p>
 
+<h3 id="corporate-sponsorship">Corporate Sponsorship</h3>
+
+<ul>
+  <li>
+<a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="32"></a> <a href="https://alpha-omega.dev">Alpha-Omega</a> — backed by <a href="https://aws.amazon.com">Amazon Web Services</a>, <a href="https://www.google.com">Google</a>, <a href="https://www.microsoft.com">Microsoft</a>, <a href="https://www.anthropic.com">Anthropic</a>, <a href="https://openai.com">OpenAI</a>, <a href="https://www.citigroup.com">Citi</a>, <a href="https://github.com">GitHub</a>
+</li>
+  <li>
+<a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="32"></a> <a href="https://serpapi.com">SerpApi</a>
+</li>
+</ul>
+
 <p><strong>If you’re working in a company that’s making significant use of ruby-oauth tools we’d<br>
 appreciate it if you suggest to your company to become a ruby-oauth sponsor.</strong></p>
+
+<h3 id="individual-support">Individual Support</h3>
 
 <p>You can support the development of ruby-oauth tools via<br>
 <a href="https://github.com/sponsors/pboling">GitHub Sponsors</a>,<br>
 <a href="https://liberapay.com/pboling/donate">Liberapay</a>,<br>
-<a href="https://www.paypal.com/paypalme/peterboling">PayPal</a>,<br>
-<a href="https://opencollective.com/ruby-oauth">Open Collective</a><br>
-and <a href="https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=rubygems-oauth2&amp;utm_medium=referral&amp;utm_campaign=readme">Tidelift</a>.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>📍 NOTE</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>If doing a sponsorship in the form of donation is problematic for your company <br> from an accounting standpoint, we’d recommend the use of Tidelift, <br> where you can get a support-like subscription instead.</td>
-    </tr>
-  </tbody>
-</table>
+<a href="https://opencollective.com/ruby-oauth">Open Collective</a>,<br>
+and <a href="https://www.paypal.com/paypalme/peterboling">PayPal</a>.</p>
 
 <h3 id="open-collective-for-individuals">Open Collective for Individuals</h3>
 
@@ -1287,9 +1206,12 @@ the <a href="https://github.com/ruby-oauth/oauth2/blob/main/MIT.md">MIT</a> <a h
     <li>Copyright (c) 2025 Mark James</li>
     <li>Copyright (c) 2025 Mridang Agarwalla</li>
     <li>Copyright (c) 2025 Sasa Rosic</li>
+    <li>Copyright (c) 2026 Daniel Pepper</li>
     <li>Copyright (c) 2026 iamibi</li>
     <li>Copyright (c) 2026 Jonathan Grinstead</li>
     <li>Copyright (c) 2026 kain</li>
+    <li>Copyright (c) 2026 makssein</li>
+    <li>Copyright (c) 2026 Martin Vlach</li>
     <li>Copyright (c) 2026 Mubelotix</li>
     <li>Copyright (c) 2026 Rob Zolkos</li>
   </ul>
@@ -1328,7 +1250,7 @@ Please consider sponsoring me or the project.</p>
 | Homepage | https://github.com/ruby-oauth/oauth2 |<br>
 | Source | https://github.com/ruby-oauth/oauth2 |<br>
 | License | <code>MIT</code> |<br>
-| Funding | https://github.com/sponsors/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/ruby-oauth, https://thanks.dev/u/gh/pboling, https://tidelift.com/funding/github/rubygems/oauth2, https://www.buymeacoffee.com/pboling |<br>
+| Funding | https://github.com/sponsors/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/ruby-oauth, https://thanks.dev/u/gh/pboling, https://www.buymeacoffee.com/pboling |<br>
 <!-- kettle-jem:metadata:end --></p>
 </div></div>
 

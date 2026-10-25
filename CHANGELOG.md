@@ -20,6 +20,43 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+### Changed
+
+### Deprecated
+
+### Removed
+
+### Fixed
+
+### Security
+
+## [2.0.26] - 2026-10-25
+
+- TAG: [v2.0.26][2.0.26t]
+- COVERAGE: 98.48% -- 646/656 lines in 16 files
+- BRANCH COVERAGE: 93.48% -- 215/230 branches in 16 files
+- 90.83% documented
+
+### Security
+
+- GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
+
+- [gh!769][gh!769] - Redact secrets in structured token-request debug bodies, expand the default filtered credential keys, and require `auth-sanitizer` >= 0.2.5 by @makssein
+- [gh!775][gh!775] - Strip Authorization headers, request bodies, and query parameters from cross-origin redirects by @Huge
+- [gh!776][gh!776] - Redact configured sensitive response options from tokenless access-token initialization errors by @Huge
+- GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
+
+[gh!769]: https://github.com/ruby-oauth/oauth2/pull/769
+[gh!770]: https://github.com/ruby-oauth/oauth2/pull/770
+[gh!775]: https://github.com/ruby-oauth/oauth2/pull/775
+[gh!776]: https://github.com/ruby-oauth/oauth2/pull/776
+
+### Deprecated
+
+- `allow_cross_origin_redirects: true` is deprecated. The default will change to `false` in the next minor release (2.1.0). Set it explicitly to retain the current behavior.
+
+### Added
+
 - kettle-jem-template-20260720-001 - READMEs can now display configured
   corporate sponsor logos.
 - kettle-jem-template-20260720-005 - README Support & Community links now
@@ -67,10 +104,6 @@ Please file a bug if you notice a violation of semantic versioning.
   - other (20)
   - workflows (34)
 
-### Deprecated
-
-### Removed
-
 ### Fixed
 
 - `OAuth2::AccessToken` no longer raises `NoMethodError` when `expires_latency` is set but the token has no known expiry (no `expires_in`/`expires_at`, or `expires_in: 0`), e.g. `client.get_token(params, expires_latency: 30)` against a provider that omits `expires_in` by @iamibi
@@ -114,32 +147,6 @@ Please file a bug if you notice a violation of semantic versioning.
   matching Galtzo-hosted asset exists.
 - kettle-jem-template-20260802-001 - Devcontainer JSON files now merge as JSONC,
   preserving comments and trailing commas during template updates.
-
-### Security
-
-- [gh!769][gh!769] - Redact secrets in structured token-request debug bodies, expand the default filtered credential keys, and require `auth-sanitizer` >= 0.2.5 by @makssein
-- [gh!775][gh!775] - Strip Authorization headers, request bodies, and query parameters from cross-origin redirects by @Huge
-- [gh!776][gh!776] - Redact configured sensitive response options from tokenless access-token initialization errors by @Huge
-- GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
-
-[gh!769]: https://github.com/ruby-oauth/oauth2/pull/769
-[gh!770]: https://github.com/ruby-oauth/oauth2/pull/770
-[gh!775]: https://github.com/ruby-oauth/oauth2/pull/775
-[gh!776]: https://github.com/ruby-oauth/oauth2/pull/776
-## [2.0.26] - 2026-10-23
-
-- TAG: [v2.0.26][2.0.26t]
-- COVERAGE: 98.49% -- 654/664 lines in 16 files
-- BRANCH COVERAGE: 93.59% -- 219/234 branches in 16 files
-- 88.99% documented
-
-### Security
-
-- GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
-
-### Deprecated
-
-- `allow_cross_origin_redirects: true` is deprecated. The default will change to `false` in the next minor release (2.1.0). Set it explicitly to retain the current behavior.
 
 ## [2.0.25] - 2026-07-14
 
@@ -1041,7 +1048,9 @@ Please file a bug if you notice a violation of semantic versioning.
 
 [gemfiles/readme]: gemfiles/README.md
 
-[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.25...HEAD
+[Unreleased]: https://github.com/ruby-oauth/oauth2/compare/v2.0.26...HEAD
+[2.0.26]: https://github.com/ruby-oauth/oauth2/compare/v2.0.25...v2.0.26
+[2.0.26t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.26
 [2.0.25]: https://github.com/ruby-oauth/oauth2/compare/v2.0.24...v2.0.25
 [2.0.25t]: https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.25
 [2.0.24]: https://github.com/ruby-oauth/oauth2/compare/v2.0.23...v2.0.24

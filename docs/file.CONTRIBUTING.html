@@ -82,7 +82,7 @@ This ensures that all contributions are properly licensed and attributed.</p>
 <p>Follow these instructions:</p>
 
 <ol>
-  <li>Join the Discord: <a href="https://discord.gg/3qme4XHNKN">![Live Chat on Discord][✉️discord-invite-img]</a>
+  <li>Join the Discord: <a href="https://discord.gg/3qme4XHNKN"><img src="https://img.shields.io/discord/1373797679469170758?style=flat&amp;logo=discord" alt="Live Chat on Discord"></a>
 </li>
   <li>Fork the repository</li>
   <li>Create your feature branch (<code>git checkout -b my-new-feature</code>)</li>
@@ -356,6 +356,63 @@ to create SHA-256 and SHA-512 checksums. This functionality is provided by the <
   <li>Run <code>bundle exec rake release</code> which will create a git tag for the version,<br>
 push git commits and tags, and push the <code>.gem</code> file to the gem host configured in the gemspec.</li>
 </ol>
+
+<h4 id="manual-process-1">Manual process</h4>
+
+<ol>
+  <li>Run <code>bin/setup &amp;&amp; bin/rake</code> as a “test, coverage, &amp; linting” sanity check</li>
+  <li>Update the version number in <code>version.rb</code>, and ensure <code>CHANGELOG.md</code> reflects changes</li>
+  <li>Run <code>bin/setup &amp;&amp; bin/rake</code> again as a secondary check, and to update <code>Gemfile.lock</code>
+</li>
+  <li>Run <code>bin/rake yard</code> to regenerate the docs site using the canonical docs task</li>
+  <li>Run <code>git commit -am "🔖 Prepare release v&lt;VERSION&gt;"</code> to commit the changes</li>
+  <li>Run <code>git push</code> to trigger the final CI pipeline before release, and merge PRs
+    <ul>
+      <li>NOTE: Remember to <a href="https://github.com/ruby-oauth/oauth2/actions">check the build</a>.</li>
+    </ul>
+  </li>
+  <li>Run <code>export GIT_TRUNK_BRANCH_NAME="$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)" &amp;&amp; echo $GIT_TRUNK_BRANCH_NAME</code>
+</li>
+  <li>Run <code>git checkout $GIT_TRUNK_BRANCH_NAME</code>
+</li>
+  <li>Run <code>git pull origin $GIT_TRUNK_BRANCH_NAME</code> to ensure latest trunk code</li>
+  <li>Optional for older Bundler (&lt; 2.7.0): Set <code>SOURCE_DATE_EPOCH</code> so <code>rake build</code> and <code>rake release</code> use the same timestamp and generate the same checksums
+    <ul>
+      <li>If your Bundler is &gt;= 2.7.0, you can skip this; builds are reproducible by default.</li>
+      <li>Run <code>export SOURCE_DATE_EPOCH=$EPOCHSECONDS &amp;&amp; echo $SOURCE_DATE_EPOCH</code>
+</li>
+      <li>If the echo above has no output, then it didn’t work.</li>
+      <li>Note: <code>zsh/datetime</code> module is needed, if running <code>zsh</code>.</li>
+      <li>In older versions of <code>bash</code> you can use <code>date +%s</code> instead, i.e. <code>export SOURCE_DATE_EPOCH=$(date +%s) &amp;&amp; echo $SOURCE_DATE_EPOCH</code>
+</li>
+    </ul>
+  </li>
+  <li>Run <code>bundle exec rake build</code>
+</li>
+  <li>Run <code>bin/gem_checksums</code> (more context <a href="https://github.com/rubygems/rubygems/pull/6022">1</a>, <a href="https://github.com/rubygems/guides/pull/325">2</a>)<br>
+to create SHA-256 and SHA-512 checksums. This functionality is provided by the <code>stone_checksums</code><br>
+<a href="https://github.com/galtzo-floss/stone_checksums">gem</a>.
+    <ul>
+      <li>The script automatically commits but does not push the checksums</li>
+    </ul>
+  </li>
+  <li>Sanity check the SHA256, comparing with the output from the <code>bin/gem_checksums</code> command:
+    <ul>
+      <li><code>sha256sum pkg/&lt;gem name&gt;-&lt;version&gt;.gem</code></li>
+    </ul>
+  </li>
+  <li>Run <code>bundle exec rake release</code> which will create a git tag for the version,<br>
+push git commits and tags, and push the <code>.gem</code> file to the gem host configured in the gemspec.</li>
+</ol>
+
+<p>The automated <code>kettle-release</code> flow runs the build and release tasks with a<br>
+temporary <code>BUNDLE_LOCKFILE</code>. Bundler can rewrite a tracked lockfile while<br>
+reconciling the host platform even after the release lockfile has been<br>
+normalized with <code>bundle lock --add-platform</code>; that rewrite trips the clean-tree<br>
+guard in <code>bundler/gem_tasks</code>. The disposable lockfile preserves the committed<br>
+release inputs while allowing Bundler’s runtime reconciliation. Do not replace<br>
+this with <code>BUNDLE_FROZEN=true</code>: frozen mode fails when Bundler needs that<br>
+reconciliation.</p>
 
 </div></div>
 
