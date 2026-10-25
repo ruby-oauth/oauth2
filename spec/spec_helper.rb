@@ -12,6 +12,7 @@ require "rspec/pending_for"
 
 # Family libraries
 require "kettle/test/rspec"
+# `kettle/test/rspec` installs harness helpers documented in spec/README.md.
 
 # Library Configs
 require_relative "config/debug"

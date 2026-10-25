@@ -50,3 +50,9 @@ Appraisal.*.gemfile.lock
 
 # Sentinels
 .floss_funding.*.lock
+
+# Build Artifacts
+
+# Bundler
+/vendor/bundle*/
+/gemfiles/**/*.gemfile.lock

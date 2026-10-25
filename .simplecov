@@ -10,6 +10,11 @@
 # If the values for minimum coverage need to change, they should be changed both there,
 #   and in 2 places in .github/workflows/coverage.yml.
 SimpleCov.configure do
+  if SimpleCov::Configuration.method_defined?(:cover)
+    cover "lib/**/*.rb", "lib/**/*.rake", "exe/*.rb"
+  else
+    track_files "{lib/**/*.rb,lib/**/*.rake,exe/*.rb}"
+  end
   cover "lib/**/*.rb", "lib/**/*.rake", "exe/*.rb"
 end
 # It is controlled by ENV variables, which are set in .envrc and loaded via `direnv allow`

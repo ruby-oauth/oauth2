@@ -47,6 +47,10 @@ appraise "unlocked_deps" do
   eval_gemfile "modular/coverage.gemfile"
   eval_gemfile "modular/documentation.gemfile"
   eval_gemfile "modular/optional.gemfile"
+  # Development dependencies shunted out of the gemspec - see
+  # gemfiles/modular/shunted.gemfile's own header for exactly which ones
+  # and why.
+  eval_gemfile "modular/shunted.gemfile"
   eval_gemfile "modular/style.gemfile"
   eval_gemfile "modular/x_std_libs.gemfile"
 end

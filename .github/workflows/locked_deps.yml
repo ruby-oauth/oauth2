@@ -54,9 +54,10 @@ concurrency:
 
 jobs:
   test:
-    if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
     name: Default rake task w/ main Gemfile.lock ${{ matrix.name_extra || '' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental }}
     strategy:
       fail-fast: false
@@ -76,12 +77,14 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1.324.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
+          manual-compatibility-bundle: true
+          gem-install-retries: 7
 
       - name: Checks the kitchen sink via ${{ matrix.exec_cmd }}
         run: bundle exec ${{ matrix.exec_cmd }}

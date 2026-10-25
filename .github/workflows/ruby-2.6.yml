@@ -24,12 +24,15 @@ concurrency:
 
 jobs:
   test:
-    if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
     name: Specs ${{ matrix.ruby }}@${{ matrix.appraisal }}
     runs-on: ubuntu-22.04
+    timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
+      # Kill stalled test workers instead of hanging until the CI job timeout.
+      TURBO_TESTS2_WATCHDOG_SECONDS: 900
     strategy:
       matrix:
         include:
@@ -47,12 +50,18 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1.324.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
-          bundler-cache: true
+          bundler-cache: false
+
+      - name: Bundle install for Ruby 2.6
+        run: |
+          bundle config set --local path "${RUNNER_TEMP}/bundle"
+          bundle config set --local mirror.https://gem.coop https://rubygems.org
+          bundle install --jobs 1
 
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt1
@@ -62,7 +71,20 @@ jobs:
       - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt2
         if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        run: |
+          rm -f gemfiles/${{ matrix.appraisal }}.gemfile.lock
+          rm -rf vendor/bundle "$HOME/.bundle/cache"
+          bundle exec appraisal ${{ matrix.appraisal }} install
+
+      - name: Restore RSpec status log
+        if: "${{!env.ACT}}"
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: .rspec_status
+          key: rspec-status-ruby-2.6-${{matrix.ruby}}-${{matrix.appraisal}}-${{hashFiles('**/Gemfile.lock','Appraisal.root.gemfile','gemfiles/**/*.gemfile')}}-${{github.run_id}}-${{github.run_attempt}}
+          restore-keys: |
+            rspec-status-ruby-2.6-${{matrix.ruby}}-${{matrix.appraisal}}-${{hashFiles('**/Gemfile.lock','Appraisal.root.gemfile','gemfiles/**/*.gemfile')}}-
+            rspec-status-ruby-2.6-${{matrix.ruby}}-${{matrix.appraisal}}-
 
       - name: Tests for ${{ matrix.ruby }} via ${{ matrix.exec_cmd }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

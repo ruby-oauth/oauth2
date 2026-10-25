@@ -1,6 +1,6 @@
 header:
   license:
-    spdx-id: MIT
+    spdx-id: "MIT"
 
 dependency:
   files:

@@ -44,9 +44,10 @@ concurrency:
 
 jobs:
   test:
-    if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
     name: Default rake task w/ unlocked deps ${{ matrix.name_extra || '' }}
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
@@ -67,12 +68,14 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: ruby/setup-ruby@a0102e0972be65f351c307e2d64b9314a57c8073 # v1.324.0
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
+          manual-compatibility-bundle: true
+          gem-install-retries: 7
 
       - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
         id: bundleAppraisalAttempt1
@@ -85,7 +88,10 @@ jobs:
         id: bundleAppraisalAttempt2
         # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
         if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
-        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        run: |
+          rm -f gemfiles/${{ matrix.appraisal }}.gemfile.lock
+          rm -rf vendor/bundle "$HOME/.bundle/cache"
+          bundle exec appraisal ${{ matrix.appraisal }} install
 
       - name: Run ${{ matrix.exec_cmd }} on ${{ matrix.ruby }}@${{ matrix.appraisal }}
         run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}

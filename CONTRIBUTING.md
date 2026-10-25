@@ -253,23 +253,86 @@ NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in th
     push git commits and tags, and push the `.gem` file to the gem host configured in the gemspec.
 
 [📜src-gl]: https://gitlab.com/ruby-oauth/oauth2
+
 [📜src-cb]: https://codeberg.org/ruby-oauth/oauth2
+
 [📜src-gh]: https://github.com/ruby-oauth/oauth2
+
 [🧪build]: https://github.com/ruby-oauth/oauth2/actions
+
 [🤝conduct]: https://github.com/ruby-oauth/oauth2/blob/main/CODE_OF_CONDUCT.md
+
 [🖐contrib-rocks]: https://contrib.rocks
+
 [🖐contributors]: https://github.com/ruby-oauth/oauth2/graphs/contributors
+
 [🚎contributors-gl]: https://gitlab.com/ruby-oauth/oauth2/-/graphs/main
+
 [🖐contributors-img]: https://contrib.rocks/image?repo=ruby-oauth/oauth2
+
 [💎gem-coop]: https://gem.coop
+
 [🔒️rubygems-security-guide]: https://guides.rubygems.org/security/#building-gems
+
 [🔒️rubygems-checksums-pr]: https://github.com/rubygems/rubygems/pull/6022
+
 [🔒️rubygems-guides-pr]: https://github.com/rubygems/guides/pull/325
+
 [💎stone_checksums]: https://github.com/galtzo-floss/stone_checksums
+
 [📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
+
 [📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
+
 [📌semver-breaking]: https://github.com/semver/semver/issues/716#issuecomment-869336139
+
 [📌major-versions-not-sacred]: https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html
+
 [🚎appraisal2]: https://github.com/appraisal-rb/appraisal2
+
 [🏃‍♂️runner-tool-cache]: https://github.com/ruby/ruby-builder/releases/tag/toolcache
+
 [✉️discord-invite]: https://discord.gg/3qme4XHNKN
+
+#### Manual process
+
+1. Run `bin/setup && bin/rake` as a "test, coverage, & linting" sanity check
+2. Update the version number in `version.rb`, and ensure `CHANGELOG.md` reflects changes
+3. Run `bin/setup && bin/rake` again as a secondary check, and to update `Gemfile.lock`
+4. Run `bin/rake yard` to regenerate the docs site using the canonical docs task
+5. Run `git commit -am "🔖 Prepare release v<VERSION>"` to commit the changes
+6. Run `git push` to trigger the final CI pipeline before release, and merge PRs
+    - NOTE: Remember to [check the build][🧪build].
+7. Run `export GIT_TRUNK_BRANCH_NAME="$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)" && echo $GIT_TRUNK_BRANCH_NAME`
+8. Run `git checkout $GIT_TRUNK_BRANCH_NAME`
+9. Run `git pull origin $GIT_TRUNK_BRANCH_NAME` to ensure latest trunk code
+10. Optional for older Bundler (< 2.7.0): Set `SOURCE_DATE_EPOCH` so `rake build` and `rake release` use the same timestamp and generate the same checksums
+    - If your Bundler is >= 2.7.0, you can skip this; builds are reproducible by default.
+    - Run `export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH`
+    - If the echo above has no output, then it didn't work.
+    - Note: `zsh/datetime` module is needed, if running `zsh`.
+    - In older versions of `bash` you can use `date +%s` instead, i.e. `export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
+11. Run `bundle exec rake build`
+12. Run `bin/gem_checksums` (more context [1][🔒️rubygems-checksums-pr], [2][🔒️rubygems-guides-pr])
+    to create SHA-256 and SHA-512 checksums. This functionality is provided by the `stone_checksums`
+    [gem][💎stone_checksums].
+    - The script automatically commits but does not push the checksums
+13. Sanity check the SHA256, comparing with the output from the `bin/gem_checksums` command:
+    - `sha256sum pkg/<gem name>-<version>.gem`
+14. Run `bundle exec rake release` which will create a git tag for the version,
+    push git commits and tags, and push the `.gem` file to the gem host configured in the gemspec.
+
+The automated `kettle-release` flow runs the build and release tasks with a
+temporary `BUNDLE_LOCKFILE`. Bundler can rewrite a tracked lockfile while
+reconciling the host platform even after the release lockfile has been
+normalized with `bundle lock --add-platform`; that rewrite trips the clean-tree
+guard in `bundler/gem_tasks`. The disposable lockfile preserves the committed
+release inputs while allowing Bundler's runtime reconciliation. Do not replace
+this with `BUNDLE_FROZEN=true`: frozen mode fails when Bundler needs that
+reconciliation.
+
+[✉️discord-invite-img]: https://img.shields.io/discord/1373797679469170758?style=flat&logo=discord
+
+[✉️ruby-forum]: https://www.rubyforum.org/tag/ruby-oauth
+
+[✉️ruby-forum-img]: https://img.shields.io/discourse/topics?server=https%3A%2F%2Fwww.rubyforum.org&style=flat&logo=discourse&label=Ruby%20Users%20Forum
