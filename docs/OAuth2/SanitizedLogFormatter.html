@@ -364,16 +364,16 @@ redaction configuration falls back to the current OAuth2.config values.</p>
       <pre class="lines">
 
 
-34
-35
-36
-37
-38
-39
-40</pre>
+41
+42
+43
+44
+45
+46
+47</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/sanitized_log_formatter.rb', line 34</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/sanitized_log_formatter.rb', line 41</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>filtered_keys:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>label:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
   <span class='kw'>super</span><span class='lparen'>(</span><span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
@@ -459,19 +459,19 @@ redaction configuration falls back to the current OAuth2.config values.</p>
       <pre class="lines">
 
 
-69
-70
-71
-72
-73
-74
-75
 76
 77
-78</pre>
+78
+79
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/sanitized_log_formatter.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/sanitized_log_formatter.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_dump_body'>dump_body</span><span class='lparen'>(</span><span class='id identifier rubyid_body'>body</span><span class='rparen'>)</span>
   <span class='kw'>case</span> <span class='id identifier rubyid_body'>body</span>
@@ -536,21 +536,21 @@ redaction configuration falls back to the current OAuth2.config values.</p>
       <pre class="lines">
 
 
-45
-46
-47
-48
-49
-50
-51
 52
 53
 54
 55
-56</pre>
+56
+57
+58
+59
+60
+61
+62
+63</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/sanitized_log_formatter.rb', line 45</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/sanitized_log_formatter.rb', line 52</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_request'>request</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_with_code_context'>with_code_context</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span> <span class='kw'>do</span>
@@ -617,12 +617,12 @@ redaction configuration falls back to the current OAuth2.config values.</p>
       <pre class="lines">
 
 
-61
-62
-63</pre>
+68
+69
+70</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2/sanitized_log_formatter.rb', line 61</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2/sanitized_log_formatter.rb', line 68</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_response'>response</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_with_code_context'>with_code_context</span><span class='lparen'>(</span><span class='id identifier rubyid_env'>env</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='kw'>super</span> <span class='rbrace'>}</span>
