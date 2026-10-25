@@ -321,6 +321,27 @@ workflows:
 readme:
   top_logos: org
   h2_synopsis_logos: related-org,ruby
+  corporate_sponsors:
+    - name: Alpha-Omega
+      url: https://alpha-omega.dev
+      img_src: https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg
+      since: "2026-08-29"
+      until: "2027-12-31"
+      members:
+        - name: Amazon Web Services
+          url: https://aws.amazon.com
+        - name: Google
+          url: https://www.google.com
+        - name: Microsoft
+          url: https://www.microsoft.com
+        - name: Anthropic
+          url: https://www.anthropic.com
+        - name: OpenAI
+          url: https://openai.com
+        - name: Citi
+          url: https://www.citigroup.com
+        - name: GitHub
+          url: https://github.com
   # Optional package-family README block.
   # Supported values: structuredmerge
   # Leave unset for standalone kettle-rb gems and most projects.
