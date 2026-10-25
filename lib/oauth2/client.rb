@@ -497,7 +497,7 @@ module OAuth2
       unless options[:allow_cross_origin_redirects]
         raise OAuth2::Error.new(
           "error" => "cross_origin_redirect_blocked",
-          "error_description" => "Cross-origin redirect blocked: #{current_location.origin} -> #{next_location.origin}. " \
+          "error_description" => "Cross-origin redirect blocked: #{current_location.scheme}://#{current_location.host} -> #{next_location.scheme}://#{next_location.host}. " \
             "Set allow_cross_origin_redirects: true to allow (deprecated)."
         )
       end
