@@ -137,6 +137,10 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
 
+### Deprecated
+
+- `allow_cross_origin_redirects: true` is deprecated. The default will change to `false` in the next minor release (2.1.0). Set it explicitly to retain the current behavior.
+
 ## [2.0.25] - 2026-07-14
 
 - TAG: [v2.0.25][2.0.25t]
