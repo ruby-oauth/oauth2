@@ -66,6 +66,9 @@ module OAuth2
         raise_errors: true,
         logger: ::Logger.new($stdout),
         access_token_class: AccessToken,
+        # Default changed from true to false in 2.1.0 for security.
+        # Cross-origin redirects are now rejected before credentials are replayed.
+        allow_cross_origin_redirects: false,
       }.merge(opts)
       @options[:connection_opts][:ssl] = ssl if ssl
     end
@@ -490,6 +493,14 @@ module OAuth2
 
     def sanitize_redirect_options(req_opts, current_location, next_location)
       return req_opts unless cross_origin_redirect?(current_location, next_location)
+
+      unless options[:allow_cross_origin_redirects]
+        raise OAuth2::Error.new(
+          "error" => "cross_origin_redirect_blocked",
+          "error_description" => "Cross-origin redirect blocked: #{current_location.origin} -> #{next_location.origin}. " \
+            "Set allow_cross_origin_redirects: true to allow (deprecated)."
+        )
+      end
 
       safe_opts = req_opts.dup
 

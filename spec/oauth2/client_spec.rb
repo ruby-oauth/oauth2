@@ -675,7 +675,14 @@ RSpec.describe OAuth2::Client do
     end
 
     it "removes Authorization headers from cross-origin redirects" do
-      response = subject.request(:get, "/absolute_cross_origin_redirect", headers: {"Authorization" => "Bearer secret", "X-Marker" => "kept"})
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true) do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/absolute_cross_origin_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak"}, ""] }
+          stub.get("https://attacker.example/leak") { |env| [200, {"Content-Type" => "application/json"}, JSON.dump(auth: env[:request_headers]["Authorization"], marker: env[:request_headers]["X-Marker"], url: env[:url].to_s)] }
+        end
+      end
+
+      response = client.request(:get, "/absolute_cross_origin_redirect", headers: {"Authorization" => "Bearer secret", "X-Marker" => "kept"})
       body = JSON.parse(response.body)
 
       expect(body["auth"]).to be_nil
@@ -685,7 +692,14 @@ RSpec.describe OAuth2::Client do
     end
 
     it "removes Authorization headers case-insensitively from cross-origin redirects" do
-      response = subject.request(:get, "/absolute_cross_origin_redirect", headers: {"authorization" => "Bearer secret", "X-Marker" => "kept"})
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true) do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/absolute_cross_origin_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak"}, ""] }
+          stub.get("https://attacker.example/leak") { |env| [200, {"Content-Type" => "application/json"}, JSON.dump(auth: env[:request_headers]["authorization"], marker: env[:request_headers]["X-Marker"], url: env[:url].to_s)] }
+        end
+      end
+
+      response = client.request(:get, "/absolute_cross_origin_redirect", headers: {"authorization" => "Bearer secret", "X-Marker" => "kept"})
       body = JSON.parse(response.body)
 
       expect(body["auth"]).to be_nil
@@ -694,14 +708,15 @@ RSpec.describe OAuth2::Client do
       expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
     end
 
-    it "preserves the header object type when sanitizing cross-origin redirects" do
+    it "preserves the header object type when sanitizing cross-origin redirects (allow_cross_origin_redirects: true)" do
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true)
       headers = Faraday::Utils::Headers.new
       headers["Authorization"] = "Bearer secret"
       headers["X-Marker"] = "kept"
       current_location = URI("https://api.example.com/start")
       next_location = URI("https://attacker.example/leak")
 
-      safe_opts = subject.send(:sanitize_redirect_options, {headers: headers}, current_location, next_location)
+      safe_opts = client.send(:sanitize_redirect_options, {headers: headers}, current_location, next_location)
 
       expect(safe_opts[:headers]).to be_a(Faraday::Utils::Headers)
       expect(safe_opts[:headers]["Authorization"]).to be_nil
@@ -709,13 +724,32 @@ RSpec.describe OAuth2::Client do
       expect(headers["Authorization"]).to eq("Bearer secret")
     end
 
-    it "follows cross-origin redirects when there are no credential headers to remove" do
-      response = subject.request(:get, "/absolute_cross_origin_redirect")
+    it "follows cross-origin redirects when there are no credential headers to remove (allow_cross_origin_redirects: true)" do
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true) do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/absolute_cross_origin_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak"}, ""] }
+          stub.get("https://attacker.example/leak") { |env| [200, {"Content-Type" => "application/json"}, JSON.dump(auth: env[:request_headers]["Authorization"], url: env[:url].to_s)] }
+        end
+      end
+
+      response = client.request(:get, "/absolute_cross_origin_redirect")
       body = JSON.parse(response.body)
 
       expect(body["auth"]).to be_nil
       expect(body["url"]).to eq("https://attacker.example/leak")
       expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
+    end
+
+    it "blocks cross-origin redirects by default (allow_cross_origin_redirects: false)" do
+      client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/absolute_cross_origin_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak"}, ""] }
+        end
+      end
+
+      expect do
+        client.request(:get, "/absolute_cross_origin_redirect")
+      end.to raise_error(OAuth2::Error, /cross_origin_redirect_blocked/)
     end
 
     it "keeps Authorization headers on same-origin absolute redirects" do
@@ -727,7 +761,8 @@ RSpec.describe OAuth2::Client do
       expect(response.response.env.url.to_s).to eq("https://api.example.com/leak")
     end
 
-    it "removes body and params from cross-origin redirects" do
+    it "removes body and params from cross-origin redirects (allow_cross_origin_redirects: true)" do
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true)
       current_location = URI("https://api.example.com/start")
       next_location = URI("https://attacker.example/leak")
       req_opts = {
@@ -736,7 +771,7 @@ RSpec.describe OAuth2::Client do
         headers: {"Authorization" => "Bearer secret", "X-Marker" => "kept"},
       }
 
-      safe_opts = subject.send(:sanitize_redirect_options, req_opts, current_location, next_location)
+      safe_opts = client.send(:sanitize_redirect_options, req_opts, current_location, next_location)
 
       expect(safe_opts[:body]).to be_nil
       expect(safe_opts[:params]).to be_nil
@@ -746,7 +781,8 @@ RSpec.describe OAuth2::Client do
       expect(req_opts[:params]).to eq({"code" => "secret_code", "client_secret" => "secret_val"})
     end
 
-    it "removes body and params from cross-origin redirects even without Authorization header" do
+    it "removes body and params from cross-origin redirects even without Authorization header (allow_cross_origin_redirects: true)" do
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true)
       current_location = URI("https://api.example.com/start")
       next_location = URI("https://attacker.example/leak")
       req_opts = {
@@ -754,7 +790,7 @@ RSpec.describe OAuth2::Client do
         params: {"code" => "secret_code"},
       }
 
-      safe_opts = subject.send(:sanitize_redirect_options, req_opts, current_location, next_location)
+      safe_opts = client.send(:sanitize_redirect_options, req_opts, current_location, next_location)
 
       expect(safe_opts[:body]).to be_nil
       expect(safe_opts[:params]).to be_nil
@@ -762,7 +798,8 @@ RSpec.describe OAuth2::Client do
       expect(req_opts[:params]).to eq({"code" => "secret_code"})
     end
 
-    it "removes string-keyed body and params and sanitizes both header key forms" do
+    it "removes string-keyed body and params and sanitizes both header key forms (allow_cross_origin_redirects: true)" do
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true)
       current_location = URI("https://api.example.com/start")
       next_location = URI("https://attacker.example/leak")
       req_opts = {
@@ -772,7 +809,7 @@ RSpec.describe OAuth2::Client do
         "headers" => {"authorization" => "Bearer string-secret", "X-Other" => "kept"},
       }
 
-      safe_opts = subject.send(:sanitize_redirect_options, req_opts, current_location, next_location)
+      safe_opts = client.send(:sanitize_redirect_options, req_opts, current_location, next_location)
 
       expect(safe_opts).not_to have_key("body")
       expect(safe_opts).not_to have_key("params")
@@ -796,13 +833,20 @@ RSpec.describe OAuth2::Client do
       expect(safe_opts[:params]).to eq({"client_id" => "abc"})
     end
 
-    it "does not leak query parameters across cross-origin redirects" do
-      response = subject.request(:get, "/absolute_cross_origin_redirect", params: {"secret" => "sensitive_token"})
+    it "does not leak query parameters across cross-origin redirects (allow_cross_origin_redirects: true)" do
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true) do |builder|
+        builder.adapter :test do |stub|
+          stub.get("/absolute_cross_origin_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak"}, ""] }
+          stub.get("https://attacker.example/leak") { |env| [200, {}, JSON.dump(params: env[:params])] }
+        end
+      end
+
+      response = client.request(:get, "/absolute_cross_origin_redirect", params: {"secret" => "sensitive_token"})
       expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
     end
 
-    it "does not leak request body across cross-origin redirects" do
-      client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
+    it "does not leak request body across cross-origin redirects (allow_cross_origin_redirects: true)" do
+      client = described_class.new("abc", "def", site: "https://api.example.com", allow_cross_origin_redirects: true) do |builder|
         builder.adapter :test do |stub|
           stub.post("/cross_origin_redirect_post") do |_env|
             [307, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak_post"}, ""]
@@ -816,7 +860,7 @@ RSpec.describe OAuth2::Client do
       response = client.request(:post, "/cross_origin_redirect_post", body: "code=secret_code&client_secret=secret_val")
       body = JSON.parse(response.body)
 
-      expect(body["body"]).to be_nil.or be_empty
+      expect(body["body"]).to be_empty
     end
 
     it "accepts an absolute URL request target" do

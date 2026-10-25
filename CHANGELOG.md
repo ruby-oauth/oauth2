@@ -30,6 +30,30 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
+## [2.1.0] - 2026-10-25
+
+- TAG: [v2.1.0][2.1.0t]
+- COVERAGE: 98.48% -- 647/657 lines in 16 files
+- BRANCH COVERAGE: 93.48% -- 215/230 branches in 16 files
+- 90.83% documented
+
+### Changed
+
+- **BREAKING**: `allow_cross_origin_redirects` now defaults to `false`. Cross-origin redirects are blocked before credentials are replayed. Set `allow_cross_origin_redirects: true` explicitly to retain the previous behavior (deprecated).
+
+### Security
+
+- GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
+
+- [gh!769][gh!769] - Redact secrets in structured token-request debug bodies, expand the default filtered credential keys, and require `auth-sanitizer` >= 0.2.5 by @makssein
+- [gh!775][gh!775] - Strip Authorization headers, request bodies, and query parameters from cross-origin redirects by @Huge
+- [gh!776][gh!776] - Redact configured sensitive response options from tokenless access-token initialization errors by @Huge
+
+[gh!769]: https://github.com/ruby-oauth/oauth2/pull/769
+[gh!770]: https://github.com/ruby-oauth/oauth2/pull/770
+[gh!775]: https://github.com/ruby-oauth/oauth2/pull/775
+[gh!776]: https://github.com/ruby-oauth/oauth2/pull/776
+
 ## [2.0.26] - 2026-10-25
 
 - TAG: [v2.0.26][2.0.26t]
@@ -39,11 +63,6 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
-- GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
-
-- [gh!769][gh!769] - Redact secrets in structured token-request debug bodies, expand the default filtered credential keys, and require `auth-sanitizer` >= 0.2.5 by @makssein
-- [gh!775][gh!775] - Strip Authorization headers, request bodies, and query parameters from cross-origin redirects by @Huge
-- [gh!776][gh!776] - Redact configured sensitive response options from tokenless access-token initialization errors by @Huge
 - GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG token-request secrets are redacted; see [gh!769][gh!769]. Reported by iamibi.
 
 [gh!769]: https://github.com/ruby-oauth/oauth2/pull/769
