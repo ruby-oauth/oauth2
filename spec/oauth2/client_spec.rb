@@ -692,6 +692,78 @@ RSpec.describe OAuth2::Client do
       expect(response.response.env.url.to_s).to eq("https://api.example.com/leak")
     end
 
+    it "removes body and params from cross-origin redirects" do
+      current_location = URI("https://api.example.com/start")
+      next_location = URI("https://attacker.example/leak")
+      req_opts = {
+        body: "grant_type=authorization_code&code=secret_code&client_secret=secret_val",
+        params: {"code" => "secret_code", "client_secret" => "secret_val"},
+        headers: {"Authorization" => "Bearer secret", "X-Marker" => "kept"},
+      }
+
+      safe_opts = subject.send(:sanitize_redirect_options, req_opts, current_location, next_location)
+
+      expect(safe_opts[:body]).to be_nil
+      expect(safe_opts[:params]).to be_nil
+      expect(safe_opts[:headers]["Authorization"]).to be_nil
+      expect(safe_opts[:headers]["X-Marker"]).to eq("kept")
+      expect(req_opts[:body]).to eq("grant_type=authorization_code&code=secret_code&client_secret=secret_val")
+      expect(req_opts[:params]).to eq({"code" => "secret_code", "client_secret" => "secret_val"})
+    end
+
+    it "removes body and params from cross-origin redirects even without Authorization header" do
+      current_location = URI("https://api.example.com/start")
+      next_location = URI("https://attacker.example/leak")
+      req_opts = {
+        body: {"client_id" => "abc", "client_secret" => "secret_val"},
+        params: {"code" => "secret_code"},
+      }
+
+      safe_opts = subject.send(:sanitize_redirect_options, req_opts, current_location, next_location)
+
+      expect(safe_opts[:body]).to be_nil
+      expect(safe_opts[:params]).to be_nil
+      expect(req_opts[:body]).to eq({"client_id" => "abc", "client_secret" => "secret_val"})
+      expect(req_opts[:params]).to eq({"code" => "secret_code"})
+    end
+
+    it "keeps body and params on same-origin absolute redirects" do
+      current_location = URI("https://api.example.com/start")
+      next_location = URI("https://api.example.com/leak")
+      req_opts = {
+        body: "grant_type=authorization_code&code=secret_code",
+        params: {"client_id" => "abc"},
+      }
+
+      safe_opts = subject.send(:sanitize_redirect_options, req_opts, current_location, next_location)
+
+      expect(safe_opts[:body]).to eq("grant_type=authorization_code&code=secret_code")
+      expect(safe_opts[:params]).to eq({"client_id" => "abc"})
+    end
+
+    it "does not leak query parameters across cross-origin redirects" do
+      response = subject.request(:get, "/absolute_cross_origin_redirect", params: {"secret" => "sensitive_token"})
+      expect(response.response.env.url.to_s).to eq("https://attacker.example/leak")
+    end
+
+    it "does not leak request body across cross-origin redirects" do
+      client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
+        builder.adapter :test do |stub|
+          stub.post("/cross_origin_redirect_post") do |_env|
+            [307, {"Content-Type" => "text/plain", "location" => "https://attacker.example/leak_post"}, ""]
+          end
+          stub.post("/leak_post") do |env|
+            [200, {}, JSON.dump(body: env[:body])]
+          end
+        end
+      end
+
+      response = client.request(:post, "/cross_origin_redirect_post", body: "code=secret_code&client_secret=secret_val")
+      body = JSON.parse(response.body)
+
+      expect(body["body"]).to be_nil.or be_empty
+    end
+
     it "accepts an absolute URL request target" do
       response = subject.request(:get, "https://api.example.com/success")
       expect(response.body).to eq("yay")
