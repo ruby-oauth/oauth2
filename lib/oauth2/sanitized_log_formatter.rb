@@ -2,6 +2,13 @@
 
 require "faraday"
 
+begin
+  require "faraday/logging/formatter"
+rescue LoadError
+  # Faraday 0.x has no pluggable logging formatter; the text sanitizer remains
+  # active through OAuth2::AUTH_SANITIZER::SanitizedLogger.
+end
+
 module OAuth2
   if defined?(Faraday::Logging::Formatter) # Faraday >= 1.0
     # Faraday logging formatter that redacts sensitive values from Hash and Array
