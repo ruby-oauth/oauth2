@@ -81,7 +81,7 @@
   <dl>
     <dt>Defined in:</dt>
     <dd>lib/oauth2.rb<span class="defines">,<br>
-  lib/oauth2/error.rb,<br> lib/oauth2/client.rb,<br> lib/oauth2/version.rb,<br> lib/oauth2/response.rb,<br> lib/oauth2/access_token.rb,<br> lib/oauth2/authenticator.rb,<br> lib/oauth2/strategy/base.rb,<br> lib/oauth2/auth_sanitizer.rb,<br> lib/oauth2/strategy/implicit.rb,<br> lib/oauth2/strategy/password.rb,<br> lib/oauth2/strategy/assertion.rb,<br> lib/oauth2/strategy/auth_code.rb,<br> lib/oauth2/filtered_attributes.rb,<br> lib/oauth2/strategy/client_credentials.rb</span>
+  lib/oauth2/error.rb,<br> lib/oauth2/client.rb,<br> lib/oauth2/version.rb,<br> lib/oauth2/response.rb,<br> lib/oauth2/access_token.rb,<br> lib/oauth2/authenticator.rb,<br> lib/oauth2/strategy/base.rb,<br> lib/oauth2/auth_sanitizer.rb,<br> lib/oauth2/strategy/implicit.rb,<br> lib/oauth2/strategy/password.rb,<br> lib/oauth2/strategy/assertion.rb,<br> lib/oauth2/strategy/auth_code.rb,<br> lib/oauth2/filtered_attributes.rb,<br> lib/oauth2/sanitized_log_formatter.rb,<br> lib/oauth2/strategy/client_credentials.rb</span>
 
 </dd>
   </dl>
@@ -106,7 +106,7 @@
     
   
     
-      <strong class="classes">Classes:</strong> <span class='object_link'><a href="OAuth2/AccessToken.html" title="OAuth2::AccessToken (class)">AccessToken</a></span>, <span class='object_link'><a href="OAuth2/Authenticator.html" title="OAuth2::Authenticator (class)">Authenticator</a></span>, <span class='object_link'><a href="OAuth2/Client.html" title="OAuth2::Client (class)">Client</a></span>, <span class='object_link'><a href="OAuth2/Error.html" title="OAuth2::Error (class)">Error</a></span>, <span class='object_link'><a href="OAuth2/Response.html" title="OAuth2::Response (class)">Response</a></span>
+      <strong class="classes">Classes:</strong> <span class='object_link'><a href="OAuth2/AccessToken.html" title="OAuth2::AccessToken (class)">AccessToken</a></span>, <span class='object_link'><a href="OAuth2/Authenticator.html" title="OAuth2::Authenticator (class)">Authenticator</a></span>, <span class='object_link'><a href="OAuth2/Client.html" title="OAuth2::Client (class)">Client</a></span>, <span class='object_link'><a href="OAuth2/Error.html" title="OAuth2::Error (class)">Error</a></span>, <span class='object_link'><a href="OAuth2/Response.html" title="OAuth2::Response (class)">Response</a></span>, <span class='object_link'><a href="OAuth2/SanitizedLogFormatter.html" title="OAuth2::SanitizedLogFormatter (class)">SanitizedLogFormatter</a></span>
     
   
 </p>
@@ -218,6 +218,14 @@ initialized objects and debug loggers.</p>
 </span><span class='words_sep'>    </span><span class='tstring_content'>assertion</span><span class='words_sep'>
 </span><span class='words_sep'>    </span><span class='tstring_content'>code_verifier</span><span class='words_sep'>
 </span><span class='words_sep'>    </span><span class='tstring_content'>token</span><span class='words_sep'>
+</span><span class='words_sep'>    </span><span class='tstring_content'>password</span><span class='words_sep'>
+</span><span class='words_sep'>    </span><span class='tstring_content'>client_assertion</span><span class='words_sep'>
+</span><span class='words_sep'>    </span><span class='tstring_content'>device_code</span><span class='words_sep'>
+</span><span class='words_sep'>    </span><span class='tstring_content'>subject_token</span><span class='words_sep'>
+</span><span class='words_sep'>    </span><span class='tstring_content'>actor_token</span><span class='words_sep'>
+</span><span class='words_sep'>    </span><span class='tstring_content'>accessToken</span><span class='words_sep'>
+</span><span class='words_sep'>    </span><span class='tstring_content'>refreshToken</span><span class='words_sep'>
+</span><span class='words_sep'>    </span><span class='tstring_content'>idToken</span><span class='words_sep'>
 </span><span class='words_sep'>  </span><span class='tstring_end'>]</span></span>
 <span class='rparen'>)</span></pre></dd>
       
@@ -399,12 +407,12 @@ was part of the public API before the implementation was extracted into the<br /
       <pre class="lines">
 
 
-79
-80
-81</pre>
+88
+89
+90</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2.rb', line 79</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_config'>config</span>
   <span class='const'><span class='object_link'><a href="#CONFIG-constant" title="OAuth2::CONFIG (constant)">CONFIG</a></span></span>
@@ -460,12 +468,12 @@ was part of the public API before the implementation was extracted into the<br /
       <pre class="lines">
 
 
-89
-90
-91</pre>
+98
+99
+100</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/oauth2.rb', line 89</span>
+      <pre class="code"><span class="info file"># File 'lib/oauth2.rb', line 98</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_configure'>configure</span>
   <span class='kw'>yield</span> <span class='id identifier rubyid_config'>config</span>

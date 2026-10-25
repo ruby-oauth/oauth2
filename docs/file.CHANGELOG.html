@@ -70,7 +70,7 @@ and this project adheres to <a href="https://semver.org/spec/v2.0.0.html">Semant
 and <a href="https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html">yes</a>, platform and engine support are part of the <a href="https://github.com/semver/semver/issues/716#issuecomment-869336139">public API</a>.<br>
 Please file a bug if you notice a violation of semantic versioning.</p>
 
-<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.25...HEAD">Unreleased</a></h2>
+<h2 id="unreleased"><a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.26...HEAD">Unreleased</a></h2>
 
 <h3 id="added">Added</h3>
 
@@ -83,6 +83,23 @@ Please file a bug if you notice a violation of semantic versioning.</p>
 <h3 id="fixed">Fixed</h3>
 
 <h3 id="security">Security</h3>
+
+<h2 id="2026---2026-10-23">
+<a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.25...v2.0.26">2.0.26</a> - 2026-10-23</h2>
+
+<ul>
+  <li>TAG: <a href="https://github.com/ruby-oauth/oauth2/releases/tag/v2.0.26">v2.0.26</a>
+</li>
+  <li>COVERAGE: 98.49% – 654/664 lines in 16 files</li>
+  <li>BRANCH COVERAGE: 93.59% – 219/234 branches in 16 files</li>
+  <li>88.99% documented</li>
+</ul>
+
+<h3 id="security-1">Security</h3>
+
+<ul>
+  <li>GHSA-cmh8-5q25-68v6 - OAUTH_DEBUG output no longer logs token-request secrets in cleartext: auth-sanitizer floor raised to 0.2.4, which redacts configured keys in Ruby Hash#inspect output (the shape Faraday’s debug logger produces for Hash request bodies via pretty_inspect), and the default filtered_debug_keys now also cover password, client_assertion, device_code, subject_token, actor_token, and the camelCase token key variants. Reported by iamibi.</li>
+</ul>
 
 <h2 id="2025---2026-07-14">
 <a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.24...v2.0.25">2.0.25</a> - 2026-07-14</h2>
@@ -192,7 +209,7 @@ including local workspace wiring for the new runtime dependency.</li>
   <li>Raised the runtime dependency floor for <code>snaky_hash</code> to <code>&gt;= 2.0.5</code>.</li>
 </ul>
 
-<h3 id="security-1">Security</h3>
+<h3 id="security-2">Security</h3>
 
 <ul>
   <li>
@@ -304,7 +321,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
 <a href="https://github.com/ruby-oauth/oauth2/pull/721">gh!721</a> Load <code>auth-sanitizer</code> through an internal isolated loader so requiring <code>oauth2</code> does not add top-level <code>Auth</code> or <code>AuthSanitizer</code> constants that may collide with downstream applications by @pboling</li>
 </ul>
 
-<h3 id="security-2">Security</h3>
+<h3 id="security-3">Security</h3>
 
 <h2 id="2019---2026-05-15">
 <a href="https://github.com/ruby-oauth/oauth2/compare/v2.0.18...v2.0.19">2.0.19</a> - 2026-05-15</h2>
@@ -341,7 +358,7 @@ constraining MRI Ruby appraisal bundles - by @pboling</li>
   <li>Remove the internal <code>OAuth2::ThingFilter</code> and <code>OAuth2::SanitizedLogger</code> implementations now provided by <code>auth-sanitizer</code> by @pboling</li>
 </ul>
 
-<h3 id="security-3">Security</h3>
+<h3 id="security-4">Security</h3>
 
 <ul>
   <li>

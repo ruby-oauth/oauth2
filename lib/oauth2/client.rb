@@ -622,6 +622,14 @@ module OAuth2
     def oauth_debug_logging(builder)
       if OAuth2::OAUTH_DEBUG
         config = OAuth2.config
+        logger_options = {bodies: true}
+        # Faraday >= 1.0 supports pluggable formatters; use ours to redact
+        # structured (Hash/Array) bodies before Faraday renders them.
+        if defined?(OAuth2::SanitizedLogFormatter)
+          # Faraday instantiates the formatter with (logger:, options:); the
+          # formatter snapshots redaction config from OAuth2.config at that point.
+          logger_options[:formatter] = OAuth2::SanitizedLogFormatter
+        end
         builder.response(
           :logger,
           OAuth2::AUTH_SANITIZER::SanitizedLogger.new(
@@ -629,7 +637,7 @@ module OAuth2
             filtered_keys: config[:filtered_debug_keys],
             label: config[:filtered_label]
           ),
-          bodies: true
+          **logger_options
         )
       end
     end
