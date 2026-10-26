@@ -113,6 +113,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Security
 
+- Prevent protocol-relative redirects from sending bearer tokens to an attacker-controlled host ([GHSA-pp92-crg2-gfv9](https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-pp92-crg2-gfv9)).
+
 ## [1.4.11] - 2022-09-16
 - Complete migration to main branch as default (@pboling)
 - Complete migration to Gitlab, updating all links, and references in VCS-managed files (@pboling)

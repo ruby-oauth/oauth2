@@ -51,6 +51,7 @@ jobs:
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
     env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
       BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
+      KETTLE_DEV_SKIP_BUNDLE_AUDIT: true
     strategy:
       matrix:
         include:

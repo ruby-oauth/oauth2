@@ -126,6 +126,7 @@ module OAuth2
         end
         location = response.headers["location"]
         if location
+          location = "./#{location}" if location.start_with?("//")
           request(verb, location, opts)
         else
           error = Error.new(response)

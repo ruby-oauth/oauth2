@@ -32,6 +32,14 @@ jobs:
         with:
           persist-credentials: false
 
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@e1bd6146574da5e0795075b5319b300edb30c5b0 # v1.333.0
+        with:
+          ruby-version: ruby
+
+      - name: Generate dependency lockfile
+        run: bundle lock
+
       # This action is a composite that builds license-eye from source on every
       # run, and its own cache is broken upstream: dependency/action.yml passes
       # cache-dependency-path ${{ github.action_path }}/go.sum, but go.sum lives

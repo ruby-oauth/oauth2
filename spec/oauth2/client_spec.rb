@@ -13,12 +13,14 @@ describe OAuth2::Client do
         stub.get("/unauthorized") { |env| [401, {"Content-Type" => "application/json"}, MultiJson.encode(:error => error_value, :error_description => error_description_value)] }
         stub.get("/conflict") { |env| [409, {"Content-Type" => "text/plain"}, "not authorized"] }
         stub.get("/redirect") { |env| [302, {"Content-Type" => "text/plain", "location" => "/success"}, ""] }
+        stub.get("/protocol_relative_redirect") { |_env| [302, {"Content-Type" => "text/plain", "location" => "//attacker.example/steal"}, ""] }
         stub.get("/redirect_no_loc") { |_env| [302, {"Content-Type" => "text/plain"}, ""] }
         stub.post("/redirect") { |env| [303, {"Content-Type" => "text/plain", "location" => "/reflect"}, ""] }
         stub.get("/error") { |env| [500, {"Content-Type" => "text/plain"}, "unknown error"] }
         stub.get("/empty_get") { |env| [204, {}, nil] }
         stub.get("/different_encoding") { |env| [500, {"Content-Type" => "application/json"}, NKF.nkf("-We", MultiJson.encode(:error => error_value, :error_description => "∞"))] }
         stub.get("/ascii_8bit_encoding") { |env| [500, {"Content-Type" => "application/json"}, MultiJson.encode(:error => "invalid_request", :error_description => "é").force_encoding("ASCII-8BIT")] }
+        stub.get(/.*/) { |env| [200, {}, env.url.host] }
       end
     end
   end
@@ -271,6 +273,12 @@ describe OAuth2::Client do
       expect(response.headers).to eq("Content-Type" => "text/awesome")
     end
 
+    it "keeps protocol-relative redirects on the configured host" do
+      response = subject.request(:get, "/protocol_relative_redirect")
+
+      expect(response.body).to eq("api.example.com")
+    end
+
     it "redirects using GET on a 303" do
       response = subject.request(:post, "/redirect", :body => "foo=bar")
       expect(response.body).to be_empty
@@ -419,12 +427,12 @@ describe OAuth2::Client do
 
       context "with depracted Class.from_hash option" do
         let(:extract_access_token) do
-          CustomAccessToken = Class.new(OAuth2::AccessToken)
-          CustomAccessToken.define_singleton_method(:from_hash) do |client, hash|
+          custom_access_token = Class.new(OAuth2::AccessToken)
+          custom_access_token.define_singleton_method(:from_hash) do |client, hash|
             token = hash["data"]["access_token"]
             OAuth2::AccessToken.new(client, token, hash)
           end
-          CustomAccessToken
+          custom_access_token
         end
 
         it "returns a configured AccessToken" do
