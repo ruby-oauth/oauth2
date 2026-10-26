@@ -18,6 +18,8 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [Unreleased]
 
+## [1.4.12] - 2026-10-26
+
 ### Added
 
 - kettle-jem-template-20260720-001 - READMEs can now display configured
@@ -298,4 +300,5 @@ Please file a bug if you notice a violation of semantic versioning.
 [1.4.9]: https://gitlab.com/oauth-xx/oauth2/-/compare/v1.4.8...v1.4.9
 [1.4.10]: https://gitlab.com/oauth-xx/oauth2/-/compare/v1.4.9...v1.4.10
 [1.4.11]: https://gitlab.com/oauth-xx/oauth2/-/compare/v1.4.10...v1.4.11
-[unreleased]: https://gitlab.com/oauth-xx/oauth2/-/compare/v1.4.11...HEAD
+[1.4.12]: https://github.com/ruby-oauth/oauth2/compare/v1.4.11...v1.4.12
+[unreleased]: https://github.com/ruby-oauth/oauth2/compare/v1.4.12...HEAD

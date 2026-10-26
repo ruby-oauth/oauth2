@@ -22,7 +22,7 @@ module OAuth2
     #
     # @return [Integer]
     def patch
-      11
+      12
     end
 
     # The pre-release version, if any
