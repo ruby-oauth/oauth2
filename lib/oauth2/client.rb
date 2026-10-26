@@ -9,12 +9,6 @@ module OAuth2
   # The OAuth2::Client class
   class Client # rubocop:disable Metrics/ClassLength
     RESERVED_PARAM_KEYS = ["headers", "parse"].freeze
-    SENSITIVE_DEBUG_KEYS = [
-      "access_token", "refresh_token", "client_secret", "code", "code_verifier",
-      "password", "assertion", "id_token", "token", "client_assertion",
-      "device_code", "subject_token", "actor_token", "accessToken",
-      "refreshToken", "idToken"
-    ].freeze
 
     attr_reader :id, :secret, :site
     attr_accessor :options
@@ -322,9 +316,15 @@ module OAuth2
     def oauth_debug_logging(builder)
       return unless ENV["OAUTH_DEBUG"] == "true"
 
+      sensitive_debug_keys = [
+        "access_token", "refresh_token", "client_secret", "code", "code_verifier",
+        "password", "assertion", "id_token", "token", "client_assertion",
+        "device_code", "subject_token", "actor_token", "accessToken",
+        "refreshToken", "idToken"
+      ]
       builder.response :logger, options[:logger], :bodies => true do |logger|
         logger.filter(/^(\s*Authorization\s*:\s*).*$/i, "\\1[FILTERED]")
-        SENSITIVE_DEBUG_KEYS.each do |key|
+        sensitive_debug_keys.each do |key|
           pattern = /(["']?#{Regexp.escape(key)}["']?\s*(?:=>|:|=)\s*)(?:"[^"]*"|'[^']*'|[^&,\s}]+)/i
           logger.filter(pattern, "\\1[FILTERED]")
         end
