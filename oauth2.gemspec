@@ -161,8 +161,8 @@ Gem::Specification.new do |spec|
   # Loads version files in anonymous namespaces for coverage without constant redefinition warnings.
   spec.add_development_dependency("anonymous_loader", "~> 0.1", ">= 0.1.5")         # ruby >= 2.2.0
   spec.add_development_dependency("appraisal2", "~> 3.2", ">= 3.2.6")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  # JSON 2.11+ C extensions do not compile on the oldest supported TruffleRuby.
-  spec.add_development_dependency("json", ">= 2", "< 2.11")
+  # MultiJson 1.x passes JSON options positionally, which JSON 3 no longer supports.
+  spec.add_development_dependency("json", ">= 2", "< 3")
   spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.28")
   spec.add_development_dependency("nkf", ">= 0.3")            # ruby >= 2.4
   spec.add_development_dependency("turbo_tests2", "~> 4.0", ">= 4.0.0")           # ruby >= 2.4.0, default kettle-test runner
