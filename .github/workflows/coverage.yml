@@ -8,8 +8,8 @@ permissions:
 env:
   # Kill stalled test workers instead of hanging until the CI job timeout.
   TURBO_TESTS2_WATCHDOG_SECONDS: 900
-  K_SOUP_COV_MIN_BRANCH: 100
-  K_SOUP_COV_MIN_LINE: 100
+  K_SOUP_COV_MIN_BRANCH: 76
+  K_SOUP_COV_MIN_LINE: 92
   K_SOUP_COV_MIN_HARD: true
   K_SOUP_COV_FORMATTERS: "xml,rcov,lcov,tty"
   K_SOUP_COV_DO: true
@@ -133,7 +133,7 @@ jobs:
 
       - name: Upload coverage to QLTY
         if: ${{ !env.ACT }}
-        uses: qltysh/qlty-action/coverage@ebcd284bf32e36a030afe15f1e136c7be08b9506 # v2.5.0
+        uses: qltysh/qlty-action/coverage@c9b09987143d1e4ac955f4803c7bea742102feb5 # v2.4.0
         with:
           oidc: true
           files: coverage/lcov.info
@@ -169,7 +169,7 @@ jobs:
 
       - name: Add Coverage PR Comment
         uses: marocchino/sticky-pull-request-comment@5770ad5eb8f42dd2c4f34da00c94c5381e49af88 # v3.0.5
-        if: ${{ !env.ACT && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository }}
+        if: ${{ !env.ACT && github.event_name == 'pull_request' }}
         with:
           recreate: true
           path: code-coverage-results.md

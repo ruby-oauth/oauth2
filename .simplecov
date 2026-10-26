@@ -15,14 +15,14 @@ if RUN_COVERAGE
     enable_coverage :branch
     primary_coverage :branch
 
-    if ENV['COVER_ALL']
-      require 'codecov'
-      require 'simplecov-lcov'
-      require 'simplecov-cobertura'
+    if ENV["COVER_ALL"]
+      require "codecov"
+      require "simplecov-lcov"
+      require "simplecov-cobertura"
 
       SimpleCov::Formatter::LcovFormatter.config do |c|
         c.report_with_single_file = true
-        c.single_report_path = 'coverage/lcov.info'
+        c.single_report_path = "coverage/lcov.info"
       end
 
       SimpleCov.formatters = [
@@ -35,7 +35,7 @@ if RUN_COVERAGE
       formatter SimpleCov::Formatter::HTMLFormatter
     end
 
-    add_filter '/spec'
+    add_filter "/spec"
     minimum_coverage(85)
   end
 end

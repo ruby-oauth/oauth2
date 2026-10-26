@@ -64,12 +64,11 @@ If you must continue using 1.4.x please consider purchasing an open source secur
 
 ### Compatibility
 
-The gem's declared runtime compatibility floor is MRI Ruby 1.9.0+, with concordant releases of JRuby and TruffleRuby.
+Compatible with MRI Ruby 1.9.0+, JRuby, and TruffleRuby.
 CI workflows and Appraisals are generated for MRI Ruby 2.4+.
-The current MRI CI lane runs on Linux, macOS, and Windows.
-The test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml`.
-When it is higher than the runtime floor, older runtime-compatible Rubies are
-not covered by the generated CI or Appraisal matrix.
+This test floor is configured by `ruby.test_minimum` in `.kettle-jem.yml` and
+may be higher than the gem's runtime compatibility floor when legacy Rubies are
+not practical for the current toolchain.
 
 <a href="https://github.com/kettle-dev"><img alt="kettle-dev Logo by Aboling0, CC BY-SA 4.0" src="https://logos.galtzo.com/assets/images/kettle-dev/avatar-128px.svg" width="14%" align="right"/></a>
 
@@ -94,14 +93,14 @@ The _amazing_ test matrix is powered by the kettle-dev stack.
 ## Usage Examples
 
 ```ruby
-require 'oauth2'
-client = OAuth2::Client.new('client_id', 'client_secret', :site => 'https://example.org')
+require "oauth2"
+client = OAuth2::Client.new("client_id", "client_secret", :site => "https://example.org")
 
-client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
+client.auth_code.authorize_url(:redirect_uri => "http://localhost:8080/oauth2/callback")
 # => "https://example.org/oauth/authorization?response_type=code&client_id=client_id&redirect_uri=http://localhost:8080/oauth2/callback"
 
-token = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://localhost:8080/oauth2/callback', :headers => {'Authorization' => 'Basic some_password'})
-response = token.get('/api/resource', :params => {'query_foo' => 'bar'})
+token = client.auth_code.get_token("authorization_code_value", :redirect_uri => "http://localhost:8080/oauth2/callback", :headers => {"Authorization" => "Basic some_password"})
+response = token.get("/api/resource", :params => {"query_foo" => "bar"})
 response.class.name
 # => OAuth2::Response
 ```
@@ -113,19 +112,19 @@ Set an environment variable, however you would [normally do that](https://github
 
 ```ruby
 # will log both request and response, including bodies
-ENV['OAUTH_DEBUG'] = 'true'
+ENV["OAUTH_DEBUG"] = "true"
 ```
 
 By default, debug output will go to `$stdout`. This can be overridden when
 initializing your OAuth2::Client.
 
 ```ruby
-require 'oauth2'
+require "oauth2"
 client = OAuth2::Client.new(
-  'client_id',
-  'client_secret',
-  :site => 'https://example.org',
-  :logger => Logger.new('example.log', 'weekly')
+  "client_id",
+  "client_secret",
+  :site => "https://example.org",
+  :logger => Logger.new("example.log", "weekly")
 )
 ```
 </details>
@@ -169,14 +168,14 @@ authentication grant types have helper strategy classes that simplify client
 use. They are available via the `#auth_code`, `#implicit`, `#password`, `#client_credentials`, and `#assertion` methods respectively.
 
 ```ruby
-auth_url = client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth/callback')
-token = client.auth_code.get_token('code_value', :redirect_uri => 'http://localhost:8080/oauth/callback')
+auth_url = client.auth_code.authorize_url(:redirect_uri => "http://localhost:8080/oauth/callback")
+token = client.auth_code.get_token("code_value", :redirect_uri => "http://localhost:8080/oauth/callback")
 
-auth_url = client.implicit.authorize_url(:redirect_uri => 'http://localhost:8080/oauth/callback')
+auth_url = client.implicit.authorize_url(:redirect_uri => "http://localhost:8080/oauth/callback")
 # get the token params in the callback and
 token = OAuth2::AccessToken.from_kvform(client, query_string)
 
-token = client.password.get_token('username', 'password')
+token = client.password.get_token("username", "password")
 
 token = client.client_credentials.get_token
 
@@ -187,7 +186,7 @@ If you want to specify additional headers to be sent out with the
 request, add a 'headers' hash under 'params':
 
 ```ruby
-token = client.auth_code.get_token('code_value', :redirect_uri => 'http://localhost:8080/oauth/callback', :headers => {'Some' => 'Header'})
+token = client.auth_code.get_token("code_value", :redirect_uri => "http://localhost:8080/oauth/callback", :headers => {"Some" => "Header"})
 ```
 
 You can always use the `#request` method on the `OAuth2::Client` instance to make
@@ -214,6 +213,106 @@ Other support channels:
 
 - [![Ruby Users Forum][✉️ruby-forum-img]][✉️ruby-forum]
 - [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
+
+### Federated DVCS
+
+<details markdown="1">
+ <summary>Find this repo on federated forges (Coming soon!)</summary>
+
+| Federated [DVCS][💎d-in-dvcs] Repository | Status | Issues | PRs | Wiki | CI |
+|-------------------------------------------------|-------------------------------------------|-------------------|------------------|-----------------|----------------|
+| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl] | The Truth | [💚][🤝gl-issues] | [💚][🤝gl-pulls] | [💚][📜gl-wiki] | 🐭 Tiny Matrix |
+| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate]) | [💚][🤝cb-issues] | [💚][🤝cb-pulls] | ➖ | ⭕️ No Matrix |
+| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh] | Another Mirror | [💚][🤝gh-issues] | [💚][🤝gh-pulls] | [💚][📜gh-wiki] | 💯 Full Matrix |
+
+</details>
+
+### Enterprise Support
+
+For enterprise support from the maintainer, use [Upwork][👨🏼‍🏫expsup-upwork] or [CodeMentor][👨🏼‍🏫expsup-codementor].
+
+Other support channels:
+
+- [![Ruby Users Forum][✉️ruby-forum-img]][✉️ruby-forum]
+- [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
+
+### Federated DVCS
+
+<details markdown="1">
+ <summary>Find this repo on federated forges (Coming soon!)</summary>
+
+| Federated [DVCS][💎d-in-dvcs] Repository | Status | Issues | PRs | Wiki | CI |
+|-------------------------------------------------|-------------------------------------------|-------------------|------------------|-----------------|----------------|
+| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl] | The Truth | [💚][🤝gl-issues] | [💚][🤝gl-pulls] | [💚][📜gl-wiki] | 🐭 Tiny Matrix |
+| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate]) | [💚][🤝cb-issues] | [💚][🤝cb-pulls] | ➖ | ⭕️ No Matrix |
+| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh] | Another Mirror | [💚][🤝gh-issues] | [💚][🤝gh-pulls] | [💚][📜gh-wiki] | 💯 Full Matrix |
+
+</details>
+
+### Enterprise Support
+
+For enterprise support from the maintainer, use [Upwork][👨🏼‍🏫expsup-upwork] or [CodeMentor][👨🏼‍🏫expsup-codementor].
+
+Other support channels:
+
+- [![Ruby Users Forum][✉️ruby-forum-img]][✉️ruby-forum]
+- [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
+
+### Runtime and Platform Support
+
+Support tiers describe what this project's CI actually exercises, not what may
+work in an untested environment:
+
+- **Parallel support**: CI runs the test suite with multiple workers available.
+- **Unsupported**: the engine/platform combination is not covered by CI and is
+ not a project compatibility claim.
+
+| Ruby engine/version | Linux | macOS | Windows | Notes |
+|---------------------|-------|-------|---------|-------|
+| MRI 3.1-3.4 | Parallel support | Unsupported | Unsupported | Versioned Ruby workflows run on Linux. |
+| MRI current | Parallel support | Parallel support | Parallel support | Current Ruby workflow covers the declared OS platforms. |
+| MRI head | Parallel support | Unsupported | Unsupported | CI is allowed to fail while Ruby is in development. |
+| JRuby (all CI lanes) | Parallel support | Unsupported | Unsupported | Engine workflows run on Linux; macOS and Windows are not exercised by CI. |
+| TruffleRuby (all CI lanes) | Parallel support | Unsupported | Unsupported | Never shipped a Windows build (zero Windows assets across 66 releases scanned 2026-10-10); setup-ruby hard-fails ([source](https://github.com/ruby/setup-ruby/blob/master/README.md)) |
+
+### Federated DVCS
+
+<details markdown="1">
+ <summary>Find this repo on federated forges (Coming soon!)</summary>
+
+| Federated [DVCS][💎d-in-dvcs] Repository | Status | Issues | PRs | Wiki | CI |
+|-------------------------------------------------|-------------------------------------------|-------------------|------------------|-----------------|----------------|
+| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl] | The Truth | [💚][🤝gl-issues] | [💚][🤝gl-pulls] | [💚][📜gl-wiki] | 🐭 Tiny Matrix |
+| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate]) | [💚][🤝cb-issues] | [💚][🤝cb-pulls] | ➖ | ⭕️ No Matrix |
+| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh] | Another Mirror | [💚][🤝gh-issues] | [💚][🤝gh-pulls] | [💚][📜gh-wiki] | 💯 Full Matrix |
+
+</details>
+
+### Enterprise Support
+
+[![Tidelift](https://tidelift.com/badges/package/rubygems/oauth2)](https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=rubygems-oauth2&utm_medium=referral&utm_campaign=readme)
+
+Available as part of the Tidelift Subscription.
+
+<details markdown="1">
+ <summary>Need enterprise-level guarantees?</summary>
+
+The maintainers of this and thousands of other packages are working with Tidelift to deliver commercial support and maintenance for the open source packages you use to build your applications. Save time, reduce risk, and improve code health, while paying the maintainers of the exact packages you use.
+
+[![Get help from me on Tidelift][🏙️entsup-tidelift-img]][🏙️entsup-tidelift]
+
+- 💡Subscribe for support guarantees covering _all_ your FLOSS dependencies
+- 💡Tidelift is part of [Sonar][🏙️entsup-tidelift-sonar]
+- 💡Tidelift pays maintainers to maintain the software you depend on!<br/>📊`@`Pointy Haired Boss: An [enterprise support][🏙️entsup-tidelift] subscription is "[never gonna let you down][🧮kloc]", and *supports* open source maintainers
+
+Alternatively:
+
+- [![Ruby Users Forum][✉️ruby-forum-img]][✉️ruby-forum]
+- [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
+- [![Get help from me on Upwork][👨🏼‍🏫expsup-upwork-img]][👨🏼‍🏫expsup-upwork]
+- [![Get help from me on Codementor][👨🏼‍🏫expsup-codementor-img]][👨🏼‍🏫expsup-codementor]
+
+</details>
 
 ## ✨ Installation
 
@@ -280,20 +379,19 @@ We welcome both individual and corporate sponsors! We also offer a
 wide array of funding channels to account for your preferences.
 Currently, [Open Collective][🖇osc] is our preferred funding platform.
 
-### Corporate Sponsorship
-
-- <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="32"/></a> [Alpha-Omega](https://alpha-omega.dev) — backed by [Amazon Web Services](https://aws.amazon.com), [Google](https://www.google.com), [Microsoft](https://www.microsoft.com), [Anthropic](https://www.anthropic.com), [OpenAI](https://openai.com), [Citi](https://www.citigroup.com), [GitHub](https://github.com)
-
 **If you're working in a company that's making significant use of ruby-oauth tools we'd
 appreciate it if you suggest to your company to become a ruby-oauth sponsor.**
-
-### Individual Support
 
 You can support the development of ruby-oauth tools via
 [GitHub Sponsors][🖇sponsor],
 [Liberapay][⛳liberapay],
-[Open Collective][🖇osc],
-and [PayPal][🖇paypal].
+[PayPal][🖇paypal],
+[Open Collective][🖇osc]
+and [Tidelift][🏙️entsup-tidelift].
+
+| 📍 NOTE |
+|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| If doing a sponsorship in the form of donation is problematic for your company <br/> from an accounting standpoint, we'd recommend the use of Tidelift, <br/> where you can get a support-like subscription instead. |
 
 ### Open Collective for Individuals
 
@@ -400,7 +498,7 @@ dependency on this gem using the [Pessimistic Version Constraint][pvc] with two 
 For example:
 
 ```ruby
-spec.add_dependency 'oauth2', '~> 1.4'
+spec.add_dependency "oauth2", "~> 1.4"
 ```
 
 [semver]: http://semver.org/
@@ -448,7 +546,6 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2013 Antonio Tapiador del Dujo
 - Copyright (c) 2013 Eduardo Gurgel
 - Copyright (c) 2013 Geostellar Developer
-- Copyright (c) 2013 Manfred Stienstra
 - Copyright (c) 2013 Rainux Luo
 - Copyright (c) 2013 Taylor Hedberg
 - Copyright (c) 2013 Tim Clem
@@ -467,18 +564,14 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2017 Nathaniel Bibler
 - Copyright (c) 2017 Pierre Schambacher
 - Copyright (c) 2018 asm__
-- Copyright (c) 2018 Chad Woolley
 - Copyright (c) 2018 Lomey
 - Copyright (c) 2018-2023, 2026 Peter H. Boling
-- Copyright (c) 2019 Orien Madgwick
 - Copyright (c) 2020 An Vo
 - Copyright (c) 2020 Jon Palmer
 - Copyright (c) 2020 Stephen Reid
 - Copyright (c) 2021 Anders Carling
 - Copyright (c) 2021 dobon
-- Copyright (c) 2022 Aleksandar N. Kostadinov
 - Copyright (c) 2022 Jonathan Rochkind
-- Copyright (c) 2023 Damian Aberbuj
 - Copyright (c) 2026 Daniel Pepper
 
 </details>
@@ -577,6 +670,9 @@ Thanks for RTFM. ☺️
 [👨🏼‍🏫expsup-upwork-img]: https://img.shields.io/badge/UpWork-13544E?style=for-the-badge&logo=Upwork&logoColor=white
 [👨🏼‍🏫expsup-codementor]: https://www.codementor.io/peterboling?utm_source=github&utm_medium=button&utm_term=peterboling&utm_campaign=github
 [👨🏼‍🏫expsup-codementor-img]: https://img.shields.io/badge/CodeMentor-Get_Help-1abc9c?style=for-the-badge&logo=CodeMentor&logoColor=white
+[🏙️entsup-tidelift]: https://tidelift.com/subscription/pkg/rubygems-oauth2?utm_source=rubygems-oauth2&utm_medium=referral&utm_campaign=readme
+[🏙️entsup-tidelift-img]: https://img.shields.io/badge/Tidelift_and_Sonar-Enterprise_Support-FD3456?style=for-the-badge&logo=sonar&logoColor=white
+[🏙️entsup-tidelift-sonar]: https://blog.tidelift.com/tidelift-joins-sonar
 [💁🏼‍♂️peterboling]: http://www.peterboling.com
 [🚂railsbling]: http://www.railsbling.com
 [📜src-gl-img]: https://img.shields.io/badge/GitLab-FBA326?style=for-the-badge&logo=Gitlab&logoColor=orange

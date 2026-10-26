@@ -11,8 +11,8 @@ module OAuth2
       @response = response
 
       if response.parsed.is_a?(Hash)
-        @code = response.parsed['error']
-        @description = response.parsed['error_description']
+        @code = response.parsed["error"]
+        @description = response.parsed["error_description"]
         error_description = "#{@code}: #{@description}"
       end
 
@@ -28,11 +28,11 @@ module OAuth2
       opts[:error_description] && (message << opts[:error_description])
 
       error_message = if opts[:error_description] && opts[:error_description].respond_to?(:encoding)
-                        script_encoding = opts[:error_description].encoding
-                        response_body.encode(script_encoding, :invalid => :replace, :undef => :replace)
-                      else
-                        response_body
-                      end
+        script_encoding = opts[:error_description].encoding
+        response_body.encode(script_encoding, :invalid => :replace, :undef => :replace)
+      else
+        response_body
+      end
 
       message << error_message
 

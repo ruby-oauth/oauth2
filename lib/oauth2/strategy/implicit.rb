@@ -10,7 +10,7 @@ module OAuth2
       #
       # @param [Hash] params additional query parameters
       def authorize_params(params = {})
-        params.merge('response_type' => 'token', 'client_id' => @client.id)
+        params.merge("response_type" => "token", "client_id" => @client.id)
       end
 
       # The authorization URL endpoint of the provider
@@ -24,7 +24,7 @@ module OAuth2
       #
       # @raise [NotImplementedError]
       def get_token(*)
-        raise(NotImplementedError, 'The token is accessed differently in this strategy')
+        raise(NotImplementedError, "The token is accessed differently in this strategy")
       end
     end
   end

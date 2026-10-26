@@ -14,7 +14,7 @@ module OAuth2
       # @return [AccessToken] the initalized AccessToken
       def from_hash(client, hash)
         hash = hash.dup
-        new(client, hash.delete('access_token') || hash.delete(:access_token), hash)
+        new(client, hash.delete("access_token") || hash.delete(:access_token), hash)
       end
 
       # Initializes an AccessToken from a key/value application/x-www-form-urlencoded string
@@ -47,13 +47,13 @@ module OAuth2
       [:refresh_token, :expires_in, :expires_at].each do |arg|
         instance_variable_set("@#{arg}", opts.delete(arg) || opts.delete(arg.to_s))
       end
-      @expires_in ||= opts.delete('expires')
+      @expires_in ||= opts.delete("expires")
       @expires_in &&= @expires_in.to_i
       @expires_at &&= convert_expires_at(@expires_at)
       @expires_at ||= Time.now.to_i + @expires_in if @expires_in
       @options = {:mode => opts.delete(:mode) || :header,
-                  :header_format => opts.delete(:header_format) || 'Bearer %s',
-                  :param_name => opts.delete(:param_name) || 'access_token'}
+                  :header_format => opts.delete(:header_format) || "Bearer %s",
+                  :param_name => opts.delete(:param_name) || "access_token"}
       @params = opts
     end
 
@@ -83,9 +83,9 @@ module OAuth2
     # @return [AccessToken] a new AccessToken
     # @note options should be carried over to the new AccessToken
     def refresh!(params = {})
-      raise('A refresh_token is not available') unless refresh_token
+      raise("A refresh_token is not available") unless refresh_token
 
-      params[:grant_type] = 'refresh_token'
+      params[:grant_type] = "refresh_token"
       params[:refresh_token] = refresh_token
       new_token = @client.get_token(params)
       new_token.options = options
@@ -148,7 +148,7 @@ module OAuth2
 
     # Get the headers hash (includes Authorization token)
     def headers
-      {'Authorization' => options[:header_format] % token}
+      {"Authorization" => options[:header_format] % token}
     end
 
   private

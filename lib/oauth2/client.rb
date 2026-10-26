@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
-require 'faraday'
-require 'logger'
+require "faraday"
+require "logger"
 
 module OAuth2
   ConnectionError = Class.new(Faraday::ConnectionFailed)
   # The OAuth2::Client class
   class Client # rubocop:disable Metrics/ClassLength
-    RESERVED_PARAM_KEYS = %w[headers parse].freeze
+    RESERVED_PARAM_KEYS = ["headers", "parse"].freeze
 
     attr_reader :id, :secret, :site
     attr_accessor :options
@@ -38,8 +38,8 @@ module OAuth2
       @secret = client_secret
       @site = opts.delete(:site)
       ssl = opts.delete(:ssl)
-      @options = {:authorize_url => 'oauth/authorize',
-                  :token_url => 'oauth/token',
+      @options = {:authorize_url => "oauth/authorize",
+                  :token_url => "oauth/token",
                   :token_method => :post,
                   :auth_scheme => :request_body,
                   :connection_opts => {},
@@ -124,7 +124,7 @@ module OAuth2
           verb = :get
           opts.delete(:body)
         end
-        location = response.headers['location']
+        location = response.headers["location"]
         if location
           request(verb, location, opts)
         else
@@ -166,12 +166,12 @@ module OAuth2
       opts = {:raise_errors => options[:raise_errors], :parse => params.delete(:parse)}
       headers = params.delete(:headers) || {}
       if options[:token_method] == :post
-        opts[:body] = if headers['Content-Type'] == 'application/json'
-                        params.to_json
-                      else
-                        params
-                      end
-        opts[:headers] = {'Content-Type' => 'application/x-www-form-urlencoded'}
+        opts[:body] = if headers["Content-Type"] == "application/json"
+          params.to_json
+        else
+          params
+        end
+        opts[:headers] = {"Content-Type" => "application/x-www-form-urlencoded"}
       else
         opts[:params] = params
         opts[:headers] = {}
@@ -182,13 +182,13 @@ module OAuth2
 
       access_token = begin
         build_access_token(response, access_token_opts, extract_access_token)
-      rescue StandardError
+      rescue
         nil
       end
 
       response_contains_token = access_token || (
-                                  response.parsed.is_a?(Hash) &&
-                                  (response.parsed['access_token'] || response.parsed['id_token'])
+        response.parsed.is_a?(Hash) &&
+        (response.parsed["access_token"] || response.parsed["id_token"])
       )
 
       if options[:raise_errors] && !response_contains_token
@@ -251,14 +251,14 @@ module OAuth2
     # @return [Hash] the params to add to a request or URL
     def redirection_params
       if options[:redirect_uri]
-        {'redirect_uri' => options[:redirect_uri]}
+        {"redirect_uri" => options[:redirect_uri]}
       else
         {}
       end
     end
 
     DEFAULT_EXTRACT_ACCESS_TOKEN = proc do |client, hash|
-      token = hash.delete('access_token') || hash.delete(:access_token)
+      token = hash.delete("access_token") || hash.delete(:access_token)
       token && AccessToken.new(client, token, hash)
     end
 
@@ -290,7 +290,7 @@ module OAuth2
     end
 
     def oauth_debug_logging(builder)
-      builder.response :logger, options[:logger], :bodies => true if ENV['OAUTH_DEBUG'] == 'true'
+      builder.response :logger, options[:logger], :bodies => true if ENV["OAUTH_DEBUG"] == "true"
     end
   end
 end

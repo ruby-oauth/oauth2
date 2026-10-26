@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-require 'multi_json'
-require 'multi_xml'
-require 'rack'
+require "multi_json"
+require "multi_xml"
+require "rack"
 
 module OAuth2
   # OAuth2::Response class
@@ -26,10 +26,10 @@ module OAuth2
 
     # Content type assignments for various potential HTTP content types.
     @@content_types = {
-      'application/json' => :json,
-      'text/javascript' => :json,
-      'application/x-www-form-urlencoded' => :query,
-      'text/plain' => :text,
+      "application/json" => :json,
+      "text/javascript" => :json,
+      "application/x-www-form-urlencoded" => :query,
+      "text/plain" => :text,
     }
 
     # Adds a new content type parser.
@@ -68,7 +68,7 @@ module OAuth2
 
     # The HTTP response body
     def body
-      response.body || ''
+      response.body || ""
     end
 
     # The parsed response body.
@@ -82,7 +82,7 @@ module OAuth2
 
     # Attempts to determine the content type of the response.
     def content_type
-      ((response.headers.values_at('content-type', 'Content-Type').compact.first || '').split(';').first || '').strip
+      ((response.headers.values_at("content-type", "Content-Type").compact.first || "").split(";").first || "").strip
     end
 
     # Determines the parser that will be used to supply the content of #parsed
@@ -94,6 +94,6 @@ module OAuth2
   end
 end
 
-OAuth2::Response.register_parser(:xml, ['text/xml', 'application/rss+xml', 'application/rdf+xml', 'application/atom+xml']) do |body|
+OAuth2::Response.register_parser(:xml, ["text/xml", "application/rss+xml", "application/rdf+xml", "application/atom+xml"]) do |body|
   MultiXml.parse(body) rescue body # rubocop:disable Style/RescueModifier
 end

@@ -12,7 +12,7 @@
 gem "reek", "~> 6.6", ">= 6.6.0"
 
 platform :mri do
-  gem "appraisal2-rubocop", "~> 1.0", ">= 1.0.5", require: false
+  gem "appraisal2-rubocop", "~> 1.0", ">= 1.0.5", :require => false
   gem "rubocop-gradual", "~> 0.4", ">= 0.4.0"
   gem "rubocop-minitest", "~> 0.41", ">= 0.41.0"
   if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.3.0")
@@ -23,8 +23,8 @@ platform :mri do
 
   if ENV.fetch("RUBOCOP_LTS_DEV", "false").casecmp("false").zero?
     gem "rubocop-packaging",
-      github: "pboling/rubocop-packaging",
-      ref: "3539ba858d379740d638566faee9e56b2b854145"
+      :github => "pboling/rubocop-packaging",
+      :ref => "3539ba858d379740d638566faee9e56b2b854145"
     declared_gems = instance_variable_get(:@dependencies).to_a.map(&:name)
     gem "rubocop-lts", "~> 2.3", ">= 2.3.3" unless declared_gems.include?("rubocop-lts")
     gem "rubocop-lts-rspec", "~> 1.0", ">= 1.0.8" unless declared_gems.include?("rubocop-lts-rspec")

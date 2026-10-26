@@ -1,0 +1,1008 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Untitled</title>
+  <style>
+    /* minimal, namespaced styles */
+    .yyaml-page { font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    .yyaml-title { margin: 0.2em 0 0.4em; font-size: 1.6em; }
+    .yyaml-desc { color: #444; margin-bottom: 1em; }
+    .yyaml-body { line-height: 1.5; }
+  </style>
+</head>
+<body class="yyaml-page">
+  <h1 class="yyaml-title">Untitled</h1>
+  
+  <div class="yyaml-body"><p>kettle-jem configuration file</p>
+
+<p>This file is both configuration and field guide for templated gems.</p>
+
+<p>In most projects this comment block is the first place to look when you</p>
+
+<p>want to understand what kettle-jem will merge, what it will copy as-is,</p>
+
+<p>and which values you may want to customize.</p>
+
+<p>High-level structure:</p>
+
+<p>defaults  - default merge behavior for files that use strategy: merge</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>tokens    - values for {KJ</td>
+      <td>…} placeholders used across template files</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>patterns  - glob-based overrides for files/directories</p>
+
+<p>files     - exact per-file overrides using a nested directory tree</p>
+
+<p>Default behavior:</p>
+
+<p>If a file is NOT mentioned under files: and does NOT match a patterns:</p>
+
+<p>entry, kettle-jem will merge it using the format-aware merge gem for that</p>
+
+<p>file type.</p>
+
+<p>Strategies:</p>
+
+<p>merge:</p>
+
+<pre><code>Resolve tokens, then merge template + destination using the appropriate
+
+AST-aware/text-aware merger for the file type.
+</code></pre>
+
+<p>accept_template:</p>
+
+<pre><code>Resolve tokens, then write the template result without merging.
+
+If the file is missing in the destination, it will be created from the template.
+</code></pre>
+
+<p>keep_destination:</p>
+
+<pre><code>Ignore this file during templating.
+
+No merge. No replacement. No creation when the destination file is missing.
+
+Use this when you want to permanently exclude a file from the template.
+</code></pre>
+
+<p>raw_copy:</p>
+
+<pre><code>Copy bytes exactly as they appear in the template.
+
+No token resolution. No merge. Use for immutable/binary assets such as certs.
+</code></pre>
+
+<p>Merge options (used only with strategy: merge):</p>
+
+<p>preference:</p>
+
+<pre><code>template    - template wins when both sides define the same node/value
+
+destination - destination wins when both sides define the same node/value
+</code></pre>
+
+<p>add_template_only_nodes:</p>
+
+<pre><code>true  - add nodes/entries that exist only in the template
+
+false - do not add template-only nodes
+</code></pre>
+
+<p>freeze_token:</p>
+
+<pre><code>Marker name used for frozen sections (default: kettle-jem)
+</code></pre>
+
+<p>file_type:</p>
+
+<pre><code>Optional explicit merge-engine hint for extensionless or ambiguous files.
+
+Supported values: ruby, gemfile, appraisals, gemspec, rakefile,
+
+yaml, markdown, text, json, jsonc, toml, dotenv, rbs
+
+Runtime-gated values requiring provider availability: bash
+</code></pre>
+
+<p>max_recursion_depth:</p>
+
+<pre><code>Limit for recursive merging when a merger supports it
+</code></pre>
+
+<p>Other per-file options (apply to any strategy):</p>
+
+<p>skip_unresolved_scan:</p>
+
+<pre><code>true  - do not scan this file for unresolved {KJ|...} tokens after writing.
+
+        Use when a file legitimately contains {KJ|...} text as documentation
+
+        or example content rather than as a template placeholder.
+</code></pre>
+
+<p>Token values:</p>
+
+<p>Precedence is:</p>
+
+<pre><code>1) ENV variables. During templating, known ENV-backed values are also
+
+   written back into this file so config and runtime agree.
+
+2) tokens: values in this file
+
+3) safe automatic derivation (author fields only, where possible)
+</code></pre>
+
+<p>Safe automatic derivations currently implemented:</p>
+
+<p>AUTHOR:NAME         &lt;- first author from the gemspec</p>
+
+<p>AUTHOR:EMAIL        &lt;- first email from the gemspec</p>
+
+<p>AUTHOR:DOMAIN       &lt;- domain part of AUTHOR:EMAIL</p>
+
+<p>AUTHOR:GIVEN_NAMES  &lt;- AUTHOR:NAME minus the last word</p>
+
+<p>AUTHOR:FAMILY_NAMES &lt;- last word of AUTHOR:NAME</p>
+
+<p>Everything else should be set explicitly here or via ENV.</p>
+
+<p>Author identity aliases used when rendering copyright notices and gemspec</p>
+
+<p>author metadata. Keys are matched case-insensitively against Git commit</p>
+
+<p>author names, Git commit author emails, and existing gemspec author names.</p>
+
+<p>Values are the canonical display names written to generated files. This is</p>
+
+<p>useful when one person has committed under multiple names or email addresses.</p>
+
+<p>These aliases do not rewrite Git history.</p>
+
+<pre><code class="language-yaml">author_aliases:
+  pboling: "Peter H. Boling"
+  "|7eter l-|. l3oling": "Peter H. Boling"
+  "Peter Boling": "Peter H. Boling"
+  galtzo: "Peter H. Boling"
+  Aboling0: "Annibelle Boling"
+</code></pre>
+<p>Direct dependency ownership decisions.</p>
+
+<p>On first templating, kettle-jem discovers dependencies declared directly by</p>
+
+<p>Gemfile/gemspec and also by modular Gemfiles, and writes them here for review.</p>
+
+<p>Resolve each entry by choosing one supported action, then add a reason.</p>
+
+<p>Every entry must include gem, direct, modular, action, and reason:</p>
+
+<p>dependency_conflicts:</p>
+
+<p>resolve:</p>
+
+<pre><code>- gem: yard-relative_markdown_links
+
+  direct: shields-badge.gemspec
+
+  modular: gemfiles/modular/documentation.gemfile
+
+  action: remove_modular_gem
+
+  reason: "The gemspec owns the project's documentation integration."
+</code></pre>
+
+<p>Supported actions (the destination project must explicitly choose one):</p>
+
+<p>remove_modular_gem       - remove the modular Gemfile’s direct gem call.</p>
+
+<p>remove_x_std_lib_eval    - remove x_std_libs eval references for the gem.</p>
+
+<p>remove_direct_gem        - remove the gemspec’s or Gemfile’s direct</p>
+
+<pre><code>                         declaration, keeping the modular Gemfile's.
+</code></pre>
+
+<p>keep_both                - retain both declarations when their requirements</p>
+
+<pre><code>                         overlap. This is intended for a broad direct
+
+                         requirement narrowed by framework/engine Gemfiles;
+
+                         incompatible ranges remain an error.
+</code></pre>
+
+<pre><code class="language-yaml">dependency_conflicts:
+  # Set true only after every discovered conflict has an intentional action.
+  reviewed: true
+  # Review each entry and choose a supported action.
+  # keep_both is for a broad direct requirement plus a compatible modular narrowing.
+  resolve:
+    - gem: addressable
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/optional.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v0.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v1.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing."
+    - gem: faraday
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/faraday_v2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v1.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing."
+    - gem: jwt
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/jwt_v3.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_5.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing."
+    - gem: logger
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/logger_v1_7.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_5.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_6.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing."
+    - gem: multi_xml
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/multi_xml_v0_7.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v1_2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v1_6.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v2.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing."
+    - gem: rack
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/rack_v3.gemfile
+      action: keep_both
+      reason: "The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing."
+    - gem: rake
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/injected.gemfile
+      action: remove_modular_gem
+      reason: "oauth2.gemspec owns this development dependency."
+    - gem: rubocop-lts
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/style.gemfile
+      action: keep_both
+      reason: "The broad 1.4 development requirement overlaps the style bundle's newer linting floor; retain the old gemspec dependency for compatibility."
+
+</code></pre>
+<p>This project’s identifying emoji.</p>
+
+<p>Used as the leading emoji in the README H1 heading and in the gemspec</p>
+
+<p>summary and description. Every gem should have its own unique emoji.</p>
+
+<p>Set this to a single emoji that represents your gem. Examples: 🪙 🔑 🛠️ 🔮</p>
+
+<p>This key is REQUIRED. kettle-jem will abort if it is absent.</p>
+
+<p>ENV override: KJ_PROJECT_EMOJI</p>
+
+<pre><code class="language-yaml">project_emoji: 🔐
+
+</code></pre>
+<p>Engines this project supports.</p>
+
+<p>List the Ruby engines that your gem targets. kettle-jem uses this to decide</p>
+
+<p>which CI workflows, README compatibility rows, and badge references to</p>
+
+<p>include. Engines not listed here are pruned from generated files.</p>
+
+<p>Supported values: ruby, jruby, truffleruby</p>
+
+<p>Default (when key is absent): all three engines.</p>
+
+<pre><code class="language-yaml">engines:
+  - ruby
+  - jruby
+  - truffleruby
+</code></pre>
+<p>List the OS platforms this project’s CI exercises. kettle-jem uses this to</p>
+
+<p>generate the current.yml OS matrix and the README platform tier table.</p>
+
+<p>Windows applies only when declared: the <code>if: matrix.os</code> guards and the</p>
+
+<p>Windows-only test step are emitted solely for destinations that opt in.</p>
+
+<p>Supported values: linux, macos, windows</p>
+
+<p>Default (when key is absent): linux, macos</p>
+
+<p>These are CI OS families, a distinct vocabulary from Gem::Platform strings</p>
+
+<p>and Gemfile DSL platform symbols; never reuse them for</p>
+
+<p><code>bundle lock --add-platform</code>.</p>
+
+<pre><code class="language-yaml">platforms:
+  - linux
+  - macos
+  - windows
+
+</code></pre>
+<p>Ruby version policy.</p>
+
+<pre><code class="language-yaml">ruby:
+  # Lowest MRI Ruby version for generated CI workflows, Appraisals, and
+  # test/development dependency assumptions. This is intentionally separate
+  # from the gemspec required_ruby_version, which describes the published
+  # runtime contract. Effective CI minimum is max(gemspec minimum, this value).
+  test_minimum: "2.4"
+
+</code></pre>
+<p>RubyGems packaging/runtime shape.</p>
+
+<pre><code class="language-yaml">rubygems:
+  # Published runtime Ruby floor used for generated gemspec metadata and README
+  # compatibility text. Omit this to derive the value from the gemspec.
+  min_ruby: "1.9.0"
+  namespace: "OAuth2"
+  # VersionGem loading pattern.
+  # auto      - preserve an existing lib/&lt;entrypoint&gt;/version_gem.rb dedicated
+  #             entrypoint; otherwise use the inline main-entrypoint pattern
+  #             when the runtime Ruby floor supports version_gem.
+  # inline    - require version_gem from lib/&lt;entrypoint&gt;.rb.
+  # dedicated - generate lib/&lt;entrypoint&gt;/version_gem.rb and keep
+  #             lib/&lt;entrypoint&gt;.rb free of version_gem. Use this for gems in
+  #             the version_gem test/tooling dependency graph.
+  # disabled  - do not depend on version_gem or generate VersionGem entrypoints.
+  #             Ruby floors below 2.2 use this effective behavior.
+  # ENV override: KJ_VERSION_GEM_ENTRYPOINT
+  # Keep the 1.4.x runtime independent of version_gem, which requires Ruby 2.2+.
+  version_gem_entrypoint: disabled
+
+</code></pre>
+<p>Repository URL topology.</p>
+
+<p>This is independent from templates.profile. A gem may use the full template</p>
+
+<p>while still living as a sub-project inside a monorepo.</p>
+
+<p>Supported values:</p>
+
+<p>standalone          - project URLs point at this gem’s own repository</p>
+
+<p>monorepo-subproject - project URLs point at a subdirectory in the repository root</p>
+
+<p>ENV override: KJ_REPOSITORY_TOPOLOGY</p>
+
+<pre><code class="language-yaml">repository:
+  topology: standalone
+</code></pre>
+<p>RubyForum community tag.</p>
+
+<p>The project tag is used when present; otherwise the family tag is used.</p>
+
+<p>kettle-family or family-level mise config can set the family tag during</p>
+
+<p>templating so the value is written into each project config for standalone</p>
+
+<p>checkouts.</p>
+
+<pre><code class="language-yaml">rubyforum:
+  # ENV override: KJ_RUBYFORUM_FAMILY_TAG
+  family_tag: "ruby-oauth"
+  # ENV override: KJ_RUBYFORUM_PROJECT_TAG
+  project_tag: "oauth2"
+
+</code></pre>
+<p>Funding organization used by generated GitHub Open Collective metadata.</p>
+
+<pre><code class="language-yaml">funding:
+  open_collective: "ruby-oauth"
+
+</code></pre>
+<p>Framework matrix workflows.</p>
+
+<p>When your gem tests against multiple versions of a framework (Rails,</p>
+
+<p>ActiveRecord, ActiveSupport, etc.), this section configures how</p>
+
+<p>kettle-jem generates the CI matrix strategy and gemfile references.</p>
+
+<p>preset: controls overall workflow strategy</p>
+
+<p>modern       — Ruby-only matrix (default when absent)</p>
+
+<p>framework    — Ruby × framework-version matrix</p>
+
+<p>legacy-compat — supported / unsupported / ancient workflow split</p>
+
+<p>framework_matrix (only used when preset: framework):</p>
+
+<p>dimension   — framework name used in the matrix key and display</p>
+
+<pre><code>            (e.g. activerecord, rails, actionmailer)
+</code></pre>
+
+<p>gem         — gem name to write into generated framework gemfiles.</p>
+
+<pre><code>            Defaults to dimension when absent.
+</code></pre>
+
+<p>versions    — ordered list of versions to test against. Entries may be</p>
+
+<pre><code>            strings, or mappings with:
+
+              label       - display value used in CI
+
+              slug        - path-safe value used in gemfile_pattern
+
+              requirement - Bundler requirement written to the gemfile
+</code></pre>
+
+<p>gemfile_pattern — pattern for gemfile paths; {version} is replaced</p>
+
+<pre><code>                with each version slug (dots replaced by underscores
+
+                when the pattern contains an underscore placeholder).
+
+                Resolved relative to gemfiles/ unless it already contains
+
+                a directory.
+
+                Examples:
+
+                  "ar-{version}.x"      → gemfiles/ar-7.0.x
+
+                  "rails_{version}"      → gemfiles/rails_7_0.gemfile
+</code></pre>
+
+<p>Use this when you need a simple 2D matrix: Ruby × one framework gem/version axis.</p>
+
+<p>For deeper or more complex matrices that are better modeled as Appraisals entries,</p>
+
+<p>prefer kettle-jem-appraisals instead.</p>
+
+<pre><code class="language-yaml">workflows:
+  # Default command used by generated test workflows.
+  # ENV override: KJ_EXEC_CMD
+  exec_cmd: kettle-test
+  # Include VCR/WebMock recording modular gemfiles in generated Appraisals.
+  # Enable only for projects that actually require recording support.
+  recording: false
+  # preset: framework
+  # framework_matrix:
+  #   dimension: activerecord
+  #   gem: activerecord
+  #   versions:
+  #     - "7.0"
+  #     - "7.1"
+  #     - "7.2"
+  #     - label: "8.0+"
+  #       slug: "8_0_plus"
+  #       requirement: "&gt;= 8.0"
+  #   gemfile_pattern: "ar-{version}.x"
+
+</code></pre>
+<p>README top logos.</p>
+
+<p>Comma-separated list of optional logo entries for the generated README header.</p>
+
+<p>top_logos render above the title; h2_synopsis_logos render inline with the Synopsis H2.</p>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Supported values: related-org, ruby, org, project, optionally followed by</td>
+      <td>width.</td>
+    </tr>
+  </tbody>
+</table>
+
+<table>
+  <tbody>
+    <tr>
+      <td>Examples: org</td>
+      <td>12%, ruby</td>
+      <td>96px</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Default widths: top 1 logo =&gt; 14%, top 2 logos =&gt; 12%, Synopsis 1 logo =&gt; 10%, Synopsis 2 logos =&gt; 8%.</p>
+
+<p>Default (when keys are absent): top_logos: org,project; h2_synopsis_logos: related-org,ruby</p>
+
+<p>Legacy top_logo_mode values map as:</p>
+
+<p>org =&gt; related-org,ruby,org</p>
+
+<p>project =&gt; related-org,ruby,project</p>
+
+<p>org_and_project =&gt; related-org,ruby,org,project</p>
+
+<pre><code class="language-yaml">readme:
+  top_logos: org
+  h2_synopsis_logos: related-org,ruby
+  # Preserve 1.4-specific API guidance while generating compatibility details
+  # from this branch’s runtime floor and configured test floor.
+  preserve_sections:
+    - synopsis
+    - Release Documentation
+    - OAuth2 for Enterprise
+    - Security contact information
+    - Why should you upgrade to version v2.0?
+    - Usage Examples
+    - OAuth2::Response
+    - OAuth2::AccessToken
+    - OAuth2::Error
+    - Authorization Grants
+    - Versioning
+  section_aliases:
+    what: synopsis
+  corporate_sponsors:
+    - name: Alpha-Omega
+      url: https://alpha-omega.dev
+      img_src: https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg
+      since: "2026-08-29"
+      until: "2027-12-31"
+      members:
+        - name: Amazon Web Services
+          url: https://aws.amazon.com
+        - name: Google
+          url: https://www.google.com
+        - name: Microsoft
+          url: https://www.microsoft.com
+        - name: Anthropic
+          url: https://www.anthropic.com
+        - name: OpenAI
+          url: https://openai.com
+        - name: Citi
+          url: https://www.citigroup.com
+        - name: GitHub
+          url: https://github.com
+  # Optional package-family README block.
+  # Supported values: structuredmerge
+  # Leave unset for standalone kettle-rb gems and most projects.
+  # package_family: structuredmerge
+  # Sections to preserve from the destination README during template merging.
+  # These section headings (case-insensitive) will keep the destination body
+  # instead of being overwritten by the template. Default when absent:
+  #   - synopsis
+  #   - configuration
+  #   - basic usage
+  #
+  # Built-in aliases (destination → template):
+  #   summary → synopsis, usage → basic usage,
+  #   configuration options → configuration, setup → basic usage
+  #
+  # preserve_sections:
+  #   - synopsis
+  #   - configuration
+  #   - basic usage
+  #   - usage
+  #   - summary
+  #
+  # Glob patterns for additional sections to preserve (e.g. Note:* headings).
+  # Default when absent: ["note:*"]
+  #
+  # preserve_patterns:
+  #   - "note:*"
+  #   - "setup*"
+  #
+  # Custom section aliases (destination heading → canonical template heading).
+  # Merged with built-in aliases above.
+  #
+  # section_aliases:
+  #   howto: basic usage
+  #   options: configuration
+  # README badges managed by the template.
+  badges:
+    # FOSSA license/security status badge.
+    # false - omit the badge (default)
+    # true  - derive project id from the GitHub repository slug
+    # string or mapping project/project_id/slug - explicit FOSSA project id
+    #
+    # Example:
+    # fossa: git+github.com/pboling/example
+    fossa: false
+
+</code></pre>
+<p>SPDX license identifiers for this project.</p>
+
+<p>List one or more licenses that apply to the gem. Users may use the software</p>
+
+<p>under the terms of any one license listed here (OR semantics, not AND).</p>
+
+<p>Accepted values (initial supported set):</p>
+
+<p>MIT                              - MIT License (open source, permissive)</p>
+
+<p>AGPL-3.0-only                    - GNU Affero General Public License v3</p>
+
+<p>PolyForm-Noncommercial-1.0.0     - PolyForm Noncommercial License 1.0.0</p>
+
+<p>PolyForm-Small-Business-1.0.0    - PolyForm Small Business License 1.0.0</p>
+
+<p>LicenseRef-Big-Time-Public-License - Big Time Public License 2.0.2</p>
+
+<p>Defaults to spec.licenses from the gemspec when this key is absent.</p>
+
+<p>Template behaviour:</p>
+
+<ul>
+  <li>
+    <p>Each listed license is copied as <SPDX-basename>.md into the project.</SPDX-basename></p>
+  </li>
+  <li>
+    <p>A LICENSE.md index file is generated referencing all chosen licenses.</p>
+  </li>
+  <li>
+    <p>Any non-MIT license adds a “contact for commercial license” prompt.</p>
+  </li>
+  <li>
+    <p>When MIT (or AGPL), a PolyForm variant, AND LicenseRef-Big-Time-Public-License</p>
+
+    <p>are all present, a use-case guide table is added to README and LICENSE.md.</p>
+  </li>
+</ul>
+
+<pre><code class="language-yaml">licenses:
+  - MIT
+</code></pre>
+<p>Apache SkyWalking Eyes dependency license overrides.</p>
+
+<p>Use these when license-eye cannot identify a dependency license from the</p>
+
+<p>package metadata or gem contents. Entries render under</p>
+
+<p>dependency.licenses in .licenserc.yaml.</p>
+
+<p>Supported fields:</p>
+
+<p>name    - dependency name exactly as reported by license-eye</p>
+
+<p>license - SPDX license identifier to assign</p>
+
+<p>version - optional dependency version for a narrower override</p>
+
+<pre><code class="language-yaml">license_eye:
+  dependency_licenses:
+    - name: simplecov-rcov
+      version: 0.3.7
+      license: MIT
+
+</code></pre>
+<p>Machine / automation accounts to exclude from generated copyright output.</p>
+
+<p>When kettle-jem collects copyright information via <code>git blame</code>, it filters</p>
+
+<p>out known GitHub/GitLab bot accounts automatically.  Use this list to also</p>
+
+<p>exclude internal automation accounts that are not bots in the git sense</p>
+
+<p>(i.e. they do not follow the “[bot]” naming convention).</p>
+
+<p>Each entry is matched case-insensitively against the commit author name AND</p>
+
+<p>the commit author email, so you can list either form.</p>
+
+<p>Default (when key is absent or empty): [“autobolt”]</p>
+
+<pre><code class="language-yaml">machine_users:
+  - autobolt
+
+</code></pre>
+<p>Self-test / templating CI threshold.</p>
+
+<p>Set to a number from 0 to 100 to fail <code>rake kettle:jem:selftest</code> once</p>
+
+<p>divergence exceeds that percent. Leave blank to report only.</p>
+
+<p>Divergence is currently measured as the percent of produced files that would</p>
+
+<p>change or be added during templating (100 - unchanged-file score).</p>
+
+<p>ENV override: KJ_MIN_DIVERGENCE_THRESHOLD</p>
+
+<pre><code class="language-yaml">min_divergence_threshold: ""
+
+</code></pre>
+<p>Hostname used for generated YARD documentation links.</p>
+
+<p>Defaults to <gem-name>.<author-email-domain>.</author-email-domain></gem-name></p>
+
+<p>ENV override: KJ_YARD_HOST</p>
+
+<pre><code class="language-yaml">yard_host: "oauth2.galtzo.com"
+
+</code></pre>
+<p>Full URL used for gemspec metadata[“homepage_uri”].</p>
+
+<p>Defaults to https://oauth2.galtzo.com.</p>
+
+<p>ENV override: KJ_HOMEPAGE_URI</p>
+
+<pre><code class="language-yaml">homepage_uri: "https://oauth2.galtzo.com"
+
+</code></pre>
+<p>Template source inventory.</p>
+
+<p>The packaged inventory is the canonical kettle-jem project template. It</p>
+
+<p>includes the detailed GitHub Actions workflow set, modular gemfiles,</p>
+
+<p>README badges, license files, config files, and support scripts.</p>
+
+<pre><code class="language-yaml">templates:
+  root: packaged
+  apply: true
+  # Template recipe profile.
+  # Supported values:
+  #   full            - full gem template
+  #   monorepo-subgem - smaller sub-project template
+  #   monorepo-root   - repository-root support template
+  #
+  # ENV override: KETTLE_JEM_TEMPLATE_PROFILE
+  profile: full
+
+</code></pre>
+<p>StructuredMerge Git diff driver setup.</p>
+
+<p>Default: semantic-diff installs local .gitattributes entries for semantic</p>
+
+<p>structured diffs. Use builtin-diff to retain Git’s built-in language drivers,</p>
+
+<p>global to register driver commands in user config, include-file to write</p>
+
+<p>.git/smorg/config, check to verify setup, undo to remove managed entries, or</p>
+
+<p>none to opt out.</p>
+
+<p>ENV override: KETTLE_JEM_GIT_DRIVERS</p>
+
+<pre><code class="language-yaml">git_drivers: semantic-diff
+
+</code></pre>
+<p>Optional kettle-jem plugins.</p>
+
+<p>Each entry is a gem name. During bootstrap, kettle-jem ensures each plugin is</p>
+
+<p>added as a development dependency so it is available after bin/setup.</p>
+
+<p>During bundled templating, kettle-jem requires the plugin and calls</p>
+
+<p><code>register_kettle_jem_plugin(registrar)</code> on its top-level handle.</p>
+
+<p>Phase callback names currently available:</p>
+
+<ul>
+  <li>
+    <p>config_sync</p>
+  </li>
+  <li>
+    <p>dev_container</p>
+  </li>
+  <li>
+    <p>github_workflows</p>
+  </li>
+  <li>
+    <p>quality_config</p>
+  </li>
+  <li>
+    <p>modular_gemfiles</p>
+  </li>
+  <li>
+    <p>spec_helper</p>
+  </li>
+  <li>
+    <p>environment_templates</p>
+  </li>
+  <li>
+    <p>remaining_files</p>
+  </li>
+  <li>
+    <p>git_hooks</p>
+  </li>
+  <li>
+    <p>license_files</p>
+  </li>
+  <li>
+    <p>duplicate_check</p>
+  </li>
+</ul>
+
+<p>Phase guarantees:</p>
+
+<ul>
+  <li>
+    <p>All plugin callbacks run during the bundled templating phase, after</p>
+
+    <p>bin/setup and bundle install have completed.</p>
+  </li>
+  <li>
+    <p>kettle-jem, kettle-dev, and any plugin gems listed here are loadable.</p>
+  </li>
+  <li>
+    <p>kettle-jem’s parser / merger runtime is available to callbacks.</p>
+  </li>
+  <li>
+    <p><code>remaining_files</code> runs after the destination Rakefile, gemspec, README,</p>
+
+    <p>and most template-managed files already exist on disk.</p>
+  </li>
+  <li>
+    <p><code>duplicate_check</code> runs last, after all template writes are complete.</p>
+  </li>
+</ul>
+
+<pre><code class="language-yaml">plugins:
+  - kettle-drift
+
+</code></pre>
+<p>Default merge options</p>
+
+<pre><code class="language-yaml">defaults:
+  preference: "template"
+  add_template_only_nodes: true
+  freeze_token: "kettle-jem"
+
+</code></pre>
+<p>Token replacement values.</p>
+
+<p>General rules:</p>
+
+<ul>
+  <li>
+    <p>Empty strings are treated as unset.</p>
+  </li>
+  <li>
+    <p>Use the bare identifier/slug/handle expected by the inline comment.</p>
+  </li>
+  <li>
+    <p>Do NOT paste full URLs unless the comment explicitly says to.</p>
+  </li>
+</ul>
+
+<p>Tip:</p>
+
+<p>The author fields in a newly created destination config are normally seeded</p>
+
+<p>from the gemspec via safe derivation. After that, destination values win.</p>
+
+<pre><code class="language-yaml">tokens:
+  forge:
+    gh_user: "pboling"        # GitHub username only, no @, no URL. Used for GitHub Sponsors and profile links. ENV: KJ_GH_USER
+    gl_user: "pboling"        # GitLab username only, no @, no URL. Used for profile links. ENV: KJ_GL_USER
+    cb_user: "pboling"        # Codeberg username only, no @, no URL. Used for profile links. ENV: KJ_CB_USER
+    sh_user: "galtzo"        # SourceHut username only, no leading ~, no URL. Used as https://sr.ht/~&lt;value&gt;/. ENV: KJ_SH_USER
+
+  author:
+    name: "Peter H. Boling"                 # Full display name. Example: Ada Lovelace. ENV: KJ_AUTHOR_NAME. Auto-seeded from gemspec authors.first
+    given_names: "Peter H."   # Given/personal names only. Example: Ada. ENV: KJ_AUTHOR_GIVEN_NAMES. Auto-seeded when AUTHOR:NAME can be split
+    family_names: "Boling" # Family/surname only. Example: Lovelace. ENV: KJ_AUTHOR_FAMILY_NAMES. Auto-seeded when AUTHOR:NAME can be split
+    email: "floss@galtzo.com"               # Primary public email address. Example: floss@galtzo.com. ENV: KJ_AUTHOR_EMAIL. Auto-seeded from gemspec email.first
+    domain: "galtzo.com"             # Bare domain only, no scheme, no email. Example: galtzo.com. ENV: KJ_AUTHOR_DOMAIN. Auto-seeded from AUTHOR:EMAIL
+    orcid: "0009-0008-8519-441X"                                # ORCID identifier only, not the full URL. Example: 0000-0001-2345-6789. ENV: KJ_AUTHOR_ORCID
+
+  funding:
+    open_collective: "ruby-oauth" # Open Collective slug, true to enable with ENV/.opencollective.yml, false to disable. ENV: OPENCOLLECTIVE_HANDLE or FUNDING_ORG
+    patreon: "galtzo"        # Patreon account slug only. Used as https://patreon.com/&lt;value&gt;. ENV: KJ_FUNDING_PATREON
+    kofi: "pboling"           # Ko-fi handle/slug only. Used as https://ko-fi.com/&lt;value&gt;. ENV: KJ_FUNDING_KOFI
+    paypal: "peterboling"         # PayPal.Me slug only. Used as https://www.paypal.com/paypalme/&lt;value&gt;. ENV: KJ_FUNDING_PAYPAL
+    buymeacoffee: "pboling"   # Buy Me a Coffee slug only. Used as https://www.buymeacoffee.com/&lt;value&gt;. ENV: KJ_FUNDING_BUYMEACOFFEE
+    polar: "pboling"          # Polar handle/slug only. Used as https://polar.sh/&lt;value&gt;. ENV: KJ_FUNDING_POLAR
+    liberapay: "pboling"      # Liberapay account slug only. Used as https://liberapay.com/&lt;value&gt;/donate. ENV: KJ_FUNDING_LIBERAPAY
+    issuehunt: "pboling"      # IssueHunt identifier/handle only, not a URL. ENV: KJ_FUNDING_ISSUEHUNT
+
+  social:
+    mastodon: "galtzo"       # Local handle only for the instance assumed by the template link. Current template uses https://ruby.social/@&lt;value&gt;. ENV: KJ_SOCIAL_MASTODON
+    bluesky: "galtzo.com"        # Full Bluesky handle. Example: peterboling.dev or alice.bsky.social. Used as https://bsky.app/profile/&lt;value&gt;. ENV: KJ_SOCIAL_BLUESKY
+    linktree: "galtzo"       # Linktree username only. Used as https://linktr.ee/&lt;value&gt;. ENV: KJ_SOCIAL_LINKTREE
+    devto: "galtzo"          # DEV Community username only. Used as https://dev.to/&lt;value&gt;. ENV: KJ_SOCIAL_DEVTO
+
+</code></pre>
+<p>Glob patterns evaluated in order (first match wins)</p>
+
+<pre><code class="language-yaml">patterns:
+  - path: "certs/**"
+    strategy: raw_copy
+  - path: ".github/workflows/**"
+    strategy: accept_template
+
+</code></pre>
+<p>Per-file configuration (nested directory structure)</p>
+
+<p>Only files that need overrides belong here. Everything else defaults to merge.</p>
+
+<pre><code class="language-yaml">files:
+  AGENTS.md:
+    strategy: accept_template
+  Appraisal.root.gemfile:
+    strategy: accept_template
+  Gemfile:
+    strategy: accept_template
+  Rakefile:
+    strategy: accept_template
+  lib:
+    oauth2:
+      version.rb:
+        # This branch exposes OAuth2::Version methods used by its gemspec and consumers.
+        strategy: keep_destination
+  spec:
+    oauth2:
+      version_spec.rb:
+        # Keep 1.4 version API coverage (to_s, semantic parts, prerelease).
+        strategy: keep_destination
+  oauth2.gemspec:
+    # The 1.4.x gemspec is a release contract: keep its Ruby 1.9 floor,
+    # runtime dependency ceilings, and historical post-install guidance.
+    # The current template introduces dependencies that require Ruby &gt;= 2.2.
+    strategy: keep_destination
+  .github:
+    copilot_instructions.md:
+      strategy: accept_template
+  gemfiles:
+    modular:
+      templating.gemfile:
+        strategy: accept_template
+      templating_local.gemfile:
+        strategy: accept_template
+</code></pre>
+<hr />
+
+<p>Produced by <a href="https://github.com/kettle-dev/yaml-converter">yaml-converter</a></p>
+</div>
+</body>
+</html>

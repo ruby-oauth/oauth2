@@ -110,6 +110,11 @@ dependency_conflicts:
   # Review each entry and choose a supported action.
   # keep_both is for a broad direct requirement plus a compatible modular narrowing.
   resolve:
+    - gem: rubocop-lts
+      direct: oauth2.gemspec
+      modular: gemfiles/modular/style.gemfile
+      action: remove_direct_gem
+      reason: "The template style bundle now owns the development dependency; remove the incompatible 1.4 pin."
     - gem: addressable
       direct: oauth2.gemspec
       modular: gemfiles/modular/optional.gemfile
@@ -627,6 +632,8 @@ files:
     strategy: accept_template
   Rakefile:
     strategy: accept_template
+    preference: destination
+    add_template_only_nodes: true
   lib:
     oauth2:
       version.rb:
@@ -637,11 +644,6 @@ files:
       version_spec.rb:
         # Keep 1.4 version API coverage (to_s, semantic parts, prerelease).
         strategy: keep_destination
-  oauth2.gemspec:
-    # The 1.4.x gemspec is a release contract: keep its Ruby 1.9 floor,
-    # runtime dependency ceilings, and historical post-install guidance.
-    # The current template introduces dependencies that require Ruby >= 2.2.
-    strategy: keep_destination
   .github:
     copilot_instructions.md:
       strategy: accept_template

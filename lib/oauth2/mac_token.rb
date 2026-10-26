@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require 'base64'
-require 'digest'
-require 'openssl'
-require 'securerandom'
+require "base64"
+require "digest"
+require "openssl"
+require "securerandom"
 
 module OAuth2
   class MACToken < AccessToken
@@ -31,7 +31,7 @@ module OAuth2
     # @option opts [FixNum, String] :algorithm (hmac-sha-256) the algorithm to use for the HMAC digest (one of 'hmac-sha-256', 'hmac-sha-1')
     def initialize(client, token, secret, opts = {})
       @secret = secret
-      self.algorithm = opts.delete(:algorithm) || 'hmac-sha-256'
+      self.algorithm = opts.delete(:algorithm) || "hmac-sha-256"
 
       super(client, token, opts)
     end
@@ -46,7 +46,7 @@ module OAuth2
       url = client.connection.build_url(path, opts[:params]).to_s
 
       opts[:headers] ||= {}
-      opts[:headers]['Authorization'] = header(verb, url)
+      opts[:headers]["Authorization"] = header(verb, url)
 
       @client.request(verb, path, opts, &block)
     end
@@ -62,7 +62,7 @@ module OAuth2
     # @param [String] url the HTTP URL path of the request
     def header(verb, url)
       timestamp = Time.now.utc.to_i
-      nonce = Digest::SHA256.hexdigest([timestamp, SecureRandom.hex].join(':'))
+      nonce = Digest::SHA256.hexdigest([timestamp, SecureRandom.hex].join(":"))
 
       uri = URI.parse(url)
 
@@ -87,7 +87,7 @@ module OAuth2
         uri.request_uri,
         uri.host,
         uri.port,
-        '', nil
+        "", nil
       ].join("\n")
 
       strict_encode64(OpenSSL::HMAC.digest(@algorithm, secret, signature))
@@ -98,21 +98,21 @@ module OAuth2
     # @param [String] alg the algorithm to use (one of 'hmac-sha-1', 'hmac-sha-256')
     def algorithm=(alg)
       @algorithm = case alg.to_s
-                   when 'hmac-sha-1'
-                     begin
-                       OpenSSL::Digest('SHA1').new
-                     rescue StandardError
-                       OpenSSL::Digest.new('SHA1')
-                     end
-                   when 'hmac-sha-256'
-                     begin
-                       OpenSSL::Digest('SHA256').new
-                     rescue StandardError
-                       OpenSSL::Digest.new('SHA256')
-                     end
-                   else
-                     raise(ArgumentError, 'Unsupported algorithm')
-                   end
+      when "hmac-sha-1"
+        begin
+          OpenSSL::Digest("SHA1").new
+        rescue
+          OpenSSL::Digest.new("SHA1")
+        end
+      when "hmac-sha-256"
+        begin
+          OpenSSL::Digest("SHA256").new
+        rescue
+          OpenSSL::Digest.new("SHA256")
+        end
+      else
+        raise(ArgumentError, "Unsupported algorithm")
+      end
     end
 
   private

@@ -2,7 +2,7 @@
 
 module OAuth2
   module Version
-    VERSION = to_s
+    VERSION = "1.4.11"
 
   module_function
 
@@ -57,7 +57,7 @@ module OAuth2
     #
     # @return [String]
     def to_s
-      v = [major, minor, patch].compact.join('.')
+      v = [major, minor, patch].compact.join(".")
       v += "-#{pre}" if pre
       v
     end

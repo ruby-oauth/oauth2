@@ -139,6 +139,3 @@ Layout/IndentationConsistency:
 Naming/FileName:
   Exclude:
     - '**/vHEAD.gemfile'
-
-#Style/SafeNavigation:
-#  Enabled: false

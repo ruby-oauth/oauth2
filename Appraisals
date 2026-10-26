@@ -10,7 +10,7 @@
 #   bin/rake appraisal:generate
 # Use bin/rake appraisal:update only when refreshing appraisal locks is intentional.
 
-plugin "appraisal2-rubocop", require: "appraisal2/rubocop", optional: true
+plugin "appraisal2-rubocop", :require => "appraisal2/rubocop", :optional => true
 
 # Lock/Unlock Deps Pattern
 #

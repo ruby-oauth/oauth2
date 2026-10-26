@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'base64'
+require "base64"
 
 module OAuth2
   class Authenticator
@@ -37,7 +37,7 @@ module OAuth2
     end
 
     def self.encode_basic_auth(user, password)
-      'Basic ' + Base64.encode64(user + ':' + password).delete("\n")
+      "Basic " + Base64.encode64(user + ":" + password).delete("\n")
     end
 
   private
@@ -45,13 +45,13 @@ module OAuth2
     # Adds client_id and client_secret request parameters if they are not
     # already set.
     def apply_params_auth(params)
-      {'client_id' => id, 'client_secret' => secret}.merge(params)
+      {"client_id" => id, "client_secret" => secret}.merge(params)
     end
 
     # When using schemes that don't require the client_secret to be passed i.e TLS Client Auth,
     # we don't want to send the secret
     def apply_client_id(params)
-      {'client_id' => id}.merge(params)
+      {"client_id" => id}.merge(params)
     end
 
     # Adds an `Authorization` header with Basic Auth credentials if and only if
@@ -64,7 +64,7 @@ module OAuth2
 
     # @see https://datatracker.ietf.org/doc/html/rfc2617#section-2
     def basic_auth_header
-      {'Authorization' => self.class.encode_basic_auth(id, secret)}
+      {"Authorization" => self.class.encode_basic_auth(id, secret)}
     end
   end
 end

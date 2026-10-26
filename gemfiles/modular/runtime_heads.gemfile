@@ -9,6 +9,6 @@
 # Test against HEAD of runtime dependencies so we can proactively file bugs
 
 # Ruby >= 2.2
-gem "version_gem", github: "ruby-oauth/version_gem", branch: "main"
+gem "version_gem", :github => "ruby-oauth/version_gem", :branch => "main"
 
 eval_gemfile("x_std_libs/vHEAD.gemfile")

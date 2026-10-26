@@ -54,13 +54,12 @@ Please file a bug if you notice a violation of semantic versioning.
 - kettle-jem-template-20260801-001 - Generated README gem dashboard links now
   use ClickGems instead of BestGems.
 
-- [kc] kettle-jem/template: updated 8 project files:
-  - code and tests (3)
-  - configuration (1)
-  - dependencies (1)
+- [kc] kettle-jem/template: updated 37 project files:
+  - code and tests (2)
+  - dependencies (25)
   - documentation (1)
-  - other (1)
-  - workflows (1)
+  - other (3)
+  - workflows (6)
 
 ### Deprecated
 
@@ -116,7 +115,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ## [1.4.11] - 2022-09-16
 - Complete migration to main branch as default (@pboling)
-- Complete migration to Gitlab, updating all links, and references in VCS-managed files (@pboling) 
+- Complete migration to Gitlab, updating all links, and references in VCS-managed files (@pboling)
 
 ## [1.4.10] - 2022-07-01
 - FIPS Compatibility [#587](https://gitlab.com/oauth-xx/oauth2/-/merge_requests/587) (@akostadinov)
