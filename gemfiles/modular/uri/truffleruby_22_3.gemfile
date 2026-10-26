@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
 if RUBY_ENGINE == "truffleruby" && RUBY_ENGINE_VERSION.start_with?("22.3")
-  # URI 1.1.x can crash old TruffleRuby's regexp engine during Bundler gemspec validation.
-  gem "uri", "~> 1.0.4"
+  # URI 1.0+ can crash old TruffleRuby's regexp engine during Bundler gemspec validation.
+  gem "uri", "~> 0.10.3"
 end
