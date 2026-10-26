@@ -340,9 +340,9 @@ describe OAuth2::Client do
           subject.request(:get, "/success")
         end
         logs = [
-          "-- request: GET https://api.example.com/success",
-          "-- response: Status 200",
-          '-- response: Content-Type: "text/awesome"',
+          "request: GET https://api.example.com/success",
+          "response: Status 200",
+          'response: Content-Type: "text/awesome"',
         ]
         expect(output).to include(*logs)
       end

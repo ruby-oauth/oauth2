@@ -2,8 +2,6 @@
 
 module OAuth2
   module Version
-    VERSION = "1.4.11"
-
   module_function
 
     # The major version
@@ -61,5 +59,7 @@ module OAuth2
       v += "-#{pre}" if pre
       v
     end
+
+    VERSION = to_s
   end
 end

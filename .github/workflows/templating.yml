@@ -61,6 +61,11 @@ jobs:
           manual-compatibility-bundle: true
           gem-install-retries: 7
 
+      - name: Install templating bootstrap bundle
+        env:
+          BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile
+        run: bundle install --jobs 1
+
       - name: Update templating bootstrap dependencies
         env:
           BUNDLE_GEMFILE: ${{ github.workspace }}/Gemfile

@@ -24,6 +24,17 @@ gem_version =
 Gem::Specification.new do |spec|
   spec.name = "oauth2"
   spec.version = gem_version
+  # kettle-jem:freeze
+  spec.post_install_message = <<-MESSAGE
+    You have installed oauth2 version #{gem_version}, which is EOL.
+    No further support is anticipated for the 1.4.x series.
+
+    OAuth2 version 2 is released. There are breaking changes, but upgrading should be easy.
+    Please see https://github.com/ruby-oauth/oauth2#what-is-new-for-v20
+
+    Please upgrade, report issues, and support the project! Thanks, |7eter l-|. l3oling
+  MESSAGE
+  # kettle-jem:unfreeze
   spec.authors = ["Peter Boling", "Erik Michaels-Ober", "Michael Bleigh"]
   spec.email = ["peter.boling@gmail.com"]
 
@@ -148,7 +159,8 @@ Gem::Specification.new do |spec|
   # Loads version files in anonymous namespaces for coverage without constant redefinition warnings.
   spec.add_development_dependency("anonymous_loader", "~> 0.1", ">= 0.1.5")         # ruby >= 2.2.0
   spec.add_development_dependency("appraisal2", "~> 3.2", ">= 3.2.6")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.28")            # ruby >= 2.4
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.28")
+  spec.add_development_dependency("nkf", ">= 0.3")            # ruby >= 2.4
   spec.add_development_dependency("turbo_tests2", "~> 4.0", ">= 4.0.0")           # ruby >= 2.4.0, default kettle-test runner
 
   # Releasing

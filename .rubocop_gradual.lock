@@ -5,13 +5,13 @@
   "lib/oauth2/client.rb:3374912479": [
     [163, 16, 12, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 4245087757]
   ],
-  "oauth2.gemspec:6964695": [
-    [116, 3, 53, "Gemspec/DependencyVersion: Dependency version specification is required.", 1845662118],
-    [117, 3, 46, "Gemspec/DependencyVersion: Dependency version specification is required.", 3376509709],
-    [120, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3000483332],
-    [175, 3, 57, "Gemspec/DependencyVersion: Dependency version specification is required.", 3994579428],
-    [176, 3, 51, "Gemspec/DependencyVersion: Dependency version specification is required.", 2431526258],
-    [178, 3, 47, "Gemspec/DependencyVersion: Dependency version specification is required.", 3814335129]
+  "oauth2.gemspec:2274299248": [
+    [127, 3, 53, "Gemspec/DependencyVersion: Dependency version specification is required.", 1845662118],
+    [128, 3, 46, "Gemspec/DependencyVersion: Dependency version specification is required.", 3376509709],
+    [131, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3000483332],
+    [187, 3, 57, "Gemspec/DependencyVersion: Dependency version specification is required.", 3994579428],
+    [188, 3, 51, "Gemspec/DependencyVersion: Dependency version specification is required.", 2431526258],
+    [190, 3, 47, "Gemspec/DependencyVersion: Dependency version specification is required.", 3814335129]
   ],
   "spec/oauth2/access_token_spec.rb:2803960793": [
     [147, 13, 25, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 770233088]
@@ -20,7 +20,7 @@
     [42, 15, 33, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 297534737],
     [51, 15, 38, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1480816240]
   ],
-  "spec/oauth2/client_spec.rb:875776579": [
+  "spec/oauth2/client_spec.rb:3989448803": [
     [156, 7, 467, "RSpec/NoExpectationExample: No expectation found in this example.", 1846255259],
     [175, 7, 570, "RSpec/NoExpectationExample: No expectation found in this example.", 354025061],
     [188, 15, 20, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2320605227],
