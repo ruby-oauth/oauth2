@@ -10,7 +10,8 @@ rescue LoadError
 end
 
 module OAuth2
-  if defined?(Faraday::Logging::Formatter) # Faraday >= 1.0
+  # The else arm only runs on Faraday 0.x, which the coverage run does not load.
+  if defined?(Faraday::Logging::Formatter) # Faraday >= 1.0 # simplecov:disable branch
     # Faraday logging formatter that redacts sensitive values from Hash and Array
     # request/response bodies BEFORE Faraday renders them (via `pretty_inspect`).
     #

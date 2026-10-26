@@ -636,7 +636,8 @@ module OAuth2
         logger_options = {bodies: true}
         # Faraday >= 1.0 supports pluggable formatters; use ours to redact
         # structured (Hash/Array) bodies before Faraday renders them.
-        if defined?(OAuth2::SanitizedLogFormatter)
+        # The else arm only runs on Faraday 0.x, which the coverage run does not load.
+        if defined?(OAuth2::SanitizedLogFormatter) # simplecov:disable branch
           # Faraday instantiates the formatter with (logger:, options:); the
           # formatter snapshots redaction config from OAuth2.config at that point.
           logger_options[:formatter] = OAuth2::SanitizedLogFormatter

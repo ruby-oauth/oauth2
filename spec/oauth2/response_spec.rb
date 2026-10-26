@@ -318,6 +318,19 @@ RSpec.describe OAuth2::Response do
     end
   end
 
+  describe "#parser" do
+    it "memoizes the resolved parser" do
+      response = double("response", headers: {"Content-Type" => "application/json"}, body: "{}")
+      subject = described_class.new(response)
+      allow(subject).to receive(:content_type).and_call_original
+
+      first = subject.parser
+
+      expect(subject.parser).to equal(first)
+      expect(subject).to have_received(:content_type).once
+    end
+  end
+
   context "with xml parser registration" do
     it "tries to load multi_xml.rb and use it" do
       expect(described_class.send(:class_variable_get, :@@parsers)[:xml]).not_to be_nil
