@@ -2,12 +2,19 @@
 
 require "faraday"
 require "logger"
+require "uri"
 
 module OAuth2
   ConnectionError = Class.new(Faraday::ConnectionFailed)
   # The OAuth2::Client class
   class Client # rubocop:disable Metrics/ClassLength
     RESERVED_PARAM_KEYS = ["headers", "parse"].freeze
+    SENSITIVE_DEBUG_KEYS = [
+      "access_token", "refresh_token", "client_secret", "code", "code_verifier",
+      "password", "assertion", "id_token", "token", "client_assertion",
+      "device_code", "subject_token", "actor_token", "accessToken",
+      "refreshToken", "idToken"
+    ].freeze
 
     attr_reader :id, :secret, :site
     attr_accessor :options
@@ -127,7 +134,9 @@ module OAuth2
         location = response.headers["location"]
         if location
           location = "./#{location}" if location.start_with?("//")
-          request(verb, location, opts)
+          next_url = connection.build_url(location).to_s
+          opts = sanitize_redirect_options(opts, url, next_url)
+          request(verb, next_url, opts)
         else
           error = Error.new(response)
           raise(error, "Got #{response.status} status code, but no Location header was present")
@@ -290,8 +299,36 @@ module OAuth2
       end
     end
 
+    def sanitize_redirect_options(opts, current_url, next_url)
+      current_uri = URI.parse(current_url)
+      next_uri = URI.parse(next_url)
+      return opts if current_uri.scheme == next_uri.scheme &&
+        current_uri.host == next_uri.host &&
+        current_uri.port == next_uri.port
+
+      safe_opts = opts.dup
+      [:body, "body", :params, "params"].each { |key| safe_opts.delete(key) }
+      [:headers, "headers"].each do |key|
+        headers = safe_opts[key]
+        next unless headers
+
+        safe_headers = headers.dup
+        safe_headers.delete_if { |header, _value| header.to_s.downcase == "authorization" }
+        safe_opts[key] = safe_headers
+      end
+      safe_opts
+    end
+
     def oauth_debug_logging(builder)
-      builder.response :logger, options[:logger], :bodies => true if ENV["OAUTH_DEBUG"] == "true"
+      return unless ENV["OAUTH_DEBUG"] == "true"
+
+      builder.response :logger, options[:logger], :bodies => true do |logger|
+        logger.filter(/^(\s*Authorization\s*:\s*).*$/i, "\\1[FILTERED]")
+        SENSITIVE_DEBUG_KEYS.each do |key|
+          pattern = /(["']?#{Regexp.escape(key)}["']?\s*(?:=>|:|=)\s*)(?:"[^"]*"|'[^']*'|[^&,\s}]+)/i
+          logger.filter(pattern, "\\1[FILTERED]")
+        end
+      end
     end
   end
 end

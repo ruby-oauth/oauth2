@@ -15,6 +15,9 @@ source "https://gem.coop"
 
 gemspec
 
+eval_gemfile "gemfiles/modular/json/truffleruby_22_3.gemfile"
+eval_gemfile "gemfiles/modular/json/truffleruby_23_1.gemfile"
+
 # The style toolchain includes dependencies that require Ruby 3.3 or newer.
 if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.3")
   if respond_to?(:generator_only)

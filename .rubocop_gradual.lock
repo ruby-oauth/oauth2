@@ -2,8 +2,8 @@
   "bin/bundle:3474730829": [
     [66, 5, 20, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2485198147]
   ],
-  "lib/oauth2/client.rb:1486089202": [
-    [164, 16, 12, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 4245087757]
+  "lib/oauth2/client.rb:4154274791": [
+    [173, 16, 12, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 4245087757]
   ],
   "oauth2.gemspec:4057149467": [
     [127, 3, 53, "Gemspec/DependencyVersion: Dependency version specification is required.", 1845662118],
@@ -20,17 +20,17 @@
     [42, 15, 33, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 297534737],
     [51, 15, 38, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1480816240]
   ],
-  "spec/oauth2/client_spec.rb:1773552348": [
+  "spec/oauth2/client_spec.rb:626162787": [
     [158, 7, 467, "RSpec/NoExpectationExample: No expectation found in this example.", 1846255259],
     [177, 7, 570, "RSpec/NoExpectationExample: No expectation found in this example.", 354025061],
     [190, 15, 20, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 2320605227],
     [205, 15, 20, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1276531672],
     [220, 15, 43, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 1383956904],
     [235, 15, 43, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 3376202107],
-    [384, 5, 369, "RSpec/NoExpectationExample: No expectation found in this example.", 648287915],
-    [393, 5, 471, "RSpec/NoExpectationExample: No expectation found in this example.", 1581534062],
-    [465, 45, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
-    [473, 45, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
-    [508, 45, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
+    [458, 5, 369, "RSpec/NoExpectationExample: No expectation found in this example.", 648287915],
+    [467, 5, 471, "RSpec/NoExpectationExample: No expectation found in this example.", 1581534062],
+    [539, 45, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [547, 45, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785],
+    [582, 45, 2, "RSpec/BeEq: Prefer `be` over `eq`.", 5860785]
   ]
 }

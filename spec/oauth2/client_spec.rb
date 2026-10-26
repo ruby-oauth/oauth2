@@ -279,6 +279,36 @@ describe OAuth2::Client do
       expect(response.body).to eq("api.example.com")
     end
 
+    it "does not forward credentials across cross-origin redirects" do
+      client = described_class.new("abc", "def", :site => "https://api.example.com") do |builder|
+        builder.adapter :test do |stub|
+          stub.post("/start") do
+            [307, {"Content-Type" => "text/plain", "location" => "https://attacker.example/collect"}, ""]
+          end
+          stub.post("/collect") do |env|
+            [200, {}, MultiJson.encode(
+              :body => env[:body],
+              :params => env[:params],
+              :authorization => env[:request_headers]["Authorization"]
+            )]
+          end
+        end
+      end
+
+      response = client.request(
+        :post,
+        "/start",
+        :body => "client_secret=secret",
+        :params => {"code" => "sensitive-code"},
+        :headers => {"Authorization" => "Bearer sensitive-token"}
+      )
+      logged_request = MultiJson.decode(response.body)
+
+      expect(logged_request["body"]).to be_nil.or be_empty
+      expect(logged_request["params"]).to eq({})
+      expect(logged_request["authorization"]).to be_nil
+    end
+
     it "redirects using GET on a 303" do
       response = subject.request(:post, "/redirect", :body => "foo=bar")
       expect(response.body).to be_empty
@@ -353,6 +383,50 @@ describe OAuth2::Client do
           'response: Content-Type: "text/awesome"',
         ]
         expect(output).to include(*logs)
+      end
+
+      it "redacts Authorization headers from debug logs" do
+        output = capture(:stdout) do
+          client = described_class.new(
+            "abc",
+            "def",
+            :site => "https://api.example.com",
+            :logger => Logger.new($stdout)
+          ) do |builder|
+            builder.adapter :test do |stub|
+              stub.get("/sensitive") { |_env| [200, {}, "ok"] }
+            end
+          end
+          client.request(:get, "/sensitive", :headers => {"Authorization" => "Bearer sensitive-token"})
+        end
+
+        expect(output).not_to include("sensitive-token")
+        expect(output).to include("[FILTERED]")
+      end
+
+      it "redacts token request secrets from debug logs" do
+        output = capture(:stdout) do
+          client = described_class.new(
+            "abc",
+            "the-client-secret",
+            :site => "https://api.example.com",
+            :auth_scheme => :request_body
+          ) do |builder|
+            builder.request :url_encoded
+            builder.adapter :test do |stub|
+              stub.post("/oauth/token") do
+                [200, {"Content-Type" => "application/json"}, MultiJson.encode("access_token" => "the-access-token")]
+              end
+            end
+          end
+
+          client.get_token("code_verifier" => "the-code-verifier")
+        end
+
+        expect(output).not_to include("the-client-secret", "the-code-verifier", "the-access-token")
+
+        expect(output).not_to include("def", "the-code-verifier", "the-access-token")
+        expect(output).to include("[FILTERED]")
       end
     end
   end

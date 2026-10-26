@@ -72,6 +72,7 @@ Please file a bug if you notice a violation of semantic versioning.
 - [#771](https://github.com/ruby-oauth/oauth2/pull/771) Return raw response bodies only for JSON decode failures, and propagate unrelated parser errors (@dpep)
 - Constrain JSON and XML parser dependencies to versions compatible with supported older runtimes.
 - Constrain the TruffleRuby 23.1 appraisal to Faraday versions compatible with its parser.
+- Pin the TruffleRuby 22.3 appraisal to its bundled JSON version.
 
 - kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now
   uses the installed `smorg-rb` driver command.
@@ -118,6 +119,8 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Security
 
 - Prevent protocol-relative redirects from sending bearer tokens to an attacker-controlled host ([GHSA-pp92-crg2-gfv9](https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-pp92-crg2-gfv9)).
+- Remove authorization headers, request bodies, and query parameters from cross-origin redirects.
+- Redact access tokens, refresh tokens, client secrets, authorization codes, and other sensitive fields from opt-in debug logs.
 
 ## [1.4.11] - 2022-09-16
 - Complete migration to main branch as default (@pboling)
