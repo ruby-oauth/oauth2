@@ -128,8 +128,8 @@ Gem::Specification.new do |spec|
   spec.add_dependency "jwt", [">= 1.0", "< 3.0"]
   # MultiJson 1.20+ uses Fiber-local storage unavailable on supported TruffleRuby versions.
   spec.add_dependency "multi_json", ">= 1.3", "< 1.20"
-  # MultiXml 0.9+ uses Fiber-local storage unavailable on supported TruffleRuby versions.
-  spec.add_dependency "multi_xml", "~> 0.5", "< 0.9"
+  # MultiXml 0.8+ uses syntax unsupported by supported older TruffleRuby versions.
+  spec.add_dependency "multi_xml", "~> 0.5", "< 0.8"
   spec.add_dependency "rack", [">= 1.2", "< 4"]
 
   # NOTE: It is preferable to list development dependencies in the gemspec due to increased
