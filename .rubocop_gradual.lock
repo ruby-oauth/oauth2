@@ -5,13 +5,13 @@
   "lib/oauth2/client.rb:4163689267": [
     [164, 16, 12, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 4245087757]
   ],
-  "oauth2.gemspec:3869484715": [
+  "oauth2.gemspec:2998648244": [
     [127, 3, 53, "Gemspec/DependencyVersion: Dependency version specification is required.", 1845662118],
     [128, 3, 46, "Gemspec/DependencyVersion: Dependency version specification is required.", 3376509709],
-    [131, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3000483332],
-    [188, 3, 57, "Gemspec/DependencyVersion: Dependency version specification is required.", 3994579428],
-    [189, 3, 51, "Gemspec/DependencyVersion: Dependency version specification is required.", 2431526258],
-    [191, 3, 47, "Gemspec/DependencyVersion: Dependency version specification is required.", 3814335129]
+    [132, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3000483332],
+    [189, 3, 57, "Gemspec/DependencyVersion: Dependency version specification is required.", 3994579428],
+    [190, 3, 51, "Gemspec/DependencyVersion: Dependency version specification is required.", 2431526258],
+    [192, 3, 47, "Gemspec/DependencyVersion: Dependency version specification is required.", 3814335129]
   ],
   "spec/oauth2/access_token_spec.rb:2803960793": [
     [147, 13, 25, "RSpec/ContextWording: Context description should match /^when\\b/, /^with\\b/, or /^without\\b/.", 770233088]

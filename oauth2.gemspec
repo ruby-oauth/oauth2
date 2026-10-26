@@ -126,7 +126,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "faraday", [">= 0.17.3", "< 3.0"]
   spec.add_dependency "jwt", [">= 1.0", "< 3.0"]
-  spec.add_dependency "multi_json", "~> 1.3"
+  # MultiJson 1.20+ uses Fiber-local storage unavailable on supported TruffleRuby versions.
+  spec.add_dependency "multi_json", ">= 1.3", "< 1.20"
   spec.add_dependency "multi_xml", "~> 0.5"
   spec.add_dependency "rack", [">= 1.2", "< 4"]
 

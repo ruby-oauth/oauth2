@@ -45,6 +45,18 @@ jobs:
           - "3.0"
           - "3.1"
           - jruby
+        exclude:
+          # JRuby on Windows ships RubyGems itself; the latest updater fails here.
+          - ruby: jruby
+            gemfile: f2
+            rubygems: latest
+            bundler: latest
+        include:
+          - ruby: jruby
+            gemfile: f2
+            rubygems: default
+            bundler: default
+            experimental: true
 
     runs-on: windows-latest
     continue-on-error: ${{ matrix.experimental || endsWith(matrix.ruby, 'head') }}
