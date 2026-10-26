@@ -1,0 +1,6 @@
+# frozen_string_literal: true
+
+if RUBY_ENGINE == "truffleruby" && RUBY_ENGINE_VERSION.start_with?("23.1")
+  # Faraday 2.15.1 uses endless method definitions unsupported by this parser.
+  gem "faraday", "< 2.15.1"
+end

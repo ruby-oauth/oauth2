@@ -5,5 +5,6 @@ source "https://gem.coop"
 gemspec :path => "../"
 
 eval_gemfile("modular/json/truffleruby_23_1.gemfile")
+eval_gemfile("modular/faraday/truffleruby_23_1.gemfile")
 
 eval_gemfile("modular/x_std_libs/r3/libs.gemfile")

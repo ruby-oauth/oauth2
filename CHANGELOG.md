@@ -71,6 +71,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - [#771](https://github.com/ruby-oauth/oauth2/pull/771) Return raw response bodies only for JSON decode failures, and propagate unrelated parser errors (@dpep)
 - Constrain JSON and XML parser dependencies to versions compatible with supported older runtimes.
+- Constrain the TruffleRuby 23.1 appraisal to Faraday versions compatible with its parser.
 
 - kettle-jem-template-20260720-003 - StructuredMerge Git diff driver config now
   uses the installed `smorg-rb` driver command.
