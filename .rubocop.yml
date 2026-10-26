@@ -8,6 +8,16 @@ require:
 inherit_from:
   - .rubocop_todo.yml
   - .rubocop_rspec.yml
+plugins:
+  - rubocop-rspec
+  - rubocop-on-rbs
+  - rubocop-packaging
+# This tells RuboCop to add the exclusions in this file
+# to the default exclusions (and those from other inherited files),
+# rather than overwriting them.
+inherit_mode:
+  merge:
+    - Exclude
 
 AllCops:
   DisplayCopNames: true # Display the name of the failing cops
@@ -39,19 +49,19 @@ Style/PercentLiteralDelimiters:
 Metrics/BlockNesting:
   Max: 2
 
-Metrics/LineLength:
+Layout/LineLength:
   Enabled: false
 
 Metrics/ParameterLists:
   Max: 4
 
-Style/AccessModifierIndentation:
+Layout/AccessModifierIndentation:
   EnforcedStyle: outdent
 
-Style/DotPosition:
+Layout/DotPosition:
   EnforcedStyle: trailing
 
-Style/SpaceInsideHashLiteralBraces:
+Layout/SpaceInsideHashLiteralBraces:
   EnforcedStyle: no_space
 
 Lint/UnusedBlockArgument:
@@ -83,7 +93,10 @@ Style/DoubleNegation:
 Style/Encoding:
   Enabled: false
 
-Style/TrailingCommaInLiteral:
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+
+Style/TrailingCommaInHashLiteral:
   EnforcedStyleForMultiline: comma
 
 #Style/TrailingCommaInArrayLiteral:
@@ -115,6 +128,17 @@ Style/EachWithObject:
 # Turn back on once old Rubies are dropped
 Style/IfUnlessModifier:
   Enabled: false
+
+#Style/SafeNavigation:
+#  Enabled: false
+RBS:
+  Enabled: true
+Layout/IndentationConsistency:
+  Exclude: ['*.md']
+# Appraisal uses this filename for the moving HEAD dependency fixture.
+Naming/FileName:
+  Exclude:
+    - '**/vHEAD.gemfile'
 
 #Style/SafeNavigation:
 #  Enabled: false

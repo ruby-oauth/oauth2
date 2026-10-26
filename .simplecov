@@ -11,7 +11,7 @@
 #   so coverage only runs in that workflow, and outputs all formats.
 #
 if RUN_COVERAGE
-  SimpleCov.start do
+  SimpleCov.configure do
     enable_coverage :branch
     primary_coverage :branch
 

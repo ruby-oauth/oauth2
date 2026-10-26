@@ -12,3 +12,4 @@ require 'oauth2/strategy/assertion'
 require 'oauth2/access_token'
 require 'oauth2/mac_token'
 require 'oauth2/response'
+require_relative "oauth2/version"

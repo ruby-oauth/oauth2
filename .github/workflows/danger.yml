@@ -1,10 +1,17 @@
 name: What's up Danger?
 
+permissions:
+  contents: read
+
 on:
   pull_request:
     branches:
       - 'main'
       - '*-stable'
+
+concurrency:
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
   danger:
@@ -26,9 +33,9 @@ jobs:
           - 2.7
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
       - name: Setup Ruby & Bundle
-        uses: ruby/setup-ruby@v1
+        uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}

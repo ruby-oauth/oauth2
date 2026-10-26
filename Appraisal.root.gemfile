@@ -1,0 +1,27 @@
+# frozen_string_literal: true
+
+# kettle-jem:freeze
+# To retain chunks of comments & code during kettle-jem templating:
+# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
+# kettle-jem will then preserve content between those markers across template runs.
+# kettle-jem:unfreeze
+
+source "https://gem.coop"
+
+# Appraisal Root Gemfile is for running appraisal to generate the Appraisal Gemfiles
+#   in gemfiles/*gemfile.
+# On CI, we use it for the Appraisal-based builds.
+# We do not load the standard Gemfile, as it is tailored for local development.
+
+gemspec
+
+# The style toolchain includes dependencies that require Ruby 3.3 or newer.
+if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.3")
+  if respond_to?(:generator_only)
+    generator_only do
+      eval_gemfile "gemfiles/modular/style.gemfile"
+    end
+  else
+    eval_gemfile "gemfiles/modular/style.gemfile"
+  end
+end

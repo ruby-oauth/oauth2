@@ -2,7 +2,7 @@ RSpec/DescribeClass:
   Exclude:
     - 'spec/examples/*'
 
-RSpec/FilePath:
+RSpec/SpecFilePathFormat:
   Enabled: false
 
 RSpec/MultipleExpectations:
@@ -25,9 +25,27 @@ RSpec/InstanceVariable:
 
 RSpec/NestedGroups:
   Enabled: false
-  
+
 RSpec/ExpectInHook:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
   Enabled: false
+RSpec/SpecFilePathSuffix:
+  Enabled: false
+  Exclude:
+    - 'spec/README.md'
+RSpec/NoExpectationExample:
+  Exclude:
+    - 'spec/README.md'
+RSpec/MultipleDescribes:
+  Exclude:
+    - 'spec/README.md'
+RSpec/RepeatedExampleGroupDescription:
+  Exclude:
+    - 'spec/README.md'
+RSpec/Output:
+  Exclude:
+    - 'spec/support/**/*'
+    - 'spec/config/**/*'
+    - 'spec/fixtures/**/*'

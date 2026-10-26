@@ -1,0 +1,14 @@
+--plugin fence
+-e yard/fence/hoist.rb
+--plugin yaml
+--plugin junk
+--plugin relative_markdown_links
+--readme tmp/yard-fence/README.md
+--charset utf-8
+--markup markdown
+--markup-provider kramdown
+--output docs
+'lib/**/*.rb'
+-
+'tmp/yard-fence/*.md'
+'tmp/yard-fence/*.txt'

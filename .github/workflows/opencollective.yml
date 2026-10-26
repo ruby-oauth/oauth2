@@ -1,0 +1,44 @@
+name: Open Collective Backers
+
+on:
+  schedule:
+    # Run once a week on Sunday at 12:00 AM UTC
+    - cron: '0 0 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  update-backers:
+    runs-on: ubuntu-latest
+    env:
+      README_UPDATER_TOKEN: ${{ secrets.README_UPDATER_TOKEN }}
+      REPO: ${{ github.repository }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Setup Ruby & RubyGems
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
+        with:
+          ruby-version: ruby
+          rubygems: default
+          bundler: default
+          bundler-cache: true
+          manual-compatibility-bundle: true
+          gem-install-retries: 7
+
+      - name: README Update
+        if: ${{ env.README_UPDATER_TOKEN != '' }}
+        env:
+          # Keep GITHUB_TOKEN for any tools/scripts expecting it, mapped to the same secret
+          GITHUB_TOKEN: ${{ env.README_UPDATER_TOKEN }}
+        run: |
+          git config user.name 'autobolt'
+          git config user.email 'autobots@9thbit.net'
+          # Use the configured token for authenticated pushes
+          git remote set-url origin "https://x-access-token:${README_UPDATER_TOKEN}@github.com/${REPO}.git"
+          bin/kettle-readme-backers
+          # Push back to the same branch/ref that triggered the workflow (default branch for schedule)
+          git push origin HEAD

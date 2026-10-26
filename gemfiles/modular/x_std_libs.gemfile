@@ -1,0 +1,12 @@
+### Std Lib Extracted Gems
+ruby_version = Gem::Version.new(RUBY_VERSION)
+
+if ruby_version >= Gem::Version.new("4.0")
+  eval_gemfile "x_std_libs/r4/libs.gemfile"
+elsif ruby_version >= Gem::Version.new("3.2")
+  eval_gemfile "x_std_libs/r3/libs.gemfile"
+elsif ruby_version >= Gem::Version.new("3.1")
+  eval_gemfile "x_std_libs/r3.1/libs.gemfile"
+else
+  eval_gemfile "x_std_libs/r2/libs.gemfile"
+end

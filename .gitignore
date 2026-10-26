@@ -17,3 +17,43 @@ rdoc/*
 
 # CI bundle
 /gemfiles/vendor/
+
+# Build Artifacts
+/pkg/
+/tmp/*
+!/tmp/.gitignore
+# Bundler
+/.bundle/
+/vendor/bundle*/
+/gemfiles/*.lock
+/gemfiles/**/*.gemfile.lock
+/gemfiles/.bundle/
+/gemfiles/.bundle/config
+Appraisal.*.gemfile.lock
+# Specs
+/coverage/
+/spec/reports/
+/results/
+.output.txt
+# Documentation
+/.yardoc/
+/_yardoc/
+/rdoc/
+/doc/
+# Ruby Version Managers (RVM, rbenv, etc)
+# Ignored because we currently use mise.toml
+.ruby-version
+.ruby-gemset
+.tool-versions
+# Benchmarking
+/measurement/
+# Debugger detritus
+.byebug_history
+# Local environment overrides (KEY=value, loaded by mise via dotenvy)
+.env.local
+# OS Detritus
+.DS_Store
+# Editors
+
+# Sentinels
+.floss_funding.*.lock

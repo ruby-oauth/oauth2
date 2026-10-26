@@ -1,0 +1,19 @@
+# tsdl configuration — tree-sitter grammar versions
+# https://github.com/stackmystack/tsdl
+#
+# Run: tsdl build --out-dir /usr/local/lib
+# Or let .devcontainer/scripts/setup-tree-sitter.sh handle it.
+
+out-dir = "/usr/local/lib"
+
+[parsers]
+json = "v0.24.8"
+bash = "v0.25.1"
+
+[parsers.toml]
+ref = "v0.7.0"
+from = "https://github.com/tree-sitter-grammars/tree-sitter-toml"
+
+[parsers.rbs]
+ref = "v0.2.2"
+from = "https://github.com/joker1007/tree-sitter-rbs"

@@ -22,7 +22,9 @@ To submit a patch, please fork the project and create a patch with tests. Once y
 11. [Submit a pull request.][pr]
 
 [fork]: http://help.github.com/fork-a-repo/
+
 [branch]: http://learn.github.com/p/branching.html
+
 [pr]: http://help.github.com/send-pull-requests/
 
 ## Contributors
@@ -42,3 +44,298 @@ Made with [contributors-img][contrib-rocks].
 [comment]: <> (Following links are used by README, CONTRIBUTING, Homepage)
 
 [source]: https://gitlab.com/oauth-xx/oauth2
+
+## Ruby engine CI branches
+
+Pull requests run MRI workflows by default. JRuby and TruffleRuby workflows are
+available by branch naming convention so ordinary PRs do not spend CI time on
+alternate Ruby engines.
+
+- Use a branch named `jruby/*` to run JRuby workflows for a pull request.
+- Use a branch named `truffleruby/*` to run TruffleRuby workflows for a pull
+  request.
+- Use a branch named `engines/*` to run both JRuby and TruffleRuby workflows for
+  a pull request.
+
+Pushes to the default branch continue to run the configured engine workflows.
+
+## Executables vs Rake tasks
+
+Executables shipped by dependencies, such as kettle-dev, and stone_checksums, are available
+after running `bin/setup`. These include:
+
+- gem_checksums
+- kettle-changelog
+- kettle-commit-msg
+- kettle-dev-setup
+- kettle-dvcs
+- kettle-pre-release
+- kettle-readme-backers
+- kettle-release
+
+There are many Rake tasks available as well. You can see them by running:
+
+```shell
+bin/rake -T
+```
+
+## Code quality checks
+
+Run the Reek task when you want a smell check that fails on current findings:
+
+```shell
+bin/rake reek
+```
+
+Refresh the checked-in `REEK` backlog through the rake task, not by redirecting
+the raw `reek` executable output. The rake task uses the project bundle and
+avoids stale generated binstubs shadowing the Reek gem executable:
+
+```shell
+bin/rake reek:update
+```
+
+## Environment Variables for Local Development
+
+Below are the primary environment variables recognized by stone_checksums (and its integrated tools). Unless otherwise noted, set boolean values to the string "true" to enable.
+
+General/runtime
+- DEBUG: Enable extra internal logging for this library (default: false)
+- REQUIRE_BENCH: Enable `require_bench` to profile requires (default: false)
+- CI: When set to true, adjusts default rake tasks toward CI behavior
+
+Coverage (kettle-soup-cover / SimpleCov)
+- K_SOUP_COV_DO: Enable coverage collection (default: true in `mise.toml`)
+- K_SOUP_COV_FORMATTERS: Comma-separated list of formatters (html, xml, rcov, lcov, json, tty)
+- K_SOUP_COV_MIN_LINE: Minimum line coverage threshold (integer, e.g., 100)
+- K_SOUP_COV_MIN_BRANCH: Minimum branch coverage threshold (integer, e.g., 100)
+- K_SOUP_COV_MIN_HARD: Fail the run if thresholds are not met (true/false)
+- K_SOUP_COV_MULTI_FORMATTERS: Enable multiple formatters at once (true/false)
+- K_SOUP_COV_OPEN_BIN: Path to browser opener for HTML (empty disables auto-open)
+- MAX_ROWS: Limit console output rows for simplecov-console (e.g., 1)
+  Tip: When running a single spec file locally, you may want `K_SOUP_COV_MIN_HARD=false` to avoid failing thresholds for a partial run.
+
+GitHub API and CI helpers
+- GITHUB_TOKEN or GH_TOKEN: Token used by `ci:act` and release workflow checks to query GitHub Actions status at higher rate limits
+
+Releasing and signing
+- SKIP_GEM_SIGNING: If set, skip gem signing during build/release
+- GEM_CERT_USER: Username for selecting your public cert in `certs/<USER>.pem` (defaults to $USER)
+- SOURCE_DATE_EPOCH: Reproducible build timestamp.
+  - `kettle-release` will set this automatically for the session.
+  - Not needed on bundler >= 2.7.0, as reproducible builds have become the default.
+
+Git hooks and commit message helpers (exe/kettle-commit-msg)
+- GIT_HOOK_BRANCH_VALIDATE: Branch name validation mode (e.g., `jira`) or `false` to disable
+- GIT_HOOK_FOOTER_APPEND: Append a footer to commit messages when goalie allows (true/false)
+- GIT_HOOK_FOOTER_SENTINEL: Required when footer append is enabled — a unique first-line sentinel to prevent duplicates
+- GIT_HOOK_FOOTER_APPEND_DEBUG: Extra debug output in the footer template (true/false)
+
+Git diff driver setup
+- Local setup writes repository `.gitattributes` entries and local Git `diff.smorg-*` command config so this checkout uses StructuredMerge semantic diffs.
+- Global setup registers `diff.smorg-*` commands once in the user Git config; use it when you work across several StructuredMerge-enabled repositories.
+- Include-file setup writes `.git/smorg/config` and includes it from local Git config, keeping command registrations out of the repository files.
+- Git hosting forges generally ignore external diff drivers, so pull request views may still show raw textual diffs even when local `git diff` uses semantic drivers.
+
+```console
+K_JEM_TEMPLATING=true kettle-jem install
+```
+
+Troubleshooting Git diffs
+- Use `git diff --no-ext-diff` to compare against Git's built-in diff output.
+- Use `git diff --no-textconv` when a textconv projection obscures the raw file bytes you need to inspect.
+- If Git reports a missing `smorg-*` executable, rerun `bundle install` and the setup command above, then check `git config --local --get-regexp '^diff\.smorg-'`.
+- To remove managed local entries, run `K_JEM_TEMPLATING=true kettle-jem install --undo`; remove global command registrations with `git config --global --unset-all diff.smorg-rb.command`, `git config --global --unset-all merge.smorg-rb.driver`, and `git config --global --unset-all merge.smorg-rb.name`.
+
+For a quick starting point, this repository’s `mise.toml` defines the shared defaults, and `.env.local` can override them locally. Copy `.env.local.example` to `.env.local`, use `KEY=value` lines, and either activate `mise` in your shell or run commands through `mise exec -C /path/to/project -- ...`.
+
+## Appraisals
+
+From time to time the [appraisal2][🚎appraisal2] gemfiles in `gemfiles/` will need to be updated.
+Generated appraisal and CI workflow floors are controlled by `ruby.test_minimum`
+in `.structuredmerge/kettle-jem.yml`; this project was templated with `ruby.test_minimum: 2.4`.
+That value describes the lowest Ruby version expected to run the test/development
+toolchain, and it may be higher than the gemspec runtime floor.
+
+They are created and updated with the commands:
+
+```console
+bin/rake appraisal:generate
+```
+
+Use `bin/rake appraisal:update` when you intentionally need to resolve fresh
+appraisal locks.
+
+If you need to reset all gemfiles/*.gemfile.lock files:
+
+```console
+bin/rake appraisal:reset
+```
+
+When adding an appraisal to CI, check the [runner tool cache][🏃‍♂️runner-tool-cache] to see which runner to use.
+
+## Run Tests
+
+Run tests via `kettle-test` (provided by `kettle-test`). It runs RSpec, writes the full log to
+`tmp/kettle-test/rspec-TIMESTAMP.log`, and prints a compact highlight block with timing, seed,
+pass/fail count, failing example list, and SimpleCov coverage percentages.
+
+```console
+bundle exec kettle-test
+```
+
+For targeted runs, disable the hard coverage threshold to avoid false failures:
+
+```console
+K_SOUP_COV_MIN_HARD=false bundle exec kettle-test spec/path/to/spec.rb
+```
+
+### Spec organization (required)
+
+- One spec file per class/module. For each class or module under `lib/`, keep all of its unit tests in a single spec file under `spec/` that mirrors the path and file name exactly: `lib/oauth2/my_class.rb` -> `spec/oauth2/my_class_spec.rb`.
+- Exception: Integration specs that intentionally span multiple classes. Place these under `spec/integration/` (or a clearly named integration folder), and do not directly mirror a single class. Name them after the scenario, not a class.
+
+## Lint It
+
+Run all the default tasks, which includes running the gradually autocorrecting linter, `rubocop-gradual`.
+
+```console
+bundle exec rake
+```
+
+Or just run the linter.
+
+```console
+bundle exec rake rubocop_gradual:autocorrect
+```
+
+For more detailed information about using RuboCop in this project, please see the [RUBOCOP.md](RUBOCOP.md) guide. This project uses `rubocop_gradual` instead of vanilla RuboCop, which requires specific commands for checking violations.
+
+Kettle Jem resets `.rubocop_gradual.lock` before its post-template autocorrect step. Template and dependency updates, including updates to the `rubocop-lts` suite, can change the applicable cops; the regenerated lock is the current work list, not a preserved baseline.
+
+### Important: Do not add inline RuboCop disables
+
+Never add `# rubocop:disable ...` / `# rubocop:enable ...` comments to code or specs (except when following the few existing `rubocop:disable` patterns for a rule already being disabled elsewhere in the code). Instead:
+
+- Prefer configuration-based exclusions when a rule should not apply to certain paths or files (e.g., via `.rubocop.yml`).
+- When a violation is temporary, and you plan to fix it later, record it in `.rubocop_gradual.lock` using the gradual workflow:
+  - `bundle exec rake rubocop_gradual:autocorrect` (preferred)
+  - `bundle exec rake rubocop_gradual:force_update` (only when you cannot fix the violations immediately)
+
+As a general rule, fix style issues rather than ignoring them. For example, our specs should follow RSpec conventions like using `described_class` for the class under test.
+
+## Contributors
+
+Your picture could be here!
+
+[![Contributors][🖐contributors-img]][🖐contributors]
+
+Made with [contributors-img][🖐contrib-rocks].
+
+Also see GitLab Contributors: [https://gitlab.com/ruby-oauth/oauth2/-/graphs/main][🚎contributors-gl]
+
+## For Maintainers
+
+### One-time, Per-maintainer, Setup
+
+**IMPORTANT**: To sign a build,
+a public key for signing gems will need to be picked up by the line in the
+`gemspec` defining the `spec.cert_chain` (check the relevant ENV variables there).
+All releases are signed releases.
+See: [RubyGems Security Guide][🔒️rubygems-security-guide]
+
+NOTE: To build without signing the gem set `SKIP_GEM_SIGNING` to any value in the environment.
+
+### To release a new version:
+
+#### Automated process
+
+1. Update version.rb to contain the correct version-to-be-released.
+2. Run `bundle exec kettle-changelog`.
+3. Run `bundle exec kettle-release`.
+4. Stay awake and monitor the release process for any errors, and answer any prompts.
+
+#### Manual process
+
+1. Run `bin/setup && bin/rake` as a "test, coverage, & linting" sanity check
+2. Update the version number in `version.rb`, and ensure `CHANGELOG.md` reflects changes
+3. Run `bin/setup && bin/rake` again as a secondary check, and to update `Gemfile.lock`
+4. Run `bin/rake yard` to regenerate the docs site using the canonical docs task
+5. Run `git commit -am "🔖 Prepare release v<VERSION>"` to commit the changes
+6. Run `git push` to trigger the final CI pipeline before release, and merge PRs
+    - NOTE: Remember to [check the build][🧪build].
+7. Run `export GIT_TRUNK_BRANCH_NAME="$(git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5)" && echo $GIT_TRUNK_BRANCH_NAME`
+8. Run `git checkout $GIT_TRUNK_BRANCH_NAME`
+9. Run `git pull origin $GIT_TRUNK_BRANCH_NAME` to ensure latest trunk code
+10. Optional for older Bundler (< 2.7.0): Set `SOURCE_DATE_EPOCH` so `rake build` and `rake release` use the same timestamp and generate the same checksums
+    - If your Bundler is >= 2.7.0, you can skip this; builds are reproducible by default.
+    - Run `export SOURCE_DATE_EPOCH=$EPOCHSECONDS && echo $SOURCE_DATE_EPOCH`
+    - If the echo above has no output, then it didn't work.
+    - Note: `zsh/datetime` module is needed, if running `zsh`.
+    - In older versions of `bash` you can use `date +%s` instead, i.e. `export SOURCE_DATE_EPOCH=$(date +%s) && echo $SOURCE_DATE_EPOCH`
+11. Run `bundle exec rake build`
+12. Run `bin/gem_checksums` (more context [1][🔒️rubygems-checksums-pr], [2][🔒️rubygems-guides-pr])
+    to create SHA-256 and SHA-512 checksums. This functionality is provided by the `stone_checksums`
+    [gem][💎stone_checksums].
+    - The script automatically commits but does not push the checksums
+13. Sanity check the SHA256, comparing with the output from the `bin/gem_checksums` command:
+    - `sha256sum pkg/<gem name>-<version>.gem`
+14. Run `bundle exec rake release` which will create a git tag for the version,
+    push git commits and tags, and push the `.gem` file to the gem host configured in the gemspec.
+
+The automated `kettle-release` flow runs the build and release tasks with a
+temporary `BUNDLE_LOCKFILE`. Bundler can rewrite a tracked lockfile while
+reconciling the host platform even after the release lockfile has been
+normalized with `bundle lock --add-platform`; that rewrite trips the clean-tree
+guard in `bundler/gem_tasks`. The disposable lockfile preserves the committed
+release inputs while allowing Bundler's runtime reconciliation. Do not replace
+this with `BUNDLE_FROZEN=true`: frozen mode fails when Bundler needs that
+reconciliation.
+
+[📜src-gl]: https://gitlab.com/ruby-oauth/oauth2
+
+[📜src-cb]: https://codeberg.org/ruby-oauth/oauth2
+
+[📜src-gh]: https://github.com/ruby-oauth/oauth2
+
+[🧪build]: https://github.com/ruby-oauth/oauth2/actions
+
+[🤝conduct]: https://github.com/ruby-oauth/oauth2/blob/main/CODE_OF_CONDUCT.md
+
+[🖐contrib-rocks]: https://contrib.rocks
+
+[🖐contributors]: https://github.com/ruby-oauth/oauth2/graphs/contributors
+
+[🚎contributors-gl]: https://gitlab.com/ruby-oauth/oauth2/-/graphs/main
+
+[🖐contributors-img]: https://contrib.rocks/image?repo=ruby-oauth/oauth2
+
+[💎gem-coop]: https://gem.coop
+
+[🔒️rubygems-security-guide]: https://guides.rubygems.org/security/#building-gems
+
+[🔒️rubygems-checksums-pr]: https://github.com/rubygems/rubygems/pull/6022
+
+[🔒️rubygems-guides-pr]: https://github.com/rubygems/guides/pull/325
+
+[💎stone_checksums]: https://github.com/galtzo-floss/stone_checksums
+
+[📗keep-changelog]: https://keepachangelog.com/en/1.0.0/
+
+[📗keep-changelog-img]: https://img.shields.io/badge/keep--a--changelog-1.0.0-FFDD67.svg?style=flat
+
+[📌semver-breaking]: https://github.com/semver/semver/issues/716#issuecomment-869336139
+
+[📌major-versions-not-sacred]: https://tom.preston-werner.com/2022/05/23/major-version-numbers-are-not-sacred.html
+
+[🚎appraisal2]: https://github.com/appraisal-rb/appraisal2
+
+[🏃‍♂️runner-tool-cache]: https://github.com/ruby/ruby-builder/releases/tag/toolcache
+
+[✉️discord-invite]: https://discord.gg/3qme4XHNKN
+
+[✉️discord-invite-img]: https://img.shields.io/discord/1373797679469170758?style=flat&logo=discord
+
+[✉️ruby-forum]: https://www.rubyforum.org/tag/oauth2
+
+[✉️ruby-forum-img]: https://img.shields.io/discourse/topics?server=https%3A%2F%2Fwww.rubyforum.org&style=flat&logo=discourse&label=Ruby%20Users%20Forum

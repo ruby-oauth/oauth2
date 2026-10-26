@@ -1,0 +1,114 @@
+# frozen_string_literal: true
+
+# Local path overrides for templating development.
+# Loaded by the associated non-local gemfile when STRUCTUREDMERGE_DEV or KETTLE_DEV_DEV
+# is not "false".
+
+# Bootstrapping nomono here cannot rely on a plain `gem "nomono", ...` line.
+# Bundler records that dependency during Gemfile evaluation, but it does not
+# activate that exact version before the immediate `require "nomono/bundler"`.
+nomono_activation_requirements = ["~> 1.1", ">= 1.1.15"]
+nomono_requirement = Gem::Requirement.new(nomono_activation_requirements)
+nomono_already_activated = Gem.loaded_specs["nomono"]
+nomono_lockfile = File.expand_path("../../Gemfile.lock", __dir__)
+nomono_locked_spec = nil
+if File.file?(nomono_lockfile)
+  require "bundler"
+  nomono_locked_spec = Bundler::LockfileParser
+    .new(Bundler.read_file(nomono_lockfile))
+    .specs
+    .find { |spec| spec.name == "nomono" }
+end
+nomono_local_loader = if nomono_locked_spec && nomono_locked_spec.source.is_a?(Bundler::Source::Path)
+  File.expand_path(
+    File.join(nomono_locked_spec.source.path, "lib", "nomono", "bundler"),
+    File.dirname(nomono_lockfile)
+  )
+end
+if nomono_local_loader && File.file?("#{nomono_local_loader}.rb")
+  require nomono_local_loader
+else
+  if !nomono_already_activated || !nomono_requirement.satisfied_by?(nomono_already_activated.version)
+    nomono_locked_installed = nomono_locked_spec &&
+      Gem::Specification.find_all_by_name("nomono").any? { |spec| spec.version == nomono_locked_spec.version }
+    nomono_locked = nomono_locked_spec &&
+      nomono_locked_installed &&
+      nomono_requirement.satisfied_by?(nomono_locked_spec.version)
+    nomono_activation_requirements = ["= #{nomono_locked_spec.version}"] if nomono_locked
+  end
+  Kernel.send(:gem, "nomono", *nomono_activation_requirements)
+  require "nomono/bundler"
+end
+
+local_gem_requirements = {"addressable" => [">= 2"], "bundler" => [">= 1.16"], "faraday" => [">= 0.17.3", "< 3.0"], "jwt" => [">= 1.0", "< 3.0"], "multi_json" => ["~> 1.3"], "multi_xml" => ["~> 0.5"], "rack" => [">= 1.2", "< 4"], "rake" => [">= 12"], "rexml" => [">= 3"], "rspec" => [">= 3"], "rspec-block_is_expected" => [">= 0"], "rspec-pending_for" => [">= 0"], "rspec-stubbed_env" => [">= 0"], "rubocop-lts" => [">= 2.0.3", "~> 2.0"], "silent_stream" => [">= 0"]}
+
+structuredmerge_local_gems = %w[
+  tree_haver
+  ast-merge
+  ast-merge-git
+  ast-template
+  bash-merge
+  binary-merge
+  citrus-toml-merge
+  dotenv-merge
+  go-merge
+  html-merge
+  json-merge
+  kettle-jem
+  markdown-merge
+  markly-merge
+  parslet-toml-merge
+  plain-merge
+  prism-merge
+  psych-merge
+  rbs-merge
+  ruby-merge
+  rust-merge
+  smorg-rb
+  typescript-merge
+  toml-merge
+  yaml-merge
+  zip-merge
+  ast-crispr
+  ast-crispr-toml
+  ast-crispr-markdown-markly
+  ast-crispr-ruby-prism
+]
+
+kettle_dev_local_gems = %w[
+  kettle-deps-floor kettle-dev kettle-family kettle-rb kettle-test kettle-soup-cover kettle-changelog kettle-drift
+]
+shared_nomono_options = {
+  vendored_gems_env: "VENDORED_GEMS",
+  vendor_gem_dir_env: "VENDOR_GEM_DIR"
+}
+kettle_dev_nomono_options = shared_nomono_options.merge(
+  prefix: "KETTLE_DEV",
+  path_env: "KETTLE_DEV_DEV",
+  debug_env: "KETTLE_DEV_DEBUG",
+  root: ["src", "my", "kettle-dev"]
+)
+structuredmerge_nomono_options = shared_nomono_options.merge(
+  prefix: "STRUCTUREDMERGE",
+  path_env: "STRUCTUREDMERGE_DEV",
+  debug_env: "STRUCTUREDMERGE_DEBUG"
+)
+structuredmerge_local_gems_to_eval = structuredmerge_local_gems - %w[]
+
+if ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0
+  eval_nomono_gems(
+    gems: structuredmerge_local_gems_to_eval,
+    requirements: local_gem_requirements,
+    **structuredmerge_nomono_options
+  )
+end
+
+if ENV.fetch("KETTLE_DEV_DEV", "false").casecmp("false") != 0
+  kettle_dev_local_gems_to_eval = kettle_dev_local_gems - %w[]
+
+  eval_nomono_gems(
+    gems: kettle_dev_local_gems_to_eval,
+    requirements: local_gem_requirements,
+    **kettle_dev_nomono_options
+  )
+end

@@ -1,0 +1,2 @@
+# Ruby >= 3.2
+gem "erb", github: "ruby/erb", branch: "master"

@@ -1,0 +1,8 @@
+🔖 Prepare release v
+🔒️ Checksums for v
+
+# Lines beginning with # are ignored.
+# This file is read by .git-hooks/prepare-commit-msg in each project.
+# Each line of this file will be matched against the commit subject using `starts_with?`.
+# If any `starts_with?` match the project script bin/prepare-commit-msg will run.
+# 🔒️ Checksums for v is the standard commit message by stone_checksums.

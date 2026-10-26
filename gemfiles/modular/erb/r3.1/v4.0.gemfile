@@ -1,0 +1,2 @@
+# last version compatible with Ruby 3.1
+gem "erb", "~> 4.0"   # ruby >= 2.7.0

@@ -1,0 +1,60 @@
+#!/usr/bin/env ruby
+# vim: set syntax=ruby
+
+# kettle-jem:freeze
+# To retain chunks of comments & code during kettle-jem templating:
+# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
+# kettle-jem will then preserve content between those markers across template runs.
+# kettle-jem:unfreeze
+
+# Do not rely on Bundler; allow running outside a Bundler context
+begin
+  require "rubygems"
+rescue LoadError
+  # continue
+end
+
+begin
+  # External gems
+  require "gitmoji/regex"
+
+  full_text = File.read(ARGV[0])
+  # Is the first character a GitMoji?
+  gitmoji_index = full_text =~ Gitmoji::Regex::REGEX
+  if gitmoji_index == 0
+    exit(0)
+  else
+    denied = <<~EOM
+      Oh snap, think again...
+
+       ______    _______      ___  _______  _______  _______  _______  ______   __
+      |    _ |  |       |    |   ||       ||       ||       ||       ||      | |  |
+      |   | ||  |    ___|    |   ||    ___||       ||_     _||    ___||  _    ||  |
+      |   |_||_ |   |___     |   ||   |___ |       |  |   |  |   |___ | | |   ||  |
+      |    __  ||    ___| ___|   ||    ___||      _|  |   |  |    ___|| |_|   ||__|
+      |   |  | ||   |___ |       ||   |___ |     |_   |   |  |   |___ |       | __
+      |___|  |_||_______||_______||_______||_______|  |___|  |_______||______| |__|
+
+
+      Did you forget to add a relevant gitmoji? (see https://gitmoji.dev/ for tools)
+      In this project, a Gitmoji must be the first grapheme of the commit message.
+      What's a grapheme?
+      A symbol rendered to be visually identifiable as a single character, but which may be composed of multiple Unicode code points)
+      Must match: #{Gitmoji::Regex::REGEX}
+      #{"Found a gitmoji at character index #{gitmoji_index}... not good enough.\n" if gitmoji_index}
+      Example: git commit -m "✨ My excellent new feature"
+
+    EOM
+    puts denied
+    exit(1)
+  end
+rescue LoadError => e
+  failure = <<~EOM
+    gitmoji-regex gem not found: #{e.class}: #{e.message}.
+      Skipping gitmoji check and allowing commit to proceed.
+      Recommendation: add 'gitmoji-regex' to your development dependencies to enable this check.
+
+  EOM
+  warn(failure)
+  exit(0)
+end

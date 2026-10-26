@@ -1,42 +1,81 @@
-name: Code Style Checks
+name: Style
+
+permissions:
+  contents: read
 
 on:
   push:
     branches:
       - 'main'
-      - '*-maintenance'
-      - '*-dev'
       - '*-stable'
     tags:
       - '!*' # Do not execute on tags
   pull_request:
     branches:
       - '*'
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+# Cancels all previous workflow runs for the same branch that have not yet completed.
+concurrency:
+  # The concurrency group contains the workflow name and the branch name.
+  group: "${{ github.workflow }}-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
   rubocop:
-    name: Rubocop
-    if: "!contains(github.event.commits[0].message, '[ci skip]') && !contains(github.event.commits[0].message, '[skip ci]')"
+    if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
+    name: Style on ${{ matrix.ruby }}@current
+    runs-on: ubuntu-latest
+    env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
+      BUNDLE_GEMFILE: ${{ github.workspace }}/Appraisal.root.gemfile
     strategy:
       fail-fast: false
       matrix:
-        experimental: [false]
-        rubygems:
-          - latest
-        bundler:
-          - latest
-        ruby:
-          - 2.7
-    runs-on: ubuntu-latest
+        include:
+          # Style
+          - ruby: "ruby"
+            appraisal: "style"
+            exec_cmd: "rake rubocop_gradual:check"
+            rubygems: latest
+            bundler: latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Ruby & Bundle
-        uses: ruby/setup-ruby@v1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Setup Ruby & RubyGems
+        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
         with:
           ruby-version: ${{ matrix.ruby }}
           rubygems: ${{ matrix.rubygems }}
           bundler: ${{ matrix.bundler }}
           bundler-cache: true
-      - name: Run Rubocop
-        run: bundle exec rubocop -DES
+          manual-compatibility-bundle: true
+          gem-install-retries: 7
+
+      - name: "[Attempt 1] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
+        id: bundleAppraisalAttempt1
+        run: bundle exec appraisal ${{ matrix.appraisal }} install
+        # Continue to the next step on failure
+        continue-on-error: true
+
+      # Effectively an automatic retry of the previous step.
+      - name: "[Attempt 2] Appraisal for ${{ matrix.ruby }}@${{ matrix.appraisal }}"
+        id: bundleAppraisalAttempt2
+        # If bundleAppraisalAttempt1 failed, try again here; Otherwise skip.
+        if: ${{ steps.bundleAppraisalAttempt1.outcome == 'failure' }}
+        run: |
+          rm -f gemfiles/${{ matrix.appraisal }}.gemfile.lock
+          rm -rf vendor/bundle "$HOME/.bundle/cache"
+          bundle exec appraisal ${{ matrix.appraisal }} install
+
+      - name: Run ${{ matrix.appraisal }} checks via ${{ matrix.exec_cmd }}
+        run: bundle exec appraisal ${{ matrix.appraisal }} bundle exec ${{ matrix.exec_cmd }}
+
+      - name: Validate RBS Environment
+        run: >-
+          bundle exec appraisal ${{ matrix.appraisal }} bundle exec ruby -rrbs -rpathname -e
+          'loader = RBS::EnvironmentLoader.new; loader.add(path: Pathname("sig")); RBS::Environment.from_loader(loader).resolve_type_names'

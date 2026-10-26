@@ -1,0 +1,11 @@
+header:
+  license:
+    spdx-id: "MIT"
+
+dependency:
+  files:
+    - Gemfile.lock
+  licenses:
+    - name: "simplecov-rcov"
+      version: "0.3.7"
+      license: "MIT"

@@ -1,4 +1,3 @@
-
 # Contributor Covenant Code of Conduct
 
 ## Our Pledge
@@ -127,7 +126,17 @@ For answers to common questions about this code of conduct, see the FAQ at
 at [https://www.contributor-covenant.org/translations][translations].
 
 [homepage]: https://www.contributor-covenant.org
+
 [v2.0]: https://www.contributor-covenant.org/version/2/0/code_of_conduct.html
+
 [Mozilla CoC]: https://github.com/mozilla/diversity
+
 [FAQ]: https://www.contributor-covenant.org/faq
+
 [translations]: https://www.contributor-covenant.org/translations
+
+[v2.1]: https://www.contributor-covenant.org/version/2/1/code_of_conduct.html
+
+[🚂maint-contact]: http://www.railsbling.com/contact
+
+[🚂maint-contact-img]: https://img.shields.io/badge/Contact-Maintainer-0093D0.svg?style=flat&logo=rubyonrails&logoColor=red

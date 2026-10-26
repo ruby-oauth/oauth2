@@ -3,8 +3,6 @@
 
 # !/usr/bin/env rake
 
-require 'bundler/gem_tasks'
-
 begin
   require 'rspec/core/rake_task'
   RSpec::Core::RakeTask.new(:spec)
@@ -36,5 +34,3 @@ end
 #     rdoc.rdoc_files.include('README.md', 'LICENSE.md', 'lib/**/*.rb')
 #   end
 # end
-
-task :default => [:test, :rubocop]
