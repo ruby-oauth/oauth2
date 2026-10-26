@@ -151,7 +151,7 @@ module OAuth2
     #
     # @param params [Hash] a Hash of params for the token endpoint
     # @param access_token_opts [Hash] access token options, to pass to the AccessToken object
-    # @param access_token_class [Class] class of access token for easier subclassing OAuth2::AccessToken
+    # @param extract_access_token [Proc, Class] extractor for the token response
     # @return [AccessToken] the initialized AccessToken
     def get_token(params, access_token_opts = {}, extract_access_token = options[:extract_access_token]) # # rubocop:disable Metrics/PerceivedComplexity, Metrics/CyclomaticComplexity Metrics/AbcSize, Metrics/MethodLength
       params = params.map do |key, value|

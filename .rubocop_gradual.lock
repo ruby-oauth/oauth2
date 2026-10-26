@@ -2,7 +2,7 @@
   "bin/bundle:3474730829": [
     [66, 5, 20, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2485198147]
   ],
-  "lib/oauth2/client.rb:4163689267": [
+  "lib/oauth2/client.rb:1486089202": [
     [164, 16, 12, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 4245087757]
   ],
   "oauth2.gemspec:1867991744": [

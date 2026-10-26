@@ -11,7 +11,7 @@ module OAuth2
     #
     # @param [AccessToken] token the OAuth2::Token instance
     # @option [String] secret the secret key value
-    # @param [Hash] opts the options to create the Access Token with
+    # @param options [Hash] the options to create the Access Token with
     # @see MACToken#initialize
     def self.from_access_token(token, secret, options = {})
       new(token.client, token.token, secret, token.params.merge(:refresh_token => token.refresh_token, :expires_in => token.expires_in, :expires_at => token.expires_at).merge(options))
@@ -24,7 +24,7 @@ module OAuth2
     # @param [Client] client the OAuth2::Client instance
     # @param [String] token the Access Token value
     # @option [String] secret the secret key value
-    # @param [Hash] opts the options to create the Access Token with
+    # @param opts [Hash] the options to create the Access Token with
     # @option opts [String] :refresh_token (nil) the refresh_token value
     # @option opts [FixNum, String] :expires_in (nil) the number of seconds in which the AccessToken will expire
     # @option opts [FixNum, String] :expires_at (nil) the epoch time in seconds in which AccessToken will expire
@@ -59,7 +59,7 @@ module OAuth2
     # Generate the MAC header
     #
     # @param [Symbol] verb the HTTP request method
-    # @param [String] url the HTTP URL path of the request
+    # @param url [String] the HTTP URL path of the request
     def header(verb, url)
       timestamp = Time.now.utc.to_i
       nonce = Digest::SHA256.hexdigest([timestamp, SecureRandom.hex].join(":"))
@@ -78,7 +78,7 @@ module OAuth2
     # @param [Fixnum] timestamp the timestamp of the request in seconds since epoch
     # @param [String] nonce the MAC header nonce
     # @param [Symbol] verb the HTTP request method
-    # @param [String] url the HTTP URL path of the request
+    # @param uri [URI] the URL of the request
     def signature(timestamp, nonce, verb, uri)
       signature = [
         timestamp,
