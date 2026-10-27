@@ -20,6 +20,11 @@ Please file a bug if you notice a violation of semantic versioning.
 
 ### Added
 
+- kettle-jem-template-20261025-001 - Duel performance regression guards: the
+  Perf workflow compares each pull request, each push to main, and, on a
+  schedule, the last release, and `rake duel` compares local changes, with
+  the benchmarks in `duel/`.
+
 ### Changed
 
 ### Deprecated

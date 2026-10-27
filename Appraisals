@@ -188,3 +188,10 @@ appraise "templating" do
   eval_gemfile "modular/templating.gemfile"
   eval_gemfile "modular/x_std_libs.gemfile"
 end
+
+appraise "perf" do
+  # Performance regression guards, for .github/workflows/perf.yml
+  # (Duel requires Ruby 3.4 or later)
+  eval_gemfile "modular/duel.gemfile"
+  eval_gemfile "modular/x_std_libs.gemfile"
+end

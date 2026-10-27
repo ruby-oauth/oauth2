@@ -181,6 +181,20 @@ if kettle_jem_selftest_unavailable_note
   end
 end
 
+### PERFORMANCE TASKS
+# Duel's performance regression guards: rake duel compares this tree with
+# the main branch (see .duel.rb and duel/). Duel requires Ruby 3.4 or
+# later, so older Rubies get a stub task.
+begin
+  require "duel/rake_task"
+  Duel::RakeTask.new
+rescue LoadError
+  desc("(stub) duel is unavailable")
+  task("duel") do
+    warn("NOTE: duel isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
+  end
+end
+
 ### RELEASE TASKS
 # Setup stone_checksums
 begin

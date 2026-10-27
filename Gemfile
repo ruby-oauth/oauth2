@@ -127,6 +127,9 @@ eval_gemfile "gemfiles/modular/changelog.gemfile"
 # Optional
 eval_gemfile "gemfiles/modular/optional.gemfile"
 
+# Performance regression guards (Duel requires Ruby 3.4 or later)
+eval_gemfile "gemfiles/modular/duel.gemfile"
+
 ### Std Lib Extracted Gems
 eval_gemfile "gemfiles/modular/x_std_libs.gemfile"
 
