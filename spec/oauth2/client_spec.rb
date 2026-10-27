@@ -656,6 +656,14 @@ RSpec.describe OAuth2::Client do
       expect(full_location.to_s).to eq("https://api.example.com///attacker.example/leak?x=1#frag")
     end
 
+    it "only rewrites the path of a protocol-relative redirect location without query and fragment writers" do
+      current_location = Struct.new(:path).new("/start")
+      full_location = subject.send(:resolve_redirect_location, current_location, "//attacker.example/leak?x=1#frag")
+
+      expect(full_location.path).to eq("///attacker.example/leak")
+      expect(current_location.path).to eq("/start")
+    end
+
     it "preserves userinfo and port in protocol-relative redirect authorities" do
       client = described_class.new("abc", "def", site: "https://api.example.com") do |builder|
         builder.adapter :test do |stub|

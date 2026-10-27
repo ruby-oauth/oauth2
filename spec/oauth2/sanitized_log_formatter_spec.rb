@@ -39,6 +39,13 @@ RSpec.describe OAuth2::SanitizedLogFormatter do
       rendered = dump(cyclic)
       expect(rendered).not_to include("shhh")
     end
+
+    it "keeps nil values" do
+      rendered = dump({"client_secret" => "shhh", "note" => nil})
+
+      expect(rendered).not_to include("shhh")
+      expect(rendered).to include("nil")
+    end
   end
 
   describe "#dump_body with Array bodies" do
@@ -56,6 +63,14 @@ RSpec.describe OAuth2::SanitizedLogFormatter do
 
     it "redacts filtered keys in arrays of hashes" do
       rendered = dump([{"access_token" => "abc123"}])
+      expect(rendered).not_to include("abc123")
+    end
+
+    it "survives cyclic arrays" do
+      cyclic = [{"access_token" => "abc123"}]
+      cyclic << cyclic
+
+      rendered = dump(cyclic)
       expect(rendered).not_to include("abc123")
     end
   end
@@ -81,8 +96,66 @@ RSpec.describe OAuth2::SanitizedLogFormatter do
       expect(rendered).not_to include("secret")
     end
 
+    it "redacts code in Hash#inspect-shaped strings in authorization_code context" do
+      expect(dump('{"code" => "secret-code"}', code_context: true)).not_to include("secret-code")
+      expect(dump('{"code"=>"secret-code"}', code_context: true)).not_to include("secret-code")
+    end
+
     it "passes non-structured bodies through unchanged outside context" do
       expect(dump("plain text")).to include("plain text")
+    end
+  end
+
+  describe "#dump_body with other bodies" do
+    it "leaves rendering to Faraday" do
+      expect(dump(42)).to eq(42.pretty_inspect)
+    end
+  end
+
+  describe "logging requests and responses" do
+    subject(:formatter) { described_class.new(logger: logger, options: {bodies: true}) }
+
+    let(:log) { StringIO.new }
+    let(:logger) { Logger.new(log) }
+
+    it "redacts the code from a logged authorization_code request URL without changing the request" do
+      url = URI.parse("https://x.test/token?grant_type=authorization_code&code=secret-code&scope=read+write")
+      env = Faraday::Env.from(method: :get, url: url, request_headers: {})
+
+      formatter.request(env)
+
+      expect(log.string).not_to include("secret-code")
+      expect(log.string).to include("code=[FILTERED]")
+      expect(log.string).to include("grant_type=authorization_code")
+      expect(env.url.query).to include("code=secret-code")
+    end
+
+    it "logs request URLs unchanged outside authorization_code context" do
+      url = URI.parse("https://x.test/callback?code=error-123")
+      env = Faraday::Env.from(method: :get, url: url, request_headers: {})
+
+      formatter.request(env)
+
+      expect(log.string).to include("code=error-123")
+    end
+
+    it "redacts the code from a response body in authorization_code context" do
+      url = URI.parse("https://x.test/token?grant_type=authorization_code")
+      env = Faraday::Env.from(method: :post, url: url, status: 200, response_headers: {}, body: '{"code":"secret-code"}')
+
+      formatter.response(env)
+
+      expect(log.string).not_to include("secret-code")
+      expect(log.string).to include("Status 200")
+    end
+
+    it "restores the previous context after logging" do
+      url = URI.parse("https://x.test/token?grant_type=authorization_code")
+      env = Faraday::Env.from(method: :post, url: url, status: 200, response_headers: {}, body: "")
+
+      formatter.response(env)
+
+      expect(formatter.instance_variable_get(:@code_context)).to be(false)
     end
   end
 
@@ -110,6 +183,21 @@ RSpec.describe OAuth2::SanitizedLogFormatter do
 
     it "detects from a pair-array body" do
       expect(detected?(url: "https://x.test/t", body: [["grant_type", "authorization_code"]])).to be(true)
+    end
+
+    it "detects from the body of an env without a URL" do
+      env = Struct.new(:body).new("grant_type=authorization_code&code=abc")
+      expect(formatter.send(:authorization_code_request?, env)).to be(true)
+    end
+
+    it "detects from the body when the URL is nil" do
+      env = Faraday::Env.from(url: nil, body: {grant_type: "authorization_code"})
+      expect(formatter.send(:authorization_code_request?, env)).to be(true)
+    end
+
+    it "does not trigger for an env without a body" do
+      env = Struct.new(:url).new(URI.parse("https://x.test/t?grant_type=client_credentials"))
+      expect(formatter.send(:authorization_code_request?, env)).to be(false)
     end
 
     it "does not trigger for other grants" do

@@ -8,9 +8,10 @@ permissions:
 env:
   # Kill stalled test workers instead of hanging until the CI job timeout.
   TURBO_TESTS2_WATCHDOG_SECONDS: 900
-  K_SOUP_COV_MIN_BRANCH: 76
-  K_SOUP_COV_MIN_LINE: 92
+  K_SOUP_COV_MIN_BRANCH: 100
+  K_SOUP_COV_MIN_LINE: 100
   K_SOUP_COV_MIN_HARD: true
+  K_SOUP_COV_MIN_STRICT: true
   K_SOUP_COV_FORMATTERS: "xml,rcov,lcov,tty"
   K_SOUP_COV_DO: true
   K_SOUP_COV_MULTI_FORMATTERS: true

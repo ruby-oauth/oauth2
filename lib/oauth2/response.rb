@@ -175,7 +175,9 @@ end
 OAuth2::Response.register_parser(:xml, ["text/xml", "application/rss+xml", "application/rdf+xml", "application/atom+xml", "application/xml"]) do |body|
   next body unless body.respond_to?(:to_str)
 
-  (defined?(MultiXML) ? MultiXML : MultiXml).parse(body)
+  # multi_xml 0.8+ defines MultiXML and older releases only MultiXml, so any one
+  # run takes a single arm.
+  (defined?(MultiXML) ? MultiXML : MultiXml).parse(body) # simplecov:disable branch
 end
 
 # Register JSON parser
