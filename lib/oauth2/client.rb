@@ -3,6 +3,7 @@
 require "faraday"
 require "logger"
 require "uri"
+require "oauth2/sanitized_log_formatter"
 
 module OAuth2
   ConnectionError = Class.new(Faraday::ConnectionFailed)
@@ -337,7 +338,9 @@ module OAuth2
         "device_code", "subject_token", "actor_token", "accessToken",
         "refreshToken", "idToken"
       ]
-      builder.response :logger, options[:logger], :bodies => true do |logger|
+      logger_options = {:bodies => !!defined?(OAuth2::SanitizedLogFormatter)}
+      logger_options[:formatter] = OAuth2::SanitizedLogFormatter if defined?(OAuth2::SanitizedLogFormatter)
+      builder.response :logger, options[:logger], logger_options do |logger|
         logger.filter(/^(\s*Authorization\s*:\s*).*$/i, "\\1[FILTERED]")
         sensitive_debug_keys.each do |key|
           pattern = /(["']?#{Regexp.escape(key)}["']?\s*(?:=>|:|=)\s*)(?:"[^"]*"|'[^']*'|[^&,\s}]+)/i
