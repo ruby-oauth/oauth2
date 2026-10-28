@@ -15,8 +15,13 @@ RBS:
 inherit_mode:
   merge:
     - Exclude
+    # Merge Include too, so .duel.rb (a dotfile) is added to the defaults
+    - Include
 
 AllCops:
+  # Duel's configuration is a dotfile, which RuboCop skips unless included
+  Include:
+    - .duel.rb
   DisplayCopNames: true # Display the name of the failing cops
   Exclude:
     - 'bin/*'

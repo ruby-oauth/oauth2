@@ -1,0 +1,18 @@
+# frozen_string_literal: true
+
+# To retain during kettle-jem templating:
+#     kettle-jem:freeze
+#     # ... your code
+#     kettle-jem:unfreeze
+#
+
+# Performance regression guards (see .duel.rb and duel/)
+# Duel requires Ruby 3.4 or later, so older Rubies install neither gem.
+if Gem::Version.new(RUBY_VERSION) >= Gem::Version.new("3.4")
+  gem "duel", "~> 0.1", ">= 0.1.1" # ruby >= 3.4
+
+  # For profiles of regressions (StackProf runs on CRuby only)
+  platform :mri do
+    gem "stackprof", "~> 0.2", ">= 0.2.28"
+  end
+end

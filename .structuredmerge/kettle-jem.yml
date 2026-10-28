@@ -363,6 +363,17 @@ workflows:
   # Include VCR/WebMock recording modular gemfiles in generated Appraisals.
   # Enable only for projects that actually require recording support.
   recording: false
+  # Duel performance regression guards (https://github.com/sferik/duel-ruby).
+  # Off by default. Set `duel: true` to generate the Perf workflow
+  # (.github/workflows/perf.yml), gemfiles/modular/duel.gemfile (loaded by
+  # the root Gemfile and a `perf` appraisal), the `rake duel` task, the
+  # RuboCop include for .duel.rb, and the Duel README badge. .duel.rb is
+  # created only when it is missing, and the benchmarks in duel/ are the
+  # project's own to write. Duel requires Ruby 3.4 or later: on older
+  # Rubies it is not installed, and `rake duel` only warns. While Duel is
+  # off, kettle-jem neither writes nor removes .duel.rb, perf.yml, or
+  # duel.gemfile, so a project's own copies stay as they are.
+  duel: true
   # preset: framework
   # framework_matrix:
   #   dimension: activerecord

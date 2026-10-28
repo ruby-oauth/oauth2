@@ -7,7 +7,7 @@ Choose the option that best fits your use case:
 
 ## Copyright Notice
 
-- Copyright (c) 2010-2014, 2016-2017 Erik Michaels-Ober
+- Copyright (c) 2010-2014, 2016-2017 Erik Berlin
 - Copyright (c) 2010 Jeremy Kemper
 - Copyright (c) 2010-2011 Michael Bleigh
 - Copyright (c) 2010-2011 Paul Walker

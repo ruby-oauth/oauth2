@@ -1,0 +1,186 @@
+name: Perf
+
+# Performance regression guards: Duel runs the benchmarks in duel/ on the
+# baseline and on this code side by side, and fails if this code is slower.
+# See .duel.rb and https://github.com/sferik/duel-ruby
+
+# The Duel job runs this branch's code, so it only reads. Commenting is a
+# job of its own, which runs none of it.
+permissions:
+  contents: read
+
+on:
+  pull_request:
+  push:
+    branches:
+      - 'main'
+  schedule:
+    - cron: "0 4 * * *"
+  # Allow manually triggering the workflow.
+  workflow_dispatch:
+
+# Cancels a pull request's previous runs that have not yet completed. Every
+# other run is a group of its own, so none is cancelled: each push to main
+# is compared with the commit before it, and a cancelled run would skip
+# that comparison.
+concurrency:
+  group: "${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.ref || github.run_id }}"
+  cancel-in-progress: true
+
+jobs:
+  duel:
+    if: "github.event_name != 'push' || (!contains(github.event.head_commit.message, '[ci skip]') && !contains(github.event.head_commit.message, '[skip ci]'))"
+    name: Duel
+    runs-on: ubuntu-latest
+    # Whether the Comment job comments (post, change or none), and the
+    # run's status (passed, failed or neutral), from Duel.
+    outputs:
+      comment: ${{ steps.compare.outputs.comment }}
+      status: ${{ steps.compare.outputs.status }}
+    env: # $BUNDLE_GEMFILE must be set at job level, so it is set for all steps
+      # The perf appraisal: the gemspec's dependencies and Duel (Ruby 3.4 or later)
+      BUNDLE_GEMFILE: ${{ github.workspace }}/gemfiles/perf.gemfile
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0 # the baseline comes from history, tags included
+          persist-credentials: false
+
+      # .duel.rb sets c.ruby = :version_file, so each version runs on the Ruby
+      # that its own version file names (.ruby-version, .tool-versions, or
+      # mise.toml, the first that names one, as Duel reads them). When the
+      # baseline's names another Ruby than this one's, install that Ruby too,
+      # and link it where Duel finds it. The baseline is the one the Compare
+      # step uses: the main branch for a pull request, the commit before a
+      # push, the last release on a schedule (the newest v* tag before HEAD,
+      # as Duel finds it), and where HEAD left the default branch when run by
+      # hand.
+      - name: Find the baseline's Ruby
+        id: baseline
+        env:
+          BEFORE: ${{ github.event.before }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          case "$GITHUB_EVENT_NAME" in
+            pull_request) base="origin/$GITHUB_BASE_REF" ;;
+            push) base="$BEFORE" ;;
+            schedule) base=$(git describe --tags --abbrev=0 --match 'v*' HEAD^ 2>/dev/null) || base= ;;
+            *) base=$(git merge-base HEAD "origin/$DEFAULT_BRANCH" 2>/dev/null) || base= ;;
+          esac
+          ruby_of() {
+            for file in .ruby-version .tool-versions mise.toml .mise.toml; do
+              text=$(git show "$1:$file" 2>/dev/null) || continue
+              case "$file" in
+                .ruby-version) version=$(printf '%s\n' "$text" | awk 'NF { print $1; exit }') ;;
+                .tool-versions) version=$(printf '%s\n' "$text" | awk '$1 == "ruby" { print $2; exit }') ;;
+                *) version=$(printf '%s\n' "$text" | awk '/^\[/ { tools = ($0 ~ /^\[tools\]/) } tools && match($0, /^[ \t]*"?ruby"?[ \t]*=[ \t]*[[{]?[ \t]*(version[ \t]*=[ \t]*)?"[^"]+"/) { s = substr($0, RSTART, RLENGTH); sub(/"$/, "", s); sub(/.*"/, "", s); print s; exit }') ;;
+              esac
+              if [ -n "$version" ]; then
+                echo "$version"
+                return
+              fi
+            done
+          }
+          ruby=
+          if [ -n "$base" ] && git cat-file -e "$base^{commit}" 2>/dev/null; then
+            ruby=$(ruby_of "$base")
+            [ "$ruby" = "$(ruby_of HEAD)" ] && ruby=
+          fi
+          echo "ruby=$ruby" >> "$GITHUB_OUTPUT"
+
+      - name: Setup the baseline's Ruby
+        id: baseline-ruby
+        if: steps.baseline.outputs.ruby != ''
+        uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
+        with:
+          ruby-version: ${{ steps.baseline.outputs.ruby }}
+          # The bundle for this Ruby too, which the baseline's workers load.
+          # (Gems installed for one Ruby version don't load on another.)
+          bundler-cache: true
+
+      - name: Link the baseline's Ruby where Duel finds it
+        if: steps.baseline.outputs.ruby != ''
+        env:
+          PREFIX: ${{ steps.baseline-ruby.outputs.ruby-prefix }}
+        run: |
+          mkdir -p ~/.rubies
+          ln -sfn "$PREFIX" ~/.rubies/ruby-"$("$PREFIX/bin/ruby" -e 'print RUBY_VERSION')"
+
+      # The candidate's Ruby, from its version file (the same one Duel reads)
+      - name: Setup Ruby & RubyGems
+        uses: ruby/setup-ruby@7f797815d8adceb1c412e7abefdd1ab4abc47a5f # v1.335.0
+        with:
+          bundler-cache: true
+
+      # Against the main branch for a pull request, what was there before
+      # for a push, and the last release on a schedule (slow creep). Duel
+      # adds its report to the job's summary, writes it to duel.md for the
+      # comment, and sets the step's outputs to say whether to comment, as
+      # c.comment in .duel.rb says, whatever the outcome.
+      - name: Compare
+        id: compare
+        env:
+          DUEL_BASE: ${{ github.event_name == 'schedule' && 'last-release' || github.event_name == 'push' && github.event.before || '' }}
+          # (Run by hand, it compares anyway: with nothing changed, the code
+          # with itself, which checks the setup.)
+          DUEL_FORCE: ${{ github.event_name == 'workflow_dispatch' && '1' || '' }}
+        run: |
+          # (A branch's first push, or one that rewrote history, has no
+          # commit before it here to compare against.)
+          if [ "$GITHUB_EVENT_NAME" = push ] && ! git cat-file -e "$DUEL_BASE^{commit}" 2>/dev/null; then
+            echo "::notice::No commit before this push to compare against"
+            exit 0
+          fi
+          bundle exec duel --markdown "$RUNNER_TEMP/duel.md"
+
+      # The report, for the Comment job
+      - name: Keep the report
+        if: ${{ !cancelled() && github.event_name == 'pull_request' }}
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: duel-report
+          path: ${{ runner.temp }}/duel.md
+          if-no-files-found: ignore # none when the comparison didn't run
+          retention-days: 1
+
+  # The report, as a new comment on the pull request, when Duel says to:
+  # always (post), or only when its last comment's status differs from
+  # this run's (change), so the latest comment is never stale. It never
+  # edits or deletes a comment. This job checks nothing out and runs none
+  # of the branch's code, so it alone can write. (A pull request from a
+  # fork gets no comment, as its token can't write one: the Duel job's
+  # summary has the report.)
+  comment:
+    name: Comment
+    needs: duel
+    if: ${{ !cancelled() && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && (needs.duel.outputs.comment == 'post' || needs.duel.outputs.comment == 'change') }}
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # to comment on the pull request with the report
+    steps:
+      - name: Get the report
+        id: report
+        continue-on-error: true # the Duel job keeps no report when it fails before comparing
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: duel-report
+          path: ${{ runner.temp }}/report
+
+      - name: Comment on the pull request
+        if: steps.report.outcome == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          COMMENT: ${{ needs.duel.outputs.comment }}
+          STATUS: ${{ needs.duel.outputs.status }}
+        run: |
+          marker="<!-- duel"
+          # The first line of the last comment Duel posted here: its marker,
+          # with its status (none in Duel 0.1.0's, which counts as another).
+          last=$(gh api --paginate "repos/$GITHUB_REPOSITORY/issues/$PR/comments" \
+            --jq ".[] | select(.user.login == \"github-actions[bot]\") | .body | split(\"\n\")[0] | rtrimstr(\"\r\") | select(startswith(\"$marker status=\") or . == \"$marker -->\")" | tail -n 1)
+          if [ "$COMMENT" = post ] || { [ -n "$last" ] && [ "$last" != "$marker status=$STATUS -->" ]; }; then
+            { echo "$marker status=$STATUS -->"; cat "$RUNNER_TEMP/report/duel.md"; } > "$RUNNER_TEMP/comment.md"
+            gh api --method POST "repos/$GITHUB_REPOSITORY/issues/$PR/comments" -F body=@"$RUNNER_TEMP/comment.md" > /dev/null
+          fi

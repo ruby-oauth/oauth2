@@ -138,6 +138,8 @@ GEM
       dry-inflector (~> 1.0)
       dry-logic (~> 1.4)
       zeitwerk (~> 2.6)
+    duel (0.1.1)
+      fiddle (~> 1.1)
     emoji_regex (15.0.0)
     erb (6.0.7)
     faraday (2.15.0)
@@ -146,6 +148,7 @@ GEM
       logger
     faraday-net_http (3.5.0)
       net-http (~> 0.5)
+    fiddle (1.1.8)
     gem_bench (2.0.5)
       bundler (>= 1.14)
       version_gem (~> 1.1, >= 1.1.4)
@@ -506,6 +509,7 @@ GEM
       hashie (>= 0.1.0, < 6)
       version_gem (~> 1.1, >= 1.1.16)
     sorbet-runtime (0.6.13594)
+    stackprof (0.2.28)
     standard (1.57.0)
       language_server-protocol (~> 3.17.0.2)
       lint_roller (~> 1.0)
@@ -633,6 +637,7 @@ DEPENDENCIES
   bundler-audit (~> 0.9.3)
   cgi (~> 0.5)
   debug (>= 1.11.1)
+  duel (~> 0.1, >= 0.1.1)
   erb (~> 6.0, >= 6.0.7)
   gem_bench (~> 2.0, >= 2.0.5)
   gitmoji-regex (~> 2.0, >= 2.0.15)
@@ -662,6 +667,7 @@ DEPENDENCIES
   rubocop-packaging!
   rubocop-ruby2_2 (~> 3.0, >= 3.0.7)
   ruby-progressbar (~> 1.13)
+  stackprof (~> 0.2, >= 0.2.28)
   standard (~> 1.57, >= 1.57.0)
   stone_checksums (~> 1.0, >= 1.0.9)
   stringio (>= 3.2.0)
@@ -720,10 +726,12 @@ CHECKSUMS
   dry-logic (1.6.0) sha256=da6fedbc0f90fc41f9b0cc7e6f05f5d529d1efaef6c8dcc8e0733f685745cea2
   dry-schema (1.16.0) sha256=cd3aaeabc0f1af66ec82a29096d4c4fb92a0a58b9dae29a22b1bbceb78985727
   dry-types (1.9.1) sha256=baebeecdb9f8395d6c9d227b62011279440943e3ef2468fe8ccc1ba11467f178
+  duel (0.1.1) sha256=5f8f42f9a9dd1d3f2925dbb8d8f11cb9f5a8ad05d926097c17ac13a4d907d52e
   emoji_regex (15.0.0) sha256=a508b2c0bee561169564e0aec96085020c900520d335e5533fd8e78e59493829
   erb (6.0.7) sha256=c5ca6dc25b0ef974a44dc8f59fe847577122483b1968a38dec305c60bf91ee92
   faraday (2.15.0) sha256=3be0eff0187ed913a1b4f679e9fcfe845b542cdd4f75b76cd6181a4ae1335fff
   faraday-net_http (3.5.0) sha256=2e7094c34e38754ee048cc3df47376f8657005d9375f8473bce1c3b526a22e36
+  fiddle (1.1.8) sha256=7fa8ee3627271497f3add5503acdbc3f40b32f610fc1cf49634f083ef3f32eee
   gem_bench (2.0.5) sha256=0dc0fb44a5a5eb7b2f5c1c68a5b0164d72007132822c012bac3abe976b199ead
   geom2d (0.4.1) sha256=ea0998ea90c4f2752e24fe13d85a4f89bee689d151316140ebcc6369bf634ed9
   gitmoji-regex (2.0.15) sha256=c6571bffd757f95c06d84a7d2d0b3f180eca7fe576882c371cee1f1a081cd968
@@ -835,6 +843,7 @@ CHECKSUMS
   simplecov_lcov_formatter (0.9.0) sha256=4c1839bb31dcf7a8f7a6474c94ed228aa03b994e9dd5e1965e58b4121b049bed
   snaky_hash (2.0.9) sha256=e93e6ec80632f8c8c4a3fe6e25d51eaef253e0e58dc7100f0f8370320feb3128
   sorbet-runtime (0.6.13594) sha256=cf26f625a84c73d0d4d151fc19cafa1a6c44ad1814f2454e545893773eddd5e3
+  stackprof (0.2.28) sha256=4ec2ace02f386012b40ca20ef80c030ad711831f59511da12e83b34efb0f9a04
   standard (1.57.0) sha256=4a65ea92421fbaf77fb54da91e16093cf79b335b8f62c35aaa3dd714c8592858
   standard-custom (1.0.2) sha256=424adc84179a074f1a2a309bb9cf7cd6bfdb2b6541f20c6bf9436c0ba22a652b
   standard-performance (1.9.0) sha256=49483d31be448292951d80e5e67cdcb576c2502103c7b40aec6f1b6e9c88e3f2
