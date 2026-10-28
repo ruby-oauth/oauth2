@@ -29,6 +29,7 @@ module OAuth2
     # @option options [Symbol] :auth_scheme (:basic_auth) HTTP method to use to authorize request (:basic_auth or :request_body)
     # @option options [Hash] :connection_opts ({}) Hash of connection options to pass to initialize Faraday with
     # @option options [FixNum] :max_redirects (5) maximum number of redirects to follow
+    # @option options [Boolean] :allow_cross_origin_redirects (false) whether to follow redirects to a different origin
     # @option options [Boolean] :raise_errors (true) whether or not to raise an OAuth2::Error on responses with 400+ status codes
     # @option options [Logger] :logger (::Logger.new($stdout)) which logger to use when OAUTH_DEBUG is enabled
     # @option options [Proc] (DEPRECATED) :extract_access_token  proc that extracts the access token from the response
@@ -46,6 +47,7 @@ module OAuth2
                   :connection_opts => {},
                   :connection_build => block,
                   :max_redirects => 5,
+                  :allow_cross_origin_redirects => false,
                   :raise_errors => true,
                   :extract_access_token => DEFAULT_EXTRACT_ACCESS_TOKEN, # DEPRECATED
                   :logger => ::Logger.new($stdout)}.merge(opts)
@@ -296,9 +298,22 @@ module OAuth2
     def sanitize_redirect_options(opts, current_url, next_url)
       current_uri = URI.parse(current_url)
       next_uri = URI.parse(next_url)
-      return opts if current_uri.scheme == next_uri.scheme &&
+      same_origin = current_uri.scheme == next_uri.scheme &&
         current_uri.host == next_uri.host &&
         current_uri.port == next_uri.port
+      return opts if same_origin
+
+      unless options[:allow_cross_origin_redirects]
+        blocked_response = Struct.new(:body, :headers, :status).new(
+          MultiJson.encode(
+            "error" => "cross_origin_redirect_blocked",
+            "error_description" => "Cross-origin redirect blocked. Set :allow_cross_origin_redirects to true to allow it."
+          ),
+          {"Content-Type" => "application/json"},
+          0
+        )
+        raise Error.new(Response.new(blocked_response))
+      end
 
       safe_opts = opts.dup
       [:body, "body", :params, "params"].each { |key| safe_opts.delete(key) }

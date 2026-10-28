@@ -279,8 +279,44 @@ describe OAuth2::Client do
       expect(response.body).to eq("api.example.com")
     end
 
-    it "does not forward credentials across cross-origin redirects" do
+    it "blocks cross-origin redirects by default" do
+      redirected = false
       client = described_class.new("abc", "def", :site => "https://api.example.com") do |builder|
+        builder.adapter :test do |stub|
+          stub.post("/start") do
+            [307, {"Content-Type" => "text/plain", "location" => "https://attacker.example/collect"}, ""]
+          end
+          stub.post("/collect") do |env|
+            redirected = true
+            [200, {}, MultiJson.encode(
+              :body => env[:body],
+              :params => env[:params],
+              :authorization => env[:request_headers]["Authorization"]
+            )]
+          end
+        end
+      end
+
+      expect do
+        client.request(
+          :post,
+          "/start",
+          :body => "client_secret=secret",
+          :params => {"code" => "sensitive-code"},
+          :headers => {"Authorization" => "Bearer sensitive-token"}
+        )
+      end.to raise_error(OAuth2::Error) { |error| expect(error.code).to eq("cross_origin_redirect_blocked") }
+
+      expect(redirected).to be(false)
+    end
+
+    it "strips per-request credentials when cross-origin redirects are explicitly allowed" do
+      client = described_class.new(
+        "abc",
+        "def",
+        :site => "https://api.example.com",
+        :allow_cross_origin_redirects => true
+      ) do |builder|
         builder.adapter :test do |stub|
           stub.post("/start") do
             [307, {"Content-Type" => "text/plain", "location" => "https://attacker.example/collect"}, ""]
