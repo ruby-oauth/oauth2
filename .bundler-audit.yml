@@ -1,0 +1,7 @@
+---
+# Temporary exception for the 1.4 security backport. The advisory database
+# currently lists only the 2.0.22 fix, so it reports this patched 1.4.12
+# release candidate as vulnerable. Remove after GHSA-pp92-crg2-gfv9 includes
+# the 1.4.12 fix after release.
+ignore:
+  - CVE-2026-54603
