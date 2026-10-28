@@ -120,7 +120,7 @@ Please file a bug if you notice a violation of semantic versioning.
 
 - Prevent protocol-relative redirects from sending bearer tokens to an attacker-controlled host ([GHSA-pp92-crg2-gfv9](https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-pp92-crg2-gfv9)).
 - Remove authorization headers, request bodies, and query parameters from cross-origin redirects.
-- Redact access tokens, refresh tokens, client secrets, authorization codes, and other sensitive fields from opt-in debug logs.
+- Redact sensitive values in structured request and response bodies in opt-in debug logs ([GHSA-cmh8-5q25-68v6](https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-cmh8-5q25-68v6)).
 
 ## [1.4.11] - 2022-09-16
 - Complete migration to main branch as default (@pboling)
