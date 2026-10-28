@@ -2,8 +2,8 @@
   "bin/bundle:3474730829": [
     [66, 5, 20, "ThreadSafety/ClassInstanceVariable: Avoid class instance variables.", 2485198147]
   ],
-  "lib/oauth2/client.rb:2571398303": [
-    [169, 16, 12, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 4245087757]
+  "lib/oauth2/client.rb:2387364079": [
+    [170, 16, 12, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 4245087757]
   ],
   "oauth2.gemspec:4057149467": [
     [127, 3, 53, "Gemspec/DependencyVersion: Dependency version specification is required.", 1845662118],
