@@ -119,7 +119,7 @@ Please file a bug if you notice a violation of semantic versioning.
 ### Security
 
 - Prevent protocol-relative redirects from sending bearer tokens to an attacker-controlled host ([GHSA-pp92-crg2-gfv9](https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-pp92-crg2-gfv9)).
-- Remove authorization headers, request bodies, and query parameters from cross-origin redirects.
+- Block cross-origin redirects by default to prevent credential replay and attacker-supplied token responses ([GHSA-h4fh-g8xf-8255](https://github.com/ruby-oauth/oauth2/security/advisories/GHSA-h4fh-g8xf-8255)). Legacy cross-origin redirects can be explicitly enabled with `:allow_cross_origin_redirects => true`.
 - Redact access tokens, refresh tokens, client secrets, authorization codes, and other sensitive fields from opt-in debug logs.
 
 ## [1.4.11] - 2022-09-16

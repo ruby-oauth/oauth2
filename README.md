@@ -368,6 +368,12 @@ For more see [SECURITY.md][🚎sec-pol].
 
 ## ⚙️ Configuration
 
+Cross-origin redirects are blocked by default so OAuth credentials are not sent
+to another origin and a redirected server cannot supply a token response. To
+restore legacy cross-origin redirect behavior for a trusted provider, set
+`:allow_cross_origin_redirects => true` when creating the client. Enabling this
+option accepts the security risks of following a redirect to another origin.
+
 ## 🔧 Basic Usage
 
 ## 🦷 FLOSS Funding
