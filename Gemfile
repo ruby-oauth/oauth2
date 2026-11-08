@@ -21,7 +21,7 @@ gemspec
 gem "kettle-family", "~> 1.3", ">= 1.3.29"
 
 # Local workspace dependency wiring for *_local.gemfile overrides
-gem "nomono", "~> 1.1", ">= 1.1.17", :require => false # ruby >= 3.2.0
+gem "nomono", "~> 1.1", ">= 1.1.18", :require => false # ruby >= 3.2.0
 
 # Templating and the StructuredMerge family share this modular Gemfile.
 # kettle-jem needs StructuredMerge to template, and kettle-changelog needs it at
