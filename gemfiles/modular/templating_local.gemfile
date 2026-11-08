@@ -112,3 +112,15 @@ if ENV.fetch("KETTLE_DEV_DEV", "false").casecmp("false") != 0
     **kettle_dev_nomono_options
   )
 end
+
+# structuredmerge-core lives in a subdirectory of its own repository.
+if ENV.fetch("STRUCTUREDMERGE_CORE_DEV", "false").casecmp("false") != 0
+  eval_nomono_gems(
+    gems: %w[structuredmerge-core],
+    prefix: "STRUCTUREDMERGE_CORE",
+    path_env: "STRUCTUREDMERGE_CORE_DEV",
+    debug_env: "STRUCTUREDMERGE_CORE_DEBUG",
+    root: %w[src my structuredmerge structuredmerge],
+    subdirs: {"structuredmerge-core" => "packages/ruby"}
+  )
+end
