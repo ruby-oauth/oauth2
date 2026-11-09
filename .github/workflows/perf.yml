@@ -228,7 +228,8 @@ jobs:
   # the last commit Duel passed, which a branch marks (each branch pushed
   # has its own), so slowdowns too small for any one push to fail add up
   # until they fail one. This job moves the branch to a push that passed
-  # (or makes it). It checks nothing out and runs none of the code. To
+  # (or makes it), but never back: where a newer push's run moved it
+  # first, it stays. It checks nothing out and runs none of the code. To
   # accept a regression, move the branch yourself (for main, git push
   # origin main:duel/passed/main).
   passed:
@@ -244,5 +245,34 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           BRANCH: duel/passed/${{ github.ref_name }}
         run: |
-          gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/$BRANCH" -f sha="$GITHUB_SHA" -F force=true > /dev/null 2>&1 ||
-            gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/heads/$BRANCH" -f sha="$GITHUB_SHA" > /dev/null
+          # (Git can't make a branch where another's name is a folder of its
+          # name: a branch named duel blocks duel/passed/main. If one does,
+          # this names it.)
+          blocked() {
+            prefix=$BRANCH
+            while [ "${prefix%/*}" != "$prefix" ]; do
+              prefix=${prefix%/*}
+              if gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$prefix" > /dev/null 2>&1; then
+                echo "::error::The branch $prefix keeps Duel from making $BRANCH, as Git can't have both. Delete it (git push origin --delete $prefix), or rename it."
+              fi
+            done
+            exit 1
+          }
+          # (Forward: GitHub moves it only where it's behind the push.)
+          gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/$BRANCH" -f sha="$GITHUB_SHA" > /dev/null 2>&1 && exit 0
+          at=$(gh api "repos/$GITHUB_REPOSITORY/git/ref/heads/$BRANCH" --jq .object.sha 2>/dev/null) || at=
+          if [ -z "$at" ]; then
+            gh api --method POST "repos/$GITHUB_REPOSITORY/git/refs" -f ref="refs/heads/$BRANCH" -f sha="$GITHUB_SHA" > /dev/null || blocked
+            exit 0
+          fi
+          compared=$(gh api "repos/$GITHUB_REPOSITORY/compare/$GITHUB_SHA...$at" --jq .status 2>&1) || case "$compared" in
+            # (GitHub can't compare commits with no history in common.)
+            *"No common ancestor"*) compared=unrelated ;;
+          esac
+          case "$compared" in
+            # (A newer push's run moved it, or this one's did, run again.)
+            ahead | identical) ;;
+            # (History rewritten, a force push's, say, or replaced: moved anyway.)
+            diverged | behind | unrelated) gh api --method PATCH "repos/$GITHUB_REPOSITORY/git/refs/heads/$BRANCH" -f sha="$GITHUB_SHA" -F force=true > /dev/null ;;
+            *) echo "::error::Couldn't compare $BRANCH with this push: $compared" && exit 1 ;;
+          esac
