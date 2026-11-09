@@ -10,12 +10,23 @@ name: Perf comment
 # ran), it trusts only what that job could have said: the pull request's
 # number, if it names the pull request the run compared, and the comment
 # and the status, if they're ones Duel says. A fork's report, which the
-# fork's code wrote, is shown as text. (The workflow must be on the
-# default branch before it runs at all.)
+# fork's code wrote, is shown as text.
+#
+# And when the label that accepts a regression (c.accept_label in
+# .duel.rb) is added to a pull request, or taken off, it runs the Duel
+# job again, which reads the labels as it runs: a run that failed, once
+# the label's added, or one that passed, once it's taken off.
+#
+# (The workflow must be on the default branch before it runs at all.)
 on:
   workflow_run:
     workflows: ["Perf"]
     types: [completed]
+  # (This repository's own workflow, as for the comment, with a token
+  # that can run a workflow again: it checks nothing out, and runs none
+  # of the pull request's code.)
+  pull_request_target:
+    types: [labeled, unlabeled]
 
 permissions: {}
 
@@ -77,3 +88,30 @@ jobs:
             { echo "$marker status=$STATUS -->"; report; } > "$RUNNER_TEMP/comment.md"
             gh api --method POST "repos/$GITHUB_REPOSITORY/issues/$PR/comments" -F body=@"$RUNNER_TEMP/comment.md" > /dev/null
           fi
+
+  again:
+    name: Run Duel again
+    if: >-
+      github.event_name == 'pull_request_target' && github.event.label.name == 'duel: accept'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write # to run the Perf workflow's jobs again
+    steps:
+      - name: Run Duel again
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+          ACTION: ${{ github.event.action }}
+        run: |
+          # The newest Perf run of the pull request's head commit, once it's
+          # done (one that's running may have read the labels already).
+          id=$(gh run list --workflow "Perf" --event pull_request --commit "$HEAD_SHA" --limit 1 \
+            --json databaseId --jq '.[0].databaseId // empty')
+          [ -n "$id" ] || exit 0
+          gh run watch "$id" --interval 30 > /dev/null || true
+          conclusion=$(gh run view "$id" --json conclusion --jq .conclusion)
+          case "$ACTION:$conclusion" in
+            labeled:failure) gh run rerun "$id" --failed ;;
+            unlabeled:success) gh run rerun "$id" ;;
+          esac
