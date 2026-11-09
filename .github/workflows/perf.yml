@@ -4,9 +4,9 @@ name: Perf
 # baseline and on this code side by side, and fails if this code is slower.
 # See .duel.rb and https://github.com/sferik/duel-ruby
 
-# The Duel job runs this branch's code, so it only reads. Commenting on a
-# commit and marking a push passed are jobs of their own, which run none
-# of it, and commenting on a pull request is the Perf comment workflow's.
+# The Duel job runs this branch's code, so it only reads. Marking a push
+# passed is a job of its own, which runs none of it, and commenting on a
+# pull request is the Perf comment workflow's.
 permissions:
   contents: read
   pull-requests: read # for the pull request's labels (see c.accept_label)
@@ -186,43 +186,6 @@ jobs:
           path: ${{ runner.temp }}/duel/
           if-no-files-found: ignore # none when Duel didn't get to compare
           retention-days: 1
-
-  # The report, as a new comment on a pushed commit, which notifies its
-  # author, when Duel says to, as for a pull request (see the Perf comment
-  # workflow). It does only where a regression in a push passes, with
-  # c.fail_on = :pull_requests in .duel.rb, so the comment says what the
-  # check doesn't. Its last comment is the last one on any commit. This
-  # job checks nothing out and runs none of the code.
-  commit-comment:
-    name: Comment on the commit
-    needs: duel
-    if: ${{ !cancelled() && github.event_name == 'push' && (needs.duel.outputs.comment == 'post' || needs.duel.outputs.comment == 'change') }}
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write # to comment on the commit with the report
-    steps:
-      - name: Get the report
-        id: report
-        continue-on-error: true # the Duel job keeps no report when it fails before comparing
-        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
-        with:
-          name: duel-report
-          path: ${{ runner.temp }}/report
-
-      - name: Comment on the commit
-        if: steps.report.outcome == 'success'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          COMMENT: ${{ needs.duel.outputs.comment }}
-          STATUS: ${{ needs.duel.outputs.status }}
-        run: |
-          marker="<!-- duel"
-          last=$(gh api --paginate "repos/$GITHUB_REPOSITORY/comments" \
-            --jq ".[] | select(.user.login == \"github-actions[bot]\") | .body | split(\"\n\")[0] | rtrimstr(\"\r\") | select(startswith(\"$marker status=\"))" | tail -n 1)
-          if [ "$COMMENT" = post ] || { [ -n "$last" ] && [ "$last" != "$marker status=$STATUS -->" ]; }; then
-            { echo "$marker status=$STATUS -->"; cat "$RUNNER_TEMP/report/duel.md"; } > "$RUNNER_TEMP/comment.md"
-            gh api --method POST "repos/$GITHUB_REPOSITORY/commits/$GITHUB_SHA/comments" -F body=@"$RUNNER_TEMP/comment.md" > /dev/null
-          fi
 
   # With c.push_base = :last_passed in .duel.rb, a push is compared with
   # the last commit Duel passed, which a branch marks (each branch pushed
