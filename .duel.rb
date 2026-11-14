@@ -22,4 +22,21 @@ Duel.configure do |c|
   # :results (passed or failed), :failures (failed, or couldn't compare),
   # or :never.
   # c.comment = :failures
+
+  # Which runs a regression fails: :every_run, or :pull_requests, for a
+  # project where people push to main directly (on GitHub Actions, another
+  # run warns and passes, and a pushed commit gets the comment instead).
+  # c.fail_on = :every_run
+
+  # A pull request with this label passes with a regression, which the
+  # report says the label accepted. Adding the label, or taking it off,
+  # runs the workflow again.
+  c.accept_label = "duel: accept"
+
+  # A push is compared with the last commit Duel passed, which a branch
+  # marks (duel/passed/main for main), not the commit before it, so
+  # slowdowns too small for any one push to fail add up until they fail
+  # one. To accept a regression after it's pushed, move that branch:
+  # git push origin main:duel/passed/main.
+  c.push_base = :last_passed
 end
