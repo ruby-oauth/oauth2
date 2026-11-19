@@ -1,0 +1,41 @@
+name: Sponsor badges
+
+on:
+  push:
+    branches: [main]
+    paths: [".structuredmerge/kettle-jem.yml", "bin/kettle-sponsors"]
+  schedule:
+    - cron: "17 5 * * *" # picks up sponsors whose `until` date has passed
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: sponsor-badges
+  cancel-in-progress: false
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.4" # stdlib only; no bundler
+      - name: Checksum sponsors block
+        id: check
+        run: |
+          if bin/kettle-sponsors --check; then echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+      - name: Render badges
+        if: steps.check.outputs.changed == 'true'
+        run: bin/kettle-sponsors
+      - name: Commit
+        if: steps.check.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/sponsors
+          git diff --staged --quiet && exit 0
+          git commit -m "chore: refresh sponsor badges"
+          for i in 1 2 3; do git pull --rebase -q && git push && break; sleep 5; done

@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+# Generates assets/sponsors/*.svg from readme.corporate_sponsors in
+# .structuredmerge/kettle-jem.yml. Only the sponsors block is checksummed, so
+# unrelated config edits are a no-op.
+#
+#   bin/kettle-sponsors --check   exit 0 if badges are stale, 1 if current (fast; no rendering)
+#   bin/kettle-sponsors           render if stale, then store the checksum
+require "yaml"
+require "date"
+require "json"
+require "digest"
+require "fileutils"
+require "cgi"
+
+ROOT = File.expand_path("..", __dir__)
+CONFIG = File.join(ROOT, ".structuredmerge/kettle-jem.yml")
+OUT = File.join(ROOT, "assets/sponsors")
+SUM = File.join(OUT, ".checksum")
+
+cfg = YAML.safe_load_file(CONFIG, permitted_classes: [Date], aliases: true) || {}
+today = Date.today
+sponsors = Array(cfg.dig("readme", "corporate_sponsors")).select do |s|
+  s["until"].nil? || Date.parse(s["until"].to_s) >= today
+end
+# Expired sponsors drop out of the payload, so expiry changes the checksum too.
+sum = Digest::SHA256.hexdigest(JSON.generate(sponsors))
+current = File.exist?(SUM) && File.read(SUM).strip == sum
+
+if ARGV.include?("--check")
+  puts(current ? "sponsors unchanged" : "sponsors changed")
+  exit(current ? 1 : 0)
+end
+exit 0 if current
+
+def esc(s) = CGI.escapeHTML(s.to_s)
+
+FileUtils.mkdir_p(OUT)
+Dir[File.join(OUT, "*.svg")].each { |f| File.delete(f) }
+sponsors.each do |s|
+  slug = s["name"].downcase.gsub(/[^a-z0-9]+/, "-").gsub(/\A-|-\z/, "")
+  since = s["since"] ? "since #{s["since"].to_s[0, 7]}" : "sponsor"
+  desc = s["description"].to_s.strip
+  w = [190, (s["name"].length * 9) + 40, (desc.length * 6) + 28].max
+  h = desc.empty? ? 40 : 54
+  label = [s["name"], since, desc].reject(&:empty?).join(", ")
+  extra = desc.empty? ? "" : %(\n  <text x="14" y="46" font-family="system-ui,sans-serif" font-size="10" fill="#c9d1d9">#{esc(desc)}</text>)
+  File.write(File.join(OUT, "#{slug}.svg"), <<~SVG)
+    <svg xmlns="http://www.w3.org/2000/svg" width="#{w}" height="#{h}" viewBox="0 0 #{w} #{h}" role="img" aria-label="#{esc(label)}">
+      <rect x=".5" y=".5" width="#{w - 1}" height="#{h - 1}" rx="6" fill="#0d1117" stroke="#30363d"/>
+      <text x="14" y="18" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#f0f6fc">#{esc(s["name"])}</text>
+      <text x="14" y="32" font-family="system-ui,sans-serif" font-size="10" fill="#8b949e">#{esc(since)}</text>#{extra}
+    </svg>
+  SVG
+end
+File.write(SUM, "#{sum}\n")
+puts "rendered #{sponsors.size} badge(s)"
