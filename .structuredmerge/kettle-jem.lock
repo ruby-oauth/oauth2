@@ -8,7 +8,25 @@ template_state:
     last_entry_date: '2026-10-25'
   maintenance_changelog:
     kettle-jem/template:
+    - ".github/workflows/coverage.yml"
+    - ".github/workflows/danger.yml"
+    - ".github/workflows/license-eye.yml"
+    - ".github/workflows/macos-ancient.yml"
+    - ".github/workflows/macos.yml"
+    - ".github/workflows/templating.yml"
+    - ".github/workflows/truffleruby-22.3.yml"
+    - ".github/workflows/unlocked_deps.yml"
+    - ".github/workflows/windows.yml"
+    - ".idea/.gitignore"
+    - AGENTS.md
+    - Appraisal.root.gemfile
+    - README.md
+    - Rakefile
+    - gemfiles/modular/coverage_local.gemfile
+    - gemfiles/modular/optional.gemfile
+    - gemfiles/modular/templating_local.gemfile
     - spec/oauth2/version_spec.rb
+    - spec/spec_helper.rb
     kettle-jem/prepare:
     - Gemfile
     - Rakefile
