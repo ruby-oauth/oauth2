@@ -110,11 +110,6 @@ dependency_conflicts:
   # Review each entry and choose a supported action.
   # keep_both is for a broad direct requirement plus a compatible modular narrowing.
   resolve:
-    - gem: rubocop-lts
-      direct: oauth2.gemspec
-      modular: gemfiles/modular/style.gemfile
-      action: remove_direct_gem
-      reason: "The template style bundle now owns the development dependency; remove the incompatible 1.4 pin."
     - gem: addressable
       direct: oauth2.gemspec
       modular: gemfiles/modular/optional.gemfile
@@ -365,6 +360,8 @@ readme:
   # from this branch’s runtime floor and configured test floor.
   preserve_sections:
     - synopsis
+    - configuration
+    - basic usage
     - Release Documentation
     - OAuth2 for Enterprise
     - Security contact information
