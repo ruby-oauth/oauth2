@@ -5,8 +5,8 @@
 # .structuredmerge/kettle-jem.yml. Only the sponsors block is checksummed, so
 # unrelated config edits are a no-op.
 #
-#   bin/sponsor_badges --check   exit 0 if badges are stale, 1 if current (fast; no rendering)
-#   bin/sponsor_badges           render if stale, then store the checksum
+#   bin/kettle-sponsors --check   exit 0 if badges are stale, 1 if current (fast; no rendering)
+#   bin/kettle-sponsors           render if stale, then store the checksum
 require "yaml"
 require "date"
 require "json"

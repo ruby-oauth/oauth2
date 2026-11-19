@@ -3,7 +3,7 @@ name: Sponsor badges
 on:
   push:
     branches: [main]
-    paths: [".structuredmerge/kettle-jem.yml", "bin/sponsor_badges"]
+    paths: [".structuredmerge/kettle-jem.yml", "bin/kettle-sponsors"]
   schedule:
     - cron: "17 5 * * *" # picks up sponsors whose `until` date has passed
   workflow_dispatch:
@@ -26,10 +26,10 @@ jobs:
       - name: Checksum sponsors block
         id: check
         run: |
-          if bin/sponsor_badges --check; then echo "changed=true" >> "$GITHUB_OUTPUT"; fi
+          if bin/kettle-sponsors --check; then echo "changed=true" >> "$GITHUB_OUTPUT"; fi
       - name: Render badges
         if: steps.check.outputs.changed == 'true'
-        run: bin/sponsor_badges
+        run: bin/kettle-sponsors
       - name: Commit
         if: steps.check.outputs.changed == 'true'
         run: |
