@@ -426,6 +426,7 @@ readme:
       url: https://github.com
       img_src: https://github.githubassets.com/images/modules/logos_page/GitHub-Logo.png
       since: "2026-08-29"
+      description: Donated "Copilot Max" plan
   # Optional package-family README block.
   # Supported values: structuredmerge
   # Leave unset for standalone kettle-rb gems and most projects.

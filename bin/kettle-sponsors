@@ -41,12 +41,16 @@ Dir[File.join(OUT, "*.svg")].each { |f| File.delete(f) }
 sponsors.each do |s|
   slug = s["name"].downcase.gsub(/[^a-z0-9]+/, "-").gsub(/\A-|-\z/, "")
   since = s["since"] ? "since #{s["since"].to_s[0, 7]}" : "sponsor"
-  w = [190, (s["name"].length * 9) + 40].max
+  desc = s["description"].to_s.strip
+  w = [190, (s["name"].length * 9) + 40, (desc.length * 6) + 28].max
+  h = desc.empty? ? 40 : 54
+  label = [s["name"], since, desc].reject(&:empty?).join(", ")
+  extra = desc.empty? ? "" : %(\n  <text x="14" y="46" font-family="system-ui,sans-serif" font-size="10" fill="#c9d1d9">#{esc(desc)}</text>)
   File.write(File.join(OUT, "#{slug}.svg"), <<~SVG)
-    <svg xmlns="http://www.w3.org/2000/svg" width="#{w}" height="40" viewBox="0 0 #{w} 40" role="img" aria-label="#{esc(s["name"])}, #{esc(since)}">
-      <rect x=".5" y=".5" width="#{w - 1}" height="39" rx="6" fill="#0d1117" stroke="#30363d"/>
+    <svg xmlns="http://www.w3.org/2000/svg" width="#{w}" height="#{h}" viewBox="0 0 #{w} #{h}" role="img" aria-label="#{esc(label)}">
+      <rect x=".5" y=".5" width="#{w - 1}" height="#{h - 1}" rx="6" fill="#0d1117" stroke="#30363d"/>
       <text x="14" y="18" font-family="system-ui,sans-serif" font-size="14" font-weight="700" fill="#f0f6fc">#{esc(s["name"])}</text>
-      <text x="14" y="32" font-family="system-ui,sans-serif" font-size="10" fill="#8b949e">#{esc(since)}</text>
+      <text x="14" y="32" font-family="system-ui,sans-serif" font-size="10" fill="#8b949e">#{esc(since)}</text>#{extra}
     </svg>
   SVG
 end
