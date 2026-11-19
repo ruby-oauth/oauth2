@@ -6,7 +6,7 @@
 # kettle-jem will then preserve content between those markers across template runs.
 # kettle-jem:unfreeze
 
-# oauth2 Rakefile v7.1.40 - 2026-10-26
+# oauth2 Rakefile v7.1.42 - 2026-11-19
 # Ruby 2.3 (Safe Navigation) or higher required
 #
 # See LICENSE.md for license information.
@@ -134,6 +134,27 @@ begin
   Kettle::Dev.install_tasks unless Kettle::Dev::RUNNING_AS == "rake"
 rescue LoadError
   warn("NOTE: kettle-dev isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
+end
+
+### DUPLICATE DRIFT TASKS
+begin
+  require "kettle/drift"
+  Kettle::Drift.install_tasks
+rescue LoadError
+  desc("(stub) kettle:drift:check is unavailable")
+  task("kettle:drift:check") do
+    warn("NOTE: kettle-drift isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
+  end
+  desc("(stub) kettle:drift:update is unavailable")
+  task("kettle:drift:update") do
+    warn("NOTE: kettle-drift isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
+  end
+  desc("(stub) kettle:drift:force_update is unavailable")
+  task("kettle:drift:force_update") do
+    warn("NOTE: kettle-drift isn't installed, or is disabled for #{RUBY_VERSION} in the current environment")
+  end
+  desc("(stub) kettle:drift is unavailable")
+  task("kettle:drift" => "kettle:drift:update")
 end
 
 ### TEMPLATING TASKS

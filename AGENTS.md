@@ -207,6 +207,7 @@ mise exec -C /path/to/project -- bin/kettle-soup-cover -d
 - `K_SOUP_COV_MIN_LINE` – Line coverage threshold
 - `K_SOUP_COV_MIN_BRANCH` – Branch coverage threshold
 - `K_SOUP_COV_MIN_HARD=true` – Fail if thresholds not met
+- `K_SOUP_COV_MIN_STRICT=true` – Require 100% line, branch, and method coverage
 
 ### Code Quality
 

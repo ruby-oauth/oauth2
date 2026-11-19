@@ -24,19 +24,8 @@ gem_version =
 Gem::Specification.new do |spec|
   spec.name = "oauth2"
   spec.version = gem_version
-  # kettle-jem:freeze
-  spec.post_install_message = <<-MESSAGE
-    You have installed oauth2 version #{gem_version}, which is EOL.
-    No further support is anticipated for the 1.4.x series.
-
-    OAuth2 version 2 is released. There are breaking changes, but upgrading should be easy.
-    Please see https://github.com/ruby-oauth/oauth2#what-is-new-for-v20
-
-    Please upgrade, report issues, and support the project! Thanks, |7eter l-|. l3oling
-  MESSAGE
-  # kettle-jem:unfreeze
-  spec.authors = ["Peter Boling", "Erik Michaels-Ober", "Michael Bleigh"]
-  spec.email = ["peter.boling@gmail.com"]
+  spec.authors = ["Peter H. Boling", "Erik Michaels-Ober", "Michael Bleigh", "Diego Elio 'Flameeyes' Pettenò", "Jeremy Kemper", "Paul Walker", "rick", "Tim Habermaas", "Wynn Netherland", "Alexander Lang", "Greg Spurrier", "Jay Adkisson", "Josh Kalderimis", "Luke Saunders", "Max Golovnia", "Simon Gate", "Bas Vodde", "Damian Janowski", "Daniël van de Burgt", "Dorren Chen", "Igor Sales", "Leigh Caplan", "Michael Andrews", "Mike Skalnik", "Omer Rauchwerger", "Saverio Trioni", "Trent Ogren", "Vsevolod Romashov", "Antonio Tapiador del Dujo", "Eduardo Gurgel", "Geostellar Developer", "Rainux Luo", "Taylor Hedberg", "Tim Clem", "Ellis Berner", "Olivier Lacan", "Peter Souter", "Steven Davidovitz", "Thomas Walpole", "Anton Ilin", "Bo Jeanes", "Edward Rudd", "Lawrence Oluyede", "Linus Pettersson", "Motoshi Nishihira", "Tim Rogers", "Nathaniel Bibler", "Pierre Schambacher", "asm__", "Lomey", "An Vo", "Jon Palmer", "Stephen Reid", "Anders Carling", "dobon", "Jonathan Rochkind", "Daniel Pepper"]
+  spec.email = ["floss@galtzo.com"]
 
   spec.summary = "🔐 A Ruby wrapper for the OAuth 2.0 protocol."
   spec.description = "🔐 A Ruby wrapper for the OAuth 2.0 protocol built with a similar style to the original OAuth spec."
@@ -122,13 +111,24 @@ Gem::Specification.new do |spec|
   spec.bindir = "exe"
   # Listed files are the relative paths from bindir above.
   spec.executables = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
+
+  # kettle-jem:freeze
+  spec.post_install_message = <<-MESSAGE
+    You have installed oauth2 version #{gem_version}, which is EOL.
+    No further support is anticipated for the 1.4.x series.
+
+    OAuth2 version 2 is released. There are breaking changes, but upgrading should be easy.
+    Please see https://github.com/ruby-oauth/oauth2#what-is-new-for-v20
+
+    Please upgrade, report issues, and support the project! Thanks, |7eter l-|. l3oling
+  MESSAGE
+  # kettle-jem:unfreeze
+
   spec.require_paths = ["lib"]
 
   spec.add_dependency "faraday", [">= 0.17.3", "< 3.0"]
   spec.add_dependency "jwt", [">= 1.0", "< 3.0"]
-  # MultiJson 1.20+ uses Fiber-local storage unavailable on supported TruffleRuby versions.
   spec.add_dependency "multi_json", ">= 1.3", "< 1.20"
-  # MultiXml 0.8+ uses syntax unsupported by supported older TruffleRuby versions.
   spec.add_dependency "multi_xml", "~> 0.5", "< 0.8"
   spec.add_dependency "rack", [">= 1.2", "< 4"]
 
@@ -146,7 +146,7 @@ Gem::Specification.new do |spec|
   #       and preferably a modular one (see gemfiles/modular/*.gemfile).
 
   # Dev, Test, & Release Tasks
-  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.25")             # ruby >= 2.4
+  spec.add_development_dependency("kettle-dev", "~> 3.1", ">= 3.1.26")             # ruby >= 2.4
 
   # Security
   spec.add_development_dependency("bundler-audit", "~> 0.9.3")                      # ruby >= 2.0.0
@@ -161,10 +161,7 @@ Gem::Specification.new do |spec|
   # Loads version files in anonymous namespaces for coverage without constant redefinition warnings.
   spec.add_development_dependency("anonymous_loader", "~> 0.1", ">= 0.1.5")         # ruby >= 2.2.0
   spec.add_development_dependency("appraisal2", "~> 3.2", ">= 3.2.6")               # ruby >= 1.8.7, for testing against multiple versions of dependencies
-  # MultiJson 1.x passes JSON options positionally, which JSON 3 no longer supports.
-  spec.add_development_dependency("json", ">= 2", "< 3")
-  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.28")
-  spec.add_development_dependency("nkf", ">= 0.3")            # ruby >= 2.4
+  spec.add_development_dependency("kettle-test", "~> 2.0", ">= 2.0.29")            # ruby >= 2.4
   spec.add_development_dependency("turbo_tests2", "~> 4.0", ">= 4.0.0")           # ruby >= 2.4.0, default kettle-test runner
 
   # Releasing
@@ -186,6 +183,8 @@ Gem::Specification.new do |spec|
   # spec.add_development_dependency("webmock", ">= 3")                    # Last version to support ruby >= 2.3
   spec.add_development_dependency "addressable", ">= 2"
   spec.add_development_dependency "bundler", ">= 1.16"
+  spec.add_development_dependency("json", ">= 2", "< 3")
+  spec.add_development_dependency("nkf", ">= 0.3")            # ruby >= 2.4
   spec.add_development_dependency "rexml", ">= 3"
   spec.add_development_dependency "rspec", ">= 3"
   spec.add_development_dependency "rspec-block_is_expected"

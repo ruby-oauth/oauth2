@@ -1,0 +1,215 @@
+{
+  "- 'gemfiles/vendor/**/*'\n- 'vendor/**/*'": [
+    {
+      "file": ".rubocop.yml",
+      "lines": [
+        25,
+        70
+      ]
+    }
+  ],
+  "- 'vendor/**/*'\n- '**/.irbrc'": [
+    {
+      "file": ".rubocop.yml",
+      "lines": [
+        26,
+        71
+      ]
+    }
+  ],
+  "- gem: faraday\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        118,
+        123,
+        128
+      ]
+    }
+  ],
+  "- gem: jwt\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        133,
+        138,
+        143
+      ]
+    }
+  ],
+  "- gem: logger\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        148,
+        153,
+        158
+      ]
+    }
+  ],
+  "- gem: multi_xml\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        163,
+        168,
+        173
+      ]
+    }
+  ],
+  "- gem: rack\ndirect: oauth2.gemspec": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        178,
+        183,
+        188,
+        193
+      ]
+    }
+  ],
+  "- ruby: \"ruby\"\nappraisal: \"current\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        41,
+        47,
+        53
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        121,
+        126,
+        131
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        136,
+        141,
+        146
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        151,
+        156,
+        161
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        166,
+        171,
+        176
+      ]
+    }
+  ],
+  "action: keep_both\nreason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        181,
+        186,
+        191,
+        196
+      ]
+    }
+  ],
+  "action: remove_modular_gem\nreason: \"oauth2.gemspec owns this development dependency.\"": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        116,
+        201
+      ]
+    }
+  ],
+  "bundler: latest\n- ruby: \"ruby\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        46,
+        52
+      ]
+    }
+  ],
+  "config: .licenserc.yaml\nmode: \"check\"": [
+    {
+      "file": ".github/workflows/license-eye.yml",
+      "lines": [
+        49,
+        62
+      ]
+    }
+  ],
+  "exec_cmd: \"kettle-test\"\nrubygems: latest": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        44,
+        50,
+        56
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing.\"\n- gem: faraday": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        122,
+        127
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows jwt for testing.\"\n- gem: jwt": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        137,
+        142
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows logger for testing.\"\n- gem: logger": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        152,
+        157
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows multi_xml for testing.\"\n- gem: multi_xml": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        167,
+        172
+      ]
+    }
+  ],
+  "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows rack for testing.\"\n- gem: rack": [
+    {
+      "file": ".structuredmerge/kettle-jem.yml",
+      "lines": [
+        182,
+        187,
+        192
+      ]
+    }
+  ]
+}

@@ -11,7 +11,7 @@
 `if ci_badges.map(&:color).all? { it == "green"}` 👇️ send money so I can do more of this. FLOSS maintenance is now my full-time job.
 
 [![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate at ko-fi.com][🖇kofi-img]][🖇kofi]
-<p><sub>Corporate sponsor: <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="24"/></a> <a href="#-floss-funding">Become a sponsor</a></sub></p>
+<p><sub>Corporate sponsors: <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="24"/></a> <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="24"/></a> <a href="#-floss-funding">Become a sponsor</a></sub></p>
 
 <details markdown="1">
  <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
@@ -94,14 +94,14 @@ The _amazing_ test matrix is powered by the kettle-dev stack.
 ## Usage Examples
 
 ```ruby
-require 'oauth2'
-client = OAuth2::Client.new('client_id', 'client_secret', :site => 'https://example.org')
+require "oauth2"
+client = OAuth2::Client.new("client_id", "client_secret", :site => "https://example.org")
 
-client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth2/callback')
+client.auth_code.authorize_url(:redirect_uri => "http://localhost:8080/oauth2/callback")
 # => "https://example.org/oauth/authorization?response_type=code&client_id=client_id&redirect_uri=http://localhost:8080/oauth2/callback"
 
-token = client.auth_code.get_token('authorization_code_value', :redirect_uri => 'http://localhost:8080/oauth2/callback', :headers => {'Authorization' => 'Basic some_password'})
-response = token.get('/api/resource', :params => {'query_foo' => 'bar'})
+token = client.auth_code.get_token("authorization_code_value", :redirect_uri => "http://localhost:8080/oauth2/callback", :headers => {"Authorization" => "Basic some_password"})
+response = token.get("/api/resource", :params => {"query_foo" => "bar"})
 response.class.name
 # => OAuth2::Response
 ```
@@ -113,19 +113,19 @@ Set an environment variable, however you would [normally do that](https://github
 
 ```ruby
 # will log both request and response, including bodies
-ENV['OAUTH_DEBUG'] = 'true'
+ENV["OAUTH_DEBUG"] = "true"
 ```
 
 By default, debug output will go to `$stdout`. This can be overridden when
 initializing your OAuth2::Client.
 
 ```ruby
-require 'oauth2'
+require "oauth2"
 client = OAuth2::Client.new(
-  'client_id',
-  'client_secret',
-  :site => 'https://example.org',
-  :logger => Logger.new('example.log', 'weekly')
+  "client_id",
+  "client_secret",
+  :site => "https://example.org",
+  :logger => Logger.new("example.log", "weekly")
 )
 ```
 </details>
@@ -169,14 +169,14 @@ authentication grant types have helper strategy classes that simplify client
 use. They are available via the `#auth_code`, `#implicit`, `#password`, `#client_credentials`, and `#assertion` methods respectively.
 
 ```ruby
-auth_url = client.auth_code.authorize_url(:redirect_uri => 'http://localhost:8080/oauth/callback')
-token = client.auth_code.get_token('code_value', :redirect_uri => 'http://localhost:8080/oauth/callback')
+auth_url = client.auth_code.authorize_url(:redirect_uri => "http://localhost:8080/oauth/callback")
+token = client.auth_code.get_token("code_value", :redirect_uri => "http://localhost:8080/oauth/callback")
 
-auth_url = client.implicit.authorize_url(:redirect_uri => 'http://localhost:8080/oauth/callback')
+auth_url = client.implicit.authorize_url(:redirect_uri => "http://localhost:8080/oauth/callback")
 # get the token params in the callback and
 token = OAuth2::AccessToken.from_kvform(client, query_string)
 
-token = client.password.get_token('username', 'password')
+token = client.password.get_token("username", "password")
 
 token = client.client_credentials.get_token
 
@@ -187,11 +187,33 @@ If you want to specify additional headers to be sent out with the
 request, add a 'headers' hash under 'params':
 
 ```ruby
-token = client.auth_code.get_token('code_value', :redirect_uri => 'http://localhost:8080/oauth/callback', :headers => {'Some' => 'Header'})
+token = client.auth_code.get_token("code_value", :redirect_uri => "http://localhost:8080/oauth/callback", :headers => {"Some" => "Header"})
 ```
 
 You can always use the `#request` method on the `OAuth2::Client` instance to make
 requests for tokens for any Authentication grant type.
+
+### Federated DVCS
+
+<details markdown="1">
+ <summary>Find this repo on federated forges (Coming soon!)</summary>
+
+| Federated [DVCS][💎d-in-dvcs] Repository | Status | Issues | PRs | Wiki | CI |
+|-------------------------------------------------|-------------------------------------------|-------------------|------------------|-----------------|----------------|
+| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl] | The Truth | [💚][🤝gl-issues] | [💚][🤝gl-pulls] | [💚][📜gl-wiki] | 🐭 Tiny Matrix |
+| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate]) | [💚][🤝cb-issues] | [💚][🤝cb-pulls] | ➖ | ⭕️ No Matrix |
+| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh] | Another Mirror | [💚][🤝gh-issues] | [💚][🤝gh-pulls] | [💚][📜gh-wiki] | 💯 Full Matrix |
+
+</details>
+
+### Enterprise Support
+
+For enterprise support from the maintainer, use [Upwork][👨🏼‍🏫expsup-upwork] or [CodeMentor][👨🏼‍🏫expsup-codementor].
+
+Other support channels:
+
+- [![Ruby Users Forum][✉️ruby-forum-img]][✉️ruby-forum]
+- [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
 
 ## ✨ Installation
 
@@ -267,6 +289,7 @@ Currently, [Open Collective][🖇osc] is our preferred funding platform.
 ### Corporate Sponsorship
 
 - <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="32"/></a> [Alpha-Omega](https://alpha-omega.dev) — backed by [Amazon Web Services](https://aws.amazon.com), [Google](https://www.google.com), [Microsoft](https://www.microsoft.com), [Anthropic](https://www.anthropic.com), [OpenAI](https://openai.com), [Citi](https://www.citigroup.com), [GitHub](https://github.com)
+- <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="32"/></a> [SerpApi](https://serpapi.com)
 
 **If you're working in a company that's making significant use of ruby-oauth tools we'd
 appreciate it if you suggest to your company to become a ruby-oauth sponsor.**
@@ -384,7 +407,7 @@ dependency on this gem using the [Pessimistic Version Constraint][pvc] with two 
 For example:
 
 ```ruby
-spec.add_dependency 'oauth2', '~> 1.4'
+spec.add_dependency "oauth2", "~> 1.4"
 ```
 
 [semver]: http://semver.org/
@@ -432,7 +455,6 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2013 Antonio Tapiador del Dujo
 - Copyright (c) 2013 Eduardo Gurgel
 - Copyright (c) 2013 Geostellar Developer
-- Copyright (c) 2013 Manfred Stienstra
 - Copyright (c) 2013 Rainux Luo
 - Copyright (c) 2013 Taylor Hedberg
 - Copyright (c) 2013 Tim Clem
@@ -451,18 +473,14 @@ See [LICENSE.md][📄license] for the official copyright notice.
 - Copyright (c) 2017 Nathaniel Bibler
 - Copyright (c) 2017 Pierre Schambacher
 - Copyright (c) 2018 asm__
-- Copyright (c) 2018 Chad Woolley
 - Copyright (c) 2018 Lomey
 - Copyright (c) 2018-2023, 2026 Peter H. Boling
-- Copyright (c) 2019 Orien Madgwick
 - Copyright (c) 2020 An Vo
 - Copyright (c) 2020 Jon Palmer
 - Copyright (c) 2020 Stephen Reid
 - Copyright (c) 2021 Anders Carling
 - Copyright (c) 2021 dobon
-- Copyright (c) 2022 Aleksandar N. Kostadinov
 - Copyright (c) 2022 Jonathan Rochkind
-- Copyright (c) 2023 Damian Aberbuj
 - Copyright (c) 2026 Daniel Pepper
 
 </details>
@@ -702,3 +720,14 @@ Thanks for RTFM. ☺️
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
 
 [🚎sec-pol]: https://gitlab.com/oauth-xx/oauth2/-/blob/main/SECURITY.md
+
+<!-- kettle-jem:metadata:start -->
+| Field | Value |
+|---|---|
+| Package | oauth2 |
+| Description | 🔐 A Ruby wrapper for the OAuth 2.0 protocol built with a similar style to the original OAuth spec. |
+| Homepage | https://github.com/ruby-oauth/oauth2 |
+| Source | https://github.com/ruby-oauth/oauth2 |
+| License | `MIT` |
+| Funding | https://github.com/sponsors/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/ruby-oauth, https://thanks.dev/u/gh/pboling, https://www.buymeacoffee.com/pboling |
+<!-- kettle-jem:metadata:end -->

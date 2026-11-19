@@ -19,12 +19,12 @@ end
 if structuredmerge_remote
   # Keep the released floor when templating with local StructuredMerge paths;
   # kettle-jem-deps-floor advances this requirement from published versions.
-  gem "kettle-jem", "~> 7.1", ">= 7.1.40"
+  gem "kettle-jem", "~> 7.1", ">= 7.1.42"
 end
 
 if kettle_remote
   # Template/plugin checks for released installs.
-  gem "kettle-drift", "~> 1.0", ">= 1.0.17", :require => false
+  gem "kettle-drift", "~> 1.0", ">= 1.0.19", :require => false
 end
 
 # Set STRUCTUREDMERGE_DEV=/path/to/structuredmerge/ruby/gems for local development with path-based dependencies.

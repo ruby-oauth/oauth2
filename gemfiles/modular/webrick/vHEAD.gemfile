@@ -1,1 +1,1 @@
-gem "webrick", ">= 1.9"
+gem "webrick", ">= 1.9.2"
