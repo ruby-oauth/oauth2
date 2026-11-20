@@ -675,7 +675,7 @@ files:
   CHANGELOG.md:
     recipe: template_source_application_CHANGELOG_md
     action: write
-    dest_sha256: d70f8680b98736850006cb10adeea4520a4a9bfe5a4ea4a5c1d0b6c325be6ab8
+    dest_sha256: 26e8f14c243abd004092509f815d400d4557d78c1e700c5879dc469f6630924d
     input_fingerprint: '00358234f49827257a2c023ff2d915c1a9084808bbbeb7542dd0ef0df1637ca3'
     template_sources:
     - CHANGELOG.md.example
@@ -735,6 +735,13 @@ files:
     input_fingerprint: e34da827ef269f9d0801b483ba6e201412324a1316c47ba9da84d83a7b7e6c40
     template_sources:
     - MIT.md.example
+  README.md:
+    recipe: template_source_application_README_md
+    action: write
+    dest_sha256: ca5d6572bab795fdb6d6a621a23df0667f7976c9cdcfc97ccbdab72a2172a001
+    input_fingerprint: 26c60109589596831457174bcca003056c76974d0fd7b52d646a549395a0615a
+    template_sources:
+    - README.md.example
   REEK:
     recipe: template_source_application_REEK
     action: write
