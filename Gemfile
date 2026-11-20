@@ -18,7 +18,7 @@ git_source(:gitlab) { |repo_name| "https://gitlab.com/#{repo_name}" }
 # Include dependencies from oauth2.gemspec
 gemspec
 
-gem "kettle-family", "~> 1.3", ">= 1.3.37"
+gem "kettle-family", "~> 1.3", ">= 1.3.45"
 
 # Local workspace dependency wiring for *_local.gemfile overrides
 gem "nomono", "~> 1.1", ">= 1.1.18", :require => false # ruby >= 3.2.0
@@ -32,9 +32,11 @@ gem "nomono", "~> 1.1", ">= 1.1.18", :require => false # ruby >= 3.2.0
 # wiring fails version solving for every command in the bundle.
 #
 # (env-switched: STRUCTUREDMERGE_DEV=/path/to/structuredmerge/ruby/gems for local paths)
+
 eval_gemfile "gemfiles/modular/templating.gemfile" if
   ENV.fetch("K_JEM_TEMPLATING", "false").casecmp("true").zero? ||
-    ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0
+    ENV.fetch("STRUCTUREDMERGE_DEV", "false").casecmp("false") != 0 ||
+    ENV.fetch("STRUCTUREDMERGE_CORE_DEV", "false").casecmp("false") != 0
 
 # Debugging
 eval_gemfile "gemfiles/modular/debug.gemfile"

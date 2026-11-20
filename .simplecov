@@ -1,5 +1,11 @@
 # frozen_string_literal: true
 
+# kettle-jem:freeze
+# To retain chunks of comments & code during oauth2 templating:
+# Wrap custom sections with freeze markers (e.g., as above and below this comment chunk).
+# oauth2 will then preserve content between those markers across template runs.
+# kettle-jem:unfreeze
+
 # To get coverage
 # On Local, default (HTML) output, it just works, coverage is turned on:
 #   bundle exec rspec spec

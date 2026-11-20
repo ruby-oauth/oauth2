@@ -1,4 +1,12 @@
-gem "rspec_junit_formatter",
-  :github => "pboling/rspec_junit_formatter",
-  :branch => "main",
-  :ref => "9e6bcaaedd49477b62878ed568dc4ada5cc7cb5e"
+### rspec_junit_formatter
+# Bucket boundaries follow Kettle::Rb::RubySeriesBuckets: r3.2 ends at 3.2.
+version = Gem::Version.new(RUBY_VERSION)
+if version >= Gem::Version.new("4.0")
+  eval_gemfile "rspec_junit_formatter/r4/v0.8.gemfile"
+elsif version >= Gem::Version.new("3.3")
+  eval_gemfile "rspec_junit_formatter/r3/v0.8.gemfile"
+elsif version >= Gem::Version.new("3.0")
+  eval_gemfile "rspec_junit_formatter/r3.2/v0.6.gemfile"
+else
+  eval_gemfile "rspec_junit_formatter/r2/v0.6.gemfile"
+end

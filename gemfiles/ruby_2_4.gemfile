@@ -5,3 +5,5 @@ source "https://gem.coop"
 gemspec :path => "../"
 
 eval_gemfile("modular/x_std_libs/r2.4/libs.gemfile")
+
+eval_gemfile("modular/rspec_junit_formatter/r2/v0.6.gemfile")

@@ -375,6 +375,12 @@ readme:
   section_aliases:
     what: synopsis
   corporate_sponsors:
+    - name: SerpApi
+      url: https://serpapi.com
+      img_src: https://serpapi.com/assets/media_kit/logo-with-wordmark.svg
+      since: '2026-01-01'
+      target_href: https://serpapi.com
+      image_src: https://serpapi.com/assets/media_kit/logo-with-wordmark.svg
     - name: Alpha-Omega
       url: https://alpha-omega.dev
       img_src: https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg

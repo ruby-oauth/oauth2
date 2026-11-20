@@ -166,6 +166,15 @@
       ]
     }
   ],
+  "out != \"\" { print > out }\n' \"$bundle\"": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        101,
+        130
+      ]
+    }
+  ],
   "reason: \"The gemspec defines the released runtime contract while the appraisal matrix gemfile intentionally narrows faraday for testing.\"\n- gem: faraday": [
     {
       "file": ".structuredmerge/kettle-jem.yml",
@@ -209,6 +218,15 @@
         182,
         187,
         192
+      ]
+    }
+  ],
+  "subject=\"$(openssl x509 -in \"$file\" -noout -subject 2>/dev/null || true)\"\nif [ -n \"$subject\" ] && matches \"$subject\"; then": [
+    {
+      "file": ".github/workflows/current.yml",
+      "lines": [
+        109,
+        133
       ]
     }
   ]

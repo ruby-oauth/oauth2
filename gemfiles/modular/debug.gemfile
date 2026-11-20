@@ -19,4 +19,4 @@ platform :mri do
   # gem "pry", "~> 0.14"                     # ruby >= 2.0
 end
 
-gem "gem_bench", "~> 2.0", ">= 2.0.5"
+gem "gem_bench", "~> 2.0", ">= 2.0.6"

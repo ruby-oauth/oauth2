@@ -1,0 +1,2 @@
+# Ruby >= 3.3: released upstream includes the invalid-UTF-8 fix (>= 0.7.1).
+gem "rspec_junit_formatter", "~> 0.8"

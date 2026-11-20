@@ -19,8 +19,10 @@ begin
   require "gitmoji/regex"
 
   full_text = File.read(ARGV[0])
-  # Is the first character a GitMoji?
-  gitmoji_index = full_text =~ Gitmoji::Regex::REGEX
+  # A Conventional Commit prefix may precede the Gitmoji in the subject.
+  subject = full_text.lines.first.to_s
+  subject = subject.sub(/\A[a-zA-Z][a-zA-Z0-9-]*(?:\([^\s()]+\))?!?: /, "")
+  gitmoji_index = subject =~ Gitmoji::Regex::REGEX
   if gitmoji_index == 0
     exit(0)
   else
@@ -37,12 +39,10 @@ begin
 
 
       Did you forget to add a relevant gitmoji? (see https://gitmoji.dev/ for tools)
-      In this project, a Gitmoji must be the first grapheme of the commit message.
-      What's a grapheme?
-      A symbol rendered to be visually identifiable as a single character, but which may be composed of multiple Unicode code points)
+      A Gitmoji must start the subject, or follow a Conventional Commit prefix.
       Must match: #{Gitmoji::Regex::REGEX}
       #{"Found a gitmoji at character index #{gitmoji_index}... not good enough.\n" if gitmoji_index}
-      Example: git commit -m "✨ My excellent new feature"
+      Example: git commit -m "feat(core): ✨ add feature"
 
     EOM
     puts denied

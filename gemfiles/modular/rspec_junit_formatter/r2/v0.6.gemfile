@@ -1,0 +1,7 @@
+# Ruby < 3.3: upstream rspec_junit_formatter >= 0.7 requires Ruby >= 3.3, and the
+# final legacy release (v0.6.2, Ruby >= 2.3) lacks the invalid-UTF-8 fix.
+# This fork carries that fix on the v0.6 line.
+gem "rspec_junit_formatter",
+  :github => "pboling/rspec_junit_formatter",
+  :branch => "main",
+  :ref => "9e6bcaaedd49477b62878ed568dc4ada5cc7cb5e"

@@ -11,7 +11,7 @@
 `if ci_badges.map(&:color).all? { it == "green"}` 👇️ send money so I can do more of this. FLOSS maintenance is now my full-time job.
 
 [![OpenCollective Backers][🖇osc-backers-i]][🖇osc-backers] [![OpenCollective Sponsors][🖇osc-sponsors-i]][🖇osc-sponsors] [![Sponsor Me on Github][🖇sponsor-img]][🖇sponsor] [![Liberapay Goal Progress][⛳liberapay-img]][⛳liberapay] [![Donate on PayPal][🖇paypal-img]][🖇paypal] [![Buy me a coffee][🖇buyme-small-img]][🖇buyme] [![Donate at ko-fi.com][🖇kofi-img]][🖇kofi]
-<p><sub>Corporate sponsors: <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="24"/></a> <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="24"/></a> <a href="#-floss-funding">Become a sponsor</a></sub></p>
+<p><sub>Corporate sponsors: <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="24"/></a> <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="24"/></a> <a href="#-floss-funding">Become a sponsor</a></sub></p>
 
 <details markdown="1">
  <summary>👣 How will this project approach the September 2025 hostile takeover of RubyGems? 🚑️</summary>
@@ -90,6 +90,28 @@ The _amazing_ test matrix is powered by the kettle-dev stack.
 | [turbo_tests2](https://clickgems.clickhouse.com/dashboard/turbo_tests2) | [GitHub](https://github.com/galtzo-floss/turbo_tests2) | parallel test execution | [![Total downloads for turbo_tests2](https://img.shields.io/gem/dt/turbo_tests2.svg?style=flat-square)](https://clickgems.clickhouse.com/dashboard/turbo_tests2) |
 
 </details>
+
+### Federated DVCS
+
+<details markdown="1">
+ <summary>Find this repo on federated forges (Coming soon!)</summary>
+
+| Federated [DVCS][💎d-in-dvcs] Repository | Status | Issues | PRs | Wiki | CI |
+|-------------------------------------------------|-------------------------------------------|-------------------|------------------|-----------------|----------------|
+| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl] | The Truth | [💚][🤝gl-issues] | [💚][🤝gl-pulls] | [💚][📜gl-wiki] | 🐭 Tiny Matrix |
+| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate]) | [💚][🤝cb-issues] | [💚][🤝cb-pulls] | ➖ | ⭕️ No Matrix |
+| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh] | Another Mirror | [💚][🤝gh-issues] | [💚][🤝gh-pulls] | [💚][📜gh-wiki] | 💯 Full Matrix |
+
+</details>
+
+### Enterprise Support
+
+For enterprise support from the maintainer, use [Upwork][👨🏼‍🏫expsup-upwork] or [CodeMentor][👨🏼‍🏫expsup-codementor].
+
+Other support channels:
+
+- [![Ruby Users Forum][✉️ruby-forum-img]][✉️ruby-forum]
+- [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
 
 ## Usage Examples
 
@@ -192,29 +214,6 @@ token = client.auth_code.get_token("code_value", :redirect_uri => "http://localh
 
 You can always use the `#request` method on the `OAuth2::Client` instance to make
 requests for tokens for any Authentication grant type.
-
-### Federated DVCS
-
-<details markdown="1">
- <summary>Find this repo on federated forges (Coming soon!)</summary>
-
-| Federated [DVCS][💎d-in-dvcs] Repository | Status | Issues | PRs | Wiki | CI |
-|-------------------------------------------------|-------------------------------------------|-------------------|------------------|-----------------|----------------|
-| 🧪 [ruby-oauth/oauth2 on GitLab][📜src-gl] | The Truth | [💚][🤝gl-issues] | [💚][🤝gl-pulls] | [💚][📜gl-wiki] | 🐭 Tiny Matrix |
-| 🧊 [ruby-oauth/oauth2 on CodeBerg][📜src-cb] | An Ethical Mirror ([Donate][🤝cb-donate]) | [💚][🤝cb-issues] | [💚][🤝cb-pulls] | ➖ | ⭕️ No Matrix |
-| 🐙 [ruby-oauth/oauth2 on GitHub][📜src-gh] | Another Mirror | [💚][🤝gh-issues] | [💚][🤝gh-pulls] | [💚][📜gh-wiki] | 💯 Full Matrix |
-
-</details>
-
-### Enterprise Support
-
-For enterprise support from the maintainer, use [Upwork][👨🏼‍🏫expsup-upwork] or [CodeMentor][👨🏼‍🏫expsup-codementor].
-
-Other support channels:
-
-- [![Ruby Users Forum][✉️ruby-forum-img]][✉️ruby-forum]
-- [![Live Chat on Discord][✉️discord-invite-img-ftb]][✉️discord-invite]
-
 ## ✨ Installation
 
 Install the gem and add to the application's Gemfile by executing:
@@ -288,8 +287,8 @@ Currently, [Open Collective][🖇osc] is our preferred funding platform.
 
 ### Corporate Sponsorship
 
-- <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="32"/></a> [Alpha-Omega](https://alpha-omega.dev) — backed by [Amazon Web Services](https://aws.amazon.com), [Google](https://www.google.com), [Microsoft](https://www.microsoft.com), [Anthropic](https://www.anthropic.com), [OpenAI](https://openai.com), [Citi](https://www.citigroup.com), [GitHub](https://github.com)
 - <a href="https://serpapi.com"><img alt="SerpApi" src="https://serpapi.com/assets/media_kit/logo-with-wordmark.svg" height="32"/></a> [SerpApi](https://serpapi.com)
+- <a href="https://alpha-omega.dev"><img alt="Alpha-Omega" src="https://alpha-omega.dev/wp-content/uploads/sites/22/2023/05/logo.svg" height="32"/></a> [Alpha-Omega](https://alpha-omega.dev) — backed by [Amazon Web Services](https://aws.amazon.com), [Google](https://www.google.com), [Microsoft](https://www.microsoft.com), [Anthropic](https://www.anthropic.com), [OpenAI](https://openai.com), [Citi](https://www.citigroup.com), [GitHub](https://github.com)
 
 **If you're working in a company that's making significant use of ruby-oauth tools we'd
 appreciate it if you suggest to your company to become a ruby-oauth sponsor.**
@@ -426,7 +425,7 @@ See [LICENSE.md][📄license] for the official copyright notice.
 <summary>Copyright holders</summary>
 
 - Copyright (c) 2010 Diego Elio 'Flameeyes' Pettenò
-- Copyright (c) 2010-2014, 2016-2017 Erik Michaels-Ober
+- Copyright (c) 2010-2014, 2016-2017 Erik Berlin
 - Copyright (c) 2010 Jeremy Kemper
 - Copyright (c) 2010-2011, 2014 Michael Bleigh
 - Copyright (c) 2010-2011 Paul Walker
@@ -719,8 +718,6 @@ Thanks for RTFM. ☺️
 [💎appraisal2-img]: https://img.shields.io/badge/appraised_by-appraisal2-34495e.svg?plastic&logo=ruby&logoColor=white
 [💎d-in-dvcs]: https://railsbling.com/posts/dvcs/put_the_d_in_dvcs/
 
-[🚎sec-pol]: https://gitlab.com/oauth-xx/oauth2/-/blob/main/SECURITY.md
-
 <!-- kettle-jem:metadata:start -->
 | Field | Value |
 |---|---|
@@ -731,3 +728,5 @@ Thanks for RTFM. ☺️
 | License | `MIT` |
 | Funding | https://github.com/sponsors/pboling, https://ko-fi.com/pboling, https://liberapay.com/pboling/donate, https://opencollective.com/ruby-oauth, https://thanks.dev/u/gh/pboling, https://www.buymeacoffee.com/pboling |
 <!-- kettle-jem:metadata:end -->
+
+[🚎sec-pol]: https://gitlab.com/oauth-xx/oauth2/-/blob/main/SECURITY.md
