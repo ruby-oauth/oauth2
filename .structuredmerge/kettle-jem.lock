@@ -735,13 +735,6 @@ files:
     input_fingerprint: e34da827ef269f9d0801b483ba6e201412324a1316c47ba9da84d83a7b7e6c40
     template_sources:
     - MIT.md.example
-  README.md:
-    recipe: template_source_application_README_md
-    action: write
-    dest_sha256: 4591950b38977a0300a3544e524d0b8c1dc143df71fa25cb89561936eaa6efa1
-    input_fingerprint: 26c60109589596831457174bcca003056c76974d0fd7b52d646a549395a0615a
-    template_sources:
-    - README.md.example
   REEK:
     recipe: template_source_application_REEK
     action: write
