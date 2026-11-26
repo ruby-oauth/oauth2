@@ -58,7 +58,7 @@ RSpec.describe OAuth2::Client do
     end
 
     it "leaves Faraday::Connection#ssl unset" do
-      expect(subject.connection.ssl).to be_empty
+      expect(subject.connection.ssl.to_hash).to be_empty
     end
 
     it "is able to pass a block to configure the connection" do
