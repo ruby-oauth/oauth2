@@ -8,7 +8,7 @@
   "lib/oauth2/client.rb:2387364079": [
     [170, 16, 12, "Style/HashConversion: Prefer `ary.to_h` to `Hash[ary]`.", 4245087757]
   ],
-  "oauth2.gemspec:4127523642": [
+  "oauth2.gemspec:712756977": [
     [133, 3, 53, "Gemspec/DependencyVersion: Dependency version specification is required.", 1845662118],
     [134, 3, 46, "Gemspec/DependencyVersion: Dependency version specification is required.", 3376509709],
     [137, 3, 45, "Gemspec/DependencyVersion: Dependency version specification is required.", 3000483332],

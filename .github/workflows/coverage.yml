@@ -63,7 +63,7 @@ jobs:
           persist-credentials: false
 
       - name: Setup Ruby & RubyGems
-        uses: appraisal-rb/setup-ruby-flash@6f8ad36ba7488db591541483afb5464d01e8861b # v2.14
+        uses: appraisal-rb/setup-ruby-flash@b04c0c9f2e443c909968abc828a0b53e77567cf9 # v2.15
         with:
           ruby-version: "${{ matrix.ruby }}"
           rubygems: "${{ matrix.rubygems }}"
@@ -134,7 +134,7 @@ jobs:
 
       - name: Upload coverage to QLTY
         if: ${{ !env.ACT }}
-        uses: qltysh/qlty-action/coverage@a46e29cfd54065ae8a2c6b1fd3446aed1b1a4257 # v2.8.0
+        uses: qltysh/qlty-action/coverage@56bee2d751c94b7bd8de22f64c9b5f398048e13f # v2.8.1
         with:
           oidc: true
           files: coverage/lcov.info
